@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SKBEngine_PopoverScrollImageViewController.h"
 
-
-@interface PopoverImageViewController : UIViewController <UIScrollViewDelegate> {
+@interface PopoverImageViewController : SKBEngine_PopoverScrollImageViewController <UIScrollViewDelegate> {
 	UIScrollView* scrollView;
 	UIImageView* imageView;
 }

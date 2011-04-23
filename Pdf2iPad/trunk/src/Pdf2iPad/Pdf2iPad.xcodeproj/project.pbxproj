@@ -54,6 +54,7 @@
 		296FE96E12D2F8EF00A5CBF6 /* flower.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 296FE96C12D2F8EF00A5CBF6 /* flower.jpg */; };
 		296FE96F12D2F8EF00A5CBF6 /* flower2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 296FE96D12D2F8EF00A5CBF6 /* flower2.jpg */; };
 		2974F0A51314AC0300188A77 /* ImageGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2974F0A41314AC0300188A77 /* ImageGenerator.m */; };
+		299A50C41362C4AF0083CFBD /* SKBEngine_PopoverScrollImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 299A50C31362C4AF0083CFBD /* SKBEngine_PopoverScrollImageViewController.m */; };
 		29AAD5E512BC938400CF7C91 /* icon_list_bullets.png in Resources */ = {isa = PBXBuildFile; fileRef = 29AAD5E412BC938400CF7C91 /* icon_list_bullets.png */; };
 		29AAD5EA12BC943C00CF7C91 /* TocTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29AAD5E912BC943C00CF7C91 /* TocTableViewController.m */; };
 		29B36D5112FFBFFD00897C08 /* PopoverImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B36D5012FFBFFD00897C08 /* PopoverImageViewController.m */; };
@@ -130,6 +131,8 @@
 		2974F0A41314AC0300188A77 /* ImageGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGenerator.m; sourceTree = "<group>"; };
 		2987EDC912AA472400FB66E5 /* pdfDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pdfDefine.h; sourceTree = "<group>"; };
 		2987EE1B12AA4D1600FB66E5 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
+		299A50C21362C4AF0083CFBD /* SKBEngine_PopoverScrollImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKBEngine_PopoverScrollImageViewController.h; sourceTree = "<group>"; };
+		299A50C31362C4AF0083CFBD /* SKBEngine_PopoverScrollImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKBEngine_PopoverScrollImageViewController.m; sourceTree = "<group>"; };
 		29AAD5E412BC938400CF7C91 /* icon_list_bullets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_list_bullets.png; sourceTree = "<group>"; };
 		29AAD5E812BC943C00CF7C91 /* TocTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TocTableViewController.h; sourceTree = "<group>"; };
 		29AAD5E912BC943C00CF7C91 /* TocTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TocTableViewController.m; sourceTree = "<group>"; };
@@ -304,6 +307,8 @@
 			children = (
 				29D5E6761362BEBE00678B75 /* SKBEngineViewController.h */,
 				29D5E6771362BEBE00678B75 /* SKBEngineViewController.m */,
+				299A50C21362C4AF0083CFBD /* SKBEngine_PopoverScrollImageViewController.h */,
+				299A50C31362C4AF0083CFBD /* SKBEngine_PopoverScrollImageViewController.m */,
 			);
 			path = SKBEngine;
 			sourceTree = "<group>";
@@ -456,6 +461,7 @@
 				2974F0A51314AC0300188A77 /* ImageGenerator.m in Sources */,
 				29B7D44B1330FFF30023BC81 /* TouchPenView.m in Sources */,
 				29D5E67E1362BEBE00678B75 /* SKBEngineViewController.m in Sources */,
+				299A50C41362C4AF0083CFBD /* SKBEngine_PopoverScrollImageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
