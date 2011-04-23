@@ -1,0 +1,399 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D3623260D0F684500981E51 /* SakuttoBookAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* SakuttoBookAppDelegate.m */; };
+		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		2899E5220DE3E06400AC0155 /* SakuttoBookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E5210DE3E06400AC0155 /* SakuttoBookViewController.xib */; };
+		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
+		28D7ACF80DDB3853001CB0EB /* SakuttoBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* SakuttoBookViewController.m */; };
+		29014A9B12D6EC8700936BF0 /* pdfDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29014A9A12D6EC8700936BF0 /* pdfDefine.csv */; };
+		29014A9D12D6EC9100936BF0 /* tocDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29014A9C12D6EC9100936BF0 /* tocDefine.csv */; };
+		29014AA112D6ECA700936BF0 /* bookDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29014AA012D6ECA700936BF0 /* bookDefine.csv */; };
+		290BA0B012B5E0D1009C01C8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 290BA0AF12B5E0D1009C01C8 /* QuartzCore.framework */; };
+		291EDE0413124E2C00DBD3E5 /* ImageGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 291EDE0313124E2C00DBD3E5 /* ImageGenerator.m */; };
+		2935764212B5EA9C00F46754 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2935764112B5EA9C00F46754 /* MenuViewController.m */; };
+		2935764412B5EAAD00F46754 /* MenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2935764312B5EAAD00F46754 /* MenuView.xib */; };
+		293BB9F012B6217300DDA3E3 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 293BB9EF12B6217300DDA3E3 /* WebViewController.m */; };
+		293BB9F212B6218500DDA3E3 /* WebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 293BB9F112B6218500DDA3E3 /* WebView.xib */; };
+		29431E2212C5D29C00914DBD /* list_bullets.png in Resources */ = {isa = PBXBuildFile; fileRef = 29431E2112C5D29C00914DBD /* list_bullets.png */; };
+		29787BE112C5FBDC00EC2681 /* document.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 29787BE012C5FBDC00EC2681 /* document.pdf */; };
+		297AC25612B786EB00962CED /* TocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297AC25512B786EB00962CED /* TocViewController.m */; };
+		297AC25812B7870B00962CED /* TocView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 297AC25712B7870B00962CED /* TocView.xib */; };
+		297DF1FB12C600320082C680 /* InfomationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 297DF1FA12C600320082C680 /* InfomationView.xib */; };
+		297DF1FF12C601AD0082C680 /* InfomationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297DF1FE12C601AD0082C680 /* InfomationViewController.m */; };
+		299448EC12B7370B00E7D108 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299448EB12B7370B00E7D108 /* MediaPlayer.framework */; };
+		2999FA9512B7BDE5002ACB2B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2999FA9412B7BDE5002ACB2B /* icon.png */; };
+		2999FDC512D6A8D500D0F145 /* License.m in Sources */ = {isa = PBXBuildFile; fileRef = 2999FDC412D6A8D500D0F145 /* License.m */; };
+		29B3B7C812C57DE00014F866 /* MyPdfScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B3B7C712C57DE00014F866 /* MyPdfScrollView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D3623240D0F684500981E51 /* SakuttoBookAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SakuttoBookAppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* SakuttoBookAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SakuttoBookAppDelegate.m; sourceTree = "<group>"; };
+		1D6058910D05DD3D006BFB54 /* SakuttoBookSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SakuttoBookSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		2899E5210DE3E06400AC0155 /* SakuttoBookViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SakuttoBookViewController.xib; sourceTree = "<group>"; };
+		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		28D7ACF60DDB3853001CB0EB /* SakuttoBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SakuttoBookViewController.h; sourceTree = "<group>"; };
+		28D7ACF70DDB3853001CB0EB /* SakuttoBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SakuttoBookViewController.m; sourceTree = "<group>"; };
+		29014A9A12D6EC8700936BF0 /* pdfDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pdfDefine.csv; path = csv/pdfDefine.csv; sourceTree = "<group>"; };
+		29014A9C12D6EC9100936BF0 /* tocDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tocDefine.csv; path = csv/tocDefine.csv; sourceTree = "<group>"; };
+		29014AA012D6ECA700936BF0 /* bookDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bookDefine.csv; path = csv/bookDefine.csv; sourceTree = "<group>"; };
+		290BA0AF12B5E0D1009C01C8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		291EDE0213124E2C00DBD3E5 /* ImageGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGenerator.h; sourceTree = "<group>"; };
+		291EDE0313124E2C00DBD3E5 /* ImageGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGenerator.m; sourceTree = "<group>"; };
+		2935764012B5EA9C00F46754 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		2935764112B5EA9C00F46754 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		2935764312B5EAAD00F46754 /* MenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuView.xib; sourceTree = "<group>"; };
+		293988DD12B5E9DB008017BE /* Define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Define.h; sourceTree = "<group>"; };
+		293BB9EE12B6217300DDA3E3 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		293BB9EF12B6217300DDA3E3 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		293BB9F112B6218500DDA3E3 /* WebView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebView.xib; sourceTree = "<group>"; };
+		29431E2112C5D29C00914DBD /* list_bullets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = list_bullets.png; path = Classes/list_bullets.png; sourceTree = "<group>"; };
+		2963BE1D12B5C01E001041EB /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
+		29787BE012C5FBDC00EC2681 /* document.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = document.pdf; sourceTree = "<group>"; };
+		297AC25412B786EB00962CED /* TocViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TocViewController.h; sourceTree = "<group>"; };
+		297AC25512B786EB00962CED /* TocViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TocViewController.m; sourceTree = "<group>"; };
+		297AC25712B7870B00962CED /* TocView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TocView.xib; sourceTree = "<group>"; };
+		297DF1FA12C600320082C680 /* InfomationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfomationView.xib; sourceTree = "<group>"; };
+		297DF1FD12C601AD0082C680 /* InfomationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfomationViewController.h; sourceTree = "<group>"; };
+		297DF1FE12C601AD0082C680 /* InfomationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfomationViewController.m; sourceTree = "<group>"; };
+		299448EB12B7370B00E7D108 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		2999FA9412B7BDE5002ACB2B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		2999FDC312D6A8D500D0F145 /* License.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = License.h; sourceTree = "<group>"; };
+		2999FDC412D6A8D500D0F145 /* License.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = License.m; sourceTree = "<group>"; };
+		29B3B7C612C57DE00014F866 /* MyPdfScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPdfScrollView.h; sourceTree = "<group>"; };
+		29B3B7C712C57DE00014F866 /* MyPdfScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPdfScrollView.m; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* SakuttoBookSample_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SakuttoBookSample_Prefix.pch; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* SakuttoBook-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SakuttoBook-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
+				290BA0B012B5E0D1009C01C8 /* QuartzCore.framework in Frameworks */,
+				299448EC12B7370B00E7D108 /* MediaPlayer.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1D3623240D0F684500981E51 /* SakuttoBookAppDelegate.h */,
+				1D3623250D0F684500981E51 /* SakuttoBookAppDelegate.m */,
+				28D7ACF60DDB3853001CB0EB /* SakuttoBookViewController.h */,
+				28D7ACF70DDB3853001CB0EB /* SakuttoBookViewController.m */,
+				291EDE0213124E2C00DBD3E5 /* ImageGenerator.h */,
+				291EDE0313124E2C00DBD3E5 /* ImageGenerator.m */,
+				29B3B7C612C57DE00014F866 /* MyPdfScrollView.h */,
+				29B3B7C712C57DE00014F866 /* MyPdfScrollView.m */,
+				2935764012B5EA9C00F46754 /* MenuViewController.h */,
+				2935764112B5EA9C00F46754 /* MenuViewController.m */,
+				293BB9EE12B6217300DDA3E3 /* WebViewController.h */,
+				293BB9EF12B6217300DDA3E3 /* WebViewController.m */,
+				297AC25412B786EB00962CED /* TocViewController.h */,
+				297AC25512B786EB00962CED /* TocViewController.m */,
+				297DF1FD12C601AD0082C680 /* InfomationViewController.h */,
+				297DF1FE12C601AD0082C680 /* InfomationViewController.m */,
+				2999FDC312D6A8D500D0F145 /* License.h */,
+				2999FDC412D6A8D500D0F145 /* License.m */,
+				2963BE1D12B5C01E001041EB /* Utility.h */,
+				293988DD12B5E9DB008017BE /* Define.h */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* SakuttoBookSample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2921370D12C604B800FC071D /* image */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = image;
+			sourceTree = "<group>";
+		};
+		2963BDF212B5BE1C001041EB /* pdf */ = {
+			isa = PBXGroup;
+			children = (
+				29787BE012C5FBDC00EC2681 /* document.pdf */,
+			);
+			path = pdf;
+			sourceTree = "<group>";
+		};
+		2994490212B737C600E7D108 /* movie */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = movie;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* SakuttoBookSample_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				29014AA012D6ECA700936BF0 /* bookDefine.csv */,
+				29014A9C12D6EC9100936BF0 /* tocDefine.csv */,
+				29014A9A12D6EC8700936BF0 /* pdfDefine.csv */,
+				2963BDF212B5BE1C001041EB /* pdf */,
+				2994490212B737C600E7D108 /* movie */,
+				2921370D12C604B800FC071D /* image */,
+				2999FA9412B7BDE5002ACB2B /* icon.png */,
+				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
+				2899E5210DE3E06400AC0155 /* SakuttoBookViewController.xib */,
+				2935764312B5EAAD00F46754 /* MenuView.xib */,
+				293BB9F112B6218500DDA3E3 /* WebView.xib */,
+				297AC25712B7870B00962CED /* TocView.xib */,
+				297DF1FA12C600320082C680 /* InfomationView.xib */,
+				29431E2112C5D29C00914DBD /* list_bullets.png */,
+				8D1107310486CEB800E47090 /* SakuttoBook-Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
+				290BA0AF12B5E0D1009C01C8 /* QuartzCore.framework */,
+				299448EB12B7370B00E7D108 /* MediaPlayer.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* SakuttoBookSample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "SakuttoBookSample" */;
+			buildPhases = (
+				29A886DC12D6C62F00A96E8B /* ShellScript */,
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SakuttoBookSample;
+			productName = PdfPub;
+			productReference = 1D6058910D05DD3D006BFB54 /* SakuttoBookSample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "SakuttoBookSample" */;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* SakuttoBookSample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
+				2899E5220DE3E06400AC0155 /* SakuttoBookViewController.xib in Resources */,
+				2935764412B5EAAD00F46754 /* MenuView.xib in Resources */,
+				293BB9F212B6218500DDA3E3 /* WebView.xib in Resources */,
+				297AC25812B7870B00962CED /* TocView.xib in Resources */,
+				2999FA9512B7BDE5002ACB2B /* icon.png in Resources */,
+				29431E2212C5D29C00914DBD /* list_bullets.png in Resources */,
+				29787BE112C5FBDC00EC2681 /* document.pdf in Resources */,
+				297DF1FB12C600320082C680 /* InfomationView.xib in Resources */,
+				29014A9B12D6EC8700936BF0 /* pdfDefine.csv in Resources */,
+				29014A9D12D6EC9100936BF0 /* tocDefine.csv in Resources */,
+				29014AA112D6ECA700936BF0 /* bookDefine.csv in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		29A886DC12D6C62F00A96E8B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "touch $SRCROOT/pdf/document.pdf";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				1D3623260D0F684500981E51 /* SakuttoBookAppDelegate.m in Sources */,
+				28D7ACF80DDB3853001CB0EB /* SakuttoBookViewController.m in Sources */,
+				2935764212B5EA9C00F46754 /* MenuViewController.m in Sources */,
+				293BB9F012B6217300DDA3E3 /* WebViewController.m in Sources */,
+				297AC25612B786EB00962CED /* TocViewController.m in Sources */,
+				29B3B7C812C57DE00014F866 /* MyPdfScrollView.m in Sources */,
+				297DF1FF12C601AD0082C680 /* InfomationViewController.m in Sources */,
+				2999FDC512D6A8D500D0F145 /* License.m in Sources */,
+				291EDE0413124E2C00DBD3E5 /* ImageGenerator.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = SakuttoBookSample_Prefix.pch;
+				INFOPLIST_FILE = "SakuttoBook-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				PRODUCT_NAME = SakuttoBookSample;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = SakuttoBookSample_Prefix.pch;
+				INFOPLIST_FILE = "SakuttoBook-Info.plist";
+				PRODUCT_NAME = SakuttoBookSample;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PREBINDING = NO;
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "SakuttoBookSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "SakuttoBookSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

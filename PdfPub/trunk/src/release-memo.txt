@@ -1,0 +1,12 @@
+cd trunk\src
+rmdir /S /Q release-wrk
+mkdir release-wrk
+mkdir release-wrk\SakuttoBook
+xcopy /S /E /I /Q SakuttoBook release-wrk\SakuttoBook
+
+cd release-wrk
+"C:\Program Files\à≥èkÅEìWäJ\Lhaca\Lhaca.exe" SakuttoBook
+sleep 2
+
+move SakuttoBook\SakuttoBook.zip ..\
+cd ..

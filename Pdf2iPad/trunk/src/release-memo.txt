@@ -1,0 +1,13 @@
+cd trunk\src
+
+rmdir /S /Q release-wrk
+mkdir release-wrk
+mkdir release-wrk\Pdf2iPad
+xcopy /S /E /I /Q Pdf2iPad release-wrk\Pdf2iPad
+
+cd release-wrk
+"C:\Program Files\à≥èkÅEìWäJ\Lhaca\Lhaca.exe" Pdf2iPad
+sleep 15
+
+move Pdf2iPad\Pdf2iPad.zip ..\
+cd ..

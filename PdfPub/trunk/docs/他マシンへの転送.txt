@@ -1,0 +1,165 @@
+★他のマシンへの転送について
+（開発マシンとして登録する場合）
+（Team Provisioning Profile: *を使う）
+
+
+・iTunesなどで、端末のUDIDを取得
+・iOS Dev Center の
+　iOS Provisioning PortalにUDIDを登録
+　・「Devices」－「Add Devices」
+　　"Device Name" 誰の何という機種かなど
+　　"Device ID" 40桁のUDID
+
+　・「Provisioning」－「Development」
+　　"Team Provisioning Profile: *"を開いて、
+　　　Devices欄に新しく追加した端末が登録されている事を確認。
+　・「Provisioning」－「Development」に戻って、
+　　"Download"からダウンロード
+　　（"Team_Provisioning_Profile_.mobileprovision"という名前）
+
+・Macに端末をつなぐ
+・MacでXcodeの「オーガナイザ」を開く
+・左側の一覧で、つないだ端末の横に緑色の丸印があるのを確認
+・「Development」－「Provisioning Profile」
+・上の「Automatic Device Provisioning」にチェックを入れて
+　から、「Refresh」ボタンを押す
+　・Provisioning Portal用のユーザIDとパスワードを入れてLogin
+・左側の一覧で、「DEVICES」－「(端末名)」を選ぶ
+・右側の「Provisioning」 欄に、「Team Provisioning Profile:*」
+　が入っているのを確認。
+
+
+
+
+・ビルド。
+　・構成は、Device、Debug
+　・署名は、
+　　「プロジェクト」－「アクティブターゲット""を編集」
+　　「ビルド」タブ
+　　「コード署名ID」欄で、"iPhone Developer"
+・ビルドしたアプリ
+　build/Debug-iphoneos/Pdf2iPad.app 
+
+
+・メモリスティックなどでPCにコピー
+・iTunes起動
+・*.app のフォルダごと、「ライブラリ」に入れる
+・デバイスを同期
+
+
+
+---
+端末が無く、UDIDだけが分かる場合
+
+
+・iTunesなどで、端末のUDIDを取得
+・iOS Dev Center の
+　iOS Provisioning PortalにUDIDを登録
+　・「Devices」－「Add Devices」
+　　"Device Name" 誰の何という機種かなど
+　　"Device ID" 40桁のUDID
+
+　・「Provisioning」－「Development」
+　　で、新しくProvisioningProfileを、新規作成する。
+　・「Provisioning」－「Development」に戻って、
+　　"Download"からダウンロード
+　　（"新しくつけた名前.mobileprovision"という名前）
+
+・MacでXcodeの「オーガナイザ」を開く
+・上の「Automatic Device Provisioning」にチェックを入れて
+　から、「Refresh」ボタンを押す
+　・Provisioning Portal用のユーザIDとパスワードを入れてLogin
+・右側の「Provisioning」 欄に、「新しくつけた名前のProfile」
+　が入っているのを確認。
+　（▲このリフレッシュをしないと、*に端末が追加されない。手動でプロファイルを新規作成すれば、そちらには端末が追加される）
+
+
+
+・ビルド。
+　・構成は、「Device」で「Debug」
+　・署名は、
+　　「プロジェクト」－「アクティブターゲット"(PJ名)"を編集」
+　　「ビルド」タブ
+　　「コード署名ID」欄で、「新しくつけた名前のProfile」を選択する
+・ビルドしたアプリをzipで圧縮
+　build/Debug-iphoneos/Pdf2iPad.app をzipで圧縮
+
+
+・メモリスティックなどでPCにコピー
+・iTunes起動
+・*.app のフォルダごと、「ライブラリ」に入れる
+・Profileも、「ライブラリ」に入れる
+・デバイスを同期
+
+
+
+
+---
+・「iPhone 構成ユーティリティ」を使った方が楽かも？
+
+
+
+
+
+
+---
+（ADHoc(アドホック) 配布）
+・iOS Provisioning Portalにて、
+・「Provisioning」－「Distribution」
+・右はじの「New Profile」ボタン
+・以下の情報を入れて、Submit
+　・Distribution Methodは、「AdHoc」*AdHoc配布なので。
+　・Profile Name は、プロファイル名。後で分かりやすい名前にする。
+　　例：MyAppname_Adhoc_Profile
+　・Distribution Certificate は、変更できない(会社名のまま)
+　・AppIDは、どれか選ぶか、「Xcode: Wildcard AppID」
+　・Devicesは、インストール先のデバイスをチェック入れる。
+
+・生成したProfileをダウンロードして、ビルド用にMacの
+　~/Library/MovileDevice/Provisioning Profile/に入れる
+　(ファイル名は上記の場合、MyAppname_Adhoc_Profile.mobileprovision)
+
+・ビルド。
+　・構成は、「Device」で「Distribution」(debugではなくてDistribution)
+　・署名は、
+　　「プロジェクト」－「アクティブターゲット"(PJ名)"を編集」
+　　「ビルド」タブ
+　　「コード署名ID」欄で、上記のADHoc用のProfileを選択する
+・ビルドしたアプリをzipで圧縮(フォルダを丸ごと渡したいため)
+　build/Debug-iphoneos/Pdf2iPad.app をzipで圧縮
+
+・appフォルダ（のzip化したもの）と、ADHoc用のプロファイルを、相手に送る
+　・MyAppname.app.zip
+　・MyAppname_Adhoc_Profile.mobileprovision
+
+・受け取った側は、zipを展開して、
+　MyAppname.appフォルダと、MyAppname_Adhoc_Profile.mobileprovisionを
+　iTunesの左上の「LIBRARY」にドラッグ＆ドロップする。
+　(LIBRARYの色が変わって、マウスカーソルが＋付きになる)
+「"xxxxxx.mobileprovision"はこのiPhoneで再生できないため、
+xxxxxxにコピー出来ませんでした。」と表示されても、コピーは出来ているようです。
+参考：
+http://blog.as-toybox.com/archives/239
+
+iTunesを使うかわりに「構成ユーティリティ」を使っても同じように
+転送できると思います。
+
+
+
+
+---
+別な方法には、「ADHoc(アドホック) 配布」があります。
+専用のプロファイルを作って、Distributionビルドをします。
+AppStoreで配布するのとほぼ同じ設定でビルドされるので、
+デバッグ用のコードが入らないので、アプリの動作が高速です。
+
+
+
+Provisioning Portalで、
+Distributionタブで、ADHOC用のプロビジョニング・プロファイルを
+作成。
+ダウンロードして、
+/home/okano/MobileDevice/Provisioning Profile/ にコピー。
+
+ADHOC用のプロビジョニング・プロファイルを使って、ビルドする
+

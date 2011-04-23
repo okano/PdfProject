@@ -1,0 +1,12 @@
+cd trunk\src
+rmdir /S /Q release-wrk
+mkdir release-wrk
+mkdir release-wrk\PdfPub
+xcopy /S /E /I /Q PdfPub release-wrk\PdfPub
+
+cd release-wrk
+"C:\Program Files\à≥èkÅEìWäJ\Lhaca\Lhaca.exe" PdfPub
+pause 2
+
+move PdfPub\PdfPub.zip .
+cd ..
