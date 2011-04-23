@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		297A104C1362C3F6002D0F5C /* SKBEngine_PopoverScrollImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297A104B1362C3F6002D0F5C /* SKBEngine_PopoverScrollImageViewController.m */; };
 		29F90D2A136298DA00544C1A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29F90D29136298DA00544C1A /* UIKit.framework */; };
 		29F90D2C136298DA00544C1A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29F90D2B136298DA00544C1A /* Foundation.framework */; };
 		29F90D2E136298DA00544C1A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29F90D2D136298DA00544C1A /* CoreGraphics.framework */; };
@@ -19,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		297A104A1362C3F6002D0F5C /* SKBEngine_PopoverScrollImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKBEngine_PopoverScrollImageViewController.h; sourceTree = "<group>"; };
+		297A104B1362C3F6002D0F5C /* SKBEngine_PopoverScrollImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKBEngine_PopoverScrollImageViewController.m; sourceTree = "<group>"; };
 		29F90D25136298DA00544C1A /* SKBEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SKBEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29F90D29136298DA00544C1A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		29F90D2B136298DA00544C1A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -86,6 +89,8 @@
 				29F90D3F136298DA00544C1A /* SKBEngineViewController.m */,
 				29F90D41136298DA00544C1A /* SKBEngineViewController.xib */,
 				29F90D30136298DA00544C1A /* Supporting Files */,
+				297A104A1362C3F6002D0F5C /* SKBEngine_PopoverScrollImageViewController.h */,
+				297A104B1362C3F6002D0F5C /* SKBEngine_PopoverScrollImageViewController.m */,
 			);
 			path = SKBEngine;
 			sourceTree = "<group>";
@@ -164,6 +169,7 @@
 				29F90D37136298DA00544C1A /* main.m in Sources */,
 				29F90D3A136298DA00544C1A /* SKBEngineAppDelegate.m in Sources */,
 				29F90D40136298DA00544C1A /* SKBEngineViewController.m in Sources */,
+				297A104C1362C3F6002D0F5C /* SKBEngine_PopoverScrollImageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +282,7 @@
 				29F90D48136298DA00544C1A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
