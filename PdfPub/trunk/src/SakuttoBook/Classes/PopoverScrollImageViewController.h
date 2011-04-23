@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Utility.h"
+#import "SKBEngine_PopoverScrollImageViewController.h"
 
-@interface PopoverScrollImageViewController : UIViewController <UIScrollViewDelegate> {
+@interface PopoverScrollImageViewController : SKBEngine_PopoverScrollImageViewController <UIScrollViewDelegate> {
 	UIImageView* imageView;
 	UIScrollView* scrollView;
 	//Save position, zoomScale for parent view.
