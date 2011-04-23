@@ -58,6 +58,7 @@
 		29AAD5EA12BC943C00CF7C91 /* TocTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29AAD5E912BC943C00CF7C91 /* TocTableViewController.m */; };
 		29B36D5112FFBFFD00897C08 /* PopoverImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B36D5012FFBFFD00897C08 /* PopoverImageViewController.m */; };
 		29B7D44B1330FFF30023BC81 /* TouchPenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B7D44A1330FFF30023BC81 /* TouchPenView.m */; };
+		29D5E67E1362BEBE00678B75 /* SKBEngineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D5E6771362BEBE00678B75 /* SKBEngineViewController.m */; };
 		29D74A4312BB7C4F00C33E10 /* image1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 29D74A3E12BB7C4F00C33E10 /* image1.jpg */; };
 		29D74A4412BB7C4F00C33E10 /* image2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 29D74A3F12BB7C4F00C33E10 /* image2.jpg */; };
 		29D74A4512BB7C4F00C33E10 /* image3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 29D74A4012BB7C4F00C33E10 /* image3.jpg */; };
@@ -137,6 +138,8 @@
 		29B7D4491330FFF30023BC81 /* TouchPenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchPenView.h; sourceTree = "<group>"; };
 		29B7D44A1330FFF30023BC81 /* TouchPenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchPenView.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29D5E6761362BEBE00678B75 /* SKBEngineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKBEngineViewController.h; sourceTree = "<group>"; };
+		29D5E6771362BEBE00678B75 /* SKBEngineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKBEngineViewController.m; sourceTree = "<group>"; };
 		29D74A3E12BB7C4F00C33E10 /* image1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image1.jpg; sourceTree = "<group>"; };
 		29D74A3F12BB7C4F00C33E10 /* image2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image2.jpg; sourceTree = "<group>"; };
 		29D74A4012BB7C4F00C33E10 /* image3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image3.jpg; sourceTree = "<group>"; };
@@ -238,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				080E96DDFE201D6D7F000001 /* Classes */,
+				29D5E66A1362BEBE00678B75 /* SKBEngine */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -293,6 +297,15 @@
 				29074DD912BA118500F5D46D /* MediaPlayer.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		29D5E66A1362BEBE00678B75 /* SKBEngine */ = {
+			isa = PBXGroup;
+			children = (
+				29D5E6761362BEBE00678B75 /* SKBEngineViewController.h */,
+				29D5E6771362BEBE00678B75 /* SKBEngineViewController.m */,
+			);
+			path = SKBEngine;
 			sourceTree = "<group>";
 		};
 		29D74A3D12BB7C4F00C33E10 /* image */ = {
@@ -359,6 +372,7 @@
 				Japanese,
 				French,
 				German,
+				en,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -441,6 +455,7 @@
 				29B36D5112FFBFFD00897C08 /* PopoverImageViewController.m in Sources */,
 				2974F0A51314AC0300188A77 /* ImageGenerator.m in Sources */,
 				29B7D44B1330FFF30023BC81 /* TouchPenView.m in Sources */,
+				29D5E67E1362BEBE00678B75 /* SKBEngineViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
