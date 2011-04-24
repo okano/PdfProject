@@ -10,28 +10,8 @@
 
 @implementation SKBEngineViewController
 
-@synthesize parentScrollView;
-
-- (void)setParentScrollView:(UIScrollView*)targetParentScrollView fromPosition:(CGPoint)pos fromZoomScale:(CGFloat)scale
-{
-	parentScrollView = targetParentScrollView;
-	parentOffset = pos;
-	parentZoomScale = scale;
-}
-
-- (void)repositionParentScrollView
-{
-	[parentScrollView setZoomScale:parentZoomScale];
-	[parentScrollView setContentOffset:parentOffset];
-}
-
 - (void)dealloc
 {
-	//
-	parentScrollView = nil;
-	parentOffset = CGPointZero;
-	parentZoomScale = 0.0f;
-
     [super dealloc];
 }
 

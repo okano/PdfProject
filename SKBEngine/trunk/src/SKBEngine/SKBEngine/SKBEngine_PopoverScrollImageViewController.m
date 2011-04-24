@@ -11,6 +11,22 @@
 
 @implementation SKBEngine_PopoverScrollImageViewController
 
+@synthesize parentScrollView;
+
+- (void)setParentScrollView:(UIScrollView*)targetParentScrollView fromPosition:(CGPoint)pos fromZoomScale:(CGFloat)scale
+{
+	parentScrollView = targetParentScrollView;
+	parentOffset = pos;
+	parentZoomScale = scale;
+}
+
+- (void)repositionParentScrollView
+{
+	[parentScrollView setZoomScale:parentZoomScale];
+	[parentScrollView setContentOffset:parentOffset];
+}
+
+/*
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -19,9 +35,14 @@
     }
     return self;
 }
+*/
 
 - (void)dealloc
 {
+	parentScrollView = nil;
+	parentOffset = CGPointZero;
+	parentZoomScale = 0.0f;
+
     [super dealloc];
 }
 

@@ -9,14 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface SKBEngineViewController : UIViewController {
-	//Save position, zoomScale for parent view.
-	UIScrollView* parentScrollView;
-	CGPoint parentOffset;
-	CGFloat parentZoomScale;
+    
 }
-- (void)setParentScrollView:(UIScrollView*)targetParentScrollView fromPosition:(CGPoint)pos fromZoomScale:(CGFloat)scale;
-- (void)repositionParentScrollView;
-//
-@property (nonatomic, retain) UIScrollView* parentScrollView;
 
 @end
