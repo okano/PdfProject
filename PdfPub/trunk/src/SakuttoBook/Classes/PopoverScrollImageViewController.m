@@ -11,7 +11,6 @@
 
 @implementation PopoverScrollImageViewController
 
-@synthesize parentScrollView;
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
@@ -96,12 +95,6 @@
 	return self;
 }
 
-- (void)setParentScrollView:(UIScrollView*)targetParentScrollView fromPosition:(CGPoint)pos fromZoomScale:(CGFloat)scale
-{
-	parentScrollView = targetParentScrollView;
-	parentOffset = pos;
-	parentZoomScale = scale;
-}
 
 - (void)closePopoverScrollImagePlayer
 {
@@ -110,11 +103,6 @@
 	[self repositionParentScrollView];
 }
 
-- (void)repositionParentScrollView
-{
-	[parentScrollView setZoomScale:parentZoomScale];
-	[parentScrollView setContentOffset:parentOffset];
-}
 
 //locate imageView to center always.
 //@see: http://stackoverflow.com/questions/1316451/center-content-of-uiscrollview-when-smaller
@@ -190,11 +178,6 @@
 	imageView = nil;
 	[scrollView release];
 	scrollView = nil;
-	
-	//
-	parentScrollView = nil;
-	parentOffset = CGPointZero;
-	parentZoomScale = 0.0f;
 	
     [super dealloc];
 }
