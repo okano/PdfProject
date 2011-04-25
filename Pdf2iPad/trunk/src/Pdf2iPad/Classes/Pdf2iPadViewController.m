@@ -2298,67 +2298,27 @@
 
 - (void)showPopoverImagePlayer:(NSString*)filename
 {
-	//LOG_CURRENT_METHOD;
-	//NSLog(@"filename=%@", filename);
+	PopoverImageViewController* psivc;
+	psivc = [[PopoverImageViewController alloc] initWithImageFilename:filename];
+	//Save scrollView position, zoomScale.
+	[psivc setParentScrollView:currentPdfScrollView
+				  fromPosition:currentPdfScrollView.contentOffset
+				 fromZoomScale:currentPdfScrollView.zoomScale];
 	
-	//Extract file.
-	NSString* path = [[NSBundle mainBundle] pathForResource:filename ofType:nil];
-	if (!path) {
-		NSLog(@"illigal filename. filename=%@, bundle_resourceURL=%@", filename, [[NSBundle mainBundle] resourceURL]);
-		NSLog(@"f = %@ %@", [filename stringByDeletingPathExtension], [filename pathExtension]);
-		return;
-	}
+	//
+	[currentPdfScrollView setContentOffset:CGPointZero];
+	[currentPdfScrollView setZoomScale:currentPdfScrollView.minimumZoomScale];
 	
-	//Load Image.
-	UIImage* image = [[UIImage alloc] initWithContentsOfFile:path];
-	if (!image) {
-		NSLog(@"cannot open file. filename=%@, bundle_resourceURL=%@", filename, [[NSBundle mainBundle] resourceURL]);
-		NSLog(@"f = %@ %@", [filename stringByDeletingPathExtension], [filename pathExtension]);
-		return;
-	}
-
-	//Generate PopoverVC.
-	PopoverImageViewController* vc = [[PopoverImageViewController alloc] init];
-	[vc setupWithImage:image];
-	vc.modalPresentationStyle = UIModalPresentationFullScreen;
-	//vc.modalPresentationStyle = UIModalPresentationPageSheet;
-	//vc.modalPresentationStyle = UIModalPresentationFormSheet;
+	//
+	[currentPdfScrollView addSubview:psivc.view];
+	return;
 	
-	//Handle touch for close(dismiss).
-	UITapGestureRecognizer* tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hidePopoverImagePlayer)];
-	[vc.view addGestureRecognizer:tapGesture];
-	vc.view.userInteractionEnabled = YES;
-	
-	//Show PopoverView.(ModalView)
-	//[self presentModalViewController:vc animated:YES];
-	
-	
-	//Show PopoverView.(Subview, CATransitionAnimation)
-	CATransition* animation1 = [CATransition animation];
-	[animation1 setDelegate:self];
-	[animation1 setDuration:PAGE_ANIMATION_DURATION_NEXT];
-	[animation1 setTimingFunction:UIViewAnimationCurveEaseInOut];
-	[animation1 setType:kCATransitionFade];
-	//[animation1 setSubtype:kCATransitionFromTop];
-	[[self.view layer] addAnimation:animation1 forKey:@"animation_Show_PopoverView"];
-	[currentPdfScrollView addSubview:vc.view];
-	
-
-	/*
-	//Show PopoverView.(Subview, UIView-BlockBasedAnimation)
-	[UIView beginAnimations:@"curlup" context:nil];
-	[UIView setAnimationDelegate:self];
-	[UIView setAnimationDuration:.5];
-	[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:currentPdfScrollView cache:YES];
-	[currentPdfScrollView addSubview:vc.view];
-	[UIView commitAnimations];
-	*/
 	
 	//Hide(clear) marker pen.
 	[self clearTouchPenView];
-
 }
 
+#if 0==1
 - (void)hidePopoverImagePlayer
 {
 	LOG_CURRENT_METHOD;
@@ -2380,7 +2340,10 @@
 			//[animation1 setSubtype:kCATransitionFromTop];
 			[[self.view layer] addAnimation:animation1 forKey:@"animation_Hide_PopoverView"];
 			[v removeFromSuperview];
-			 
+			NSLog(@"removed from superView.");
+			if ([v isKindOfClass:[PopoverImageViewController class]]) {
+				[(PopoverImageViewController*)v repositionParentScrollView];
+			} 
 			
 			/*
 			//Hide PopoverView.(Subview, UIView-BlockBasedAnimation)
@@ -2401,6 +2364,7 @@
 	[thumbnailScrollViewController setupScrollViewFrame];
 	[bookmarkViewController setupViewFrame];
 }
+#endif
 
 #pragma mark -
 #pragma mark Treat TOC.

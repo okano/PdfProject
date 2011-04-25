@@ -68,6 +68,77 @@
 }
 
 
+- (id)initWithImageFilename:(NSString*)filename;
+{
+	[super init];
+	
+	NSString* path = [[NSBundle mainBundle] pathForResource:filename ofType:nil];
+	if (!path) {
+		NSLog(@"illigal filename. filename=%@, bundle_resourceURL=%@", filename, [[NSBundle mainBundle] resourceURL]);
+		NSLog(@"f = %@ %@", [filename stringByDeletingPathExtension], [filename pathExtension]);
+		return self;
+	}
+	
+	NSURL* url;
+	if ((url = [NSURL fileURLWithPath:path]) != nil) {
+		//Open image.
+		UIImage* image = [[UIImage alloc] initWithContentsOfFile:path];
+		if (!image) {
+			NSLog(@"no image found. filename=%@", filename);
+			return self;
+		}
+		imageView = [[UIImageView alloc] initWithImage:image];
+		
+		//Generate UIScrollView and set image.
+		scrollView = [[UIScrollView alloc] initWithFrame:self.view.frame];
+		[scrollView addSubview:imageView];
+		scrollView.delegate = self;
+		scrollView.contentSize = imageView.frame.size;
+		scrollView.backgroundColor = [UIColor whiteColor];
+		scrollView.backgroundColor = [[UIColor alloc] initWithRed:0.5f
+															green:0.5f
+															 blue:0.5f
+															alpha:0.8f];
+		
+		//Set Zoom Scale.
+		if (self.view.frame.size.width < image.size.width) {
+			// image is larger than screen.
+			scrollView.minimumZoomScale = self.view.frame.size.width / image.size.width;
+			scrollView.maximumZoomScale = 2.0f;
+		} else {
+			// image is smaller than screen.
+			scrollView.minimumZoomScale = 1.0f;
+			scrollView.maximumZoomScale = self.view.frame.size.width / image.size.width;
+		}
+		[scrollView zoomToRect:imageView.frame animated:YES];
+		
+		
+		//Add gesture for close.
+		UITapGestureRecognizer* tapGestureForPopoverScrollImage = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closePopoverScrollImagePlayer)];
+		[scrollView addGestureRecognizer:tapGestureForPopoverScrollImage];
+		[tapGestureForPopoverScrollImage release];
+		//Add gesture for zoom.(double tap)
+		UITapGestureRecognizer* doubleTapGestureForPopoverScrollImage = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggleZoom:)];
+		doubleTapGestureForPopoverScrollImage.numberOfTapsRequired = 2;
+		doubleTapGestureForPopoverScrollImage.numberOfTouchesRequired = 1;
+		[scrollView addGestureRecognizer:doubleTapGestureForPopoverScrollImage];
+		[doubleTapGestureForPopoverScrollImage release];
+		//call single-tap if fail double-tap.
+		[tapGestureForPopoverScrollImage requireGestureRecognizerToFail:doubleTapGestureForPopoverScrollImage];
+		
+		[self.view addSubview:scrollView];
+	}
+	return self;
+}
+
+
+- (void)closePopoverScrollImagePlayer
+{
+	LOG_CURRENT_METHOD;
+	[self.view removeFromSuperview];
+	[self repositionParentScrollView];
+}
+
 //locate imageView to center always.
 //@see: http://stackoverflow.com/questions/1316451/center-content-of-uiscrollview-when-smaller
 - (void)scrollViewDidZoom:(UIScrollView *)aScrollView
@@ -92,5 +163,30 @@
 {
 	return [[targetScrollView subviews] objectAtIndex:0];
 }
+- (void)toggleZoom:(UITapGestureRecognizer*)gesture
+{
+	LOG_CURRENT_METHOD;
+	CGPoint touchedPoint;
+	touchedPoint = [gesture locationInView:imageView];
+	if (scrollView.zoomScale <= scrollView.minimumZoomScale) {
+		if (self.view.frame.size.width < imageView.image.size.width) {
+			// image is larger than screen.
+			CGRect rect;
+			rect = CGRectMake(touchedPoint.x - (self.view.frame.size.width / 2),
+							  touchedPoint.y - (self.view.frame.size.height / 2),
+							  self.view.frame.size.width,
+							  self.view.frame.size.height);
+			[scrollView zoomToRect:rect animated:YES];
+		} else {
+			// image is smaller than screen.
+			[scrollView setZoomScale:scrollView.maximumZoomScale animated:YES];
+		}
+		
+	} else {
+		[scrollView setZoomScale:scrollView.minimumZoomScale animated:YES];
+	}
+}
+
+//MARK: -
 
 @end
