@@ -11,6 +11,8 @@
 
 @implementation SKBEngine_PopoverScrollImageViewController
 
+@synthesize scrollView;
+@synthesize imageView;
 @synthesize parentScrollView;
 
 

@@ -9,9 +9,6 @@
 #import "PopoverImageViewController.h"
 
 @implementation PopoverImageViewController
-@synthesize scrollView;
-@synthesize imageView;
-
 
 #pragma mark -
 #pragma mark handle rotate.

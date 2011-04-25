@@ -10,7 +10,7 @@
 #import "Utility.h"
 
 
-@interface SKBEngine_PopoverScrollImageViewController : UIViewController {
+@interface SKBEngine_PopoverScrollImageViewController : UIViewController <UIScrollViewDelegate> {
 	UIScrollView* scrollView;
 	UIImageView* imageView;
 	
