@@ -20,7 +20,6 @@
 	CGFloat parentZoomScale;
 }
 //
-//
 @property (nonatomic, retain) UIScrollView* scrollView;
 @property (nonatomic, retain) UIImageView* imageView;
 @property (nonatomic, retain) UIScrollView* parentScrollView;
