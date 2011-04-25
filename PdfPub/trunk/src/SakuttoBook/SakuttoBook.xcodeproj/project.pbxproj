@@ -23,6 +23,8 @@
 		290F035512D594D300666C6A /* BookmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 290F035412D594D300666C6A /* BookmarkViewController.m */; };
 		2912656912D46BEE00704565 /* list_thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2912656812D46BEE00704565 /* list_thumbnail.png */; };
 		291EDE0413124E2C00DBD3E5 /* ImageGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 291EDE0313124E2C00DBD3E5 /* ImageGenerator.m */; };
+		292BF4B01365B76D0004B926 /* SKBEngine_PopoverScrollImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 292BF4A61365B76D0004B926 /* SKBEngine_PopoverScrollImageViewController.m */; };
+		292BF4B21365B76D0004B926 /* SKBEngineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 292BF4AA1365B76D0004B926 /* SKBEngineViewController.m */; };
 		2933410312D594AA00BFBC23 /* BookmarkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2933410212D594AA00BFBC23 /* BookmarkView.xib */; };
 		2935764212B5EA9C00F46754 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2935764112B5EA9C00F46754 /* MenuViewController.m */; };
 		2935764412B5EAAD00F46754 /* MenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2935764312B5EAAD00F46754 /* MenuView.xib */; };
@@ -32,7 +34,6 @@
 		294E1F1E131E2A5B00E49BAF /* popoverScrollImageDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 294E1F1D131E2A5B00E49BAF /* popoverScrollImageDefine.csv */; };
 		294E1FC1131E313800E49BAF /* PopoverScrollImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 294E1FC0131E313800E49BAF /* PopoverScrollImageViewController.m */; };
 		29787BE112C5FBDC00EC2681 /* document.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 29787BE012C5FBDC00EC2681 /* document.pdf */; };
-		297A10401362BF80002D0F5C /* SKBEngineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297A10391362BF80002D0F5C /* SKBEngineViewController.m */; };
 		297AC25612B786EB00962CED /* TocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297AC25512B786EB00962CED /* TocViewController.m */; };
 		297AC25812B7870B00962CED /* TocView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 297AC25712B7870B00962CED /* TocView.xib */; };
 		297DF1FB12C600320082C680 /* InfomationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 297DF1FA12C600320082C680 /* InfomationView.xib */; };
@@ -44,7 +45,6 @@
 		29B3B90C12C58C820014F866 /* ThumbnailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B3B90B12C58C820014F866 /* ThumbnailViewController.m */; };
 		29E1089A12D46D4700FC5210 /* BookmarkModifyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29E1089912D46D4700FC5210 /* BookmarkModifyView.xib */; };
 		29E108A912D46ECF00FC5210 /* BookmarkModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E108A812D46ECF00FC5210 /* BookmarkModifyViewController.m */; };
-		29E2F8DF1362C63500E58097 /* SKBEngine_PopoverScrollImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E2F8DE1362C63500E58097 /* SKBEngine_PopoverScrollImageViewController.m */; };
 		29F003FA1353CC5500D0D74D /* pageJumpLinkDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29F003F91353CC5500D0D74D /* pageJumpLinkDefine.csv */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +69,10 @@
 		2912656812D46BEE00704565 /* list_thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = list_thumbnail.png; path = Classes/list_thumbnail.png; sourceTree = "<group>"; };
 		291EDE0213124E2C00DBD3E5 /* ImageGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGenerator.h; sourceTree = "<group>"; };
 		291EDE0313124E2C00DBD3E5 /* ImageGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGenerator.m; sourceTree = "<group>"; };
+		292BF4A51365B76D0004B926 /* SKBEngine_PopoverScrollImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKBEngine_PopoverScrollImageViewController.h; sourceTree = "<group>"; };
+		292BF4A61365B76D0004B926 /* SKBEngine_PopoverScrollImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKBEngine_PopoverScrollImageViewController.m; sourceTree = "<group>"; };
+		292BF4A91365B76D0004B926 /* SKBEngineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKBEngineViewController.h; sourceTree = "<group>"; };
+		292BF4AA1365B76D0004B926 /* SKBEngineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKBEngineViewController.m; sourceTree = "<group>"; };
 		2933410212D594AA00BFBC23 /* BookmarkView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookmarkView.xib; sourceTree = "<group>"; };
 		2935764012B5EA9C00F46754 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		2935764112B5EA9C00F46754 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
@@ -83,8 +87,6 @@
 		294E1FC0131E313800E49BAF /* PopoverScrollImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverScrollImageViewController.m; sourceTree = "<group>"; };
 		2963BE1D12B5C01E001041EB /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		29787BE012C5FBDC00EC2681 /* document.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = document.pdf; sourceTree = "<group>"; };
-		297A10381362BF80002D0F5C /* SKBEngineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKBEngineViewController.h; sourceTree = "<group>"; };
-		297A10391362BF80002D0F5C /* SKBEngineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKBEngineViewController.m; sourceTree = "<group>"; };
 		297AC25412B786EB00962CED /* TocViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TocViewController.h; sourceTree = "<group>"; };
 		297AC25512B786EB00962CED /* TocViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TocViewController.m; sourceTree = "<group>"; };
 		297AC25712B7870B00962CED /* TocView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TocView.xib; sourceTree = "<group>"; };
@@ -103,8 +105,6 @@
 		29E1089912D46D4700FC5210 /* BookmarkModifyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookmarkModifyView.xib; sourceTree = "<group>"; };
 		29E108A712D46ECF00FC5210 /* BookmarkModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkModifyViewController.h; sourceTree = "<group>"; };
 		29E108A812D46ECF00FC5210 /* BookmarkModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkModifyViewController.m; sourceTree = "<group>"; };
-		29E2F8DD1362C63500E58097 /* SKBEngine_PopoverScrollImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKBEngine_PopoverScrollImageViewController.h; sourceTree = "<group>"; };
-		29E2F8DE1362C63500E58097 /* SKBEngine_PopoverScrollImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKBEngine_PopoverScrollImageViewController.m; sourceTree = "<group>"; };
 		29F003F91353CC5500D0D74D /* pageJumpLinkDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pageJumpLinkDefine.csv; path = csv/pageJumpLinkDefine.csv; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* SakuttoBook_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SakuttoBook_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* SakuttoBook-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SakuttoBook-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
@@ -176,23 +176,24 @@
 			path = image;
 			sourceTree = "<group>";
 		};
+		292BF49B1365B76D0004B926 /* SKBEngine */ = {
+			isa = PBXGroup;
+			children = (
+				292BF4A91365B76D0004B926 /* SKBEngineViewController.h */,
+				292BF4AA1365B76D0004B926 /* SKBEngineViewController.m */,
+				292BF4A51365B76D0004B926 /* SKBEngine_PopoverScrollImageViewController.h */,
+				292BF4A61365B76D0004B926 /* SKBEngine_PopoverScrollImageViewController.m */,
+			);
+			name = SKBEngine;
+			path = ../../../../SKBEngine/trunk/src/SKBEngine/SKBEngine;
+			sourceTree = "<group>";
+		};
 		2963BDF212B5BE1C001041EB /* pdf */ = {
 			isa = PBXGroup;
 			children = (
 				29787BE012C5FBDC00EC2681 /* document.pdf */,
 			);
 			path = pdf;
-			sourceTree = "<group>";
-		};
-		297A102C1362BF80002D0F5C /* SKBEngine */ = {
-			isa = PBXGroup;
-			children = (
-				297A10381362BF80002D0F5C /* SKBEngineViewController.h */,
-				297A10391362BF80002D0F5C /* SKBEngineViewController.m */,
-				29E2F8DD1362C63500E58097 /* SKBEngine_PopoverScrollImageViewController.h */,
-				29E2F8DE1362C63500E58097 /* SKBEngine_PopoverScrollImageViewController.m */,
-			);
-			path = SKBEngine;
 			sourceTree = "<group>";
 		};
 		2994490212B737C600E7D108 /* movie */ = {
@@ -206,7 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				080E96DDFE201D6D7F000001 /* Classes */,
-				297A102C1362BF80002D0F5C /* SKBEngine */,
+				292BF49B1365B76D0004B926 /* SKBEngine */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -373,8 +374,8 @@
 				2999FDC512D6A8D500D0F145 /* License.m in Sources */,
 				291EDE0413124E2C00DBD3E5 /* ImageGenerator.m in Sources */,
 				294E1FC1131E313800E49BAF /* PopoverScrollImageViewController.m in Sources */,
-				297A10401362BF80002D0F5C /* SKBEngineViewController.m in Sources */,
-				29E2F8DF1362C63500E58097 /* SKBEngine_PopoverScrollImageViewController.m in Sources */,
+				292BF4B01365B76D0004B926 /* SKBEngine_PopoverScrollImageViewController.m in Sources */,
+				292BF4B21365B76D0004B926 /* SKBEngineViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
