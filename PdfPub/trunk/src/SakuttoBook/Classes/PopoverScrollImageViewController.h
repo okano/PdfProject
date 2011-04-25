@@ -7,14 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Utility.h"
 #import "SKBEngine_PopoverScrollImageViewController.h"
 
 @interface PopoverScrollImageViewController : SKBEngine_PopoverScrollImageViewController <UIScrollViewDelegate> {
-	UIImageView* imageView;
-	UIScrollView* scrollView;
+    
 }
-- (id)initWithImageFilename:(NSString*)filename;
-- (void)toggleZoom:(UITapGestureRecognizer*)gesture;
 
 @end
