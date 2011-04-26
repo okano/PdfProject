@@ -1291,9 +1291,9 @@
     CGPoint touchedPoint;
 	//LOG_CURRENT_METHOD;
 	if (gestureRecognizer.state == UIGestureRecognizerStatePossible) {
-        NSLog(@"Possible");
+        //NSLog(@"Possible");
     } else if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Began");
+        //NSLog(@"Began");
 		
 		//Setup line info on TouchPenView.
 		[touchPenView willStartAddLine];
@@ -1318,7 +1318,7 @@
         [linePointArray addObject:NSStringFromCGPoint(p)];
 		
     } else if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
-        NSLog(@"Ended");
+        //NSLog(@"Ended");
         
         touchedPoint = [gestureRecognizer locationInView:self.view];
         /*
@@ -1354,9 +1354,9 @@
         [self saveMarkerPenToUserDefault];
 
 	} else if (gestureRecognizer.state == UIGestureRecognizerStateCancelled) {
-        NSLog(@"Cancelled");
+        NSLog(@"pan gesture Cancelled");
 	} else if (gestureRecognizer.state == UIGestureRecognizerStateFailed) {
-        NSLog(@"Failed");
+        NSLog(@"pan gesture Failed");
     }
 }
 
@@ -1403,7 +1403,7 @@
 
 - (void)saveMarkerPenToUserDefault
 {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
 	//NSLog(@"before save: markerPenArray=%@", [markerPenArray description]);
 
 	if (! markerPenArray) {
@@ -1417,7 +1417,7 @@
 
 - (NSArray*)loadMarkerWithCurrentPage
 {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
     //load from UserDefault.
     NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
 	id obj = [settings valueForKey:MARKERPEN_ARRAY];
@@ -1439,14 +1439,14 @@
 			[resultArray addObject:markerInfo];
 		}
 	}
-	NSLog(@"%d object in page %d", [resultArray count], currentPageNum);
+	//NSLog(@"%d object in page %d", [resultArray count], currentPageNum);
 	
     return resultArray;
 }
 
 - (void)loadMarkerPenFromUserDefault
 {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
 	//load from UserDefault.
     NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
 	
@@ -1479,7 +1479,7 @@
 
 - (void)renderTouchPenFromUserDefaultAtPage:(NSUInteger)pageNum
 {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
     //has been Readed marker pen infomation.
 	if (! markerPenArray) {
 		NSLog(@"no marker pen info at page %d.", pageNum);
@@ -1513,7 +1513,7 @@
 
 - (void)setupTouchpenViewAtPage:(NSUInteger)pageNum
 {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
 	//NSLog(@"markerPenArray=%@", [markerPenArray description]);
 	
 	
