@@ -1761,9 +1761,22 @@
 {
 	//LOG_CURRENT_METHOD;
 	//NSLog(@"filename=%@", filename);
+	CGRect rect;
+	UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
+	if (interfaceOrientation == UIInterfaceOrientationPortrait
+		||
+		interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
+		rect = self.view.frame;
+	} else {
+		rect = CGRectMake(self.view.frame.origin.x,
+						  self.view.frame.origin.y,
+						  self.view.frame.size.height,
+						  self.view.frame.size.width);
+	}
+	
 	
 	PopoverScrollImageViewController* psivc;
-	psivc = [[PopoverScrollImageViewController alloc] initWithImageFilename:filename];
+	psivc = [[PopoverScrollImageViewController alloc] initWithImageFilename:filename frame:rect];
 	//Save scrollView position, zoomScale.
 	[psivc setParentScrollView:currentPdfScrollView
 				  fromPosition:currentPdfScrollView.contentOffset
