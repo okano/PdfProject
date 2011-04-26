@@ -2298,15 +2298,28 @@
 
 - (void)showPopoverImagePlayer:(NSString*)filename
 {
+	CGRect rect;
+	UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
+	if (interfaceOrientation == UIInterfaceOrientationPortrait
+		||
+		interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
+		rect = self.view.frame;
+	} else {
+		rect = CGRectMake(self.view.frame.origin.x,
+						  self.view.frame.origin.y,
+						  self.view.frame.size.height,
+						  self.view.frame.size.width);
+	}
+
 	PopoverImageViewController* psivc;
-	psivc = [[PopoverImageViewController alloc] initWithImageFilename:filename];
+	psivc = [[PopoverImageViewController alloc] initWithImageFilename:filename frame:rect];
 	//Save scrollView position, zoomScale.
 	[psivc setParentScrollView:currentPdfScrollView
 				  fromPosition:currentPdfScrollView.contentOffset
 				 fromZoomScale:currentPdfScrollView.zoomScale];
 	
 	//
-	//[currentPdfScrollView setContentOffset:CGPointZero];
+	[currentPdfScrollView setContentOffset:CGPointZero];
 	[currentPdfScrollView setZoomScale:currentPdfScrollView.minimumZoomScale];
 	[currentPdfScrollView setScrollEnabled:NO];
 	

@@ -23,7 +23,7 @@
 @property (nonatomic, retain) UIScrollView* scrollView;
 @property (nonatomic, retain) UIImageView* imageView;
 @property (nonatomic, retain) UIScrollView* parentScrollView;
-- (id)initWithImageFilename:(NSString*)filename;
+- (id)initWithImageFilename:(NSString*)filename frame:(CGRect)frame;
 - (void)setParentScrollView:(UIScrollView*)targetParentScrollView fromPosition:(CGPoint)pos fromZoomScale:(CGFloat)scale;
 - (void)repositionParentScrollView;
 - (void)toggleZoom:(UITapGestureRecognizer*)gesture;
