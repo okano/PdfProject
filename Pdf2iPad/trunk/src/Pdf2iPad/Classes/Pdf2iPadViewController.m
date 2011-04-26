@@ -2306,8 +2306,9 @@
 				 fromZoomScale:currentPdfScrollView.zoomScale];
 	
 	//
-	[currentPdfScrollView setContentOffset:CGPointZero];
+	//[currentPdfScrollView setContentOffset:CGPointZero];
 	[currentPdfScrollView setZoomScale:currentPdfScrollView.minimumZoomScale];
+	[currentPdfScrollView setScrollEnabled:NO];
 	
 	//
 	[currentPdfScrollView addSubview:psivc.view];

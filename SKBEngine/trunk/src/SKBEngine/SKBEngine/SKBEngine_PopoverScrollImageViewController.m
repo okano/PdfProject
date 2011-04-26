@@ -91,6 +91,8 @@
 {
 	[parentScrollView setZoomScale:parentZoomScale];
 	[parentScrollView setContentOffset:parentOffset];
+	//
+	[parentScrollView setScrollEnabled:YES];
 }
 
 - (void)closePopoverScrollImagePlayer
