@@ -940,6 +940,7 @@
 	[self renderInPagePngAtIndex:currentPageNum];
 	[self renderPopoverImageLinkAtIndex:currentPageNum];
 	
+	[self setupMarkerPenMenu];
 	[self setupTouchpenViewAtPage:currentPageNum];
 	[self renderTouchPenFromUserDefaultAtPage:currentPageNum];
 	[self.view bringSubviewToFront:touchPenView];
@@ -1186,36 +1187,11 @@
     //Show touchpen view.
     [self.view bringSubviewToFront:touchPenView];
 
-    //Show menu bar for MakerPen.
-    if (! menuBarForMakerPen) {
-        CGFloat menuBarHeight = 44.0f;
-        CGRect rect = CGRectMake(0.0f,
-                                 self.view.frame.size.height - menuBarHeight, 
-                                 self.view.frame.size.width,
-                                 menuBarHeight);
-        menuBarForMakerPen = [[UIToolbar alloc] initWithFrame:rect];
-    }
+    //Show menu bar, label for MakerPen.
+	[self setupMarkerPenMenu];
     menuBarForMakerPen.hidden = NO;
-    UIBarButtonItem* doneButton = [[UIBarButtonItem alloc]
-                                   initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                   target:self 
-                                   action:@selector(exitMarkerMode)];
-    [menuBarForMakerPen setItems:[NSArray arrayWithObject:doneButton]];
-    [touchPenView addSubview:menuBarForMakerPen];
-    
-    //Show label.
-    if (! penModeLabel) {
-        CGRect rectForLabel = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 120.0f);
-        penModeLabel = [[UILabel alloc] initWithFrame:rectForLabel];
-        penModeLabel.textColor = [UIColor redColor];
-        penModeLabel.backgroundColor = [[UIColor alloc] initWithRed: 0.0f
-                                                              green: 0.5f
-                                                               blue: 1.0f
-                                                              alpha: 0.3f];
-        penModeLabel.font = [UIFont systemFontOfSize:72.0f];
-        penModeLabel.text = @"Marker Pen Mode.";
-    }
     penModeLabel.hidden = NO;
+    [touchPenView addSubview:menuBarForMakerPen];    
     [touchPenView addSubview:penModeLabel];
     
     //Enable touch with view for maker.
@@ -1225,11 +1201,64 @@
     panRecognizer1.enabled = YES;
     panRecognizer2.enabled = YES;
     panRecognizer3.enabled = YES;
-    
-    //show label.
-    //[self renderTouchPen];
-    
 }
+- (void)setupMarkerPenMenu
+{
+	//MenuBar.
+	CGFloat menuBarHeight = 44.0f;
+    if (! menuBarForMakerPen) {
+        menuBarForMakerPen = [[UIToolbar alloc] initWithFrame:CGRectZero];
+		
+		//Add Done button.
+		UIBarButtonItem* doneButton = [[UIBarButtonItem alloc]
+									   initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+									   target:self 
+									   action:@selector(exitMarkerMode)];
+		[menuBarForMakerPen setItems:[NSArray arrayWithObject:doneButton]];
+	}
+	UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
+	if (interfaceOrientation == UIInterfaceOrientationPortrait
+		||
+		interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
+        CGRect rect = CGRectMake(0.0f,
+                                 self.view.frame.size.height - menuBarHeight, 
+                                 self.view.frame.size.width,
+                                 menuBarHeight);
+		menuBarForMakerPen.frame = rect;
+	} else {
+		CGRect rect = menuBarForMakerPen.frame;
+		rect.size.width = self.view.frame.size.height;
+		rect.origin.y = self.view.frame.size.width - menuBarHeight;
+		menuBarForMakerPen.frame = rect;
+	}
+	
+	
+	//Label.
+	if (! penModeLabel) {
+        //CGRect rectForLabel = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 120.0f);
+
+        penModeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        penModeLabel.textColor = [UIColor redColor];
+        penModeLabel.backgroundColor = [[UIColor alloc] initWithRed: 0.0f
+                                                              green: 0.5f
+                                                               blue: 1.0f
+                                                              alpha: 0.3f];
+        penModeLabel.font = [UIFont systemFontOfSize:72.0f];
+        penModeLabel.text = @"Marker Pen Mode.";
+    }
+	if (interfaceOrientation == UIInterfaceOrientationPortrait
+		||
+		interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
+		CGRect rectForLabel = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 120.0f);
+		penModeLabel.frame = rectForLabel;
+
+	} else {
+		//Reposition with rotate.
+		CGRect rectForLabel = CGRectMake(0.0f, 0.0f, self.view.frame.size.height, 120.0f);
+		penModeLabel.frame = rectForLabel;
+	}
+}
+
 - (void)exitMarkerMode
 {
     //Hide menu bar for marker pen.
