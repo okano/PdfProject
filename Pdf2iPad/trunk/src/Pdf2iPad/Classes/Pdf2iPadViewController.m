@@ -1284,8 +1284,8 @@
     if (! markerPenArray) {
         markerPenArray = [[NSMutableArray alloc] init];
     }
-    if (! linePointArray) {
-        linePointArray = [[NSMutableArray alloc] init];
+    if (! pointsForSingleLine) {
+        pointsForSingleLine = [[NSMutableArray alloc] init];
     }
     
     CGPoint touchedPoint;
@@ -1299,11 +1299,11 @@
 		[touchPenView willStartAddLine];
 		
 		//Create new array.
-        linePointArray = [[NSMutableArray alloc] init];
+        pointsForSingleLine = [[NSMutableArray alloc] init];
 		
 		//Add Point into array.
 		CGPoint p = [gestureRecognizer locationInView:self.view];
-        [linePointArray addObject:NSStringFromCGPoint(p)];
+        [pointsForSingleLine addObject:NSStringFromCGPoint(p)];
 		
 	} else if (gestureRecognizer.state == UIGestureRecognizerStateChanged) {
         //NSLog(@"Changed");
@@ -1315,7 +1315,7 @@
 		
 		//Add Point into array.
 		CGPoint p = [gestureRecognizer locationInView:self.view];
-        [linePointArray addObject:NSStringFromCGPoint(p)];
+        [pointsForSingleLine addObject:NSStringFromCGPoint(p)];
 		
     } else if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
         //NSLog(@"Ended");
@@ -1340,14 +1340,14 @@
 		
 		//Add Point into array.
 		CGPoint p = [gestureRecognizer locationInView:self.view];
-        [linePointArray addObject:NSStringFromCGPoint(p)];
+        [pointsForSingleLine addObject:NSStringFromCGPoint(p)];
 		
 		
 		//Generate dictionary for add array.
 		NSMutableDictionary* tmpDict = [[NSMutableDictionary alloc] init];
 		[tmpDict setValue:[NSNumber numberWithInt:currentPageNum] forKey:MARKERPEN_PAGE_NUMBER];
 		[tmpDict setValue:@"" forKey:MARKERPEN_COMMENT];
-		[tmpDict setValue:linePointArray forKey:MARKERPEN_POINT_ARRAY];
+		[tmpDict setValue:pointsForSingleLine forKey:MARKERPEN_POINT_ARRAY];
 		[markerPenArray addObject:tmpDict];
 		
         //Save to UserDefault.

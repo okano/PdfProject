@@ -69,7 +69,7 @@
 	// MarkerPen.
 	UILabel* penModeLabel;
     NSMutableArray* markerPenArray;
-	NSMutableArray* linePointArray;
+	NSMutableArray* pointsForSingleLine;
 
 	// PDF structure.
 	//CGPDFDocumentRef pdf;
