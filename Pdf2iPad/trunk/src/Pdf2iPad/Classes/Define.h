@@ -69,6 +69,11 @@
 #define MARKERPEN_LINE_POSITION_X	@"x"
 #define MARKERPEN_LINE_POSITION_Y	@"y"
 #define MARKERPEN_COMMENT           @"MarkerPen_Comment"
+#define MARKERPEN_LINE_COLOR_R		0.85f
+#define MARKERPEN_LINE_COLOR_G		0.85f
+#define MARKERPEN_LINE_COLOR_B		0.2f
+#define MARKERPEN_LINE_COLOR_A		0.85f
+#define MARKERPEN_LINE_WIDTH		2.0f
 
 // for Thumbnail Image.
 #define THUMBNAIL_WIDTH				100.0f

@@ -16,7 +16,7 @@
 @synthesize parentScrollView;
 
 
-- (id)initWithImageFilename:(NSString*)filename;
+- (id)initWithImageFilename:(NSString*)filename frame:(CGRect)frame
 {
 	[super init];
 	
@@ -38,7 +38,7 @@
 		imageView = [[UIImageView alloc] initWithImage:image];
 		
 		//Generate UIScrollView and set image.
-		scrollView = [[UIScrollView alloc] initWithFrame:self.view.frame];
+		scrollView = [[UIScrollView alloc] initWithFrame:frame];
 		[scrollView addSubview:imageView];
 		scrollView.delegate = self;
 		scrollView.contentSize = imageView.frame.size;
@@ -91,6 +91,8 @@
 {
 	[parentScrollView setZoomScale:parentZoomScale];
 	[parentScrollView setContentOffset:parentOffset];
+	//
+	[parentScrollView setScrollEnabled:YES];
 }
 
 - (void)closePopoverScrollImagePlayer

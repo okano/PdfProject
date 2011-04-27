@@ -81,14 +81,14 @@
 #pragma mark -
 - (void)willStartAddLine
 {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
 	NSMutableDictionary* lineDict = [[NSMutableDictionary alloc] init];
 	[lineDict setValue:[NSNumber numberWithInt:0] forKey:MARKERPEN_PAGE_NUMBER];
 	[lineDict setValue:@"" forKey:MARKERPEN_COMMENT];
 	[lineDict setValue:[[NSMutableArray alloc] init] forKey:MARKERPEN_POINT_ARRAY];
 	[lineToDraw addObject:lineDict];
 	
-	NSLog(@"%d lines in %@", [lineToDraw count], [self class]);
+	//NSLog(@"%d lines in %@", [lineToDraw count], [self class]);
 	//NSLog(@"lineToDraw=%@", [lineToDraw description]);
 }
 
@@ -114,15 +114,15 @@
 
 - (void)didEndAddLine
 {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
 	//do nothing.
-	NSLog(@"lineToDraw count=%d", [lineToDraw count]);
+	//NSLog(@"lineToDraw count=%d", [lineToDraw count]);
 }
 
 
 - (void)clearLine
 {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
 	if (! lineToDraw) {
 		NSLog(@"clear data to lineToDraw before initialize!");
 		lineToDraw = [[NSMutableArray alloc] init];
@@ -142,7 +142,7 @@
     }
     
     // Drawing code
-    NSLog(@"count of lineToDraw=%d", [lineToDraw count]);
+    //NSLog(@"count of lineToDraw=%d", [lineToDraw count]);
 	//NSLog(@"lineToDraw=%@", [lineToDraw description]);
     for (NSDictionary* lineInfo in lineToDraw) {
         CGContextRef context = UIGraphicsGetCurrentContext();
@@ -151,9 +151,10 @@
             return;
         }
         
-        //Set line color.
-        CGContextSetRGBStrokeColor(context, 0.0f, 0.0f, 1.0f, 1.0f);
-		
+        //Set line color and width.
+        CGContextSetRGBStrokeColor(context, MARKERPEN_LINE_COLOR_R, MARKERPEN_LINE_COLOR_G, MARKERPEN_LINE_COLOR_B, MARKERPEN_LINE_COLOR_A);
+		CGContextSetLineWidth(context, MARKERPEN_LINE_WIDTH);
+
 		//NSLog(@"pageNum=%d", [[lineInfo objectForKey:MARKERPEN_PAGE_NUMBER] intValue]);
 		NSArray* pointArrayTmp = [lineInfo objectForKey:MARKERPEN_POINT_ARRAY];
 		if ([lineInfo count] <= 0) {
@@ -161,7 +162,7 @@
 		}
 		
 		CGPoint p0 = CGPointFromString([pointArrayTmp objectAtIndex:0]);
-		NSLog(@"start point = %@", NSStringFromCGPoint(p0));
+		//NSLog(@"start point = %@", NSStringFromCGPoint(p0));
 		for (NSString* p1str in pointArrayTmp) {
 			//Draw line.
 			CGPoint p1 = CGPointFromString(p1str);

@@ -54,12 +54,12 @@
 		296FE96E12D2F8EF00A5CBF6 /* flower.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 296FE96C12D2F8EF00A5CBF6 /* flower.jpg */; };
 		296FE96F12D2F8EF00A5CBF6 /* flower2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 296FE96D12D2F8EF00A5CBF6 /* flower2.jpg */; };
 		2974F0A51314AC0300188A77 /* ImageGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2974F0A41314AC0300188A77 /* ImageGenerator.m */; };
-		299A50C41362C4AF0083CFBD /* SKBEngine_PopoverScrollImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 299A50C31362C4AF0083CFBD /* SKBEngine_PopoverScrollImageViewController.m */; };
+		29A5D2211365B65F000F888F /* SKBEngine_PopoverScrollImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A5D2171365B65F000F888F /* SKBEngine_PopoverScrollImageViewController.m */; };
+		29A5D2231365B65F000F888F /* SKBEngineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A5D21B1365B65F000F888F /* SKBEngineViewController.m */; };
 		29AAD5E512BC938400CF7C91 /* icon_list_bullets.png in Resources */ = {isa = PBXBuildFile; fileRef = 29AAD5E412BC938400CF7C91 /* icon_list_bullets.png */; };
 		29AAD5EA12BC943C00CF7C91 /* TocTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29AAD5E912BC943C00CF7C91 /* TocTableViewController.m */; };
 		29B36D5112FFBFFD00897C08 /* PopoverImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B36D5012FFBFFD00897C08 /* PopoverImageViewController.m */; };
 		29B7D44B1330FFF30023BC81 /* TouchPenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B7D44A1330FFF30023BC81 /* TouchPenView.m */; };
-		29D5E67E1362BEBE00678B75 /* SKBEngineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D5E6771362BEBE00678B75 /* SKBEngineViewController.m */; };
 		29D74A4312BB7C4F00C33E10 /* image1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 29D74A3E12BB7C4F00C33E10 /* image1.jpg */; };
 		29D74A4412BB7C4F00C33E10 /* image2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 29D74A3F12BB7C4F00C33E10 /* image2.jpg */; };
 		29D74A4512BB7C4F00C33E10 /* image3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 29D74A4012BB7C4F00C33E10 /* image3.jpg */; };
@@ -77,7 +77,7 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* Pdf2iPadAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pdf2iPadAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* Pdf2iPadAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pdf2iPadAppDelegate.m; sourceTree = "<group>"; };
-		1D6058910D05DD3D006BFB54 /* Pdf2iPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pdf2iPad.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* JPPBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JPPBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		2899E5210DE3E06400AC0155 /* Pdf2iPadViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Pdf2iPadViewController.xib; sourceTree = "<group>"; };
@@ -131,8 +131,10 @@
 		2974F0A41314AC0300188A77 /* ImageGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGenerator.m; sourceTree = "<group>"; };
 		2987EDC912AA472400FB66E5 /* pdfDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pdfDefine.h; sourceTree = "<group>"; };
 		2987EE1B12AA4D1600FB66E5 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
-		299A50C21362C4AF0083CFBD /* SKBEngine_PopoverScrollImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKBEngine_PopoverScrollImageViewController.h; sourceTree = "<group>"; };
-		299A50C31362C4AF0083CFBD /* SKBEngine_PopoverScrollImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKBEngine_PopoverScrollImageViewController.m; sourceTree = "<group>"; };
+		29A5D2161365B65F000F888F /* SKBEngine_PopoverScrollImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKBEngine_PopoverScrollImageViewController.h; sourceTree = "<group>"; };
+		29A5D2171365B65F000F888F /* SKBEngine_PopoverScrollImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKBEngine_PopoverScrollImageViewController.m; sourceTree = "<group>"; };
+		29A5D21A1365B65F000F888F /* SKBEngineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKBEngineViewController.h; sourceTree = "<group>"; };
+		29A5D21B1365B65F000F888F /* SKBEngineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKBEngineViewController.m; sourceTree = "<group>"; };
 		29AAD5E412BC938400CF7C91 /* icon_list_bullets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_list_bullets.png; sourceTree = "<group>"; };
 		29AAD5E812BC943C00CF7C91 /* TocTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TocTableViewController.h; sourceTree = "<group>"; };
 		29AAD5E912BC943C00CF7C91 /* TocTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TocTableViewController.m; sourceTree = "<group>"; };
@@ -141,8 +143,6 @@
 		29B7D4491330FFF30023BC81 /* TouchPenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchPenView.h; sourceTree = "<group>"; };
 		29B7D44A1330FFF30023BC81 /* TouchPenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchPenView.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		29D5E6761362BEBE00678B75 /* SKBEngineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKBEngineViewController.h; sourceTree = "<group>"; };
-		29D5E6771362BEBE00678B75 /* SKBEngineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKBEngineViewController.m; sourceTree = "<group>"; };
 		29D74A3E12BB7C4F00C33E10 /* image1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image1.jpg; sourceTree = "<group>"; };
 		29D74A3F12BB7C4F00C33E10 /* image2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image2.jpg; sourceTree = "<group>"; };
 		29D74A4012BB7C4F00C33E10 /* image3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image3.jpg; sourceTree = "<group>"; };
@@ -158,8 +158,8 @@
 		29F48C7D12DC7E3E00A9EC62 /* BookmarkModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkModifyViewController.m; sourceTree = "<group>"; };
 		29F48C7E12DC7E3E00A9EC62 /* BookmarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkViewController.h; sourceTree = "<group>"; };
 		29F48C7F12DC7E3E00A9EC62 /* BookmarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkViewController.m; sourceTree = "<group>"; };
-		32CA4F630368D1EE00C91783 /* Pdf2iPad_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pdf2iPad_Prefix.pch; sourceTree = "<group>"; };
-		8D1107310486CEB800E47090 /* Pdf2iPad-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pdf2iPad-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* JPPBook_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; path = JPPBook_Prefix.pch; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* JPPBook-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; path = "JPPBook-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,7 +219,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* Pdf2iPad.app */,
+				1D6058910D05DD3D006BFB54 /* JPPBook.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -240,11 +240,23 @@
 			path = pdf;
 			sourceTree = "<group>";
 		};
+		29A5D20C1365B65F000F888F /* SKBEngine */ = {
+			isa = PBXGroup;
+			children = (
+				29A5D2161365B65F000F888F /* SKBEngine_PopoverScrollImageViewController.h */,
+				29A5D2171365B65F000F888F /* SKBEngine_PopoverScrollImageViewController.m */,
+				29A5D21A1365B65F000F888F /* SKBEngineViewController.h */,
+				29A5D21B1365B65F000F888F /* SKBEngineViewController.m */,
+			);
+			name = SKBEngine;
+			path = ../../../../SKBEngine/trunk/src/SKBEngine/SKBEngine;
+			sourceTree = "<group>";
+		};
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
 				080E96DDFE201D6D7F000001 /* Classes */,
-				29D5E66A1362BEBE00678B75 /* SKBEngine */,
+				29A5D20C1365B65F000F888F /* SKBEngine */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -256,7 +268,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				32CA4F630368D1EE00C91783 /* Pdf2iPad_Prefix.pch */,
+				32CA4F630368D1EE00C91783 /* JPPBook_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
 			name = "Other Sources";
@@ -274,7 +286,7 @@
 				29633231134AB7CC00F01B7C /* popoverImageDefine.csv */,
 				29E40975134C7F52005F7F8F /* pageJumpLinkDefine.csv */,
 				291ECAC012BC8E8C0027C4CF /* icon.png */,
-				8D1107310486CEB800E47090 /* Pdf2iPad-Info.plist */,
+				8D1107310486CEB800E47090 /* JPPBook-Info.plist */,
 				2987EDBB12AA470600FB66E5 /* pdf */,
 				2912441812BA0E44001E4AC7 /* movie */,
 				29D74A3D12BB7C4F00C33E10 /* image */,
@@ -300,17 +312,6 @@
 				29074DD912BA118500F5D46D /* MediaPlayer.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		29D5E66A1362BEBE00678B75 /* SKBEngine */ = {
-			isa = PBXGroup;
-			children = (
-				29D5E6761362BEBE00678B75 /* SKBEngineViewController.h */,
-				29D5E6771362BEBE00678B75 /* SKBEngineViewController.m */,
-				299A50C21362C4AF0083CFBD /* SKBEngine_PopoverScrollImageViewController.h */,
-				299A50C31362C4AF0083CFBD /* SKBEngine_PopoverScrollImageViewController.m */,
-			);
-			path = SKBEngine;
 			sourceTree = "<group>";
 		};
 		29D74A3D12BB7C4F00C33E10 /* image */ = {
@@ -346,9 +347,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* Pdf2iPad */ = {
+		1D6058900D05DD3D006BFB54 /* JPPBook */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Pdf2iPad" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "JPPBook" */;
 			buildPhases = (
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
@@ -358,9 +359,9 @@
 			);
 			dependencies = (
 			);
-			name = Pdf2iPad;
+			name = JPPBook;
 			productName = Pdf2iPad;
-			productReference = 1D6058910D05DD3D006BFB54 /* Pdf2iPad.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* JPPBook.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -368,7 +369,7 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Pdf2iPad" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "JPPBook" */;
 			compatibilityVersion = "Xcode 3.1";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -383,7 +384,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* Pdf2iPad */,
+				1D6058900D05DD3D006BFB54 /* JPPBook */,
 			);
 		};
 /* End PBXProject section */
@@ -460,8 +461,8 @@
 				29B36D5112FFBFFD00897C08 /* PopoverImageViewController.m in Sources */,
 				2974F0A51314AC0300188A77 /* ImageGenerator.m in Sources */,
 				29B7D44B1330FFF30023BC81 /* TouchPenView.m in Sources */,
-				29D5E67E1362BEBE00678B75 /* SKBEngineViewController.m in Sources */,
-				299A50C41362C4AF0083CFBD /* SKBEngine_PopoverScrollImageViewController.m in Sources */,
+				29A5D2211365B65F000F888F /* SKBEngine_PopoverScrollImageViewController.m in Sources */,
+				29A5D2231365B65F000F888F /* SKBEngineViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,10 +477,10 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Pdf2iPad_Prefix.pch;
-				INFOPLIST_FILE = "Pdf2iPad-Info.plist";
+				GCC_PREFIX_HEADER = JPPBook_Prefix.pch;
+				INFOPLIST_FILE = "JPPBook-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
-				PRODUCT_NAME = Pdf2iPad;
+				PRODUCT_NAME = JPPBook;
 			};
 			name = Debug;
 		};
@@ -490,10 +491,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Pdf2iPad_Prefix.pch;
-				INFOPLIST_FILE = "Pdf2iPad-Info.plist";
+				GCC_PREFIX_HEADER = JPPBook_Prefix.pch;
+				INFOPLIST_FILE = "JPPBook-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
-				PRODUCT_NAME = Pdf2iPad;
+				PRODUCT_NAME = JPPBook;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -521,10 +522,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Pdf2iPad_Prefix.pch;
-				INFOPLIST_FILE = "Pdf2iPad-Info.plist";
+				GCC_PREFIX_HEADER = JPPBook_Prefix.pch;
+				INFOPLIST_FILE = "JPPBook-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
-				PRODUCT_NAME = Pdf2iPad;
+				PRODUCT_NAME = JPPBook;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -563,7 +564,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Pdf2iPad" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "JPPBook" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
@@ -573,7 +574,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Pdf2iPad" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "JPPBook" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,

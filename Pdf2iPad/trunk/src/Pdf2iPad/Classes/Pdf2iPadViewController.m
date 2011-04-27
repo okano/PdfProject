@@ -940,6 +940,7 @@
 	[self renderInPagePngAtIndex:currentPageNum];
 	[self renderPopoverImageLinkAtIndex:currentPageNum];
 	
+	[self setupMarkerPenMenu];
 	[self setupTouchpenViewAtPage:currentPageNum];
 	[self renderTouchPenFromUserDefaultAtPage:currentPageNum];
 	[self.view bringSubviewToFront:touchPenView];
@@ -1186,36 +1187,11 @@
     //Show touchpen view.
     [self.view bringSubviewToFront:touchPenView];
 
-    //Show menu bar for MakerPen.
-    if (! menuBarForMakerPen) {
-        CGFloat menuBarHeight = 44.0f;
-        CGRect rect = CGRectMake(0.0f,
-                                 self.view.frame.size.height - menuBarHeight, 
-                                 self.view.frame.size.width,
-                                 menuBarHeight);
-        menuBarForMakerPen = [[UIToolbar alloc] initWithFrame:rect];
-    }
+    //Show menu bar, label for MakerPen.
+	[self setupMarkerPenMenu];
     menuBarForMakerPen.hidden = NO;
-    UIBarButtonItem* doneButton = [[UIBarButtonItem alloc]
-                                   initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                   target:self 
-                                   action:@selector(exitMarkerMode)];
-    [menuBarForMakerPen setItems:[NSArray arrayWithObject:doneButton]];
-    [touchPenView addSubview:menuBarForMakerPen];
-    
-    //Show label.
-    if (! penModeLabel) {
-        CGRect rectForLabel = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 120.0f);
-        penModeLabel = [[UILabel alloc] initWithFrame:rectForLabel];
-        penModeLabel.textColor = [UIColor redColor];
-        penModeLabel.backgroundColor = [[UIColor alloc] initWithRed: 0.0f
-                                                              green: 0.5f
-                                                               blue: 1.0f
-                                                              alpha: 0.3f];
-        penModeLabel.font = [UIFont systemFontOfSize:72.0f];
-        penModeLabel.text = @"Marker Pen Mode.";
-    }
     penModeLabel.hidden = NO;
+    [touchPenView addSubview:menuBarForMakerPen];    
     [touchPenView addSubview:penModeLabel];
     
     //Enable touch with view for maker.
@@ -1225,11 +1201,64 @@
     panRecognizer1.enabled = YES;
     panRecognizer2.enabled = YES;
     panRecognizer3.enabled = YES;
-    
-    //show label.
-    //[self renderTouchPen];
-    
 }
+- (void)setupMarkerPenMenu
+{
+	//MenuBar.
+	CGFloat menuBarHeight = 44.0f;
+    if (! menuBarForMakerPen) {
+        menuBarForMakerPen = [[UIToolbar alloc] initWithFrame:CGRectZero];
+		
+		//Add Done button.
+		UIBarButtonItem* doneButton = [[UIBarButtonItem alloc]
+									   initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+									   target:self 
+									   action:@selector(exitMarkerMode)];
+		[menuBarForMakerPen setItems:[NSArray arrayWithObject:doneButton]];
+	}
+	UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
+	if (interfaceOrientation == UIInterfaceOrientationPortrait
+		||
+		interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
+        CGRect rect = CGRectMake(0.0f,
+                                 self.view.frame.size.height - menuBarHeight, 
+                                 self.view.frame.size.width,
+                                 menuBarHeight);
+		menuBarForMakerPen.frame = rect;
+	} else {
+		CGRect rect = menuBarForMakerPen.frame;
+		rect.size.width = self.view.frame.size.height;
+		rect.origin.y = self.view.frame.size.width - menuBarHeight;
+		menuBarForMakerPen.frame = rect;
+	}
+	
+	
+	//Label.
+	if (! penModeLabel) {
+        //CGRect rectForLabel = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 120.0f);
+
+        penModeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        penModeLabel.textColor = [UIColor redColor];
+        penModeLabel.backgroundColor = [[UIColor alloc] initWithRed: 0.0f
+                                                              green: 0.5f
+                                                               blue: 1.0f
+                                                              alpha: 0.3f];
+        penModeLabel.font = [UIFont systemFontOfSize:72.0f];
+        penModeLabel.text = @"Marker Pen Mode.";
+    }
+	if (interfaceOrientation == UIInterfaceOrientationPortrait
+		||
+		interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
+		CGRect rectForLabel = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 120.0f);
+		penModeLabel.frame = rectForLabel;
+
+	} else {
+		//Reposition with rotate.
+		CGRect rectForLabel = CGRectMake(0.0f, 0.0f, self.view.frame.size.height, 120.0f);
+		penModeLabel.frame = rectForLabel;
+	}
+}
+
 - (void)exitMarkerMode
 {
     //Hide menu bar for marker pen.
@@ -1262,9 +1291,9 @@
     CGPoint touchedPoint;
 	//LOG_CURRENT_METHOD;
 	if (gestureRecognizer.state == UIGestureRecognizerStatePossible) {
-        NSLog(@"Possible");
+        //NSLog(@"Possible");
     } else if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Began");
+        //NSLog(@"Began");
 		
 		//Setup line info on TouchPenView.
 		[touchPenView willStartAddLine];
@@ -1289,7 +1318,7 @@
         [linePointArray addObject:NSStringFromCGPoint(p)];
 		
     } else if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
-        NSLog(@"Ended");
+        //NSLog(@"Ended");
         
         touchedPoint = [gestureRecognizer locationInView:self.view];
         /*
@@ -1325,9 +1354,9 @@
         [self saveMarkerPenToUserDefault];
 
 	} else if (gestureRecognizer.state == UIGestureRecognizerStateCancelled) {
-        NSLog(@"Cancelled");
+        NSLog(@"pan gesture Cancelled");
 	} else if (gestureRecognizer.state == UIGestureRecognizerStateFailed) {
-        NSLog(@"Failed");
+        NSLog(@"pan gesture Failed");
     }
 }
 
@@ -1374,7 +1403,7 @@
 
 - (void)saveMarkerPenToUserDefault
 {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
 	//NSLog(@"before save: markerPenArray=%@", [markerPenArray description]);
 
 	if (! markerPenArray) {
@@ -1388,7 +1417,7 @@
 
 - (NSArray*)loadMarkerWithCurrentPage
 {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
     //load from UserDefault.
     NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
 	id obj = [settings valueForKey:MARKERPEN_ARRAY];
@@ -1410,14 +1439,14 @@
 			[resultArray addObject:markerInfo];
 		}
 	}
-	NSLog(@"%d object in page %d", [resultArray count], currentPageNum);
+	//NSLog(@"%d object in page %d", [resultArray count], currentPageNum);
 	
     return resultArray;
 }
 
 - (void)loadMarkerPenFromUserDefault
 {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
 	//load from UserDefault.
     NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
 	
@@ -1450,7 +1479,7 @@
 
 - (void)renderTouchPenFromUserDefaultAtPage:(NSUInteger)pageNum
 {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
     //has been Readed marker pen infomation.
 	if (! markerPenArray) {
 		NSLog(@"no marker pen info at page %d.", pageNum);
@@ -1484,7 +1513,7 @@
 
 - (void)setupTouchpenViewAtPage:(NSUInteger)pageNum
 {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
 	//NSLog(@"markerPenArray=%@", [markerPenArray description]);
 	
 	
@@ -2298,8 +2327,21 @@
 
 - (void)showPopoverImagePlayer:(NSString*)filename
 {
+	CGRect rect;
+	UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
+	if (interfaceOrientation == UIInterfaceOrientationPortrait
+		||
+		interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
+		rect = self.view.frame;
+	} else {
+		rect = CGRectMake(self.view.frame.origin.x,
+						  self.view.frame.origin.y,
+						  self.view.frame.size.height,
+						  self.view.frame.size.width);
+	}
+
 	PopoverImageViewController* psivc;
-	psivc = [[PopoverImageViewController alloc] initWithImageFilename:filename];
+	psivc = [[PopoverImageViewController alloc] initWithImageFilename:filename frame:rect];
 	//Save scrollView position, zoomScale.
 	[psivc setParentScrollView:currentPdfScrollView
 				  fromPosition:currentPdfScrollView.contentOffset
@@ -2308,6 +2350,7 @@
 	//
 	[currentPdfScrollView setContentOffset:CGPointZero];
 	[currentPdfScrollView setZoomScale:currentPdfScrollView.minimumZoomScale];
+	[currentPdfScrollView setScrollEnabled:NO];
 	
 	//
 	[currentPdfScrollView addSubview:psivc.view];

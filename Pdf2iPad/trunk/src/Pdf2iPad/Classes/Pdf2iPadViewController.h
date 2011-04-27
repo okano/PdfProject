@@ -154,6 +154,7 @@
 - (void)handleSwipe:(UISwipeGestureRecognizer*)gestureRecognizer;
 // Handle Pan(draw maker pen)
 - (void)enterMarkerMode;
+- (void)setupMarkerPenMenu;
 - (void)exitMarkerMode;
 - (void)handlePan:(UIPanGestureRecognizer*)gestureRecognizer;
 //- (void)saveMarkerWithCurrentPageWithArray:(NSArray*)lineInfoArray;
