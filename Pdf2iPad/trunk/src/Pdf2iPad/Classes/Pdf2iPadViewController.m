@@ -2181,6 +2181,8 @@
 			[inPagePngScrollView setBounces:NO];
 			[inPagePngScrollView addSubview:imageView];
 			inPagePngScrollView.contentSize = image.size;
+			[inPagePngScrollView setShowsHorizontalScrollIndicator:NO];
+			[inPagePngScrollView setShowsVerticalScrollIndicator:YES];
 			
 			[currentPdfScrollView addScalableSubview:inPagePngScrollView withNormalizedFrame:rect];
 			[inPagePngScrollView flashScrollIndicators];
