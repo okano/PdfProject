@@ -13,6 +13,11 @@
 //Page Transition with Slide/Curl.
 #define IS_TRANSITION_CURL 0	/* 0:Slide, 1:Curl*/
 
+//Page background color.
+#define PAGE_BACKGROUND_COLOR_R		0.0f	/* 0.0f - 1.0f */
+#define PAGE_BACKGROUND_COLOR_G		1.0f	/* 0.0f - 1.0f */
+#define PAGE_BACKGROUND_COLOR_B		1.0f	/* 0.0f - 1.0f */
+
 // Tap area.
 #define TAP_AREA_LEFT_X			  0.0f
 #define TAP_AREA_LEFT_Y			 75.0f

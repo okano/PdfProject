@@ -23,7 +23,10 @@
 	self.bouncesZoom = YES;
 	self.decelerationRate = UIScrollViewDecelerationRateFast;
 	self.delegate = self;
-	[self setBackgroundColor:[UIColor whiteColor]];
+	[self setBackgroundColor:[UIColor colorWithRed:PAGE_BACKGROUND_COLOR_R
+											 green:PAGE_BACKGROUND_COLOR_G
+											  blue:PAGE_BACKGROUND_COLOR_B
+											 alpha:1]];
 	self.maximumZoomScale = 1.5f;	//5.0;
 	self.minimumZoomScale = 1.0f;	//0.01f;//.25;
 	
