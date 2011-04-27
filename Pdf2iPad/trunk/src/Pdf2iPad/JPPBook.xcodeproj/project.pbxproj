@@ -59,7 +59,7 @@
 		29AAD5E512BC938400CF7C91 /* icon_list_bullets.png in Resources */ = {isa = PBXBuildFile; fileRef = 29AAD5E412BC938400CF7C91 /* icon_list_bullets.png */; };
 		29AAD5EA12BC943C00CF7C91 /* TocTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29AAD5E912BC943C00CF7C91 /* TocTableViewController.m */; };
 		29B36D5112FFBFFD00897C08 /* PopoverImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B36D5012FFBFFD00897C08 /* PopoverImageViewController.m */; };
-		29B7D44B1330FFF30023BC81 /* TouchPenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B7D44A1330FFF30023BC81 /* TouchPenView.m */; };
+		29B7D44B1330FFF30023BC81 /* MarkerPenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B7D44A1330FFF30023BC81 /* MarkerPenView.m */; };
 		29D74A4312BB7C4F00C33E10 /* image1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 29D74A3E12BB7C4F00C33E10 /* image1.jpg */; };
 		29D74A4412BB7C4F00C33E10 /* image2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 29D74A3F12BB7C4F00C33E10 /* image2.jpg */; };
 		29D74A4512BB7C4F00C33E10 /* image3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 29D74A4012BB7C4F00C33E10 /* image3.jpg */; };
@@ -140,8 +140,8 @@
 		29AAD5E912BC943C00CF7C91 /* TocTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TocTableViewController.m; sourceTree = "<group>"; };
 		29B36D4F12FFBFFD00897C08 /* PopoverImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverImageViewController.h; sourceTree = "<group>"; };
 		29B36D5012FFBFFD00897C08 /* PopoverImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverImageViewController.m; sourceTree = "<group>"; };
-		29B7D4491330FFF30023BC81 /* TouchPenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchPenView.h; sourceTree = "<group>"; };
-		29B7D44A1330FFF30023BC81 /* TouchPenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchPenView.m; sourceTree = "<group>"; };
+		29B7D4491330FFF30023BC81 /* MarkerPenView.h */ = {isa = PBXFileReference; fileEncoding = 4; path = MarkerPenView.h; sourceTree = "<group>"; };
+		29B7D44A1330FFF30023BC81 /* MarkerPenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkerPenView.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29D74A3E12BB7C4F00C33E10 /* image1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image1.jpg; sourceTree = "<group>"; };
 		29D74A3F12BB7C4F00C33E10 /* image2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image2.jpg; sourceTree = "<group>"; };
@@ -158,8 +158,8 @@
 		29F48C7D12DC7E3E00A9EC62 /* BookmarkModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkModifyViewController.m; sourceTree = "<group>"; };
 		29F48C7E12DC7E3E00A9EC62 /* BookmarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkViewController.h; sourceTree = "<group>"; };
 		29F48C7F12DC7E3E00A9EC62 /* BookmarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkViewController.m; sourceTree = "<group>"; };
-		32CA4F630368D1EE00C91783 /* JPPBook_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; path = JPPBook_Prefix.pch; sourceTree = "<group>"; };
-		8D1107310486CEB800E47090 /* JPPBook-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; path = "JPPBook-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* JPPBook_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPBook_Prefix.pch; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* JPPBook-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "JPPBook-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,8 +193,8 @@
 				2926873912BF53B3004830AB /* PDFScrollView.m */,
 				2926873A12BF53B3004830AB /* TiledPDFView.h */,
 				2926873B12BF53B3004830AB /* TiledPDFView.m */,
-				29B7D4491330FFF30023BC81 /* TouchPenView.h */,
-				29B7D44A1330FFF30023BC81 /* TouchPenView.m */,
+				29B7D4491330FFF30023BC81 /* MarkerPenView.h */,
+				29B7D44A1330FFF30023BC81 /* MarkerPenView.m */,
 				29074DBC12BA10D000F5D46D /* MenuViewController.h */,
 				29074DBD12BA10D000F5D46D /* MenuViewController.m */,
 				29074DBF12BA10DF00F5D46D /* WebViewController.h */,
@@ -460,7 +460,7 @@
 				29F48C8112DC7E3E00A9EC62 /* BookmarkViewController.m in Sources */,
 				29B36D5112FFBFFD00897C08 /* PopoverImageViewController.m in Sources */,
 				2974F0A51314AC0300188A77 /* ImageGenerator.m in Sources */,
-				29B7D44B1330FFF30023BC81 /* TouchPenView.m in Sources */,
+				29B7D44B1330FFF30023BC81 /* MarkerPenView.m in Sources */,
 				29A5D2211365B65F000F888F /* SKBEngine_PopoverScrollImageViewController.m in Sources */,
 				29A5D2231365B65F000F888F /* SKBEngineViewController.m in Sources */,
 			);

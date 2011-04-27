@@ -12,7 +12,7 @@
 #import "Utility.h"
 #import "Define.h"
 #import "pdfDefine.h"
-#import "TouchPenView.h"
+#import "MarkerPenView.h"
 #import "MenuViewController.h"
 #import "WebViewController.h"
 #import "PopoverImageViewController.h"
@@ -39,7 +39,7 @@
 	//IBOutlet UIImageView* imageView1;
 	//IBOutlet UIImageView* imageView2;
 	//IBOutlet UIImageView* imageView3;
-	IBOutlet TouchPenView* touchPenView;
+	IBOutlet MarkerPenView* touchPenView;
     
 	// Pointer for view.
 	//UIImageView* prevImageView;
