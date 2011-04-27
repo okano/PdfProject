@@ -15,8 +15,8 @@
 
 //Page background color.
 #define PAGE_BACKGROUND_COLOR_R		0.0f	/* 0.0f - 1.0f */
-#define PAGE_BACKGROUND_COLOR_G		1.0f	/* 0.0f - 1.0f */
-#define PAGE_BACKGROUND_COLOR_B		1.0f	/* 0.0f - 1.0f */
+#define PAGE_BACKGROUND_COLOR_G		0.0f	/* 0.0f - 1.0f */
+#define PAGE_BACKGROUND_COLOR_B		0.0f	/* 0.0f - 1.0f */
 
 // Tap area.
 #define TAP_AREA_LEFT_X			  0.0f
