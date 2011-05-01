@@ -1188,18 +1188,10 @@
     
     //Show markerPen view.
     [self.view bringSubviewToFront:markerPenView];
-
-    //Show menu bar, label for MakerPen.
+	
+	//Show menu bar, label for MakerPen.
 	[self setupMarkerPenMenu];
-    menuBarForMakerPen.hidden = NO;
-    penModeLabel.hidden = NO;
-    ////[markerPenView addSubview:menuBarForMakerPen];    
-    ////[markerPenView addSubview:penModeLabel];
-    //[markerPenView2 addSubview:menuBarForMakerPen];    
-    //[markerPenView2 addSubview:penModeLabel];
-	[self.view addSubview:menuBarForMakerPen];
-	[self.view addSubview:penModeLabel];
-	[self showMenuBarForMarker];
+    [self showMenuBarForMarker];
 	[self showLabelForMarker];
     
     //Enable touch with view for maker.
@@ -1251,6 +1243,7 @@
 		[titleLabelButton setWidth:labelSize.width];
 
 		[menuBarForMakerPen setItems:[NSArray arrayWithObjects:doneButton, flexibleSpace, titleLabelButton, flexibleSpace2, nil]];
+		[self.view addSubview:menuBarForMakerPen];
 	}
 	UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
 	if (interfaceOrientation == UIInterfaceOrientationPortrait
@@ -1281,6 +1274,7 @@
                                                               alpha: 0.3f];
         penModeLabel.font = [UIFont systemFontOfSize:72.0f];
         penModeLabel.text = @"Marker Pen Mode.";
+		[self.view addSubview:penModeLabel];
     }
 	if (interfaceOrientation == UIInterfaceOrientationPortrait
 		||
