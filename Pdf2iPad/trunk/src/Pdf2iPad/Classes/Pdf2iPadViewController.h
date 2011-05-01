@@ -40,6 +40,7 @@
 	//IBOutlet UIImageView* imageView2;
 	//IBOutlet UIImageView* imageView3;
 	IBOutlet MarkerPenView* markerPenView;
+    MarkerPenView* markerPenView2;
     
 	// Pointer for view.
 	//UIImageView* prevImageView;
@@ -157,6 +158,7 @@
 - (void)setupMarkerPenMenu;
 - (void)exitMarkerMode;
 - (void)handlePan:(UIPanGestureRecognizer*)gestureRecognizer;
+- (void)handlePan2:(UIPanGestureRecognizer*)gestureRecognizer;
 //- (void)saveMarkerWithCurrentPageWithArray:(NSArray*)lineInfoArray;
 //- (NSArray*)loadMarkerWithCurrentPage;
 

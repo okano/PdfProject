@@ -96,6 +96,8 @@
     [self.view bringSubviewToFront:markerPenView];
 	[markerPenView setNeedsDisplay];
 	
+	markerPenView2 = nil;
+	
 	//[pdfScrolView1 addGestureRecognizer:panRecognizer1];
 	//[pdfScrolView2 addGestureRecognizer:panRecognizer2];
 	//[pdfScrolView3 addGestureRecognizer:panRecognizer3];
@@ -1193,6 +1195,8 @@
     penModeLabel.hidden = NO;
     [markerPenView addSubview:menuBarForMakerPen];    
     [markerPenView addSubview:penModeLabel];
+    [markerPenView2 addSubview:menuBarForMakerPen];    
+    [markerPenView2 addSubview:penModeLabel];
     
     //Enable touch with view for maker.
     markerPenView.userInteractionEnabled = YES;
@@ -1360,6 +1364,92 @@
     }
 }
 
+
+- (void)handlePan2:(UIPanGestureRecognizer *)gestureRecognizer
+{
+    LOG_CURRENT_METHOD;
+    //
+	
+    if (! markerPenArray) {
+        markerPenArray = [[NSMutableArray alloc] init];
+    }
+    if (! pointsForSingleLine) {
+        pointsForSingleLine = [[NSMutableArray alloc] init];
+    }
+    
+    CGPoint touchedPoint;
+	//LOG_CURRENT_METHOD;
+	if (gestureRecognizer.state == UIGestureRecognizerStatePossible) {
+        //NSLog(@"Possible");
+    } else if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+        //NSLog(@"Began");
+		
+		//Setup line info on markerPenView2.
+		[markerPenView2 willStartAddLine];
+		
+		//Create new array.
+        pointsForSingleLine = [[NSMutableArray alloc] init];
+		
+		//Add Point into array.
+		CGPoint p = [gestureRecognizer locationInView:currentPdfScrollView];
+        [pointsForSingleLine addObject:NSStringFromCGPoint(p)];
+		
+	} else if (gestureRecognizer.state == UIGestureRecognizerStateChanged) {
+        //NSLog(@"Changed");
+        touchedPoint = [gestureRecognizer locationInView:currentPdfScrollView];
+		
+		//Add line info on markerPenView2.
+		[markerPenView2 addLineWithPoint:touchedPoint];
+		[markerPenView2 setNeedsDisplay];
+		
+		//Add Point into array.
+		CGPoint p = [gestureRecognizer locationInView:currentPdfScrollView];
+        [pointsForSingleLine addObject:NSStringFromCGPoint(p)];
+		
+    } else if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
+        //NSLog(@"Ended");
+        
+        touchedPoint = [gestureRecognizer locationInView:currentPdfScrollView];
+        /*
+		 //[touchedPointsForMakerPen addObject:[NSValue valueWithCGPoint:touchedPoint]];
+		 //
+		 //[(markerPenView2*)(self.view) addLineInfoWithArray:touchedPointsForMakerPen];
+		 
+		 [markerPenView2 addLineInfoFrom:prevTouchPointForMakerPen
+		 to:touchedPoint];
+		 [self renderTouchPen];
+		 */
+        
+		//Add line info on markerPenView2.
+		[markerPenView2 addLineWithPoint:touchedPoint];
+		[markerPenView2 didEndAddLine];
+		
+        //Refresh marker view.
+        [self renderMarkerPenFromUserDefaultAtPage:currentPageNum];
+		
+		//Add Point into array.
+		CGPoint p = [gestureRecognizer locationInView:currentPdfScrollView];
+        [pointsForSingleLine addObject:NSStringFromCGPoint(p)];
+		
+		
+		//Generate dictionary for add array.
+		NSMutableDictionary* tmpDict = [[NSMutableDictionary alloc] init];
+		[tmpDict setValue:[NSNumber numberWithInt:currentPageNum] forKey:MARKERPEN_PAGE_NUMBER];
+		[tmpDict setValue:@"" forKey:MARKERPEN_COMMENT];
+		[tmpDict setValue:pointsForSingleLine forKey:MARKERPEN_POINT_ARRAY];
+		[markerPenArray addObject:tmpDict];
+		
+        //Save to UserDefault.
+        [self saveMarkerPenToUserDefault];
+		
+	} else if (gestureRecognizer.state == UIGestureRecognizerStateCancelled) {
+        NSLog(@"pan gesture Cancelled");
+	} else if (gestureRecognizer.state == UIGestureRecognizerStateFailed) {
+        NSLog(@"pan gesture Failed");
+    }
+}
+
+
 /**
  *argument:lineInfoArray is Array of CGPointValue.
  */
@@ -1508,6 +1598,34 @@
     }
 	*/
 	[markerPenView setNeedsDisplay];
+	
+	
+	//Generate markerPenView-2.
+	markerPenView2 = [[MarkerPenView alloc] initWithFrame:self.view.frame];
+	[markerPenView2 clearLine];
+	UIPanGestureRecognizer* panRecognizer21 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan2:)];
+	[markerPenView2 addGestureRecognizer:panRecognizer21];
+
+	//Add line info from UserDefault to markerPenView.
+    for (id obj in markerPenArray) {
+		if (!obj) {
+			continue;
+		}
+		if (! [obj isKindOfClass:[NSDictionary class]]) {
+			NSLog(@"Illigal markerPenArray.");
+			continue;
+		}
+		
+		NSMutableDictionary* markerInfo = [[NSMutableDictionary alloc] initWithDictionary:obj];
+		
+		int targetPageNum = [[markerInfo valueForKey:MARKERPEN_PAGE_NUMBER] intValue];
+		if (targetPageNum == pageNum) {
+			[markerPenView2 addLinesWithDictionary:markerInfo];
+		}
+    }
+	CGRect rect = self.view.frame;
+	[currentPdfScrollView addScalableSubview:markerPenView2 withNormalizedFrame:rect];
+	
 }
 
 
