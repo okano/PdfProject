@@ -64,6 +64,7 @@
     UIPanGestureRecognizer* panRecognizer1;
     UIPanGestureRecognizer* panRecognizer2;
     UIPanGestureRecognizer* panRecognizer3;
+    UIPanGestureRecognizer* panRecognizer21;
     CGPoint prevTouchPointForMakerPen;
     UIToolbar* menuBarForMakerPen;
     
@@ -161,6 +162,10 @@
 - (void)handlePan2:(UIPanGestureRecognizer*)gestureRecognizer;
 //- (void)saveMarkerWithCurrentPageWithArray:(NSArray*)lineInfoArray;
 //- (NSArray*)loadMarkerWithCurrentPage;
+- (void)showMenuBarForMarker;
+- (void)hideMenuBarForMarker;
+- (void)showLabelForMarker;
+- (void)hideLabelForMarker;
 
 - (void)saveMarkerPenToUserDefault;
 - (void)loadMarkerPenFromUserDefault;

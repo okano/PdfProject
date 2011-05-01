@@ -1193,18 +1193,24 @@
 	[self setupMarkerPenMenu];
     menuBarForMakerPen.hidden = NO;
     penModeLabel.hidden = NO;
-    [markerPenView addSubview:menuBarForMakerPen];    
-    [markerPenView addSubview:penModeLabel];
-    [markerPenView2 addSubview:menuBarForMakerPen];    
-    [markerPenView2 addSubview:penModeLabel];
+    ////[markerPenView addSubview:menuBarForMakerPen];    
+    ////[markerPenView addSubview:penModeLabel];
+    //[markerPenView2 addSubview:menuBarForMakerPen];    
+    //[markerPenView2 addSubview:penModeLabel];
+	[self.view addSubview:menuBarForMakerPen];
+	[self.view addSubview:penModeLabel];
+	[self showMenuBarForMarker];
+	[self showLabelForMarker];
     
     //Enable touch with view for maker.
     markerPenView.userInteractionEnabled = YES;
+    markerPenView2.userInteractionEnabled = YES;
     
     //Enable gesture.
     panRecognizer1.enabled = YES;
     panRecognizer2.enabled = YES;
     panRecognizer3.enabled = YES;
+	panRecognizer21.enabled = YES;
 }
 - (void)setupMarkerPenMenu
 {
@@ -1218,21 +1224,47 @@
 									   initWithBarButtonSystemItem:UIBarButtonSystemItemDone
 									   target:self 
 									   action:@selector(exitMarkerMode)];
-		[menuBarForMakerPen setItems:[NSArray arrayWithObject:doneButton]];
+		
+		//Add title label. (@see:http://d.hatena.ne.jp/tksshj/20110224/1298531250)
+		NSString* titleStr = @"Marker Mode";
+		CGSize labelSize = [titleStr sizeWithFont:[UIFont boldSystemFontOfSize:24]];
+		/*
+		UILabel *toolbarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0,labelSize.width,labelSize.height)];
+		toolbarLabel.backgroundColor = [UIColor clearColor];
+		toolbarLabel.textAlignment = UITextAlignmentCenter;
+		toolbarLabel.text = titleStr;
+		toolbarLabel.textColor = [UIColor whiteColor];
+		toolbarLabel.shadowColor = [UIColor blackColor];
+		toolbarLabel.shadowOffset = CGSizeMake(0.0,-1.0);
+		toolbarLabel.font = [UIFont boldSystemFontOfSize:24];
+		*/
+		
+		UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+		UIBarButtonItem *flexibleSpace2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+
+		UIBarButtonItem* titleLabelButton = [UIBarButtonItem alloc];
+		[titleLabelButton initWithTitle:titleStr
+						style:UIBarButtonItemStylePlain
+					   target:nil
+					   action:nil];
+		[titleLabelButton setWidth:165.0f];
+		[titleLabelButton setWidth:labelSize.width];
+
+		[menuBarForMakerPen setItems:[NSArray arrayWithObjects:doneButton, flexibleSpace, titleLabelButton, flexibleSpace2, nil]];
 	}
 	UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
 	if (interfaceOrientation == UIInterfaceOrientationPortrait
 		||
 		interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
         CGRect rect = CGRectMake(0.0f,
-                                 self.view.frame.size.height - menuBarHeight, 
+                                 0.0f,	//self.view.frame.size.height - menuBarHeight, 
                                  self.view.frame.size.width,
                                  menuBarHeight);
 		menuBarForMakerPen.frame = rect;
 	} else {
 		CGRect rect = menuBarForMakerPen.frame;
 		rect.size.width = self.view.frame.size.height;
-		rect.origin.y = self.view.frame.size.width - menuBarHeight;
+		rect.origin.y = 0.0f;	//self.view.frame.size.width - menuBarHeight;
 		menuBarForMakerPen.frame = rect;
 	}
 	
@@ -1267,17 +1299,21 @@
 {
     //Hide menu bar for marker pen.
     if (menuBarForMakerPen) {
-        menuBarForMakerPen.hidden = YES;
+        //menuBarForMakerPen.hidden = YES;
+		[self hideMenuBarForMarker];
     }
     if (penModeLabel) {
-        penModeLabel.hidden = YES;
+        //penModeLabel.hidden = YES;
+		[self hideLabelForMarker];
     }
     //
     panRecognizer1.enabled = NO;
     panRecognizer2.enabled = NO;
     panRecognizer3.enabled = NO;
+	panRecognizer21.enabled = NO;
     //
     markerPenView.userInteractionEnabled = NO;
+    markerPenView2.userInteractionEnabled = NO;
 }
 
 - (void)handlePan:(UIPanGestureRecognizer *)gestureRecognizer
@@ -1490,6 +1526,10 @@
     NSLog(@"save result=%d, YES=%d, NO=%d", result, YES, NO);
 }
 */
+- (void)showMenuBarForMarker { menuBarForMakerPen.hidden = NO; }
+- (void)hideMenuBarForMarker { menuBarForMakerPen.hidden = YES;}
+- (void)showLabelForMarker { penModeLabel.hidden = NO; }
+- (void)hideLabelForMarker { penModeLabel.hidden = YES;}
 
 - (void)saveMarkerPenToUserDefault
 {
@@ -1603,7 +1643,7 @@
 	//Generate markerPenView-2.
 	markerPenView2 = [[MarkerPenView alloc] initWithFrame:self.view.frame];
 	[markerPenView2 clearLine];
-	UIPanGestureRecognizer* panRecognizer21 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan2:)];
+	panRecognizer21 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan2:)];
 	[markerPenView2 addGestureRecognizer:panRecognizer21];
 
 	//Add line info from UserDefault to markerPenView.
