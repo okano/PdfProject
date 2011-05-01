@@ -13,7 +13,7 @@
 @synthesize pdfURL;
 @synthesize menuViewController, webViewController, /*tocViewController,*/ thumbnailScrollViewController;
 @synthesize isShownTocView, isShownThumbnailScrollView;
-
+@synthesize isMarkerPenMode;
 /*
 // The designated initializer. Override to perform setup that is required before the view is loaded.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -989,6 +989,11 @@
 		return;
 	}
 	
+	// do nothing in MarkerMode.
+	if (isMarkerPenMode == YES) {
+		return;
+	}
+	
 	// Compare with URL Link in page.
 	for (NSMutableDictionary* tmpDict in linksInCurrentPage) {
 		NSValue* val = [tmpDict objectForKey:LINK_DICT_KEY_RECT];
@@ -1197,15 +1202,28 @@
     //Enable touch with view for maker.
     //markerPenView.userInteractionEnabled = YES;
     markerPenView2.userInteractionEnabled = YES;
+	currentPdfScrollView.userInteractionEnabled = NO;
+	
+	//Disable all swipe(for move page.)
+	swipeRecognizer1left.enabled = NO;
+	swipeRecognizer1right.enabled = NO;
+	swipeRecognizer2left.enabled = NO;
+	swipeRecognizer2right.enabled = NO;
+	swipeRecognizer3left.enabled = NO;
+	swipeRecognizer3right.enabled = NO;
     
     //Enable gesture.
     //panRecognizer1.enabled = YES;
     //panRecognizer2.enabled = YES;
     //panRecognizer3.enabled = YES;
 	panRecognizer21.enabled = YES;
+	
+	//Set Flag.
+	isMarkerPenMode = YES;
 }
 - (void)setupMarkerPenMenu
 {
+	LOG_CURRENT_METHOD;
 	//MenuBar.
 	CGFloat menuBarHeight = 44.0f;
     if (! menuBarForMakerPen) {
@@ -1274,6 +1292,18 @@
     //
     //markerPenView.userInteractionEnabled = NO;
     markerPenView2.userInteractionEnabled = NO;
+	currentPdfScrollView.userInteractionEnabled = YES;
+	
+	//Disable all swipe(for move page.)
+	swipeRecognizer1left.enabled = YES;
+	swipeRecognizer1right.enabled = YES;
+	swipeRecognizer2left.enabled = YES;
+	swipeRecognizer2right.enabled = YES;
+	swipeRecognizer3left.enabled = YES;
+	swipeRecognizer3right.enabled = YES;
+	
+	//Set Flag.
+	isMarkerPenMode = NO;
 }
 
 - (void)handlePan:(UIPanGestureRecognizer *)gestureRecognizer

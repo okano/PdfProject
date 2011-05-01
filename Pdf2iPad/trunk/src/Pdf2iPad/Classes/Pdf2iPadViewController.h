@@ -71,6 +71,7 @@
 	// MarkerPen.
     NSMutableArray* markerPenArray;
 	NSMutableArray* pointsForSingleLine;
+	bool isMarkerPenMode;
 
 	// PDF structure.
 	//CGPDFDocumentRef pdf;
@@ -111,6 +112,8 @@
 @property (nonatomic, retain) UIImageView* imageView2;
 @property (nonatomic, retain) UIImageView* imageView3;
 //@property (nonatomic, retain) UIScrollView* currentScrollView;
+//
+@property (nonatomic) bool isMarkerPenMode;
 //
 @property (nonatomic, retain) NSURL* pdfURL;
 //
