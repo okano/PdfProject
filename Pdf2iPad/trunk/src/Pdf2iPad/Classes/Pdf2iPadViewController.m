@@ -101,7 +101,8 @@
 	//[pdfScrolView1 addGestureRecognizer:panRecognizer1];
 	//[pdfScrolView2 addGestureRecognizer:panRecognizer2];
 	//[pdfScrolView3 addGestureRecognizer:panRecognizer3];
-    menuBarForMakerPen = nil;   //generate when need.
+    [self setupMarkerPenMenu];
+	//menuBarForMakerPen = nil;   //generate when need.
     [self exitMarkerMode];
     
 #pragma mark (Open PDF)
