@@ -69,7 +69,6 @@
     UIToolbar* menuBarForMakerPen;
     
 	// MarkerPen.
-	UILabel* penModeLabel;
     NSMutableArray* markerPenArray;
 	NSMutableArray* pointsForSingleLine;
 
@@ -164,8 +163,6 @@
 //- (NSArray*)loadMarkerWithCurrentPage;
 - (void)showMenuBarForMarker;
 - (void)hideMenuBarForMarker;
-- (void)showLabelForMarker;
-- (void)hideLabelForMarker;
 
 - (void)saveMarkerPenToUserDefault;
 - (void)loadMarkerPenFromUserDefault;

@@ -102,7 +102,6 @@
 	//[pdfScrolView2 addGestureRecognizer:panRecognizer2];
 	//[pdfScrolView3 addGestureRecognizer:panRecognizer3];
     menuBarForMakerPen = nil;   //generate when need.
-    penModeLabel = nil; //generate when need.
     [self exitMarkerMode];
     
 #pragma mark (Open PDF)
@@ -1183,6 +1182,7 @@
 //MARK: Treat marker marker pen.
 - (void)enterMarkerMode
 {
+	LOG_CURRENT_METHOD;
     //Hide original menu.
     [self hideMenuBar];
     
@@ -1192,7 +1192,6 @@
 	//Show menu bar, label for MakerPen.
 	[self setupMarkerPenMenu];
     [self showMenuBarForMarker];
-	[self showLabelForMarker];
     
     //Enable touch with view for maker.
     markerPenView.userInteractionEnabled = YES;
@@ -1256,46 +1255,15 @@
 		rect.origin.y = 0.0f;	//self.view.frame.size.width - menuBarHeight;
 		menuBarForMakerPen.frame = rect;
 	}
-	
-	/*
-	//Label.
-	if (! penModeLabel) {
-        //CGRect rectForLabel = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 120.0f);
-
-        penModeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        penModeLabel.textColor = [UIColor redColor];
-        penModeLabel.backgroundColor = [[UIColor alloc] initWithRed: 0.0f
-                                                              green: 0.5f
-                                                               blue: 1.0f
-                                                              alpha: 0.3f];
-        penModeLabel.font = [UIFont systemFontOfSize:72.0f];
-        penModeLabel.text = @"Marker Pen Mode.";
-		[self.view addSubview:penModeLabel];
-    }
-	if (interfaceOrientation == UIInterfaceOrientationPortrait
-		||
-		interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
-		CGRect rectForLabel = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 120.0f);
-		penModeLabel.frame = rectForLabel;
-
-	} else {
-		//Reposition with rotate.
-		CGRect rectForLabel = CGRectMake(0.0f, 0.0f, self.view.frame.size.height, 120.0f);
-		penModeLabel.frame = rectForLabel;
-	}
-	*/
 }
 
 - (void)exitMarkerMode
 {
+	LOG_CURRENT_METHOD;
     //Hide menu bar for marker pen.
-    if (menuBarForMakerPen) {
+    if (menuBarForMakerPen != nil) {
         //menuBarForMakerPen.hidden = YES;
 		[self hideMenuBarForMarker];
-    }
-    if (penModeLabel) {
-        //penModeLabel.hidden = YES;
-		[self hideLabelForMarker];
     }
     //
     panRecognizer1.enabled = NO;
@@ -1394,7 +1362,7 @@
 
 - (void)handlePan2:(UIPanGestureRecognizer *)gestureRecognizer
 {
-    LOG_CURRENT_METHOD;
+    //LOG_CURRENT_METHOD;
     //
 	
     if (! markerPenArray) {
@@ -1409,7 +1377,7 @@
 	if (gestureRecognizer.state == UIGestureRecognizerStatePossible) {
         //NSLog(@"Possible");
     } else if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-        //NSLog(@"Began");
+        NSLog(@"pan Began");
 		
 		//Setup line info on markerPenView2.
 		[markerPenView2 willStartAddLine];
@@ -1434,7 +1402,7 @@
         [pointsForSingleLine addObject:NSStringFromCGPoint(p)];
 		
     } else if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
-        //NSLog(@"Ended");
+        NSLog(@"pan Ended");
         
         touchedPoint = [gestureRecognizer locationInView:currentPdfScrollView];
         /*
@@ -1517,10 +1485,15 @@
     NSLog(@"save result=%d, YES=%d, NO=%d", result, YES, NO);
 }
 */
-- (void)showMenuBarForMarker { menuBarForMakerPen.hidden = NO; }
-- (void)hideMenuBarForMarker { menuBarForMakerPen.hidden = YES;}
-- (void)showLabelForMarker { penModeLabel.hidden = NO; }
-- (void)hideLabelForMarker { penModeLabel.hidden = YES;}
+- (void)showMenuBarForMarker {
+	LOG_CURRENT_METHOD;
+	menuBarForMakerPen.hidden = NO;
+	[self.view bringSubviewToFront:menuBarForMakerPen];
+}
+- (void)hideMenuBarForMarker {
+	LOG_CURRENT_METHOD;
+ 	menuBarForMakerPen.hidden = YES;
+}
 
 - (void)saveMarkerPenToUserDefault
 {
