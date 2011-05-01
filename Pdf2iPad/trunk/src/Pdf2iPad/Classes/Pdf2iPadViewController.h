@@ -160,7 +160,7 @@
 - (void)enterMarkerMode;
 - (void)setupMarkerPenMenu;
 - (void)exitMarkerMode;
-- (void)handlePan:(UIPanGestureRecognizer*)gestureRecognizer;
+//- (void)handlePan:(UIPanGestureRecognizer*)gestureRecognizer;
 - (void)handlePan2:(UIPanGestureRecognizer*)gestureRecognizer;
 //- (void)saveMarkerWithCurrentPageWithArray:(NSArray*)lineInfoArray;
 //- (NSArray*)loadMarkerWithCurrentPage;
@@ -172,7 +172,7 @@
 
 - (void)renderMarkerPenFromUserDefaultAtPage:(NSUInteger)pageNum;
 
-- (void)setupMarkerPenViewAtPage:(NSUInteger)pageNum;
+//- (void)setupMarkerPenViewAtPage:(NSUInteger)pageNum;
 - (void)clearMarkerPenView;
 
 // Treat URL link.

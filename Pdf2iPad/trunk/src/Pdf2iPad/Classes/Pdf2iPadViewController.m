@@ -92,7 +92,7 @@
 	
 	//[markerPenView setupView];
 	[self loadMarkerPenFromUserDefault];
-	[self setupMarkerPenViewAtPage:currentPageNum];
+	//[self setupMarkerPenViewAtPage:currentPageNum];
     //[self.view bringSubviewToFront:markerPenView];
 	//[markerPenView setNeedsDisplay];
 	
@@ -943,7 +943,7 @@
 	[self renderPopoverImageLinkAtIndex:currentPageNum];
 	
 	[self setupMarkerPenMenu];
-	[self setupMarkerPenViewAtPage:currentPageNum];
+	//[self setupMarkerPenViewAtPage:currentPageNum];
 	[self renderMarkerPenFromUserDefaultAtPage:currentPageNum];
 	//[self.view bringSubviewToFront:markerPenView];
 }
@@ -1306,6 +1306,7 @@
 	isMarkerPenMode = NO;
 }
 
+#if 0==1
 - (void)handlePan:(UIPanGestureRecognizer *)gestureRecognizer
 {
     //LOG_CURRENT_METHOD;
@@ -1389,6 +1390,7 @@
         NSLog(@"pan gesture Failed");
     }
 }
+#endif
 
 
 - (void)handlePan2:(UIPanGestureRecognizer *)gestureRecognizer
@@ -1572,6 +1574,10 @@
 - (void)loadMarkerPenFromUserDefault
 {
 	//LOG_CURRENT_METHOD;
+	if (! markerPenArray) {
+		markerPenArray = [[NSMutableArray alloc] init];
+	}
+	
 	//load from UserDefault.
     NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
 	
@@ -1585,9 +1591,6 @@
 		return;
 	}
 
-	if (! markerPenArray) {
-		markerPenArray = [[NSMutableArray alloc] init];
-	}
 	[markerPenArray addObjectsFromArray:obj];
 	
 	//NSLog(@"loaded. markerPenArray=%@", [markerPenArray description]);
@@ -1604,42 +1607,25 @@
 
 - (void)renderMarkerPenFromUserDefaultAtPage:(NSUInteger)pageNum
 {
-	//LOG_CURRENT_METHOD;
+	LOG_CURRENT_METHOD;
     //has been Readed marker pen infomation.
 	if (! markerPenArray) {
-		NSLog(@"no marker pen info at page %d.", pageNum);
+		LOG_CURRENT_LINE;
+		NSLog(@"markerPenArray not initialized.(no marker pen info at page %d.)", pageNum);
 		return;
 	}
-	/*
-	//
-    [markerPenView clearLine];
-    
-    //Add line info from UserDefault to markerPenView.
-    for (id obj in markerPenArray) {
-		
-		if (!obj) {
-			continue;
-		}
-		if (![obj isKindOfClass:[NSArray class]]) {
-			continue;
-		}
-		
-		NSMutableDictionary* markerInfo = [[NSMutableDictionary alloc] initWithDictionary:obj];
-		
-		int targetPageNum = [[markerInfo valueForKey:MARKERPEN_PAGE_NUMBER] intValue];
-		if (targetPageNum == pageNum) {
-			[markerPenView addLinesWithDictionary:markerInfo];
-		}
-    }
-	*/
-	//[markerPenView setNeedsDisplay];
-	
 	
 	//Generate markerPenView-2.
 	markerPenView2 = [[MarkerPenView alloc] initWithFrame:self.view.frame];
+	NSLog(@"markerPenView2 has %d recognizers", [[markerPenView2 gestureRecognizers] count]);
 	[markerPenView2 clearLine];
 	panRecognizer21 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan2:)];
+	panRecognizer21.enabled = YES;
 	[markerPenView2 addGestureRecognizer:panRecognizer21];
+	NSLog(@"markerPenView2 has %d recognizers", [[markerPenView2 gestureRecognizers] count]);
+	for (id obj in [markerPenView2 gestureRecognizers]) {
+		NSLog(@"class=%@", [obj class]);
+	}
 
 	//Add line info from UserDefault to markerPenView.
     for (id obj in markerPenArray) {
@@ -1660,10 +1646,10 @@
     }
 	CGRect rect = self.view.frame;
 	[currentPdfScrollView addScalableSubview:markerPenView2 withNormalizedFrame:rect];
-	
 }
 
 
+/*
 - (void)setupMarkerPenViewAtPage:(NSUInteger)pageNum
 {
 	//LOG_CURRENT_METHOD;
@@ -1690,11 +1676,15 @@
 		}
     }
 }
+*/
+
 
 - (void)clearMarkerPenView 
 {
 	//[markerPenView clearLine];
 	//[markerPenView setNeedsDisplay];
+	[markerPenView2 clearLine];
+	[markerPenView2 setNeedsDisplay];
 }
 
 
