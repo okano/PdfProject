@@ -39,7 +39,7 @@
 	//IBOutlet UIImageView* imageView1;
 	//IBOutlet UIImageView* imageView2;
 	//IBOutlet UIImageView* imageView3;
-	IBOutlet MarkerPenView* touchPenView;
+	IBOutlet MarkerPenView* markerPenView;
     
 	// Pointer for view.
 	//UIImageView* prevImageView;
@@ -59,7 +59,7 @@
 	UISwipeGestureRecognizer* swipeRecognizer1left;
 	UISwipeGestureRecognizer* swipeRecognizer2left;
 	UISwipeGestureRecognizer* swipeRecognizer3left;
-	// Gesture Recognizer for Touch Maker Pen.
+	// Gesture Recognizer for Marker Maker Pen.
     UIPanGestureRecognizer* panRecognizer1;
     UIPanGestureRecognizer* panRecognizer2;
     UIPanGestureRecognizer* panRecognizer3;

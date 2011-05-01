@@ -88,13 +88,13 @@
     panRecognizer1 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
     panRecognizer2 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
     panRecognizer3 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
-    [touchPenView addGestureRecognizer:panRecognizer1];
+    [markerPenView addGestureRecognizer:panRecognizer1];
 	
-	[touchPenView setupView];
+	[markerPenView setupView];
 	[self loadMarkerPenFromUserDefault];
 	[self setupMarkerPenViewAtPage:currentPageNum];
-    [self.view bringSubviewToFront:touchPenView];
-	[touchPenView setNeedsDisplay];
+    [self.view bringSubviewToFront:markerPenView];
+	[markerPenView setNeedsDisplay];
 	
 	//[pdfScrolView1 addGestureRecognizer:panRecognizer1];
 	//[pdfScrolView2 addGestureRecognizer:panRecognizer2];
@@ -943,7 +943,7 @@
 	[self setupMarkerPenMenu];
 	[self setupMarkerPenViewAtPage:currentPageNum];
 	[self renderMarkerPenFromUserDefaultAtPage:currentPageNum];
-	[self.view bringSubviewToFront:touchPenView];
+	[self.view bringSubviewToFront:markerPenView];
 }
 
 
@@ -1178,24 +1178,24 @@
 
 
 //MARK: -
-//MARK: Treat marker touch pen.
+//MARK: Treat marker marker pen.
 - (void)enterMarkerMode
 {
     //Hide original menu.
     [self hideMenuBar];
     
-    //Show touchpen view.
-    [self.view bringSubviewToFront:touchPenView];
+    //Show markerPen view.
+    [self.view bringSubviewToFront:markerPenView];
 
     //Show menu bar, label for MakerPen.
 	[self setupMarkerPenMenu];
     menuBarForMakerPen.hidden = NO;
     penModeLabel.hidden = NO;
-    [touchPenView addSubview:menuBarForMakerPen];    
-    [touchPenView addSubview:penModeLabel];
+    [markerPenView addSubview:menuBarForMakerPen];    
+    [markerPenView addSubview:penModeLabel];
     
     //Enable touch with view for maker.
-    touchPenView.userInteractionEnabled = YES;
+    markerPenView.userInteractionEnabled = YES;
     
     //Enable gesture.
     panRecognizer1.enabled = YES;
@@ -1273,7 +1273,7 @@
     panRecognizer2.enabled = NO;
     panRecognizer3.enabled = NO;
     //
-    touchPenView.userInteractionEnabled = NO;
+    markerPenView.userInteractionEnabled = NO;
 }
 
 - (void)handlePan:(UIPanGestureRecognizer *)gestureRecognizer
@@ -1295,8 +1295,8 @@
     } else if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
         //NSLog(@"Began");
 		
-		//Setup line info on TouchPenView.
-		[touchPenView willStartAddLine];
+		//Setup line info on markerPenView.
+		[markerPenView willStartAddLine];
 		
 		//Create new array.
         pointsForSingleLine = [[NSMutableArray alloc] init];
@@ -1309,9 +1309,9 @@
         //NSLog(@"Changed");
         touchedPoint = [gestureRecognizer locationInView:self.view];
 		
-		//Add line info on TouchPenView.
-		[touchPenView addLineWithPoint:touchedPoint];
-		[touchPenView setNeedsDisplay];
+		//Add line info on markerPenView.
+		[markerPenView addLineWithPoint:touchedPoint];
+		[markerPenView setNeedsDisplay];
 		
 		//Add Point into array.
 		CGPoint p = [gestureRecognizer locationInView:self.view];
@@ -1324,16 +1324,16 @@
         /*
 		//[touchedPointsForMakerPen addObject:[NSValue valueWithCGPoint:touchedPoint]];
         //
-        //[(TouchPenView*)(self.view) addLineInfoWithArray:touchedPointsForMakerPen];
+        //[(markerPenView*)(self.view) addLineInfoWithArray:touchedPointsForMakerPen];
         
-        [touchPenView addLineInfoFrom:prevTouchPointForMakerPen
+        [markerPenView addLineInfoFrom:prevTouchPointForMakerPen
                                                  to:touchedPoint];
         [self renderTouchPen];
         */
         
-		//Add line info on TouchPenView.
-		[touchPenView addLineWithPoint:touchedPoint];
-		[touchPenView didEndAddLine];
+		//Add line info on markerPenView.
+		[markerPenView addLineWithPoint:touchedPoint];
+		[markerPenView didEndAddLine];
 		
         //Refresh marker view.
         [self renderMarkerPenFromUserDefaultAtPage:currentPageNum];
@@ -1432,7 +1432,7 @@
     
 	//Pickup only line in this page.
 	NSMutableArray* resultArray =[[NSMutableArray alloc] init];
-	//Add line info from UserDefault to touchPenView.
+	//Add line info from UserDefault to markerPenView.
 	for (NSMutableDictionary* markerInfo in obj) {
 		int targetPageNum = [[markerInfo valueForKey:MARKERPEN_PAGE_NUMBER] intValue];
 		if (targetPageNum == currentPageNum) {
@@ -1472,8 +1472,8 @@
 /*
 - (void)renderTouchPenAtIndex:(NSUInteger)index
 {
-    [touchPenView setNeedsDisplay];
-    [self.view bringSubviewToFront:touchPenView];
+    [markerPenView setNeedsDisplay];
+    [self.view bringSubviewToFront:markerPenView];
 }
 */
 
@@ -1487,9 +1487,9 @@
 	}
 	/*
 	//
-    [touchPenView clearLine];
+    [markerPenView clearLine];
     
-    //Add line info from UserDefault to touchPenView.
+    //Add line info from UserDefault to markerPenView.
     for (id obj in markerPenArray) {
 		
 		if (!obj) {
@@ -1503,11 +1503,11 @@
 		
 		int targetPageNum = [[markerInfo valueForKey:MARKERPEN_PAGE_NUMBER] intValue];
 		if (targetPageNum == pageNum) {
-			[touchPenView addLinesWithDictionary:markerInfo];
+			[markerPenView addLinesWithDictionary:markerInfo];
 		}
     }
 	*/
-	[touchPenView setNeedsDisplay];
+	[markerPenView setNeedsDisplay];
 }
 
 
@@ -1517,9 +1517,9 @@
 	//NSLog(@"markerPenArray=%@", [markerPenArray description]);
 	
 	
-	[touchPenView clearLine];
+	[markerPenView clearLine];
 	
-    //Add line info from UserDefault to touchPenView.
+    //Add line info from UserDefault to markerPenView.
     for (id obj in markerPenArray) {
 		if (!obj) {
 			continue;
@@ -1533,15 +1533,15 @@
 		
 		int targetPageNum = [[markerInfo valueForKey:MARKERPEN_PAGE_NUMBER] intValue];
 		if (targetPageNum == pageNum) {
-			[touchPenView addLinesWithDictionary:markerInfo];
+			[markerPenView addLinesWithDictionary:markerInfo];
 		}
     }
 }
 
 - (void)clearMarkerPenView 
 {
-	[touchPenView clearLine];
-	[touchPenView setNeedsDisplay];
+	[markerPenView clearLine];
+	[markerPenView setNeedsDisplay];
 }
 
 
