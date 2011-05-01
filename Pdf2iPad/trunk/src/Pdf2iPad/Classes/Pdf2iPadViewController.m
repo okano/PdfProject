@@ -1217,32 +1217,28 @@
 									   target:self 
 									   action:@selector(exitMarkerMode)];
 		
-		//Add title label. (@see:http://d.hatena.ne.jp/tksshj/20110224/1298531250)
+		//Add title label.
 		NSString* titleStr = @"Marker Mode";
 		CGSize labelSize = [titleStr sizeWithFont:[UIFont boldSystemFontOfSize:24]];
-		/*
-		UILabel *toolbarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0,labelSize.width,labelSize.height)];
-		toolbarLabel.backgroundColor = [UIColor clearColor];
-		toolbarLabel.textAlignment = UITextAlignmentCenter;
-		toolbarLabel.text = titleStr;
-		toolbarLabel.textColor = [UIColor whiteColor];
-		toolbarLabel.shadowColor = [UIColor blackColor];
-		toolbarLabel.shadowOffset = CGSizeMake(0.0,-1.0);
-		toolbarLabel.font = [UIFont boldSystemFontOfSize:24];
-		*/
-		
-		UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-		UIBarButtonItem *flexibleSpace2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-
 		UIBarButtonItem* titleLabelButton = [UIBarButtonItem alloc];
 		[titleLabelButton initWithTitle:titleStr
-						style:UIBarButtonItemStylePlain
-					   target:nil
-					   action:nil];
+								  style:UIBarButtonItemStylePlain
+								 target:nil
+								 action:nil];
 		[titleLabelButton setWidth:165.0f];
 		[titleLabelButton setWidth:labelSize.width];
+		
+		//Add FlexibleSpace.
+		UIBarButtonItem *fspace1 = [[UIBarButtonItem alloc]
+										  initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+										  target:nil
+										  action:nil];
+		UIBarButtonItem *fspace2 = [[UIBarButtonItem alloc]
+										   initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+										   target:nil
+										   action:nil];
 
-		[menuBarForMakerPen setItems:[NSArray arrayWithObjects:doneButton, flexibleSpace, titleLabelButton, flexibleSpace2, nil]];
+		[menuBarForMakerPen setItems:[NSArray arrayWithObjects:doneButton, fspace1, titleLabelButton, fspace2, nil]];
 		[self.view addSubview:menuBarForMakerPen];
 	}
 	UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
@@ -1261,7 +1257,7 @@
 		menuBarForMakerPen.frame = rect;
 	}
 	
-	
+	/*
 	//Label.
 	if (! penModeLabel) {
         //CGRect rectForLabel = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 120.0f);
@@ -1287,6 +1283,7 @@
 		CGRect rectForLabel = CGRectMake(0.0f, 0.0f, self.view.frame.size.height, 120.0f);
 		penModeLabel.frame = rectForLabel;
 	}
+	*/
 }
 
 - (void)exitMarkerMode
