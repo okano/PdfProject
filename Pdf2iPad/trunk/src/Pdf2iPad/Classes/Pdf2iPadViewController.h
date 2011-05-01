@@ -39,7 +39,6 @@
 	//IBOutlet UIImageView* imageView1;
 	//IBOutlet UIImageView* imageView2;
 	//IBOutlet UIImageView* imageView3;
-	//IBOutlet MarkerPenView* markerPenView;
     MarkerPenView* markerPenView2;
     
 	// Pointer for view.
@@ -61,10 +60,10 @@
 	UISwipeGestureRecognizer* swipeRecognizer2left;
 	UISwipeGestureRecognizer* swipeRecognizer3left;
 	// Gesture Recognizer for Marker Maker Pen.
-    //UIPanGestureRecognizer* panRecognizer1;
-    //UIPanGestureRecognizer* panRecognizer2;
-    //UIPanGestureRecognizer* panRecognizer3;
-    UIPanGestureRecognizer* panRecognizer21;
+    //UIPanGestureRecognizer* panRecognizer21;
+	UIPanGestureRecognizer* panRecognizer1;
+	UIPanGestureRecognizer* panRecognizer2;
+	UIPanGestureRecognizer* panRecognizer3;
     CGPoint prevTouchPointForMakerPen;
     UIToolbar* menuBarForMakerPen;
     
@@ -156,23 +155,20 @@
 - (void)handleTapInBottomArea:(UIGestureRecognizer*)gestureRecognizer;
 // Handle Swipe.
 - (void)handleSwipe:(UISwipeGestureRecognizer*)gestureRecognizer;
+
 // Handle Pan(draw maker pen)
 - (void)enterMarkerMode;
+- (void)setupMarkerPenView;
 - (void)setupMarkerPenMenu;
 - (void)exitMarkerMode;
-//- (void)handlePan:(UIPanGestureRecognizer*)gestureRecognizer;
 - (void)handlePan2:(UIPanGestureRecognizer*)gestureRecognizer;
-//- (void)saveMarkerWithCurrentPageWithArray:(NSArray*)lineInfoArray;
-//- (NSArray*)loadMarkerWithCurrentPage;
 - (void)showMenuBarForMarker;
 - (void)hideMenuBarForMarker;
-
+//
 - (void)saveMarkerPenToUserDefault;
 - (void)loadMarkerPenFromUserDefault;
-
+//
 - (void)renderMarkerPenFromUserDefaultAtPage:(NSUInteger)pageNum;
-
-//- (void)setupMarkerPenViewAtPage:(NSUInteger)pageNum;
 - (void)clearMarkerPenView;
 
 // Treat URL link.

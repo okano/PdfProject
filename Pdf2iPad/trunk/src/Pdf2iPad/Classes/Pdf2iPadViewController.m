@@ -84,26 +84,19 @@
 	[pdfScrolView2 addGestureRecognizer:swipeRecognizer2left];
 	[pdfScrolView3 addGestureRecognizer:swipeRecognizer3left];
     
+	//Gesture for MarkerPen.
+	panRecognizer1 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan2:)];
+	panRecognizer2 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan2:)];
+	panRecognizer3 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan2:)];
+	[pdfScrolView1 addGestureRecognizer:panRecognizer1];
+	[pdfScrolView2 addGestureRecognizer:panRecognizer2];
+	[pdfScrolView3 addGestureRecognizer:panRecognizer3];
+	
 	//Setup Maker Pen.
-    //panRecognizer1 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
-    //panRecognizer2 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
-    //panRecognizer3 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
-    //[markerPenView addGestureRecognizer:panRecognizer1];
-	
-	//[markerPenView setupView];
 	[self loadMarkerPenFromUserDefault];
-	//[self setupMarkerPenViewAtPage:currentPageNum];
-    //[self.view bringSubviewToFront:markerPenView];
-	//[markerPenView setNeedsDisplay];
-	
-	markerPenView2 = nil;
-	
-	//[pdfScrolView1 addGestureRecognizer:panRecognizer1];
-	//[pdfScrolView2 addGestureRecognizer:panRecognizer2];
-	//[pdfScrolView3 addGestureRecognizer:panRecognizer3];
-    [self setupMarkerPenMenu];
-	//menuBarForMakerPen = nil;   //generate when need.
-    [self exitMarkerMode];
+	[self setupMarkerPenView];
+	[self setupMarkerPenMenu];
+	[self exitMarkerMode];
     
 #pragma mark (Open PDF)
 	//Open PDF file.
@@ -945,7 +938,7 @@
 	[self setupMarkerPenMenu];
 	//[self setupMarkerPenViewAtPage:currentPageNum];
 	[self renderMarkerPenFromUserDefaultAtPage:currentPageNum];
-	//[self.view bringSubviewToFront:markerPenView];
+	[self.view bringSubviewToFront:markerPenView2];
 }
 
 
@@ -1173,6 +1166,12 @@
 - (void)handleSwipe:(UISwipeGestureRecognizer*)gestureRecognizer
 {
 	LOG_CURRENT_METHOD;
+	
+	//do nothing if in marker pen mode.
+	if (isMarkerPenMode == YES) {
+		return;
+	}
+	
 	//Switch to next/prev page.
 	if (gestureRecognizer.direction == UISwipeGestureRecognizerDirectionRight) {
 		//left to right, goto next.
@@ -1186,44 +1185,30 @@
 
 //MARK: -
 //MARK: Treat marker marker pen.
-- (void)enterMarkerMode
+- (void)setupMarkerPenView
 {
-	LOG_CURRENT_METHOD;
-    //Hide original menu.
-    [self hideMenuBar];
-    
-    //Show markerPen view.
-    //[self.view bringSubviewToFront:markerPenView];
+	//Generate markerPenView-2.
+	markerPenView2 = [[MarkerPenView alloc] initWithFrame:self.view.frame];
+	//NSLog(@"markerPenView2 has %d recognizers", [[markerPenView2 gestureRecognizers] count]);
+	[markerPenView2 clearLine];
 	
-	//Show menu bar, label for MakerPen.
-	[self setupMarkerPenMenu];
-    [self showMenuBarForMarker];
-    
-    //Enable touch with view for maker.
-    //markerPenView.userInteractionEnabled = YES;
-    markerPenView2.userInteractionEnabled = YES;
-	currentPdfScrollView.userInteractionEnabled = NO;
-	
-	//Disable all swipe(for move page.)
-	swipeRecognizer1left.enabled = NO;
-	swipeRecognizer1right.enabled = NO;
-	swipeRecognizer2left.enabled = NO;
-	swipeRecognizer2right.enabled = NO;
-	swipeRecognizer3left.enabled = NO;
-	swipeRecognizer3right.enabled = NO;
-    
-    //Enable gesture.
-    //panRecognizer1.enabled = YES;
-    //panRecognizer2.enabled = YES;
-    //panRecognizer3.enabled = YES;
+	/*
+	//Add gesture to markerPenView.(drag for add line.)
+	panRecognizer21 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan2:)];
 	panRecognizer21.enabled = YES;
-	
-	//Set Flag.
-	isMarkerPenMode = YES;
+	[markerPenView2 addGestureRecognizer:panRecognizer21];
+	NSLog(@"markerPenView2 has %d recognizers", [[markerPenView2 gestureRecognizers] count]);
+	for (id obj in [markerPenView2 gestureRecognizers]) {
+		NSLog(@"class=%@", [obj class]);
+		UIPanGestureRecognizer* r = (UIPanGestureRecognizer*)obj;
+		NSLog(@"enabled=%d", r.enabled);
+	}
+	*/
 }
+
 - (void)setupMarkerPenMenu
 {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
 	//MenuBar.
 	CGFloat menuBarHeight = 44.0f;
     if (! menuBarForMakerPen) {
@@ -1276,6 +1261,40 @@
 	}
 }
 
+- (void)enterMarkerMode
+{
+	LOG_CURRENT_METHOD;
+    //Hide original menu.
+    [self hideMenuBar];
+    
+    //Show markerPen view.
+    //[self.view bringSubviewToFront:markerPenView];
+	
+	//Show menu bar, label for MakerPen.
+	[self setupMarkerPenMenu];
+    [self showMenuBarForMarker];
+    
+    //Enable touch with view for maker.
+    markerPenView2.userInteractionEnabled = YES;
+	currentPdfScrollView.userInteractionEnabled = NO;
+    
+	/*
+    //Enable gesture for add line.
+	panRecognizer21.enabled = YES;
+	NSLog(@"markerPenView2 has %d recognizers", [[markerPenView2 gestureRecognizers] count]);
+	for (id obj in [markerPenView2 gestureRecognizers]) {
+		NSLog(@"class=%@", [obj class]);
+		UIPanGestureRecognizer* r = (UIPanGestureRecognizer*)obj;
+		NSLog(@"enabled=%d", r.enabled);
+	}
+	*/
+	panRecognizer1.enabled = YES;
+	panRecognizer2.enabled = YES;
+	panRecognizer3.enabled = YES;
+	
+	//Set Flag.
+	isMarkerPenMode = YES;
+}
 - (void)exitMarkerMode
 {
 	LOG_CURRENT_METHOD;
@@ -1284,118 +1303,26 @@
         //menuBarForMakerPen.hidden = YES;
 		[self hideMenuBarForMarker];
     }
-    //
-    //panRecognizer1.enabled = NO;
-    //panRecognizer2.enabled = NO;
-    //panRecognizer3.enabled = NO;
+	
+	/*
+    //Disable gesture for add line.
 	panRecognizer21.enabled = NO;
-    //
-    //markerPenView.userInteractionEnabled = NO;
+	*/
+	panRecognizer1.enabled = NO;
+	panRecognizer2.enabled = NO;
+	panRecognizer3.enabled = NO;
+	
+    //Disable touch with view for maker.
     markerPenView2.userInteractionEnabled = NO;
 	currentPdfScrollView.userInteractionEnabled = YES;
-	
-	//Disable all swipe(for move page.)
-	swipeRecognizer1left.enabled = YES;
-	swipeRecognizer1right.enabled = YES;
-	swipeRecognizer2left.enabled = YES;
-	swipeRecognizer2right.enabled = YES;
-	swipeRecognizer3left.enabled = YES;
-	swipeRecognizer3right.enabled = YES;
 	
 	//Set Flag.
 	isMarkerPenMode = NO;
 }
 
-#if 0==1
-- (void)handlePan:(UIPanGestureRecognizer *)gestureRecognizer
-{
-    //LOG_CURRENT_METHOD;
-    //
-
-    if (! markerPenArray) {
-        markerPenArray = [[NSMutableArray alloc] init];
-    }
-    if (! pointsForSingleLine) {
-        pointsForSingleLine = [[NSMutableArray alloc] init];
-    }
-    
-    CGPoint touchedPoint;
-	//LOG_CURRENT_METHOD;
-	if (gestureRecognizer.state == UIGestureRecognizerStatePossible) {
-        //NSLog(@"Possible");
-    } else if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-        //NSLog(@"Began");
-		
-		//Setup line info on markerPenView.
-		//[markerPenView willStartAddLine];
-		
-		//Create new array.
-        pointsForSingleLine = [[NSMutableArray alloc] init];
-		
-		//Add Point into array.
-		CGPoint p = [gestureRecognizer locationInView:self.view];
-        [pointsForSingleLine addObject:NSStringFromCGPoint(p)];
-		
-	} else if (gestureRecognizer.state == UIGestureRecognizerStateChanged) {
-        //NSLog(@"Changed");
-        touchedPoint = [gestureRecognizer locationInView:self.view];
-		
-		//Add line info on markerPenView.
-		//[markerPenView addLineWithPoint:touchedPoint];
-		//[markerPenView setNeedsDisplay];
-		
-		//Add Point into array.
-		CGPoint p = [gestureRecognizer locationInView:self.view];
-        [pointsForSingleLine addObject:NSStringFromCGPoint(p)];
-		
-    } else if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
-        //NSLog(@"Ended");
-        
-        touchedPoint = [gestureRecognizer locationInView:self.view];
-        /*
-		//[touchedPointsForMakerPen addObject:[NSValue valueWithCGPoint:touchedPoint]];
-        //
-        //[(markerPenView*)(self.view) addLineInfoWithArray:touchedPointsForMakerPen];
-        
-        [markerPenView addLineInfoFrom:prevTouchPointForMakerPen
-                                                 to:touchedPoint];
-        [self renderTouchPen];
-        */
-        
-		//Add line info on markerPenView.
-		//[markerPenView addLineWithPoint:touchedPoint];
-		//[markerPenView didEndAddLine];
-		
-        //Refresh marker view.
-        [self renderMarkerPenFromUserDefaultAtPage:currentPageNum];
-		
-		//Add Point into array.
-		CGPoint p = [gestureRecognizer locationInView:self.view];
-        [pointsForSingleLine addObject:NSStringFromCGPoint(p)];
-		
-		
-		//Generate dictionary for add array.
-		NSMutableDictionary* tmpDict = [[NSMutableDictionary alloc] init];
-		[tmpDict setValue:[NSNumber numberWithInt:currentPageNum] forKey:MARKERPEN_PAGE_NUMBER];
-		[tmpDict setValue:@"" forKey:MARKERPEN_COMMENT];
-		[tmpDict setValue:pointsForSingleLine forKey:MARKERPEN_POINT_ARRAY];
-		[markerPenArray addObject:tmpDict];
-		
-        //Save to UserDefault.
-        [self saveMarkerPenToUserDefault];
-
-	} else if (gestureRecognizer.state == UIGestureRecognizerStateCancelled) {
-        NSLog(@"pan gesture Cancelled");
-	} else if (gestureRecognizer.state == UIGestureRecognizerStateFailed) {
-        NSLog(@"pan gesture Failed");
-    }
-}
-#endif
-
-
 - (void)handlePan2:(UIPanGestureRecognizer *)gestureRecognizer
 {
-    //LOG_CURRENT_METHOD;
+    LOG_CURRENT_METHOD;
     //
 	
     if (! markerPenArray) {
@@ -1438,16 +1365,7 @@
         NSLog(@"pan Ended");
         
         touchedPoint = [gestureRecognizer locationInView:currentPdfScrollView];
-        /*
-		 //[touchedPointsForMakerPen addObject:[NSValue valueWithCGPoint:touchedPoint]];
-		 //
-		 //[(markerPenView2*)(self.view) addLineInfoWithArray:touchedPointsForMakerPen];
-		 
-		 [markerPenView2 addLineInfoFrom:prevTouchPointForMakerPen
-		 to:touchedPoint];
-		 [self renderTouchPen];
-		 */
-        
+		
 		//Add line info on markerPenView2.
 		[markerPenView2 addLineWithPoint:touchedPoint];
 		[markerPenView2 didEndAddLine];
@@ -1477,54 +1395,13 @@
     }
 }
 
-
-/**
- *argument:lineInfoArray is Array of CGPointValue.
- */
-/*
-- (void)saveMarkerWithCurrentPageWithArray:(NSArray*)lineInfoArray
-{
-	//Convert CGPoint array to NSString array for store NSUserDefault.
-	NSMutableArray* lineInfoStrArray = [[NSMutableArray alloc] init];
-	for (id obj in lineInfoArray) {
-		if (![obj isKindOfClass:[NSValue class]]) {
-			LOG_CURRENT_LINE;
-			NSLog(@"illigal marker pen infomation. class=%@", [obj class]);
-			continue;
-		}
-		NSString* pointStr = NSStringFromCGPoint([obj CGPointValue]);
-		[lineInfoStrArray addObject:pointStr];
-	}
-	
-	//Generate marker pen item with current pageNum.
-    NSMutableDictionary* tmpDict = [[NSMutableDictionary alloc] init];
-    [tmpDict setObject:[NSNumber numberWithInt:currentPageNum] forKey:MARKERPEN_PAGE_NUMBER];
-    //[tmpDict setObject:lineInfoArray forKey:MARKERPEN_LINE_ARRAY];
-    [tmpDict setObject:lineInfoStrArray forKey:MARKERPEN_LINE_ARRAY];
-    [tmpDict setObject:@"" forKey:MARKERPEN_COMMENT];
-    
-    //Marge marker pen infomation with saved data in UserDefault.
-    NSArray* savedInfo = [self loadMarkerWithCurrentPage];
-    NSMutableArray* arrayForSave = [[NSMutableArray alloc] initWithArray:savedInfo];
-    [arrayForSave addObject:tmpDict];
-	
-	//Store marker pen infomation to UserDefault.
-	NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
-	[userDefault setObject:arrayForSave forKey:MARKERPEN_ARRAY];
-	//[userDefault setObject:@"test save1" forKey:MARKERPEN_ARRAY];
-	
-    BOOL result;
-	result = [userDefault synchronize];
-    NSLog(@"save result=%d, YES=%d, NO=%d", result, YES, NO);
-}
-*/
 - (void)showMenuBarForMarker {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
 	menuBarForMakerPen.hidden = NO;
 	[self.view bringSubviewToFront:menuBarForMakerPen];
 }
 - (void)hideMenuBarForMarker {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
  	menuBarForMakerPen.hidden = YES;
 }
 
@@ -1596,18 +1473,15 @@
 	//NSLog(@"loaded. markerPenArray=%@", [markerPenArray description]);
 }
 
-
-/*
-- (void)renderTouchPenAtIndex:(NSUInteger)index
-{
-    [markerPenView setNeedsDisplay];
-    [self.view bringSubviewToFront:markerPenView];
-}
-*/
-
 - (void)renderMarkerPenFromUserDefaultAtPage:(NSUInteger)pageNum
 {
 	LOG_CURRENT_METHOD;
+	NSLog(@"markerPenView2 has %d recognizers", [[markerPenView2 gestureRecognizers] count]);
+	for (id obj in [markerPenView2 gestureRecognizers]) {
+		UIPanGestureRecognizer* r = (UIPanGestureRecognizer*)obj;
+		NSLog(@"enabled=%d", r.enabled);
+	}
+	
     //has been Readed marker pen infomation.
 	if (! markerPenArray) {
 		LOG_CURRENT_LINE;
@@ -1615,17 +1489,8 @@
 		return;
 	}
 	
-	//Generate markerPenView-2.
-	markerPenView2 = [[MarkerPenView alloc] initWithFrame:self.view.frame];
-	NSLog(@"markerPenView2 has %d recognizers", [[markerPenView2 gestureRecognizers] count]);
+	//
 	[markerPenView2 clearLine];
-	panRecognizer21 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan2:)];
-	panRecognizer21.enabled = YES;
-	[markerPenView2 addGestureRecognizer:panRecognizer21];
-	NSLog(@"markerPenView2 has %d recognizers", [[markerPenView2 gestureRecognizers] count]);
-	for (id obj in [markerPenView2 gestureRecognizers]) {
-		NSLog(@"class=%@", [obj class]);
-	}
 
 	//Add line info from UserDefault to markerPenView.
     for (id obj in markerPenArray) {
@@ -1644,6 +1509,10 @@
 			[markerPenView2 addLinesWithDictionary:markerInfo];
 		}
     }
+	
+	//Draw line dragging.(use nowDraggingLine).
+	
+	//
 	CGRect rect = self.view.frame;
 	[currentPdfScrollView addScalableSubview:markerPenView2 withNormalizedFrame:rect];
 }
@@ -1681,8 +1550,6 @@
 
 - (void)clearMarkerPenView 
 {
-	//[markerPenView clearLine];
-	//[markerPenView setNeedsDisplay];
 	[markerPenView2 clearLine];
 	[markerPenView2 setNeedsDisplay];
 }
