@@ -163,10 +163,10 @@
 - (void)saveMarkerPenToUserDefault;
 - (void)loadMarkerPenFromUserDefault;
 
-- (void)renderTouchPenFromUserDefaultAtPage:(NSUInteger)pageNum;
+- (void)renderMarkerPenFromUserDefaultAtPage:(NSUInteger)pageNum;
 
-- (void)setupTouchpenViewAtPage:(NSUInteger)pageNum;
-- (void)clearTouchPenView;
+- (void)setupMarkerPenViewAtPage:(NSUInteger)pageNum;
+- (void)clearMarkerPenView;
 
 // Treat URL link.
 - (void) renderPageLinkAtIndex:(NSUInteger)index;

@@ -92,7 +92,7 @@
 	
 	[touchPenView setupView];
 	[self loadMarkerPenFromUserDefault];
-	[self setupTouchpenViewAtPage:currentPageNum];
+	[self setupMarkerPenViewAtPage:currentPageNum];
     [self.view bringSubviewToFront:touchPenView];
 	[touchPenView setNeedsDisplay];
 	
@@ -941,8 +941,8 @@
 	[self renderPopoverImageLinkAtIndex:currentPageNum];
 	
 	[self setupMarkerPenMenu];
-	[self setupTouchpenViewAtPage:currentPageNum];
-	[self renderTouchPenFromUserDefaultAtPage:currentPageNum];
+	[self setupMarkerPenViewAtPage:currentPageNum];
+	[self renderMarkerPenFromUserDefaultAtPage:currentPageNum];
 	[self.view bringSubviewToFront:touchPenView];
 }
 
@@ -1336,7 +1336,7 @@
 		[touchPenView didEndAddLine];
 		
         //Refresh marker view.
-        [self renderTouchPenFromUserDefaultAtPage:currentPageNum];
+        [self renderMarkerPenFromUserDefaultAtPage:currentPageNum];
 		
 		//Add Point into array.
 		CGPoint p = [gestureRecognizer locationInView:self.view];
@@ -1477,7 +1477,7 @@
 }
 */
 
-- (void)renderTouchPenFromUserDefaultAtPage:(NSUInteger)pageNum
+- (void)renderMarkerPenFromUserDefaultAtPage:(NSUInteger)pageNum
 {
 	//LOG_CURRENT_METHOD;
     //has been Readed marker pen infomation.
@@ -1511,7 +1511,7 @@
 }
 
 
-- (void)setupTouchpenViewAtPage:(NSUInteger)pageNum
+- (void)setupMarkerPenViewAtPage:(NSUInteger)pageNum
 {
 	//LOG_CURRENT_METHOD;
 	//NSLog(@"markerPenArray=%@", [markerPenArray description]);
@@ -1538,7 +1538,7 @@
     }
 }
 
-- (void)clearTouchPenView 
+- (void)clearMarkerPenView 
 {
 	[touchPenView clearLine];
 	[touchPenView setNeedsDisplay];
@@ -2360,7 +2360,7 @@
 	
 	
 	//Hide(clear) marker pen.
-	[self clearTouchPenView];
+	[self clearMarkerPenView];
 }
 
 #if 0==1
