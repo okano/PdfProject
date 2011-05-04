@@ -1346,32 +1346,32 @@
         pointsForSingleLine = [[NSMutableArray alloc] init];
 		
 		//Add Point into array.
-		CGPoint p = [gestureRecognizer locationInView:currentPdfScrollView];
+		CGPoint p = [gestureRecognizer locationInView:markerPenView2];
         [pointsForSingleLine addObject:NSStringFromCGPoint(p)];
 		
 	} else if (gestureRecognizer.state == UIGestureRecognizerStateChanged) {
         //NSLog(@"Changed");
-        touchedPoint = [gestureRecognizer locationInView:currentPdfScrollView];
+        touchedPoint = [gestureRecognizer locationInView:markerPenView2];
 		
 		//Add line info on markerPenView2.
 		[markerPenView2 addLineWithPoint:touchedPoint];
 		[markerPenView2 setNeedsDisplay];
 		
 		//Add Point into array.
-		CGPoint p = [gestureRecognizer locationInView:currentPdfScrollView];
+		CGPoint p = [gestureRecognizer locationInView:markerPenView2];
         [pointsForSingleLine addObject:NSStringFromCGPoint(p)];
 		
     } else if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
         NSLog(@"pan Ended");
         
-        touchedPoint = [gestureRecognizer locationInView:currentPdfScrollView];
+        touchedPoint = [gestureRecognizer locationInView:markerPenView2];
 		
 		//Add line info on markerPenView2.
 		[markerPenView2 addLineWithPoint:touchedPoint];
 		[markerPenView2 didEndAddLine];
 		
 		//Add Point into array.
-		CGPoint p = [gestureRecognizer locationInView:currentPdfScrollView];
+		CGPoint p = [gestureRecognizer locationInView:markerPenView2];
         [pointsForSingleLine addObject:NSStringFromCGPoint(p)];
 		
 		//Generate dictionary for add array.
