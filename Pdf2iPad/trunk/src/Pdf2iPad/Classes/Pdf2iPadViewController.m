@@ -1370,13 +1370,9 @@
 		[markerPenView2 addLineWithPoint:touchedPoint];
 		[markerPenView2 didEndAddLine];
 		
-        //Refresh marker view.
-        [self renderMarkerPenFromUserDefaultAtPage:currentPageNum];
-		
 		//Add Point into array.
 		CGPoint p = [gestureRecognizer locationInView:currentPdfScrollView];
         [pointsForSingleLine addObject:NSStringFromCGPoint(p)];
-		
 		
 		//Generate dictionary for add array.
 		NSMutableDictionary* tmpDict = [[NSMutableDictionary alloc] init];
@@ -1388,6 +1384,8 @@
         //Save to UserDefault.
         [self saveMarkerPenToUserDefault];
 		
+        //Refresh marker view.
+        [self renderMarkerPenFromUserDefaultAtPage:currentPageNum];
 	} else if (gestureRecognizer.state == UIGestureRecognizerStateCancelled) {
         NSLog(@"pan gesture Cancelled");
 	} else if (gestureRecognizer.state == UIGestureRecognizerStateFailed) {
