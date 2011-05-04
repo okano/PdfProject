@@ -1515,6 +1515,7 @@
 	//
 	CGRect rect = self.view.frame;
 	[currentPdfScrollView addScalableSubview:markerPenView2 withNormalizedFrame:rect];
+	[markerPenView2 setNeedsDisplay];
 }
 
 
