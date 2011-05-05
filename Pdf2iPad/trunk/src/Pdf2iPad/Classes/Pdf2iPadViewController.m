@@ -1582,6 +1582,7 @@
 		NSArray* tmpCsvArray = [line componentsSeparatedByString:@","];
 		if ([tmpCsvArray count] < 6) {
 			NSLog(@"illigal CSV data. item count=%d, line=%@", [tmpCsvArray count], line);
+			continue;	//Skip illigal line.
 		}
 		
 		tmpDict = [[NSMutableDictionary alloc] init];
@@ -1595,9 +1596,11 @@
 		//Filename.
 		NSString* tmpStr = [tmpCsvArray objectAtIndex:5];
 		NSString* tmpStrWithoutDoubleQuote = [tmpStr stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c", 0x22] withString:@""];	/* delete DoubleQuote. */
+		NSString* tmpStrWithoutCR = [tmpStrWithoutDoubleQuote stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c", 0x0d] withString:@""];	/* delete CR. */
+		NSString* tmpStrWithoutLF = [tmpStrWithoutCR stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c", 0x22] withString:@""];	/* delete LF. */
 		//NSString* tmpStrURLEncoded = [tmpStrWithoutDoubleQuote stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 		//[tmpDict setValue:tmpStrURLEncoded forKey:MD_MOVIE_FILENAME];
-		[tmpDict setValue:tmpStrWithoutDoubleQuote forKey:MD_MOVIE_FILENAME];
+		[tmpDict setValue:tmpStrWithoutLF forKey:MD_MOVIE_FILENAME];
 		
 		[movieDefine addObject:tmpDict];
 	}
@@ -1663,7 +1666,9 @@
 	
 	NSString* path = [[NSBundle mainBundle] pathForResource:filename ofType:nil];
 	if (!path) {
-		NSLog(@"illigal filename. filename=%@, bundle_resourceURL=%@", filename, [[NSBundle mainBundle] resourceURL]);
+		NSLog(@"illigal filename. filename=%@, bundle_resourceURL=%@", 
+			  [filename stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+			  [[NSBundle mainBundle] resourceURL]);
 		NSLog(@"f = %@ %@", [filename stringByDeletingPathExtension], [filename pathExtension]);
 		return;
 	}
@@ -1713,6 +1718,7 @@
 		NSArray* tmpCsvArray = [line componentsSeparatedByString:@","];
 		if ([tmpCsvArray count] < 6) {
 			NSLog(@"illigal CSV data. item count=%d, line=%@", [tmpCsvArray count], line);
+			continue;	//Skip illegal line.
 		}
 		
 		tmpDict = [[NSMutableDictionary alloc] init];
@@ -1812,6 +1818,7 @@
 		NSArray* tmpCsvArray = [line componentsSeparatedByString:@","];
 		if ([tmpCsvArray count] < 6) {
 			NSLog(@"illigal CSV data. item count=%d, line=%@", [tmpCsvArray count], line);
+			continue;	//Skip illigal line.
 		}
 		
 		tmpDict = [[NSMutableDictionary alloc] init];
@@ -1828,9 +1835,11 @@
 		for (i = 5; i < [tmpCsvArray count]; i = i + 1) {
 			NSString* tmpStr = [tmpCsvArray objectAtIndex:i];
 			NSString* tmpStrWithoutDoubleQuote = [tmpStr stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c", 0x22] withString:@""];	/* delete DoubleQuote. */
+			NSString* tmpStrWithoutCR = [tmpStrWithoutDoubleQuote stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c", 0x0d] withString:@""];	/* delete CR. */
+			NSString* tmpStrWithoutLF = [tmpStrWithoutCR stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c", 0x22] withString:@""];	/* delete LF. */
 			//NSString* tmpStrURLEncoded = [tmpStrWithoutDoubleQuote stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 			//[tmpDict setValue:tmpStrURLEncoded forKey:MD_MOVIE_FILENAME];
-			[filenamesArray addObject:tmpStrWithoutDoubleQuote];
+			[filenamesArray addObject:tmpStrWithoutLF];
 		}
 		
 		[tmpDict setValue:filenamesArray forKey:IPSD_FILENAMES];
@@ -1888,7 +1897,7 @@
 				//Add each image.
 				NSString *path= [[NSBundle mainBundle] pathForResource:filename ofType:nil];
 				if (!path) {
-					NSLog(@"file not found:%@", filename);
+					NSLog(@"file not found:%@", [filename stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
 					continue;	//next file.
 				}
 				UIImage* image = [[UIImage alloc] initWithContentsOfFile:path];
@@ -1969,6 +1978,7 @@
 		NSArray* tmpCsvArray = [line componentsSeparatedByString:@","];
 		if ([tmpCsvArray count] < 6) {
 			NSLog(@"illigal CSV data. item count=%d, line=%@", [tmpCsvArray count], line);
+			continue;	//Skip illigal line.
 		}
 		
 		tmpDict = [[NSMutableDictionary alloc] init];
@@ -1982,9 +1992,11 @@
 		//Filename.
 		NSString* tmpStr = [tmpCsvArray objectAtIndex:5];
 		NSString* tmpStrWithoutDoubleQuote = [tmpStr stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c", 0x22] withString:@""];	/* delete DoubleQuote. */
+		NSString* tmpStrWithoutCR = [tmpStrWithoutDoubleQuote stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c", 0x0d] withString:@""];	/* delete CR. */
+		NSString* tmpStrWithoutLF = [tmpStrWithoutCR stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c", 0x22] withString:@""];	/* delete LF. */
 		//NSString* tmpStrURLEncoded = [tmpStrWithoutDoubleQuote stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 		//[tmpDict setValue:tmpStrURLEncoded forKey:MD_MOVIE_FILENAME];
-		[tmpDict setValue:tmpStrWithoutDoubleQuote forKey:IPPD_FILENAME];
+		[tmpDict setValue:tmpStrWithoutLF forKey:IPPD_FILENAME];
 		
 		[inPagePdfDefine addObject:tmpDict];
 	}
@@ -2134,6 +2146,7 @@
 		NSArray* tmpCsvArray = [line componentsSeparatedByString:@","];
 		if ([tmpCsvArray count] < 6) {
 			NSLog(@"illigal CSV data. item count=%d, line=%@", [tmpCsvArray count], line);
+			continue;	//Skip illigal line.
 		}
 		
 		tmpDict = [[NSMutableDictionary alloc] init];
@@ -2147,9 +2160,11 @@
 		//Filename.
 		NSString* tmpStr = [tmpCsvArray objectAtIndex:5];
 		NSString* tmpStrWithoutDoubleQuote = [tmpStr stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c", 0x22] withString:@""];	/* delete DoubleQuote. */
+		NSString* tmpStrWithoutCR = [tmpStrWithoutDoubleQuote stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c", 0x0d] withString:@""];	/* delete CR. */
+		NSString* tmpStrWithoutLF = [tmpStrWithoutCR stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c", 0x22] withString:@""];	/* delete LF. */
 		//NSString* tmpStrURLEncoded = [tmpStrWithoutDoubleQuote stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 		//[tmpDict setValue:tmpStrURLEncoded forKey:MD_MOVIE_FILENAME];
-		[tmpDict setValue:tmpStrWithoutDoubleQuote forKey:IPPD_FILENAME];
+		[tmpDict setValue:tmpStrWithoutLF forKey:IPPD_FILENAME];
 		
 		[inPagePngDefine addObject:tmpDict];
 	}
@@ -2179,7 +2194,7 @@
 				if (! image) {
 					LOG_CURRENT_METHOD;
 					LOG_CURRENT_LINE;
-					NSLog(@"file not found in mainBundle, filename=%@", filename);
+					NSLog(@"file not found in mainBundle, filename=%@", [filename stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
 					continue;	//skip to next object.
 				}
 			}
@@ -2266,6 +2281,7 @@
 		NSArray* tmpCsvArray = [line componentsSeparatedByString:@","];
 		if ([tmpCsvArray count] < 6) {
 			NSLog(@"illigal CSV data. item count=%d, line=%@", [tmpCsvArray count], line);
+			continue;	//Skip illigal line.
 		}
 		
 		tmpDict = [[NSMutableDictionary alloc] init];
@@ -2279,9 +2295,11 @@
 		//Filename.
 		NSString* tmpStr = [tmpCsvArray objectAtIndex:5];
 		NSString* tmpStrWithoutDoubleQuote = [tmpStr stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c", 0x22] withString:@""];	/* delete DoubleQuote. */
+		NSString* tmpStrWithoutCR = [tmpStrWithoutDoubleQuote stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c", 0x0d] withString:@""];	/* delete CR. */
+		NSString* tmpStrWithoutLF = [tmpStrWithoutCR stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c", 0x22] withString:@""];	/* delete LF. */
 		//NSString* tmpStrURLEncoded = [tmpStrWithoutDoubleQuote stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 		//[tmpDict setValue:tmpStrURLEncoded forKey:MD_MOVIE_FILENAME];
-		[tmpDict setValue:tmpStrWithoutDoubleQuote forKey:MD_MOVIE_FILENAME];
+		[tmpDict setValue:tmpStrWithoutLF forKey:MD_MOVIE_FILENAME];
 		
 		[popoverImageDefine addObject:tmpDict];
 	}
