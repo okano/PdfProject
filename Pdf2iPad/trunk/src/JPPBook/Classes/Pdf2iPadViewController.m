@@ -1219,6 +1219,17 @@
 									   initWithBarButtonSystemItem:UIBarButtonSystemItemDone
 									   target:self 
 									   action:@selector(exitMarkerMode)];
+		//Add Delete button.
+		UIImage* deleteButtonImage = [UIImage imageNamed:@"icon_recycle.png"];
+		if (! deleteButtonImage) {
+			LOG_CURRENT_LINE;
+			return;
+		}
+		UIBarButtonItem* deleteButton = [[UIBarButtonItem alloc]
+										 initWithImage:deleteButtonImage
+										 style:UIBarButtonItemStylePlain
+										 target:self
+										 action:@selector(deleteMarkerPenWithCurrentPage)];
 		
 		//Add title label.
 		NSString* titleStr = @"Marker Mode";
@@ -1241,7 +1252,7 @@
 										   target:nil
 										   action:nil];
 
-		[menuBarForMakerPen setItems:[NSArray arrayWithObjects:doneButton, fspace1, titleLabelButton, fspace2, nil]];
+		[menuBarForMakerPen setItems:[NSArray arrayWithObjects:doneButton, fspace1, titleLabelButton, fspace2, deleteButton, nil]];
 		[self.view addSubview:menuBarForMakerPen];
 	}
 	UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
@@ -1514,6 +1525,12 @@
 	CGRect rect = self.view.frame;
 	[currentPdfScrollView addScalableSubview:markerPenView2 withNormalizedFrame:rect];
 	[markerPenView2 setNeedsDisplay];
+}
+
+
+- (void)deleteMarkerPenWithCurrentPage
+{
+	LOG_CURRENT_METHOD;
 }
 
 

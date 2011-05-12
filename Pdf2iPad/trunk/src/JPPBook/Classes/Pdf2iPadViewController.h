@@ -169,6 +169,7 @@
 - (void)loadMarkerPenFromUserDefault;
 //
 - (void)renderMarkerPenFromUserDefaultAtPage:(NSUInteger)pageNum;
+- (void)deleteMarkerPenWithCurrentPage;
 - (void)clearMarkerPenView;
 
 // Treat URL link.
