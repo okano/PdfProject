@@ -27,7 +27,7 @@
 @class Pdf2iPadAppDelegate;
 
 
-@interface Pdf2iPadViewController : UIViewController <UIScrollViewDelegate> {
+@interface Pdf2iPadViewController : UIViewController <UIScrollViewDelegate, UIActionSheetDelegate> {
 	// Page number at current showing.
     int             currentPageNum;
 	int				maxPageNum;
@@ -169,7 +169,8 @@
 - (void)loadMarkerPenFromUserDefault;
 //
 - (void)renderMarkerPenFromUserDefaultAtPage:(NSUInteger)pageNum;
-- (void)deleteMarkerPenWithCurrentPage;
+- (void)prepareDeleteMarkerPenWithCurrentPage;
+- (void)deleteMarkerPenAtPage:(NSUInteger)pageNum;
 - (void)clearMarkerPenView;
 
 // Treat URL link.

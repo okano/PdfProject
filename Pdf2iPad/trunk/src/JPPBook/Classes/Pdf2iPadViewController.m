@@ -1229,7 +1229,7 @@
 										 initWithImage:deleteButtonImage
 										 style:UIBarButtonItemStylePlain
 										 target:self
-										 action:@selector(deleteMarkerPenWithCurrentPage)];
+										 action:@selector(prepareDeleteMarkerPenWithCurrentPage)];
 		
 		//Add title label.
 		NSString* titleStr = @"Marker Mode";
@@ -1274,7 +1274,7 @@
 
 - (void)enterMarkerMode
 {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
     //Hide original menu.
     [self hideMenuBar];
     
@@ -1308,7 +1308,7 @@
 }
 - (void)exitMarkerMode
 {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
     //Hide menu bar for marker pen.
     if (menuBarForMakerPen != nil) {
         //menuBarForMakerPen.hidden = YES;
@@ -1333,7 +1333,7 @@
 
 - (void)handlePan2:(UIPanGestureRecognizer *)gestureRecognizer
 {
-    LOG_CURRENT_METHOD;
+    //LOG_CURRENT_METHOD;
     //
 	
     if (! markerPenArray) {
@@ -1484,8 +1484,8 @@
 
 - (void)renderMarkerPenFromUserDefaultAtPage:(NSUInteger)pageNum
 {
-	LOG_CURRENT_METHOD;
-	NSLog(@"markerPenView2 has %d recognizers", [[markerPenView2 gestureRecognizers] count]);
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"markerPenView2 has %d recognizers", [[markerPenView2 gestureRecognizers] count]);
 	for (id obj in [markerPenView2 gestureRecognizers]) {
 		UIPanGestureRecognizer* r = (UIPanGestureRecognizer*)obj;
 		NSLog(@"enabled=%d", r.enabled);
@@ -1528,9 +1528,74 @@
 }
 
 
-- (void)deleteMarkerPenWithCurrentPage
+- (void)prepareDeleteMarkerPenWithCurrentPage
 {
-	LOG_CURRENT_METHOD;
+	//Show ActionSheet
+	UIActionSheet *sheet;
+	sheet = [[[UIActionSheet alloc]
+			  initWithTitle:@"ページ内のマーカーを削除しますか？"
+			  delegate: self 
+			  cancelButtonTitle: NSLocalizedString(@"Cancel", nil) 
+			  destructiveButtonTitle: nil
+			  otherButtonTitles:NSLocalizedString(@"削除する", nil), NSLocalizedString(@"キャンセル", nil), nil]
+			 autorelease];
+	[sheet showInView: self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)sheet didDismissWithButtonIndex:(NSInteger)index
+{
+	//NSLog(@"action sheet: index=%d", index);
+    if( index == [sheet cancelButtonIndex])
+    {
+        // Do Nothing
+    }
+    else if( index == [sheet destructiveButtonIndex] )
+    {
+        // Do Nothing
+    }
+    else if(index == 0) {
+        // Delete line in current page.
+		[self deleteMarkerPenAtPage:currentPageNum];
+		[self saveMarkerPenToUserDefault];
+		[self renderMarkerPenFromUserDefaultAtPage:currentPageNum];
+    }
+}
+
+- (void)deleteMarkerPenAtPage:(NSUInteger)pageNum
+{
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"pageNum=%d", pageNum);
+	
+	if (maxPageNum < pageNum) {
+		LOG_CURRENT_LINE;
+		NSLog(@"illigal page number. pageNum=%d, maxPageNum=%d", pageNum, maxPageNum);
+		return;
+	}
+	
+	if (! markerPenArray) {
+		LOG_CURRENT_LINE;
+		NSLog(@"markerPenArray not initialized.(no marker pen info at page %d.)", pageNum);
+		return;
+	}
+	
+	//Delete line info.
+	for (id obj in [markerPenArray reverseObjectEnumerator]) {
+		if (!obj) {
+			continue;
+		}
+		if (! [obj isKindOfClass:[NSDictionary class]]) {
+			NSLog(@"Illigal markerPenArray.");
+			continue;
+		}
+		
+		NSMutableDictionary* markerInfo = [[NSMutableDictionary alloc] initWithDictionary:obj];
+		
+		int targetPageNum = [[markerInfo valueForKey:MARKERPEN_PAGE_NUMBER] intValue];
+		if (targetPageNum == pageNum) {
+			[markerPenArray removeObject:obj];
+		}
+    }
+	//NSLog(@"after  line number=%d", [markerPenArray count]);
 }
 
 
