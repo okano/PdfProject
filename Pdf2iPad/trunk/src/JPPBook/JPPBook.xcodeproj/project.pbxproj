@@ -66,6 +66,7 @@
 		29D74A4612BB7C4F00C33E10 /* image4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 29D74A4112BB7C4F00C33E10 /* image4.jpg */; };
 		29D74A4712BB7C4F00C33E10 /* iPad_cover.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 29D74A4212BB7C4F00C33E10 /* iPad_cover.jpg */; };
 		29E40976134C7F52005F7F8F /* pageJumpLinkDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29E40975134C7F52005F7F8F /* pageJumpLinkDefine.csv */; };
+		29E87565137B9249002AC07D /* icon_recycle.png in Resources */ = {isa = PBXBuildFile; fileRef = 29E87564137B9249002AC07D /* icon_recycle.png */; };
 		29EF554E13039D3300C3C7ED /* image-100x120.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 29EF554D13039D3300C3C7ED /* image-100x120.jpg */; };
 		29F48C7A12DC7E2D00A9EC62 /* BookmarkModifyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29F48C7812DC7E2D00A9EC62 /* BookmarkModifyView.xib */; };
 		29F48C7B12DC7E2D00A9EC62 /* BookmarkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29F48C7912DC7E2D00A9EC62 /* BookmarkView.xib */; };
@@ -150,6 +151,7 @@
 		29D74A4212BB7C4F00C33E10 /* iPad_cover.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = iPad_cover.jpg; sourceTree = "<group>"; };
 		29D9B86B12BA0F6D003E4CDA /* Define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Define.h; sourceTree = "<group>"; };
 		29E40975134C7F52005F7F8F /* pageJumpLinkDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pageJumpLinkDefine.csv; path = csv/pageJumpLinkDefine.csv; sourceTree = "<group>"; };
+		29E87564137B9249002AC07D /* icon_recycle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_recycle.png; sourceTree = "<group>"; };
 		29EF554D13039D3300C3C7ED /* image-100x120.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "image-100x120.jpg"; sourceTree = "<group>"; };
 		29EF555713039E2700C3C7ED /* image-100x142.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "image-100x142.jpg"; sourceTree = "<group>"; };
 		29F48C7812DC7E2D00A9EC62 /* BookmarkModifyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookmarkModifyView.xib; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 				292C55E212DC4DCE00D21556 /* icon_info.png */,
 				29AAD5E412BC938400CF7C91 /* icon_list_bullets.png */,
 				292C560012DC4EAE00D21556 /* icon_list_thumbnail.png */,
+				29E87564137B9249002AC07D /* icon_recycle.png */,
 				292C55E312DC4DCE00D21556 /* icon_top.png */,
 				296FE96C12D2F8EF00A5CBF6 /* flower.jpg */,
 				296FE96D12D2F8EF00A5CBF6 /* flower2.jpg */,
@@ -435,6 +438,7 @@
 				29633259134ABA6500F01B7C /* tatenaga_sample_2_368_2000.png in Resources */,
 				293B7B4A134C5D6500FAF0B0 /* flower3-1280x960.jpg in Resources */,
 				29E40976134C7F52005F7F8F /* pageJumpLinkDefine.csv in Resources */,
+				29E87565137B9249002AC07D /* icon_recycle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
