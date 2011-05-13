@@ -210,6 +210,9 @@
 // Utility for Handle Rotate.
 - (bool)isChangeOrientationKind:(UIInterfaceOrientation)oldOrientation newOrientation:(UIInterfaceOrientation)newOrientation;
 
+// Utility for filename.
+- (NSString*)formatStringWithAlphaNumeric:(NSString*)originalStr;
+
 // Latest Read Page.
 - (void)setLatestReadPage:(int)pageNum;
 - (int)getLatestReadPage;

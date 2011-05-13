@@ -203,7 +203,8 @@
 	} else {
 		pdfFilename = [lines objectAtIndex:0];
 	}
-	pdfURL = [[NSBundle mainBundle] URLForResource:pdfFilename withExtension:nil];
+	NSString* pdfFilenameFormatted = [self formatStringWithAlphaNumeric:pdfFilename];
+	pdfURL = [[NSBundle mainBundle] URLForResource:pdfFilenameFormatted withExtension:nil];
 	[pdfURL retain];	//Owned by this class.
 	if (!pdfURL) {
 		NSLog(@"PDF file not exist. filename=%@", pdfFilename);
@@ -1360,10 +1361,8 @@
 		[tmpDict setValue:[NSNumber numberWithInt:[[tmpCsvArray objectAtIndex:4] intValue]] forKey:MD_AREA_HEIGHT];
 		//Filename.
 		NSString* tmpStr = [tmpCsvArray objectAtIndex:5];
-		NSString* tmpStrWithoutDoubleQuote = [tmpStr stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c", 0x22] withString:@""];	/* delete DoubleQuote. */
-		//NSString* tmpStrURLEncoded = [tmpStrWithoutDoubleQuote stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-		//[tmpDict setValue:tmpStrURLEncoded forKey:MD_MOVIE_FILENAME];
-		[tmpDict setValue:tmpStrWithoutDoubleQuote forKey:MD_MOVIE_FILENAME];
+		NSString* tmpStrFormatted = [self formatStringWithAlphaNumeric:tmpStr];
+		[tmpDict setValue:tmpStrFormatted forKey:MD_MOVIE_FILENAME];
 		
 		//Check page range.
 		if (maxPageNum < [[tmpDict objectForKey:MD_PAGE_NUMBER] intValue]) {
@@ -1587,10 +1586,8 @@
 		int i;
 		for (i = 5; i < [tmpCsvArray count]; i = i + 1) {
 			NSString* tmpStr = [tmpCsvArray objectAtIndex:i];
-			NSString* tmpStrWithoutDoubleQuote = [tmpStr stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c", 0x22] withString:@""];	/* delete DoubleQuote. */
-			//NSString* tmpStrURLEncoded = [tmpStrWithoutDoubleQuote stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-			//[tmpDict setValue:tmpStrURLEncoded forKey:MD_MOVIE_FILENAME];
-			[filenamesArray addObject:tmpStrWithoutDoubleQuote];
+			NSString* tmpStrFormatted = [self formatStringWithAlphaNumeric:tmpStr];
+			[filenamesArray addObject:tmpStrFormatted];
 		}
 		
 		[tmpDict setValue:filenamesArray forKey:IPSD_FILENAMES];
@@ -1708,10 +1705,8 @@
 		[tmpDict setValue:[NSNumber numberWithInt:[[tmpCsvArray objectAtIndex:4] intValue]] forKey:MD_AREA_HEIGHT];
 		//Filename.
 		NSString* tmpStr = [tmpCsvArray objectAtIndex:5];
-		NSString* tmpStrWithoutDoubleQuote = [tmpStr stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c", 0x22] withString:@""];	/* delete DoubleQuote. */
-		//NSString* tmpStrURLEncoded = [tmpStrWithoutDoubleQuote stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-		//[tmpDict setValue:tmpStrURLEncoded forKey:MD_MOVIE_FILENAME];
-		[tmpDict setValue:tmpStrWithoutDoubleQuote forKey:MD_MOVIE_FILENAME];
+		NSString* tmpStrFormatted = [self formatStringWithAlphaNumeric:tmpStr];
+		[tmpDict setValue:tmpStrFormatted forKey:MD_MOVIE_FILENAME];
 		
 		//Check page range.
 		if (maxPageNum < [[tmpDict objectForKey:MD_PAGE_NUMBER] intValue]) {
@@ -2125,6 +2120,21 @@
 	}
 }
 
+#pragma mark utility method.
+- (NSString*)formatStringWithAlphaNumeric:(NSString*)originalStr
+{
+	NSString* tmpStrWithoutDoubleQuote = [originalStr
+										  stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c", 0x22]
+										  withString:@""];	/* delete DoubleQuote. */
+	NSString* tmpStrWithoutCR = [tmpStrWithoutDoubleQuote 
+								 stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c", 0x0d]
+								 withString:@""];	/* delete CR. */
+	NSString* tmpStrWithoutLF = [tmpStrWithoutCR
+								 stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c", 0x0a]
+								 withString:@""];	/* delete LF. */
+	
+	return tmpStrWithoutLF;
+}
 
 #pragma mark Latest Read Page.
 - (void)setLatestReadPage:(int)pageNum {
