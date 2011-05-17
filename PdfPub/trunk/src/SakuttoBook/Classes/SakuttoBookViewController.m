@@ -133,7 +133,7 @@
 	//Setup WebView.
 	//generate when need.
 	webViewController = nil;
-	urlForWeb = nil;
+	urlForWeb = [[NSMutableString alloc] init];
 	
 	//Setup Links.
 	linksInCurrentPage = [[NSMutableArray alloc] init];
@@ -1990,7 +1990,7 @@
 {
 	//LOG_CURRENT_METHOD;
 	//NSLog(@"urlString=%@", urlString);
-	urlForWeb = [NSString stringWithString:urlString];
+	[urlForWeb setString:urlString];
 	//NSLog(@"urlForWeb=%@", urlForWeb);
     UIActionSheet *sheet =[[UIActionSheet alloc]
                            initWithTitle:@"URLリンクを開く (リンクからAppStoreにアクセスする場合は、Safariを起動してください)"
@@ -2006,7 +2006,13 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
 	//LOG_CURRENT_METHOD;
+	if (! urlForWeb) {
+		LOG_CURRENT_LINE;
+		NSLog(@"no URL set");
+		return;
+	}
 	//NSLog(@"urlForWeb=%@", urlForWeb);
+	
 	if (buttonIndex == 0) {
 		[self showWebView:urlForWeb];
 	} else if (buttonIndex == 1) {
@@ -2022,8 +2028,8 @@
 - (void)showWebView:(NSString*)urlString
 {
 	//LOG_CURRENT_METHOD;
-	[self hideMenuBar];
 	//NSLog(@"urlString = %@", urlString);
+	[self hideMenuBar];
 	
 	if (webViewController) {
 		webViewController.webView.delegate = nil;	//set nil before release because of ASync-load.

@@ -91,7 +91,7 @@
 	MenuViewController* menuViewController;
 	// WebView
 	WebViewController* webViewController;
-	NSString* urlForWeb;
+	NSMutableString* urlForWeb;
 	// TocView, ThumbnailView.
 	TocViewController* tocViewController;
 	ThumbnailViewController* thumbnailViewController;
