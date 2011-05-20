@@ -39,12 +39,12 @@
 		299448EC12B7370B00E7D108 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299448EB12B7370B00E7D108 /* MediaPlayer.framework */; };
 		2999FA9512B7BDE5002ACB2B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2999FA9412B7BDE5002ACB2B /* icon.png */; };
 		2999FDC512D6A8D500D0F145 /* License.m in Sources */ = {isa = PBXBuildFile; fileRef = 2999FDC412D6A8D500D0F145 /* License.m */; };
+		29A1CB7A138616AA00326759 /* SKBEngineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A1CB79138616AA00326759 /* SKBEngineViewController.m */; };
+		29A1CB7E138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A1CB7D138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m */; };
 		29B3B7C812C57DE00014F866 /* MyPdfScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B3B7C712C57DE00014F866 /* MyPdfScrollView.m */; };
 		29B3B90C12C58C820014F866 /* ThumbnailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B3B90B12C58C820014F866 /* ThumbnailViewController.m */; };
 		29E1089A12D46D4700FC5210 /* BookmarkModifyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29E1089912D46D4700FC5210 /* BookmarkModifyView.xib */; };
 		29E108A912D46ECF00FC5210 /* BookmarkModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E108A812D46ECF00FC5210 /* BookmarkModifyViewController.m */; };
-		29E7C83A137CDD41001E951E /* SKBEngine_PopoverScrollImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E7C839137CDD41001E951E /* SKBEngine_PopoverScrollImageViewController.m */; };
-		29E7C83D137CDD4F001E951E /* SKBEngineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E7C83C137CDD4F001E951E /* SKBEngineViewController.m */; };
 		29F003FA1353CC5500D0D74D /* pageJumpLinkDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29F003F91353CC5500D0D74D /* pageJumpLinkDefine.csv */; };
 /* End PBXBuildFile section */
 
@@ -93,6 +93,10 @@
 		2999FA9412B7BDE5002ACB2B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		2999FDC312D6A8D500D0F145 /* License.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = License.h; sourceTree = "<group>"; };
 		2999FDC412D6A8D500D0F145 /* License.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = License.m; sourceTree = "<group>"; };
+		29A1CB78138616AA00326759 /* SKBEngineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKBEngineViewController.h; path = SKBEngine/SKBEngine/SKBEngineViewController.h; sourceTree = SOURCE_ROOT; };
+		29A1CB79138616AA00326759 /* SKBEngineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKBEngineViewController.m; path = SKBEngine/SKBEngine/SKBEngineViewController.m; sourceTree = SOURCE_ROOT; };
+		29A1CB7C138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKBEngine_PopoverScrollImageViewController.h; path = SKBEngine/SKBEngine/SKBEngine_PopoverScrollImageViewController.h; sourceTree = SOURCE_ROOT; };
+		29A1CB7D138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKBEngine_PopoverScrollImageViewController.m; path = SKBEngine/SKBEngine/SKBEngine_PopoverScrollImageViewController.m; sourceTree = SOURCE_ROOT; };
 		29B3B7C612C57DE00014F866 /* MyPdfScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPdfScrollView.h; sourceTree = "<group>"; };
 		29B3B7C712C57DE00014F866 /* MyPdfScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPdfScrollView.m; sourceTree = "<group>"; };
 		29B3B90A12C58C820014F866 /* ThumbnailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumbnailViewController.h; sourceTree = "<group>"; };
@@ -101,10 +105,6 @@
 		29E1089912D46D4700FC5210 /* BookmarkModifyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookmarkModifyView.xib; sourceTree = "<group>"; };
 		29E108A712D46ECF00FC5210 /* BookmarkModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkModifyViewController.h; sourceTree = "<group>"; };
 		29E108A812D46ECF00FC5210 /* BookmarkModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkModifyViewController.m; sourceTree = "<group>"; };
-		29E7C838137CDD41001E951E /* SKBEngine_PopoverScrollImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKBEngine_PopoverScrollImageViewController.h; path = SKBEngine/SKBEngine_PopoverScrollImageViewController.h; sourceTree = SOURCE_ROOT; };
-		29E7C839137CDD41001E951E /* SKBEngine_PopoverScrollImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKBEngine_PopoverScrollImageViewController.m; path = SKBEngine/SKBEngine_PopoverScrollImageViewController.m; sourceTree = SOURCE_ROOT; };
-		29E7C83B137CDD4F001E951E /* SKBEngineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKBEngineViewController.h; path = SKBEngine/SKBEngineViewController.h; sourceTree = SOURCE_ROOT; };
-		29E7C83C137CDD4F001E951E /* SKBEngineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKBEngineViewController.m; path = SKBEngine/SKBEngineViewController.m; sourceTree = SOURCE_ROOT; };
 		29F003F91353CC5500D0D74D /* pageJumpLinkDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pageJumpLinkDefine.csv; path = csv/pageJumpLinkDefine.csv; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* SakuttoBook_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SakuttoBook_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* SakuttoBook-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SakuttoBook-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
@@ -179,10 +179,10 @@
 		292BF49B1365B76D0004B926 /* SKBEngine */ = {
 			isa = PBXGroup;
 			children = (
-				29E7C83B137CDD4F001E951E /* SKBEngineViewController.h */,
-				29E7C83C137CDD4F001E951E /* SKBEngineViewController.m */,
-				29E7C838137CDD41001E951E /* SKBEngine_PopoverScrollImageViewController.h */,
-				29E7C839137CDD41001E951E /* SKBEngine_PopoverScrollImageViewController.m */,
+				29A1CB78138616AA00326759 /* SKBEngineViewController.h */,
+				29A1CB79138616AA00326759 /* SKBEngineViewController.m */,
+				29A1CB7C138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.h */,
+				29A1CB7D138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m */,
 			);
 			name = SKBEngine;
 			path = ../../../../SKBEngine/trunk/src/SKBEngine/SKBEngine;
@@ -374,8 +374,8 @@
 				2999FDC512D6A8D500D0F145 /* License.m in Sources */,
 				291EDE0413124E2C00DBD3E5 /* ImageGenerator.m in Sources */,
 				294E1FC1131E313800E49BAF /* PopoverScrollImageViewController.m in Sources */,
-				29E7C83A137CDD41001E951E /* SKBEngine_PopoverScrollImageViewController.m in Sources */,
-				29E7C83D137CDD4F001E951E /* SKBEngineViewController.m in Sources */,
+				29A1CB7A138616AA00326759 /* SKBEngineViewController.m in Sources */,
+				29A1CB7E138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
