@@ -1,3 +1,6 @@
 [submodule "PdfPub/trunk/src/SakuttoBook/SKBEngine"]
 	path = PdfPub/trunk/src/SakuttoBook/SKBEngine
 	url = git@github.com:okano/SKBEngine
+[submodule "Pdf2iPad/trunk/src/JPPBook/SKBEngine"]
+	path = Pdf2iPad/trunk/src/JPPBook/SKBEngine
+	url = git@github.com:okano/SKBEngine
