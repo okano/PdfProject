@@ -974,6 +974,10 @@
 //{ LOG_CURRENT_METHOD; }
 - (void)handleTapInLeftArea:(UIGestureRecognizer*)gestureRecognizer;
 {
+#if defined(ENABLED_TRANSITION) && ENABLED_TRANSITION == 0
+	return;
+#endif
+	
 	[self hideMenuBar];
 	if ([self isVerticalWriting]) {
 		[self gotoNextPage];
@@ -984,6 +988,10 @@
 }
 - (void)handleTapInRightArea:(UIGestureRecognizer*)gestureRecognizer
 {
+#if defined(ENABLED_TRANSITION) && ENABLED_TRANSITION == 0
+	return;
+#endif
+	
 	[self hideMenuBar];
 	if ([self isVerticalWriting]) {
 		[self gotoPrevPage];

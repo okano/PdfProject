@@ -18,6 +18,9 @@
 #define PAGE_BACKGROUND_COLOR_G		0.0f	/* 0.0f - 1.0f */
 #define PAGE_BACKGROUND_COLOR_B		0.0f	/* 0.0f - 1.0f */
 
+//Page Transition Enable/Disable with tap left&right side.
+#define ENABLED_TRANSITION 1	/* 0:transition disable, 1:enable(normal) */
+
 // Tap area.
 #define TAP_AREA_LEFT_X			  0.0f
 #define TAP_AREA_LEFT_Y			 75.0f
