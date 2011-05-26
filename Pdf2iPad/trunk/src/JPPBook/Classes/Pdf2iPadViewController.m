@@ -188,7 +188,9 @@
 	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:@"pdfDefine" ofType:@"csv"];
 	NSError* error;
 	NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
-	NSArray* lines = [text componentsSeparatedByString:@"\n"];
+	NSString* text2 = [text stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];
+	
+	NSArray* lines = [text2 componentsSeparatedByString:@"\n"];
 	NSString* pdfFilename;
 	if ([lines count] < 1) {
 		NSLog(@"no PDF file specified.");
@@ -1649,9 +1651,10 @@
 	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:@"movieDefine" ofType:@"csv"];
 	NSError* error;
 	NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
+	NSString* text2 = [text stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];
 	
 	bool hasError = FALSE;
-	NSArray* lines = [text componentsSeparatedByString:@"\n"];
+	NSArray* lines = [text2 componentsSeparatedByString:@"\n"];
 	for (NSString* line in lines) {
 		if ([line length] <= 0) {
 			continue;	//Skip blank line.
@@ -1779,6 +1782,7 @@
 	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:@"pageJumpLinkDefine" ofType:@"csv"];
 	NSError* error;
 	NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
+	NSString* text2 = [text stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];
 	/*
 	if (error) {
 		NSLog(@"error=%@, error code=%d", [error localizedDescription], [error code]);
@@ -1787,7 +1791,7 @@
 	*/
 	
 	bool hasError = FALSE;
-	NSArray* lines = [text componentsSeparatedByString:@"\n"];
+	NSArray* lines = [text2 componentsSeparatedByString:@"\n"];
 	for (NSString* line in lines) {
 		if ([line length] <= 0) {
 			continue;	//Skip blank line.
@@ -1885,9 +1889,10 @@
 	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:@"inPageScrollViewDefine" ofType:@"csv"];
 	NSError* error;
 	NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
+	NSString* text2 = [text stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];
 	
 	bool hasError = FALSE;
-	NSArray* lines = [text componentsSeparatedByString:@"\n"];
+	NSArray* lines = [text2 componentsSeparatedByString:@"\n"];
 	for (NSString* line in lines) {
 		if ([line length] <= 0) {
 			continue;	//Skip blank line.
@@ -2045,9 +2050,10 @@
 	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:@"inPagePdfDefine" ofType:@"csv"];
 	NSError* error;
 	NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
+	NSString* text2 = [text stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];
 	
 	bool hasError = FALSE;
-	NSArray* lines = [text componentsSeparatedByString:@"\n"];
+	NSArray* lines = [text2 componentsSeparatedByString:@"\n"];
 	for (NSString* line in lines) {
 		if ([line length] <= 0) {
 			continue;	//Skip blank line.
@@ -2213,9 +2219,10 @@
 	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:@"inPagePngDefine" ofType:@"csv"];
 	NSError* error;
 	NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
+	NSString* text2 = [text stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];
 	
 	bool hasError = FALSE;
-	NSArray* lines = [text componentsSeparatedByString:@"\n"];
+	NSArray* lines = [text2 componentsSeparatedByString:@"\n"];
 	for (NSString* line in lines) {
 		if ([line length] <= 0) {
 			continue;	//Skip blank line.
@@ -2348,9 +2355,10 @@
 	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:@"popoverImageDefine" ofType:@"csv"];
 	NSError* error;
 	NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
+	NSString* text2 = [text stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];
 	
 	bool hasError = FALSE;
-	NSArray* lines = [text componentsSeparatedByString:@"\n"];
+	NSArray* lines = [text2 componentsSeparatedByString:@"\n"];
 	for (NSString* line in lines) {
 		if ([line length] <= 0) {
 			continue;	//Skip blank line.
@@ -2533,9 +2541,10 @@
 	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:@"tocDefine" ofType:@"csv"];
 	NSError* error;
 	NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
+	NSString* text2 = [text stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];
 	
 	bool hasError = FALSE;
-	NSArray* lines = [text componentsSeparatedByString:@"\n"];
+	NSArray* lines = [text2 componentsSeparatedByString:@"\n"];
 	for (NSString* line in lines) {
 		if ([line length] <= 0) {
 			continue;	//Skip blank line.
