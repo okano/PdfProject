@@ -22,7 +22,7 @@
 		290BA0B012B5E0D1009C01C8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 290BA0AF12B5E0D1009C01C8 /* QuartzCore.framework */; };
 		290F035512D594D300666C6A /* BookmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 290F035412D594D300666C6A /* BookmarkViewController.m */; };
 		2912656912D46BEE00704565 /* list_thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2912656812D46BEE00704565 /* list_thumbnail.png */; };
-		291593141394B54700387697 /* ContentPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 291593131394B54700387697 /* ContentPlayerView.m */; };
+		291593141394B54700387697 /* ContentPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 291593131394B54700387697 /* ContentPlayerViewController.m */; };
 		291EDE0413124E2C00DBD3E5 /* ImageGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 291EDE0313124E2C00DBD3E5 /* ImageGenerator.m */; };
 		2933410312D594AA00BFBC23 /* BookmarkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2933410212D594AA00BFBC23 /* BookmarkView.xib */; };
 		2935764212B5EA9C00F46754 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2935764112B5EA9C00F46754 /* MenuViewController.m */; };
@@ -32,6 +32,7 @@
 		29431E2212C5D29C00914DBD /* list_bullets.png in Resources */ = {isa = PBXBuildFile; fileRef = 29431E2112C5D29C00914DBD /* list_bullets.png */; };
 		294E1F1E131E2A5B00E49BAF /* popoverScrollImageDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 294E1F1D131E2A5B00E49BAF /* popoverScrollImageDefine.csv */; };
 		294E1FC1131E313800E49BAF /* PopoverScrollImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 294E1FC0131E313800E49BAF /* PopoverScrollImageViewController.m */; };
+		2962C40C1394B9EC002E57F9 /* ContentPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2962C40B1394B9EC002E57F9 /* ContentPlayerView.xib */; };
 		29787BE112C5FBDC00EC2681 /* document.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 29787BE012C5FBDC00EC2681 /* document.pdf */; };
 		297AC25612B786EB00962CED /* TocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297AC25512B786EB00962CED /* TocViewController.m */; };
 		297AC25812B7870B00962CED /* TocView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 297AC25712B7870B00962CED /* TocView.xib */; };
@@ -68,8 +69,8 @@
 		290F035312D594D300666C6A /* BookmarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkViewController.h; sourceTree = "<group>"; };
 		290F035412D594D300666C6A /* BookmarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkViewController.m; sourceTree = "<group>"; };
 		2912656812D46BEE00704565 /* list_thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = list_thumbnail.png; path = Classes/list_thumbnail.png; sourceTree = "<group>"; };
-		291593121394B54700387697 /* ContentPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentPlayerView.h; sourceTree = "<group>"; };
-		291593131394B54700387697 /* ContentPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentPlayerView.m; sourceTree = "<group>"; };
+		291593121394B54700387697 /* ContentPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentPlayerViewController.h; sourceTree = "<group>"; };
+		291593131394B54700387697 /* ContentPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentPlayerViewController.m; sourceTree = "<group>"; };
 		291EDE0213124E2C00DBD3E5 /* ImageGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGenerator.h; sourceTree = "<group>"; };
 		291EDE0313124E2C00DBD3E5 /* ImageGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGenerator.m; sourceTree = "<group>"; };
 		2933410212D594AA00BFBC23 /* BookmarkView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookmarkView.xib; sourceTree = "<group>"; };
@@ -84,6 +85,7 @@
 		294E1F1D131E2A5B00E49BAF /* popoverScrollImageDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = popoverScrollImageDefine.csv; path = csv/popoverScrollImageDefine.csv; sourceTree = "<group>"; };
 		294E1FBF131E313800E49BAF /* PopoverScrollImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverScrollImageViewController.h; sourceTree = "<group>"; };
 		294E1FC0131E313800E49BAF /* PopoverScrollImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverScrollImageViewController.m; sourceTree = "<group>"; };
+		2962C40B1394B9EC002E57F9 /* ContentPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentPlayerView.xib; sourceTree = "<group>"; };
 		2963BE1D12B5C01E001041EB /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		29787BE012C5FBDC00EC2681 /* document.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = document.pdf; sourceTree = "<group>"; };
 		297AC25412B786EB00962CED /* TocViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TocViewController.h; sourceTree = "<group>"; };
@@ -136,8 +138,8 @@
 				1D3623250D0F684500981E51 /* SakuttoBookAppDelegate.m */,
 				28D7ACF60DDB3853001CB0EB /* SakuttoBookViewController.h */,
 				28D7ACF70DDB3853001CB0EB /* SakuttoBookViewController.m */,
-				291593121394B54700387697 /* ContentPlayerView.h */,
-				291593131394B54700387697 /* ContentPlayerView.m */,
+				291593121394B54700387697 /* ContentPlayerViewController.h */,
+				291593131394B54700387697 /* ContentPlayerViewController.m */,
 				291EDE0213124E2C00DBD3E5 /* ImageGenerator.h */,
 				291EDE0313124E2C00DBD3E5 /* ImageGenerator.m */,
 				29B3B7C612C57DE00014F866 /* MyPdfScrollView.h */,
@@ -244,6 +246,7 @@
 				2999FA9412B7BDE5002ACB2B /* icon.png */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				2899E5210DE3E06400AC0155 /* SakuttoBookViewController.xib */,
+				2962C40B1394B9EC002E57F9 /* ContentPlayerView.xib */,
 				2935764312B5EAAD00F46754 /* MenuView.xib */,
 				293BB9F112B6218500DDA3E3 /* WebView.xib */,
 				297AC25712B7870B00962CED /* TocView.xib */,
@@ -338,6 +341,7 @@
 				29014AA112D6ECA700936BF0 /* bookDefine.csv in Resources */,
 				294E1F1E131E2A5B00E49BAF /* popoverScrollImageDefine.csv in Resources */,
 				29F003FA1353CC5500D0D74D /* pageJumpLinkDefine.csv in Resources */,
+				2962C40C1394B9EC002E57F9 /* ContentPlayerView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,7 +384,7 @@
 				294E1FC1131E313800E49BAF /* PopoverScrollImageViewController.m in Sources */,
 				29A1CB7A138616AA00326759 /* SKBEngineViewController.m in Sources */,
 				29A1CB7E138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m in Sources */,
-				291593141394B54700387697 /* ContentPlayerView.m in Sources */,
+				291593141394B54700387697 /* ContentPlayerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

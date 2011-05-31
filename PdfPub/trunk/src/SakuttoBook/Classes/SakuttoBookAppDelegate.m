@@ -78,61 +78,61 @@
 #pragma mark -
 #pragma mark Functions in SakuttoBookViewController.
 - (NSString*)getThumbnailFilenameFull:(int)pageNum {
-	return [viewController getThumbnailFilenameFull:pageNum];
+	return [viewController.contentPlayerViewController getThumbnailFilenameFull:pageNum];
 }
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum {
-	return [viewController getPdfPageImageWithPageNum:pageNum];
+	return [viewController.contentPlayerViewController getPdfPageImageWithPageNum:pageNum];
 }
 - (void)switchToPage:(int)newPageNum {
-	[viewController switchToPage:newPageNum];
+	[viewController.contentPlayerViewController switchToPage:newPageNum];
 }
 - (void)showMenuBar {
-	[viewController showMenuBar];
+	[viewController.contentPlayerViewController showMenuBar];
 }
 - (void)hideMenuBar {
-	[viewController hideMenuBar];
+	[viewController.contentPlayerViewController hideMenuBar];
 }
 - (void)showTocView {
-	[viewController showTocView];
+	[viewController.contentPlayerViewController showTocView];
 }
 - (void)hideTocView {
-	[viewController hideTocView];
+	[viewController.contentPlayerViewController hideTocView];
 }
 - (bool)isShownTocView {
-	return viewController.isShownTocView;
+	return viewController.contentPlayerViewController.isShownTocView;
 }
 - (void)setIsShownTocView:(bool)status {
-	viewController.isShownTocView = status;
+	viewController.contentPlayerViewController.isShownTocView = status;
 }
 - (void)showBookmarkView {
-	[viewController showBookmarkView];
+	[viewController.contentPlayerViewController showBookmarkView];
 }
 - (void)hideBookmarkView {
-	[viewController hideBookmarkView];
+	[viewController.contentPlayerViewController hideBookmarkView];
 }
 - (void)showBookmarkModifyView {
-	[viewController showBookmarkModifyView];
+	[viewController.contentPlayerViewController showBookmarkModifyView];
 }
 - (void)addBookmarkWithCurrentPageWithName:(NSString*)bookmarkName {
-	[viewController addBookmarkWithCurrentPageWithName:bookmarkName];
+	[viewController.contentPlayerViewController addBookmarkWithCurrentPageWithName:bookmarkName];
 }
 - (void)showThumbnailView {
-	[viewController showThumbnailView];
+	[viewController.contentPlayerViewController showThumbnailView];
 }
 - (void)hideThumbnailView {
-	[viewController hideThumbnailView];
+	[viewController.contentPlayerViewController hideThumbnailView];
 }
 - (bool)isShownThumbnailView {
-	return viewController.isShownThumbnailView;
+	return viewController.contentPlayerViewController.isShownThumbnailView;
 }
 - (NSMutableArray*)getTocDefine {
 	return tocDefine;
 }
 - (void)showWebView:(NSString*)urlString {
-	[viewController showWebView:urlString];
+	[viewController.contentPlayerViewController showWebView:urlString];
 }
 - (void)showInfoView {
-	[viewController showInfoView];
+	[viewController.contentPlayerViewController showInfoView];
 }
 
 
