@@ -3,7 +3,7 @@
 //  SakuttoBook
 //
 //  Created by okano on 11/05/31.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2010,2011 Katsuhiko Okano All rights reserved.
 //
 
 #import "ContentPlayerView.h"
