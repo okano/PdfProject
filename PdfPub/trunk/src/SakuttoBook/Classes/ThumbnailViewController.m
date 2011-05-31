@@ -65,8 +65,7 @@
 - (IBAction)closeThisView:(id)sender
 {
 	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
-	SakuttoBookViewController* vc = (SakuttoBookViewController*)appDelegate.viewController;
-	[(SakuttoBookViewController*)vc hideThumbnailView];
+	[appDelegate hideThumbnailView];
 	//[self.view removeFromSuperview];
 }
 

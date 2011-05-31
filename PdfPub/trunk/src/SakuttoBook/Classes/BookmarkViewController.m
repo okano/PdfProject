@@ -246,7 +246,7 @@
 	tocPage = [[tmpDict objectForKey:BOOKMARK_PAGE_NUMBER] intValue];
 	//NSLog(@"selected page=%d", tocPage);
 	
-	[appDelegate.viewController switchToPage:tocPage];
+	[appDelegate switchToPage:tocPage];
 }
 
 #pragma mark treat editing.

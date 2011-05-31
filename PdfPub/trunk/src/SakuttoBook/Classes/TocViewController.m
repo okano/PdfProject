@@ -147,7 +147,7 @@
 	tocPage = [[tmpDict objectForKey:TOC_PAGE] intValue];
 	//NSLog(@"selected page=%d", tocPage);
 	
-	[appDelegate.viewController switchToPage:tocPage];
+	[appDelegate switchToPage:tocPage];
 }
 
 #pragma mark treat editing.

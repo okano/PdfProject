@@ -18,12 +18,7 @@
 	[self closeThisView:nil];
 	
 	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
-	SakuttoBookViewController* vc = (SakuttoBookViewController*)appDelegate.viewController;
-	[vc showTocView];	
-/*
-	TocViewController* tocVC = [[TocViewController alloc] initWithNibName:@"TocView" bundle:[NSBundle mainBundle]];
-	[vc.currentImageView addSubview:[tocVC view]];
-*/
+	[appDelegate showTocView];
 }
 - (void)hideTocView {
 	[self.view removeFromSuperview];
@@ -42,8 +37,7 @@
 - (IBAction)closeThisView:(id)sender
 {
 	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
-	SakuttoBookViewController* vc = (SakuttoBookViewController*)appDelegate.viewController;
-	[(SakuttoBookViewController*)vc hideMenuBar];
+	[appDelegate hideMenuBar];
 	//[self.view removeFromSuperview];
 }
 
@@ -62,8 +56,7 @@
 	[self closeThisView:nil];
 	
 	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
-	SakuttoBookViewController* vc = (SakuttoBookViewController*)appDelegate.viewController;
-	[vc showBookmarkView];	
+	[appDelegate showBookmarkView];
 }
 - (void)hideBookmarkView {
 	[self.view removeFromSuperview];
@@ -75,8 +68,6 @@
 	//[currentPdf presentModalViewController:bmvc animated:YES];
 	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
 	[appDelegate showBookmarkModifyView];
-	//SakuttoBookViewController* vc = (SakuttoBookViewController*)appDelegate.viewController;
-	//[(SakuttoBookViewController*)vc showBookmarkModifyView];
 }
 
 /*
