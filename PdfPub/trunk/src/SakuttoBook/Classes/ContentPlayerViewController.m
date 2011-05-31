@@ -54,7 +54,25 @@
 	//imageView3 = [[UIImageView alloc] init];
 	//currentScrollView = [[UIScrollView alloc] init];
 	
-	//
+	//Setup frame of this view.
+	CGRect viewFrame = CGRectZero;
+#if (__IPHONE_OS_VERSION_MAX_ALLOWED >= 30200)
+	// sdk upper 3.2
+	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+		// iPad
+		viewFrame = CGRectMake(0, 0, 768, 1024);
+	}
+	else {
+		// other
+		viewFrame = CGRectMake(0, 0, 320, 480);
+	}
+#else
+	// sdk under 3.2
+#endif
+	self.view.frame = viewFrame;
+	
+	
+	//Setup subviews.
 	[pdfScrollView1 setupUiScrollView];
 	[pdfScrollView2 setupUiScrollView];
 	[pdfScrollView3 setupUiScrollView];
