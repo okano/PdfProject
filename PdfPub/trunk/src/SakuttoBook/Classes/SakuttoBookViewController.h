@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SKBE_MainViewController.h"
 #import "ContentPlayerViewController.h"
 
-@interface SakuttoBookViewController : SKBE_MainViewController {
+@interface SakuttoBookViewController : UIViewController {
 	ContentPlayerViewController* contentPlayerViewController;
 }
 @property (nonatomic, retain) ContentPlayerViewController* contentPlayerViewController;
