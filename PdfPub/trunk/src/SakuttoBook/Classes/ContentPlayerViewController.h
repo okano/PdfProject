@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import <MediaPlayer/MediaPlayer.h>
-#import "SKBE_MainViewController.h"
+#import "SKBE_MainVC.h"
 #import "Utility.h"
 #import "Define.h"
 #import "MenuViewController.h"
@@ -27,7 +27,7 @@
 
 #import "ImageGenerator.h"
 
-@interface ContentPlayerViewController : SKBE_MainViewController <UIActionSheetDelegate> {
+@interface ContentPlayerViewController : SKBE_MainVC <UIActionSheetDelegate> {
 	// Views.
 	IBOutlet MyPdfScrollView* pdfScrollView1;
 	IBOutlet MyPdfScrollView* pdfScrollView2;
