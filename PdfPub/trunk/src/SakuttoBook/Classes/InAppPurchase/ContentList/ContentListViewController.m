@@ -85,7 +85,7 @@
 {
 	LOG_CURRENT_METHOD;
 	[appDelegate hideContentListView];
-	[appDelegate showImagePlayerView:cid];
+	[appDelegate showContentPlayerView:cid];
 }
 - (void)showPaymentConductorView:(ContentId)cid
 {

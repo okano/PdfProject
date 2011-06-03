@@ -11,6 +11,8 @@
 @implementation SakuttoBookViewController
 
 @synthesize contentPlayerViewController;
+@synthesize contentListVC;
+@synthesize contentDetailVC;
 
 /*
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -88,10 +90,51 @@
 
 #pragma mark - InAppPurchase
 @implementation SakuttoBookViewController (InAppPurchase)
-- (void)showContentListView{;}
-- (void)hideContentListView{;}
-- (void)showImagePlayerView:(ContentId)cid{;}
-- (void)hideImagePlayerView{;}
-- (void)showContentDetailView:(ContentId)cid{;}
-- (void)hideContentDetailView{;}
+#pragma mark - show/hide view.
+- (void)showContentListView
+{
+	if (contentListVC == nil) {
+		contentListVC = [[ContentListViewController alloc] initWithStyle:UITableViewStylePlain];
+	}
+	[self.view addSubview:contentListVC.view];
+}
+- (void)hideContentListView
+{
+	if (contentListVC != nil) {
+		[contentListVC.view removeFromSuperview]; 
+	}
+}
+#pragma mark -
+- (void)showContentPlayerView:(ContentId)cid
+{
+	[self showContentPlayerView];
+	/*
+	if (imagePlayerVC == nil) {
+		imagePlayerVC = [[ImagePlayerViewController alloc] initWithNibName:@"ImagePlayerView" bundle:[NSBundle mainBundle]];
+	}
+	[self.view addSubview:imagePlayerVC.view];
+	[imagePlayerVC setImageWithContentId:cid];
+	*/
+}
+- (void)hideContentPlayerView
+{
+	if (contentPlayerViewController != nil) {
+		[contentPlayerViewController.view removeFromSuperview];
+	}
+}
+#pragma mark -
+- (void)showContentDetailView:(ContentId)cid
+{
+	if (contentDetailVC == nil) {
+		contentDetailVC = [[ContentDetailViewController alloc] initWithNibName:@"ContentDetailView" bundle:[NSBundle mainBundle]];
+	}
+	[self.view addSubview:contentDetailVC.view];
+	[contentDetailVC setLabelsWithContentId:cid];
+}
+- (void)hideContentDetailView
+{
+	if (contentDetailVC != nil) {
+		[contentDetailVC.view removeFromSuperview];
+	}
+}
 @end

@@ -8,6 +8,7 @@
 
 #import "SakuttoBookAppDelegate.h"
 #import "SakuttoBookViewController.h"
+#import "InAppPurchaseDefine.h"
 
 @implementation SakuttoBookAppDelegate
 
@@ -160,10 +161,23 @@
 
 #pragma mark - InAppPurchase
 @implementation SakuttoBookAppDelegate (InAppPurchase)
-- (void)showContentListView{;}
-- (void)hideContentListView{;}
-- (void)showImagePlayerView:(ContentId)cid{;}
-- (void)hideImagePlayerView{;}
-- (void)showContentDetailView:(ContentId)cid{;}
-- (void)hideContentDetailView{;}
+#pragma mark -
+- (void)showContentListView {
+	[self.viewController showContentListView];
+}
+- (void)hideContentListView {
+	[self.viewController hideContentListView];
+}
+- (void)showContentPlayerView:(ContentId)cid {
+	[self.viewController showContentPlayerView:cid];
+}
+- (void)hideContentPlayerView {
+	[self.viewController hideContentPlayerView];
+}
+- (void)showContentDetailView:(ContentId)cid {
+	[self.viewController showContentDetailView:cid];
+}
+- (void)hideContentDetailView {
+	[self.viewController hideContentDetailView];
+}
 @end

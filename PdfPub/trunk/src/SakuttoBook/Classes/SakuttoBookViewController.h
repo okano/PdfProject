@@ -9,11 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "ContentPlayerViewController.h"
 #import "InAppPurchaseDefine.h"
+#import "ContentListViewController.h"
+#import "ContentDetailViewController.h"
 
 @interface SakuttoBookViewController : UIViewController {
 	ContentPlayerViewController* contentPlayerViewController;
+	ContentListViewController* contentListVC;
+	ContentDetailViewController* contentDetailVC;
 }
 @property (nonatomic, retain) ContentPlayerViewController* contentPlayerViewController;
+@property (nonatomic, retain) ContentListViewController* contentListVC;
+@property (nonatomic, retain) ContentDetailViewController* contentDetailVC;
 
 - (void)showContentPlayerView;
 
@@ -22,8 +28,8 @@
 @interface SakuttoBookViewController (InAppPurchase)
 - (void)showContentListView;
 - (void)hideContentListView;
-- (void)showImagePlayerView:(ContentId)cid;
-- (void)hideImagePlayerView;
+- (void)showContentPlayerView:(ContentId)cid;
+- (void)hideContentPlayerView;
 - (void)showContentDetailView:(ContentId)cid;
 - (void)hideContentDetailView;
 @end
