@@ -79,6 +79,13 @@
 }
 */
 
+- (IBAction)showContentListView:(id)sender {
+	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
+	[appDelegate showContentListView];
+}
+
+
+#pragma mark -
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {

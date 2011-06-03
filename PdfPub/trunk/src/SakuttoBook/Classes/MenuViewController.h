@@ -27,4 +27,5 @@
 - (IBAction)showBookmarkModifyView:(id)sender;
 //- (IBAction)addBookmarkWithCurrentPage:(id)sender;
 
+- (IBAction)showContentListView:(id)sender;
 @end
