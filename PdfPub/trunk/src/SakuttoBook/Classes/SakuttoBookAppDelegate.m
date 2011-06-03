@@ -30,6 +30,14 @@
 	//Hides status bar.
 	[[UIApplication sharedApplication] setStatusBarHidden:YES];
 	
+	//Setup Content List.
+	contentListDS = [[ContentListDS alloc] init];
+	
+	//Setup for InAppPurchase
+	paymentHistoryDS = [[PaymentHistoryDS alloc] init];
+	[[SKPaymentQueue defaultQueue] addTransactionObserver:paymentHistoryDS];
+
+	
     // Add the view controller's view to the window and display.
     [self.window addSubview:viewController.view];
     [self.window makeKeyAndVisible];

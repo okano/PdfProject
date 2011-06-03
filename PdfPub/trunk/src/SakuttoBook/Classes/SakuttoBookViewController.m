@@ -31,7 +31,7 @@
 
 - (void)viewDidLoad
 {
-	[self showContentPlayerView];
+	[self showContentListView];
 }
 
 - (void)showContentPlayerView
