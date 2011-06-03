@@ -76,6 +76,8 @@
 	
 	[productsRequestDelegate productsRequest:request
 						  didReceiveResponse:responseParameters];
+	
+	[request autorelease];
 }
 
 #pragma mark - SKPaymentTransactionObserver Protocol methods.
