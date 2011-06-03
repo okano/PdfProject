@@ -17,6 +17,8 @@
 @synthesize license;
 @synthesize tocDefine;
 @synthesize bookmarkDefine;
+//
+@synthesize paymentConductor;
 @synthesize contentListDS;
 @synthesize paymentHistoryDS;
 
@@ -34,6 +36,7 @@
 	contentListDS = [[ContentListDS alloc] init];
 	
 	//Setup for InAppPurchase
+	paymentConductor = [[PaymentConductor alloc] init];
 	paymentHistoryDS = [[PaymentHistoryDS alloc] init];
 	[[SKPaymentQueue defaultQueue] addTransactionObserver:paymentHistoryDS];
 

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "License.h"
 #import "InAppPurchaseDefine.h"
+#import "PaymentConductor.h"
 #import "ContentListDS.h"
 #import "PaymentHistoryDS.h"
 
@@ -25,6 +26,9 @@
 	NSMutableArray* tocDefine;
 	NSMutableArray* bookmarkDefine;
 	
+	// InAppPurchase Payment Conductor.
+	PaymentConductor* paymentConductor;
+	
 	// InAppPurchase data.
 	ContentListDS* contentListDS;
 	PaymentHistoryDS* paymentHistoryDS;
@@ -37,6 +41,8 @@
 //for get value in TocViewController.
 @property (nonatomic, retain) NSMutableArray* tocDefine;
 @property (nonatomic, retain) NSMutableArray* bookmarkDefine;
+// InAppPurchase Payment Conductor.
+@property (nonatomic, retain) PaymentConductor* paymentConductor;
 // InAppPurchase data.
 @property (nonatomic, retain) ContentListDS* contentListDS;
 @property (nonatomic, retain) PaymentHistoryDS* paymentHistoryDS;
