@@ -11,7 +11,7 @@
 #import "Define.h"
 #import "InAppPurchaseDefine.h"
 
-@interface PaymentHistoryDS : NSObject <SKProductsRequestDelegate, SKPaymentTransactionObserver> {
+@interface PaymentHistoryDS : NSObject /* <SKProductsRequestDelegate, SKPaymentTransactionObserver> */ {
     NSMutableArray* paymentHistory;
 	//
 	id productsRequestDelegate;
@@ -23,18 +23,11 @@
 - (void)loadPaymentHistory;
 //Get id from file.
 - (NSString*)getProductIdentifier:(ContentId)cid;
-//Get product infomation from Store.
-- (void)getProductInfomation:(ContentId)cid;
 //
 - (BOOL)isEnabledContent:(ContentId)cid;
 - (void)enableContent:(ContentId)cid;
 - (void)enableContentWithProductId:(NSString*)productId;
 //- (void)disableContent:(ContentId)cid;
-
-//SKPaymentTransactionObserver related methods.
-- (void)completeTransaction:(SKPaymentTransaction*)transaction;
-- (void)restoreTransaction:(SKPaymentTransaction*)transaction;
-- (void)failedTransaction:(SKPaymentTransaction*)transaction;
 
 - (void)buyContent:(NSString*)productId;
 - (void)showImagePlayer:(ContentId)cid;

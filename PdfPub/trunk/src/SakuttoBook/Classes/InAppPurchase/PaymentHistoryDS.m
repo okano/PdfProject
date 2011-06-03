@@ -36,7 +36,12 @@
 	NSError* error = nil;
 	NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
 	if (error) {
+		LOG_CURRENT_METHOD;
+		LOG_CURRENT_LINE;
 		NSLog(@"error=%@, error code=%d", [error localizedDescription], [error code]);
+		if ([error code] == NSFileReadInvalidFileNameError) {
+			NSLog(@"Read error because of an invalid file name. (file not exist?)");
+		}
 		return @"";
 	}
 	
@@ -46,38 +51,8 @@
 	}
 	return @"";
 }
-#pragma mark - Get product infomation from Store, notify with Delegate.
-- (void)getProductInfomation:(ContentId)cid
-{
-	
-	
-	//Check if disabled payment.(like on simulator)
-	if ([SKPaymentQueue canMakePayments]) {
-		NSLog(@"can make payments");
-		//
-		NSString* productId = [self getProductIdentifier:cid];
-		NSSet* productIdList =[NSSet setWithObject:productId];
-		SKProductsRequest* pRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:productIdList];
-		pRequest.delegate = self;
-		[pRequest start];
-	} else {
-		NSLog(@"cannot make payments");
-		UIAlertView *alert = [[UIAlertView alloc]
-							  initWithTitle:nil
-							  message:@"cannot make payments."
-							  delegate:nil
-							  cancelButtonTitle:nil
-							  otherButtonTitles:@"OK", nil];
-		[alert show];
-#if TARGET_IPHONE_SIMULATOR
-		NSLog(@"simulator not support SKProductsRequest.");
-		[productsRequestDelegate productsRequest:nil
-							  didReceiveResponse:nil];
-#endif
-	}
-	
-}
 
+/*
 #pragma mark - SKProductsRequestDelegate methods.
 - (void)productsRequest:(SKProductsRequest *)request
 	 didReceiveResponse:(SKProductsResponse *)responseParameters
@@ -165,6 +140,7 @@
 }
 - (void)restoreTransaction:(SKPaymentTransaction*)transaction{;}
 - (void)failedTransaction:(SKPaymentTransaction*)transaction{;}
+*/
 
 
 #pragma mark - 

@@ -44,16 +44,16 @@
 	authorLabel.text = [appDelegate.contentListDS authorByContentId:cid];
 	descriptionTextView.text = [appDelegate.contentListDS descriptionByContentId:cid];
 	
-	/*
+	
 	//Price.
-	appDelegate.paymentHistoryDS.productsRequestDelegate = self;
-	[appDelegate.paymentHistoryDS getProductInfomation:cid];
-	priceLabel.text = @"(Now Loading...)";
+	appDelegate.paymentConductor.productsRequestDelegate = self;
+	[appDelegate.paymentConductor getProductInfomation:cid];
+	//priceLabel.text = @"(Now Loading...)";
+	
 	//BuyButton
 	buyButton.titleLabel.text = @"(Now Loading...)";
 	buyButton.enabled = NO;
 	buyButton.hidden = YES;
-	*/
 }
 #pragma mark - SKProductsRequestDelegate methods.
 - (void)productsRequest:(SKProductsRequest *)request
@@ -66,7 +66,9 @@
 		return;
 	}
 	
+	NSLog(@"result count = %d", [responseParameters.products count]);
 	for (SKProduct* resultProduct in responseParameters.products) {
+		LOG_CURRENT_LINE;
 		NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
 		[numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
 		[numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
@@ -77,7 +79,8 @@
 		//Enable buy.
 		buyButton.hidden = NO;
 		buyButton.enabled = YES;
-		buyButton.titleLabel.text = @"Buy Now";
+		//buyButton.titleLabel.text = @"Buy Now";
+		buyButton.titleLabel.text = [formattedString stringByAppendingString:@"-"];
 		
 		//inner var.
 		targetProductId = [NSString stringWithString:resultProduct.productIdentifier];
