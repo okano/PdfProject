@@ -26,6 +26,8 @@
 - (NSString*)authorByContentId:(ContentId)cid;
 - (NSString*)descriptionAtIndex:(NSInteger)index;
 - (NSString*)descriptionByContentId:(ContentId)cid;
+- (UIImage*)thumbnailImageAtIndex:(NSInteger)index;
+- (UIImage*)thumbnailImageByContentId:(ContentId)cid;
 
 #pragma mark - Payment Infomation Check.
 - (NSUInteger)checkPaymentStatusByContentId:(ContentId)cid;

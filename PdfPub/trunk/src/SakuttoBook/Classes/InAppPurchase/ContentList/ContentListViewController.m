@@ -133,7 +133,7 @@
 						   paymentStatStr,
 						   [appDelegate.contentListDS titleByContentId:targetCid]
 						   ];
-	
+	cell.imageView.image = [appDelegate.contentListDS thumbnailImageByContentId:targetCid];
     return cell;
 }
 

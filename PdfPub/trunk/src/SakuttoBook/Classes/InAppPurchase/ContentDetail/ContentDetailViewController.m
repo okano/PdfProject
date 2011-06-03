@@ -35,17 +35,16 @@
 	//inner var.
 	targetCid = cid;
 	
-	/*
+	
 	//Thumbnail.
-	NSString* filename = [UtyContentFile getImageFilename:cid];
-	image = [UIImage imageNamed:filename];
-	thumbnailImageView.image = image;
+	thumbnailImageView.image = [appDelegate.contentListDS thumbnailImageByContentId:cid];
 	
 	//Title, Author, Description.
 	titleLabel.text = [appDelegate.contentListDS titleByContentId:cid];
 	authorLabel.text = [appDelegate.contentListDS authorByContentId:cid];
 	descriptionTextView.text = [appDelegate.contentListDS descriptionByContentId:cid];
 	
+	/*
 	//Price.
 	appDelegate.paymentHistoryDS.productsRequestDelegate = self;
 	[appDelegate.paymentHistoryDS getProductInfomation:cid];

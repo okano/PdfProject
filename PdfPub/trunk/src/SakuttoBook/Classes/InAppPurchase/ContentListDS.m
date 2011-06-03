@@ -91,6 +91,27 @@
 }
 
 #pragma mark Thumbnail Image
+- (UIImage*)thumbnailImageAtIndex:(NSInteger)index
+{
+	UIColor* color = [UIColor colorWithRed:0.125 * index
+					  				 green:0.25  * index
+									  blue:0.5   * index
+									 alpha:1.0f];
+    CGRect rect = CGRectMake(0.0f, 0.0f, 16.0f, 16.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+	
+	return image;
+}
+- (UIImage*)thumbnailImageByContentId:(ContentId)cid
+{
+	return [self thumbnailImageAtIndex:cid];
+}
+
 #pragma mark Description
 - (NSString*)descriptionAtIndex:(NSInteger)index
 {
