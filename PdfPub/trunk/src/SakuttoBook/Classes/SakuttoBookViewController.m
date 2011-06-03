@@ -86,4 +86,12 @@
 
 @end
 
-
+#pragma mark - InAppPurchase
+@implementation SakuttoBookViewController (InAppPurchase)
+- (void)showContentListView{;}
+- (void)hideContentListView{;}
+- (void)showImagePlayerView:(ContentId)cid{;}
+- (void)hideImagePlayerView{;}
+- (void)showContentDetailView:(ContentId)cid{;}
+- (void)hideContentDetailView{;}
+@end

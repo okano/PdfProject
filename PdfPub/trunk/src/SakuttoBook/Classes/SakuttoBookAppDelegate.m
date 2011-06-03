@@ -16,6 +16,8 @@
 @synthesize license;
 @synthesize tocDefine;
 @synthesize bookmarkDefine;
+@synthesize contentListDS;
+@synthesize paymentHistoryDS;
 
 #pragma mark -
 #pragma mark Application lifecycle
@@ -153,4 +155,15 @@
 }
 
 
+@end
+
+
+#pragma mark - InAppPurchase
+@implementation SakuttoBookAppDelegate (InAppPurchase)
+- (void)showContentListView{;}
+- (void)hideContentListView{;}
+- (void)showImagePlayerView:(ContentId)cid{;}
+- (void)hideImagePlayerView{;}
+- (void)showContentDetailView:(ContentId)cid{;}
+- (void)hideContentDetailView{;}
 @end

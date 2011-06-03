@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ContentPlayerViewController.h"
+#import "InAppPurchaseDefine.h"
 
 @interface SakuttoBookViewController : UIViewController {
 	ContentPlayerViewController* contentPlayerViewController;
@@ -18,3 +19,11 @@
 
 @end
 
+@interface SakuttoBookViewController (InAppPurchase)
+- (void)showContentListView;
+- (void)hideContentListView;
+- (void)showImagePlayerView:(ContentId)cid;
+- (void)hideImagePlayerView;
+- (void)showContentDetailView:(ContentId)cid;
+- (void)hideContentDetailView;
+@end

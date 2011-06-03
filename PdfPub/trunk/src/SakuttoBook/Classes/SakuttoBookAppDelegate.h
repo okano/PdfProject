@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "License.h"
+#import "InAppPurchaseDefine.h"
+#import "ContentListDS.h"
+#import "PaymentHistoryDS.h"
 
 @class SakuttoBookViewController;
 
@@ -21,6 +24,10 @@
 	// TOC infomation.
 	NSMutableArray* tocDefine;
 	NSMutableArray* bookmarkDefine;
+	
+	// InAppPurchase data.
+	ContentListDS* contentListDS;
+	PaymentHistoryDS* paymentHistoryDS;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -30,6 +37,9 @@
 //for get value in TocViewController.
 @property (nonatomic, retain) NSMutableArray* tocDefine;
 @property (nonatomic, retain) NSMutableArray* bookmarkDefine;
+// InAppPurchase data.
+@property (nonatomic, retain) ContentListDS* contentListDS;
+@property (nonatomic, retain) PaymentHistoryDS* paymentHistoryDS;
 
 
 /**
@@ -57,7 +67,13 @@
 - (NSMutableArray*)getTocDefine;
 - (void)showWebView:(NSString*)urlString;
 - (void)showInfoView;
-
-
 @end
 
+@interface SakuttoBookAppDelegate (InAppPurchase)
+- (void)showContentListView;
+- (void)hideContentListView;
+- (void)showImagePlayerView:(ContentId)cid;
+- (void)hideImagePlayerView;
+- (void)showContentDetailView:(ContentId)cid;
+- (void)hideContentDetailView;
+@end
