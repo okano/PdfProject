@@ -87,7 +87,7 @@
 	[appDelegate hideContentListView];
 	[appDelegate showContentPlayerView:cid];
 }
-- (void)showPaymentConductorView:(ContentId)cid
+- (void)showContentDetailView:(ContentId)cid
 {
 	LOG_CURRENT_METHOD;
 	[appDelegate hideContentListView];
@@ -198,7 +198,7 @@
 	if (paymentStatus == PAYMENT_STATUS_PAYED) {
 		[self showImagePlayer:targetCid];
 	} else {
-		[self showPaymentConductorView:targetCid];
+		[self showContentDetailView:targetCid];
 	}
 }
 

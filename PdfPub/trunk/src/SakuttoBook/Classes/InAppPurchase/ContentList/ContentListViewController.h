@@ -19,6 +19,6 @@
 }
 
 - (void)showImagePlayer:(ContentId)cid;
-- (void)showPaymentConductorView:(ContentId)cid;
+- (void)showContentDetailView:(ContentId)cid;
 
 @end
