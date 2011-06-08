@@ -8,10 +8,10 @@
  */
 
 //Vertical/Horizon mode in pdf.
-#define IS_VERTICAL_PDF 1		/* 0:yokogaki, 1:tategaki*/
+#define IS_VERTICAL_PDF 0		/* 0:yokogaki, 1:tategaki*/
 
 //Page Transition with Slide/Curl.
-#define IS_TRANSITION_CURL 0	/* 0:Slide, 1:Curl*/
+#define IS_TRANSITION_CURL 1	/* 0:Slide, 1:Curl*/
 
 //Page background color.
 #define PAGE_BACKGROUND_COLOR_R		0.0f	/* 0.0f - 1.0f */
@@ -104,4 +104,4 @@
 #define PROGRAM_SUPPORT_URL			@"http://www.incunabula.co.jp/book/Sakutto/"
 
 // license key.
-#define LICENSE_KEY @"99840053-0000-0000-0008-000000000000"
+#define LICENSE_KEY @"99840072-0000-0000-0253-000000000000"
