@@ -40,9 +40,12 @@
 	}
 	[self.view addSubview:contentPlayerViewController.view];
 }
-
+- (void)hideContentPlayerView
+{
+	[contentPlayerViewController.view removeFromSuperview];
+}
 #pragma mark - CosmeLesson.
-- (IBAction)showCosmeLesson
+- (IBAction)showCosmeLessonView
 {
 	if (cosmeLessonVC == nil) {
 		cosmeLessonVC = [[CosmeLessonViewController alloc] initWithNibName:@"CosmeLessonView" bundle:[NSBundle mainBundle]];
@@ -50,7 +53,7 @@
 	[self.view addSubview:cosmeLessonVC.view];
 }
 
-- (void)closeCosmeLessonView
+- (void)hideCosmeLessonView
 {
 	[cosmeLessonVC.view removeFromSuperview];
 }

@@ -13,7 +13,6 @@
 
 @synthesize window;
 @synthesize viewController;
-@synthesize cosmeLessonViewController;
 @synthesize license;
 @synthesize tocDefine;
 @synthesize bookmarkDefine;
@@ -71,6 +70,29 @@
      Called when the application is about to terminate.
      See also applicationDidEnterBackground:.
      */
+}
+
+#pragma mark - switch ContentView/CosmeLessonView.
+- (void)showContentPlayerView
+{
+	[self.viewController showContentPlayerView];
+}
+- (void)hideContentPlayerView
+{
+	[self.viewController hideContentPlayerView];
+}
+- (void)showCosmeLessonView
+{
+	[self.viewController showCosmeLessonView];
+}
+- (void)hideCosmeLessonView
+{
+	[self.viewController hideCosmeLessonView];
+}
+- (void)changeToContentPlayerView
+{
+	[self hideCosmeLessonView];
+	[self showContentPlayerView];
 }
 
 /**
@@ -134,12 +156,6 @@
 }
 - (void)showInfoView {
 	[viewController.contentPlayerViewController showInfoView];
-}
-
-#pragma mark - CosmeLesson01 methods.
-- (void)closeCosmeLessonView
-{
-	[cosmeLessonViewController closeCosmeLessonView];
 }
 
 #pragma mark -

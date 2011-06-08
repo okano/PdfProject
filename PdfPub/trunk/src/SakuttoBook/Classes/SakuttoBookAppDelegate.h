@@ -8,15 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "License.h"
-#import "CosmeLesson01ViewController.h"
+#import "CosmeLessonViewController.h"
 
 @class SakuttoBookViewController;
 
 @interface SakuttoBookAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
     SakuttoBookViewController *viewController;
-	CosmeLesson01ViewController *cosmeLessonViewController;
-
 	
 	// Application License.
 	License* license;
@@ -34,9 +32,13 @@
 @property (nonatomic, retain) NSMutableArray* tocDefine;
 @property (nonatomic, retain) NSMutableArray* bookmarkDefine;
 
-//CosmeLesson01
-@property (nonatomic, retain) IBOutlet CosmeLesson01ViewController *cosmeLessonViewController;
-- (void)closeCosmeLessonView;
+
+//Methods for switch ContentView/CosmeLessonView.
+- (void)showContentPlayerView;
+- (void)hideContentPlayerView;
+- (void)showCosmeLessonView;
+- (void)hideCosmeLessonView;
+- (void)changeToContentPlayerView;
 
 /**
  * Functions in SakuttoBookViewController.
@@ -63,7 +65,6 @@
 - (NSMutableArray*)getTocDefine;
 - (void)showWebView:(NSString*)urlString;
 - (void)showInfoView;
-
 
 @end
 

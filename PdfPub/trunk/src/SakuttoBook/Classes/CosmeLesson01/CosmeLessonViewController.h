@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CosmeLesson01AppDelegate.h"
+#import "SakuttoBookAppDelegate.h"
 #import "MarkerPenView.h"
 #import "ColorSelectorTableViewController.h"
 #import "colorWidthInfoDS.h"
@@ -57,7 +57,8 @@
 - (void)setupThisView;
 - (void)loadDefaultImage;
 - (void)addScalableSubview:(UIView *)view withNormalizedFrame:(CGRect)normalizedFrame;
-- (IBAction)closeCosmeLessonView;
+- (IBAction)hideCosmeLessonView;
+- (IBAction)changeToContentPlayerView;
 
 @end
 

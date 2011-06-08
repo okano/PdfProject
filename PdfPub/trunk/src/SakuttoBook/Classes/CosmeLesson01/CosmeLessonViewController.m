@@ -95,11 +95,17 @@
 	[scrollView setZoomScale:scrollView.minimumZoomScale];
 }
 
-- (IBAction)closeCosmeLessonView
+- (IBAction)hideCosmeLessonView
 {
-	CosmeLesson01AppDelegate* appDelegate = (CosmeLesson01AppDelegate*)[[UIApplication sharedApplication] delegate];
-	[appDelegate closeCosmeLessonView];
+	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
+	[appDelegate hideCosmeLessonView];
 }
+- (IBAction)changeToContentPlayerView
+{
+	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
+	[appDelegate changeToContentPlayerView];
+}
+
 
 
 #pragma mark -

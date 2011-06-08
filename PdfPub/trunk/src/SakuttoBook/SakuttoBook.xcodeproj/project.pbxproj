@@ -19,7 +19,8 @@
 		29014A9D12D6EC9100936BF0 /* tocDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29014A9C12D6EC9100936BF0 /* tocDefine.csv */; };
 		29014A9F12D6EC9C00936BF0 /* movieDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29014A9E12D6EC9C00936BF0 /* movieDefine.csv */; };
 		29014AA112D6ECA700936BF0 /* bookDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29014AA012D6ECA700936BF0 /* bookDefine.csv */; };
-		29089957139F204B00337595 /* icon_smile32.png in Resources */ = {isa = PBXBuildFile; fileRef = 29089956139F204B00337595 /* icon_smile32.png */; };
+		29089957139F204B00337595 /* smile32.png in Resources */ = {isa = PBXBuildFile; fileRef = 29089956139F204B00337595 /* smile32.png */; };
+		29089959139F253800337595 /* pencil32.png in Resources */ = {isa = PBXBuildFile; fileRef = 29089958139F253800337595 /* pencil32.png */; };
 		290BA0B012B5E0D1009C01C8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 290BA0AF12B5E0D1009C01C8 /* QuartzCore.framework */; };
 		290F035512D594D300666C6A /* BookmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 290F035412D594D300666C6A /* BookmarkViewController.m */; };
 		2912656912D46BEE00704565 /* list_thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2912656812D46BEE00704565 /* list_thumbnail.png */; };
@@ -72,7 +73,8 @@
 		29014A9C12D6EC9100936BF0 /* tocDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tocDefine.csv; path = csv/tocDefine.csv; sourceTree = "<group>"; };
 		29014A9E12D6EC9C00936BF0 /* movieDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = movieDefine.csv; path = csv/movieDefine.csv; sourceTree = "<group>"; };
 		29014AA012D6ECA700936BF0 /* bookDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bookDefine.csv; path = csv/bookDefine.csv; sourceTree = "<group>"; };
-		29089956139F204B00337595 /* icon_smile32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_smile32.png; path = CosmeLesson01/icon_smile32.png; sourceTree = "<group>"; };
+		29089956139F204B00337595 /* smile32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = smile32.png; path = CosmeLesson01/smile32.png; sourceTree = "<group>"; };
+		29089958139F253800337595 /* pencil32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pencil32.png; path = CosmeLesson01/pencil32.png; sourceTree = "<group>"; };
 		290BA0AF12B5E0D1009C01C8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		290F035312D594D300666C6A /* BookmarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkViewController.h; sourceTree = "<group>"; };
 		290F035412D594D300666C6A /* BookmarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkViewController.m; sourceTree = "<group>"; };
@@ -233,19 +235,20 @@
 		29A849B9139F1C8200508236 /* CosmeLesson01 */ = {
 			isa = PBXGroup;
 			children = (
-				29089956139F204B00337595 /* icon_smile32.png */,
-				29A849CE139F1CEB00508236 /* DefineCosmeLesson.h */,
-				29A849CA139F1CC100508236 /* MarkerPenView.h */,
-				29A849CB139F1CC100508236 /* MarkerPenView.m */,
-				29A849CC139F1CC100508236 /* Utility.h */,
-				29A849C2139F1CB600508236 /* CosmeLessonView.xib */,
 				29A849C3139F1CB600508236 /* CosmeLessonViewController.h */,
 				29A849C4139F1CB600508236 /* CosmeLessonViewController.m */,
 				29A849C5139F1CB600508236 /* CosmeLessonViewController+MarkerPen.m */,
+				29A849C2139F1CB600508236 /* CosmeLessonView.xib */,
+				29A849CA139F1CC100508236 /* MarkerPenView.h */,
+				29A849CB139F1CC100508236 /* MarkerPenView.m */,
 				29A849BA139F1CAB00508236 /* ColorSelectorTableViewController.h */,
 				29A849BB139F1CAB00508236 /* ColorSelectorTableViewController.m */,
 				29A849BC139F1CAB00508236 /* ColorWidthInfoDS.h */,
 				29A849BD139F1CAB00508236 /* ColorWidthInfoDS.m */,
+				29A849CE139F1CEB00508236 /* DefineCosmeLesson.h */,
+				29A849CC139F1CC100508236 /* Utility.h */,
+				29089956139F204B00337595 /* smile32.png */,
+				29089958139F253800337595 /* pencil32.png */,
 			);
 			name = CosmeLesson01;
 			sourceTree = "<group>";
@@ -384,7 +387,8 @@
 				29F003FA1353CC5500D0D74D /* pageJumpLinkDefine.csv in Resources */,
 				2962C40C1394B9EC002E57F9 /* ContentPlayerView.xib in Resources */,
 				29A849C7139F1CB600508236 /* CosmeLessonView.xib in Resources */,
-				29089957139F204B00337595 /* icon_smile32.png in Resources */,
+				29089957139F204B00337595 /* smile32.png in Resources */,
+				29089959139F253800337595 /* pencil32.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
