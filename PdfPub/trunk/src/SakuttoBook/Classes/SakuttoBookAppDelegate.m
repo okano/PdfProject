@@ -13,6 +13,7 @@
 
 @synthesize window;
 @synthesize viewController;
+@synthesize cosmeLessonViewController;
 @synthesize license;
 @synthesize tocDefine;
 @synthesize bookmarkDefine;
@@ -135,6 +136,11 @@
 	[viewController.contentPlayerViewController showInfoView];
 }
 
+#pragma mark - CosmeLesson01 methods.
+- (void)closeCosmeLessonView
+{
+	[cosmeLessonViewController closeCosmeLessonView];
+}
 
 #pragma mark -
 #pragma mark Memory management

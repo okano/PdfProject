@@ -43,6 +43,13 @@
 		2999FDC512D6A8D500D0F145 /* License.m in Sources */ = {isa = PBXBuildFile; fileRef = 2999FDC412D6A8D500D0F145 /* License.m */; };
 		29A1CB7A138616AA00326759 /* SKBE_MainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A1CB79138616AA00326759 /* SKBE_MainVC.m */; };
 		29A1CB7E138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A1CB7D138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m */; };
+		29A849BE139F1CAB00508236 /* ColorSelectorTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A849BB139F1CAB00508236 /* ColorSelectorTableViewController.m */; };
+		29A849BF139F1CAB00508236 /* ColorWidthInfoDS.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A849BD139F1CAB00508236 /* ColorWidthInfoDS.m */; };
+		29A849C6139F1CB600508236 /* CosmeLesson01ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A849C1139F1CB600508236 /* CosmeLesson01ViewController.m */; };
+		29A849C7139F1CB600508236 /* CosmeLessonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29A849C2139F1CB600508236 /* CosmeLessonView.xib */; };
+		29A849C8139F1CB600508236 /* CosmeLessonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A849C4139F1CB600508236 /* CosmeLessonViewController.m */; };
+		29A849C9139F1CB600508236 /* CosmeLessonViewController+MarkerPen.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A849C5139F1CB600508236 /* CosmeLessonViewController+MarkerPen.m */; };
+		29A849CD139F1CC100508236 /* MarkerPenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A849CB139F1CC100508236 /* MarkerPenView.m */; };
 		29B3B7C812C57DE00014F866 /* MyPdfScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B3B7C712C57DE00014F866 /* MyPdfScrollView.m */; };
 		29B3B90C12C58C820014F866 /* ThumbnailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B3B90B12C58C820014F866 /* ThumbnailViewController.m */; };
 		29E1089A12D46D4700FC5210 /* BookmarkModifyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29E1089912D46D4700FC5210 /* BookmarkModifyView.xib */; };
@@ -98,10 +105,24 @@
 		2999FA9412B7BDE5002ACB2B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		2999FDC312D6A8D500D0F145 /* License.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = License.h; sourceTree = "<group>"; };
 		2999FDC412D6A8D500D0F145 /* License.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = License.m; sourceTree = "<group>"; };
-		29A1CB78138616AA00326759 /* SKBE_MainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; name = SKBE_MainVC.h; path = SKBEngine/SKBEngine/SKBE_MainVC.h; sourceTree = "<group>"; };
+		29A1CB78138616AA00326759 /* SKBE_MainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKBE_MainVC.h; path = SKBEngine/SKBEngine/SKBE_MainVC.h; sourceTree = "<group>"; };
 		29A1CB79138616AA00326759 /* SKBE_MainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKBE_MainVC.m; path = SKBEngine/SKBEngine/SKBE_MainVC.m; sourceTree = "<group>"; };
 		29A1CB7C138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKBEngine_PopoverScrollImageViewController.h; path = SKBEngine/SKBEngine/SKBEngine_PopoverScrollImageViewController.h; sourceTree = "<group>"; };
 		29A1CB7D138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKBEngine_PopoverScrollImageViewController.m; path = SKBEngine/SKBEngine/SKBEngine_PopoverScrollImageViewController.m; sourceTree = "<group>"; };
+		29A849BA139F1CAB00508236 /* ColorSelectorTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ColorSelectorTableViewController.h; path = CosmeLesson01/ColorSelectorTableViewController.h; sourceTree = "<group>"; };
+		29A849BB139F1CAB00508236 /* ColorSelectorTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ColorSelectorTableViewController.m; path = CosmeLesson01/ColorSelectorTableViewController.m; sourceTree = "<group>"; };
+		29A849BC139F1CAB00508236 /* ColorWidthInfoDS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ColorWidthInfoDS.h; path = CosmeLesson01/ColorWidthInfoDS.h; sourceTree = "<group>"; };
+		29A849BD139F1CAB00508236 /* ColorWidthInfoDS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ColorWidthInfoDS.m; path = CosmeLesson01/ColorWidthInfoDS.m; sourceTree = "<group>"; };
+		29A849C0139F1CB600508236 /* CosmeLesson01ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CosmeLesson01ViewController.h; path = CosmeLesson01/CosmeLesson01ViewController.h; sourceTree = "<group>"; };
+		29A849C1139F1CB600508236 /* CosmeLesson01ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CosmeLesson01ViewController.m; path = CosmeLesson01/CosmeLesson01ViewController.m; sourceTree = "<group>"; };
+		29A849C2139F1CB600508236 /* CosmeLessonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CosmeLessonView.xib; path = CosmeLesson01/CosmeLessonView.xib; sourceTree = "<group>"; };
+		29A849C3139F1CB600508236 /* CosmeLessonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CosmeLessonViewController.h; path = CosmeLesson01/CosmeLessonViewController.h; sourceTree = "<group>"; };
+		29A849C4139F1CB600508236 /* CosmeLessonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CosmeLessonViewController.m; path = CosmeLesson01/CosmeLessonViewController.m; sourceTree = "<group>"; };
+		29A849C5139F1CB600508236 /* CosmeLessonViewController+MarkerPen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CosmeLessonViewController+MarkerPen.m"; path = "CosmeLesson01/CosmeLessonViewController+MarkerPen.m"; sourceTree = "<group>"; };
+		29A849CA139F1CC100508236 /* MarkerPenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MarkerPenView.h; path = CosmeLesson01/MarkerPenView.h; sourceTree = "<group>"; };
+		29A849CB139F1CC100508236 /* MarkerPenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MarkerPenView.m; path = CosmeLesson01/MarkerPenView.m; sourceTree = "<group>"; };
+		29A849CC139F1CC100508236 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utility.h; path = CosmeLesson01/Utility.h; sourceTree = "<group>"; };
+		29A849CE139F1CEB00508236 /* DefineCosmeLesson.h */ = {isa = PBXFileReference; fileEncoding = 4; name = DefineCosmeLesson.h; path = CosmeLesson01/DefineCosmeLesson.h; sourceTree = "<group>"; };
 		29B3B7C612C57DE00014F866 /* MyPdfScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPdfScrollView.h; sourceTree = "<group>"; };
 		29B3B7C712C57DE00014F866 /* MyPdfScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPdfScrollView.m; sourceTree = "<group>"; };
 		29B3B90A12C58C820014F866 /* ThumbnailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumbnailViewController.h; sourceTree = "<group>"; };
@@ -134,6 +155,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				29A849B9139F1C8200508236 /* CosmeLesson01 */,
 				1D3623240D0F684500981E51 /* SakuttoBookAppDelegate.h */,
 				1D3623250D0F684500981E51 /* SakuttoBookAppDelegate.m */,
 				28D7ACF60DDB3853001CB0EB /* SakuttoBookViewController.h */,
@@ -207,6 +229,27 @@
 			children = (
 			);
 			path = movie;
+			sourceTree = "<group>";
+		};
+		29A849B9139F1C8200508236 /* CosmeLesson01 */ = {
+			isa = PBXGroup;
+			children = (
+				29A849CE139F1CEB00508236 /* DefineCosmeLesson.h */,
+				29A849CA139F1CC100508236 /* MarkerPenView.h */,
+				29A849CB139F1CC100508236 /* MarkerPenView.m */,
+				29A849CC139F1CC100508236 /* Utility.h */,
+				29A849C0139F1CB600508236 /* CosmeLesson01ViewController.h */,
+				29A849C1139F1CB600508236 /* CosmeLesson01ViewController.m */,
+				29A849C2139F1CB600508236 /* CosmeLessonView.xib */,
+				29A849C3139F1CB600508236 /* CosmeLessonViewController.h */,
+				29A849C4139F1CB600508236 /* CosmeLessonViewController.m */,
+				29A849C5139F1CB600508236 /* CosmeLessonViewController+MarkerPen.m */,
+				29A849BA139F1CAB00508236 /* ColorSelectorTableViewController.h */,
+				29A849BB139F1CAB00508236 /* ColorSelectorTableViewController.m */,
+				29A849BC139F1CAB00508236 /* ColorWidthInfoDS.h */,
+				29A849BD139F1CAB00508236 /* ColorWidthInfoDS.m */,
+			);
+			name = CosmeLesson01;
 			sourceTree = "<group>";
 		};
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
@@ -342,6 +385,7 @@
 				294E1F1E131E2A5B00E49BAF /* popoverScrollImageDefine.csv in Resources */,
 				29F003FA1353CC5500D0D74D /* pageJumpLinkDefine.csv in Resources */,
 				2962C40C1394B9EC002E57F9 /* ContentPlayerView.xib in Resources */,
+				29A849C7139F1CB600508236 /* CosmeLessonView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,6 +429,12 @@
 				29A1CB7A138616AA00326759 /* SKBE_MainVC.m in Sources */,
 				29A1CB7E138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m in Sources */,
 				291593141394B54700387697 /* ContentPlayerViewController.m in Sources */,
+				29A849BE139F1CAB00508236 /* ColorSelectorTableViewController.m in Sources */,
+				29A849BF139F1CAB00508236 /* ColorWidthInfoDS.m in Sources */,
+				29A849C6139F1CB600508236 /* CosmeLesson01ViewController.m in Sources */,
+				29A849C8139F1CB600508236 /* CosmeLessonViewController.m in Sources */,
+				29A849C9139F1CB600508236 /* CosmeLessonViewController+MarkerPen.m in Sources */,
+				29A849CD139F1CC100508236 /* MarkerPenView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
