@@ -29,9 +29,10 @@
 
 - (void)viewDidLoad
 {
+	cosmeLessonVC = nil;
 	[self showContentPlayerView];
 }
-
+#pragma mark - ContentPlayer.
 - (void)showContentPlayerView
 {
 	if (contentPlayerViewController == nil) {
@@ -40,7 +41,21 @@
 	[self.view addSubview:contentPlayerViewController.view];
 }
 
+#pragma mark - CosmeLesson.
+- (IBAction)showCosmeLesson
+{
+	if (cosmeLessonVC == nil) {
+		cosmeLessonVC = [[CosmeLessonViewController alloc] initWithNibName:@"CosmeLessonView" bundle:[NSBundle mainBundle]];
+	};
+	[self.view addSubview:cosmeLessonVC.view];
+}
 
+- (void)closeCosmeLessonView
+{
+	[cosmeLessonVC.view removeFromSuperview];
+}
+
+#pragma mark -
 - (void)dealloc
 {
     [super dealloc];
