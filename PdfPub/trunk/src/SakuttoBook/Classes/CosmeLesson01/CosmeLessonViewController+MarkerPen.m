@@ -79,7 +79,7 @@
 										 action:@selector(showColorAndSizeSelector)];
 		
 		//Add title label.
-		NSString* titleStr = @"Marker Mode";
+		NSString* titleStr = @"";
 		CGSize labelSize = [titleStr sizeWithFont:[UIFont boldSystemFontOfSize:24]];
 		UIBarButtonItem* titleLabelButton = [UIBarButtonItem alloc];
 		[titleLabelButton initWithTitle:titleStr
@@ -104,7 +104,7 @@
 									action:nil];
 		fspace3.width = 5.0f;
 		
-		[menuBarForMakerPen setItems:[NSArray arrayWithObjects:doneButton, fspace1, titleLabelButton, fspace2, colorWidthSelectButton, fspace3, deleteButton, nil]];
+		[menuBarForMakerPen setItems:[NSArray arrayWithObjects:doneButton, fspace1, titleLabelButton, fspace2, colorWidthSelectButton, fspace2, fspace3, deleteButton, nil]];
 		[self.view addSubview:menuBarForMakerPen];
 	}
 	UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
