@@ -38,7 +38,8 @@
 - (void)hideContentPlayerView;
 - (void)showCosmeLessonView;
 - (void)hideCosmeLessonView;
-- (void)changeToContentPlayerView;
+- (void)switchToContentPlayerView;
+- (void)switchToCosmeLessonView;
 
 /**
  * Functions in SakuttoBookViewController.

@@ -26,5 +26,7 @@
 - (IBAction)showInfoView:(id)sender;
 - (IBAction)showBookmarkModifyView:(id)sender;
 //- (IBAction)addBookmarkWithCurrentPage:(id)sender;
+//
+- (IBAction)switchToCosmeLessonView:(id)sender;
 
 @end

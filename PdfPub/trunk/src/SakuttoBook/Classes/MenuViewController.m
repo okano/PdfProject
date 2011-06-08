@@ -69,7 +69,13 @@
 	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
 	[appDelegate showBookmarkModifyView];
 }
-
+#pragma mark - Switch
+- (IBAction)switchToCosmeLessonView:(id)sender
+{
+	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
+	[appDelegate switchToCosmeLessonView];
+}
+#pragma mark -
 /*
 - (IBAction)addBookmarkWithCurrentPage:(id)sender {
 	LOG_CURRENT_METHOD;

@@ -100,12 +100,11 @@
 	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
 	[appDelegate hideCosmeLessonView];
 }
-- (IBAction)changeToContentPlayerView
+- (IBAction)switchToContentPlayerView
 {
 	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
-	[appDelegate changeToContentPlayerView];
+	[appDelegate switchToContentPlayerView];
 }
-
 
 
 #pragma mark -

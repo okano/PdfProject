@@ -191,11 +191,11 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">changeToContentPlayerView</string>
+						<string key="label">switchToContentPlayerView</string>
 						<reference key="source" ref="798688243"/>
 						<reference key="destination" ref="372490531"/>
 					</object>
-					<int key="connectionID">23</int>
+					<int key="connectionID">24</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -249,6 +249,7 @@
 						<int key="objectID">6</int>
 						<reference key="object" ref="798688243"/>
 						<reference key="parent" ref="790966139"/>
+						<string key="objectName">Bar Button Item - Stop</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">9</int>
@@ -319,7 +320,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">23</int>
+			<int key="maxID">24</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -331,10 +332,10 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>changeToContentPlayerView</string>
 							<string>enterMarkerMode</string>
 							<string>exitMarkerMode</string>
 							<string>hideCosmeLessonView</string>
+							<string>switchToContentPlayerView</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -348,17 +349,13 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>changeToContentPlayerView</string>
 							<string>enterMarkerMode</string>
 							<string>exitMarkerMode</string>
 							<string>hideCosmeLessonView</string>
+							<string>switchToContentPlayerView</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBActionInfo">
-								<string key="name">changeToContentPlayerView</string>
-								<string key="candidateClassName">id</string>
-							</object>
 							<object class="IBActionInfo">
 								<string key="name">enterMarkerMode</string>
 								<string key="candidateClassName">id</string>
@@ -369,6 +366,10 @@
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">hideCosmeLessonView</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">switchToContentPlayerView</string>
 								<string key="candidateClassName">id</string>
 							</object>
 						</object>

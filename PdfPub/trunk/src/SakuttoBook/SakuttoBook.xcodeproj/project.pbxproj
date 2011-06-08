@@ -21,6 +21,7 @@
 		29014AA112D6ECA700936BF0 /* bookDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29014AA012D6ECA700936BF0 /* bookDefine.csv */; };
 		29089957139F204B00337595 /* smile32.png in Resources */ = {isa = PBXBuildFile; fileRef = 29089956139F204B00337595 /* smile32.png */; };
 		29089959139F253800337595 /* pencil32.png in Resources */ = {isa = PBXBuildFile; fileRef = 29089958139F253800337595 /* pencil32.png */; };
+		2908995B139F290000337595 /* IMG_6267.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 2908995A139F290000337595 /* IMG_6267.JPG */; };
 		290BA0B012B5E0D1009C01C8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 290BA0AF12B5E0D1009C01C8 /* QuartzCore.framework */; };
 		290F035512D594D300666C6A /* BookmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 290F035412D594D300666C6A /* BookmarkViewController.m */; };
 		2912656912D46BEE00704565 /* list_thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2912656812D46BEE00704565 /* list_thumbnail.png */; };
@@ -75,6 +76,7 @@
 		29014AA012D6ECA700936BF0 /* bookDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bookDefine.csv; path = csv/bookDefine.csv; sourceTree = "<group>"; };
 		29089956139F204B00337595 /* smile32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = smile32.png; path = CosmeLesson01/smile32.png; sourceTree = "<group>"; };
 		29089958139F253800337595 /* pencil32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pencil32.png; path = CosmeLesson01/pencil32.png; sourceTree = "<group>"; };
+		2908995A139F290000337595 /* IMG_6267.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = IMG_6267.JPG; path = CosmeLesson01/IMG_6267.JPG; sourceTree = "<group>"; };
 		290BA0AF12B5E0D1009C01C8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		290F035312D594D300666C6A /* BookmarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkViewController.h; sourceTree = "<group>"; };
 		290F035412D594D300666C6A /* BookmarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkViewController.m; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				29A849BD139F1CAB00508236 /* ColorWidthInfoDS.m */,
 				29A849CE139F1CEB00508236 /* DefineCosmeLesson.h */,
 				29A849CC139F1CC100508236 /* Utility.h */,
+				2908995A139F290000337595 /* IMG_6267.JPG */,
 				29089956139F204B00337595 /* smile32.png */,
 				29089958139F253800337595 /* pencil32.png */,
 			);
@@ -389,6 +392,7 @@
 				29A849C7139F1CB600508236 /* CosmeLessonView.xib in Resources */,
 				29089957139F204B00337595 /* smile32.png in Resources */,
 				29089959139F253800337595 /* pencil32.png in Resources */,
+				2908995B139F290000337595 /* IMG_6267.JPG in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

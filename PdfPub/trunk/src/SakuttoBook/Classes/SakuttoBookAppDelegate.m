@@ -89,12 +89,16 @@
 {
 	[self.viewController hideCosmeLessonView];
 }
-- (void)changeToContentPlayerView
+- (void)switchToContentPlayerView
 {
 	[self hideCosmeLessonView];
 	[self showContentPlayerView];
 }
-
+- (void)switchToCosmeLessonView
+{
+	[self hideContentPlayerView];
+	[self showCosmeLessonView];
+}
 /**
  * Functions in SakuttoBookViewController.
  */
