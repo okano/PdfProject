@@ -27,6 +27,7 @@
 	
 	//PK421, Kifujin.
 	tmpDict = [[NSMutableDictionary alloc] init];
+	[tmpDict setValue:@"貴婦人" forKey:MARKERPEN_NAME];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(239.0/256.0)] forKey:MARKERPEN_COLOR_R];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(123.0/256.0)] forKey:MARKERPEN_COLOR_G];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(165.0/256.0)] forKey:MARKERPEN_COLOR_B];
@@ -36,6 +37,7 @@
 	
 	//BL603, midnight black.
 	tmpDict = [[NSMutableDictionary alloc] init];
+	[tmpDict setValue:@"ミッドナイト・ブラック" forKey:MARKERPEN_NAME];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(  0.0/256.0)] forKey:MARKERPEN_COLOR_R];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)( 16.0/256.0)] forKey:MARKERPEN_COLOR_G];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(107.0/256.0)] forKey:MARKERPEN_COLOR_B];
@@ -45,6 +47,7 @@
 	
 	//Brawn.
 	tmpDict = [[NSMutableDictionary alloc] init];
+	[tmpDict setValue:@"ブラウン" forKey:MARKERPEN_NAME];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(115.0/256.0)] forKey:MARKERPEN_COLOR_R];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)( 33.0/256.0)] forKey:MARKERPEN_COLOR_G];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(  0.0/256.0)] forKey:MARKERPEN_COLOR_B];
@@ -54,6 +57,7 @@
 	
 	//GR522, green juely.
 	tmpDict = [[NSMutableDictionary alloc] init];
+	[tmpDict setValue:@"緑の宝石" forKey:MARKERPEN_NAME];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)( 90.0/256.0)] forKey:MARKERPEN_COLOR_R];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(156.0/256.0)] forKey:MARKERPEN_COLOR_G];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(  0.0/256.0)] forKey:MARKERPEN_COLOR_B];
@@ -108,9 +112,8 @@
 	
 	cell.imageView.image = image;
 	
-	CGFloat lineWidth = [[tmpDict valueForKey:MARKERPEN_WIDTH] floatValue];
-    cell.textLabel.text = [NSString stringWithFormat:@"width=%3.1f, alpha=%3.1f", lineWidth,
-						   [[tmpDict valueForKey:MARKERPEN_COLOR_ALPHA] floatValue]];
+	//CGFloat lineWidth = [[tmpDict valueForKey:MARKERPEN_WIDTH] floatValue];
+    cell.textLabel.text = [tmpDict valueForKey:MARKERPEN_NAME];
 	
     return cell;
 }

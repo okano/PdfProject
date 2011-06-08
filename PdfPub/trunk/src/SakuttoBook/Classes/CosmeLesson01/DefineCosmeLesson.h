@@ -11,6 +11,7 @@
  */
 // for Marker Pen.
 #define MARKERPEN_ARRAY             @"MarkerPen_Array"  /* Top of data */
+#define MARKERPEN_NAME				@"MarkerPen_Name"
 #define MARKERPEN_PAGE_NUMBER       @"MarkerPen_PageNumber"
 #define MARKERPEN_POINT_ARRAY        @"MarkerPen_Line_Array" /* array of CGPointValue. */
 #define MARKERPEN_LINE_POSITION_X	@"x"
