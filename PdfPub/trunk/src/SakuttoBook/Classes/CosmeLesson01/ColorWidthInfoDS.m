@@ -32,7 +32,7 @@
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(123.0/256.0)] forKey:MARKERPEN_COLOR_G];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(165.0/256.0)] forKey:MARKERPEN_COLOR_B];
 	[tmpDict setValue:[NSNumber numberWithFloat:0.2f] forKey:MARKERPEN_COLOR_ALPHA];
-	[tmpDict setValue:[NSNumber numberWithFloat:4.0f] forKey:MARKERPEN_WIDTH];
+	[tmpDict setValue:[NSNumber numberWithFloat:6.0f] forKey:MARKERPEN_WIDTH];
 	[colorWidthInfo addObject:tmpDict];
 	
 	//BL603, midnight black.
@@ -42,7 +42,7 @@
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)( 16.0/256.0)] forKey:MARKERPEN_COLOR_G];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(107.0/256.0)] forKey:MARKERPEN_COLOR_B];
 	[tmpDict setValue:[NSNumber numberWithFloat:0.1f] forKey:MARKERPEN_COLOR_ALPHA];
-	[tmpDict setValue:[NSNumber numberWithFloat:9.0f] forKey:MARKERPEN_WIDTH];
+	[tmpDict setValue:[NSNumber numberWithFloat:6.0f] forKey:MARKERPEN_WIDTH];
 	[colorWidthInfo addObject:tmpDict];
 	
 	//Brawn.
@@ -51,8 +51,8 @@
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(115.0/256.0)] forKey:MARKERPEN_COLOR_R];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)( 33.0/256.0)] forKey:MARKERPEN_COLOR_G];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(  0.0/256.0)] forKey:MARKERPEN_COLOR_B];
-	[tmpDict setValue:[NSNumber numberWithFloat:0.33f] forKey:MARKERPEN_COLOR_ALPHA];
-	[tmpDict setValue:[NSNumber numberWithFloat:9.0f] forKey:MARKERPEN_WIDTH];
+	[tmpDict setValue:[NSNumber numberWithFloat:0.25f] forKey:MARKERPEN_COLOR_ALPHA];
+	[tmpDict setValue:[NSNumber numberWithFloat:6.0f] forKey:MARKERPEN_WIDTH];
 	[colorWidthInfo addObject:tmpDict];
 	
 	//GR522, green juely.
