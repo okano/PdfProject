@@ -67,7 +67,7 @@
 										 target:self
 										 action:@selector(prepareDeleteMarkerPenWithCurrentPage)];
 		//Add Color&Width select button.
-		UIImage* colorWidthSelectButtonImage = [UIImage imageNamed:@"wrench32.png"];
+		UIImage* colorWidthSelectButtonImage = [UIImage imageNamed:@"wand32.png"];
 		if (! colorWidthSelectButtonImage) {
 			LOG_CURRENT_LINE;
 			return;

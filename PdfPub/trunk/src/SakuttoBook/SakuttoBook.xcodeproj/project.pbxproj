@@ -22,6 +22,8 @@
 		29089957139F204B00337595 /* smile32.png in Resources */ = {isa = PBXBuildFile; fileRef = 29089956139F204B00337595 /* smile32.png */; };
 		29089959139F253800337595 /* pencil32.png in Resources */ = {isa = PBXBuildFile; fileRef = 29089958139F253800337595 /* pencil32.png */; };
 		2908995B139F290000337595 /* IMG_6267.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 2908995A139F290000337595 /* IMG_6267.JPG */; };
+		2908995D139F2A1D00337595 /* recycle32.png in Resources */ = {isa = PBXBuildFile; fileRef = 2908995C139F2A1D00337595 /* recycle32.png */; };
+		2908995F139F2A9300337595 /* wand32.png in Resources */ = {isa = PBXBuildFile; fileRef = 2908995E139F2A9200337595 /* wand32.png */; };
 		290BA0B012B5E0D1009C01C8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 290BA0AF12B5E0D1009C01C8 /* QuartzCore.framework */; };
 		290F035512D594D300666C6A /* BookmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 290F035412D594D300666C6A /* BookmarkViewController.m */; };
 		2912656912D46BEE00704565 /* list_thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2912656812D46BEE00704565 /* list_thumbnail.png */; };
@@ -77,6 +79,8 @@
 		29089956139F204B00337595 /* smile32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = smile32.png; path = CosmeLesson01/smile32.png; sourceTree = "<group>"; };
 		29089958139F253800337595 /* pencil32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pencil32.png; path = CosmeLesson01/pencil32.png; sourceTree = "<group>"; };
 		2908995A139F290000337595 /* IMG_6267.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = IMG_6267.JPG; path = CosmeLesson01/IMG_6267.JPG; sourceTree = "<group>"; };
+		2908995C139F2A1D00337595 /* recycle32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = recycle32.png; path = CosmeLesson01/recycle32.png; sourceTree = "<group>"; };
+		2908995E139F2A9200337595 /* wand32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wand32.png; path = CosmeLesson01/wand32.png; sourceTree = "<group>"; };
 		290BA0AF12B5E0D1009C01C8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		290F035312D594D300666C6A /* BookmarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkViewController.h; sourceTree = "<group>"; };
 		290F035412D594D300666C6A /* BookmarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkViewController.m; sourceTree = "<group>"; };
@@ -252,6 +256,8 @@
 				2908995A139F290000337595 /* IMG_6267.JPG */,
 				29089956139F204B00337595 /* smile32.png */,
 				29089958139F253800337595 /* pencil32.png */,
+				2908995C139F2A1D00337595 /* recycle32.png */,
+				2908995E139F2A9200337595 /* wand32.png */,
 			);
 			name = CosmeLesson01;
 			sourceTree = "<group>";
@@ -393,6 +399,8 @@
 				29089957139F204B00337595 /* smile32.png in Resources */,
 				29089959139F253800337595 /* pencil32.png in Resources */,
 				2908995B139F290000337595 /* IMG_6267.JPG in Resources */,
+				2908995D139F2A1D00337595 /* recycle32.png in Resources */,
+				2908995F139F2A9300337595 /* wand32.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
