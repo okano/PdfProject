@@ -119,9 +119,11 @@
 	 [pdfScrolView3 addGestureRecognizer:panRecognizer3];
 	 */
 	
+	//
+	currentContentId = [self getCurrentContentIdFromUserDefault];
 	
 	//Setup maxPageNum.
-	if ([self setupPdfBasicInfo] == FALSE) {
+	if ([self setupPdfBasicInfo:currentContentId] == FALSE) {
 		NSLog(@"cannot get pdf infomation.");
 		return;
 	}
@@ -210,7 +212,11 @@
 
 #pragma mark -
 #pragma mark setup pdf infomation.
-- (BOOL)setupPdfBasicInfo
+- (ContentId)getCurrentContentIdFromUserDefault
+{
+	return (ContentId)0;
+}
+- (BOOL)setupPdfBasicInfo:(ContentId)cid
 {
 	//Setup PDF filename.(chached in this class)
 	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:@"pdfDefine" ofType:@"csv"];
@@ -224,7 +230,11 @@
 		NSLog(@"no PDF file specified.");
 		pdfFilename = [NSString stringWithFormat:@"document.pdf"];
 	} else {
-		pdfFilename = [lines objectAtIndex:0];
+		if (cid < [lines count]) {
+			pdfFilename = [lines objectAtIndex:cid];
+		} else {
+			pdfFilename = [lines objectAtIndex:0];
+		}
 	}
 	NSString* pdfFilenameFormatted = [self formatStringWithAlphaNumeric:pdfFilename];
 	pdfURL = [[NSBundle mainBundle] URLForResource:pdfFilenameFormatted withExtension:nil];

@@ -57,7 +57,9 @@
 	//for pdf handle.
 	NSURL* pdfURL;
 	
-	// 
+	//
+	ContentId currentContentId;
+	//
 	int currentPageNum;
 	int maxPageNum;
 	
@@ -135,7 +137,8 @@
  *Functions.
  */
 // Treat PDF.
-- (BOOL)setupPdfBasicInfo;
+- (ContentId)getCurrentContentIdFromUserDefault;
+- (BOOL)setupPdfBasicInfo:(ContentId)cid;
 // Handle PDF infomation.
 - (BOOL)isVerticalWriting;
 - (BOOL)isTransitionWithCurl;
