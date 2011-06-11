@@ -2658,6 +2658,9 @@
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+	if (mplayer != nil) {
+		[mplayer stop];
+	}
 	[self renderAllLinks];
 	
 	[thumbnailScrollViewController setupViewFrame];
