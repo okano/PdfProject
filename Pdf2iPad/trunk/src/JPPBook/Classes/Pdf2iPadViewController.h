@@ -91,6 +91,9 @@
 	//NSMutableArray* tocDefine;
 	NSMutableArray* popoverImageDefine;
 	
+	// Movie
+	MPMoviePlayerController *mplayer;
+	
 	// Menu
 	MenuViewController* menuViewController;
 	bool isShownMenuBar;
@@ -226,4 +229,7 @@
 - (BOOL)parseMovieDefine;	// Parse Movie define in CSV.
 - (void)renderMovieLinkAtIndex:(NSUInteger)index;
 - (void)showMoviePlayer:(NSString*)filename;
+- (void)showMoviePlayer:(NSString*)filename WithFrame:(CGRect)frame;
+//
+- (void)myMovieFinishedCallback:(id)sender;
 @end

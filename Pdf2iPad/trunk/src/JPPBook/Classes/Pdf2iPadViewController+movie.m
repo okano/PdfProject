@@ -141,4 +141,61 @@
 	}
 }
 
+- (void)showMoviePlayer:(NSString*)filename WithFrame:(CGRect)frame
+{
+	LOG_CURRENT_METHOD;
+	NSLog(@"filename=%@", filename);
+	
+	NSString* path = [[NSBundle mainBundle] pathForResource:filename ofType:nil];
+	if (!path) {
+		NSLog(@"illigal filename. filename=%@, bundle_resourceURL=%@", 
+			  [filename stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+			  [[NSBundle mainBundle] resourceURL]);
+		NSLog(@"f = %@ %@", [filename stringByDeletingPathExtension], [filename pathExtension]);
+		return;
+	}
+	//NSURL* url;
+	
+	
+    mplayer = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL fileURLWithPath:path]];
+    mplayer.scalingMode = MPMovieScalingModeNone;
+	
+    if([mplayer respondsToSelector:@selector(view)])
+    {
+		mplayer.repeatMode = NO;
+		mplayer.endPlaybackTime = 0.0;
+        mplayer.controlStyle = MPMovieControlStyleEmbedded;
+		CGRect newFrame = CGRectMake((frame.origin.x * pdfScale),
+									 (frame.origin.y * pdfScale),
+									 frame.size.width * pdfScale,
+									 frame.size.height * pdfScale);
+		[mplayer.view setFrame:frame];
+		//CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI * 90 / 180.0f);
+        //[player.view setTransform:transform];
+        mplayer.view.backgroundColor = [UIColor blackColor];
+        [currentPdfScrollView addScalableSubview:mplayer.view withNormalizedFrame:newFrame];
+        [mplayer prepareToPlay];
+        [mplayer play];
+    }
+    else
+    {
+		mplayer.controlStyle = MPMovieControlStyleEmbedded;
+		mplayer.backgroundView.backgroundColor = [UIColor clearColor];
+    }
+    [[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(myMovieFinishedCallback:)
+												 name:MPMoviePlayerPlaybackDidFinishNotification
+											   object:mplayer];
+}
+- (void)myMovieFinishedCallback:(id)sender
+{
+	LOG_CURRENT_METHOD;
+	[currentPdfScrollView cleanupSubviews];
+	[self renderAllLinks];
+	
+	if (mplayer != nil) {
+		[mplayer release];
+		mplayer = nil;
+	}
+}
 @end

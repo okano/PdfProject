@@ -773,6 +773,11 @@
 		[nextPdfScrollView setupWithPageNum:currentPageNum + 1];
 	}
 	
+	//Stop movie.
+	if (mplayer != nil) {
+		[mplayer stop];
+	}
+	
 	//
 	//[self getPdfDictionaryWithPageNum:currentPageNum];
 	[self renderAllLinks];
@@ -866,6 +871,11 @@
 		[prevPdfScrollView setupWithPageNum:currentPageNum - 1];
 	}
 	
+	//Stop movie.
+	if (mplayer != nil) {
+		[mplayer stop];
+	}
+	
 	//NSLog(@"(new)currentPdfScrollView subviews = %d", [currentPdfScrollView.subviews count]);
 	//
 	[self renderAllLinks];
@@ -919,6 +929,10 @@
 	[animation1 setValue:MY_ANIMATION_KIND_FADE forKey:MY_ANIMATION_KIND];
 	[[self.view layer] addAnimation:animation1 forKey:@"animation_to_SpecifyPage"];
 	
+	//Stop movie.
+	if (mplayer != nil) {
+		[mplayer stop];
+	}
 	
 	// Move CurrentImageView to Front.
 	[self.view bringSubviewToFront:currentPdfScrollView];
@@ -1019,7 +1033,7 @@
 				//NSLog(@"movie link touched. filename=%@", filename);
 				
 				//no-continue.
-				[self showMoviePlayer:filename];
+				[self showMoviePlayer:filename WithFrame:rect];
 				return;
 			}
 		}
