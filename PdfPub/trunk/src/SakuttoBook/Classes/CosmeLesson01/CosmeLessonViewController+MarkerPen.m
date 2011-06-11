@@ -273,16 +273,44 @@
 #pragma mark - show/hide Color and Width Selector.
 - (void)showColorAndSizeSelector
 {
+	//Generate view for add.
+	if (colorSelectorView == nil) {
+		colorSelectorView = [[UIView alloc] initWithFrame:self.view.frame];
+	}
+	if (colorSelectorToolbar == nil) {
+		colorSelectorToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44.0f)];
+		//NSLog(@"colorSelectorToolbar frame=%@", NSStringFromCGRect(colorSelectorToolbar.frame));
+		UIBarItem* cancelButton;
+		cancelButton = [[UIBarButtonItem alloc]
+						initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+						target:self
+						action:@selector(hideColorAndSizeSelector)];
+		NSArray* items = [NSArray arrayWithObjects:cancelButton, nil];
+		[colorSelectorToolbar setItems:items];
+	}
+	[colorSelectorView addSubview:colorSelectorToolbar];
+	
+	//Generate TableView.
 	if (colorSelectorTVC == nil) {
 		colorSelectorTVC = [[ColorSelectorTableViewController alloc] init];
 		[colorSelectorTVC.tableView setDataSource:colorWidthInfoDS];
 	}
 	colorSelectorTVC.parentViewController = self;
-	[self.view addSubview:colorSelectorTVC.view];
+	
+	CGRect frame = CGRectMake(0,
+							  colorSelectorToolbar.frame.size.height,
+							  self.view.frame.size.width,
+							  self.view.frame.size.height - colorSelectorToolbar.frame.size.height);
+	//NSLog(@"colorSelectorTVC.view.frame = %@", NSStringFromCGRect(frame));
+	colorSelectorTVC.view.frame = frame;
+	[colorSelectorView addSubview:colorSelectorTVC.view];
+	
+	//Show view.
+	[self.view addSubview:colorSelectorView];
 }
 - (void)hideColorAndSizeSelector
 {
-	[colorSelectorTVC.view removeFromSuperview];
+	[colorSelectorView removeFromSuperview];
 }
 #pragma mark - Color and Width.
 - (void)setLineColorAndWidthWithIndex:(NSInteger)index

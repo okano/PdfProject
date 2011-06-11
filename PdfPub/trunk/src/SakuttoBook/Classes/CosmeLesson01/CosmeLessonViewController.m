@@ -20,6 +20,11 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+		menuBarForMakerPen = nil;
+		//
+		colorSelectorTVC = nil;
+		colorSelectorView = nil;
+		colorSelectorToolbar = nil;
     }
     return self;
 }

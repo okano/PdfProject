@@ -34,7 +34,10 @@
     CGPoint prevTouchPointForMakerPen;
 	//menuBar.
     UIToolbar* menuBarForMakerPen;
+	
 	//Color and Width selector.
+	UIView* colorSelectorView;
+	UIToolbar* colorSelectorToolbar;
 	ColorSelectorTableViewController* colorSelectorTVC;
 	ColorWidthInfoDS* colorWidthInfoDS;
 	
