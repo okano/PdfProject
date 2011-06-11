@@ -175,10 +175,6 @@
 
 // Treat URL link.
 - (void) renderPageLinkAtIndex:(NSUInteger)index;
-// Treat Movie.
-- (BOOL)parseMovieDefine;	// Parse Movie define in CSV.
-- (void)renderMovieLinkAtIndex:(NSUInteger)index;
-- (void)showMoviePlayer:(NSString*)filename;
 // Treat PageJumpLink.
 - (BOOL)parsePageJumpLinkDefine;	// Parse PageJumpLink define in CSV.
 - (void)renderPageJumpLinkAtIndex:(NSUInteger)index;
@@ -225,3 +221,9 @@
 
 @end
 
+// Treat Movie.
+@interface Pdf2iPadViewController (movie)
+- (BOOL)parseMovieDefine;	// Parse Movie define in CSV.
+- (void)renderMovieLinkAtIndex:(NSUInteger)index;
+- (void)showMoviePlayer:(NSString*)filename;
+@end
