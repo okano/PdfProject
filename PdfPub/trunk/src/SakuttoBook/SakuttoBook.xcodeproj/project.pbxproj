@@ -29,6 +29,7 @@
 		2912656912D46BEE00704565 /* list_thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2912656812D46BEE00704565 /* list_thumbnail.png */; };
 		291593141394B54700387697 /* ContentPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 291593131394B54700387697 /* ContentPlayerViewController.m */; };
 		291EDE0413124E2C00DBD3E5 /* ImageGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 291EDE0313124E2C00DBD3E5 /* ImageGenerator.m */; };
+		2925997C13A34DD30093B0FA /* icon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 2925997B13A34DD30093B0FA /* icon-57.png */; };
 		2933410312D594AA00BFBC23 /* BookmarkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2933410212D594AA00BFBC23 /* BookmarkView.xib */; };
 		2935764212B5EA9C00F46754 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2935764112B5EA9C00F46754 /* MenuViewController.m */; };
 		2935764412B5EAAD00F46754 /* MenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2935764312B5EAAD00F46754 /* MenuView.xib */; };
@@ -75,6 +76,7 @@
 		29A849CD139F1CC100508236 /* MarkerPenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A849CB139F1CC100508236 /* MarkerPenView.m */; };
 		29B3B7C812C57DE00014F866 /* MyPdfScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B3B7C712C57DE00014F866 /* MyPdfScrollView.m */; };
 		29B3B90C12C58C820014F866 /* ThumbnailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B3B90B12C58C820014F866 /* ThumbnailViewController.m */; };
+		29C944C613A34E9400AC18C6 /* icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 29C944C513A34E9400AC18C6 /* icon-72.png */; };
 		29E1089A12D46D4700FC5210 /* BookmarkModifyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29E1089912D46D4700FC5210 /* BookmarkModifyView.xib */; };
 		29E108A912D46ECF00FC5210 /* BookmarkModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E108A812D46ECF00FC5210 /* BookmarkModifyViewController.m */; };
 		29F003FA1353CC5500D0D74D /* pageJumpLinkDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29F003F91353CC5500D0D74D /* pageJumpLinkDefine.csv */; };
@@ -203,6 +205,7 @@
 		291593131394B54700387697 /* ContentPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentPlayerViewController.m; sourceTree = "<group>"; };
 		291EDE0213124E2C00DBD3E5 /* ImageGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGenerator.h; sourceTree = "<group>"; };
 		291EDE0313124E2C00DBD3E5 /* ImageGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGenerator.m; sourceTree = "<group>"; };
+		2925997B13A34DD30093B0FA /* icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-57.png"; sourceTree = "<group>"; };
 		2933410212D594AA00BFBC23 /* BookmarkView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookmarkView.xib; sourceTree = "<group>"; };
 		2935764012B5EA9C00F46754 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		2935764112B5EA9C00F46754 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
@@ -268,6 +271,7 @@
 		29B3B90A12C58C820014F866 /* ThumbnailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumbnailViewController.h; sourceTree = "<group>"; };
 		29B3B90B12C58C820014F866 /* ThumbnailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumbnailViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29C944C513A34E9400AC18C6 /* icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72.png"; sourceTree = "<group>"; };
 		29E1089912D46D4700FC5210 /* BookmarkModifyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookmarkModifyView.xib; sourceTree = "<group>"; };
 		29E108A712D46ECF00FC5210 /* BookmarkModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkModifyViewController.h; sourceTree = "<group>"; };
 		29E108A812D46ECF00FC5210 /* BookmarkModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkModifyViewController.m; sourceTree = "<group>"; };
@@ -563,6 +567,8 @@
 				2994490212B737C600E7D108 /* movie */,
 				2921370D12C604B800FC071D /* image */,
 				2999FA9412B7BDE5002ACB2B /* icon.png */,
+				2925997B13A34DD30093B0FA /* icon-57.png */,
+				29C944C513A34E9400AC18C6 /* icon-72.png */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				2899E5210DE3E06400AC0155 /* SakuttoBookViewController.xib */,
 				2962C40B1394B9EC002E57F9 /* ContentPlayerView.xib */,
@@ -1009,6 +1015,8 @@
 				2970CC20139F57EE002DB39D /* Gorgeous4.mp4 in Resources */,
 				2970CC21139F57EE002DB39D /* Gorgeous5.mp4 in Resources */,
 				2970CC22139F57EE002DB39D /* Gorgeous6.mp4 in Resources */,
+				2925997C13A34DD30093B0FA /* icon-57.png in Resources */,
+				29C944C613A34E9400AC18C6 /* icon-72.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
