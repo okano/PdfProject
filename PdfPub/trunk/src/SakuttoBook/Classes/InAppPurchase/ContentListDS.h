@@ -19,6 +19,9 @@
 - (uint)count;
 - (ContentId)contentIdAtIndex:(NSInteger)index;
 - (ContentId)contentIdFromProductId:(NSString*)productId;
+- (NSString*)productIdFromContentId:(ContentId)cid;
+
+- (void)setupData;
 
 - (NSString*)titleAtIndex:(NSInteger)index;
 - (NSString*)titleByContentId:(ContentId)cid;
