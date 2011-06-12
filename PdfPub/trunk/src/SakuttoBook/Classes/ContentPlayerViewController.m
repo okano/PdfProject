@@ -2225,15 +2225,58 @@
 #pragma mark Latest Read Page.
 - (void)setLatestReadPage:(int)pageNum {
 	NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
-	[userDefault setInteger:pageNum forKey:USERDEFAULT_LATEST_READ_PAGE];
+	if ([self isMultiContents] == TRUE) {
+		//Multi Contents.
+		NSMutableArray* allLatestReadPageInfo = [userDefault valueForKey:USERDEFAULT_LATEST_READ_PAGE_MULTICONTENT];
+		if (! allLatestReadPageInfo) {
+			//Not exist any read page info. Generate it.
+			NSMutableDictionary* tmpDict = [[NSMutableDictionary alloc] init];
+			[tmpDict setValue:[NSNumber numberWithInt:currentContentId] forKey:CONTENT_CID];
+			[tmpDict setValue:[NSNumber numberWithInt:currentPageNum] forKey:USERDEFAULT_LATEST_READ_PAGE];
+			NSArray* tmpArray = [[NSArray alloc] initWithObjects:tmpDict, nil];
+			[userDefault setValue:tmpArray forKey:USERDEFAULT_LATEST_READ_PAGE_MULTICONTENT];
+		} else {
+			NSMutableDictionary* newReadPageInfo = [[NSMutableDictionary alloc] init];
+			[newReadPageInfo setValue:[NSNumber numberWithInt:currentContentId] forKey:CONTENT_CID];
+			[newReadPageInfo setValue:[NSNumber numberWithInt:currentPageNum] forKey:USERDEFAULT_LATEST_READ_PAGE];
+			
+			for (NSDictionary* readPageInfo in allLatestReadPageInfo) {
+				if (currentContentId == [[readPageInfo valueForKey:CONTENT_CID] intValue]) {
+					//Exist read page info for current content.
+					//remove it before add.
+					[allLatestReadPageInfo removeObject:readPageInfo];
+					break;
+				}
+			}
+			//add it.
+			[allLatestReadPageInfo addObject:newReadPageInfo];
+			//Store to UserDefault.
+			[userDefault setObject:allLatestReadPageInfo forKey:USERDEFAULT_LATEST_READ_PAGE_MULTICONTENT];
+		}
+	} else {
+		//Single Content.
+		[userDefault setInteger:pageNum forKey:USERDEFAULT_LATEST_READ_PAGE];
+	}
 	[userDefault synchronize];
 }
 - (int)getLatestReadPage {
 	NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
 	id obj;
-	
-
-	obj = [settings valueForKey:USERDEFAULT_LATEST_READ_PAGE];
+	if ([self isMultiContents] == TRUE) {
+		//Multi Contents.
+		NSArray* tmpArray = [settings valueForKey:USERDEFAULT_LATEST_READ_PAGE_MULTICONTENT];
+		if (! tmpArray) {
+			return -1;
+		}
+		for (NSDictionary* bookmarkInfo in tmpArray) {
+			if (currentContentId == [[bookmarkInfo valueForKey:CONTENT_CID] intValue]) {
+				obj = [bookmarkInfo valueForKey:USERDEFAULT_LATEST_READ_PAGE];
+			}
+		}
+	} else {
+		//Single Content.
+		obj = [settings valueForKey:USERDEFAULT_LATEST_READ_PAGE];
+	}
 	if (obj) {
 		return [obj intValue];
 	} else {

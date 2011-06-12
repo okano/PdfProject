@@ -100,6 +100,7 @@
 #define BOOKMARK_PAGE_MEMO		@"Bookmark_PageMemo"
 
 // for latest read page.
+#define USERDEFAULT_LATEST_READ_PAGE_MULTICONTENT @"Latest_Read_Page_MultiContent"
 #define USERDEFAULT_LATEST_READ_PAGE @"Latest_Read_Page"
 
 // for Information view.
