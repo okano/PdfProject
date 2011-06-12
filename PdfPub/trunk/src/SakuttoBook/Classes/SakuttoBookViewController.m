@@ -107,14 +107,10 @@
 #pragma mark -
 - (void)showContentPlayerView:(ContentId)cid
 {
-	[self showContentPlayerView];
-	/*
-	if (imagePlayerVC == nil) {
-		imagePlayerVC = [[ImagePlayerViewController alloc] initWithNibName:@"ImagePlayerView" bundle:[NSBundle mainBundle]];
+	if (contentPlayerViewController == nil) {
+		contentPlayerViewController = [[ContentPlayerViewController alloc] initWithNibName:@"ContentPlayerView" bundle:[NSBundle mainBundle] contentId:cid];
 	}
-	[self.view addSubview:imagePlayerVC.view];
-	[imagePlayerVC setImageWithContentId:cid];
-	*/
+	[self.view addSubview:contentPlayerViewController.view];
 }
 - (void)hideContentPlayerView
 {

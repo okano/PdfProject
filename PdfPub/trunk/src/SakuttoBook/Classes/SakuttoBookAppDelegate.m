@@ -153,6 +153,11 @@
 - (void)showInfoView {
 	[viewController.contentPlayerViewController showInfoView];
 }
+#pragma mark -
+- (ContentId)getCurrentContentIdInContentPlayer
+{
+	return viewController.contentPlayerViewController.currentContentId;
+}
 
 
 #pragma mark -

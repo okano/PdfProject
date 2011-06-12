@@ -74,6 +74,8 @@
 - (NSMutableArray*)getTocDefine;
 - (void)showWebView:(NSString*)urlString;
 - (void)showInfoView;
+//
+- (ContentId)getCurrentContentIdInContentPlayer;
 @end
 
 @interface SakuttoBookAppDelegate (InAppPurchase)

@@ -22,6 +22,7 @@
 
 + (NSString*)getPageFilenameFull:(int)pageNum WithContentId:(ContentId)cid {
 	LOG_CURRENT_METHOD;
+	NSLog(@"pageNum=%d, ContentId=%d", pageNum, cid);
 	NSString* filename = [NSString stringWithFormat:@"%@%d", PAGE_FILE_PREFIX, pageNum];
 	NSString* targetFilenameFull = [[[[NSHomeDirectory() stringByAppendingPathComponent:@"tmp"]
 									  stringByAppendingPathComponent:[NSString stringWithFormat:@"%d",cid]]

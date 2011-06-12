@@ -16,6 +16,7 @@
 @synthesize pdfURL;
 //@synthesize imageView1, imageView2, imageView3;
 //@synthesize image1, image2, image3;
+@synthesize currentContentId;
 @synthesize menuViewController, webViewController, tocViewController, thumbnailViewController, bookmarkViewController;
 @synthesize isShownMenuBar, isShownTocView, isShownThumbnailView, isShownBookmarkView;
 //@synthesize currentImageView;
@@ -39,8 +40,16 @@
 
 
 #pragma mark -
+- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle contentId:(ContentId)cid
+{
+	LOG_CURRENT_METHOD;
+	currentContentId = cid;
+	[self initWithNibName:nibName bundle:nibBundle];
+}
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+	LOG_CURRENT_METHOD;
     [super viewDidLoad];
 	self.title = @"PDF";
 	
@@ -120,7 +129,7 @@
 	 */
 	
 	//
-	currentContentId = [self getCurrentContentIdFromUserDefault];
+	//currentContentId = [self getCurrentContentIdFromUserDefault];
 	
 	//Setup maxPageNum.
 	if ([self setupPdfBasicInfo:currentContentId] == FALSE) {

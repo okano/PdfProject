@@ -113,6 +113,8 @@
 //
 @property (nonatomic, retain) NSURL* pdfURL;
 
+@property (nonatomic) ContentId currentContentId;
+
 //@property (nonatomic, retain) UIImageView* imageView1;
 //@property (nonatomic, retain) UIImageView* imageView2;
 //@property (nonatomic, retain) UIImageView* imageView3;
@@ -137,8 +139,9 @@
 /**
  *Functions.
  */
+- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle contentId:(ContentId)cid;
 // Treat PDF.
-- (ContentId)getCurrentContentIdFromUserDefault;
+- (ContentId)getCurrentContentIdFromAppDelegate;
 - (BOOL)setupPdfBasicInfo:(ContentId)cid;
 // Handle PDF infomation.
 - (BOOL)isVerticalWriting;
