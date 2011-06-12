@@ -301,6 +301,15 @@
 #endif
 }
 
+- (BOOL)isMultiContents
+{
+#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+	return YES;	//True, multi contents.
+#else
+	return NO;	//False, single content.
+#endif	
+}
+
 
 #pragma mark -
 #pragma mark draw pdf to screen.
@@ -2221,7 +2230,10 @@
 }
 - (int)getLatestReadPage {
 	NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
-	id obj = [settings valueForKey:USERDEFAULT_LATEST_READ_PAGE];
+	id obj;
+	
+
+	obj = [settings valueForKey:USERDEFAULT_LATEST_READ_PAGE];
 	if (obj) {
 		return [obj intValue];
 	} else {

@@ -142,6 +142,7 @@
 // Handle PDF infomation.
 - (BOOL)isVerticalWriting;
 - (BOOL)isTransitionWithCurl;
+- (BOOL)isMultiContents;
 //- (void)getPdfDictionaryWithPageNum:(NSUInteger)pageNum;
 
 // Draw PDF.
