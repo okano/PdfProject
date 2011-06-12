@@ -10,7 +10,7 @@
 
 
 @implementation ImageGenerator
-
+@synthesize currentContentId;
 
 - (void)generateImageWithPageNum:(NSUInteger)pageNum
 							 fromUrl:(NSURL*)pdfURL
@@ -139,7 +139,14 @@
 	
 	
 	//Save to file.
-	NSString* targetFilenameFull = [self getPageFilenameFull:pageNum];
+#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+	NSString* targetFilenameFull = [FileUtility getPageFilenameFull:pageNum WithContentId:currentContentId];
+#else
+	NSString* targetFilenameFull = [FileUtility getPageFilenameFull:pageNum];
+#endif
+	//Generate directory.
+	[FileUtility makeDir:[targetFilenameFull stringByDeletingLastPathComponent]];
+	//Write.
 	NSData *data = UIImagePNGRepresentation(pdfImage);
 	NSError* error = nil;
 	[data writeToFile:targetFilenameFull options:NSDataWritingAtomic error:&error];
@@ -170,7 +177,7 @@
 	return;
 }
 
-
+/*
 #pragma mark -
 - (NSString*)getPageFilenameFull:(int)pageNum {
 	NSString* filename = [NSString stringWithFormat:@"%@%d", PAGE_FILE_PREFIX, pageNum];
@@ -180,5 +187,17 @@
 	return targetFilenameFull;
 }
 
+- (NSString*)getPageFilenameFull:(int)pageNum WithContentId:(ContentId)cid {
+	LOG_CURRENT_METHOD;
+	NSString* filename = [NSString stringWithFormat:@"%@%d", PAGE_FILE_PREFIX, pageNum];
+	NSString* targetFilenameFull = [[[[NSHomeDirectory() stringByAppendingPathComponent:@"tmp"]
+									  stringByAppendingPathComponent:[NSString stringWithFormat:@"%d",cid]]
+									 stringByAppendingPathComponent:filename]
+									stringByAppendingPathExtension:PAGE_FILE_EXTENSION];
+	NSLog(@"filename=%@", filename);
+	NSLog(@"targetFilenameFull=%@", targetFilenameFull);
+	return targetFilenameFull;
+}
+*/
 
 @end

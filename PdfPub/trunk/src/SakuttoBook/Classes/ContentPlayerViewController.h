@@ -11,6 +11,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "SKBE_MainVC.h"
 #import "Utility.h"
+#import "FileUtility.h"
 #import "Define.h"
 #import "MenuViewController.h"
 #import "WebViewController.h"
@@ -147,9 +148,13 @@
 
 // Draw PDF.
 - (NSString*)getPageFilenameFull:(int)pageNum;
+- (NSString*)getPageFilenameFull:(int)pageNum WithContentId:(ContentId)cid;
 - (NSString*)getThumbnailFilenameFull:(int)pageNum;
+- (NSString*)getThumbnailFilenameFull:(int)pageNum WithContentId:(ContentId)cid;
 //
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum;
+- (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum WithContentId:(ContentId)cid;
+- (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum WithTargetFilenameFull:(NSString*)filename;
 - (void)generateThumbnailImageFromImage:(UIImage*)baseImage width:(CGFloat)newWidth pageNumForSave:(NSUInteger)pageNum;
 - (void)removeAllImageCache;
 //

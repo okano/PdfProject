@@ -213,8 +213,10 @@
 {
 	//LOG_CURRENT_METHOD;
 	//NSLog(@"cid=%d", cid);
-	if (cid == 1) {
-		return PAYMENT_STATUS_NOT_PAYED;
+	if (cid == 0) {
+		return PAYMENT_STATUS_PAYED;
+	} else 	if (cid == 1) {
+		return PAYMENT_STATUS_PAYED;
 	} else 	if (cid == 2) {
 		return PAYMENT_STATUS_NOT_PAYED;
 	} else 	if (cid == 3) {

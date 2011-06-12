@@ -54,6 +54,7 @@
 //
 - (NSString*)getThumbnailFilenameFull:(int)pageNum;
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum;
+- (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum WithContentId:(ContentId)cid;
 //
 - (void)switchToPage:(int)newPageNum;
 //
