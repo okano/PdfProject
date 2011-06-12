@@ -30,6 +30,5 @@
 //- (void)disableContent:(ContentId)cid;
 
 - (void)buyContent:(NSString*)productId;
-- (void)showImagePlayer:(ContentId)cid;
 
 @end

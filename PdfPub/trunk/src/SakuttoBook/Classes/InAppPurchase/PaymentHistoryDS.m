@@ -174,7 +174,4 @@
 }
 //- (void)disableContent:(ContentId)cid{;}
 
-#pragma mark - switch to other view.
-- (void)showImagePlayer:(ContentId)cid{;}
-
 @end
