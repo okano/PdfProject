@@ -220,6 +220,11 @@
 {
 	//Setup PDF filename.(chached in this class)
 	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:@"pdfDefine" ofType:@"csv"];
+	if (csvFilePath == nil) {
+		LOG_CURRENT_METHOD;
+		NSLog(@"csvfile not found.");
+		return FALSE;
+	}
 	NSError* error;
 	NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
 	NSString* text2 = [text stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];
