@@ -81,7 +81,7 @@
 }
 
 #pragma mark - show other view.
-- (void)showImagePlayer:(ContentId)cid
+- (void)showContentPlayer:(ContentId)cid
 {
 	LOG_CURRENT_METHOD;
 	[appDelegate hideContentListView];
@@ -196,7 +196,7 @@
 	NSUInteger paymentStatus = [appDelegate.contentListDS checkPaymentStatusByContentId:targetCid];
 	
 	if (paymentStatus == PAYMENT_STATUS_PAYED) {
-		[self showImagePlayer:targetCid];
+		[self showContentPlayer:targetCid];
 	} else {
 		[self showContentDetailView:targetCid];
 	}

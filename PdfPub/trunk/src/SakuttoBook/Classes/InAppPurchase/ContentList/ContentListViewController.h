@@ -18,7 +18,7 @@
 	SakuttoBookAppDelegate* appDelegate;
 }
 
-- (void)showImagePlayer:(ContentId)cid;
+- (void)showContentPlayer:(ContentId)cid;
 - (void)showContentDetailView:(ContentId)cid;
 
 @end
