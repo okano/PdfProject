@@ -21,6 +21,9 @@
 //Page Transition Enable/Disable with tap left&right side.
 #define ENABLED_TRANSITION 1	/* 0:transition disable, 1:enable(normal) */
 
+//Use Multi contents.
+#define IS_MULTI_CONTENTS	1	/* 0:single content, 1:multi contents */
+
 // Tap area.
 #define TAP_AREA_LEFT_X			  0.0f
 #define TAP_AREA_LEFT_Y			 75.0f
