@@ -1372,6 +1372,11 @@
 	
 	//parse csv file.
 	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:@"movieDefine" ofType:@"csv"];
+	if (csvFilePath == nil) {
+		LOG_CURRENT_METHOD;
+		NSLog(@"csvfile not found.");
+		return FALSE;
+	}
 	NSError* error;
 	NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
 	NSString* text2 = [text stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];
@@ -1485,6 +1490,11 @@
 	
 	//parse csv file.
 	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:@"pageJumpLinkDefine" ofType:@"csv"];
+	if (csvFilePath == nil) {
+		LOG_CURRENT_METHOD;
+		NSLog(@"csvfile not found.");
+		return FALSE;
+	}
 	NSError* error;
 	NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
 	NSString* text2 = [text stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];
@@ -1596,6 +1606,11 @@
 	
 	//parse csv file.
 	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:@"inPageScrollViewDefine" ofType:@"csv"];
+	if (csvFilePath == nil) {
+		LOG_CURRENT_METHOD;
+		NSLog(@"csvfile not found.");
+		return FALSE;
+	}
 	NSError* error;
 	NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
 	NSString* text2 = [text stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];
@@ -1719,6 +1734,11 @@
 	
 	//parse csv file.
 	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:@"popoverScrollImageDefine" ofType:@"csv"];
+	if (csvFilePath == nil) {
+		LOG_CURRENT_METHOD;
+		NSLog(@"csvfile not found.");
+		return FALSE;
+	}
 	NSError* error;
 	NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
 	NSString* text2 = [text stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];
@@ -1841,6 +1861,11 @@
 	
 	//parse csv file.
 	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:@"tocDefine" ofType:@"csv"];
+	if (csvFilePath == nil) {
+		LOG_CURRENT_METHOD;
+		NSLog(@"csvfile not found.");
+		return FALSE;
+	}
 	NSError* error;
 	NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
 	NSString* text2 = [text stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];
