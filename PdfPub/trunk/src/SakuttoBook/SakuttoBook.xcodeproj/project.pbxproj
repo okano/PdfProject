@@ -54,6 +54,9 @@
 		29B16E0B1398779600B4D958 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B16E0A1398779600B4D958 /* StoreKit.framework */; };
 		29B3B7C812C57DE00014F866 /* MyPdfScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B3B7C712C57DE00014F866 /* MyPdfScrollView.m */; };
 		29B3B90C12C58C820014F866 /* ThumbnailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B3B90B12C58C820014F866 /* ThumbnailViewController.m */; };
+		29BD25FC13A4963A0029E2B4 /* document-1.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 29BD25F913A4963A0029E2B4 /* document-1.pdf */; };
+		29BD25FD13A4963A0029E2B4 /* document-2.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 29BD25FA13A4963A0029E2B4 /* document-2.pdf */; };
+		29BD25FE13A4963A0029E2B4 /* document-3.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 29BD25FB13A4963A0029E2B4 /* document-3.pdf */; };
 		29E1089A12D46D4700FC5210 /* BookmarkModifyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29E1089912D46D4700FC5210 /* BookmarkModifyView.xib */; };
 		29E108A912D46ECF00FC5210 /* BookmarkModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E108A812D46ECF00FC5210 /* BookmarkModifyViewController.m */; };
 		29F003FA1353CC5500D0D74D /* pageJumpLinkDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29F003F91353CC5500D0D74D /* pageJumpLinkDefine.csv */; };
@@ -132,6 +135,9 @@
 		29B3B90A12C58C820014F866 /* ThumbnailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumbnailViewController.h; sourceTree = "<group>"; };
 		29B3B90B12C58C820014F866 /* ThumbnailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumbnailViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29BD25F913A4963A0029E2B4 /* document-1.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "document-1.pdf"; sourceTree = "<group>"; };
+		29BD25FA13A4963A0029E2B4 /* document-2.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "document-2.pdf"; sourceTree = "<group>"; };
+		29BD25FB13A4963A0029E2B4 /* document-3.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "document-3.pdf"; sourceTree = "<group>"; };
 		29E1089912D46D4700FC5210 /* BookmarkModifyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookmarkModifyView.xib; sourceTree = "<group>"; };
 		29E108A712D46ECF00FC5210 /* BookmarkModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkModifyViewController.h; sourceTree = "<group>"; };
 		29E108A812D46ECF00FC5210 /* BookmarkModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkModifyViewController.m; sourceTree = "<group>"; };
@@ -229,6 +235,9 @@
 			isa = PBXGroup;
 			children = (
 				29787BE012C5FBDC00EC2681 /* document.pdf */,
+				29BD25F913A4963A0029E2B4 /* document-1.pdf */,
+				29BD25FA13A4963A0029E2B4 /* document-2.pdf */,
+				29BD25FB13A4963A0029E2B4 /* document-3.pdf */,
 			);
 			path = pdf;
 			sourceTree = "<group>";
@@ -413,6 +422,9 @@
 				29F3391E1398894E0005CF10 /* folder20x20.png in Resources */,
 				29A2A5471398B87300C8CB52 /* productIdList.csv in Resources */,
 				29ACC34613A3AE7A00585A09 /* inPageScrollViewDefine.csv in Resources */,
+				29BD25FC13A4963A0029E2B4 /* document-1.pdf in Resources */,
+				29BD25FD13A4963A0029E2B4 /* document-2.pdf in Resources */,
+				29BD25FE13A4963A0029E2B4 /* document-3.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
