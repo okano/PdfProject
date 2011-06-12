@@ -116,6 +116,8 @@
 {
 	if (contentPlayerViewController != nil) {
 		[contentPlayerViewController.view removeFromSuperview];
+		[contentPlayerViewController release];
+		contentPlayerViewController = nil;
 	}
 }
 #pragma mark -
