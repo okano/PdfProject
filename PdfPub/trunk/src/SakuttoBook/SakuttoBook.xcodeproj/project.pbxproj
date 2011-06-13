@@ -31,6 +31,7 @@
 		293BB9F012B6217300DDA3E3 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 293BB9EF12B6217300DDA3E3 /* WebViewController.m */; };
 		293BB9F212B6218500DDA3E3 /* WebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 293BB9F112B6218500DDA3E3 /* WebView.xib */; };
 		29431E2212C5D29C00914DBD /* list_bullets.png in Resources */ = {isa = PBXBuildFile; fileRef = 29431E2112C5D29C00914DBD /* list_bullets.png */; };
+		2943E85713A662480034AC62 /* InAppPurchaseUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2943E85613A662480034AC62 /* InAppPurchaseUtility.m */; };
 		294E1F1E131E2A5B00E49BAF /* popoverScrollImageDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 294E1F1D131E2A5B00E49BAF /* popoverScrollImageDefine.csv */; };
 		294E1FC1131E313800E49BAF /* PopoverScrollImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 294E1FC0131E313800E49BAF /* PopoverScrollImageViewController.m */; };
 		2962C40C1394B9EC002E57F9 /* ContentPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2962C40B1394B9EC002E57F9 /* ContentPlayerView.xib */; };
@@ -101,6 +102,8 @@
 		293BB9EF12B6217300DDA3E3 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		293BB9F112B6218500DDA3E3 /* WebView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebView.xib; sourceTree = "<group>"; };
 		29431E2112C5D29C00914DBD /* list_bullets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = list_bullets.png; path = Classes/list_bullets.png; sourceTree = "<group>"; };
+		2943E85513A662480034AC62 /* InAppPurchaseUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InAppPurchaseUtility.h; path = InAppPurchase/InAppPurchaseUtility.h; sourceTree = "<group>"; };
+		2943E85613A662480034AC62 /* InAppPurchaseUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InAppPurchaseUtility.m; path = InAppPurchase/InAppPurchaseUtility.m; sourceTree = "<group>"; };
 		294E1F1D131E2A5B00E49BAF /* popoverScrollImageDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = popoverScrollImageDefine.csv; path = csv/popoverScrollImageDefine.csv; sourceTree = "<group>"; };
 		294E1FBF131E313800E49BAF /* PopoverScrollImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverScrollImageViewController.h; sourceTree = "<group>"; };
 		294E1FC0131E313800E49BAF /* PopoverScrollImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverScrollImageViewController.m; sourceTree = "<group>"; };
@@ -209,7 +212,6 @@
 				2999FDC412D6A8D500D0F145 /* License.m */,
 				2963BE1D12B5C01E001041EB /* Utility.h */,
 				293988DD12B5E9DB008017BE /* Define.h */,
-				29B16E02139874F800B4D958 /* InAppPurchaseDefine.h */,
 				29BD260513A4A3AB0029E2B4 /* FileUtility.h */,
 				29BD260613A4A3AC0029E2B4 /* FileUtility.m */,
 			);
@@ -288,6 +290,9 @@
 				29B16E08139876E900B4D958 /* PaymentHistoryDS.m */,
 				29B16E04139876E200B4D958 /* ContentListDS.h */,
 				29B16E05139876E200B4D958 /* ContentListDS.m */,
+				29B16E02139874F800B4D958 /* InAppPurchaseDefine.h */,
+				2943E85513A662480034AC62 /* InAppPurchaseUtility.h */,
+				2943E85613A662480034AC62 /* InAppPurchaseUtility.m */,
 			);
 			name = InAppPurchase;
 			sourceTree = "<group>";
@@ -491,6 +496,7 @@
 				29B16E09139876E900B4D958 /* PaymentHistoryDS.m in Sources */,
 				2936659B13987BEF001028FE /* PaymentConductor.m in Sources */,
 				29BD260713A4A3AC0029E2B4 /* FileUtility.m in Sources */,
+				2943E85713A662480034AC62 /* InAppPurchaseUtility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

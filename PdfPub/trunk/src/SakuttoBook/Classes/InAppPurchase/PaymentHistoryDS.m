@@ -47,6 +47,7 @@
 	return;
 }
 
+/*
 #pragma mark - Get id from file.
 - (NSString*)getProductIdentifier:(ContentId)cid
 {
@@ -67,10 +68,14 @@
 	
 	NSArray* lines = [text componentsSeparatedByString:@"\n"];
 	if (cid < [lines count]) {
-		return [lines objectAtIndex:(cid-1)];
+		//return [lines objectAtIndex:(cid-1)];
+		NSString* singleLine = [lines objectAtIndex:(cid-1)];
+		NSArray* commaSeparated = [singleLine componentsSeparatedByString:@","];
+		return [commaSeparated objectAtIndex:0];
 	}
 	return @"";
 }
+*/
 
 /*
 #pragma mark - SKProductsRequestDelegate methods.
@@ -166,6 +171,12 @@
 #pragma mark - 
 - (BOOL)isEnabledContent:(ContentId)cid
 {
+	for (NSDictionary* tmpDict in paymentHistory) {
+		ContentId candidateContentId = [[tmpDict valueForKey:PURCHASE_CONTENT_ID] intValue];
+		if (candidateContentId == cid) {
+			return TRUE;
+		}
+	}
 	return FALSE;
 }
 - (void)buyContent:(NSString*)productId

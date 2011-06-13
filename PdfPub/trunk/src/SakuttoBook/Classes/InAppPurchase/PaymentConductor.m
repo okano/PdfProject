@@ -36,7 +36,7 @@
 	
 	//Make Payments.
 	NSLog(@"can make payments");
-	NSString* productId = [paymentHistoryDS getProductIdentifier:cid];
+	NSString* productId = [InAppPurchaseUtility getProductIdentifier:cid];
 	NSSet* productIdList =[NSSet setWithObject:productId];
 	SKProductsRequest* pRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:productIdList];
 	pRequest.delegate = self;

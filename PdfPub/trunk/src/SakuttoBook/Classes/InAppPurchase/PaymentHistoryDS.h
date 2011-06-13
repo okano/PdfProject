@@ -10,6 +10,7 @@
 #import <StoreKit/StoreKit.h>
 #import "Define.h"
 #import "InAppPurchaseDefine.h"
+#import "InAppPurchaseUtility.h"
 
 @interface PaymentHistoryDS : NSObject /* <SKProductsRequestDelegate, SKPaymentTransactionObserver> */ {
     NSMutableArray* paymentHistory;
@@ -22,7 +23,7 @@
 - (void)savePaymentHistory;
 - (void)loadPaymentHistory;
 //Get id from file.
-- (NSString*)getProductIdentifier:(ContentId)cid;
+//- (NSString*)getProductIdentifier:(ContentId)cid;
 //
 - (BOOL)isEnabledContent:(ContentId)cid;
 - (void)enableContent:(ContentId)cid;
