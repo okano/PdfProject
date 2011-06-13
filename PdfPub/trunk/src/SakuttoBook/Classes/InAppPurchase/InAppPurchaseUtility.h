@@ -16,5 +16,6 @@
 }
 //Get id from file.
 + (NSString*)getProductIdentifier:(ContentId)cid;
++ (NSArray*)getAllProductIdentifier;
 
 @end

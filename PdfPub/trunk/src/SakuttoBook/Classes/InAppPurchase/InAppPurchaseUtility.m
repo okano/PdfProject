@@ -13,7 +13,18 @@
 #pragma mark - Get id from file.
 + (NSString*)getProductIdentifier:(ContentId)cid
 {
-	
+	NSArray* lines = [self getAllProductIdentifier];
+	if (cid < [lines count]) {
+		//return [lines objectAtIndex:(cid-1)];
+		NSString* singleLine = [lines objectAtIndex:(cid-1)];
+		NSArray* commaSeparated = [singleLine componentsSeparatedByString:@","];
+		return [commaSeparated objectAtIndex:0];
+	}
+	return @"";
+}
+
++ (NSArray*)getAllProductIdentifier
+{
 	//parse csv file.
 	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:@"productIdList" ofType:@"csv"];
 	NSError* error = nil;
@@ -25,17 +36,11 @@
 		if ([error code] == NSFileReadInvalidFileNameError) {
 			NSLog(@"Read error because of an invalid file name. (file not exist?)");
 		}
-		return @"";
+		return nil;
 	}
 	
 	NSArray* lines = [text componentsSeparatedByString:@"\n"];
-	if (cid < [lines count]) {
-		//return [lines objectAtIndex:(cid-1)];
-		NSString* singleLine = [lines objectAtIndex:(cid-1)];
-		NSArray* commaSeparated = [singleLine componentsSeparatedByString:@","];
-		return [commaSeparated objectAtIndex:0];
-	}
-	return @"";
+	return lines;
 }
 
 @end
