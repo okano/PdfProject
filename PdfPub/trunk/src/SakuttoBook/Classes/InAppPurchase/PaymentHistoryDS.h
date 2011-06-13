@@ -22,8 +22,6 @@
 
 - (void)savePaymentHistory;
 - (void)loadPaymentHistory;
-//Get id from file.
-//- (NSString*)getProductIdentifier:(ContentId)cid;
 //
 - (BOOL)isEnabledContent:(ContentId)cid;
 - (void)enableContent:(ContentId)cid;
