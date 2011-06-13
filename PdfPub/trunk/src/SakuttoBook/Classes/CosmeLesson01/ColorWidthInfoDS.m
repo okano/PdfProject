@@ -68,7 +68,7 @@
 	
 	//kukkiri line seme make.(yellow)
 	tmpDict = [[NSMutableDictionary alloc] init];
-	[tmpDict setValue:@"（プロフィッツ）くっきりライン攻めメイク" forKey:MARKERPEN_NAME];
+	[tmpDict setValue:@"（プロフェッツ）プロパレットーＳ　イエロー" forKey:MARKERPEN_NAME];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(231.0/256.0)] forKey:MARKERPEN_COLOR_R];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(214.0/256.0)] forKey:MARKERPEN_COLOR_G];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(123.0/256.0)] forKey:MARKERPEN_COLOR_B];
@@ -78,7 +78,7 @@
 
 	//shadow make 1(purple)
 	tmpDict = [[NSMutableDictionary alloc] init];
-	[tmpDict setValue:@"（プロフィッツ）２色シャドーメイク（１色目）" forKey:MARKERPEN_NAME];
+	[tmpDict setValue:@"（プロフェッツ）プロパレットーＤＸ　パープル" forKey:MARKERPEN_NAME];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(189.0/256.0)] forKey:MARKERPEN_COLOR_R];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(107.0/256.0)] forKey:MARKERPEN_COLOR_G];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(231.0/256.0)] forKey:MARKERPEN_COLOR_B];
@@ -88,7 +88,7 @@
 	
 	//shadow make 2(blue-cyan)
 	tmpDict = [[NSMutableDictionary alloc] init];
-	[tmpDict setValue:@"（プロフィッツ）２色シャドーメイク（２色目）" forKey:MARKERPEN_NAME];
+	[tmpDict setValue:@"（プロフェッツ）プロパレットーＤＸ　ブルー" forKey:MARKERPEN_NAME];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(132.0/256.0)] forKey:MARKERPEN_COLOR_R];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(214.0/256.0)] forKey:MARKERPEN_COLOR_G];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(239.0/256.0)] forKey:MARKERPEN_COLOR_B];
@@ -98,7 +98,7 @@
 	
 	//rennai ryoku sokusin make.
 	tmpDict = [[NSMutableDictionary alloc] init];
-	[tmpDict setValue:@"（プロフィッツ）恋愛力促進メイク" forKey:MARKERPEN_NAME];
+	[tmpDict setValue:@"（プロフェッツ）プロパレットーＤＸ　オレンジ" forKey:MARKERPEN_NAME];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(255.0/256.0)] forKey:MARKERPEN_COLOR_R];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(140.0/256.0)] forKey:MARKERPEN_COLOR_G];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(132.0/256.0)] forKey:MARKERPEN_COLOR_B];
