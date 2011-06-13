@@ -17,5 +17,7 @@
 //Get id from file.
 + (NSString*)getProductIdentifier:(ContentId)cid;
 + (NSArray*)getAllProductIdentifier;
+//Judge free comtent.
++ (BOOL)isFreeContent:(NSString*)productId;
 
 @end

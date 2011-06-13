@@ -34,3 +34,5 @@
 #define PURCHASE_HISTORY_ARRAY	@"Purchase_History_Array"
 #define PURCHASE_CONTENT_ID		@"Purchase_ContentId"
 #define PURCHASE_DAYTIME		@"Purchase_DayTime"	/* time when call method. */
+#define PURCHASE_PRODUCT_ID		@"Purchase_ProductId"
+

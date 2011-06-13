@@ -43,4 +43,18 @@
 	return lines;
 }
 
++ (BOOL)isFreeContent:(NSString*)productId
+{
+	NSArray* lines = [self getAllProductIdentifier];
+	for (NSString* singleLine in lines) {
+		NSArray* commaSeparated = [singleLine componentsSeparatedByString:@","];
+		NSString* candidateProductId = [commaSeparated objectAtIndex:0];
+		if ([productId compare:candidateProductId] == NSOrderedSame) {
+			return TRUE;
+		}
+	}
+	return FALSE;
+}
+
+
 @end
