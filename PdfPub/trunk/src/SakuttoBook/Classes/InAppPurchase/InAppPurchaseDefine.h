@@ -15,7 +15,7 @@
 #define HISTORY_RECEPT_ID			@"ReceptId"
 
 //typedef	NSString*	ContentId;
-typedef	NSUInteger	ContentId;
+typedef	NSUInteger	ContentId;	/* 1-start. */
 #define InvalidContentId (-1)
 
 #define PAYMENT_STATUS_PAYED			(NSUInteger)1
