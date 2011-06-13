@@ -24,8 +24,28 @@
 }
 
 #pragma mark - save/load with file.
-- (void)savePaymentHistory{;}
-- (void)loadPaymentHistory{;}
+- (void)savePaymentHistory
+{
+	//Store bookmark infomation to UserDefault.
+	NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
+	[userDefault setObject:paymentHistory forKey:PURCHASE_HISTORY_ARRAY];
+	[userDefault synchronize];
+}
+- (void)loadPaymentHistory
+{
+	NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
+	id obj = [settings valueForKey:PURCHASE_HISTORY_ARRAY];
+	if (!obj) {		//no bookmark exists.
+		return;
+	}
+	if (![obj isKindOfClass:[NSArray class]]) {
+		NSLog(@"illigal bookmark infomation. class=%@", [obj class]);
+		return;
+	}
+	[self.paymentHistory removeAllObjects];
+	[self.paymentHistory addObjectsFromArray:obj];
+	return;
+}
 
 #pragma mark - Get id from file.
 - (NSString*)getProductIdentifier:(ContentId)cid
