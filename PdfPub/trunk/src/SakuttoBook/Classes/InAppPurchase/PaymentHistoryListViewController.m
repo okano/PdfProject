@@ -59,7 +59,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.	
-	return [appDelegate.paymentHistoryDS count];
+	return ([appDelegate.paymentHistoryDS count] + 1);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -71,7 +71,12 @@
     }
     
     // Configure the cell...
-	cell.textLabel.text = [appDelegate.paymentHistoryDS descriptionAtIndex:indexPath.row];
+	cell.userInteractionEnabled = NO;
+	if (indexPath.row < [appDelegate.paymentHistoryDS count]) {
+		cell.textLabel.text = [appDelegate.paymentHistoryDS descriptionAtIndex:indexPath.row];
+	} else {
+		cell.textLabel.text = [NSString stringWithFormat:@"Total %d record(s).", [appDelegate.paymentHistoryDS count]];
+	}
 	return cell;
 }
 
