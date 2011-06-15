@@ -11,15 +11,6 @@
 
 @implementation ContentListViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)dealloc
 {
     [super dealloc];
@@ -39,12 +30,38 @@
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
+	
+	//Setup TableView.
+	myTableView = [[UITableView alloc] initWithFrame:self.view.frame];
+	myTableView.delegate = self;
+	myTableView.dataSource = self;
+	[self.view addSubview:myTableView];
+	
+	//Setup Toolbar.
+	CGFloat toolBarHeight = 44.0f;
+	CGRect toolBarFrame = CGRectMake(0.0f,
+									 0.0f,
+									 self.view.frame.size.width,
+									 toolBarHeight);
+	UIToolbar* toolbar = [[UIToolbar alloc] initWithFrame:toolBarFrame];
+	UIBarButtonItem *paymentHistoryButton = [[UIBarButtonItem alloc] initWithTitle:@"Purchase History"
+																	   style:UIBarButtonItemStyleBordered
+																	  target:self
+																	  action:@selector(showPaymentHistoryList)];
+	NSArray *items = [NSArray arrayWithObjects:paymentHistoryButton, nil];
+	[toolbar setItems:items];
+	[self.view addSubview:toolbar];
+	
+	//Setup TableView size.
+	CGRect tableViewframe = myTableView.frame;
+	CGRect newTableViewframe = CGRectMake(tableViewframe.origin.x,
+										  tableViewframe.origin.y + toolBarHeight,
+										  tableViewframe.size.width, tableViewframe.size.height - toolBarHeight);
+	NSLog(@"tableViewframe=%@", NSStringFromCGRect(tableViewframe));
+	NSLog(@"newTableViewframe=%@", NSStringFromCGRect(newTableViewframe));
+	
+	myTableView.frame = newTableViewframe;
 }
 
 - (void)viewDidUnload
@@ -93,7 +110,12 @@
 	[appDelegate hideContentListView];
 	[appDelegate showContentDetailView:cid];
 }
-
+- (IBAction)showPaymentHistoryList
+{
+	LOG_CURRENT_METHOD;
+	PaymentHistoryListViewController* paymentHistoryListVC = [[PaymentHistoryListViewController alloc] init];
+	[self.view addSubview:paymentHistoryListVC.view];
+}
 
 #pragma mark - Table view data source
 

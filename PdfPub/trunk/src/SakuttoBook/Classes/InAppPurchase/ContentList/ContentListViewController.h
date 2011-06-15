@@ -14,12 +14,15 @@
 #import "InAppPurchaseDefine.h"
 @class SakuttoBookViewController;
 #import "ContentListCellController.h"
+#import "PaymentHistoryListViewController.h"
 
-@interface ContentListViewController : UITableViewController {
+@interface ContentListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+	UITableView* myTableView;
 	SakuttoBookAppDelegate* appDelegate;
 }
 
 - (void)showContentPlayer:(ContentId)cid;
 - (void)showContentDetailView:(ContentId)cid;
+- (IBAction)showPaymentHistoryList;
 
 @end

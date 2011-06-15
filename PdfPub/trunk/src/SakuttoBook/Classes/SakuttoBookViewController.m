@@ -94,7 +94,7 @@
 - (void)showContentListView
 {
 	if (contentListVC == nil) {
-		contentListVC = [[ContentListViewController alloc] initWithStyle:UITableViewStylePlain];
+		contentListVC = [[ContentListViewController alloc] init];
 	}
 	[self.view addSubview:contentListVC.view];
 }

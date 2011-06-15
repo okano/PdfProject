@@ -11,7 +11,10 @@
 #import "PaymentHistoryDS.h"
 
 @interface PaymentHistoryListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+	UITableView* myTableView;
 	SakuttoBookAppDelegate* appDelegate;
 }
+
+- (void)closeThisView;
 
 @end
