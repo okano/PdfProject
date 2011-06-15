@@ -142,6 +142,14 @@
 #pragma mark - 
 - (BOOL)isEnabledContent:(ContentId)cid
 {
+	//Check if Free Content.
+	NSString* pid = [InAppPurchaseUtility getProductIdentifier:cid];
+	if ([InAppPurchaseUtility isFreeContent:pid] == TRUE)
+	{
+		return TRUE;
+	}
+	
+	//Find from Payment History.
 	for (NSDictionary* tmpDict in paymentHistory) {
 		ContentId candidateContentId = [[tmpDict valueForKey:PURCHASE_CONTENT_ID] intValue];
 		if (candidateContentId == cid) {

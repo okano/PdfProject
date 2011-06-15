@@ -43,6 +43,7 @@
 	return lines;
 }
 
+//Check free contents for read without download.
 + (BOOL)isFreeContent:(NSString*)productId
 {
 	NSArray* lines = [self getAllProductIdentifier];
@@ -50,10 +51,15 @@
 		NSArray* commaSeparated = [singleLine componentsSeparatedByString:@","];
 		NSString* candidateProductId = [commaSeparated objectAtIndex:0];
 		if ([productId compare:candidateProductId] == NSOrderedSame) {
-			return TRUE;
+			if (1 <= [commaSeparated count] && 1 <= [[commaSeparated objectAtIndex:1] intValue]) {
+				return TRUE;	//Free
+			} else {
+				return FALSE;	//Not Free
+			}
+			break;
 		}
 	}
-	return FALSE;
+	return FALSE;	//Not Free
 }
 
 
