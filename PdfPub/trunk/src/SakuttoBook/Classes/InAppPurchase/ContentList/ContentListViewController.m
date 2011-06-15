@@ -112,12 +112,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
+	
+	static NSString *identifier = @"ContentListCell";
+	ContentListCell *cell = (ContentListCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
+	if (cell == nil) {
+		ContentListCellController *cellController = [[ContentListCellController alloc] initWithNibName:identifier bundle:nil];
+		cell = (ContentListCell*)cellController.view;
+		[cellController release];
+	}
     
     // Configure the cell...
 	ContentId targetCid = [appDelegate.contentListDS contentIdAtIndex:indexPath.row];
@@ -128,13 +130,34 @@
 	} else {
 		paymentStatStr = @"not_payed";
 	}
+	/*
 	cell.textLabel.text = [NSString stringWithFormat:@"stat=%d, %@, %@",
 						   [appDelegate.contentListDS checkPaymentStatusByContentId:targetCid],
 						   paymentStatStr,
 						   [appDelegate.contentListDS titleByContentId:targetCid]
 						   ];
+	*/
+	cell.titleLabel.text = [appDelegate.contentListDS titleByContentId:targetCid];
+	cell.authorLabel.text = [appDelegate.contentListDS authorByContentId:targetCid];
+	if ([appDelegate.contentListDS checkPaymentStatusByContentId:targetCid] == TRUE) {
+		cell.isDownloadedLabel.text = @"支払済";
+		cell.isDownloadedLabel.textColor = [UIColor blueColor];
+		cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+	} else {
+		cell.isDownloadedLabel.text = @"支払未";
+		cell.isDownloadedLabel.textColor = [UIColor orangeColor];
+		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	}
 	cell.imageView.image = [appDelegate.contentListDS contentIconByContentId:targetCid];
+	
+	
     return cell;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return 97.0;
 }
 
 /*

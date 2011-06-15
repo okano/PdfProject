@@ -13,6 +13,7 @@
 #import "SakuttoBookAppDelegate.h"
 #import "InAppPurchaseDefine.h"
 @class SakuttoBookViewController;
+#import "ContentListCellController.h"
 
 @interface ContentListViewController : UITableViewController {
 	SakuttoBookAppDelegate* appDelegate;

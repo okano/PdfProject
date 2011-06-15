@@ -19,6 +19,8 @@
 		29014A9D12D6EC9100936BF0 /* tocDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29014A9C12D6EC9100936BF0 /* tocDefine.csv */; };
 		29014A9F12D6EC9C00936BF0 /* movieDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29014A9E12D6EC9C00936BF0 /* movieDefine.csv */; };
 		29014AA112D6ECA700936BF0 /* bookDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29014AA012D6ECA700936BF0 /* bookDefine.csv */; };
+		290731E613A89BF000AE5B35 /* ContentListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 290731E513A89BF000AE5B35 /* ContentListCell.xib */; };
+		290731E913A89C0200AE5B35 /* ContentListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 290731E813A89C0200AE5B35 /* ContentListCell.m */; };
 		290BA0B012B5E0D1009C01C8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 290BA0AF12B5E0D1009C01C8 /* QuartzCore.framework */; };
 		290F035512D594D300666C6A /* BookmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 290F035412D594D300666C6A /* BookmarkViewController.m */; };
 		2912656912D46BEE00704565 /* list_thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2912656812D46BEE00704565 /* list_thumbnail.png */; };
@@ -27,6 +29,7 @@
 		2933410312D594AA00BFBC23 /* BookmarkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2933410212D594AA00BFBC23 /* BookmarkView.xib */; };
 		2935764212B5EA9C00F46754 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2935764112B5EA9C00F46754 /* MenuViewController.m */; };
 		2935764412B5EAAD00F46754 /* MenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2935764312B5EAAD00F46754 /* MenuView.xib */; };
+		2936624B13A894D60010A808 /* ContentListCellController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2936624A13A894D60010A808 /* ContentListCellController.m */; };
 		2936659B13987BEF001028FE /* PaymentConductor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2936659A13987BEF001028FE /* PaymentConductor.m */; };
 		293BB9F012B6217300DDA3E3 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 293BB9EF12B6217300DDA3E3 /* WebViewController.m */; };
 		293BB9F212B6218500DDA3E3 /* WebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 293BB9F112B6218500DDA3E3 /* WebView.xib */; };
@@ -86,6 +89,9 @@
 		29014A9C12D6EC9100936BF0 /* tocDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tocDefine.csv; path = csv/tocDefine.csv; sourceTree = "<group>"; };
 		29014A9E12D6EC9C00936BF0 /* movieDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = movieDefine.csv; path = csv/movieDefine.csv; sourceTree = "<group>"; };
 		29014AA012D6ECA700936BF0 /* bookDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bookDefine.csv; path = csv/bookDefine.csv; sourceTree = "<group>"; };
+		290731E513A89BF000AE5B35 /* ContentListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ContentListCell.xib; path = InAppPurchase/ContentList/ContentListCell.xib; sourceTree = "<group>"; };
+		290731E713A89C0200AE5B35 /* ContentListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentListCell.h; path = InAppPurchase/ContentList/ContentListCell.h; sourceTree = "<group>"; };
+		290731E813A89C0200AE5B35 /* ContentListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentListCell.m; path = InAppPurchase/ContentList/ContentListCell.m; sourceTree = "<group>"; };
 		290BA0AF12B5E0D1009C01C8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		290F035312D594D300666C6A /* BookmarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkViewController.h; sourceTree = "<group>"; };
 		290F035412D594D300666C6A /* BookmarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkViewController.m; sourceTree = "<group>"; };
@@ -98,6 +104,8 @@
 		2935764012B5EA9C00F46754 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		2935764112B5EA9C00F46754 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		2935764312B5EAAD00F46754 /* MenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuView.xib; sourceTree = "<group>"; };
+		2936624913A894D60010A808 /* ContentListCellController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentListCellController.h; path = InAppPurchase/ContentList/ContentListCellController.h; sourceTree = "<group>"; };
+		2936624A13A894D60010A808 /* ContentListCellController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentListCellController.m; path = InAppPurchase/ContentList/ContentListCellController.m; sourceTree = "<group>"; };
 		2936659913987BEF001028FE /* PaymentConductor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaymentConductor.h; path = InAppPurchase/PaymentConductor.h; sourceTree = "<group>"; };
 		2936659A13987BEF001028FE /* PaymentConductor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PaymentConductor.m; path = InAppPurchase/PaymentConductor.m; sourceTree = "<group>"; };
 		293988DD12B5E9DB008017BE /* Define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Define.h; sourceTree = "<group>"; };
@@ -276,6 +284,11 @@
 			children = (
 				29B16DF5139873F300B4D958 /* ContentListViewController.h */,
 				29B16DF6139873F300B4D958 /* ContentListViewController.m */,
+				290731E513A89BF000AE5B35 /* ContentListCell.xib */,
+				290731E713A89C0200AE5B35 /* ContentListCell.h */,
+				290731E813A89C0200AE5B35 /* ContentListCell.m */,
+				2936624913A894D60010A808 /* ContentListCellController.h */,
+				2936624A13A894D60010A808 /* ContentListCellController.m */,
 			);
 			name = ContentList;
 			sourceTree = "<group>";
@@ -459,6 +472,7 @@
 				2963BEB913A88E6E00D800BF /* ContentIcon_1.png in Resources */,
 				2963BEBA13A88E6E00D800BF /* ContentIcon_2.png in Resources */,
 				2963BEBB13A88E6E00D800BF /* ContentIcon_3.png in Resources */,
+				290731E613A89BF000AE5B35 /* ContentListCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,6 +523,8 @@
 				2936659B13987BEF001028FE /* PaymentConductor.m in Sources */,
 				29BD260713A4A3AC0029E2B4 /* FileUtility.m in Sources */,
 				2943E85713A662480034AC62 /* InAppPurchaseUtility.m in Sources */,
+				2936624B13A894D60010A808 /* ContentListCellController.m in Sources */,
+				290731E913A89C0200AE5B35 /* ContentListCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
