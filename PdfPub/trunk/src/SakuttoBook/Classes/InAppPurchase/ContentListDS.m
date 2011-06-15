@@ -186,7 +186,18 @@
 }
 - (UIImage*)thumbnailImageByContentId:(ContentId)cid
 {
-	return [self thumbnailImageAtIndex:cid];
+	//return [self thumbnailImageAtIndex:cid];
+	
+	NSString* filename = [NSString stringWithFormat:@"%@%d.%@",
+						   CONTENT_ICONFILE_PREFIX,
+						   (cid + 1),
+						   CONTENT_ICONFILE_EXTENSION];
+	//NSLog
+	NSLog(@"filename=%@", filename);
+	
+	// Open image from mainBundle.
+	UIImage* image = [UIImage imageNamed:filename];
+	return image;
 }
 
 #pragma mark Description

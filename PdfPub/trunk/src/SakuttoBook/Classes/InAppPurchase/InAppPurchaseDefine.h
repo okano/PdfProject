@@ -10,6 +10,9 @@
 #define CONTENT_TITLE				@"Title"
 #define CONTENT_AUTHOR				@"Autohr"
 #define CONTENT_DESCRIPTION			@"Description"
+#define CONTENT_ICONFILE_PREFIX		@"ContentIcon_"
+#define CONTENT_ICONFILE_EXTENSION	@"png"
+
 #define HISTORY_CID					@"ContentId"
 #define HISTORY_PAYMENT_DAYTIME		@"PaymentDaytime"
 #define HISTORY_RECEPT_ID			@"ReceptId"
