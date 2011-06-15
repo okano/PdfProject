@@ -141,7 +141,7 @@
  */
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle contentId:(ContentId)cid;
 // Treat PDF.
-- (ContentId)getCurrentContentIdFromAppDelegate;
+- (ContentId)getCurrentContentIdFromUserDefault;
 - (BOOL)setupPdfBasicInfo:(ContentId)cid;
 // Handle PDF infomation.
 - (BOOL)isVerticalWriting;
