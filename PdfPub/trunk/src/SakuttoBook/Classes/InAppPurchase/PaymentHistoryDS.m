@@ -184,4 +184,26 @@
 }
 //- (void)disableContent:(ContentId)cid{;}
 
+#pragma mark - Misc.
+- (NSUInteger)count
+{
+	return [paymentHistory count];
+}
+- (NSString*)descriptionAtIndex:(NSUInteger)index
+{
+	if ([paymentHistory count] <= index) {
+		return @"";
+	}
+	
+	NSDictionary* tmpDict = [paymentHistory objectAtIndex:index];
+	return [NSString stringWithFormat:@"%@%c%@%c%@%c%@%c",
+			[tmpDict valueForKey:PURCHASE_CONTENT_ID],
+			0x0d,
+			[tmpDict valueForKey:PURCHASE_PRODUCT_ID],
+			0x0d,
+			[tmpDict valueForKey:PURCHASE_DAYTIME],
+			0x0d
+			];
+}
+
 @end

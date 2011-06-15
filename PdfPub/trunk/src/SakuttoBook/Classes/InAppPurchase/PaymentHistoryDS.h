@@ -20,6 +20,7 @@
 @property (nonatomic, retain) NSMutableArray* paymentHistory;
 @property (nonatomic, retain) id productsRequestDelegate;
 
+//Save/Load with UserDefault.
 - (void)savePaymentHistory;
 - (void)loadPaymentHistory;
 //
@@ -30,7 +31,11 @@
 
 - (void)buyContent:(NSString*)productId;
 
+//Misc.
+- (NSUInteger)count;
+- (NSString*)descriptionAtIndex:(NSUInteger)index;
 @end
+
 #define PURCHASE_HISTORY_ARRAY	@"Purchase_History_Array"
 #define PURCHASE_CONTENT_ID		@"Purchase_ContentId"
 #define PURCHASE_DAYTIME		@"Purchase_DayTime"	/* time when call method. */
