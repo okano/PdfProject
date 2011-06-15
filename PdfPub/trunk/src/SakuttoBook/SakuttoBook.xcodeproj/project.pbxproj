@@ -71,6 +71,7 @@
 		29E1089A12D46D4700FC5210 /* BookmarkModifyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29E1089912D46D4700FC5210 /* BookmarkModifyView.xib */; };
 		29E108A912D46ECF00FC5210 /* BookmarkModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E108A812D46ECF00FC5210 /* BookmarkModifyViewController.m */; };
 		29F003FA1353CC5500D0D74D /* pageJumpLinkDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29F003F91353CC5500D0D74D /* pageJumpLinkDefine.csv */; };
+		29F1489413A89E3700309126 /* PaymentHistoryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F1489313A89E3700309126 /* PaymentHistoryListViewController.m */; };
 		29F3391E1398894E0005CF10 /* folder20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = 29F3391D1398894E0005CF10 /* folder20x20.png */; };
 /* End PBXBuildFile section */
 
@@ -168,6 +169,8 @@
 		29E108A712D46ECF00FC5210 /* BookmarkModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkModifyViewController.h; sourceTree = "<group>"; };
 		29E108A812D46ECF00FC5210 /* BookmarkModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkModifyViewController.m; sourceTree = "<group>"; };
 		29F003F91353CC5500D0D74D /* pageJumpLinkDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pageJumpLinkDefine.csv; path = csv/pageJumpLinkDefine.csv; sourceTree = "<group>"; };
+		29F1489213A89E3700309126 /* PaymentHistoryListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaymentHistoryListViewController.h; path = InAppPurchase/PaymentHistoryListViewController.h; sourceTree = "<group>"; };
+		29F1489313A89E3700309126 /* PaymentHistoryListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PaymentHistoryListViewController.m; path = InAppPurchase/PaymentHistoryListViewController.m; sourceTree = "<group>"; };
 		29F3391D1398894E0005CF10 /* folder20x20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = folder20x20.png; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* SakuttoBook_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SakuttoBook_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* SakuttoBook-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SakuttoBook-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
@@ -310,6 +313,8 @@
 				2936659A13987BEF001028FE /* PaymentConductor.m */,
 				29B16E07139876E900B4D958 /* PaymentHistoryDS.h */,
 				29B16E08139876E900B4D958 /* PaymentHistoryDS.m */,
+				29F1489213A89E3700309126 /* PaymentHistoryListViewController.h */,
+				29F1489313A89E3700309126 /* PaymentHistoryListViewController.m */,
 				29B16E04139876E200B4D958 /* ContentListDS.h */,
 				29B16E05139876E200B4D958 /* ContentListDS.m */,
 				29B16E02139874F800B4D958 /* InAppPurchaseDefine.h */,
@@ -525,6 +530,7 @@
 				2943E85713A662480034AC62 /* InAppPurchaseUtility.m in Sources */,
 				2936624B13A894D60010A808 /* ContentListCellController.m in Sources */,
 				290731E913A89C0200AE5B35 /* ContentListCell.m in Sources */,
+				29F1489413A89E3700309126 /* PaymentHistoryListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
