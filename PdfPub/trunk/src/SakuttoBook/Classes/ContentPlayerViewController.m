@@ -44,7 +44,7 @@
 {
 	LOG_CURRENT_METHOD;
 	currentContentId = cid;
-	[self initWithNibName:nibName bundle:nibBundle];
+	return [self initWithNibName:nibName bundle:nibBundle];
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
