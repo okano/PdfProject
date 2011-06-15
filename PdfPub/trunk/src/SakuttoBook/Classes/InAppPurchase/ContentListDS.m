@@ -168,7 +168,7 @@
 }
 
 #pragma mark Thumbnail Image
-- (UIImage*)thumbnailImageAtIndex:(NSInteger)index
+- (UIImage*)contentIconAtIndex:(NSInteger)index
 {
 	UIColor* color = [UIColor colorWithRed:0.125 * index
 					  				 green:0.25  * index
@@ -184,10 +184,8 @@
 	
 	return image;
 }
-- (UIImage*)thumbnailImageByContentId:(ContentId)cid
+- (UIImage*)contentIconByContentId:(ContentId)cid
 {
-	//return [self thumbnailImageAtIndex:cid];
-	
 	NSString* filename = [NSString stringWithFormat:@"%@%d.%@",
 						   CONTENT_ICONFILE_PREFIX,
 						   (cid + 1),
