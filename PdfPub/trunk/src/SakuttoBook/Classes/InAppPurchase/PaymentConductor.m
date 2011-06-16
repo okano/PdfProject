@@ -134,7 +134,7 @@
 	
 	//Enable contents.
 	NSString* productID = transaction.payment.productIdentifier;
-	[paymentHistoryDS enableContentWithProductId:productID];
+	[paymentHistoryDS enableContentWithProductId:productID WithDict:dict];
 	
 	//Delete complete transaction in queue.
 	[[SKPaymentQueue defaultQueue] finishTransaction:transaction];
