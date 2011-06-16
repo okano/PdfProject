@@ -56,17 +56,23 @@
 {
 	//LOG_CURRENT_METHOD;
 	//NSLog(@"cid=%d", cid);
-	if (cid == 0) {
-		return @"storeProductId-00";
-	} else 	if (cid == 1) {
-		return @"storeProductId-01";
-	} else 	if (cid == 2) {
-		return @"storeProductId-02";
-	} else 	if (cid == 3) {
-		return @"storeProductId-03";
-	} else {
-		return @"storeProductId-04";
+	
+	//(when loading now, read csv file)
+	if ([contentList count] < cid) {
+		return [InAppPurchaseUtility getProductIdentifier:cid];
 	}
+	
+	for (NSDictionary* tmpDict in contentList) {
+		ContentId candidateCid = [[tmpDict valueForKey:CONTENT_CID] intValue];
+		//NSLog(@"candidate cid=%d", candidateCid);
+		if (candidateCid == cid) {
+			//LOG_CURRENT_LINE;
+			//NSLog(@"pid=%@", [tmpDict valueForKey:CONTENT_STORE_PRODUCT_ID]);
+			return [NSString stringWithString:[tmpDict valueForKey:CONTENT_STORE_PRODUCT_ID]];
+		}
+	}
+	//LOG_CURRENT_LINE;
+	return InvalidProductId;
 }
 
 #pragma mark - setup data.
@@ -105,7 +111,7 @@
 		NSMutableDictionary* tmpDict;
 		tmpDict = [[NSMutableDictionary alloc] init];
 		[tmpDict setValue:[NSNumber numberWithInteger:contentIdInt] forKey:CONTENT_CID];
-		[tmpDict setValue:[self productIdFromContentId:contentIdInt] forKey:CONTENT_STORE_PRODUCT_ID];
+		[tmpDict setValue:[InAppPurchaseUtility getProductIdentifier:contentIdInt] forKey:CONTENT_STORE_PRODUCT_ID];
 		[tmpDict setValue:[lines objectAtIndex:0] forKey:CONTENT_TITLE];
 		if (2 <= [lines count]) {
 			[tmpDict setValue:[lines objectAtIndex:1] forKey:CONTENT_AUTHOR];
