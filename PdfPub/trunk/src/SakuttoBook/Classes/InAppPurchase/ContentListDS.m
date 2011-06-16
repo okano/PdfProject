@@ -78,7 +78,7 @@
 	int contentIdInt = 0;
 	while (0==0) {
 		//Open define file.
-		NSString* csvFilename = [NSString stringWithFormat:@"bookDefine_%d", contentIdInt];
+		NSString* csvFilename = [InAppPurchaseUtility getBookDefineFilename:contentIdInt];
 		NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:csvFilename ofType:@"csv"];
 		if (! csvFilePath) {
 			break;

@@ -19,5 +19,6 @@
 + (NSArray*)getAllProductIdentifier;
 //Judge free comtent.
 + (BOOL)isFreeContent:(NSString*)productId;
++ (NSString*)getBookDefineFilename:(ContentId)cid;
 
 @end

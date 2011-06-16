@@ -52,6 +52,7 @@
 		29A1CB7A138616AA00326759 /* SKBE_MainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A1CB79138616AA00326759 /* SKBE_MainVC.m */; };
 		29A1CB7E138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A1CB7D138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m */; };
 		29A2A5471398B87300C8CB52 /* productIdList.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29A2A5461398B87300C8CB52 /* productIdList.csv */; };
+		29A5B07B13A9B35100DA67AD /* bookDefine_3.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29A5B07A13A9B35100DA67AD /* bookDefine_3.csv */; };
 		29ACC34613A3AE7A00585A09 /* inPageScrollViewDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29ACC34513A3AE7A00585A09 /* inPageScrollViewDefine.csv */; };
 		29B16DF7139873F300B4D958 /* ContentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B16DF6139873F300B4D958 /* ContentListViewController.m */; };
 		29B16E001398744C00B4D958 /* ContentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B16DFE1398744C00B4D958 /* ContentDetailViewController.m */; };
@@ -64,7 +65,6 @@
 		29BD25FC13A4963A0029E2B4 /* document-1.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 29BD25F913A4963A0029E2B4 /* document-1.pdf */; };
 		29BD25FD13A4963A0029E2B4 /* document-2.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 29BD25FA13A4963A0029E2B4 /* document-2.pdf */; };
 		29BD25FE13A4963A0029E2B4 /* document-3.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 29BD25FB13A4963A0029E2B4 /* document-3.pdf */; };
-		29BD260213A499B50029E2B4 /* bookDefine_0.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29BD25FF13A499B50029E2B4 /* bookDefine_0.csv */; };
 		29BD260313A499B50029E2B4 /* bookDefine_1.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29BD260013A499B50029E2B4 /* bookDefine_1.csv */; };
 		29BD260413A499B50029E2B4 /* bookDefine_2.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29BD260113A499B50029E2B4 /* bookDefine_2.csv */; };
 		29BD260713A4A3AC0029E2B4 /* FileUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BD260613A4A3AC0029E2B4 /* FileUtility.m */; };
@@ -140,6 +140,7 @@
 		29A1CB7C138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKBEngine_PopoverScrollImageViewController.h; path = SKBEngine/SKBEngine/SKBEngine_PopoverScrollImageViewController.h; sourceTree = "<group>"; };
 		29A1CB7D138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKBEngine_PopoverScrollImageViewController.m; path = SKBEngine/SKBEngine/SKBEngine_PopoverScrollImageViewController.m; sourceTree = "<group>"; };
 		29A2A5461398B87300C8CB52 /* productIdList.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = productIdList.csv; path = csv/productIdList.csv; sourceTree = "<group>"; };
+		29A5B07A13A9B35100DA67AD /* bookDefine_3.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bookDefine_3.csv; path = csv/bookDefine_3.csv; sourceTree = "<group>"; };
 		29ACC34513A3AE7A00585A09 /* inPageScrollViewDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = inPageScrollViewDefine.csv; path = csv/inPageScrollViewDefine.csv; sourceTree = "<group>"; };
 		29B16DF5139873F300B4D958 /* ContentListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentListViewController.h; path = InAppPurchase/ContentList/ContentListViewController.h; sourceTree = "<group>"; };
 		29B16DF6139873F300B4D958 /* ContentListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentListViewController.m; path = InAppPurchase/ContentList/ContentListViewController.m; sourceTree = "<group>"; };
@@ -160,7 +161,6 @@
 		29BD25F913A4963A0029E2B4 /* document-1.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "document-1.pdf"; sourceTree = "<group>"; };
 		29BD25FA13A4963A0029E2B4 /* document-2.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "document-2.pdf"; sourceTree = "<group>"; };
 		29BD25FB13A4963A0029E2B4 /* document-3.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "document-3.pdf"; sourceTree = "<group>"; };
-		29BD25FF13A499B50029E2B4 /* bookDefine_0.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bookDefine_0.csv; path = csv/bookDefine_0.csv; sourceTree = "<group>"; };
 		29BD260013A499B50029E2B4 /* bookDefine_1.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bookDefine_1.csv; path = csv/bookDefine_1.csv; sourceTree = "<group>"; };
 		29BD260113A499B50029E2B4 /* bookDefine_2.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bookDefine_2.csv; path = csv/bookDefine_2.csv; sourceTree = "<group>"; };
 		29BD260513A4A3AB0029E2B4 /* FileUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtility.h; sourceTree = "<group>"; };
@@ -350,9 +350,9 @@
 			isa = PBXGroup;
 			children = (
 				29014AA012D6ECA700936BF0 /* bookDefine.csv */,
-				29BD25FF13A499B50029E2B4 /* bookDefine_0.csv */,
 				29BD260013A499B50029E2B4 /* bookDefine_1.csv */,
 				29BD260113A499B50029E2B4 /* bookDefine_2.csv */,
+				29A5B07A13A9B35100DA67AD /* bookDefine_3.csv */,
 				29014A9C12D6EC9100936BF0 /* tocDefine.csv */,
 				29014A9A12D6EC8700936BF0 /* pdfDefine.csv */,
 				29014A9E12D6EC9C00936BF0 /* movieDefine.csv */,
@@ -471,13 +471,13 @@
 				29BD25FC13A4963A0029E2B4 /* document-1.pdf in Resources */,
 				29BD25FD13A4963A0029E2B4 /* document-2.pdf in Resources */,
 				29BD25FE13A4963A0029E2B4 /* document-3.pdf in Resources */,
-				29BD260213A499B50029E2B4 /* bookDefine_0.csv in Resources */,
 				29BD260313A499B50029E2B4 /* bookDefine_1.csv in Resources */,
 				29BD260413A499B50029E2B4 /* bookDefine_2.csv in Resources */,
 				2963BEB913A88E6E00D800BF /* ContentIcon_1.png in Resources */,
 				2963BEBA13A88E6E00D800BF /* ContentIcon_2.png in Resources */,
 				2963BEBB13A88E6E00D800BF /* ContentIcon_3.png in Resources */,
 				290731E613A89BF000AE5B35 /* ContentListCell.xib in Resources */,
+				29A5B07B13A9B35100DA67AD /* bookDefine_3.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
