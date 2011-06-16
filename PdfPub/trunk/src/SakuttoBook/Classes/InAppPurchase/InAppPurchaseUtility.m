@@ -16,12 +16,15 @@
 	//LOG_CURRENT_METHOD;
 	//NSLog(@"cid=%d", cid);
 	NSArray* lines = [self getAllProductIdentifier];
-	if (cid < [lines count]) {
+	if (cid <= [lines count]) {
 		//return [lines objectAtIndex:(cid-1)];
 		NSString* singleLine = [lines objectAtIndex:(cid-1)];
 		NSArray* commaSeparated = [singleLine componentsSeparatedByString:@","];
 		return [commaSeparated objectAtIndex:0];
 	}
+	LOG_CURRENT_METHOD;
+	NSLog(@"productId not found. cid=%d", cid);
+	NSLog(@"lines=%@", [lines description]);
 	return @"";
 }
 + (ContentId)getContentIdentifier:(NSString *)pid
