@@ -1,1 +1,1 @@
-git branch test. this branch is for purchase implementing.
+git branch test. this branch is for purchase. with merged branch for implementing.
