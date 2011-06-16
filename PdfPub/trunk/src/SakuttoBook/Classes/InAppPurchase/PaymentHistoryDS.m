@@ -190,6 +190,7 @@
 	NSMutableDictionary* tmpDict = [[NSMutableDictionary alloc] init];
 	[tmpDict setValue:pid forKey:PURCHASE_PRODUCT_ID];
 	[tmpDict setValue:[NSNumber numberWithInt:cid] forKey:PURCHASE_CONTENT_ID];
+	[tmpDict setValue:[NSDate dateWithTimeIntervalSinceNow:0.0f] forKey:PURCHASE_DAYTIME];
 	NSLog(@"enable content. cid=%d, pid=%@, dict=%@", cid, pid, [tmpDict description]);
 	[paymentHistory addObject:tmpDict];
 	//
@@ -210,6 +211,7 @@
 	NSMutableDictionary* tmpDict = [[NSMutableDictionary alloc] initWithDictionary:dict];
 	[tmpDict setValue:productId forKey:PURCHASE_PRODUCT_ID];
 	[tmpDict setValue:[NSNumber numberWithInt:cid] forKey:PURCHASE_CONTENT_ID];
+	[tmpDict setValue:[NSDate dateWithTimeIntervalSinceNow:0.0f] forKey:PURCHASE_DAYTIME];
 	NSLog(@"enable content. cid=%d, pid=%@, dict=%@", cid, productId, [tmpDict description]);
 	[paymentHistory addObject:tmpDict];
 	//
@@ -229,12 +231,17 @@
 	}
 	
 	NSDictionary* tmpDict = [paymentHistory objectAtIndex:index];
+	//format date.
+	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+	[formatter setDateFormat:@"yyyy-MM-dd(E) HH:mm:ss"];
+	NSString *purchaseDaytime = [formatter stringFromDate:[tmpDict valueForKey:PURCHASE_DAYTIME]];
+	
 	return [NSString stringWithFormat:@" ContentId=%@%c ProductId=%@%c purchase daytime=%@%c",
 			[tmpDict valueForKey:PURCHASE_CONTENT_ID],
 			0x0d,
 			[tmpDict valueForKey:PURCHASE_PRODUCT_ID],
 			0x0d,
-			[tmpDict valueForKey:PURCHASE_DAYTIME],
+			purchaseDaytime,
 			0x0d
 			];
 }
