@@ -1,1 +1,1 @@
-git branch test. this branch is for purchase. with merged branch for implementing.
+git branch test. this branch is for purchase. with merged branch for implementing. with deleted branch "purchase_implementing_multicontents".
