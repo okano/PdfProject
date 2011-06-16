@@ -58,8 +58,9 @@
 	CGRect newTableViewframe = CGRectMake(tableViewframe.origin.x,
 										  tableViewframe.origin.y + toolBarHeight,
 										  tableViewframe.size.width, tableViewframe.size.height - toolBarHeight);
-	NSLog(@"tableViewframe=%@", NSStringFromCGRect(tableViewframe));
-	NSLog(@"newTableViewframe=%@", NSStringFromCGRect(newTableViewframe));
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"tableViewframe=%@", NSStringFromCGRect(tableViewframe));
+	//NSLog(@"newTableViewframe=%@", NSStringFromCGRect(newTableViewframe));
 	
 	myTableView.frame = newTableViewframe;
 }
@@ -101,12 +102,14 @@
 - (void)showContentPlayer:(ContentId)cid
 {
 	LOG_CURRENT_METHOD;
+	NSLog(@"cid=%d", cid);
 	[appDelegate hideContentListView];
 	[appDelegate showContentPlayerView:cid];
 }
 - (void)showContentDetailView:(ContentId)cid
 {
 	LOG_CURRENT_METHOD;
+	NSLog(@"cid=%d", cid);
 	[appDelegate hideContentListView];
 	[appDelegate showContentDetailView:cid];
 }
@@ -223,6 +226,8 @@
 	//Check payment status.
 	ContentId targetCid = [appDelegate.contentListDS contentIdAtIndex:indexPath.row];
 	NSString* targetPid = [appDelegate.contentListDS productIdFromContentId:targetCid];
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"indexPath.row=%d, targetCid=%d, targetPid=%@", indexPath.row, targetCid, targetPid);
 	
 	BOOL isPayedContent = NO;
 	if ([InAppPurchaseUtility isFreeContent:targetPid] == TRUE) {

@@ -43,8 +43,9 @@
 	CGRect newTableViewframe = CGRectMake(tableViewframe.origin.x,
 										  tableViewframe.origin.y + toolBarHeight,
 										  tableViewframe.size.width, tableViewframe.size.height - toolBarHeight);
-	NSLog(@"tableViewframe=%@", NSStringFromCGRect(tableViewframe));
-	NSLog(@"newTableViewframe=%@", NSStringFromCGRect(newTableViewframe));
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"tableViewframe=%@", NSStringFromCGRect(tableViewframe));
+	//NSLog(@"newTableViewframe=%@", NSStringFromCGRect(newTableViewframe));
 	
 	myTableView.frame = newTableViewframe;
 }

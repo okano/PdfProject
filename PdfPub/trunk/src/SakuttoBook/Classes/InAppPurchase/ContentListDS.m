@@ -83,8 +83,8 @@
 		if (! csvFilePath) {
 			break;
 		}
-		NSLog(@"csvFilename=%@", csvFilename);
-		NSLog(@"csvFilePath=%@", csvFilePath);
+		//NSLog(@"bookDefine csvFilename=%@", csvFilename);
+		//NSLog(@"bookDefine csvFilePath=%@", csvFilePath);
 		NSError* error = nil;
 		NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
 		if (error) {

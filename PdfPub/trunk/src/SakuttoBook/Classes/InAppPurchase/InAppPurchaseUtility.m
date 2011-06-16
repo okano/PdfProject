@@ -45,7 +45,6 @@
 	
 	//delete comment line.
 	for (NSString* line in [lines reverseObjectEnumerator] ) {
-		NSLog(@"class=%@, line=%@", [line class], line);
 		if ([line length] <= 0) {
 			[lines removeObject:line];	//Skip comment line.
 			continue;
