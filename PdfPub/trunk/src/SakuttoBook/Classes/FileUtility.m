@@ -21,15 +21,15 @@
 }
 
 + (NSString*)getPageFilenameFull:(int)pageNum WithContentId:(ContentId)cid {
-	LOG_CURRENT_METHOD;
-	NSLog(@"pageNum=%d, ContentId=%d", pageNum, cid);
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"pageNum=%d, ContentId=%d", pageNum, cid);
 	NSString* filename = [NSString stringWithFormat:@"%@%d", PAGE_FILE_PREFIX, pageNum];
 	NSString* targetFilenameFull = [[[[NSHomeDirectory() stringByAppendingPathComponent:@"tmp"]
 									  stringByAppendingPathComponent:[NSString stringWithFormat:@"%d",cid]]
 									 stringByAppendingPathComponent:filename]
 									stringByAppendingPathExtension:PAGE_FILE_EXTENSION];
-	NSLog(@"filename=%@", filename);
-	NSLog(@"targetFilenameFull=%@", targetFilenameFull);
+	//NSLog(@"filename=%@", filename);
+	//NSLog(@"targetFilenameFull=%@", targetFilenameFull);
 	return targetFilenameFull;
 }
 
@@ -70,7 +70,7 @@
 
 //Generate Directory.
 + (void)makeDir:(NSString*)fileNameFull {
-	NSLog(@"fileNameFull=%@", fileNameFull);
+	//NSLog(@"fileNameFull=%@", fileNameFull);
     if ([self existsFile:fileNameFull]) {
 		return;
 	}

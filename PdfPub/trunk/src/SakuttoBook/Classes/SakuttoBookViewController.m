@@ -108,8 +108,8 @@
 #pragma mark -
 - (void)showContentPlayerView:(ContentId)cid
 {
-	LOG_CURRENT_METHOD;
-	NSLog(@"cid=%d", cid);
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"cid=%d", cid);
 	if (contentPlayerViewController == nil) {
 		contentPlayerViewController = [[ContentPlayerViewController alloc] initWithNibName:@"ContentPlayerView" bundle:[NSBundle mainBundle] contentId:cid];
 	}

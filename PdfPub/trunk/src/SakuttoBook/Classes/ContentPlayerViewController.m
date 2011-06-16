@@ -42,14 +42,14 @@
 #pragma mark -
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle contentId:(ContentId)cid
 {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
 	currentContentId = cid;
 	return [self initWithNibName:nibName bundle:nibBundle];
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
     [super viewDidLoad];
 	self.title = @"PDF";
 	

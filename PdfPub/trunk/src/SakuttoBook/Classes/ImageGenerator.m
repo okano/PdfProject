@@ -140,6 +140,8 @@
 	
 	//Save to file.
 #if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"currentContentId=%d", currentContentId);
 	NSString* targetFilenameFull = [FileUtility getPageFilenameFull:pageNum WithContentId:currentContentId];
 #else
 	NSString* targetFilenameFull = [FileUtility getPageFilenameFull:pageNum];

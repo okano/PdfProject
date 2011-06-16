@@ -101,21 +101,21 @@
 #pragma mark - show other view.
 - (void)showContentPlayer:(ContentId)cid
 {
-	LOG_CURRENT_METHOD;
-	NSLog(@"cid=%d", cid);
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"cid=%d", cid);
 	[appDelegate hideContentListView];
 	[appDelegate showContentPlayerView:cid];
 }
 - (void)showContentDetailView:(ContentId)cid
 {
-	LOG_CURRENT_METHOD;
-	NSLog(@"cid=%d", cid);
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"cid=%d", cid);
 	[appDelegate hideContentListView];
 	[appDelegate showContentDetailView:cid];
 }
 - (IBAction)showPaymentHistoryList
 {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
 	PaymentHistoryListViewController* paymentHistoryListVC = [[PaymentHistoryListViewController alloc] init];
 	[self.view addSubview:paymentHistoryListVC.view];
 }
