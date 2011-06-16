@@ -517,12 +517,20 @@
 	
 	//Draw next imageView.
 	if (currentPageNum + 1 <= maxPageNum) {
-		[nextPdfScrollView setupWithPageNum:newPageNum + 1];
+		if ([self isMultiContents] == YES) {
+			[nextPdfScrollView setupWithPageNum:(newPageNum + 1) ContentId:currentContentId];
+		} else {
+			[nextPdfScrollView setupWithPageNum:(newPageNum + 1)];
+		}
 	}
 	
 	//Draw prev imageView.
 	if (1 <= currentPageNum - 1) {
-		[prevPdfScrollView setupWithPageNum:newPageNum - 1];
+		if ([self isMultiContents] == YES) {
+			[prevPdfScrollView setupWithPageNum:(newPageNum - 1) ContentId:currentContentId];
+		} else {
+			[prevPdfScrollView setupWithPageNum:(newPageNum - 1)];
+		}
 	}
 }
 
@@ -642,7 +650,11 @@
 	
 	// Load (new)nextImage.
 	if (currentPageNum + 1 <= maxPageNum) {
-		[nextPdfScrollView setupWithPageNum:currentPageNum + 1];
+		if ([self isMultiContents] == YES) {
+			[nextPdfScrollView setupWithPageNum:(currentPageNum + 1) ContentId:currentContentId];
+		} else {
+			[nextPdfScrollView setupWithPageNum:(currentPageNum + 1)];
+		}
 	}
 	
 	//
@@ -782,7 +794,11 @@
 	
 	// Load (new)prevImage.
 	if (1 < currentPageNum) {
-		[prevPdfScrollView setupWithPageNum:currentPageNum - 1];
+		if ([self isMultiContents] == YES) {
+			[prevPdfScrollView setupWithPageNum:(currentPageNum - 1) ContentId:currentContentId];
+		} else {
+			[prevPdfScrollView setupWithPageNum:(currentPageNum - 1)];
+		}
 	}
 	
 	//NSLog(@"(new)currentPdfScrollView subviews = %d", [currentPdfScrollView.subviews count]);
@@ -812,17 +828,25 @@
     }
 	
 	// Load (new)currentImage.
-	[currentPdfScrollView setupWithPageNum:currentPageNum];
+	[currentPdfScrollView setupWithPageNum:currentPageNum ContentId:currentContentId];
 	[currentPdfScrollView scrollViewDidEndZooming:currentPdfScrollView withView:nil atScale:0.0f];
 	
 	// Load (new)nextImage.
 	if (currentPageNum + 1 <= maxPageNum) {
-		[nextPdfScrollView setupWithPageNum:currentPageNum + 1];
+		if ([self isMultiContents] == YES) {
+			[nextPdfScrollView setupWithPageNum:(currentPageNum + 1) ContentId:currentContentId];
+		} else {		
+			[nextPdfScrollView setupWithPageNum:(currentPageNum + 1)];
+		}
 	}
 	
 	// Load (new)prevImage.
 	if (1 < currentPageNum) {
-		[prevPdfScrollView setupWithPageNum:currentPageNum - 1];
+		if ([self isMultiContents] == YES) {
+			[prevPdfScrollView setupWithPageNum:(currentPageNum - 1) ContentId:currentContentId];
+		} else {
+			[prevPdfScrollView setupWithPageNum:(currentPageNum - 1)];
+		}
 	}
 	
 	//Reset zoomScale
@@ -2286,7 +2310,7 @@
 	NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
 	if ([self isMultiContents] == TRUE) {
 		//Multi Contents.
-		NSMutableArray* allLatestReadPageInfo = [userDefault valueForKey:USERDEFAULT_LATEST_READ_PAGE_MULTICONTENT];
+		NSMutableArray* allLatestReadPageInfo = [[NSMutableArray alloc] initWithArray:[userDefault valueForKey:USERDEFAULT_LATEST_READ_PAGE_MULTICONTENT]];
 		if (! allLatestReadPageInfo) {
 			//Not exist any read page info. Generate it.
 			NSMutableDictionary* tmpDict = [[NSMutableDictionary alloc] init];
@@ -2320,16 +2344,19 @@
 }
 - (int)getLatestReadPage {
 	NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
-	id obj;
+	id obj = nil;
 	if ([self isMultiContents] == TRUE) {
 		//Multi Contents.
 		NSArray* tmpArray = [settings valueForKey:USERDEFAULT_LATEST_READ_PAGE_MULTICONTENT];
 		if (! tmpArray) {
 			return -1;
 		}
-		for (NSDictionary* bookmarkInfo in tmpArray) {
-			if (currentContentId == [[bookmarkInfo valueForKey:CONTENT_CID] intValue]) {
-				obj = [bookmarkInfo valueForKey:USERDEFAULT_LATEST_READ_PAGE];
+		//NSLog(@"currentContentId=%d, candidateArray=%@", currentContentId, tmpArray);
+		
+		for (NSDictionary* latestReadPageInfo in tmpArray) {
+			if (currentContentId == [[latestReadPageInfo valueForKey:CONTENT_CID] intValue]) {
+				obj = [latestReadPageInfo valueForKey:USERDEFAULT_LATEST_READ_PAGE];
+				break;
 			}
 		}
 	} else {
