@@ -41,12 +41,6 @@
 	SKProductsRequest* pRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:productIdList];
 	pRequest.delegate = self;
 	[pRequest start];
-	
-	NSLog(@"productId=%@", [productId stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
-	id obj2 = [SKPaymentQueue defaultQueue];
-	NSLog(@"obj2 class=%@", [obj2 class]);
-	NSLog(@"paymentQueue=%@", [SKPaymentQueue description]);
-	
 }
 
 #pragma mark - SKProductsRequestDelegate methods.
@@ -84,11 +78,11 @@
 //Handling Transactions
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
 {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
 	for (SKPaymentTransaction* transaction in transactions) {
 		switch (transaction.transactionState) {
 			case SKPaymentTransactionStatePurchased:
-				NSLog(@"SKPaymentTransactionStatePurchased");
+				//NSLog(@"SKPaymentTransactionStatePurchased");
 				[self completeTransaction:transaction];
 				break;
 			case SKPaymentTransactionStateFailed:
@@ -100,7 +94,7 @@
 				[self restoreTransaction:transaction];
 				break;
 			case SKPaymentTransactionStatePurchasing:
-				NSLog(@"SKPaymentTransactionStatePurchasing");
+				//NSLog(@"SKPaymentTransactionStatePurchasing");
 				break;
 				
 			default:

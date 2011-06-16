@@ -27,7 +27,7 @@
 #pragma mark - save/load with file.
 - (void)savePaymentHistory
 {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
 	//NSLog(@"all paymentHistory=%@", [paymentHistory description]);
 	
 	//Store bookmark infomation to UserDefault.
@@ -184,7 +184,7 @@
 }
 - (void)enableContent:(ContentId)cid
 {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
 	NSString* pid = [InAppPurchaseUtility getProductIdentifier:cid];
 
 	NSMutableDictionary* tmpDict = [[NSMutableDictionary alloc] init];
@@ -199,13 +199,13 @@
 }
 - (void)enableContentWithProductId:(NSString *)productId
 {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
 	NSDictionary* tmpDict = [[NSDictionary alloc] init];
 	[self enableContentWithProductId:productId WithDict:tmpDict];
 }
 - (void)enableContentWithProductId:(NSString*)productId WithDict:(NSDictionary*)dict
 {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
 	ContentId cid = [InAppPurchaseUtility getContentIdentifier:productId];
 	
 	NSMutableDictionary* tmpDict = [[NSMutableDictionary alloc] initWithDictionary:dict];

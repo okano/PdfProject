@@ -47,8 +47,8 @@
 #pragma mark - Implement.
 - (void)setLabelsWithContentId:(ContentId)cid
 {
-	LOG_CURRENT_METHOD;
-	NSLog(@"cid=%d", cid);
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"cid=%d", cid);
 	
 	//inner var.
 	targetCid = cid;
@@ -84,7 +84,7 @@
 		return;
 	}
 	
-	NSLog(@"result count = %d", [responseParameters.products count]);
+	//NSLog(@"result count = %d", [responseParameters.products count]);
 	if ([responseParameters.products count] <= 0) {
 		buyButton.hidden = NO;
 		buyButton.titleLabel.font = [UIFont systemFontOfSize:10.0f];
@@ -97,7 +97,7 @@
 		NSLog(@"responseParameters.invalidProductIdentifiers=%@", [responseParameters.invalidProductIdentifiers description]);
 	}
 	for (SKProduct* resultProduct in responseParameters.products) {
-		LOG_CURRENT_LINE;
+		//LOG_CURRENT_LINE;
 		NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
 		[numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
 		[numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
@@ -114,8 +114,9 @@
 		//inner var.
 		targetProductId = [NSString stringWithString:resultProduct.productIdentifier];
 		[targetProductId retain];
-		LOG_CURRENT_METHOD;
-		NSLog(@"targetProductId=%@", targetProductId);
+		
+		//LOG_CURRENT_METHOD;
+		//NSLog(@"targetProductId=%@", targetProductId);
 	}
 }
 
@@ -141,9 +142,9 @@
 
 - (IBAction)buyContent:(id)sender
 {
-	LOG_CURRENT_METHOD;
-	NSLog(@"targetProductId class=%@", [targetProductId class]);
-	NSLog(@"targetProductId=%@", targetProductId);
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"targetProductId class=%@", [targetProductId class]);
+	//NSLog(@"targetProductId=%@", targetProductId);
 	//
 	[appDelegate.paymentHistoryDS buyContent:targetProductId];
 	return;
