@@ -113,7 +113,6 @@
 	if (contentPlayerViewController == nil) {
 		contentPlayerViewController = [[ContentPlayerViewController alloc] initWithNibName:@"ContentPlayerView" bundle:[NSBundle mainBundle] contentId:cid];
 	}
-	[contentPlayerViewController setCurrentContentId:cid];
 	[self.view addSubview:contentPlayerViewController.view];
 }
 - (void)hideContentPlayerView

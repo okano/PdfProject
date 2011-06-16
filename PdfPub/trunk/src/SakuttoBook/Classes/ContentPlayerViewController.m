@@ -150,6 +150,12 @@
 #endif
 	
 	//Show top page.
+	//LOG_CURRENT_LINE;
+	//NSLog(@"currentContentId=%d", currentContentId);
+	////NSLog(@"pdf scroll view currentContentId=%d, %d, %d",
+	////	  pdfScrollView1.currentContentId,
+	////	  pdfScrollView2.currentContentId,
+	////	  pdfScrollView3.currentContentId);
 	[self drawPageWithNumber:currentPageNum];
 	[self.view setNeedsDisplay];
 	
@@ -223,8 +229,17 @@
 #pragma mark setup pdf infomation.
 - (ContentId)getCurrentContentIdFromUserDefault
 {
-	return (ContentId)0;
+	return (ContentId)currentContentId;
 }
+/*
+- (void)setCurrentContentId:(ContentId)cid
+{
+	currentContentId = cid;
+	pdfScrollView1.currentContentId = cid;
+	pdfScrollView2.currentContentId = cid;
+	pdfScrollView3.currentContentId = cid;
+}
+*/
 - (BOOL)setupPdfBasicInfo:(ContentId)cid
 {
 	//Setup PDF filename.(chached in this class)
@@ -493,7 +508,7 @@
 	//[self preparePdfPageImageWithPageNum:newPageNum];
 	
 	//Draw current rough imageView.
-	[currentPdfScrollView setupWithPageNum:newPageNum];
+	[currentPdfScrollView setupWithPageNum:newPageNum ContentId:currentContentId];
 	//bring currentImageView to Front.
 	[self.view bringSubviewToFront:currentPdfScrollView];
 	//[currentPdfScrollView layoutIfNeeded];
