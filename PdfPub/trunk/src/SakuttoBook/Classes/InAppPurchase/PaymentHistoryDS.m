@@ -35,11 +35,11 @@
 {
 	NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
 	id obj = [settings valueForKey:PURCHASE_HISTORY_ARRAY];
-	if (!obj) {		//no bookmark exists.
+	if (!obj) {		//no payment history exists.
 		return;
 	}
 	if (![obj isKindOfClass:[NSArray class]]) {
-		NSLog(@"illigal bookmark infomation. class=%@", [obj class]);
+		NSLog(@"illigal payment history infomation. class=%@", [obj class]);
 		return;
 	}
 	[self.paymentHistory removeAllObjects];
