@@ -24,33 +24,29 @@
 }
 
 #pragma mark - save/load with file.
-- (void)savePaymentHistory{;}
-- (void)loadPaymentHistory{;}
-
-#pragma mark - Get id from file.
-- (NSString*)getProductIdentifier:(ContentId)cid
+- (void)savePaymentHistory
 {
-	
-	//parse csv file.
-	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:@"productIdList" ofType:@"csv"];
-	NSError* error = nil;
-	NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
-	if (error) {
-		LOG_CURRENT_METHOD;
-		LOG_CURRENT_LINE;
-		NSLog(@"error=%@, error code=%d", [error localizedDescription], [error code]);
-		if ([error code] == NSFileReadInvalidFileNameError) {
-			NSLog(@"Read error because of an invalid file name. (file not exist?)");
-		}
-		return @"";
-	}
-	
-	NSArray* lines = [text componentsSeparatedByString:@"\n"];
-	if (cid < [lines count]) {
-		return [lines objectAtIndex:(cid-1)];
-	}
-	return @"";
+	//Store bookmark infomation to UserDefault.
+	NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
+	[userDefault setObject:paymentHistory forKey:PURCHASE_HISTORY_ARRAY];
+	[userDefault synchronize];
 }
+- (void)loadPaymentHistory
+{
+	NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
+	id obj = [settings valueForKey:PURCHASE_HISTORY_ARRAY];
+	if (!obj) {		//no bookmark exists.
+		return;
+	}
+	if (![obj isKindOfClass:[NSArray class]]) {
+		NSLog(@"illigal bookmark infomation. class=%@", [obj class]);
+		return;
+	}
+	[self.paymentHistory removeAllObjects];
+	[self.paymentHistory addObjectsFromArray:obj];
+	return;
+}
+
 
 /*
 #pragma mark - SKProductsRequestDelegate methods.
@@ -146,6 +142,20 @@
 #pragma mark - 
 - (BOOL)isEnabledContent:(ContentId)cid
 {
+	//Check if Free Content.
+	NSString* pid = [InAppPurchaseUtility getProductIdentifier:cid];
+	if ([InAppPurchaseUtility isFreeContent:pid] == TRUE)
+	{
+		return TRUE;
+	}
+	
+	//Find from Payment History.
+	for (NSDictionary* tmpDict in paymentHistory) {
+		ContentId candidateContentId = [[tmpDict valueForKey:PURCHASE_CONTENT_ID] intValue];
+		if (candidateContentId == cid) {
+			return TRUE;
+		}
+	}
 	return FALSE;
 }
 - (void)buyContent:(NSString*)productId
@@ -174,7 +184,26 @@
 }
 //- (void)disableContent:(ContentId)cid{;}
 
-#pragma mark - switch to other view.
-- (void)showImagePlayer:(ContentId)cid{;}
+#pragma mark - Misc.
+- (NSUInteger)count
+{
+	return [paymentHistory count];
+}
+- (NSString*)descriptionAtIndex:(NSUInteger)index
+{
+	if ([paymentHistory count] <= index) {
+		return @"";
+	}
+	
+	NSDictionary* tmpDict = [paymentHistory objectAtIndex:index];
+	return [NSString stringWithFormat:@"%@%c%@%c%@%c%@%c",
+			[tmpDict valueForKey:PURCHASE_CONTENT_ID],
+			0x0d,
+			[tmpDict valueForKey:PURCHASE_PRODUCT_ID],
+			0x0d,
+			[tmpDict valueForKey:PURCHASE_DAYTIME],
+			0x0d
+			];
+}
 
 @end

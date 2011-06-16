@@ -79,8 +79,9 @@
 }
 */
 
-- (IBAction)showContentListView:(id)sender {
+- (IBAction)switchToContentListView:(id)sender {
 	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
+	[appDelegate hideContentPlayerView];
 	[appDelegate showContentListView];
 }
 

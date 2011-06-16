@@ -1,1 +1,1 @@
-git branch test. this is master branch.
+git branch test. this branch is for purchase implementing.

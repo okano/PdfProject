@@ -11,15 +11,6 @@
 
 @implementation ContentListViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)dealloc
 {
     [super dealloc];
@@ -39,12 +30,38 @@
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
+	
+	//Setup TableView.
+	myTableView = [[UITableView alloc] initWithFrame:self.view.frame];
+	myTableView.delegate = self;
+	myTableView.dataSource = self;
+	[self.view addSubview:myTableView];
+	
+	//Setup Toolbar.
+	CGFloat toolBarHeight = 44.0f;
+	CGRect toolBarFrame = CGRectMake(0.0f,
+									 0.0f,
+									 self.view.frame.size.width,
+									 toolBarHeight);
+	UIToolbar* toolbar = [[UIToolbar alloc] initWithFrame:toolBarFrame];
+	UIBarButtonItem *paymentHistoryButton = [[UIBarButtonItem alloc] initWithTitle:@"Purchase History"
+																	   style:UIBarButtonItemStyleBordered
+																	  target:self
+																	  action:@selector(showPaymentHistoryList)];
+	NSArray *items = [NSArray arrayWithObjects:paymentHistoryButton, nil];
+	[toolbar setItems:items];
+	[self.view addSubview:toolbar];
+	
+	//Setup TableView size.
+	CGRect tableViewframe = myTableView.frame;
+	CGRect newTableViewframe = CGRectMake(tableViewframe.origin.x,
+										  tableViewframe.origin.y + toolBarHeight,
+										  tableViewframe.size.width, tableViewframe.size.height - toolBarHeight);
+	NSLog(@"tableViewframe=%@", NSStringFromCGRect(tableViewframe));
+	NSLog(@"newTableViewframe=%@", NSStringFromCGRect(newTableViewframe));
+	
+	myTableView.frame = newTableViewframe;
 }
 
 - (void)viewDidUnload
@@ -81,7 +98,7 @@
 }
 
 #pragma mark - show other view.
-- (void)showImagePlayer:(ContentId)cid
+- (void)showContentPlayer:(ContentId)cid
 {
 	LOG_CURRENT_METHOD;
 	[appDelegate hideContentListView];
@@ -93,7 +110,12 @@
 	[appDelegate hideContentListView];
 	[appDelegate showContentDetailView:cid];
 }
-
+- (IBAction)showPaymentHistoryList
+{
+	LOG_CURRENT_METHOD;
+	PaymentHistoryListViewController* paymentHistoryListVC = [[PaymentHistoryListViewController alloc] init];
+	[self.view addSubview:paymentHistoryListVC.view];
+}
 
 #pragma mark - Table view data source
 
@@ -112,12 +134,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
+	
+	static NSString *identifier = @"ContentListCell";
+	ContentListCell *cell = (ContentListCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
+	if (cell == nil) {
+		ContentListCellController *cellController = [[ContentListCellController alloc] initWithNibName:identifier bundle:nil];
+		cell = (ContentListCell*)cellController.view;
+		[cellController release];
+	}
     
     // Configure the cell...
 	ContentId targetCid = [appDelegate.contentListDS contentIdAtIndex:indexPath.row];
@@ -128,13 +152,34 @@
 	} else {
 		paymentStatStr = @"not_payed";
 	}
+	/*
 	cell.textLabel.text = [NSString stringWithFormat:@"stat=%d, %@, %@",
 						   [appDelegate.contentListDS checkPaymentStatusByContentId:targetCid],
 						   paymentStatStr,
 						   [appDelegate.contentListDS titleByContentId:targetCid]
 						   ];
-	cell.imageView.image = [appDelegate.contentListDS thumbnailImageByContentId:targetCid];
+	*/
+	cell.titleLabel.text = [appDelegate.contentListDS titleByContentId:targetCid];
+	cell.authorLabel.text = [appDelegate.contentListDS authorByContentId:targetCid];
+	if ([appDelegate.contentListDS checkPaymentStatusByContentId:targetCid] == TRUE) {
+		cell.isDownloadedLabel.text = @"支払済";
+		cell.isDownloadedLabel.textColor = [UIColor blueColor];
+		cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+	} else {
+		cell.isDownloadedLabel.text = @"支払未";
+		cell.isDownloadedLabel.textColor = [UIColor orangeColor];
+		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	}
+	cell.imageView.image = [appDelegate.contentListDS contentIconByContentId:targetCid];
+	
+	
     return cell;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return 97.0;
 }
 
 /*
@@ -196,7 +241,7 @@
 	NSUInteger paymentStatus = [appDelegate.contentListDS checkPaymentStatusByContentId:targetCid];
 	
 	if (paymentStatus == PAYMENT_STATUS_PAYED) {
-		[self showImagePlayer:targetCid];
+		[self showContentPlayer:targetCid];
 	} else {
 		[self showContentDetailView:targetCid];
 	}

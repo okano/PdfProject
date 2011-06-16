@@ -11,6 +11,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "SKBE_MainVC.h"
 #import "Utility.h"
+#import "FileUtility.h"
 #import "Define.h"
 #import "MenuViewController.h"
 #import "WebViewController.h"
@@ -112,6 +113,8 @@
 //
 @property (nonatomic, retain) NSURL* pdfURL;
 
+@property (nonatomic) ContentId currentContentId;
+
 //@property (nonatomic, retain) UIImageView* imageView1;
 //@property (nonatomic, retain) UIImageView* imageView2;
 //@property (nonatomic, retain) UIImageView* imageView3;
@@ -136,6 +139,7 @@
 /**
  *Functions.
  */
+- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle contentId:(ContentId)cid;
 // Treat PDF.
 - (ContentId)getCurrentContentIdFromUserDefault;
 - (BOOL)setupPdfBasicInfo:(ContentId)cid;
@@ -147,9 +151,13 @@
 
 // Draw PDF.
 - (NSString*)getPageFilenameFull:(int)pageNum;
+- (NSString*)getPageFilenameFull:(int)pageNum WithContentId:(ContentId)cid;
 - (NSString*)getThumbnailFilenameFull:(int)pageNum;
+- (NSString*)getThumbnailFilenameFull:(int)pageNum WithContentId:(ContentId)cid;
 //
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum;
+- (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum WithContentId:(ContentId)cid;
+- (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum WithTargetFilenameFull:(NSString*)filename;
 - (void)generateThumbnailImageFromImage:(UIImage*)baseImage width:(CGFloat)newWidth pageNumForSave:(NSUInteger)pageNum;
 - (void)removeAllImageCache;
 //

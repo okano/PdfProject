@@ -14,6 +14,7 @@
 @synthesize pdfImageTmp;
 @synthesize scaleForDraw;
 @synthesize originalPageSize, originalPageWidth, originalPageHeight;
+@synthesize currentContentId;
 
 #pragma mark -
 - (void)setupUiScrollView {
@@ -51,7 +52,11 @@
 	
 	//Get Page.
 	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
+#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+	pdfImageTmp = [appDelegate getPdfPageImageWithPageNum:newPageNum WithContentId:currentContentId];
+#elif 
 	pdfImageTmp = [appDelegate getPdfPageImageWithPageNum:newPageNum];
+#endif
 	if (!pdfImageTmp) {
 		LOG_CURRENT_METHOD;
 		LOG_CURRENT_LINE;

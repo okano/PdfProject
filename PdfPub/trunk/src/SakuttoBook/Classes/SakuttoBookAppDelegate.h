@@ -54,6 +54,7 @@
 //
 - (NSString*)getThumbnailFilenameFull:(int)pageNum;
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum;
+- (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum WithContentId:(ContentId)cid;
 //
 - (void)switchToPage:(int)newPageNum;
 //
@@ -73,6 +74,8 @@
 - (NSMutableArray*)getTocDefine;
 - (void)showWebView:(NSString*)urlString;
 - (void)showInfoView;
+//
+- (ContentId)getCurrentContentIdInContentPlayer;
 @end
 
 @interface SakuttoBookAppDelegate (InAppPurchase)

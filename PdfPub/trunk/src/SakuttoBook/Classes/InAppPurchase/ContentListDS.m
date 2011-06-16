@@ -18,7 +18,8 @@
 	if (self) {
 		contentList = [[NSMutableArray alloc] init];
 		
-		[self setupTestData];
+		[self setupData];
+		//[self setupTestData];
     }
     return self;
 }
@@ -49,6 +50,82 @@
 		}
 	}
 	return InvalidContentId;
+}
+
+- (NSString*)productIdFromContentId:(ContentId)cid
+{
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"cid=%d", cid);
+	if (cid == 0) {
+		return @"storeProductId-00";
+	} else 	if (cid == 1) {
+		return @"storeProductId-01";
+	} else 	if (cid == 2) {
+		return @"storeProductId-02";
+	} else 	if (cid == 3) {
+		return @"storeProductId-03";
+	} else {
+		return @"storeProductId-04";
+	}
+}
+
+#pragma mark - setup data.
+- (void)setupData
+{
+#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+	
+	//Foreach contentId.
+	int contentIdInt = 0;
+	while (0==0) {
+		//Open define file.
+		NSString* csvFilename = [NSString stringWithFormat:@"bookDefine_%d", contentIdInt];
+		NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:csvFilename ofType:@"csv"];
+		if (! csvFilePath) {
+			break;
+		}
+		NSLog(@"csvFilename=%@", csvFilename);
+		NSLog(@"csvFilePath=%@", csvFilePath);
+		NSError* error = nil;
+		NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
+		if (error) {
+			NSLog(@"book define file not found. filename=%@", [csvFilePath lastPathComponent]);
+			NSLog(@"error=%@, error code=%d", [error localizedDescription], [error code]);
+			break;
+		}
+		if (! text) { LOG_CURRENT_LINE; }
+		
+		//Read book define.
+		NSArray* lines = [text componentsSeparatedByString:@"\n"];
+		//NSArray* lines = [[text stringByAppendingString:@"\n"] componentsSeparatedByString:@"\n"];
+		if ([lines count] <= 0) {
+			continue;	//skip to next file.
+		}
+		
+		//set book infomation to inner var.
+		NSMutableDictionary* tmpDict;
+		tmpDict = [[NSMutableDictionary alloc] init];
+		[tmpDict setValue:[NSNumber numberWithInteger:contentIdInt] forKey:CONTENT_CID];
+		[tmpDict setValue:[self productIdFromContentId:contentIdInt] forKey:CONTENT_STORE_PRODUCT_ID];
+		[tmpDict setValue:[lines objectAtIndex:0] forKey:CONTENT_TITLE];
+		if (2 <= [lines count]) {
+			[tmpDict setValue:[lines objectAtIndex:1] forKey:CONTENT_AUTHOR];
+		}
+		if (3 <= [lines count]) {
+			//[tmpDict setValue:[lines objectAtIndex:2] forKey:CONTENT_COPYRIGHT];
+		}
+		if (4 <= [lines count]) {
+			//[tmpDict setValue:[lines objectAtIndex:3] forKey:CONTENT_SUPPORT_HP];
+		}
+		if (5 <= [lines count]) {	//[FIXME]enable multi-line.
+			[tmpDict setValue:[lines objectAtIndex:4] forKey:CONTENT_DESCRIPTION];
+		}
+		[contentList addObject:tmpDict];
+		
+		contentIdInt++;
+	}//end-while.
+#else
+	[self setupTestData];
+#endif
 }
 
 
@@ -91,7 +168,7 @@
 }
 
 #pragma mark Thumbnail Image
-- (UIImage*)thumbnailImageAtIndex:(NSInteger)index
+- (UIImage*)contentIconAtIndex:(NSInteger)index
 {
 	UIColor* color = [UIColor colorWithRed:0.125 * index
 					  				 green:0.25  * index
@@ -107,9 +184,18 @@
 	
 	return image;
 }
-- (UIImage*)thumbnailImageByContentId:(ContentId)cid
+- (UIImage*)contentIconByContentId:(ContentId)cid
 {
-	return [self thumbnailImageAtIndex:cid];
+	NSString* filename = [NSString stringWithFormat:@"%@%d.%@",
+						   CONTENT_ICONFILE_PREFIX,
+						   (cid + 1),
+						   CONTENT_ICONFILE_EXTENSION];
+	//NSLog
+	NSLog(@"filename=%@", filename);
+	
+	// Open image from mainBundle.
+	UIImage* image = [UIImage imageNamed:filename];
+	return image;
 }
 
 #pragma mark Description
@@ -136,8 +222,10 @@
 {
 	//LOG_CURRENT_METHOD;
 	//NSLog(@"cid=%d", cid);
-	if (cid == 1) {
-		return PAYMENT_STATUS_NOT_PAYED;
+	if (cid == 0) {
+		return PAYMENT_STATUS_PAYED;
+	} else 	if (cid == 1) {
+		return PAYMENT_STATUS_PAYED;
 	} else 	if (cid == 2) {
 		return PAYMENT_STATUS_NOT_PAYED;
 	} else 	if (cid == 3) {

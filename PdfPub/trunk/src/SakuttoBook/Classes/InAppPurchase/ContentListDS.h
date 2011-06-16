@@ -19,6 +19,9 @@
 - (uint)count;
 - (ContentId)contentIdAtIndex:(NSInteger)index;
 - (ContentId)contentIdFromProductId:(NSString*)productId;
+- (NSString*)productIdFromContentId:(ContentId)cid;
+
+- (void)setupData;
 
 - (NSString*)titleAtIndex:(NSInteger)index;
 - (NSString*)titleByContentId:(ContentId)cid;
@@ -26,8 +29,8 @@
 - (NSString*)authorByContentId:(ContentId)cid;
 - (NSString*)descriptionAtIndex:(NSInteger)index;
 - (NSString*)descriptionByContentId:(ContentId)cid;
-- (UIImage*)thumbnailImageAtIndex:(NSInteger)index;
-- (UIImage*)thumbnailImageByContentId:(ContentId)cid;
+- (UIImage*)contentIconAtIndex:(NSInteger)index;
+- (UIImage*)contentIconByContentId:(ContentId)cid;
 
 #pragma mark - Payment Infomation Check.
 - (NSUInteger)checkPaymentStatusByContentId:(ContentId)cid;

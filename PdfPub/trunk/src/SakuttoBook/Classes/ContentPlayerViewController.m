@@ -16,6 +16,7 @@
 @synthesize pdfURL;
 //@synthesize imageView1, imageView2, imageView3;
 //@synthesize image1, image2, image3;
+@synthesize currentContentId;
 @synthesize menuViewController, webViewController, tocViewController, thumbnailViewController, bookmarkViewController;
 @synthesize isShownMenuBar, isShownTocView, isShownThumbnailView, isShownBookmarkView;
 //@synthesize currentImageView;
@@ -39,8 +40,16 @@
 
 
 #pragma mark -
+- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle contentId:(ContentId)cid
+{
+	LOG_CURRENT_METHOD;
+	currentContentId = cid;
+	return [self initWithNibName:nibName bundle:nibBundle];
+}
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+	LOG_CURRENT_METHOD;
     [super viewDidLoad];
 	self.title = @"PDF";
 	
@@ -120,7 +129,7 @@
 	 */
 	
 	//
-	currentContentId = [self getCurrentContentIdFromUserDefault];
+	//currentContentId = [self getCurrentContentIdFromUserDefault];
 	
 	//Setup maxPageNum.
 	if ([self setupPdfBasicInfo:currentContentId] == FALSE) {
@@ -220,6 +229,11 @@
 {
 	//Setup PDF filename.(chached in this class)
 	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:@"pdfDefine" ofType:@"csv"];
+	if (csvFilePath == nil) {
+		LOG_CURRENT_METHOD;
+		NSLog(@"csvfile not found.");
+		return FALSE;
+	}
 	NSError* error;
 	NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
 	NSString* text2 = [text stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];
@@ -314,19 +328,30 @@
 #pragma mark -
 #pragma mark draw pdf to screen.
 - (NSString*)getPageFilenameFull:(int)pageNum {
+	return [FileUtility getPageFilenameFull:pageNum];
+	/*
 	NSString* filename = [NSString stringWithFormat:@"%@%d", PAGE_FILE_PREFIX, pageNum];
 	NSString* targetFilenameFull = [[[NSHomeDirectory() stringByAppendingPathComponent:@"tmp"]
 									 stringByAppendingPathComponent:filename]
 									stringByAppendingPathExtension:PAGE_FILE_EXTENSION];
 	return targetFilenameFull;
+	*/
 }
-
+- (NSString*)getPageFilenameFull:(int)pageNum WithContentId:(ContentId)cid{
+	return [FileUtility getPageFilenameFull:pageNum WithContentId:cid];
+}
 - (NSString*)getThumbnailFilenameFull:(int)pageNum {
+	return [FileUtility getThumbnailFilenameFull:pageNum];
+	/*
 	NSString* filename = [NSString stringWithFormat:@"%@%d", THUMBNAIL_FILE_PREFIX, pageNum];
 	NSString* targetFilenameFull = [[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 									 stringByAppendingPathComponent:filename]
 									stringByAppendingPathExtension:THUMBNAIL_FILE_EXTENSION];
 	return targetFilenameFull;
+	*/
+}
+- (NSString*)getThumbnailFilenameFull:(int)pageNum WithContentId:(ContentId)cid{
+	return [FileUtility getThumbnailFilenameFull:pageNum WithContentId:cid];
 }
 
 #pragma mark -
@@ -341,12 +366,22 @@
 		NSLog(@"illigal page given. pageNum=%d, maxPageNum=%d", pageNum, maxPageNum);
 		return nil;
 	}
-	
-	//
-	//[self preparePdfPageImageWithPageNum:pageNum];
-	
 	//Get image from file if exists.
-	NSString* targetFilenameFull = [self getPageFilenameFull:pageNum];
+	NSString* targetFilenameFull = [FileUtility getPageFilenameFull:pageNum];
+	return [self getPdfPageImageWithPageNum:pageNum WithTargetFilenameFull:targetFilenameFull];
+}
+- (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum WithContentId:(ContentId)cid
+{
+	if (maxPageNum < pageNum) {
+		NSLog(@"illigal page given. pageNum=%d, maxPageNum=%d", pageNum, maxPageNum);
+		return nil;
+	}
+	//Get image from file if exists.
+	NSString* targetFilenameFull = [FileUtility getPageFilenameFull:pageNum WithContentId:currentContentId];
+	return [self getPdfPageImageWithPageNum:pageNum WithTargetFilenameFull:targetFilenameFull];
+}
+- (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum WithTargetFilenameFull:(NSString*)targetFilenameFull
+{
 	NSFileManager *fileManager = [NSFileManager defaultManager];
 	if ([fileManager fileExistsAtPath:targetFilenameFull]) {
 		UIImage* pdfImage = [[UIImage alloc] initWithContentsOfFile:targetFilenameFull];
@@ -360,6 +395,9 @@
 		//NSLog(@"page file for page %d not exist. generate. filename=%@", pageNum, targetFilenameFull);
 		//return [self generateImageWithPageNum:pageNum];
 		ImageGenerator* ig = [[ImageGenerator alloc] init];
+#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+		ig.currentContentId	= currentContentId;
+#endif
 		[ig generateImageWithPageNum:pageNum fromUrl:pdfURL minWidth:CACHE_IMAGE_WIDTH_MIN];
 		[ig release];
 		
@@ -371,6 +409,9 @@
 			return pdfImage;
 		} else {
 			NSLog(@"page generate but can not open image from file. for page %d filename=%@", pageNum, targetFilenameFull);
+#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+			NSLog(@"currentContentId=%d", currentContentId);
+#endif
 			return nil;
 		}
 	}
@@ -378,6 +419,9 @@
 	[targetFilenameFull release];
 	return nil;
 }
+
+
+
 
 - (void)generateThumbnailImageFromImage:(UIImage*)baseImage width:(CGFloat)newWidth pageNumForSave:(NSUInteger)pageNum
 {

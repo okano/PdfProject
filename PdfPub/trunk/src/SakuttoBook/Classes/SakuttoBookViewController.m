@@ -94,7 +94,7 @@
 - (void)showContentListView
 {
 	if (contentListVC == nil) {
-		contentListVC = [[ContentListViewController alloc] initWithStyle:UITableViewStylePlain];
+		contentListVC = [[ContentListViewController alloc] init];
 	}
 	[self.view addSubview:contentListVC.view];
 }
@@ -107,19 +107,17 @@
 #pragma mark -
 - (void)showContentPlayerView:(ContentId)cid
 {
-	[self showContentPlayerView];
-	/*
-	if (imagePlayerVC == nil) {
-		imagePlayerVC = [[ImagePlayerViewController alloc] initWithNibName:@"ImagePlayerView" bundle:[NSBundle mainBundle]];
+	if (contentPlayerViewController == nil) {
+		contentPlayerViewController = [[ContentPlayerViewController alloc] initWithNibName:@"ContentPlayerView" bundle:[NSBundle mainBundle] contentId:cid];
 	}
-	[self.view addSubview:imagePlayerVC.view];
-	[imagePlayerVC setImageWithContentId:cid];
-	*/
+	[self.view addSubview:contentPlayerViewController.view];
 }
 - (void)hideContentPlayerView
 {
 	if (contentPlayerViewController != nil) {
 		[contentPlayerViewController.view removeFromSuperview];
+		[contentPlayerViewController release];
+		contentPlayerViewController = nil;
 	}
 }
 #pragma mark -

@@ -55,7 +55,7 @@
 	
 	
 	//Thumbnail.
-	thumbnailImageView.image = [appDelegate.contentListDS thumbnailImageByContentId:cid];
+	thumbnailImageView.image = [appDelegate.contentListDS contentIconByContentId:cid];
 	
 	//Title, Author, Description.
 	titleLabel.text = [appDelegate.contentListDS titleByContentId:cid];

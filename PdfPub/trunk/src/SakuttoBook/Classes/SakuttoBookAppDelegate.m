@@ -99,6 +99,9 @@
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum {
 	return [viewController.contentPlayerViewController getPdfPageImageWithPageNum:pageNum];
 }
+- (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum WithContentId:(ContentId)cid {
+	return [viewController.contentPlayerViewController getPdfPageImageWithPageNum:pageNum WithContentId:cid];
+}
 - (void)switchToPage:(int)newPageNum {
 	[viewController.contentPlayerViewController switchToPage:newPageNum];
 }
@@ -149,6 +152,11 @@
 }
 - (void)showInfoView {
 	[viewController.contentPlayerViewController showInfoView];
+}
+#pragma mark -
+- (ContentId)getCurrentContentIdInContentPlayer
+{
+	return viewController.contentPlayerViewController.currentContentId;
 }
 
 

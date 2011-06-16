@@ -10,6 +10,7 @@
 #import <StoreKit/StoreKit.h>
 #import "Define.h"
 #import "InAppPurchaseDefine.h"
+#import "InAppPurchaseUtility.h"
 
 @interface PaymentHistoryDS : NSObject /* <SKProductsRequestDelegate, SKPaymentTransactionObserver> */ {
     NSMutableArray* paymentHistory;
@@ -19,10 +20,9 @@
 @property (nonatomic, retain) NSMutableArray* paymentHistory;
 @property (nonatomic, retain) id productsRequestDelegate;
 
+//Save/Load with UserDefault.
 - (void)savePaymentHistory;
 - (void)loadPaymentHistory;
-//Get id from file.
-- (NSString*)getProductIdentifier:(ContentId)cid;
 //
 - (BOOL)isEnabledContent:(ContentId)cid;
 - (void)enableContent:(ContentId)cid;
@@ -30,6 +30,14 @@
 //- (void)disableContent:(ContentId)cid;
 
 - (void)buyContent:(NSString*)productId;
-- (void)showImagePlayer:(ContentId)cid;
 
+//Misc.
+- (NSUInteger)count;
+- (NSString*)descriptionAtIndex:(NSUInteger)index;
 @end
+
+#define PURCHASE_HISTORY_ARRAY	@"Purchase_History_Array"
+#define PURCHASE_CONTENT_ID		@"Purchase_ContentId"
+#define PURCHASE_DAYTIME		@"Purchase_DayTime"	/* time when call method. */
+#define PURCHASE_PRODUCT_ID		@"Purchase_ProductId"
+
