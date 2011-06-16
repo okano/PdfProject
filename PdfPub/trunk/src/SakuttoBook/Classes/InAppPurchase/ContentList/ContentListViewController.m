@@ -45,7 +45,7 @@
 									 self.view.frame.size.width,
 									 toolBarHeight);
 	UIToolbar* toolbar = [[UIToolbar alloc] initWithFrame:toolBarFrame];
-	UIBarButtonItem *paymentHistoryButton = [[UIBarButtonItem alloc] initWithTitle:@"Purchase History"
+	UIBarButtonItem *paymentHistoryButton = [[UIBarButtonItem alloc] initWithTitle:@"購入履歴"
 																	   style:UIBarButtonItemStyleBordered
 																	  target:self
 																	  action:@selector(showPaymentHistoryList)];
@@ -162,11 +162,11 @@
 	cell.titleLabel.text = [appDelegate.contentListDS titleByContentId:targetCid];
 	cell.authorLabel.text = [appDelegate.contentListDS authorByContentId:targetCid];
 	if ([appDelegate.contentListDS checkPaymentStatusByContentId:targetCid] == TRUE) {
-		cell.isDownloadedLabel.text = @"支払済";
+		cell.isDownloadedLabel.text = @"購入済";
 		cell.isDownloadedLabel.textColor = [UIColor blueColor];
 		cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 	} else {
-		cell.isDownloadedLabel.text = @"支払未";
+		cell.isDownloadedLabel.text = @"未購入";
 		cell.isDownloadedLabel.textColor = [UIColor orangeColor];
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	}
