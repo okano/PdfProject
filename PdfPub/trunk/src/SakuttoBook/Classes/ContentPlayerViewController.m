@@ -245,7 +245,7 @@
 		pdfFilename = [NSString stringWithFormat:@"document.pdf"];
 	} else {
 		if (cid < [lines count]) {
-			pdfFilename = [lines objectAtIndex:cid];
+			pdfFilename = [lines objectAtIndex:(cid - 1)];
 		} else {
 			pdfFilename = [lines objectAtIndex:0];
 		}
@@ -377,7 +377,7 @@
 		return nil;
 	}
 	//Get image from file if exists.
-	NSString* targetFilenameFull = [FileUtility getPageFilenameFull:pageNum WithContentId:currentContentId];
+	NSString* targetFilenameFull = [FileUtility getPageFilenameFull:pageNum WithContentId:cid];
 	return [self getPdfPageImageWithPageNum:pageNum WithTargetFilenameFull:targetFilenameFull];
 }
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum WithTargetFilenameFull:(NSString*)targetFilenameFull
