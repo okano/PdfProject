@@ -145,20 +145,6 @@
     
     // Configure the cell...
 	ContentId targetCid = [appDelegate.contentListDS contentIdAtIndex:indexPath.row];
-	NSUInteger paymentStat = [appDelegate.contentListDS checkPaymentStatusByContentId:targetCid];
-	NSString* paymentStatStr;
-	if (paymentStat == PAYMENT_STATUS_PAYED) {
-		paymentStatStr = @"payed";
-	} else {
-		paymentStatStr = @"not_payed";
-	}
-	/*
-	cell.textLabel.text = [NSString stringWithFormat:@"stat=%d, %@, %@",
-						   [appDelegate.contentListDS checkPaymentStatusByContentId:targetCid],
-						   paymentStatStr,
-						   [appDelegate.contentListDS titleByContentId:targetCid]
-						   ];
-	*/
 	cell.titleLabel.text = [appDelegate.contentListDS titleByContentId:targetCid];
 	cell.authorLabel.text = [appDelegate.contentListDS authorByContentId:targetCid];
 	if ([appDelegate.contentListDS checkPaymentStatusByContentId:targetCid] == TRUE) {
