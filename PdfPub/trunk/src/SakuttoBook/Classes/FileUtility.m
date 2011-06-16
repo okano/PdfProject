@@ -25,7 +25,7 @@
 	NSLog(@"pageNum=%d, ContentId=%d", pageNum, cid);
 	NSString* filename = [NSString stringWithFormat:@"%@%d", PAGE_FILE_PREFIX, pageNum];
 	NSString* targetFilenameFull = [[[[NSHomeDirectory() stringByAppendingPathComponent:@"tmp"]
-									  stringByAppendingPathComponent:[NSString stringWithFormat:@"%d",cid]]
+									  stringByAppendingPathComponent:[NSString stringWithFormat:@"%d",(cid+1)]]
 									 stringByAppendingPathComponent:filename]
 									stringByAppendingPathExtension:PAGE_FILE_EXTENSION];
 	NSLog(@"filename=%@", filename);
@@ -45,7 +45,7 @@
 + (NSString*)getThumbnailFilenameFull:(int)pageNum WithContentId:(ContentId)cid {
 	NSString* filename = [NSString stringWithFormat:@"%@%d", THUMBNAIL_FILE_PREFIX, pageNum];
 	NSString* targetFilenameFull = [[[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
-									  stringByAppendingPathComponent:[NSString stringWithFormat:@"%d",cid]]
+									  stringByAppendingPathComponent:[NSString stringWithFormat:@"%d",(cid+1)]]
 									 stringByAppendingPathComponent:filename]
 									stringByAppendingPathExtension:THUMBNAIL_FILE_EXTENSION];
 	return targetFilenameFull;
