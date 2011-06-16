@@ -229,7 +229,7 @@
 	}
 	
 	NSDictionary* tmpDict = [paymentHistory objectAtIndex:index];
-	return [NSString stringWithFormat:@"cid=%@%c,pid=%@%c,daytime=%@%c",
+	return [NSString stringWithFormat:@" ContentId=%@%c ProductId=%@%c purchase daytime=%@%c",
 			[tmpDict valueForKey:PURCHASE_CONTENT_ID],
 			0x0d,
 			[tmpDict valueForKey:PURCHASE_PRODUCT_ID],

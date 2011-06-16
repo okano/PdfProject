@@ -74,6 +74,7 @@
     // Configure the cell...
 	cell.userInteractionEnabled = NO;
 	if (indexPath.row < [appDelegate.paymentHistoryDS count]) {
+		cell.textLabel.numberOfLines = 0;
 		cell.textLabel.text = [appDelegate.paymentHistoryDS descriptionAtIndex:indexPath.row];
 	} else {
 		cell.textLabel.text = [NSString stringWithFormat:@"Total %d record(s).", [appDelegate.paymentHistoryDS count]];
