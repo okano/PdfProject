@@ -24,6 +24,9 @@ typedef	NSUInteger	ContentId;	/* 1-start. */
 #define PAYMENT_STATUS_PAYED			(NSUInteger)1
 #define PAYMENT_STATUS_NOT_PAYED		(NSUInteger)2
 
+#define PRODUCT_KIND_FREE			0
+#define PRODUCT_KIND_CONSUMABLE		1
+#define PRODUCT_KIND_NON_CONSUMABLE	2
 
 
 

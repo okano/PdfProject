@@ -144,6 +144,8 @@
 {
 	//Check if Free Content.
 	NSString* pid = [InAppPurchaseUtility getProductIdentifier:cid];
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"cid=%d, pid=%@", cid, pid);
 	if ([InAppPurchaseUtility isFreeContent:pid] == TRUE)
 	{
 		return TRUE;

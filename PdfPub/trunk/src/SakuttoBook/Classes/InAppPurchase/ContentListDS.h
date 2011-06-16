@@ -33,9 +33,6 @@
 - (UIImage*)contentIconAtIndex:(NSInteger)index;
 - (UIImage*)contentIconByContentId:(ContentId)cid;
 
-#pragma mark - Payment Infomation Check.
-- (NSUInteger)checkPaymentStatusByContentId:(ContentId)cid;
-
 #pragma mark - TestData.
 - (void)setupTestData;
 

@@ -75,7 +75,7 @@
 #if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
 	
 	//Foreach contentId.
-	int contentIdInt = 0;
+	int contentIdInt = 1;	//1-Start.
 	while (0==0) {
 		//Open define file.
 		NSString* csvFilename = [InAppPurchaseUtility getBookDefineFilename:contentIdInt];
@@ -170,6 +170,8 @@
 #pragma mark Thumbnail Image
 - (UIImage*)contentIconAtIndex:(NSInteger)index
 {
+	return [self contentIconByContentId:(index + 1)];
+	/*
 	UIColor* color = [UIColor colorWithRed:0.125 * index
 					  				 green:0.25  * index
 									  blue:0.5   * index
@@ -183,15 +185,15 @@
     UIGraphicsEndImageContext();
 	
 	return image;
+	*/
 }
 - (UIImage*)contentIconByContentId:(ContentId)cid
 {
 	NSString* filename = [NSString stringWithFormat:@"%@%d.%@",
 						   CONTENT_ICONFILE_PREFIX,
-						   (cid + 1),
+						   cid,
 						   CONTENT_ICONFILE_EXTENSION];
-	//NSLog
-	NSLog(@"filename=%@", filename);
+	//NSLog(@"filename=%@", filename);
 	
 	// Open image from mainBundle.
 	UIImage* image = [UIImage imageNamed:filename];
@@ -216,25 +218,6 @@
 	}
 	return @"";
 }
-
-#pragma mark - Payment Infomation Check.
-- (NSUInteger)checkPaymentStatusByContentId:(ContentId)cid
-{
-	//LOG_CURRENT_METHOD;
-	//NSLog(@"cid=%d", cid);
-	if (cid == 0) {
-		return PAYMENT_STATUS_PAYED;
-	} else 	if (cid == 1) {
-		return PAYMENT_STATUS_PAYED;
-	} else 	if (cid == 2) {
-		return PAYMENT_STATUS_NOT_PAYED;
-	} else 	if (cid == 3) {
-		return PAYMENT_STATUS_NOT_PAYED;
-	} else {
-		return PAYMENT_STATUS_PAYED;
-	}
-}
-
 
 #pragma mark - TestData.
 - (void)setupTestData

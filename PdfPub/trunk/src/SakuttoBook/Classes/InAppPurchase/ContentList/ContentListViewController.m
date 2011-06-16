@@ -143,11 +143,18 @@
 		[cellController release];
 	}
     
-    // Configure the cell...
 	ContentId targetCid = [appDelegate.contentListDS contentIdAtIndex:indexPath.row];
+	NSString* targetPid = [appDelegate.contentListDS productIdFromContentId:targetCid];
+	//NSLog(@"indexPath.row=%d, cid=%d, pid=%@", indexPath.row, targetCid, targetPid);
+	
+    // Configure the cell...
 	cell.titleLabel.text = [appDelegate.contentListDS titleByContentId:targetCid];
 	cell.authorLabel.text = [appDelegate.contentListDS authorByContentId:targetCid];
-	if ([appDelegate.contentListDS checkPaymentStatusByContentId:targetCid] == TRUE) {
+	//Check payment status.
+	if (([InAppPurchaseUtility isFreeContent:targetPid] == TRUE)
+		||
+		([appDelegate.paymentHistoryDS isEnabledContent:targetCid] == TRUE))
+	{
 		cell.isDownloadedLabel.text = @"購入済";
 		cell.isDownloadedLabel.textColor = [UIColor blueColor];
 		cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
@@ -211,22 +218,21 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
-	
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-	//
-	ContentId targetCid = [appDelegate.contentListDS contentIdAtIndex:indexPath.row];
-	NSUInteger paymentStatus = [appDelegate.contentListDS checkPaymentStatusByContentId:targetCid];
+	//Check payment status.
+	ContentId targetCid = [appDelegate.contentListDS contentIdAtIndex:indexPath.row] + 1;
+	NSString* targetPid = [appDelegate.contentListDS productIdFromContentId:targetCid];
 	
-	if (paymentStatus == PAYMENT_STATUS_PAYED) {
+	BOOL isPayedContent = NO;
+	if ([InAppPurchaseUtility isFreeContent:targetPid] == TRUE) {
+		isPayedContent = YES;
+	}
+	if ([appDelegate.paymentHistoryDS isEnabledContent:targetCid] == TRUE) {
+		isPayedContent = YES;
+	}
+	
+	if (isPayedContent == YES) {
 		[self showContentPlayer:targetCid];
 	} else {
 		[self showContentDetailView:targetCid];

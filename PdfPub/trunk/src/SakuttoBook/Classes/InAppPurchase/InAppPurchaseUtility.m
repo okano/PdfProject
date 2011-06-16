@@ -13,6 +13,8 @@
 #pragma mark - Get id from file.
 + (NSString*)getProductIdentifier:(ContentId)cid
 {
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"cid=%d", cid);
 	NSArray* lines = [self getAllProductIdentifier];
 	if (cid < [lines count]) {
 		//return [lines objectAtIndex:(cid-1)];
@@ -39,7 +41,22 @@
 		return nil;
 	}
 	
-	NSArray* lines = [text componentsSeparatedByString:@"\n"];
+	NSMutableArray* lines = [[NSMutableArray alloc] initWithArray:[text componentsSeparatedByString:@"\n"]];
+	
+	//delete comment line.
+	for (NSString* line in [lines reverseObjectEnumerator] ) {
+		NSLog(@"class=%@, line=%@", [line class], line);
+		if ([line length] <= 0) {
+			[lines removeObject:line];	//Skip comment line.
+			continue;
+		}
+		if ([line characterAtIndex:0] == '#'
+			||
+			[line characterAtIndex:0] == ';') {
+			[lines removeObject:line];	//Skip comment line.
+			continue;
+		}
+	}
 	return lines;
 }
 
@@ -51,7 +68,7 @@
 		NSArray* commaSeparated = [singleLine componentsSeparatedByString:@","];
 		NSString* candidateProductId = [commaSeparated objectAtIndex:0];
 		if ([productId compare:candidateProductId] == NSOrderedSame) {
-			if (1 <= [commaSeparated count] && 1 <= [[commaSeparated objectAtIndex:1] intValue]) {
+			if (1 <= [commaSeparated count] && PRODUCT_KIND_FREE == [[commaSeparated objectAtIndex:1] intValue]) {
 				return TRUE;	//Free
 			} else {
 				return FALSE;	//Not Free
@@ -65,7 +82,7 @@
 #pragma mark -
 + (NSString*)getBookDefineFilename:(ContentId)cid
 {
-	return [NSString stringWithFormat:@"bookDefine_%d", (cid + 1) ];	//without ext ".csv".
+	return [NSString stringWithFormat:@"bookDefine_%d", cid];	//without ext ".csv".
 }
 
 
