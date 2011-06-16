@@ -71,7 +71,7 @@
 	//BuyButton
 	buyButton.titleLabel.text = @"(Now Loading...)";
 	buyButton.enabled = NO;
-	buyButton.hidden = YES;
+	buyButton.hidden = NO;
 }
 #pragma mark - SKProductsRequestDelegate methods.
 - (void)productsRequest:(SKProductsRequest *)request
@@ -85,6 +85,17 @@
 	}
 	
 	NSLog(@"result count = %d", [responseParameters.products count]);
+	if ([responseParameters.products count] <= 0) {
+		buyButton.hidden = NO;
+		buyButton.titleLabel.font = [UIFont systemFontOfSize:10.0f];
+		CGRect frame = buyButton.titleLabel.frame;
+		buyButton.titleLabel.frame = CGRectMake(frame.origin.x,
+												frame.origin.y,
+												150.0f,
+												frame.size.height);
+		buyButton.titleLabel.text = @"error";
+		NSLog(@"responseParameters.invalidProductIdentifiers=%@", [responseParameters.invalidProductIdentifiers description]);
+	}
 	for (SKProduct* resultProduct in responseParameters.products) {
 		LOG_CURRENT_LINE;
 		NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
@@ -106,6 +117,18 @@
 		LOG_CURRENT_METHOD;
 		NSLog(@"targetProductId=%@", targetProductId);
 	}
+}
+
+#pragma mark - related SKPaymentTransactionObserver methods.
+- (void)completeTransaction:(SKPaymentTransaction*)transaction
+{
+	LOG_CURRENT_METHOD;
+	//
+	NSString* productID = transaction.payment.productIdentifier;
+	ContentId cid = [InAppPurchaseUtility getContentIdentifier:productID];
+	NSLog(@"pid=%@, cid=%d", productID, cid);
+	[appDelegate hideContentDetailView];
+	[appDelegate showContentPlayerView:cid];
 }
 
 #pragma mark -

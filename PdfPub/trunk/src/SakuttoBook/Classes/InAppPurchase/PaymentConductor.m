@@ -138,6 +138,10 @@
 	
 	//Delete complete transaction in queue.
 	[[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+	
+	
+	//Throw to parent.
+	[productsRequestDelegate completeTransaction:transaction];
 }
 - (void)restoreTransaction:(SKPaymentTransaction*)transaction{;}
 - (void)failedTransaction:(SKPaymentTransaction*)transaction{;}

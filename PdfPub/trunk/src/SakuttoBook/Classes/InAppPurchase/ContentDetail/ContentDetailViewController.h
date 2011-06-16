@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "InAppPurchaseDefine.h"
+#import "InAppPurchaseUtility.h"
 #import "SakuttoBookAppDelegate.h"
 
 @interface ContentDetailViewController : UIViewController {
@@ -34,5 +35,11 @@
 - (void)setLabelsWithContentId:(ContentId)cid;
 - (IBAction)showContentList:(id)sender;
 - (IBAction)buyContent:(id)sender;
+
+//called from SKProductsRequestDelegate related methods.
+- (void)productsRequest:(SKProductsRequest *)request
+	 didReceiveResponse:(SKProductsResponse *)responseParameters;
+//called from SKPaymentTransactionObserver related methods.
+- (void)completeTransaction:(SKPaymentTransaction*)transaction;
 
 @end
