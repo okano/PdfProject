@@ -124,13 +124,12 @@
 																		  options:NSPropertyListMutableContainersAndLeaves 
 																		   format:NULL
 																			error:NULL];
-	NSLog(@"dict = %@", [dict description]);
-	
-	NSLog(@"environment=%@", [dict valueForKey:@"environment"]);
-	NSLog(@"pod=%@", [dict valueForKey:@"pod"]);
-	NSLog(@"purchase-info=%@", [dict valueForKey:@"purchase-info"]);
-	NSLog(@"signature=%@", [dict valueForKey:@"signature"]);
-	NSLog(@"signing-status=%@", [dict valueForKey:@"signing-status"]);
+	//NSLog(@"dict = %@", [dict description]);
+	//NSLog(@"environment=%@", [dict valueForKey:@"environment"]);
+	//NSLog(@"pod=%@", [dict valueForKey:@"pod"]);
+	//NSLog(@"purchase-info=%@", [dict valueForKey:@"purchase-info"]);
+	//NSLog(@"signature=%@", [dict valueForKey:@"signature"]);
+	//NSLog(@"signing-status=%@", [dict valueForKey:@"signing-status"]);
 	
 	//Enable contents.
 	NSString* productID = transaction.payment.productIdentifier;
@@ -143,7 +142,10 @@
 	//Throw to parent.
 	[productsRequestDelegate completeTransaction:transaction];
 }
-- (void)restoreTransaction:(SKPaymentTransaction*)transaction{;}
+- (void)restoreTransaction:(SKPaymentTransaction*)transaction
+{
+	LOG_CURRENT_METHOD;
+}
 - (void)failedTransaction:(SKPaymentTransaction*)transaction{;}
 
 

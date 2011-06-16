@@ -28,7 +28,7 @@
 - (void)savePaymentHistory
 {
 	LOG_CURRENT_METHOD;
-	NSLog(@"all paymentHistory=%@", [paymentHistory description]);
+	//NSLog(@"all paymentHistory=%@", [paymentHistory description]);
 	
 	//Store bookmark infomation to UserDefault.
 	NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
@@ -191,7 +191,7 @@
 	[tmpDict setValue:pid forKey:PURCHASE_PRODUCT_ID];
 	[tmpDict setValue:[NSNumber numberWithInt:cid] forKey:PURCHASE_CONTENT_ID];
 	[tmpDict setValue:[NSDate dateWithTimeIntervalSinceNow:0.0f] forKey:PURCHASE_DAYTIME];
-	NSLog(@"enable content. cid=%d, pid=%@, dict=%@", cid, pid, [tmpDict description]);
+	//NSLog(@"enable content. cid=%d, pid=%@, dict=%@", cid, pid, [tmpDict description]);
 	[paymentHistory addObject:tmpDict];
 	//
 	[self savePaymentHistory];
@@ -212,7 +212,7 @@
 	[tmpDict setValue:productId forKey:PURCHASE_PRODUCT_ID];
 	[tmpDict setValue:[NSNumber numberWithInt:cid] forKey:PURCHASE_CONTENT_ID];
 	[tmpDict setValue:[NSDate dateWithTimeIntervalSinceNow:0.0f] forKey:PURCHASE_DAYTIME];
-	NSLog(@"enable content. cid=%d, pid=%@, dict=%@", cid, productId, [tmpDict description]);
+	//NSLog(@"enable content. cid=%d, pid=%@, dict=%@", cid, productId, [tmpDict description]);
 	[paymentHistory addObject:tmpDict];
 	//
 	[self savePaymentHistory];
