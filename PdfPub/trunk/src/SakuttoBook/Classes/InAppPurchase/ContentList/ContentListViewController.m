@@ -221,7 +221,7 @@
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 
 	//Check payment status.
-	ContentId targetCid = [appDelegate.contentListDS contentIdAtIndex:indexPath.row] + 1;
+	ContentId targetCid = [appDelegate.contentListDS contentIdAtIndex:indexPath.row];
 	NSString* targetPid = [appDelegate.contentListDS productIdFromContentId:targetCid];
 	
 	BOOL isPayedContent = NO;
