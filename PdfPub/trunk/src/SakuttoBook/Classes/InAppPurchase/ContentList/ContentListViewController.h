@@ -25,4 +25,7 @@
 - (void)showContentDetailView:(ContentId)cid;
 - (IBAction)showPaymentHistoryList;
 
+//Accessor for table
+- (void)reloadData;
+
 @end

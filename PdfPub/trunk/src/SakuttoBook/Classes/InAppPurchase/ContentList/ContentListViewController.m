@@ -244,4 +244,9 @@
 	}
 }
 
+#pragma mark - Accessor for table
+- (void)reloadData
+{
+	[myTableView reloadData];
+}
 @end
