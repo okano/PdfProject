@@ -53,6 +53,8 @@
 	//Get Page.
 	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
 #if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"newPageNum=%d, currentContentId=%d", newPageNum, currentContentId);
 	pdfImageTmp = [appDelegate getPdfPageImageWithPageNum:newPageNum WithContentId:currentContentId];
 #elif 
 	pdfImageTmp = [appDelegate getPdfPageImageWithPageNum:newPageNum];
