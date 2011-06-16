@@ -24,6 +24,22 @@
 	}
 	return @"";
 }
++ (ContentId)getContentIdentifier:(NSString *)pid
+{
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"cid=%d", cid);
+	NSArray* lines = [self getAllProductIdentifier];
+	int i = 0;
+	for (NSString* singleLine in lines) {
+		NSArray* commaSeparated = [singleLine componentsSeparatedByString:@","];
+		NSString* candidatePid = [commaSeparated objectAtIndex:0];
+		if ([candidatePid compare:pid] == NSOrderedSame) {
+			return (ContentId)(i + 1);
+		}
+		i++;
+	}
+	return InvalidContentId;
+}
 
 + (NSArray*)getAllProductIdentifier
 {
