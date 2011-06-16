@@ -97,6 +97,7 @@
 		contentListVC = [[ContentListViewController alloc] init];
 	}
 	[self.view addSubview:contentListVC.view];
+	[contentListVC reloadData];
 }
 - (void)hideContentListView
 {
@@ -107,6 +108,8 @@
 #pragma mark -
 - (void)showContentPlayerView:(ContentId)cid
 {
+	LOG_CURRENT_METHOD;
+	NSLog(@"cid=%d", cid);
 	if (contentPlayerViewController == nil) {
 		contentPlayerViewController = [[ContentPlayerViewController alloc] initWithNibName:@"ContentPlayerView" bundle:[NSBundle mainBundle] contentId:cid];
 	}
