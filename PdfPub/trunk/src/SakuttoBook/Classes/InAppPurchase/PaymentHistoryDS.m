@@ -19,6 +19,7 @@
     self = [super init];
     if (self) {
 		paymentHistory = [[NSMutableArray alloc] init];
+		[self loadPaymentHistory];
     }
     return self;
 }
@@ -26,6 +27,9 @@
 #pragma mark - save/load with file.
 - (void)savePaymentHistory
 {
+	LOG_CURRENT_METHOD;
+	NSLog(@"all paymentHistory=%@", [paymentHistory description]);
+	
 	//Store bookmark infomation to UserDefault.
 	NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
 	[userDefault setObject:paymentHistory forKey:PURCHASE_HISTORY_ARRAY];
@@ -178,11 +182,38 @@
 	SKPayment* payment = [SKPayment paymentWithProductIdentifier:productId];
 	[[SKPaymentQueue defaultQueue] addPayment:payment];
 }
-- (void)enableContent:(ContentId)cid{;}
+- (void)enableContent:(ContentId)cid
+{
+	LOG_CURRENT_METHOD;
+	NSString* pid = [InAppPurchaseUtility getProductIdentifier:cid];
+
+	NSMutableDictionary* tmpDict = [[NSMutableDictionary alloc] init];
+	[tmpDict setValue:pid forKey:PURCHASE_PRODUCT_ID];
+	[tmpDict setValue:[NSNumber numberWithInt:cid] forKey:PURCHASE_CONTENT_ID];
+	NSLog(@"enable content. cid=%d, pid=%@, dict=%@", cid, pid, [tmpDict description]);
+	[paymentHistory addObject:tmpDict];
+	//
+	[self savePaymentHistory];
+	;
+}
 - (void)enableContentWithProductId:(NSString *)productId
 {
 	LOG_CURRENT_METHOD;
+	NSDictionary* tmpDict = [[NSDictionary alloc] init];
+	[self enableContentWithProductId:productId WithDict:tmpDict];
+}
+- (void)enableContentWithProductId:(NSString*)productId WithDict:(NSDictionary*)dict
+{
+	LOG_CURRENT_METHOD;
+	ContentId cid = [InAppPurchaseUtility getContentIdentifier:productId];
 	
+	NSMutableDictionary* tmpDict = [[NSMutableDictionary alloc] initWithDictionary:dict];
+	[tmpDict setValue:productId forKey:PURCHASE_PRODUCT_ID];
+	[tmpDict setValue:[NSNumber numberWithInt:cid] forKey:PURCHASE_CONTENT_ID];
+	NSLog(@"enable content. cid=%d, pid=%@, dict=%@", cid, productId, [tmpDict description]);
+	[paymentHistory addObject:tmpDict];
+	//
+	[self savePaymentHistory];
 }
 //- (void)disableContent:(ContentId)cid{;}
 
@@ -198,7 +229,7 @@
 	}
 	
 	NSDictionary* tmpDict = [paymentHistory objectAtIndex:index];
-	return [NSString stringWithFormat:@"%@%c%@%c%@%c%@%c",
+	return [NSString stringWithFormat:@"cid=%@%c,pid=%@%c,daytime=%@%c",
 			[tmpDict valueForKey:PURCHASE_CONTENT_ID],
 			0x0d,
 			[tmpDict valueForKey:PURCHASE_PRODUCT_ID],

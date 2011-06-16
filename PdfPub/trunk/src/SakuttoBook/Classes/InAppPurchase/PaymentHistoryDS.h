@@ -27,6 +27,7 @@
 - (BOOL)isEnabledContent:(ContentId)cid;
 - (void)enableContent:(ContentId)cid;
 - (void)enableContentWithProductId:(NSString*)productId;
+- (void)enableContentWithProductId:(NSString*)productId WithDict:(NSDictionary*)dict;
 //- (void)disableContent:(ContentId)cid;
 
 - (void)buyContent:(NSString*)productId;
