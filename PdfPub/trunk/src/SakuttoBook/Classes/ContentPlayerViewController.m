@@ -1460,30 +1460,18 @@
 {
 	movieDefine = [[NSMutableArray alloc] init];
 	
-	NSMutableDictionary* tmpDict;
-	
 	//parse csv file.
-	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:@"movieDefine" ofType:@"csv"];
-	if (csvFilePath == nil) {
-		LOG_CURRENT_METHOD;
-		NSLog(@"csvfile not found.");
-		return FALSE;
+	NSString* targetFilename = @"movieDefine";
+	NSArray* lines;
+	if ([self isMultiContents] == TRUE) {
+		lines = [FileUtility parseDefineCsv:targetFilename contentId:currentContentId];
+	} else {
+		lines = [FileUtility parseDefineCsv:targetFilename];
 	}
-	NSError* error;
-	NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
-	NSString* text2 = [text stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];
 	
-	bool hasError = FALSE;
-	NSArray* lines = [text2 componentsSeparatedByString:@"\n"];
+	//parse each line.
+	NSMutableDictionary* tmpDict;
 	for (NSString* line in lines) {
-		if ([line length] <= 0) {
-			continue;	//Skip blank line.
-		}
-		if ([line characterAtIndex:0] == '#'
-			||
-			[line characterAtIndex:0] == ';') {
-			continue;	//Skip comment line.
-		}
 		NSArray* tmpCsvArray = [line componentsSeparatedByString:@","];
 		if ([tmpCsvArray count] < 6) {
 			NSLog(@"illigal CSV data. item count=%d, line=%@", [tmpCsvArray count], line);
@@ -1513,7 +1501,7 @@
 	}
 	//
 	
-	return ! hasError;
+	return TRUE;
 }
 
 - (void) renderMovieLinkAtIndex:(NSUInteger)index
@@ -1578,36 +1566,18 @@
 {
 	pageJumpLinkDefine = [[NSMutableArray alloc] init];
 	
-	NSMutableDictionary* tmpDict;
-	
 	//parse csv file.
-	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:@"pageJumpLinkDefine" ofType:@"csv"];
-	if (csvFilePath == nil) {
-		LOG_CURRENT_METHOD;
-		NSLog(@"csvfile not found.");
-		return FALSE;
+	NSString* targetFilename = @"pageJumpLinkDefine";
+	NSArray* lines;
+	if ([self isMultiContents] == TRUE) {
+		lines = [FileUtility parseDefineCsv:targetFilename contentId:currentContentId];
+	} else {
+		lines = [FileUtility parseDefineCsv:targetFilename];
 	}
-	NSError* error;
-	NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
-	NSString* text2 = [text stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];
-	/*
-	 if (error) {
-	 NSLog(@"error=%@, error code=%d", [error localizedDescription], [error code]);
-	 return FALSE;
-	 }
-	 */
 	
-	bool hasError = FALSE;
-	NSArray* lines = [text2 componentsSeparatedByString:@"\n"];
+	//parse each line.
+	NSMutableDictionary* tmpDict;
 	for (NSString* line in lines) {
-		if ([line length] <= 0) {
-			continue;	//Skip blank line.
-		}
-		if ([line characterAtIndex:0] == '#'
-			||
-			[line characterAtIndex:0] == ';') {
-			continue;	//Skip comment line.
-		}
 		NSArray* tmpCsvArray = [line componentsSeparatedByString:@","];
 		if ([tmpCsvArray count] < 6) {
 			NSLog(@"illigal CSV data. item count=%d, line=%@", [tmpCsvArray count], line);
@@ -1628,7 +1598,7 @@
 	}
 	//
 	
-	return ! hasError;
+	return TRUE;
 }
 
 - (void) renderPageJumpLinkAtIndex:(NSUInteger)index
@@ -1694,30 +1664,18 @@
 {
 	inPageScrollViewDefine = [[NSMutableArray alloc] init];
 	
-	NSMutableDictionary* tmpDict;
-	
 	//parse csv file.
-	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:@"inPageScrollViewDefine" ofType:@"csv"];
-	if (csvFilePath == nil) {
-		LOG_CURRENT_METHOD;
-		NSLog(@"csvfile not found.");
-		return FALSE;
+	NSString* targetFilename = @"inPageScrollViewDefine";
+	NSArray* lines;
+	if ([self isMultiContents] == TRUE) {
+		lines = [FileUtility parseDefineCsv:targetFilename contentId:currentContentId];
+	} else {
+		lines = [FileUtility parseDefineCsv:targetFilename];
 	}
-	NSError* error;
-	NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
-	NSString* text2 = [text stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];
 	
-	bool hasError = FALSE;
-	NSArray* lines = [text2 componentsSeparatedByString:@"\n"];
+	//parse each line.
+	NSMutableDictionary* tmpDict;
 	for (NSString* line in lines) {
-		if ([line length] <= 0) {
-			continue;	//Skip blank line.
-		}
-		if ([line characterAtIndex:0] == '#'
-			||
-			[line characterAtIndex:0] == ';') {
-			continue;	//Skip comment line.
-		}
 		NSArray* tmpCsvArray = [line componentsSeparatedByString:@","];
 		if ([tmpCsvArray count] < 6) {
 			NSLog(@"illigal CSV data. item count=%d, line=%@", [tmpCsvArray count], line);
@@ -1753,7 +1711,7 @@
 		[inPageScrollViewDefine addObject:tmpDict];
 	}
 	//
-	return ! hasError;
+	return TRUE;
 }
 
 - (void) renderInPageScrollViewAtIndex:(NSUInteger)index
@@ -1822,30 +1780,18 @@
 {
 	popoverScrollImageDefine = [[NSMutableArray alloc] init];
 	
-	NSMutableDictionary* tmpDict;
-	
 	//parse csv file.
-	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:@"popoverScrollImageDefine" ofType:@"csv"];
-	if (csvFilePath == nil) {
-		LOG_CURRENT_METHOD;
-		NSLog(@"csvfile not found.");
-		return FALSE;
+	NSString* targetFilename = @"popoverScrollImageDefine";
+	NSArray* lines;
+	if ([self isMultiContents] == TRUE) {
+		lines = [FileUtility parseDefineCsv:targetFilename contentId:currentContentId];
+	} else {
+		lines = [FileUtility parseDefineCsv:targetFilename];
 	}
-	NSError* error;
-	NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
-	NSString* text2 = [text stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];
 	
-	bool hasError = FALSE;
-	NSArray* lines = [text2 componentsSeparatedByString:@"\n"];
+	//parse each line.
+	NSMutableDictionary* tmpDict;
 	for (NSString* line in lines) {
-		if ([line length] <= 0) {
-			continue;	//Skip blank line.
-		}
-		if ([line characterAtIndex:0] == '#'
-			||
-			[line characterAtIndex:0] == ';') {
-			continue;	//Skip comment line.
-		}
 		NSArray* tmpCsvArray = [line componentsSeparatedByString:@","];
 		if ([tmpCsvArray count] < 6) {
 			NSLog(@"illigal CSV data. item count=%d, line=%@", [tmpCsvArray count], line);
@@ -1875,7 +1821,7 @@
 	}
 	//
 	
-	return ! hasError;
+	return TRUE;
 }
 
 - (void) renderPopoverScrollImageLinkAtIndex:(NSUInteger)index
@@ -1949,30 +1895,18 @@
 	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
 	appDelegate.tocDefine = [[NSMutableArray alloc] init];
 	
-	NSMutableDictionary* tmpDict;
-	
 	//parse csv file.
-	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:@"tocDefine" ofType:@"csv"];
-	if (csvFilePath == nil) {
-		LOG_CURRENT_METHOD;
-		NSLog(@"csvfile not found.");
-		return FALSE;
+	NSString* targetFilename = @"tocDefine";
+	NSArray* lines;
+	if ([self isMultiContents] == TRUE) {
+		lines = [FileUtility parseDefineCsv:targetFilename contentId:currentContentId];
+	} else {
+		lines = [FileUtility parseDefineCsv:targetFilename];
 	}
-	NSError* error;
-	NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
-	NSString* text2 = [text stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];
 	
-	bool hasError = FALSE;
-	NSArray* lines = [text2 componentsSeparatedByString:@"\n"];
+	//parse each line.
+	NSMutableDictionary* tmpDict;
 	for (NSString* line in lines) {
-		if ([line length] <= 0) {
-			continue;	//Skip blank line.
-		}
-		if ([line characterAtIndex:0] == '#'
-			||
-			[line characterAtIndex:0] == ';') {
-			continue;	//Skip comment line.
-		}
 		NSArray* tmpCsvArray = [line componentsSeparatedByString:@","];
 		if ([tmpCsvArray count] < 3) {
 			NSLog(@"illigal CSV data. item count=%d, line=%@", [tmpCsvArray count], line);
@@ -1998,7 +1932,7 @@
 		//Add to toc define.
 		[appDelegate.tocDefine addObject:tmpDict];
 	}
-	return ! hasError;
+	return TRUE;
 }
 - (BOOL)parseBookmarkDefine
 {

@@ -51,6 +51,48 @@
 	return targetFilenameFull;
 }
 
+#pragma mark - CSV file parser.
++ (NSArray*)parseDefineCsv:(NSString*)filename
+{
+	//parse csv file.
+	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:filename ofType:@"csv"];
+	if (csvFilePath == nil) {
+		LOG_CURRENT_METHOD;
+		NSLog(@"csvfile not found. filename=%@.%@", filename, @"csv");
+		return nil;
+	}
+	NSError* error = nil;
+	NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
+	if (error != nil) {
+		NSLog(@"Error:%@", [error localizedDescription]);
+		return nil;
+	}
+	
+	//Replace '¥r' to '¥n'
+	NSString* text2 = [text stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];
+	
+	//Delete comment line.
+	NSMutableArray* lines = [[NSMutableArray alloc] initWithArray:[text2 componentsSeparatedByString:@"\n"]];
+	for (NSString* line in [lines reverseObjectEnumerator]) {
+		if ([line length] <= 0) {
+			[lines removeObject:line];	//Skip blank line.
+		}
+		if ([line characterAtIndex:0] == '#'
+			||
+			[line characterAtIndex:0] == ';') {
+			[lines removeObject:line];	//Skip comment line.
+		}
+	}
+	
+	return lines;
+}
+
++ (NSArray*)parseDefineCsv:(NSString*)filename contentId:(ContentId)cid 
+{
+	NSString* filenameWithCid = [NSString stringWithFormat:@"%@_%d", filename, cid];
+	return [self parseDefineCsv:filenameWithCid];
+}
+
 
 #pragma mark - like POSIX file uty.
 //@see:http://www.saturn.dti.ne.jp/~npaka/iphone/util/index.html

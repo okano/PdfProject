@@ -19,6 +19,10 @@
 + (NSString*)getThumbnailFilenameFull:(int)pageNum;
 + (NSString*)getThumbnailFilenameFull:(int)pageNum WithContentId:(ContentId)cid;
 
+//CSV file parser.
++ (NSArray*)parseDefineCsv:(NSString*)filename;
++ (NSArray*)parseDefineCsv:(NSString*)filename contentId:(ContentId)cid;
+
 #pragma mark - like POSIX file uty.
 + (BOOL)existsFile:(NSString*)fileNameFull;
 + (void)makeDir:(NSString*)fileNameFull;
