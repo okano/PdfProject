@@ -54,6 +54,9 @@
 #pragma mark - CSV file parser.
 + (NSArray*)parseDefineCsv:(NSString*)filename
 {
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"filename=%@", filename);
+	
 	//parse csv file.
 	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:filename ofType:@"csv"];
 	if (csvFilePath == nil) {
@@ -69,18 +72,23 @@
 	}
 	
 	//Replace '¥r' to '¥n'
-	NSString* text2 = [text stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];
+	NSString* text2 = [text stringByReplacingOccurrencesOfString:@"\r\n" withString:@"\n"];
+	NSString* text3 = [text2 stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];
 	
 	//Delete comment line.
-	NSMutableArray* lines = [[NSMutableArray alloc] initWithArray:[text2 componentsSeparatedByString:@"\n"]];
+	NSMutableArray* lines = [[NSMutableArray alloc] initWithArray:[text3 componentsSeparatedByString:@"\n"]];
+	//NSLog(@"lines(count=%d)=%@", [lines count], [lines description]);
 	for (NSString* line in [lines reverseObjectEnumerator]) {
+		//NSLog(@"line(length=%d)=%@", [line length], [line stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
 		if ([line length] <= 0) {
 			[lines removeObject:line];	//Skip blank line.
+			continue;
 		}
 		if ([line characterAtIndex:0] == '#'
 			||
 			[line characterAtIndex:0] == ';') {
 			[lines removeObject:line];	//Skip comment line.
+			continue;
 		}
 	}
 	
