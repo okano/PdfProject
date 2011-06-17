@@ -139,6 +139,7 @@
 				UIGraphicsEndImageContext();
 				
 				//Save to file.
+				[FileUtility makeDir:[filenameFull stringByDeletingLastPathComponent]];
 				NSData *data = UIImagePNGRepresentation(resizedImage);
 				NSError* error = nil;
 				[data writeToFile:filenameFull options:NSDataWritingAtomic error:&error];
