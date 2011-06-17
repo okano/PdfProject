@@ -185,21 +185,21 @@
 - (void) renderPageLinkAtIndex:(NSUInteger)index;
 
 // Treat Movie.
-- (BOOL)parseMovieDefine;	// Parse Movie define in CSV.
+- (void)parseMovieDefine;	// Parse Movie define in CSV.
 - (void)renderMovieLinkAtIndex:(NSUInteger)index;
 - (void)showMoviePlayer:(NSString*)filename;
 // Treat PageJumpLink.
-- (BOOL)parsePageJumpLinkDefine;	// Parse PageJumpLink define in CSV.
+- (void)parsePageJumpLinkDefine;	// Parse PageJumpLink define in CSV.
 - (void)renderPageJumpLinkAtIndex:(NSUInteger)index;
 // Treat InPage ScrollView.
-- (BOOL)parseInPageScrollViewDefine;	// Parse define in CSV.
+- (void)parseInPageScrollViewDefine;	// Parse define in CSV.
 - (void)renderInPageScrollViewAtIndex:(NSUInteger)index;
 // Treat Popover Scroll Image.
-- (BOOL)parsePopoverScrollImageDefine;	// Parse define in CSV.
+- (void)parsePopoverScrollImageDefine;	// Parse define in CSV.
 - (void)renderPopoverScrollImageLinkAtIndex:(NSUInteger)index;
 - (void)showPopoverScrollImagePlayer:(NSString*)filename;
 // Treat TOC.
-- (BOOL)parseTocDefine;			// Parse Table Of Contents define in CSV.
+- (void)parseTocDefine;			// Parse Table Of Contents define in CSV.
 - (BOOL)parseBookmarkDefine;	// get Bookmark infomation from UserDefault.
 - (void)showTocView;
 - (void)hideTocView;

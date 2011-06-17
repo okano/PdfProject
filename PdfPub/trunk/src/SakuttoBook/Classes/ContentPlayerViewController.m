@@ -1456,7 +1456,7 @@
 #pragma mark -
 #pragma mark Treat Movie.
 //Parse Movie Define.
-- (BOOL)parseMovieDefine
+- (void)parseMovieDefine
 {
 	movieDefine = [[NSMutableArray alloc] init];
 	
@@ -1499,9 +1499,6 @@
 		//Add to movie define.
 		[movieDefine addObject:tmpDict];
 	}
-	//
-	
-	return TRUE;
 }
 
 - (void) renderMovieLinkAtIndex:(NSUInteger)index
@@ -1562,7 +1559,7 @@
 #pragma mark -
 #pragma mark Treat page jump link.
 //Parse PageJumpLink Define.
-- (BOOL)parsePageJumpLinkDefine
+- (void)parsePageJumpLinkDefine
 {
 	pageJumpLinkDefine = [[NSMutableArray alloc] init];
 	
@@ -1596,9 +1593,6 @@
 		
 		[pageJumpLinkDefine addObject:tmpDict];
 	}
-	//
-	
-	return TRUE;
 }
 
 - (void) renderPageJumpLinkAtIndex:(NSUInteger)index
@@ -1660,7 +1654,7 @@
 #pragma mark -
 #pragma mark Treat InPage ScrollView.
 //Parse InPage ScrollView Define.
-- (BOOL)parseInPageScrollViewDefine
+- (void)parseInPageScrollViewDefine
 {
 	inPageScrollViewDefine = [[NSMutableArray alloc] init];
 	
@@ -1710,8 +1704,6 @@
 		//Add to ipsd define.
 		[inPageScrollViewDefine addObject:tmpDict];
 	}
-	//
-	return TRUE;
 }
 
 - (void) renderInPageScrollViewAtIndex:(NSUInteger)index
@@ -1776,7 +1768,7 @@
 #pragma mark -
 #pragma mark Treat popover scroll image view.
 //Parse Movie Define.
-- (BOOL)parsePopoverScrollImageDefine
+- (void)parsePopoverScrollImageDefine
 {
 	popoverScrollImageDefine = [[NSMutableArray alloc] init];
 	
@@ -1819,9 +1811,6 @@
 		//Add to movie define.
 		[popoverScrollImageDefine addObject:tmpDict];
 	}
-	//
-	
-	return TRUE;
 }
 
 - (void) renderPopoverScrollImageLinkAtIndex:(NSUInteger)index
@@ -1890,7 +1879,7 @@
 }
 #pragma mark -
 #pragma mark Treat TOC.
-- (BOOL)parseTocDefine
+- (void)parseTocDefine
 {
 	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
 	appDelegate.tocDefine = [[NSMutableArray alloc] init];
@@ -1932,7 +1921,6 @@
 		//Add to toc define.
 		[appDelegate.tocDefine addObject:tmpDict];
 	}
-	return TRUE;
 }
 - (BOOL)parseBookmarkDefine
 {
