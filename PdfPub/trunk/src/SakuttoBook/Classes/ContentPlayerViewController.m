@@ -1931,8 +1931,23 @@
 	}
 	appDelegate.bookmarkDefine = [[[NSMutableArray alloc] init] autorelease];	//use default autoreleasepool.
 	
+	//
 	NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
-	id obj = [settings valueForKey:BOOKMARK_ARRAY];
+	id obj = nil;
+	if ([self isMultiContents] == YES) {
+		NSArray* bookmarkForMultiContent = [settings valueForKey:BOOKMARK_MULTI_CONTENT];
+		for (NSDictionary* tmpDict in bookmarkForMultiContent) {
+			ContentId candidateCid = [[tmpDict valueForKey:CONTENT_CID] intValue];
+			if (candidateCid == currentContentId) {
+				obj = [tmpDict valueForKey:BOOKMARK_ARRAY];
+				break;
+			}
+		}
+	} else {
+		obj = [settings valueForKey:BOOKMARK_ARRAY];
+	}
+	
+	//Check type.
 	if (!obj) {		//no bookmark exists.
 		return YES;
 	}
@@ -1941,6 +1956,8 @@
 		return NO;
 	}
 	[appDelegate.bookmarkDefine addObjectsFromArray:obj];
+	
+	NSLog(@"bookmark(for cid=%d)=%@", currentContentId, [obj description]);
 	return YES;
 }
 
@@ -2002,20 +2019,66 @@
 	//Read bookmark infomation.
 	NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
 	NSMutableArray* bookmarks = [[NSMutableArray alloc] init];
-	id obj = [settings valueForKey:BOOKMARK_ARRAY];
+	NSMutableArray* bookmarkForMultiContent = nil;
+	id obj = nil;
+	if ([self isMultiContents] == TRUE) {
+		bookmarkForMultiContent = [settings valueForKey:BOOKMARK_MULTI_CONTENT];
+		for (NSDictionary* tmpDict in bookmarkForMultiContent) {
+			ContentId candidateCid = [[tmpDict valueForKey:CONTENT_CID] intValue];
+			if (candidateCid == currentContentId) {
+				obj = [tmpDict valueForKey:BOOKMARK_ARRAY];
+				break;
+			}
+		}
+	} else {
+		obj = [settings valueForKey:BOOKMARK_ARRAY];
+	}
 	if (obj && [obj isKindOfClass:[NSArray class]]) {
 		[bookmarks addObjectsFromArray:obj];
 	}
+	NSLog(@"bookmarks has %d items for cid=%d.", [bookmarks count], currentContentId);
 	
 	//Generate bookmark item from current pageNum.
 	NSMutableDictionary* tmpDict = [[NSMutableDictionary alloc] init];
 	[tmpDict setObject:[NSNumber numberWithInt:currentPageNum] forKey:BOOKMARK_PAGE_NUMBER];
 	[tmpDict setObject:bookmarkName forKey:BOOKMARK_PAGE_MEMO];
 	[bookmarks addObject:tmpDict];
+	NSLog(@"bookmarks has %d items after add for cid=%d.", [bookmarks count], currentContentId);
+	
 	
 	//Store bookmark infomation to UserDefault.
 	NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
-	[userDefault setObject:bookmarks forKey:BOOKMARK_ARRAY];
+	if ([self isMultiContents] == TRUE) {
+		bookmarkForMultiContent = [[NSMutableArray alloc] initWithArray:[settings valueForKey:BOOKMARK_MULTI_CONTENT]];
+		NSLog(@"bookmarkForMultiContent(before) = %@", [bookmarkForMultiContent description]);
+		
+		if (bookmarkForMultiContent == nil) {
+			bookmarkForMultiContent = [[NSMutableArray alloc] init];
+		}
+									   
+		//Generate bookmark with ContentId.
+		NSMutableDictionary* newBookMarkWithContentId = [[NSMutableDictionary alloc] init];
+		[newBookMarkWithContentId setValue:[NSNumber numberWithInt:currentContentId] forKey:CONTENT_CID];
+		[newBookMarkWithContentId setValue:bookmarks forKey:BOOKMARK_ARRAY];
+		//Replace.
+		for (NSDictionary* bmEachContent in bookmarkForMultiContent) {
+			ContentId candidateCid2 = [[bmEachContent valueForKey:CONTENT_CID] intValue];
+			if (candidateCid2 == currentContentId) {
+				[bookmarkForMultiContent removeObject:bmEachContent];
+				LOG_CURRENT_LINE;
+				NSLog(@"bookmarkForMultiContent(remove before add)=%@", [bookmarkForMultiContent description]);
+				break;
+			}
+		}
+		[bookmarkForMultiContent addObject:newBookMarkWithContentId];
+		[userDefault setObject:bookmarkForMultiContent forKey:BOOKMARK_MULTI_CONTENT];
+		LOG_CURRENT_LINE;
+		NSLog(@"bookmarkForMultiContent(after add)=%@", [bookmarkForMultiContent description]);
+	} else {
+		[userDefault setObject:bookmarks forKey:BOOKMARK_ARRAY];
+		LOG_CURRENT_LINE;
+		NSLog(@"bookmark=%@", bookmarks);
+	}
 	[userDefault synchronize];
 	
 	//Refresh TOC view and bookmark in appDelegate with UserDefault.

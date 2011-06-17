@@ -95,6 +95,7 @@
 //#define TOC_CELL_IMAGE		@"Toc_Cell_Image"
 
 // for Bookmark.
+#define BOOKMARK_MULTI_CONTENT	@"Bookmark_MultiContent"
 #define BOOKMARK_ARRAY			@"Bookmark_Array"
 #define BOOKMARK_PAGE_NUMBER	@"Bookmark_PageNumber"
 #define BOOKMARK_PAGE_MEMO		@"Bookmark_PageMemo"
