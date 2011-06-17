@@ -64,6 +64,7 @@
 - (void)hideTocView;
 - (bool)isShownTocView;
 - (void)setIsShownTocView:(bool)status;
+- (void)saveBookmark;
 - (void)showBookmarkView;
 - (void)hideBookmarkView;
 - (void)showBookmarkModifyView;

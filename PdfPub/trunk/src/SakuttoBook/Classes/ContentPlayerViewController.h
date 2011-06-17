@@ -206,6 +206,7 @@
 - (void)hideThumbnailView;
 // Treat Bookmark.
 - (BOOL)loadBookmark;	// get Bookmark infomation from UserDefault.
+- (void)saveBookmark;
 - (void)showBookmarkView;
 - (void)hideBookmarkView;
 - (void)showBookmarkModifyView;

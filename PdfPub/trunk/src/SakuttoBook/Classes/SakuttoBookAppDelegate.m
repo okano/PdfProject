@@ -123,6 +123,9 @@
 - (void)setIsShownTocView:(bool)status {
 	viewController.contentPlayerViewController.isShownTocView = status;
 }
+- (void)saveBookmark {
+	[viewController.contentPlayerViewController saveBookmark];
+}
 - (void)showBookmarkView {
 	[viewController.contentPlayerViewController showBookmarkView];
 }
