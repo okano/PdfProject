@@ -200,11 +200,12 @@
 - (void)showPopoverScrollImagePlayer:(NSString*)filename;
 // Treat TOC.
 - (void)parseTocDefine;			// Parse Table Of Contents define in CSV.
-- (BOOL)parseBookmarkDefine;	// get Bookmark infomation from UserDefault.
 - (void)showTocView;
 - (void)hideTocView;
 - (void)showThumbnailView;
 - (void)hideThumbnailView;
+// Treat Bookmark.
+- (BOOL)loadBookmark;	// get Bookmark infomation from UserDefault.
 - (void)showBookmarkView;
 - (void)hideBookmarkView;
 - (void)showBookmarkModifyView;

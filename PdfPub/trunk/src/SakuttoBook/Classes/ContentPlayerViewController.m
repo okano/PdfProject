@@ -209,7 +209,7 @@
 	// Setup Bookmark View.
 	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
 	appDelegate.bookmarkDefine = nil;
-	[self parseBookmarkDefine];
+	[self loadBookmark];
 	bookmarkViewController = [[BookmarkViewController alloc] initWithNibName:@"BookmarkView" bundle:[NSBundle mainBundle]];
 	CGRect bookmarkViewFrame = bookmarkViewController.view.frame;	//Fit with self.view.
 	bookmarkViewFrame.size.width = self.view.frame.size.width;
@@ -1922,7 +1922,7 @@
 		[appDelegate.tocDefine addObject:tmpDict];
 	}
 }
-- (BOOL)parseBookmarkDefine
+- (BOOL)loadBookmark
 {
 	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
 	if (appDelegate.bookmarkDefine == nil) {
@@ -2082,7 +2082,7 @@
 	[userDefault synchronize];
 	
 	//Refresh TOC view and bookmark in appDelegate with UserDefault.
-	[self parseBookmarkDefine];
+	[self loadBookmark];
 	[bookmarkViewController reloadDataForce];
 	
 	[tmpDict release];
