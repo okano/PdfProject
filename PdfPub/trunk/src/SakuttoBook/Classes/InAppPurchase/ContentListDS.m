@@ -85,24 +85,12 @@
 	while (0==0) {
 		//Open define file.
 		NSString* csvFilename = [InAppPurchaseUtility getBookDefineFilename:contentIdInt];
-		NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:csvFilename ofType:@"csv"];
-		if (! csvFilePath) {
+		if ( ! [[NSBundle mainBundle] pathForResource:csvFilename ofType:@"csv"] ) {
 			break;
 		}
 		//NSLog(@"bookDefine csvFilename=%@", csvFilename);
 		//NSLog(@"bookDefine csvFilePath=%@", csvFilePath);
-		NSError* error = nil;
-		NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
-		if (error) {
-			NSLog(@"book define file not found. filename=%@", [csvFilePath lastPathComponent]);
-			NSLog(@"error=%@, error code=%d", [error localizedDescription], [error code]);
-			break;
-		}
-		if (! text) { LOG_CURRENT_LINE; }
-		
-		//Read book define.
-		NSArray* lines = [text componentsSeparatedByString:@"\n"];
-		//NSArray* lines = [[text stringByAppendingString:@"\n"] componentsSeparatedByString:@"\n"];
+		NSArray* lines = [FileUtility parseDefineCsv:csvFilename];
 		if ([lines count] <= 0) {
 			continue;	//skip to next file.
 		}

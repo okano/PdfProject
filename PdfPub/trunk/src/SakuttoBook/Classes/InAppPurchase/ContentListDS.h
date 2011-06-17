@@ -10,6 +10,7 @@
 #import "Define.h"
 #import "InAppPurchaseDefine.h"
 #import "InAppPurchaseUtility.h"
+#import "FileUtility.h"
 
 @interface ContentListDS : NSObject {
     NSMutableArray* contentList;
