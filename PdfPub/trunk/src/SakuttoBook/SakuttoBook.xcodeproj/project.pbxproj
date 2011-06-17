@@ -38,9 +38,6 @@
 		294E1F1E131E2A5B00E49BAF /* popoverScrollImageDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 294E1F1D131E2A5B00E49BAF /* popoverScrollImageDefine.csv */; };
 		294E1FC1131E313800E49BAF /* PopoverScrollImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 294E1FC0131E313800E49BAF /* PopoverScrollImageViewController.m */; };
 		2962C40C1394B9EC002E57F9 /* ContentPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2962C40B1394B9EC002E57F9 /* ContentPlayerView.xib */; };
-		2963BEB913A88E6E00D800BF /* ContentIcon_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2963BEB613A88E6E00D800BF /* ContentIcon_1.png */; };
-		2963BEBA13A88E6E00D800BF /* ContentIcon_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2963BEB713A88E6E00D800BF /* ContentIcon_2.png */; };
-		2963BEBB13A88E6E00D800BF /* ContentIcon_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 2963BEB813A88E6E00D800BF /* ContentIcon_3.png */; };
 		29787BE112C5FBDC00EC2681 /* document.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 29787BE012C5FBDC00EC2681 /* document.pdf */; };
 		297AC25612B786EB00962CED /* TocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297AC25512B786EB00962CED /* TocViewController.m */; };
 		297AC25812B7870B00962CED /* TocView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 297AC25712B7870B00962CED /* TocView.xib */; };
@@ -73,6 +70,24 @@
 		29F003FA1353CC5500D0D74D /* pageJumpLinkDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29F003F91353CC5500D0D74D /* pageJumpLinkDefine.csv */; };
 		29F1489413A89E3700309126 /* PaymentHistoryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F1489313A89E3700309126 /* PaymentHistoryListViewController.m */; };
 		29F3391E1398894E0005CF10 /* folder20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = 29F3391D1398894E0005CF10 /* folder20x20.png */; };
+		29F4B94113AB2A6800519DAA /* inPageScrollViewDefine_1.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29F4B93213AB2A6800519DAA /* inPageScrollViewDefine_1.csv */; };
+		29F4B94213AB2A6800519DAA /* inPageScrollViewDefine_2.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29F4B93313AB2A6800519DAA /* inPageScrollViewDefine_2.csv */; };
+		29F4B94313AB2A6800519DAA /* inPageScrollViewDefine_3.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29F4B93413AB2A6800519DAA /* inPageScrollViewDefine_3.csv */; };
+		29F4B94413AB2A6800519DAA /* movieDefine_1.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29F4B93513AB2A6800519DAA /* movieDefine_1.csv */; };
+		29F4B94513AB2A6800519DAA /* movieDefine_2.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29F4B93613AB2A6800519DAA /* movieDefine_2.csv */; };
+		29F4B94613AB2A6800519DAA /* movieDefine_3.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29F4B93713AB2A6800519DAA /* movieDefine_3.csv */; };
+		29F4B94713AB2A6800519DAA /* pageJumpLinkDefine_1.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29F4B93813AB2A6800519DAA /* pageJumpLinkDefine_1.csv */; };
+		29F4B94813AB2A6800519DAA /* pageJumpLinkDefine_2.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29F4B93913AB2A6800519DAA /* pageJumpLinkDefine_2.csv */; };
+		29F4B94913AB2A6800519DAA /* pageJumpLinkDefine_3.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29F4B93A13AB2A6800519DAA /* pageJumpLinkDefine_3.csv */; };
+		29F4B94A13AB2A6800519DAA /* popoverScrollImageDefine_1.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29F4B93B13AB2A6800519DAA /* popoverScrollImageDefine_1.csv */; };
+		29F4B94B13AB2A6800519DAA /* popoverScrollImageDefine_2.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29F4B93C13AB2A6800519DAA /* popoverScrollImageDefine_2.csv */; };
+		29F4B94C13AB2A6800519DAA /* popoverScrollImageDefine_3.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29F4B93D13AB2A6800519DAA /* popoverScrollImageDefine_3.csv */; };
+		29F4B94D13AB2A6800519DAA /* tocDefine_1.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29F4B93E13AB2A6800519DAA /* tocDefine_1.csv */; };
+		29F4B94E13AB2A6800519DAA /* tocDefine_2.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29F4B93F13AB2A6800519DAA /* tocDefine_2.csv */; };
+		29F4B94F13AB2A6800519DAA /* tocDefine_3.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29F4B94013AB2A6800519DAA /* tocDefine_3.csv */; };
+		29F4B95313AB2AC200519DAA /* ContentIcon_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 29F4B95013AB2AC200519DAA /* ContentIcon_1.png */; };
+		29F4B95413AB2AC200519DAA /* ContentIcon_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 29F4B95113AB2AC200519DAA /* ContentIcon_2.png */; };
+		29F4B95513AB2AC200519DAA /* ContentIcon_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 29F4B95213AB2AC200519DAA /* ContentIcon_3.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -121,9 +136,6 @@
 		294E1FC0131E313800E49BAF /* PopoverScrollImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverScrollImageViewController.m; sourceTree = "<group>"; };
 		2962C40B1394B9EC002E57F9 /* ContentPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentPlayerView.xib; sourceTree = "<group>"; };
 		2963BE1D12B5C01E001041EB /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
-		2963BEB613A88E6E00D800BF /* ContentIcon_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ContentIcon_1.png; sourceTree = "<group>"; };
-		2963BEB713A88E6E00D800BF /* ContentIcon_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ContentIcon_2.png; sourceTree = "<group>"; };
-		2963BEB813A88E6E00D800BF /* ContentIcon_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ContentIcon_3.png; sourceTree = "<group>"; };
 		29787BE012C5FBDC00EC2681 /* document.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = document.pdf; sourceTree = "<group>"; };
 		297AC25412B786EB00962CED /* TocViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TocViewController.h; sourceTree = "<group>"; };
 		297AC25512B786EB00962CED /* TocViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TocViewController.m; sourceTree = "<group>"; };
@@ -172,6 +184,24 @@
 		29F1489213A89E3700309126 /* PaymentHistoryListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaymentHistoryListViewController.h; path = InAppPurchase/PaymentHistoryListViewController.h; sourceTree = "<group>"; };
 		29F1489313A89E3700309126 /* PaymentHistoryListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PaymentHistoryListViewController.m; path = InAppPurchase/PaymentHistoryListViewController.m; sourceTree = "<group>"; };
 		29F3391D1398894E0005CF10 /* folder20x20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = folder20x20.png; sourceTree = "<group>"; };
+		29F4B93213AB2A6800519DAA /* inPageScrollViewDefine_1.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = inPageScrollViewDefine_1.csv; path = csv/inPageScrollViewDefine_1.csv; sourceTree = "<group>"; };
+		29F4B93313AB2A6800519DAA /* inPageScrollViewDefine_2.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = inPageScrollViewDefine_2.csv; path = csv/inPageScrollViewDefine_2.csv; sourceTree = "<group>"; };
+		29F4B93413AB2A6800519DAA /* inPageScrollViewDefine_3.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = inPageScrollViewDefine_3.csv; path = csv/inPageScrollViewDefine_3.csv; sourceTree = "<group>"; };
+		29F4B93513AB2A6800519DAA /* movieDefine_1.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = movieDefine_1.csv; path = csv/movieDefine_1.csv; sourceTree = "<group>"; };
+		29F4B93613AB2A6800519DAA /* movieDefine_2.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = movieDefine_2.csv; path = csv/movieDefine_2.csv; sourceTree = "<group>"; };
+		29F4B93713AB2A6800519DAA /* movieDefine_3.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = movieDefine_3.csv; path = csv/movieDefine_3.csv; sourceTree = "<group>"; };
+		29F4B93813AB2A6800519DAA /* pageJumpLinkDefine_1.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pageJumpLinkDefine_1.csv; path = csv/pageJumpLinkDefine_1.csv; sourceTree = "<group>"; };
+		29F4B93913AB2A6800519DAA /* pageJumpLinkDefine_2.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pageJumpLinkDefine_2.csv; path = csv/pageJumpLinkDefine_2.csv; sourceTree = "<group>"; };
+		29F4B93A13AB2A6800519DAA /* pageJumpLinkDefine_3.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pageJumpLinkDefine_3.csv; path = csv/pageJumpLinkDefine_3.csv; sourceTree = "<group>"; };
+		29F4B93B13AB2A6800519DAA /* popoverScrollImageDefine_1.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = popoverScrollImageDefine_1.csv; path = csv/popoverScrollImageDefine_1.csv; sourceTree = "<group>"; };
+		29F4B93C13AB2A6800519DAA /* popoverScrollImageDefine_2.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = popoverScrollImageDefine_2.csv; path = csv/popoverScrollImageDefine_2.csv; sourceTree = "<group>"; };
+		29F4B93D13AB2A6800519DAA /* popoverScrollImageDefine_3.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = popoverScrollImageDefine_3.csv; path = csv/popoverScrollImageDefine_3.csv; sourceTree = "<group>"; };
+		29F4B93E13AB2A6800519DAA /* tocDefine_1.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tocDefine_1.csv; path = csv/tocDefine_1.csv; sourceTree = "<group>"; };
+		29F4B93F13AB2A6800519DAA /* tocDefine_2.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tocDefine_2.csv; path = csv/tocDefine_2.csv; sourceTree = "<group>"; };
+		29F4B94013AB2A6800519DAA /* tocDefine_3.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tocDefine_3.csv; path = csv/tocDefine_3.csv; sourceTree = "<group>"; };
+		29F4B95013AB2AC200519DAA /* ContentIcon_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ContentIcon_1.png; sourceTree = "<group>"; };
+		29F4B95113AB2AC200519DAA /* ContentIcon_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ContentIcon_2.png; sourceTree = "<group>"; };
+		29F4B95213AB2AC200519DAA /* ContentIcon_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ContentIcon_3.png; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* SakuttoBook_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SakuttoBook_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* SakuttoBook-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SakuttoBook-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -246,9 +276,9 @@
 		2921370D12C604B800FC071D /* image */ = {
 			isa = PBXGroup;
 			children = (
-				2963BEB613A88E6E00D800BF /* ContentIcon_1.png */,
-				2963BEB713A88E6E00D800BF /* ContentIcon_2.png */,
-				2963BEB813A88E6E00D800BF /* ContentIcon_3.png */,
+				29F4B95013AB2AC200519DAA /* ContentIcon_1.png */,
+				29F4B95113AB2AC200519DAA /* ContentIcon_2.png */,
+				29F4B95213AB2AC200519DAA /* ContentIcon_3.png */,
 			);
 			path = image;
 			sourceTree = "<group>";
@@ -349,17 +379,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				29014AA012D6ECA700936BF0 /* bookDefine.csv */,
-				29BD260013A499B50029E2B4 /* bookDefine_1.csv */,
-				29BD260113A499B50029E2B4 /* bookDefine_2.csv */,
-				29A5B07A13A9B35100DA67AD /* bookDefine_3.csv */,
-				29014A9C12D6EC9100936BF0 /* tocDefine.csv */,
-				29014A9A12D6EC8700936BF0 /* pdfDefine.csv */,
-				29014A9E12D6EC9C00936BF0 /* movieDefine.csv */,
-				294E1F1D131E2A5B00E49BAF /* popoverScrollImageDefine.csv */,
-				29ACC34513A3AE7A00585A09 /* inPageScrollViewDefine.csv */,
-				29F003F91353CC5500D0D74D /* pageJumpLinkDefine.csv */,
-				29A2A5461398B87300C8CB52 /* productIdList.csv */,
+				29F4B93113AB2A4100519DAA /* csv */,
 				2963BDF212B5BE1C001041EB /* pdf */,
 				2994490212B737C600E7D108 /* movie */,
 				2921370D12C604B800FC071D /* image */,
@@ -392,6 +412,39 @@
 				29B16E0A1398779600B4D958 /* StoreKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		29F4B93113AB2A4100519DAA /* csv */ = {
+			isa = PBXGroup;
+			children = (
+				29014AA012D6ECA700936BF0 /* bookDefine.csv */,
+				29BD260013A499B50029E2B4 /* bookDefine_1.csv */,
+				29BD260113A499B50029E2B4 /* bookDefine_2.csv */,
+				29A5B07A13A9B35100DA67AD /* bookDefine_3.csv */,
+				29ACC34513A3AE7A00585A09 /* inPageScrollViewDefine.csv */,
+				29F4B93213AB2A6800519DAA /* inPageScrollViewDefine_1.csv */,
+				29F4B93313AB2A6800519DAA /* inPageScrollViewDefine_2.csv */,
+				29F4B93413AB2A6800519DAA /* inPageScrollViewDefine_3.csv */,
+				29014A9E12D6EC9C00936BF0 /* movieDefine.csv */,
+				29F4B93513AB2A6800519DAA /* movieDefine_1.csv */,
+				29F4B93613AB2A6800519DAA /* movieDefine_2.csv */,
+				29F4B93713AB2A6800519DAA /* movieDefine_3.csv */,
+				29F003F91353CC5500D0D74D /* pageJumpLinkDefine.csv */,
+				29F4B93813AB2A6800519DAA /* pageJumpLinkDefine_1.csv */,
+				29F4B93913AB2A6800519DAA /* pageJumpLinkDefine_2.csv */,
+				29F4B93A13AB2A6800519DAA /* pageJumpLinkDefine_3.csv */,
+				294E1F1D131E2A5B00E49BAF /* popoverScrollImageDefine.csv */,
+				29F4B93B13AB2A6800519DAA /* popoverScrollImageDefine_1.csv */,
+				29F4B93C13AB2A6800519DAA /* popoverScrollImageDefine_2.csv */,
+				29F4B93D13AB2A6800519DAA /* popoverScrollImageDefine_3.csv */,
+				29014A9C12D6EC9100936BF0 /* tocDefine.csv */,
+				29F4B93E13AB2A6800519DAA /* tocDefine_1.csv */,
+				29F4B93F13AB2A6800519DAA /* tocDefine_2.csv */,
+				29F4B94013AB2A6800519DAA /* tocDefine_3.csv */,
+				29014A9A12D6EC8700936BF0 /* pdfDefine.csv */,
+				29A2A5461398B87300C8CB52 /* productIdList.csv */,
+			);
+			name = csv;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -473,11 +526,26 @@
 				29BD25FE13A4963A0029E2B4 /* document-3.pdf in Resources */,
 				29BD260313A499B50029E2B4 /* bookDefine_1.csv in Resources */,
 				29BD260413A499B50029E2B4 /* bookDefine_2.csv in Resources */,
-				2963BEB913A88E6E00D800BF /* ContentIcon_1.png in Resources */,
-				2963BEBA13A88E6E00D800BF /* ContentIcon_2.png in Resources */,
-				2963BEBB13A88E6E00D800BF /* ContentIcon_3.png in Resources */,
 				290731E613A89BF000AE5B35 /* ContentListCell.xib in Resources */,
 				29A5B07B13A9B35100DA67AD /* bookDefine_3.csv in Resources */,
+				29F4B94113AB2A6800519DAA /* inPageScrollViewDefine_1.csv in Resources */,
+				29F4B94213AB2A6800519DAA /* inPageScrollViewDefine_2.csv in Resources */,
+				29F4B94313AB2A6800519DAA /* inPageScrollViewDefine_3.csv in Resources */,
+				29F4B94413AB2A6800519DAA /* movieDefine_1.csv in Resources */,
+				29F4B94513AB2A6800519DAA /* movieDefine_2.csv in Resources */,
+				29F4B94613AB2A6800519DAA /* movieDefine_3.csv in Resources */,
+				29F4B94713AB2A6800519DAA /* pageJumpLinkDefine_1.csv in Resources */,
+				29F4B94813AB2A6800519DAA /* pageJumpLinkDefine_2.csv in Resources */,
+				29F4B94913AB2A6800519DAA /* pageJumpLinkDefine_3.csv in Resources */,
+				29F4B94A13AB2A6800519DAA /* popoverScrollImageDefine_1.csv in Resources */,
+				29F4B94B13AB2A6800519DAA /* popoverScrollImageDefine_2.csv in Resources */,
+				29F4B94C13AB2A6800519DAA /* popoverScrollImageDefine_3.csv in Resources */,
+				29F4B94D13AB2A6800519DAA /* tocDefine_1.csv in Resources */,
+				29F4B94E13AB2A6800519DAA /* tocDefine_2.csv in Resources */,
+				29F4B94F13AB2A6800519DAA /* tocDefine_3.csv in Resources */,
+				29F4B95313AB2AC200519DAA /* ContentIcon_1.png in Resources */,
+				29F4B95413AB2AC200519DAA /* ContentIcon_2.png in Resources */,
+				29F4B95513AB2AC200519DAA /* ContentIcon_3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
