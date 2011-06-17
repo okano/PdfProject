@@ -1922,6 +1922,38 @@
 		[appDelegate.tocDefine addObject:tmpDict];
 	}
 }
+
+- (void)showTocView
+{
+	[self.view addSubview:tocViewController.view];
+	[tocViewController reloadDataForce];
+}
+- (void)hideTocView {
+	[menuViewController hideTocView];
+	[tocViewController.view removeFromSuperview];
+}
+
+#pragma mark Treat ThumbnailView(ImageTOC).
+- (void)showThumbnailView {
+	[self hideMenuBar];
+	
+	//Setup with tocDefine.
+	[thumbnailViewController setupImages];
+	
+	//Show by addSubview.
+	//Add to superview. think with toolbar.
+	[self.view.superview addSubview:thumbnailViewController.view];
+	
+	//Set flag.
+	isShownThumbnailView = TRUE;
+}
+- (void)hideThumbnailView {
+	//Hide by removeSuperView.
+	[thumbnailViewController.view removeFromSuperview];
+	isShownThumbnailView = FALSE;
+}
+
+#pragma mark Treat Bookmark.
 - (BOOL)loadBookmark
 {
 	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -1960,38 +1992,6 @@
 	NSLog(@"bookmark(for cid=%d)=%@", currentContentId, [obj description]);
 	return YES;
 }
-
-- (void)showTocView
-{
-	[self.view addSubview:tocViewController.view];
-	[tocViewController reloadDataForce];
-}
-- (void)hideTocView {
-	[menuViewController hideTocView];
-	[tocViewController.view removeFromSuperview];
-}
-
-#pragma mark Treat ThumbnailView(ImageTOC).
-- (void)showThumbnailView {
-	[self hideMenuBar];
-	
-	//Setup with tocDefine.
-	[thumbnailViewController setupImages];
-	
-	//Show by addSubview.
-	//Add to superview. think with toolbar.
-	[self.view.superview addSubview:thumbnailViewController.view];
-	
-	//Set flag.
-	isShownThumbnailView = TRUE;
-}
-- (void)hideThumbnailView {
-	//Hide by removeSuperView.
-	[thumbnailViewController.view removeFromSuperview];
-	isShownThumbnailView = FALSE;
-}
-
-#pragma mark Treat Bookmark.
 - (void)showBookmarkView
 {
 	[self.view addSubview:bookmarkViewController.view];
