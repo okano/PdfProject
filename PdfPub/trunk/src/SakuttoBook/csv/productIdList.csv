@@ -1,4 +1,4 @@
-#Product-ID,kind(0=FREE 1=Consumable(shoumou-gata) 2=Non-Consumable(hi-shoumou-gata))
+#Product-ID,Purchase-type(0=FREE 1=Consumable(shoumou-gata) 2=Non-Consumable(hi-shoumou-gata))
 product1,0
-product2,1
-product3,2
+product2,0
+product3,0

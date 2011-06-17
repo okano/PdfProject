@@ -355,8 +355,13 @@
 - (NSString*)getPageFilenameFull:(int)pageNum WithContentId:(ContentId)cid{
 	return [FileUtility getPageFilenameFull:pageNum WithContentId:cid];
 }
+
 - (NSString*)getThumbnailFilenameFull:(int)pageNum {
-	return [FileUtility getThumbnailFilenameFull:pageNum];
+	if ([self isMultiContents] == TRUE) {
+		return [FileUtility getThumbnailFilenameFull:pageNum WithContentId:currentContentId];
+	} else {
+		return [FileUtility getThumbnailFilenameFull:pageNum];
+	}
 	/*
 	NSString* filename = [NSString stringWithFormat:@"%@%d", THUMBNAIL_FILE_PREFIX, pageNum];
 	NSString* targetFilenameFull = [[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
@@ -382,7 +387,14 @@
 		return nil;
 	}
 	//Get image from file if exists.
-	NSString* targetFilenameFull = [FileUtility getPageFilenameFull:pageNum];
+	NSString* targetFilenameFull;
+#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+	targetFilenameFull = [FileUtility getPageFilenameFull:pageNum WithContentId:currentContentId];
+#else
+	targetFilenameFull = [FileUtility getPageFilenameFull:pageNum];
+#endif
+	
+	//NSLog(@"targetFilenameFull=%@", targetFilenameFull);
 	return [self getPdfPageImageWithPageNum:pageNum WithTargetFilenameFull:targetFilenameFull];
 }
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum WithContentId:(ContentId)cid
@@ -463,9 +475,11 @@
 	//Save to file.
 	NSData *data = UIImagePNGRepresentation(resizedImage);
 	NSString* targetFilenameFull = [self getThumbnailFilenameFull:pageNum];
+	[FileUtility makeDir:targetFilenameFull];
 	NSError* error = nil;
 	[data writeToFile:targetFilenameFull options:NSDataWritingAtomic error:&error];
 	if (error) {
+		LOG_CURRENT_METHOD;
 		NSLog(@"thumbnail file write error. path=%@", targetFilenameFull);
 		NSLog(@"error=%@, error code=%d", [error localizedDescription], [error code]);
 		
