@@ -259,7 +259,7 @@
 		NSLog(@"no PDF file specified.");
 		pdfFilename = [NSString stringWithFormat:@"document.pdf"];
 	} else {
-		if (cid < [lines count]) {
+		if (cid <= [lines count]) {
 			pdfFilename = [lines objectAtIndex:(cid - 1)];
 		} else {
 			pdfFilename = [lines objectAtIndex:0];
