@@ -10,6 +10,7 @@
 #import "Define.h"
 #import "Utility.h"
 #import "InAppPurchaseDefine.h"
+#import "FileUtility.h"
 
 @interface InAppPurchaseUtility : NSObject {
     

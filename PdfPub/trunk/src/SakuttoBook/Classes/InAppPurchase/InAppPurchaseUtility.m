@@ -47,35 +47,8 @@
 + (NSArray*)getAllProductIdentifier
 {
 	//parse csv file.
-	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:@"productIdList" ofType:@"csv"];
-	NSError* error = nil;
-	NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
-	if (error) {
-		LOG_CURRENT_METHOD;
-		LOG_CURRENT_LINE;
-		NSLog(@"error=%@, error code=%d", [error localizedDescription], [error code]);
-		if ([error code] == NSFileReadInvalidFileNameError) {
-			NSLog(@"Read error because of an invalid file name. (file not exist?)");
-		}
-		return nil;
-	}
-	
-	NSMutableArray* lines = [[NSMutableArray alloc] initWithArray:[text componentsSeparatedByString:@"\n"]];
-	
-	//delete comment line.
-	for (NSString* line in [lines reverseObjectEnumerator] ) {
-		if ([line length] <= 0) {
-			[lines removeObject:line];	//Skip comment line.
-			continue;
-		}
-		if ([line characterAtIndex:0] == '#'
-			||
-			[line characterAtIndex:0] == ';') {
-			[lines removeObject:line];	//Skip comment line.
-			continue;
-		}
-	}
-	return lines;
+	NSString* targetFilename = @"productIdList";
+	return [FileUtility parseDefineCsv:targetFilename];
 }
 
 //Check free contents for read without download.
