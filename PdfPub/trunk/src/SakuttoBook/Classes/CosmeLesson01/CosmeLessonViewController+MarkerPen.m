@@ -486,7 +486,7 @@
 	//Show ActionSheet
 	UIActionSheet *sheet;
 	sheet = [[[UIActionSheet alloc]
-			  initWithTitle:@"ページ内のマーカーを削除しますか？"
+			  initWithTitle:@"ページ内の全てのペンを削除しますか？"
 			  delegate: self 
 			  cancelButtonTitle: NSLocalizedString(@"Cancel", nil) 
 			  destructiveButtonTitle: nil
