@@ -171,6 +171,7 @@
 
 // Treat URL link.
 - (void) renderPageLinkAtIndex:(NSUInteger)index;
+- (BOOL)parseAndRenderUrlLinkDefine:(NSUInteger)index;
 
 // Treat Movie.
 - (BOOL)parseMovieDefine;	// Parse Movie define in CSV.

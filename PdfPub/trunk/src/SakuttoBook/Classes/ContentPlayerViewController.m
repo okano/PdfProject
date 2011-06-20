@@ -159,6 +159,7 @@
 	//Setup Links.
 	linksInCurrentPage = [[NSMutableArray alloc] init];
 	[self renderPageLinkAtIndex:currentPageNum];
+	[self parseAndRenderUrlLinkDefine:currentPageNum];
 	
 	// Setup for Movie play.
 	[self parseMovieDefine];
@@ -570,6 +571,7 @@
 	//
 	//[self getPdfDictionaryWithPageNum:currentPageNum];
 	[self renderPageLinkAtIndex:currentPageNum];
+	[self parseAndRenderUrlLinkDefine:currentPageNum];
 	[self renderMovieLinkAtIndex:currentPageNum];
 	[self renderPageJumpLinkAtIndex:currentPageNum];
 	[self renderInPageScrollViewAtIndex:currentPageNum];
@@ -710,6 +712,7 @@
 	//NSLog(@"(new)currentPdfScrollView subviews = %d", [currentPdfScrollView.subviews count]);
 	//
 	[self renderPageLinkAtIndex:currentPageNum];
+	[self parseAndRenderUrlLinkDefine:currentPageNum];
 	[self renderMovieLinkAtIndex:currentPageNum];
 	[self renderPageJumpLinkAtIndex:currentPageNum];
 	[self renderInPageScrollViewAtIndex:currentPageNum];
@@ -757,6 +760,7 @@
 	
 	//Draw link to URL, Movie.
 	[self renderPageLinkAtIndex:currentPageNum];
+	[self parseAndRenderUrlLinkDefine:currentPageNum];
 	[self renderMovieLinkAtIndex:currentPageNum];
 	[self renderPageJumpLinkAtIndex:currentPageNum];
 	[self renderInPageScrollViewAtIndex:currentPageNum];
@@ -1350,6 +1354,98 @@
 	[pool release];
 }
 
+
+#pragma mark -
+#pragma mark Treat URL Link by file.
+//Parse PageJumpLink Define.
+- (BOOL)parseAndRenderUrlLinkDefine:(NSUInteger)index
+{
+	//linksInCurrentPageWithFile = [[NSMutableArray alloc] init];
+	
+	NSMutableDictionary* tmpDict;
+	
+	//parse csv file.
+	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:@"urlLinkDefine" ofType:@"csv"];
+	NSError* error;
+	NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
+	NSString* text2 = [text stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];
+	/*
+	 if (error) {
+	 NSLog(@"error=%@, error code=%d", [error localizedDescription], [error code]);
+	 return FALSE;
+	 }
+	 */
+	
+	bool hasError = FALSE;
+	NSArray* lines = [text2 componentsSeparatedByString:@"\n"];
+	for (NSString* line in lines) {
+		if ([line length] <= 0) {
+			continue;	//Skip blank line.
+		}
+		if ([line characterAtIndex:0] == '#'
+			||
+			[line characterAtIndex:0] == ';') {
+			continue;	//Skip comment line.
+		}
+		NSArray* tmpCsvArray = [line componentsSeparatedByString:@","];
+		if ([tmpCsvArray count] < 6) {
+			NSLog(@"illigal CSV data. item count=%d, line=%@", [tmpCsvArray count], line);
+		}
+		
+		tmpDict = [[NSMutableDictionary alloc] init];
+		
+
+		//Page Number.(From)
+		[tmpDict setValue:[NSNumber numberWithInt:[[tmpCsvArray objectAtIndex:0] intValue]] forKey:PJ_PAGE_NUMBER];
+		//Position.
+		[tmpDict setValue:[NSNumber numberWithInt:[[tmpCsvArray objectAtIndex:1] intValue]] forKey:PJ_PAGE_AREA_X];
+		[tmpDict setValue:[NSNumber numberWithInt:[[tmpCsvArray objectAtIndex:2] intValue]] forKey:PJ_PAGE_AREA_Y];
+		[tmpDict setValue:[NSNumber numberWithInt:[[tmpCsvArray objectAtIndex:3] intValue]] forKey:PJ_PAGE_AREA_WIDTH];
+		[tmpDict setValue:[NSNumber numberWithInt:[[tmpCsvArray objectAtIndex:4] intValue]] forKey:PJ_PAGE_AREA_HEIGHT];
+		//URL.(Jump TO)
+		[tmpDict setValue:[NSString stringWithString:[tmpCsvArray objectAtIndex:5]] forKey:PJ_PAGE_JUMPTO];
+		NSLog(@"tmpDict=%@", [tmpDict description]);
+		
+		if ([[tmpDict valueForKey:PJ_PAGE_NUMBER] intValue] != index) {
+			LOG_CURRENT_LINE;
+			continue;	//skip to next line.
+			return FALSE;
+		}
+		
+		//Add link infomation for touch.
+        NSString *uri = [NSString stringWithString:[NSString stringWithString:[tmpCsvArray objectAtIndex:5]]];
+		NSURL *url = [NSURL URLWithString:uri];
+		NSLog(@"URL=%@", [url description]);
+		CGRect linkRectInOriginalPdf = CGRectMake([[tmpDict valueForKey:PJ_PAGE_AREA_X] floatValue],
+												  [[tmpDict valueForKey:PJ_PAGE_AREA_Y] floatValue],
+												  [[tmpDict valueForKey:PJ_PAGE_AREA_WIDTH] floatValue],
+												  [[tmpDict valueForKey:PJ_PAGE_AREA_HEIGHT] floatValue]);
+		NSLog(@"linkRectInOriginalPdf=%@", NSStringFromCGRect(linkRectInOriginalPdf));
+		
+		NSMutableDictionary* tmpDict2 = [[[NSMutableDictionary alloc] init] autorelease];
+		[tmpDict2 setValue:[url description] forKey:LINK_DICT_KEY_URL];
+		[tmpDict2 setValue:[NSValue valueWithCGRect:linkRectInOriginalPdf] forKey:LINK_DICT_KEY_RECT];
+		[linksInCurrentPage addObject:tmpDict2];
+		NSLog(@"linksInCurrentPage=%@", [linksInCurrentPage description]);
+		
+		//Render.
+		UIView* areaView = [[UIView alloc] initWithFrame:CGRectZero];
+		
+#if TARGET_IPHONE_SIMULATOR
+		//Only show on Simulator.
+		[areaView setBackgroundColor:[UIColor redColor]];
+		[areaView setAlpha:0.2f];
+#else
+		[areaView setAlpha:0.0f];
+#endif
+		
+		[currentPdfScrollView addScalableSubview:areaView withPdfBasedFrame:linkRectInOriginalPdf];
+	
+	}
+	//
+	
+	return ! hasError;
+}
 
 #pragma mark -
 #pragma mark Treat Movie.
@@ -2132,6 +2228,7 @@
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
 	[currentPdfScrollView resetScrollView];
 	[self renderPageLinkAtIndex:currentPageNum];
+	[self parseAndRenderUrlLinkDefine:currentPageNum];
 	[self renderMovieLinkAtIndex:currentPageNum];
 	[self renderPageJumpLinkAtIndex:currentPageNum];
 	[self renderInPageScrollViewAtIndex:currentPageNum];

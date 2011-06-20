@@ -65,6 +65,7 @@
 		297DF1FF12C601AD0082C680 /* InfomationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297DF1FE12C601AD0082C680 /* InfomationViewController.m */; };
 		299448EC12B7370B00E7D108 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299448EB12B7370B00E7D108 /* MediaPlayer.framework */; };
 		299791EC13AF8936009B315B /* undo_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 299791EB13AF8936009B315B /* undo_selected.png */; };
+		299791EE13AF96ED009B315B /* urlLinkDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 299791ED13AF96ED009B315B /* urlLinkDefine.csv */; };
 		2999FA9512B7BDE5002ACB2B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2999FA9412B7BDE5002ACB2B /* icon.png */; };
 		2999FDC512D6A8D500D0F145 /* License.m in Sources */ = {isa = PBXBuildFile; fileRef = 2999FDC412D6A8D500D0F145 /* License.m */; };
 		29A1CB7A138616AA00326759 /* SKBE_MainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A1CB79138616AA00326759 /* SKBE_MainVC.m */; };
@@ -249,6 +250,7 @@
 		297DF1FE12C601AD0082C680 /* InfomationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfomationViewController.m; sourceTree = "<group>"; };
 		299448EB12B7370B00E7D108 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		299791EB13AF8936009B315B /* undo_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = undo_selected.png; path = CosmeLesson01/undo_selected.png; sourceTree = "<group>"; };
+		299791ED13AF96ED009B315B /* urlLinkDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = urlLinkDefine.csv; path = csv/urlLinkDefine.csv; sourceTree = "<group>"; };
 		2999FA9412B7BDE5002ACB2B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		2999FDC312D6A8D500D0F145 /* License.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = License.h; sourceTree = "<group>"; };
 		2999FDC412D6A8D500D0F145 /* License.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = License.m; sourceTree = "<group>"; };
@@ -566,6 +568,7 @@
 				29014A9E12D6EC9C00936BF0 /* movieDefine.csv */,
 				294E1F1D131E2A5B00E49BAF /* popoverScrollImageDefine.csv */,
 				29F003F91353CC5500D0D74D /* pageJumpLinkDefine.csv */,
+				299791ED13AF96ED009B315B /* urlLinkDefine.csv */,
 				2963BDF212B5BE1C001041EB /* pdf */,
 				2994490212B737C600E7D108 /* movie */,
 				2921370D12C604B800FC071D /* image */,
@@ -1021,6 +1024,7 @@
 				2925997C13A34DD30093B0FA /* icon-57.png in Resources */,
 				29C944C613A34E9400AC18C6 /* icon-72.png in Resources */,
 				299791EC13AF8936009B315B /* undo_selected.png in Resources */,
+				299791EE13AF96ED009B315B /* urlLinkDefine.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
