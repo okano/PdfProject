@@ -66,6 +66,17 @@
 										 style:UIBarButtonItemStylePlain
 										 target:self
 										 action:@selector(prepareDeleteMarkerPenWithCurrentPage)];
+		//Add undo button.
+		UIImage* undoButtonImage = [UIImage imageNamed:@"undo_selected.png"];
+		if (! undoButtonImage) {
+			LOG_CURRENT_LINE;
+			return;
+		}
+		UIBarButtonItem* undoButton = [[UIBarButtonItem alloc]
+									   initWithImage:undoButtonImage
+									   style:UIBarButtonItemStylePlain
+									   target:self
+									   action:@selector(deleteLastLine:)];
 		//Add Color&Width select button.
 		UIImage* colorWidthSelectButtonImage = [UIImage imageNamed:@"wand32.png"];
 		if (! colorWidthSelectButtonImage) {
@@ -104,7 +115,7 @@
 									action:nil];
 		fspace3.width = 5.0f;
 		
-		[menuBarForMakerPen setItems:[NSArray arrayWithObjects:doneButton, fspace1, titleLabelButton, fspace2, colorWidthSelectButton, fspace2, fspace3, deleteButton, nil]];
+		[menuBarForMakerPen setItems:[NSArray arrayWithObjects:doneButton, fspace1, titleLabelButton, fspace2, colorWidthSelectButton, fspace2, fspace3, undoButton, deleteButton, nil]];
 		[self.view addSubview:menuBarForMakerPen];
 	}
 	UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
@@ -571,6 +582,14 @@
 	[markerPenView setNeedsDisplay];
 }
 
+- (IBAction)deleteLastLine:(id)sender
+{
+	if (0 <	[markerPenArray count]) {
+		[markerPenArray removeLastObject];
+	}
+	[markerPenView deleteLastLine];
+	[markerPenView setNeedsDisplay];
+}
 
 
 @end

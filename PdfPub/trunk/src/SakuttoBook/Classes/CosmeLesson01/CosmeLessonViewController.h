@@ -97,5 +97,7 @@
 - (void)prepareDeleteMarkerPenWithCurrentPage;
 - (void)deleteMarkerPenAtPage:(NSUInteger)pageNum;
 - (void)clearMarkerPenView;
+//Delete single line.
+- (IBAction)deleteLastLine:(id)sender;
 @end
 

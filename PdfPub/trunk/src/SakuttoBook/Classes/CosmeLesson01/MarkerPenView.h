@@ -20,6 +20,7 @@
 //- (void)addLineInfoFrom:(CGPoint)p0 to:(CGPoint)p1;
 //- (void)addLineInfoWithArray:(NSArray*)lineInfoArray;
 - (void)clearLine;
+- (void)deleteLastLine;
 
 
 - (void)willStartAddLineWithRed:(CGFloat)red Green:(CGFloat)green Blue:(CGFloat)blue Alpha:(CGFloat)alpha Size:(CGFloat)width;
