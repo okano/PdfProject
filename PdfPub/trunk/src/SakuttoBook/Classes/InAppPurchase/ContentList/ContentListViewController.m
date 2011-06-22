@@ -148,6 +148,10 @@
     
 	ContentId targetCid = [appDelegate.contentListDS contentIdAtIndex:indexPath.row];
 	NSString* targetPid = [appDelegate.contentListDS productIdFromContentId:targetCid];
+	if (targetPid == InvalidProductId) {
+		NSLog(@"Invalid productId. cid=%d", targetCid);
+		return nil;
+	}
 	//NSLog(@"indexPath.row=%d, cid=%d, pid=%@", indexPath.row, targetCid, targetPid);
 	
     // Configure the cell...
