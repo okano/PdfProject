@@ -20,6 +20,8 @@
 //- (void)addLineInfoWithArray:(NSArray*)lineInfoArray;
 - (void)clearLine;
 
+//Delete single line.
+- (IBAction)deleteLastLine;
 
 - (void)willStartAddLine;
 - (void)addLinesWithDictionary:(NSDictionary*)dict;

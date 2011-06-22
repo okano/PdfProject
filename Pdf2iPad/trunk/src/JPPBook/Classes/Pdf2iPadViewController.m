@@ -1247,6 +1247,18 @@
 										 target:self
 										 action:@selector(prepareDeleteMarkerPenWithCurrentPage)];
 		
+		//Add undo button.
+		UIImage* undoButtonImage = [UIImage imageNamed:@"undo_selected.png"];
+		if (! undoButtonImage) {
+			LOG_CURRENT_LINE;
+			return;
+		}	
+		UIBarButtonItem* undoButton = [[UIBarButtonItem alloc]
+									   initWithImage:undoButtonImage
+									   style:UIBarButtonItemStylePlain
+									   target:self
+									   action:@selector(deleteLastLine:)];
+		
 		//Add title label.
 		NSString* titleStr = @"Marker Mode";
 		CGSize labelSize = [titleStr sizeWithFont:[UIFont boldSystemFontOfSize:24]];
@@ -1268,7 +1280,7 @@
 										   target:nil
 										   action:nil];
 
-		[menuBarForMakerPen setItems:[NSArray arrayWithObjects:doneButton, fspace1, titleLabelButton, fspace2, deleteButton, nil]];
+		[menuBarForMakerPen setItems:[NSArray arrayWithObjects:doneButton, fspace1, titleLabelButton, fspace2, undoButton, deleteButton, nil]];
 		[self.view addSubview:menuBarForMakerPen];
 	}
 	UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
@@ -1614,6 +1626,15 @@
 	//NSLog(@"after  line number=%d", [markerPenArray count]);
 }
 
+
+- (IBAction)deleteLastLine:(id)sender
+{
+	if (0 <  [markerPenArray count]) {
+		[markerPenArray removeLastObject];
+	}
+ 	[markerPenView2 deleteLastLine];
+	[markerPenView2 setNeedsDisplay];
+}
 
 /*
 - (void)setupMarkerPenViewAtPage:(NSUInteger)pageNum

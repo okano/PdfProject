@@ -175,6 +175,8 @@
 - (void)prepareDeleteMarkerPenWithCurrentPage;
 - (void)deleteMarkerPenAtPage:(NSUInteger)pageNum;
 - (void)clearMarkerPenView;
+//Delete single line.
+- (IBAction)deleteLastLine:(id)sender;
 
 // Treat URL link.
 - (void) renderPageLinkAtIndex:(NSUInteger)index;

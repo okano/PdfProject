@@ -73,6 +73,7 @@
 		29F48C7B12DC7E2D00A9EC62 /* BookmarkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29F48C7912DC7E2D00A9EC62 /* BookmarkView.xib */; };
 		29F48C8012DC7E3E00A9EC62 /* BookmarkModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F48C7D12DC7E3E00A9EC62 /* BookmarkModifyViewController.m */; };
 		29F48C8112DC7E3E00A9EC62 /* BookmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F48C7F12DC7E3E00A9EC62 /* BookmarkViewController.m */; };
+		29FF4B8113B1CA63002DAEDF /* undo_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 29FF4B8013B1CA63002DAEDF /* undo_selected.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -162,6 +163,7 @@
 		29F48C7D12DC7E3E00A9EC62 /* BookmarkModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkModifyViewController.m; sourceTree = "<group>"; };
 		29F48C7E12DC7E3E00A9EC62 /* BookmarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkViewController.h; sourceTree = "<group>"; };
 		29F48C7F12DC7E3E00A9EC62 /* BookmarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkViewController.m; sourceTree = "<group>"; };
+		29FF4B8013B1CA63002DAEDF /* undo_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = undo_selected.png; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* JPPBook_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPBook_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* JPPBook-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "JPPBook-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -331,6 +333,7 @@
 				292C55E212DC4DCE00D21556 /* icon_info.png */,
 				29AAD5E412BC938400CF7C91 /* icon_list_bullets.png */,
 				292C560012DC4EAE00D21556 /* icon_list_thumbnail.png */,
+				29FF4B8013B1CA63002DAEDF /* undo_selected.png */,
 				29E87564137B9249002AC07D /* icon_recycle.png */,
 				292C55E312DC4DCE00D21556 /* icon_top.png */,
 				296FE96C12D2F8EF00A5CBF6 /* flower.jpg */,
@@ -442,6 +445,7 @@
 				293B7B4A134C5D6500FAF0B0 /* flower3-1280x960.jpg in Resources */,
 				29E40976134C7F52005F7F8F /* pageJumpLinkDefine.csv in Resources */,
 				29E87565137B9249002AC07D /* icon_recycle.png in Resources */,
+				29FF4B8113B1CA63002DAEDF /* undo_selected.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -131,6 +131,16 @@
     [lineToDraw removeAllObjects];
 }
 
+
+- (void)deleteLastLine
+{
+	LOG_CURRENT_METHOD;
+	if (0 < [lineToDraw count]) {
+		[lineToDraw removeLastObject];
+	}
+}
+
+
 #pragma mark -
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
