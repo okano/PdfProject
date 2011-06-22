@@ -131,36 +131,28 @@
 	//Setup Links.
 	linksInCurrentPage = [[NSMutableArray alloc] init];
 	//[self getPdfDictionaryWithPageNum:currentPageNum];
-	[self renderPageLinkAtIndex:currentPageNum];
 	[self parseAndRenderUrlLinkDefine:currentPageNum];
 	
 	// Setup for Movie play.
 	[self parseMovieDefine];
-	[self renderMovieLinkAtIndex:currentPageNum];
 	
 	// Setup for Sound play.
 	[self parseSoundOnPageDefine];
-	[self playSoundAtIndex:currentPageNum];
 	
 	// Setup for PageJumpLink.
 	[self parsePageJumpLinkDefine];
-	[self renderPageJumpLinkAtIndex:currentPageNum];
 	
 	// Setup for InPage ScrollView.
 	[self parseInPageScrollViewDefine];
-	[self renderInPageScrollViewAtIndex:currentPageNum];
 
 	// Setup for InPage Pdf.
 	[self parseInPagePdfDefine];
-	[self renderInPagePdfAtIndex:currentPageNum];
 	
 	// Setup for InPage Png image.
 	[self parseInPagePngDefine];
-	[self renderInPagePngAtIndex:currentPageNum];
 	
 	// Setup for Popover Image.
 	[self parsePopoverImageDefine];
-	[self renderPopoverImageLinkAtIndex:currentPageNum];
 	
 	// Setup TOC(Table Of Contents).
 	[self parseTocDefine];
