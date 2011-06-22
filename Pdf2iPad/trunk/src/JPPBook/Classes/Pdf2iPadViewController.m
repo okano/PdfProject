@@ -138,6 +138,10 @@
 	[self parseMovieDefine];
 	[self renderMovieLinkAtIndex:currentPageNum];
 	
+	// Setup for Sound play.
+	[self parseSoundOnPageDefine];
+	[self playSoundAtIndex:currentPageNum];
+	
 	// Setup for PageJumpLink.
 	[self parsePageJumpLinkDefine];
 	[self renderPageJumpLinkAtIndex:currentPageNum];
@@ -1039,6 +1043,7 @@
 	[self renderPageLinkAtIndex:currentPageNum];
 	[self parseAndRenderUrlLinkDefine:currentPageNum];
 	[self renderMovieLinkAtIndex:currentPageNum];
+	[self playSoundAtIndex:currentPageNum];
 	[self renderPageJumpLinkAtIndex:currentPageNum];
 	[self renderInPageScrollViewAtIndex:currentPageNum];
 	[self renderInPagePdfAtIndex:currentPageNum];

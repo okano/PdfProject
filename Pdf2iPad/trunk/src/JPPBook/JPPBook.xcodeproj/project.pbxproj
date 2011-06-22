@@ -54,6 +54,9 @@
 		296FE96E12D2F8EF00A5CBF6 /* flower.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 296FE96C12D2F8EF00A5CBF6 /* flower.jpg */; };
 		296FE96F12D2F8EF00A5CBF6 /* flower2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 296FE96D12D2F8EF00A5CBF6 /* flower2.jpg */; };
 		2974F0A51314AC0300188A77 /* ImageGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2974F0A41314AC0300188A77 /* ImageGenerator.m */; };
+		2991E94C13B1E208000630FB /* p1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2991E94913B1E208000630FB /* p1.mp3 */; };
+		2991E94D13B1E209000630FB /* p2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2991E94A13B1E208000630FB /* p2.mp3 */; };
+		2991E94E13B1E209000630FB /* p3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2991E94B13B1E208000630FB /* p3.mp3 */; };
 		299CD2AA13861BD3001C2B4B /* SKBE_MainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 299CD2A913861BD3001C2B4B /* SKBE_MainVC.m */; };
 		299CD2AE13861BDD001C2B4B /* SKBEngine_PopoverScrollImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 299CD2AD13861BDD001C2B4B /* SKBEngine_PopoverScrollImageViewController.m */; };
 		29A71D4213A32F4C00DFB4C8 /* Pdf2iPadViewController+movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A71D4113A32F4C00DFB4C8 /* Pdf2iPadViewController+movie.m */; };
@@ -75,6 +78,9 @@
 		29F48C8112DC7E3E00A9EC62 /* BookmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F48C7F12DC7E3E00A9EC62 /* BookmarkViewController.m */; };
 		29FF4B8113B1CA63002DAEDF /* undo_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 29FF4B8013B1CA63002DAEDF /* undo_selected.png */; };
 		29FF4B8413B1D0BC002DAEDF /* urlLinkDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29FF4B8313B1D0BC002DAEDF /* urlLinkDefine.csv */; };
+		29FF4B8613B1D3B8002DAEDF /* Pdf2iPadViewController+sound.m in Sources */ = {isa = PBXBuildFile; fileRef = 29FF4B8513B1D3B8002DAEDF /* Pdf2iPadViewController+sound.m */; };
+		29FF4B8813B1D61A002DAEDF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29FF4B8713B1D61A002DAEDF /* AudioToolbox.framework */; };
+		29FF4B8A13B1D87E002DAEDF /* soundDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29FF4B8913B1D87E002DAEDF /* soundDefine.csv */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -135,6 +141,9 @@
 		2974F0A41314AC0300188A77 /* ImageGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGenerator.m; sourceTree = "<group>"; };
 		2987EDC912AA472400FB66E5 /* pdfDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pdfDefine.h; sourceTree = "<group>"; };
 		2987EE1B12AA4D1600FB66E5 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
+		2991E94913B1E208000630FB /* p1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = p1.mp3; path = sound/p1.mp3; sourceTree = "<group>"; };
+		2991E94A13B1E208000630FB /* p2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = p2.mp3; path = sound/p2.mp3; sourceTree = "<group>"; };
+		2991E94B13B1E208000630FB /* p3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = p3.mp3; path = sound/p3.mp3; sourceTree = "<group>"; };
 		299CD2A813861BD3001C2B4B /* SKBE_MainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKBE_MainVC.h; path = SKBEngine/SKBE_MainVC.h; sourceTree = "<group>"; };
 		299CD2A913861BD3001C2B4B /* SKBE_MainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKBE_MainVC.m; path = SKBEngine/SKBE_MainVC.m; sourceTree = "<group>"; };
 		299CD2AC13861BDD001C2B4B /* SKBEngine_PopoverScrollImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKBEngine_PopoverScrollImageViewController.h; path = SKBEngine/SKBEngine_PopoverScrollImageViewController.h; sourceTree = "<group>"; };
@@ -166,6 +175,9 @@
 		29F48C7F12DC7E3E00A9EC62 /* BookmarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkViewController.m; sourceTree = "<group>"; };
 		29FF4B8013B1CA63002DAEDF /* undo_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = undo_selected.png; sourceTree = "<group>"; };
 		29FF4B8313B1D0BC002DAEDF /* urlLinkDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = urlLinkDefine.csv; path = csv/urlLinkDefine.csv; sourceTree = "<group>"; };
+		29FF4B8513B1D3B8002DAEDF /* Pdf2iPadViewController+sound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Pdf2iPadViewController+sound.m"; sourceTree = "<group>"; };
+		29FF4B8713B1D61A002DAEDF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		29FF4B8913B1D87E002DAEDF /* soundDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = soundDefine.csv; path = csv/soundDefine.csv; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* JPPBook_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPBook_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* JPPBook-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "JPPBook-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -180,6 +192,7 @@
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				29074DD612BA117500F5D46D /* QuartzCore.framework in Frameworks */,
 				29074DDA12BA118500F5D46D /* MediaPlayer.framework in Frameworks */,
+				29FF4B8813B1D61A002DAEDF /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +207,7 @@
 				28D7ACF60DDB3853001CB0EB /* Pdf2iPadViewController.h */,
 				28D7ACF70DDB3853001CB0EB /* Pdf2iPadViewController.m */,
 				29A71D4113A32F4C00DFB4C8 /* Pdf2iPadViewController+movie.m */,
+				29FF4B8513B1D3B8002DAEDF /* Pdf2iPadViewController+sound.m */,
 				2974F0A31314AC0300188A77 /* ImageGenerator.h */,
 				2974F0A41314AC0300188A77 /* ImageGenerator.m */,
 				2929AE6B12BF728700FEDD56 /* MyPdfScrollView.h */,
@@ -249,6 +263,16 @@
 			path = pdf;
 			sourceTree = "<group>";
 		};
+		2991E94713B1E1E5000630FB /* sound */ = {
+			isa = PBXGroup;
+			children = (
+				2991E94913B1E208000630FB /* p1.mp3 */,
+				2991E94A13B1E208000630FB /* p2.mp3 */,
+				2991E94B13B1E208000630FB /* p3.mp3 */,
+			);
+			name = sound;
+			sourceTree = "<group>";
+		};
 		29A7E3E3136EB88500EC64EC /* SKBEngine */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,6 +312,7 @@
 				29633230134AB7CC00F01B7C /* pdfDefine.csv */,
 				29633232134AB7CC00F01B7C /* tocDefine.csv */,
 				2963322F134AB7CC00F01B7C /* movieDefine.csv */,
+				29FF4B8913B1D87E002DAEDF /* soundDefine.csv */,
 				2963322C134AB7CC00F01B7C /* inPagePdfDefine.csv */,
 				2963322D134AB7CC00F01B7C /* inPagePngDefine.csv */,
 				2963322E134AB7CC00F01B7C /* inPageScrollViewDefine.csv */,
@@ -298,6 +323,7 @@
 				8D1107310486CEB800E47090 /* JPPBook-Info.plist */,
 				2987EDBB12AA470600FB66E5 /* pdf */,
 				2912441812BA0E44001E4AC7 /* movie */,
+				2991E94713B1E1E5000630FB /* sound */,
 				29D74A3D12BB7C4F00C33E10 /* image */,
 				2899E5210DE3E06400AC0155 /* Pdf2iPadViewController.xib */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
@@ -319,6 +345,7 @@
 				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
 				29074DD512BA117500F5D46D /* QuartzCore.framework */,
 				29074DD912BA118500F5D46D /* MediaPlayer.framework */,
+				29FF4B8713B1D61A002DAEDF /* AudioToolbox.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -450,6 +477,10 @@
 				29E87565137B9249002AC07D /* icon_recycle.png in Resources */,
 				29FF4B8113B1CA63002DAEDF /* undo_selected.png in Resources */,
 				29FF4B8413B1D0BC002DAEDF /* urlLinkDefine.csv in Resources */,
+				29FF4B8A13B1D87E002DAEDF /* soundDefine.csv in Resources */,
+				2991E94C13B1E208000630FB /* p1.mp3 in Resources */,
+				2991E94D13B1E209000630FB /* p2.mp3 in Resources */,
+				2991E94E13B1E209000630FB /* p3.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,6 +509,7 @@
 				299CD2AA13861BD3001C2B4B /* SKBE_MainVC.m in Sources */,
 				299CD2AE13861BDD001C2B4B /* SKBEngine_PopoverScrollImageViewController.m in Sources */,
 				29A71D4213A32F4C00DFB4C8 /* Pdf2iPadViewController+movie.m in Sources */,
+				29FF4B8613B1D3B8002DAEDF /* Pdf2iPadViewController+sound.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

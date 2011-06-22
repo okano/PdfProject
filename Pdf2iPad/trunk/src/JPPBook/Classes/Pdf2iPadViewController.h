@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import <AudioToolbox/AudioServices.h>
 #import "Utility.h"
 #import "Define.h"
 #import "pdfDefine.h"
@@ -84,6 +85,7 @@
 	//
 	NSMutableArray* linksInCurrentPage;
 	NSMutableArray* movieDefine;
+	NSMutableArray* soundDefine;
 	NSMutableArray* pageJumpLinkDefine;
 	NSMutableArray* inPageScrollViewDefine;
 	NSMutableArray* inPagePdfDefine;
@@ -236,4 +238,10 @@
 - (void)showMoviePlayer:(NSString*)filename WithFrame:(CGRect)frame;
 //
 - (void)myMovieFinishedCallback:(id)sender;
+@end
+
+// Treat Sound.
+@interface Pdf2iPadViewController (soundonpage)
+- (BOOL)parseSoundOnPageDefine;
+- (void)playSoundAtIndex:(NSUInteger)index;
 @end
