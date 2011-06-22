@@ -180,6 +180,8 @@
 
 // Treat URL link.
 - (void) renderPageLinkAtIndex:(NSUInteger)index;
+- (BOOL)parseAndRenderUrlLinkDefine:(NSUInteger)index;
+
 // Treat PageJumpLink.
 - (BOOL)parsePageJumpLinkDefine;	// Parse PageJumpLink define in CSV.
 - (void)renderPageJumpLinkAtIndex:(NSUInteger)index;

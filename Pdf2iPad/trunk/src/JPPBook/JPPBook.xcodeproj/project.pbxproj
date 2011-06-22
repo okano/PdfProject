@@ -74,6 +74,7 @@
 		29F48C8012DC7E3E00A9EC62 /* BookmarkModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F48C7D12DC7E3E00A9EC62 /* BookmarkModifyViewController.m */; };
 		29F48C8112DC7E3E00A9EC62 /* BookmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F48C7F12DC7E3E00A9EC62 /* BookmarkViewController.m */; };
 		29FF4B8113B1CA63002DAEDF /* undo_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 29FF4B8013B1CA63002DAEDF /* undo_selected.png */; };
+		29FF4B8413B1D0BC002DAEDF /* urlLinkDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29FF4B8313B1D0BC002DAEDF /* urlLinkDefine.csv */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -164,6 +165,7 @@
 		29F48C7E12DC7E3E00A9EC62 /* BookmarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkViewController.h; sourceTree = "<group>"; };
 		29F48C7F12DC7E3E00A9EC62 /* BookmarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkViewController.m; sourceTree = "<group>"; };
 		29FF4B8013B1CA63002DAEDF /* undo_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = undo_selected.png; sourceTree = "<group>"; };
+		29FF4B8313B1D0BC002DAEDF /* urlLinkDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = urlLinkDefine.csv; path = csv/urlLinkDefine.csv; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* JPPBook_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPBook_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* JPPBook-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "JPPBook-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -291,6 +293,7 @@
 				2963322E134AB7CC00F01B7C /* inPageScrollViewDefine.csv */,
 				29633231134AB7CC00F01B7C /* popoverImageDefine.csv */,
 				29E40975134C7F52005F7F8F /* pageJumpLinkDefine.csv */,
+				29FF4B8313B1D0BC002DAEDF /* urlLinkDefine.csv */,
 				291ECAC012BC8E8C0027C4CF /* icon.png */,
 				8D1107310486CEB800E47090 /* JPPBook-Info.plist */,
 				2987EDBB12AA470600FB66E5 /* pdf */,
@@ -446,6 +449,7 @@
 				29E40976134C7F52005F7F8F /* pageJumpLinkDefine.csv in Resources */,
 				29E87565137B9249002AC07D /* icon_recycle.png in Resources */,
 				29FF4B8113B1CA63002DAEDF /* undo_selected.png in Resources */,
+				29FF4B8413B1D0BC002DAEDF /* urlLinkDefine.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
