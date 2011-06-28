@@ -138,6 +138,7 @@
 	
 	// Setup for Sound play.
 	[self parseSoundOnPageDefine];
+	audioPlayer = nil;	//init when use.
 	
 	// Setup for PageJumpLink.
 	[self parsePageJumpLinkDefine];

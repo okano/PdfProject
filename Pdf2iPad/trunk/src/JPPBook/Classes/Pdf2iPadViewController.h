@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import <AudioToolbox/AudioServices.h>
+#import <AVFoundation/AVFoundation.h>
 #import "Utility.h"
 #import "Define.h"
 #import "pdfDefine.h"
@@ -95,6 +96,8 @@
 	
 	// Movie
 	MPMoviePlayerController *mplayer;
+	// Audio(sound for page open)
+	AVAudioPlayer* audioPlayer;
 	
 	// Menu
 	MenuViewController* menuViewController;

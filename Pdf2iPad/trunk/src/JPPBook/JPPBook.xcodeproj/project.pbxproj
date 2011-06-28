@@ -64,6 +64,7 @@
 		29AAD5EA12BC943C00CF7C91 /* TocTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29AAD5E912BC943C00CF7C91 /* TocTableViewController.m */; };
 		29B36D5112FFBFFD00897C08 /* PopoverImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B36D5012FFBFFD00897C08 /* PopoverImageViewController.m */; };
 		29B7D44B1330FFF30023BC81 /* MarkerPenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B7D44A1330FFF30023BC81 /* MarkerPenView.m */; };
+		29C6852113B9C66500FB164B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29C6852013B9C66500FB164B /* AVFoundation.framework */; };
 		29D74A4312BB7C4F00C33E10 /* image1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 29D74A3E12BB7C4F00C33E10 /* image1.jpg */; };
 		29D74A4412BB7C4F00C33E10 /* image2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 29D74A3F12BB7C4F00C33E10 /* image2.jpg */; };
 		29D74A4512BB7C4F00C33E10 /* image3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 29D74A4012BB7C4F00C33E10 /* image3.jpg */; };
@@ -157,6 +158,7 @@
 		29B7D4491330FFF30023BC81 /* MarkerPenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkerPenView.h; sourceTree = "<group>"; };
 		29B7D44A1330FFF30023BC81 /* MarkerPenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkerPenView.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29C6852013B9C66500FB164B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		29D74A3E12BB7C4F00C33E10 /* image1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image1.jpg; sourceTree = "<group>"; };
 		29D74A3F12BB7C4F00C33E10 /* image2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image2.jpg; sourceTree = "<group>"; };
 		29D74A4012BB7C4F00C33E10 /* image3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image3.jpg; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				29074DD612BA117500F5D46D /* QuartzCore.framework in Frameworks */,
 				29074DDA12BA118500F5D46D /* MediaPlayer.framework in Frameworks */,
 				29FF4B8813B1D61A002DAEDF /* AudioToolbox.framework in Frameworks */,
+				29C6852113B9C66500FB164B /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +349,7 @@
 				29074DD512BA117500F5D46D /* QuartzCore.framework */,
 				29074DD912BA118500F5D46D /* MediaPlayer.framework */,
 				29FF4B8713B1D61A002DAEDF /* AudioToolbox.framework */,
+				29C6852013B9C66500FB164B /* AVFoundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
