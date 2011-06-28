@@ -1151,6 +1151,10 @@
 
 - (void)handleSwipe:(UISwipeGestureRecognizer*)gestureRecognizer
 {
+#if defined(ENABLED_TRANSITION) && ENABLED_TRANSITION == 0
+	return;
+#endif
+	
 	//Switch to next/prev page.
 	if (gestureRecognizer.direction == UISwipeGestureRecognizerDirectionRight) {
 		//left to right, goto next.
