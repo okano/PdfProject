@@ -79,14 +79,13 @@
 			//AudioServicesCreateSystemSoundID((CFURLRef)soundURL, &soundID);
 			//AudioServicesPlaySystemSound(soundID);
 			
-			if (audioPlayer == NULL) {
-				audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundURL error:NULL];
-				[audioPlayer play];
-			} else {
+			if (audioPlayer != NULL) {
 				[audioPlayer stop];
-				[audioPlayer initWithContentsOfURL:soundURL error:NULL];
-				[audioPlayer play];
+				[audioPlayer release];
+				audioPlayer = NULL;
 			}
+			audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundURL error:NULL];
+			[audioPlayer play];
 		}
 	}
 }
