@@ -61,8 +61,8 @@
 
 - (void)playSoundAtIndex:(NSUInteger)index
 {
-	LOG_CURRENT_METHOD;
-	NSLog(@"page=%d", index);
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"page=%d", index);
 	//NSLog(@"soundDefine=%@", [soundDefine description]);
 	
 	for (NSMutableDictionary* soundInfo in soundDefine) {
