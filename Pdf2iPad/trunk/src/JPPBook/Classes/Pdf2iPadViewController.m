@@ -175,6 +175,7 @@
 	
 	
 	[self renderAllLinks];
+	[self playSoundAtIndex:currentPageNum];
 }
 
 
@@ -871,6 +872,7 @@
 	//
 	//[self getPdfDictionaryWithPageNum:currentPageNum];
 	[self renderAllLinks];
+	[self playSoundAtIndex:currentPageNum];	//play sound for new page.
 	
 	/*
 	NSLog(@"prev-subviews=%d, curr-subview=%d, next-subview=%d",
@@ -969,6 +971,7 @@
 	//NSLog(@"(new)currentPdfScrollView subviews = %d", [currentPdfScrollView.subviews count]);
 	//
 	[self renderAllLinks];
+	[self playSoundAtIndex:currentPageNum];	//play sound for new page.
 }
 
 - (void)switchToPage:(int)newPageNum
@@ -1009,6 +1012,7 @@
 	
 	//Draw link to URL, Movie.
 	[self renderAllLinks];
+	[self playSoundAtIndex:currentPageNum];	//play sound for new page.
 	
 	// Set animation
 	CATransition* animation1 = [CATransition animation];
@@ -1036,7 +1040,6 @@
 	[self renderPageLinkAtIndex:currentPageNum];
 	[self parseAndRenderUrlLinkDefine:currentPageNum];
 	[self renderMovieLinkAtIndex:currentPageNum];
-	[self playSoundAtIndex:currentPageNum];
 	[self renderPageJumpLinkAtIndex:currentPageNum];
 	[self renderInPageScrollViewAtIndex:currentPageNum];
 	[self renderInPagePdfAtIndex:currentPageNum];
@@ -2517,6 +2520,7 @@
 	
 	[self drawPageWithNumber:currentPageNum];
 	[self renderAllLinks];
+	//Do not stop sound.
 	
 	[thumbnailScrollViewController setupViewFrame];
 	[thumbnailScrollViewController setupScrollViewFrame];
@@ -2775,6 +2779,7 @@
 		[mplayer stop];
 	}
 	[self renderAllLinks];
+	//Do not stop sound.
 	
 	[thumbnailScrollViewController setupViewFrame];
 	[thumbnailScrollViewController setupScrollViewFrame];
