@@ -236,6 +236,9 @@
 	BOOL isPayedContent = NO;
 	if ([InAppPurchaseUtility isFreeContent:targetPid] == TRUE) {
 		isPayedContent = YES;
+		
+		//Record free content payment record only first time read.
+		[appDelegate.paymentHistoryDS recordHistoryOnceWithProductId:targetPid ];
 	}
 	if ([appDelegate.paymentHistoryDS isEnabledContent:targetCid] == TRUE) {
 		isPayedContent = YES;

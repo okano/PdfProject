@@ -219,6 +219,31 @@
 }
 //- (void)disableContent:(ContentId)cid{;}
 
+- (void)recordHistoryOnceWithProductId:(NSString*)productId
+{
+	LOG_CURRENT_METHOD;
+	
+	//Check if already recorded, do nothing.
+	for (NSDictionary* candidateDict in paymentHistory){
+		NSString* candidateProductId = [candidateDict valueForKey:PURCHASE_PRODUCT_ID];
+		if ([productId compare:candidateProductId] == NSOrderedSame) {
+			return;
+		}
+	}
+	
+	//Record it.
+	ContentId cid = [InAppPurchaseUtility	getContentIdentifier:productId];
+	NSMutableDictionary* tmpDict = [[NSMutableDictionary alloc] init];
+	[tmpDict setValue:productId forKey:PURCHASE_PRODUCT_ID];
+	[tmpDict setValue:[NSNumber numberWithInt:cid] forKey:PURCHASE_CONTENT_ID];
+	[tmpDict setValue:[NSDate dateWithTimeIntervalSinceNow:0.0f] forKey:PURCHASE_DAYTIME];
+	//NSLog(@"enable content. cid=%d, pid=%@, dict=%@", cid, productId, [tmpDict description]);
+	[paymentHistory addObject:tmpDict];
+	//
+	[self savePaymentHistory];
+}
+
+
 #pragma mark - Misc.
 - (NSUInteger)count
 {
