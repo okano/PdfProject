@@ -256,18 +256,26 @@
 	}
 	
 	NSDictionary* tmpDict = [paymentHistory objectAtIndex:index];
+	//LOG_CURRENT_LINE;
+	//NSLog(@"tmpDict=%@", [tmpDict description]);
+	ContentId cid = [[tmpDict valueForKey:PURCHASE_CONTENT_ID] intValue];
+	NSString* pid = [tmpDict valueForKey:PURCHASE_PRODUCT_ID];
+	
+	ContentListDS* tmpList = [[ContentListDS alloc] init];
+	NSString* title = [tmpList titleByContentId:cid];
+	
 	//format date.
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	[formatter setDateFormat:@"yyyy-MM-dd(E) HH:mm:ss"];
 	NSString *purchaseDaytime = [formatter stringFromDate:[tmpDict valueForKey:PURCHASE_DAYTIME]];
 	
-	return [NSString stringWithFormat:@" ContentId=%@%c ProductId=%@%c purchase daytime=%@%c",
-			[tmpDict valueForKey:PURCHASE_CONTENT_ID],
-			0x0d,
-			[tmpDict valueForKey:PURCHASE_PRODUCT_ID],
+	return [NSString stringWithFormat:@" %@%c 購入日時:%@%c (ContentId=%@ ProductId=%@)",
+			title,
 			0x0d,
 			purchaseDaytime,
-			0x0d
+			0x0d,
+			[NSString stringWithFormat:@"%d", cid],
+			pid
 			];
 }
 

@@ -12,6 +12,8 @@
 #import "InAppPurchaseDefine.h"
 #import "InAppPurchaseUtility.h"
 
+#import "ContentListDS.h"	/* only use for get content title. */
+
 @interface PaymentHistoryDS : NSObject /* <SKProductsRequestDelegate, SKPaymentTransactionObserver> */ {
     NSMutableArray* paymentHistory;
 	//
