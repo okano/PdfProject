@@ -10,6 +10,7 @@
 
 
 @implementation InfomationViewController
+@synthesize contentId;
 @synthesize bookTitleLabel, bookAuthorLabel, bookCopyrightLabel;
 @synthesize licenceNumberLabel;
 @synthesize bookSupportPageUrl;
@@ -37,11 +38,20 @@
 
 - (void)setBookInfoFromDefineFile {
 	//Open define file.
-	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:@"bookDefine" ofType:@"csv"];
+	NSString* filename;
+#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+	filename = [NSString stringWithFormat:@"bookDefine_%d", contentId];
+#else
+	filename = @"bookDefine";
+#endif
+	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:filename ofType:@"csv"];
 	NSError* error = nil;
 	NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
 	if (error) {
-		NSLog(@"book define file not found. filename=%@", [csvFilePath lastPathComponent]);
+		NSLog(@"book define file not found. filename=%@, filename=%@, filename=%@",
+			  [csvFilePath lastPathComponent],
+			  csvFilePath,
+			  filename);
 		NSLog(@"error=%@, error code=%d", [error localizedDescription], [error code]);
 		return;
 	}

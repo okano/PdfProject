@@ -10,6 +10,8 @@
 #import "SakuttoBookAppDelegate.h"
 
 @interface InfomationViewController : UIViewController {
+	//ContentId.
+	ContentId contentId;
 	//Book infomation label.
 	IBOutlet UILabel* bookTitleLabel;
 	IBOutlet UILabel* bookAuthorLabel;
@@ -19,6 +21,8 @@
 	//Program infomation label.
 	IBOutlet UILabel* licenceNumberLabel;
 }
+@property (nonatomic) ContentId contentId;
+//UI
 @property (nonatomic, retain) UILabel* bookTitleLabel;
 @property (nonatomic, retain) UILabel* bookAuthorLabel;
 @property (nonatomic, retain) UILabel* bookCopyrightLabel;

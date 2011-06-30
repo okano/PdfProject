@@ -2181,10 +2181,13 @@
 	//LOG_CURRENT_METHOD;
 	[self hideMenuBar];
 	InfomationViewController* vc = [[InfomationViewController alloc] initWithNibName:@"InfomationView" bundle:[NSBundle mainBundle]];
+	vc.contentId = currentContentId;
+	//Setup frame.
 	CGRect infoViewFrame = vc.view.frame;	//Fit with self.view.
 	infoViewFrame.size.width = self.view.frame.size.width;
 	infoViewFrame.size.height = self.view.frame.size.height;
 	vc.view.frame = infoViewFrame;
+	//Show view.
 	[self.view addSubview:vc.view];
 }
 
