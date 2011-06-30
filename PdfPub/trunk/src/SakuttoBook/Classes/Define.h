@@ -24,19 +24,23 @@
 //Use Multi contents.
 #define IS_MULTI_CONTENTS	1	/* 0:single content, 1:multi contents */
 
-// Tap area.
-#define TAP_AREA_LEFT_X			  0.0f
-#define TAP_AREA_LEFT_Y			 75.0f
-#define TAP_AREA_LEFT_WIDTH		140.0f
-#define TAP_AREA_LEFT_HEIGHT	600.0f
-#define TAP_AREA_RIGHT_X		180.0f
-#define TAP_AREA_RIGHT_Y		 75.0f
-#define TAP_AREA_RIGHT_WIDTH	320.0f
-#define TAP_AREA_RIGHT_HEIGHT	600.0f
-#define TAP_AREA_TOP_X			  0.0f
-#define TAP_AREA_TOP_Y			  0.0f
-#define TAP_AREA_TOP_WIDTH		320.0f
-#define TAP_AREA_TOP_HEIGHT		 75.0f
+// Tap area. (0.00 - 1.00) (1.00 is "fit to screen")
+#define TAP_AREA_LEFT_X			0.00f
+#define TAP_AREA_LEFT_Y			0.15f
+#define TAP_AREA_LEFT_WIDTH		0.40f
+#define TAP_AREA_LEFT_HEIGHT	1.00f
+#define TAP_AREA_RIGHT_X		0.60f
+#define TAP_AREA_RIGHT_Y		0.15f
+#define TAP_AREA_RIGHT_WIDTH	0.40f
+#define TAP_AREA_RIGHT_HEIGHT	1.00f
+#define TAP_AREA_TOP_X			0.00f
+#define TAP_AREA_TOP_Y			0.00f
+#define TAP_AREA_TOP_WIDTH		1.00f
+#define TAP_AREA_TOP_HEIGHT		0.15f
+#define TAP_AREA_BOTTOM_X		0.00f
+#define TAP_AREA_BOTTOM_Y		0.00f
+#define TAP_AREA_BOTTOM_WIDTH	0.00f
+#define TAP_AREA_BOTTOM_HEIGHT	0.00f
 
 // for Page Animation.
 #define MY_ANIMATION_KIND					@"MyAnimationKind"

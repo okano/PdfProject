@@ -1069,22 +1069,22 @@
 	baseWidthForParentView = self.view.frame.size.width;
 	baseHeightForParentView = self.view.frame.size.height;
 	
-	leftTapArea = CGRectMake(0.0f,
-							 baseHeightForParentView * 0.15f,
-							 baseWidthForParentView  * 0.40f,
-							 baseHeightForParentView * 1.0f);
-	rightTapArea = CGRectMake(baseWidthForParentView * 0.60f,
-							  baseHeightForParentView* 0.15f,
-							  baseWidthForParentView  * 0.40f,
-							  baseHeightForParentView * 1.0f);
-	topTapArea = CGRectMake(0.0f,
-							0.0f,
-							baseWidthForParentView  * 1.00f,
-							baseHeightForParentView * 0.15f);
-	bottomTapArea = CGRectMake(0.0f,
-							   0.0f,
-							   0.0f,
-							   0.0f);
+	leftTapArea = CGRectMake(baseWidthForParentView   * TAP_AREA_LEFT_X,
+							 baseHeightForParentView  * TAP_AREA_LEFT_Y,
+							 baseWidthForParentView   * TAP_AREA_LEFT_WIDTH,
+							 baseHeightForParentView  * TAP_AREA_LEFT_HEIGHT);
+	rightTapArea = CGRectMake(baseWidthForParentView  * TAP_AREA_RIGHT_X,
+							  baseHeightForParentView * TAP_AREA_RIGHT_Y,
+							  baseWidthForParentView  * TAP_AREA_RIGHT_WIDTH,
+							  baseHeightForParentView * TAP_AREA_RIGHT_HEIGHT);
+	topTapArea = CGRectMake(baseWidthForParentView    * TAP_AREA_TOP_X,
+							baseHeightForParentView   * TAP_AREA_TOP_Y,
+							baseWidthForParentView    * TAP_AREA_TOP_WIDTH,
+							baseHeightForParentView   * TAP_AREA_TOP_HEIGHT);
+	bottomTapArea = CGRectMake(baseWidthForParentView * TAP_AREA_BOTTOM_X,
+							   baseHeightForParentView* TAP_AREA_BOTTOM_Y,
+							   baseWidthForParentView * TAP_AREA_BOTTOM_WIDTH,
+							   baseHeightForParentView* TAP_AREA_BOTTOM_HEIGHT);
 	//NSLog(@"leftTapArea=%@", NSStringFromCGRect(leftTapArea));
 	//NSLog(@"rightTapArea=%@", NSStringFromCGRect(rightTapArea));
 	//NSLog(@"topTapArea=%@", NSStringFromCGRect(topTapArea));
