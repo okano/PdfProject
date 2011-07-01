@@ -129,6 +129,11 @@
 	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
 	[appDelegate switchToContentPlayerView];
 }
+- (IBAction)showPictureSelector
+{
+	//show picture selector.
+	LOG_CURRENT_METHOD;
+}
 
 
 #pragma mark -

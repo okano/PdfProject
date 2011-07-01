@@ -62,6 +62,7 @@
 - (void)addScalableSubview:(UIView *)view withNormalizedFrame:(CGRect)normalizedFrame;
 - (IBAction)hideCosmeLessonView;
 - (IBAction)switchToContentPlayerView;
+- (IBAction)showPictureSelector;
 
 @end
 
