@@ -59,10 +59,11 @@
 
 - (void)setupThisView;
 - (void)loadDefaultImage;
+- (void)setupImage:(UIImage*)newImage;
 - (void)addScalableSubview:(UIView *)view withNormalizedFrame:(CGRect)normalizedFrame;
 - (IBAction)hideCosmeLessonView;
 - (IBAction)switchToContentPlayerView;
-- (IBAction)showPictureSelector;
+- (IBAction)showImageSelector;
 
 @end
 
@@ -102,3 +103,8 @@
 - (IBAction)deleteLastLine:(id)sender;
 @end
 
+//
+//imagePicker
+@interface CosmeLessonViewController (ImagePicker) <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPopoverControllerDelegate>
+- (void)openImagePickerFromBarButtonItem:(UIBarButtonItem*)button;
+@end

@@ -96,17 +96,21 @@
 		NSLog(@"image not found.");
 		return;
 	}
-	imageView.image = image;
-	imageView.frame = CGRectMake(0.0f, 0.0f, image.size.width, image.size.height);
+	[self setupImage:image];
+}
+- (void)setupImage:(UIImage*)newImage
+{
+	imageView.image = newImage;
+	imageView.frame = CGRectMake(0.0f, 0.0f, newImage.size.width, newImage.size.height);
 
-	scrollView.contentSize = CGSizeMake(image.size.width, image.size.height);  
+	scrollView.contentSize = CGSizeMake(newImage.size.width, newImage.size.height);  
 	
 	scrollView.delegate = self;
 	
 	
 	//Setup scale.
-	CGFloat widthRatio = self.view.frame.size.width / image.size.width;
-	CGFloat heightRatio = self.view.frame.size.height / image.size.height;
+	CGFloat widthRatio = self.view.frame.size.width / newImage.size.width;
+	CGFloat heightRatio = self.view.frame.size.height / newImage.size.height;
 	CGFloat ratio;
 	if (widthRatio < heightRatio) {
 		ratio = widthRatio;
@@ -129,10 +133,11 @@
 	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
 	[appDelegate switchToContentPlayerView];
 }
-- (IBAction)showPictureSelector
+- (IBAction)showImageSelector
 {
 	//show picture selector.
 	LOG_CURRENT_METHOD;
+	[self openImagePickerFromBarButtonItem:[[toolbar items] objectAtIndex:2]];
 }
 
 

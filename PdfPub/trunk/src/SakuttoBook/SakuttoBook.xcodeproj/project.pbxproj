@@ -81,6 +81,7 @@
 		29C944C613A34E9400AC18C6 /* icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 29C944C513A34E9400AC18C6 /* icon-72.png */; };
 		29E1089A12D46D4700FC5210 /* BookmarkModifyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29E1089912D46D4700FC5210 /* BookmarkModifyView.xib */; };
 		29E108A912D46ECF00FC5210 /* BookmarkModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E108A812D46ECF00FC5210 /* BookmarkModifyViewController.m */; };
+		29E6E1F113BDB51600B0DDAE /* CosmeLessonViewController+ImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E6E1F013BDB51600B0DDAE /* CosmeLessonViewController+ImagePicker.m */; };
 		29F003FA1353CC5500D0D74D /* pageJumpLinkDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29F003F91353CC5500D0D74D /* pageJumpLinkDefine.csv */; };
 		29F8128B139F521F00A4F92F /* basemake1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 29F8121A139F521F00A4F92F /* basemake1.jpg */; };
 		29F8128C139F521F00A4F92F /* basemake2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 29F8121B139F521F00A4F92F /* basemake2.jpg */; };
@@ -279,6 +280,7 @@
 		29E1089912D46D4700FC5210 /* BookmarkModifyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookmarkModifyView.xib; sourceTree = "<group>"; };
 		29E108A712D46ECF00FC5210 /* BookmarkModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkModifyViewController.h; sourceTree = "<group>"; };
 		29E108A812D46ECF00FC5210 /* BookmarkModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkModifyViewController.m; sourceTree = "<group>"; };
+		29E6E1F013BDB51600B0DDAE /* CosmeLessonViewController+ImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CosmeLessonViewController+ImagePicker.m"; path = "CosmeLesson01/CosmeLessonViewController+ImagePicker.m"; sourceTree = "<group>"; };
 		29F003F91353CC5500D0D74D /* pageJumpLinkDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pageJumpLinkDefine.csv; path = csv/pageJumpLinkDefine.csv; sourceTree = "<group>"; };
 		29F8121A139F521F00A4F92F /* basemake1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = basemake1.jpg; sourceTree = "<group>"; };
 		29F8121B139F521F00A4F92F /* basemake2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = basemake2.jpg; sourceTree = "<group>"; };
@@ -518,6 +520,7 @@
 				29A849C3139F1CB600508236 /* CosmeLessonViewController.h */,
 				29A849C4139F1CB600508236 /* CosmeLessonViewController.m */,
 				29A849C5139F1CB600508236 /* CosmeLessonViewController+MarkerPen.m */,
+				29E6E1F013BDB51600B0DDAE /* CosmeLessonViewController+ImagePicker.m */,
 				29A849C2139F1CB600508236 /* CosmeLessonView.xib */,
 				29A849CA139F1CC100508236 /* MarkerPenView.h */,
 				29A849CB139F1CC100508236 /* MarkerPenView.m */,
@@ -1073,6 +1076,7 @@
 				29A849C8139F1CB600508236 /* CosmeLessonViewController.m in Sources */,
 				29A849C9139F1CB600508236 /* CosmeLessonViewController+MarkerPen.m in Sources */,
 				29A849CD139F1CC100508236 /* MarkerPenView.m in Sources */,
+				29E6E1F113BDB51600B0DDAE /* CosmeLessonViewController+ImagePicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
