@@ -30,7 +30,13 @@
 - (void)loadView {
 }
 */
-
+#pragma mark -
+- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle contentId:(ContentId)cid
+{
+	//LOG_CURRENT_METHOD;
+	currentContentId = cid;
+	return [self initWithNibName:nibName bundle:nibBundle];
+}
 
 #pragma mark -
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -2781,9 +2787,9 @@
 	[self renderAllLinks];
 	//Do not stop sound.
 	
-	[thumbnailScrollViewController setupViewFrame];
-	[thumbnailScrollViewController setupScrollViewFrame];
-	[bookmarkViewController setupViewFrame];
+	[thumbnailScrollViewController setupViewFrame:self.view.frame];
+	[thumbnailScrollViewController setupScrollViewFrame:self.view.frame];
+	[bookmarkViewController setupViewFrame:self.view.frame];
 }
 
 - (bool)isChangeOrientationKind:(UIInterfaceOrientation)oldOrientation newOrientation:(UIInterfaceOrientation)newOrientation {

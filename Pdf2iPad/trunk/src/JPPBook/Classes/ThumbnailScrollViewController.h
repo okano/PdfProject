@@ -17,8 +17,8 @@
 @property (nonatomic, retain) UIScrollView* scrollView;
 //
 - (IBAction)closeThisView:(id)sender;
-- (void)setupViewFrame;
-- (void)setupScrollViewFrame;
+- (void)setupViewFrame:(CGRect)frame;
+- (void)setupScrollViewFrame:(CGRect)frame;
 - (void)setupImages;
 
 @end

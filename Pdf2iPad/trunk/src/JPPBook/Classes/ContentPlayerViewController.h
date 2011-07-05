@@ -30,6 +30,8 @@
 
 
 @interface ContentPlayerViewController : UIViewController <UIScrollViewDelegate, UIActionSheetDelegate> {
+	//
+	ContentId currentContentId;
 	// Page number at current showing.
     int             currentPageNum;
 	int				maxPageNum;
@@ -134,6 +136,7 @@
 /**
  *Functions.
  */
+- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle contentId:(ContentId)cid;
 // Treat PDF.
 - (BOOL)setupPdfBasicInfo;
 // Draw PDF.

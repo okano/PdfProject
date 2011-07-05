@@ -85,8 +85,7 @@
 	[self closeThisView:nil];
 	
 	Pdf2iPadAppDelegate* appDelegate = (Pdf2iPadAppDelegate*)[[UIApplication sharedApplication] delegate];
-	ContentPlayerViewController* vc = (ContentPlayerViewController*)appDelegate.viewController;
-	[vc showBookmarkView];	
+	[appDelegate showBookmarkView];	
 }
 - (void)hideBookmarkView {
 	[self.view removeFromSuperview];
@@ -152,8 +151,7 @@
 - (IBAction)closeThisView:(id)sender
 {
 	Pdf2iPadAppDelegate* appDelegate = (Pdf2iPadAppDelegate*)[[UIApplication sharedApplication] delegate];
-	PdfPubViewController* vc = (PdfPubViewController*)appDelegate.viewController;
-	[(PdfPubViewController*)vc hideMenuBar];
+	[appDelegate hideMenuBar];
 	//[self.view removeFromSuperview];
 }
 

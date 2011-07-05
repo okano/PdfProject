@@ -36,7 +36,7 @@
     [super viewDidLoad];
 	
 	//Setup View Size & Position.
-	[self setupViewFrame];
+	[self setupViewFrame:self.view.frame];
 	[self.view setBackgroundColor:[UIColor grayColor]];
 	
 	//Alocate ScrollView.
@@ -50,39 +50,36 @@
 	//scrollView.alwaysBounceHorizontal = YES;	//YES;
 	
 	//Setup
-	[self setupScrollViewFrame];
+	[self setupScrollViewFrame:self.view.frame];
 	[self.view addSubview:scrollView];
 	
 	//NSLog(@"view frame=%@", NSStringFromCGRect(self.view.frame));
 	//NSLog(@"scrollView frame=%@", NSStringFromCGRect(scrollView.frame));
 }
 
-- (void)setupViewFrame
+- (void)setupViewFrame:(CGRect)frame
 {
 	//Setup View Size & Position.
-	Pdf2iPadAppDelegate* appDelegate = (Pdf2iPadAppDelegate*)[[UIApplication sharedApplication] delegate];
-	ContentPlayerViewController* vc = (ContentPlayerViewController*)appDelegate.viewController;
 	CGRect tmpRect;
 	tmpRect = self.view.frame;
 	tmpRect.size.height = 160.0f;
 	CGFloat bottomToolBarHeight = 40.0f;
-	UIView* v = [vc view];
 
 	UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
 	switch (interfaceOrientation) {
 		case UIInterfaceOrientationPortrait:
 		case UIInterfaceOrientationPortraitUpsideDown:
-			tmpRect.origin.y = v.frame.size.height - tmpRect.size.height - bottomToolBarHeight;
-			tmpRect.size.width = v.frame.size.width;
+			tmpRect.origin.y = frame.size.height - tmpRect.size.height - bottomToolBarHeight;
+			tmpRect.size.width = frame.size.width;
 			break;
 		case UIInterfaceOrientationLandscapeLeft:
 		case UIInterfaceOrientationLandscapeRight:
-			tmpRect.origin.y = v.frame.size.width - tmpRect.size.height - bottomToolBarHeight;
-			tmpRect.size.width = v.frame.size.height;
+			tmpRect.origin.y = frame.size.width - tmpRect.size.height - bottomToolBarHeight;
+			tmpRect.size.width = frame.size.height;
 			break;
 		default://Unknown
-			tmpRect.origin.y = v.frame.size.height - tmpRect.size.height - bottomToolBarHeight;
-			tmpRect.size.width = v.frame.size.width;
+			tmpRect.origin.y = frame.size.height - tmpRect.size.height - bottomToolBarHeight;
+			tmpRect.size.width = frame.size.width;
 			break;
 	}
 	
@@ -90,7 +87,7 @@
 	//NSLog(@"thumbnailView.view frame = %@", NSStringFromCGRect(self.view.frame));
 }
 
-- (void)setupScrollViewFrame
+- (void)setupScrollViewFrame:(CGRect)frame
 {
 	CGRect rect = scrollView.frame;
 	rect.origin.y = 0.0f;
@@ -99,14 +96,14 @@
 	switch (interfaceOrientation) {
 		case UIInterfaceOrientationPortrait:
 		case UIInterfaceOrientationPortraitUpsideDown:
-			rect.size.width = self.view.frame.size.width;
+			rect.size.width = frame.size.width;
 			break;
 		case UIInterfaceOrientationLandscapeLeft:
 		case UIInterfaceOrientationLandscapeRight:
-			rect.size.width = self.view.frame.size.width;
+			rect.size.width = frame.size.width;
 			break;
 		default://Unknown
-			rect.size.width = self.view.frame.size.width;
+			rect.size.width = frame.size.width;
 			break;
 	}
 	
@@ -117,8 +114,7 @@
 - (IBAction)closeThisView:(id)sender
 {
 	Pdf2iPadAppDelegate* appDelegate = (Pdf2iPadAppDelegate*)[[UIApplication sharedApplication] delegate];
-	ContentPlayerViewController* vc = (ContentPlayerViewController*)appDelegate.viewController;
-	[(ContentPlayerViewController*)vc hideThumbnailScrollView];
+	[appDelegate hideThumbnailScrollView];
 	//[self.view removeFromSuperview];
 }
 

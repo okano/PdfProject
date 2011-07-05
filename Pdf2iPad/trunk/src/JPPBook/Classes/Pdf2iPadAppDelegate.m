@@ -7,7 +7,8 @@
 //
 
 #import "Pdf2iPadAppDelegate.h"
-#import "ContentPlayerViewController.h"
+#import "Pdf2iPadViewController.h"
+#import "InAppPurchaseDefine.h"
 
 @implementation Pdf2iPadAppDelegate
 
@@ -15,15 +16,31 @@
 @synthesize viewController;
 @synthesize tocDefine;
 @synthesize bookmarkDefine;
+//InAppPurchase
+@synthesize paymentConductor;
+@synthesize contentListDS;
+@synthesize paymentHistoryDS;
 
 #pragma mark -
 #pragma mark Application lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
-    // Override point for customization after app launch. 
+    //Hides status bar.
 	[[UIApplication sharedApplication] setStatusBarHidden:YES];
 	
+	//Setup Content List.
+	contentListDS = [[ContentListDS alloc] init];
+	
+	//Setup for InAppPurchase.
+	paymentConductor = [[PaymentConductor alloc] init];
+	
+	//Setup for InAppPurchase.
+	paymentHistoryDS = [[PaymentHistoryDS alloc] init];
+	[[SKPaymentQueue defaultQueue] addTransactionObserver:paymentConductor];
+	paymentConductor.paymentHistoryDS = paymentHistoryDS;
+	
+    // Add the view controller's view to the window and display.
     [self.window addSubview:viewController.view];
     [self.window makeKeyAndVisible];
 
@@ -55,21 +72,21 @@
 
 #pragma mark -
 - (void)switchToPage:(int)newPageNum {
-	[viewController switchToPage:newPageNum];
+	[viewController.contentPlayerViewController switchToPage:newPageNum];
 }
 #pragma mark -
 #pragma mark Utility Method.
 - (NSString*)getThumbnailFilenameFull:(int)pageNum {
-	return [viewController getThumbnailFilenameFull:pageNum];
+	return [viewController.contentPlayerViewController getThumbnailFilenameFull:pageNum];
 }
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum {
-	return [viewController getPdfPageImageWithPageNum:pageNum];
+	return [viewController.contentPlayerViewController getPdfPageImageWithPageNum:pageNum];
 }
 - (void)showMenuBar {
-	[viewController showMenuBar];
+	[viewController.contentPlayerViewController showMenuBar];
 }
 - (void)hideMenuBar {
-	[viewController hideMenuBar];
+	[viewController.contentPlayerViewController hideMenuBar];
 }
 /*
 - (void)showTocView {
@@ -77,52 +94,52 @@
 }
 */
 - (void)hideTocView {
-	[viewController hideTocView];
+	[viewController.contentPlayerViewController hideTocView];
 }
 - (bool)isShownTocView {
-	return viewController.isShownTocView;
+	return viewController.contentPlayerViewController.isShownTocView;
 }
 - (void)setIsShownTocView:(bool)status {
-	viewController.isShownTocView = status;
+	viewController.contentPlayerViewController.isShownTocView = status;
 }
 - (void)showBookmarkView {
-	[viewController showBookmarkView];
+	[viewController.contentPlayerViewController showBookmarkView];
 }
 - (void)hideBookmarkView {
-	[viewController hideBookmarkView];
+	[viewController.contentPlayerViewController hideBookmarkView];
 }
 - (void)showBookmarkModifyView {
-	[viewController showBookmarkModifyView];
+	[viewController.contentPlayerViewController showBookmarkModifyView];
 }
 - (void)addBookmarkWithCurrentPageWithName:(NSString*)bookmarkName {
-	[viewController addBookmarkWithCurrentPageWithName:bookmarkName];
+	[viewController.contentPlayerViewController addBookmarkWithCurrentPageWithName:bookmarkName];
 }
 - (void)showThumbnailScrollView {
-	[viewController showThumbnailScrollView];
+	[viewController.contentPlayerViewController showThumbnailScrollView];
 }
 - (void)hideThumbnailScrollView {
-	[viewController hideThumbnailScrollView];
+	[viewController.contentPlayerViewController hideThumbnailScrollView];
 }
 - (bool)iShownImageTocView {
-	return viewController.isShownTocView;
+	return viewController.contentPlayerViewController.isShownTocView;
 }
 - (NSMutableArray*)getTocDefine {
 	return tocDefine;
 }
 - (void)showInfoView {
-	[viewController showInfoView];
+	[viewController.contentPlayerViewController showInfoView];
 }
 - (void)gotoTopPage {
-	[viewController gotoTopPage];
+	[viewController.contentPlayerViewController gotoTopPage];
 }
 - (void)gotoCoverPage {
-	[viewController gotoCoverPage];
+	[viewController.contentPlayerViewController gotoCoverPage];
 }
 - (void)showHelpView {
-	[viewController showHelpView];
+	[viewController.contentPlayerViewController showHelpView];
 }
 - (void)enterMarkerMode {
-	[viewController enterMarkerMode];
+	[viewController.contentPlayerViewController enterMarkerMode];
 }
 
 
@@ -143,4 +160,28 @@
 }
 
 
+@end
+
+
+#pragma mark - InAppPurchase
+@implementation Pdf2iPadAppDelegate (InAppPurchase)
+#pragma mark -
+- (void)showContentListView {
+	[self.viewController showContentListView];
+}
+- (void)hideContentListView {
+	[self.viewController hideContentListView];
+}
+- (void)showContentPlayerView:(ContentId)cid {
+	[self.viewController showContentPlayerView:cid];
+}
+- (void)hideContentPlayerView {
+	[self.viewController hideContentPlayerView];
+}
+- (void)showContentDetailView:(ContentId)cid {
+	[self.viewController showContentDetailView:cid];
+}
+- (void)hideContentDetailView {
+	[self.viewController hideContentDetailView];
+}
 @end

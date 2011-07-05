@@ -22,16 +22,12 @@
 	[myTableView reloadData];
 }
 
-- (void)setupViewFrame
+- (void)setupViewFrame:(CGRect)frame
 {
 	//Setup View Size & Position.
 	CGRect tmpRect;
 	tmpRect = self.view.frame;
 	
-	
-	Pdf2iPadAppDelegate* appDelegate = (Pdf2iPadAppDelegate*)[[UIApplication sharedApplication] delegate];
-	ContentPlayerViewController* vc = (ContentPlayerViewController*)appDelegate.viewController;
-	UIView* v = [vc view];
 	//CGFloat toolBarHeight = 40.0f;
 
 	UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
@@ -39,19 +35,19 @@
 		case UIInterfaceOrientationPortrait:
 		case UIInterfaceOrientationPortraitUpsideDown:
 			tmpRect.origin.y = 0;//v.frame.size.height - tmpRect.size.height - toolBarHeight;
-			tmpRect.size.width = v.frame.size.width;
-			tmpRect.size.height = v.frame.size.height;// - toolBarHeight;
+			tmpRect.size.width = frame.size.width;
+			tmpRect.size.height = frame.size.height;// - toolBarHeight;
 			break;
 		case UIInterfaceOrientationLandscapeLeft:
 		case UIInterfaceOrientationLandscapeRight:
 			tmpRect.origin.y = 0;//v.frame.size.width - tmpRect.size.height - toolBarHeight;
-			tmpRect.size.width = v.frame.size.height;
-			tmpRect.size.height = v.frame.size.width;// - toolBarHeight;
+			tmpRect.size.width = frame.size.height;
+			tmpRect.size.height = frame.size.width;// - toolBarHeight;
 			break;
 		default://Unknown
-			tmpRect.origin.y = v.frame.size.height;// - tmpRect.size.height - toolBarHeight;
-			tmpRect.size.width = v.frame.size.width;
-			tmpRect.size.height = v.frame.size.width;// - toolBarHeight;
+			tmpRect.origin.y = frame.size.height;// - tmpRect.size.height - toolBarHeight;
+			tmpRect.size.width = frame.size.width;
+			tmpRect.size.height = frame.size.width;// - toolBarHeight;
 			break;
 	}
 	

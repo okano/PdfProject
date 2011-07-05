@@ -19,7 +19,7 @@
 @property (nonatomic, retain) UIToolbar* topToolBar;
 - (IBAction)closeThisView:(id)sender;
 - (void)reloadDataForce;
-- (void)setupViewFrame;
+- (void)setupViewFrame:(CGRect)frame;
 //
 - (void)setToolbarForBookmark;
 - (void)setToolbarForBookmarkWithEditMode;

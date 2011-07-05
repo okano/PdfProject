@@ -7,25 +7,41 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "InAppPurchaseDefine.h"
+#import "PaymentConductor.h"
+#import "ContentListDS.h"
+#import "PaymentHistoryDS.h"
 
+@class Pdf2iPadViewController;
 @class ContentPlayerViewController;
 
 @interface Pdf2iPadAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
-    ContentPlayerViewController *viewController;
+    Pdf2iPadViewController *viewController;
 	
 	// TOC infomation.
 	NSMutableArray* tocDefine;
 	// Bookmark infomation.
 	NSMutableArray* bookmarkDefine;
+	
+	// InAppPurchase Payment Conductor.
+	PaymentConductor* paymentConductor;
+	// InAppPurchase data.
+	ContentListDS* contentListDS;
+	PaymentHistoryDS* paymentHistoryDS;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet ContentPlayerViewController *viewController;
+@property (nonatomic, retain) IBOutlet Pdf2iPadViewController *viewController;
 //for get value in TocViewController.
 @property (nonatomic, retain) NSMutableArray* tocDefine;
 //
 @property (nonatomic, retain) NSMutableArray* bookmarkDefine;
+// InAppPurchase Payment Conductor.
+@property (nonatomic, retain) PaymentConductor* paymentConductor;
+// InAppPurchase data.
+@property (nonatomic, retain) ContentListDS* contentListDS;
+@property (nonatomic, retain) PaymentHistoryDS* paymentHistoryDS;
 
 //
 - (NSString*)getThumbnailFilenameFull:(int)pageNum;
@@ -56,3 +72,11 @@
 
 @end
 
+@interface Pdf2iPadAppDelegate (InAppPurchase)
+- (void)showContentListView;
+- (void)hideContentListView;
+- (void)showContentPlayerView:(ContentId)cid;
+- (void)hideContentPlayerView;
+- (void)showContentDetailView:(ContentId)cid;
+- (void)hideContentDetailView;
+@end

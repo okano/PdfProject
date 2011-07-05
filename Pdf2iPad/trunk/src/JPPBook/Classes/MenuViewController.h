@@ -9,10 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Utility.h"
 #import "Pdf2iPadAppDelegate.h"
-@class PdfPubViewController;
-//@class TocViewController;
-//#import "PdfPubViewController.h"
-//#import "TocViewController.h"
+@class ContentPlayerViewController;
 #import "TocTableViewController.h"
 
 @interface MenuViewController : UIViewController <UIPopoverControllerDelegate> {
