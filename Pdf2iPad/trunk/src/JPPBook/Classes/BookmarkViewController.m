@@ -30,7 +30,7 @@
 	
 	
 	Pdf2iPadAppDelegate* appDelegate = (Pdf2iPadAppDelegate*)[[UIApplication sharedApplication] delegate];
-	Pdf2iPadViewController* vc = (Pdf2iPadViewController*)appDelegate.viewController;
+	ContentPlayerViewController* vc = (ContentPlayerViewController*)appDelegate.viewController;
 	UIView* v = [vc view];
 	//CGFloat toolBarHeight = 40.0f;
 

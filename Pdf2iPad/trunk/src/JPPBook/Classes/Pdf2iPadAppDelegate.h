@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class Pdf2iPadViewController;
+@class ContentPlayerViewController;
 
 @interface Pdf2iPadAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
-    Pdf2iPadViewController *viewController;
+    ContentPlayerViewController *viewController;
 	
 	// TOC infomation.
 	NSMutableArray* tocDefine;
@@ -21,7 +21,7 @@
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet Pdf2iPadViewController *viewController;
+@property (nonatomic, retain) IBOutlet ContentPlayerViewController *viewController;
 //for get value in TocViewController.
 @property (nonatomic, retain) NSMutableArray* tocDefine;
 //

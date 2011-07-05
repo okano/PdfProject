@@ -7,7 +7,7 @@
 //
 
 #import "Pdf2iPadAppDelegate.h"
-#import "Pdf2iPadViewController.h"
+#import "ContentPlayerViewController.h"
 
 @implementation Pdf2iPadAppDelegate
 

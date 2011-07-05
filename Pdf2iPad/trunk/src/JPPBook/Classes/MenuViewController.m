@@ -85,7 +85,7 @@
 	[self closeThisView:nil];
 	
 	Pdf2iPadAppDelegate* appDelegate = (Pdf2iPadAppDelegate*)[[UIApplication sharedApplication] delegate];
-	Pdf2iPadViewController* vc = (Pdf2iPadViewController*)appDelegate.viewController;
+	ContentPlayerViewController* vc = (ContentPlayerViewController*)appDelegate.viewController;
 	[vc showBookmarkView];	
 }
 - (void)hideBookmarkView {

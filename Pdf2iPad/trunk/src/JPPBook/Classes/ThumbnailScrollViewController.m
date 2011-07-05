@@ -61,7 +61,7 @@
 {
 	//Setup View Size & Position.
 	Pdf2iPadAppDelegate* appDelegate = (Pdf2iPadAppDelegate*)[[UIApplication sharedApplication] delegate];
-	Pdf2iPadViewController* vc = (Pdf2iPadViewController*)appDelegate.viewController;
+	ContentPlayerViewController* vc = (ContentPlayerViewController*)appDelegate.viewController;
 	CGRect tmpRect;
 	tmpRect = self.view.frame;
 	tmpRect.size.height = 160.0f;
@@ -117,8 +117,8 @@
 - (IBAction)closeThisView:(id)sender
 {
 	Pdf2iPadAppDelegate* appDelegate = (Pdf2iPadAppDelegate*)[[UIApplication sharedApplication] delegate];
-	Pdf2iPadViewController* vc = (Pdf2iPadViewController*)appDelegate.viewController;
-	[(Pdf2iPadViewController*)vc hideThumbnailScrollView];
+	ContentPlayerViewController* vc = (ContentPlayerViewController*)appDelegate.viewController;
+	[(ContentPlayerViewController*)vc hideThumbnailScrollView];
 	//[self.view removeFromSuperview];
 }
 
@@ -211,7 +211,7 @@
 	
 	//Check contentSize and frame.width.
 	int frameWidth;
-	Pdf2iPadViewController* vc = (Pdf2iPadViewController*)appDelegate.viewController;
+	ContentPlayerViewController* vc = (ContentPlayerViewController*)appDelegate.viewController;
 	UIView* v = [vc view];
 
 	UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
