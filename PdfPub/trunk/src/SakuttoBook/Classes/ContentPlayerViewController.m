@@ -421,7 +421,7 @@
 #if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
 		ig.currentContentId	= currentContentId;
 #endif
-		[ig generateImageWithPageNum:pageNum fromUrl:pdfURL minWidth:CACHE_IMAGE_WIDTH_MIN];
+		[ig generateImageWithPageNum:pageNum fromUrl:pdfURL minWidth:CACHE_IMAGE_WIDTH_MIN maxWidth:CACHE_IMAGE_WIDTH_MAX];
 		[ig release];
 		
 		UIImage* pdfImage = [[UIImage alloc] initWithContentsOfFile:targetFilenameFull];

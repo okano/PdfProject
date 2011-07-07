@@ -43,8 +43,9 @@
 #define TAP_AREA_BOTTOM_HEIGHT	0.00f
 
 // for cache image.
-#define CACHE_IMAGE_WIDTH_MIN		320.0f
-#define THUMBNAIL_WIDTH				100.0f
+#define CACHE_IMAGE_WIDTH_MIN		 320.0f
+#define CACHE_IMAGE_WIDTH_MAX		1536.0f
+#define THUMBNAIL_WIDTH				 100.0f
 
 // for Page Animation.
 #define MY_ANIMATION_KIND					@"MyAnimationKind"
