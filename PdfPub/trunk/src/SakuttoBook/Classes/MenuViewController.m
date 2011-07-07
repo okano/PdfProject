@@ -10,6 +10,15 @@
 
 
 @implementation MenuViewController
+@synthesize infoButton;
+
+#if defined(HIDE_INFOMATION_BUTTON) && HIDE_INFOMATION_BUTTON != 0
+- (void)viewDidLoad
+{
+	[super viewDidLoad];
+	infoButton.hidden = YES;
+}
+#endif
 
 - (IBAction)showTocView:(id)sender
 {

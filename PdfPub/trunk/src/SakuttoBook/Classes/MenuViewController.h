@@ -15,8 +15,10 @@
 //#import "TocViewController.h"
 
 @interface MenuViewController : UIViewController {
-
+	IBOutlet UIButton* infoButton;
 }
+@property (nonatomic, retain) UIButton* infoButton;
+
 - (IBAction)showTocView:(id)sender;
 - (void)hideTocView;
 - (IBAction)showBookmarkView:(id)sender;
