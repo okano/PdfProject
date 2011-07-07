@@ -315,6 +315,15 @@
 	return NO;
 }
 
+- (BOOL)isTransitionWithCurl
+{
+#if defined(IS_TRANSITION_CURL) && IS_TRANSITION_CURL != 0
+	return YES;	//Curl
+#else
+	return NO;	//Slide
+#endif
+}
+
 - (NSString*)getPageFilenameFull:(int)pageNum {
 	NSString* filename = [NSString stringWithFormat:@"%@%d", PAGE_FILE_PREFIX, pageNum];
 	NSString* targetFilenameFull = [[[NSHomeDirectory() stringByAppendingPathComponent:@"tmp"]
@@ -808,41 +817,57 @@
 	//Reset zoomScale
 	[currentPdfScrollView resetScrollView];
 	
-	// Set animation
-	CATransition* animation1 = [CATransition animation];
-	[animation1 setDelegate:self];
-	[animation1 setDuration:PAGE_ANIMATION_DURATION_NEXT];
-	[animation1 setTimingFunction:UIViewAnimationCurveEaseInOut];
-	[animation1 setType:kCATransitionPush];
-	UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
-	//UIDeviceOrientation interfaceOrientation = [[UIDevice currentDevice] orientation];
-	switch (interfaceOrientation) {
-		case UIInterfaceOrientationPortrait:
-			[animation1 setSubtype:kCATransitionFromRight];
-			//NSLog(@"kCATransitionFromRight");
-			break;
-		case UIInterfaceOrientationPortraitUpsideDown:
-			[animation1 setSubtype:kCATransitionFromLeft];
-			//NSLog(@"kCATransitionFromLeft");
-			break;
-		case UIInterfaceOrientationLandscapeLeft:
-			[animation1 setSubtype:kCATransitionFromBottom];
-			//NSLog(@"kCATransitionFromBottom(LandscapeLeft)");
-			break;
-		case UIInterfaceOrientationLandscapeRight:
-			[animation1 setSubtype:kCATransitionFromTop];
-			//NSLog(@"kCATransitionFromTop");
-			break;
-		default://Unknown
-			[animation1 setSubtype:kCATransitionFromRight];
-			break;
+	if ([self isTransitionWithCurl]) {	//transition with CurlUp,CurlDown.
+		//change view order with animatin CurlUp
+		[UIView beginAnimations:@"anim1" context:nil];
+		[UIView setAnimationDelegate:self];
+		[UIView setAnimationDuration:1.0];
+		//[UIView setAnimationDidStopSelector:@selector(bringNextViewToFront)];
+		//[viewSecond setAlpha:0.0];
+		//[viewFirst setAlpha:1.0];
+		[UIView setAnimationTransition:UIViewAnimationTransitionCurlUp
+							   forView:self.view
+								 cache:YES];
+		[self.view bringSubviewToFront:nextPdfScrollView];
+		[UIView commitAnimations];
+	} else {
+		// Set animation
+		CATransition* animation1 = [CATransition animation];
+		[animation1 setDelegate:self];
+		[animation1 setDuration:PAGE_ANIMATION_DURATION_NEXT];
+		[animation1 setTimingFunction:UIViewAnimationCurveEaseInOut];
+		[animation1 setType:kCATransitionPush];
+		UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
+		//UIDeviceOrientation interfaceOrientation = [[UIDevice currentDevice] orientation];
+		switch (interfaceOrientation) {
+			case UIInterfaceOrientationPortrait:
+				[animation1 setSubtype:kCATransitionFromRight];
+				//NSLog(@"kCATransitionFromRight");
+				break;
+			case UIInterfaceOrientationPortraitUpsideDown:
+				[animation1 setSubtype:kCATransitionFromLeft];
+				//NSLog(@"kCATransitionFromLeft");
+				break;
+			case UIInterfaceOrientationLandscapeLeft:
+				[animation1 setSubtype:kCATransitionFromBottom];
+				//NSLog(@"kCATransitionFromBottom(LandscapeLeft)");
+				break;
+			case UIInterfaceOrientationLandscapeRight:
+				[animation1 setSubtype:kCATransitionFromTop];
+				//NSLog(@"kCATransitionFromTop");
+				break;
+			default://Unknown
+				[animation1 setSubtype:kCATransitionFromRight];
+				break;
+		}
+		[animation1 setValue:MY_ANIMATION_KIND_PAGE_FROM_RIGHT forKey:MY_ANIMATION_KIND];
+		[[self.view layer] addAnimation:animation1 forKey:@"animation_to_NextPage"];
+		
+		
+		// Move NextImageView to Front.
+		[self.view bringSubviewToFront:nextPdfScrollView];
 	}
-	[animation1 setValue:MY_ANIMATION_KIND_PAGE_FROM_RIGHT forKey:MY_ANIMATION_KIND];
-	[[self.view layer] addAnimation:animation1 forKey:@"animation_to_NextPage"];
 	
-	
-	// Move NextImageView to Front.
-	[self.view bringSubviewToFront:nextPdfScrollView];
 	[nextPdfScrollView scrollViewDidEndZooming:nextPdfScrollView withView:nil atScale:0.0f];
 	[nextPdfScrollView setNeedsLayout];
 	[nextPdfScrollView setNeedsDisplay];
@@ -907,41 +932,55 @@
 		return;
 	}
 	
-	// Set animation
-	CATransition* animation1 = [CATransition animation];
-	[animation1 setDelegate:self];
-	[animation1 setDuration:PAGE_ANIMATION_DURATION_PREV];
-	[animation1 setTimingFunction:UIViewAnimationCurveEaseInOut];
-	[animation1 setType:kCATransitionPush];
-	UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
-	//UIDeviceOrientation interfaceOrientation = [[UIDevice currentDevice] orientation];
-	switch (interfaceOrientation) {
-		case UIInterfaceOrientationPortrait:
-			[animation1 setSubtype:kCATransitionFromLeft];
-			//NSLog(@"kCATransitionFromLeft");
-			break;
-		case UIInterfaceOrientationPortraitUpsideDown:
-			[animation1 setSubtype:kCATransitionFromRight];
-			//NSLog(@"kCATransitionFromRight");
-			break;
-		case UIInterfaceOrientationLandscapeLeft:
-			[animation1 setSubtype:kCATransitionFromTop];
-			//NSLog(@"kCATransitionFromTop(LandscapeLeft)");
-			break;
-		case UIInterfaceOrientationLandscapeRight:
-			[animation1 setSubtype:kCATransitionFromBottom];
-			//NSLog(@"kCATransitionFromBottom");
-			break;
-		default://Unknown
-			[animation1 setSubtype:kCATransitionFromLeft];
-			break;
+	if ([self isTransitionWithCurl]) {	//transition with CurlUp,CurlDown.
+		//change view order with animatin CurlUp
+		[UIView beginAnimations:nil context:nil];
+		[UIView setAnimationDelegate:self];
+		[UIView setAnimationDuration:1.0];
+		//[UIView setAnimationDidStopSelector:@selector(bringPrevViewToFront)];
+		[UIView setAnimationTransition:UIViewAnimationTransitionCurlDown
+							   forView:self.view cache:YES];
+		[self.view bringSubviewToFront:prevPdfScrollView];
+		[UIView commitAnimations];
+	} else {
+		// Set animation
+		CATransition* animation1 = [CATransition animation];
+		[animation1 setDelegate:self];
+		[animation1 setDuration:PAGE_ANIMATION_DURATION_PREV];
+		[animation1 setTimingFunction:UIViewAnimationCurveEaseInOut];
+		[animation1 setType:kCATransitionPush];
+		UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
+		//UIDeviceOrientation interfaceOrientation = [[UIDevice currentDevice] orientation];
+		switch (interfaceOrientation) {
+			case UIInterfaceOrientationPortrait:
+				[animation1 setSubtype:kCATransitionFromLeft];
+				//NSLog(@"kCATransitionFromLeft");
+				break;
+			case UIInterfaceOrientationPortraitUpsideDown:
+				[animation1 setSubtype:kCATransitionFromRight];
+				//NSLog(@"kCATransitionFromRight");
+				break;
+			case UIInterfaceOrientationLandscapeLeft:
+				[animation1 setSubtype:kCATransitionFromTop];
+				//NSLog(@"kCATransitionFromTop(LandscapeLeft)");
+				break;
+			case UIInterfaceOrientationLandscapeRight:
+				[animation1 setSubtype:kCATransitionFromBottom];
+				//NSLog(@"kCATransitionFromBottom");
+				break;
+			default://Unknown
+				[animation1 setSubtype:kCATransitionFromLeft];
+				break;
+		}
+		[animation1 setValue:MY_ANIMATION_KIND_PAGE_FROM_LEFT forKey:MY_ANIMATION_KIND];
+		[[self.view layer] addAnimation:animation1 forKey:@"animation_to_PrevPage"];
+		
+		
+		// Move PrevImageView to Front.
+		[self.view bringSubviewToFront:prevPdfScrollView];
 	}
-	[animation1 setValue:MY_ANIMATION_KIND_PAGE_FROM_LEFT forKey:MY_ANIMATION_KIND];
-	[[self.view layer] addAnimation:animation1 forKey:@"animation_to_PrevPage"];
 	
 	
-	// Move PrevImageView to Front.
-	[self.view bringSubviewToFront:prevPdfScrollView];
 	[prevPdfScrollView scrollViewDidEndZooming:prevPdfScrollView withView:nil atScale:0.0f];
 	[prevPdfScrollView setNeedsLayout];
 	[prevPdfScrollView setNeedsDisplay];

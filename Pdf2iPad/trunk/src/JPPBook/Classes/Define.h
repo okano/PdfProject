@@ -13,6 +13,8 @@
 #define MENU_INFO_URL			@"http://www.google.co.jp/"
 #define MENU_HELP_URL			@"http://www.yahoo.co.jp/"
 /**********************************************************************/
+//Page Transition with Slide/Curl.
+#define IS_TRANSITION_CURL 0	/* 0:Slide, 1:Curl*/
 
 /**
  *

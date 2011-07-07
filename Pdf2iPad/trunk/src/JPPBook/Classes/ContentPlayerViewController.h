@@ -139,6 +139,9 @@
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle contentId:(ContentId)cid;
 // Treat PDF.
 - (BOOL)setupPdfBasicInfo;
+// Handle PDF infomation.
+- (BOOL)isTransitionWithCurl;
+
 // Draw PDF.
 - (NSString*)getPageFilenameFull:(int)pageNum;
 - (NSString*)getPageFilenameFull:(int)pageNum;
