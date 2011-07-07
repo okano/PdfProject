@@ -61,7 +61,7 @@
 	//LOG_CURRENT_METHOD;
 	//NSLog(@"newPageNum=%d, contentId=%d", newPageNum, cid);
 	pdfImageTmp = [appDelegate getPdfPageImageWithPageNum:newPageNum WithContentId:cid];
-#elif 
+#else
 	pdfImageTmp = [appDelegate getPdfPageImageWithPageNum:newPageNum];
 #endif
 	if (!pdfImageTmp) {
