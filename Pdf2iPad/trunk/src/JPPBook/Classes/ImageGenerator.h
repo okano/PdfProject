@@ -8,16 +8,20 @@
 
 #import <Foundation/Foundation.h>
 #import "Utility.h"
+#import "FileUtility.h"
 #import "Define.h"
+#import "InAppPurchaseDefine.h"
 
 @interface ImageGenerator : NSObject {
+	ContentId currentContentId;
 }
+@property (nonatomic) ContentId currentContentId;
 
 //
 - (NSString*)getPageFilenameFull:(int)pageNum;
 //- (NSString*)getThumbnailFilenameFull:(int)pageNum;
 //
-- (void)generateImageWithPageNum:(NSUInteger)pageNum fromUrl:(NSURL*)pdfURL pdfScale:(CGFloat)pdfScale viewFrame:(CGRect)viewFrame;
+- (void)generateImageWithPageNum:(NSUInteger)pageNum fromUrl:(NSURL*)pdfURL minWidth:(CGFloat)minWidth maxWidth:(CGFloat)maxWidth;
 
 
 

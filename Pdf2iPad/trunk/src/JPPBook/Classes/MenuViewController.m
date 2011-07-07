@@ -146,6 +146,18 @@
 	[appDelegate enterMarkerMode];
 }
 
+//MARK: -
+//MARK: Switch to ContentList.
+- (IBAction)switchToContentListView:(id)sender {
+	Pdf2iPadAppDelegate* appDelegate = (Pdf2iPadAppDelegate*)[[UIApplication sharedApplication] delegate];
+	[appDelegate hideContentPlayerView];
+	[appDelegate showContentListView];
+}
+- (IBAction)showContentListView
+{
+	LOG_CURRENT_METHOD;
+}
+
 
 #pragma mark -
 - (IBAction)closeThisView:(id)sender

@@ -82,6 +82,9 @@
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum {
 	return [viewController.contentPlayerViewController getPdfPageImageWithPageNum:pageNum];
 }
+- (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum WithContentId:(ContentId)cid {
+	return [viewController.contentPlayerViewController getPdfPageImageWithPageNum:pageNum WithContentId:cid];
+}
 - (void)showMenuBar {
 	[viewController.contentPlayerViewController showMenuBar];
 }

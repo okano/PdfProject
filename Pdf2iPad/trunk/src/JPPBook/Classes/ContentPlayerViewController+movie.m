@@ -13,20 +13,21 @@
 #pragma mark -
 #pragma mark Treat Movie.
 //Parse Movie Define.
-- (BOOL)parseMovieDefine
+- (void)parseMovieDefine
 {
 	movieDefine = [[NSMutableArray alloc] init];
 	
-	NSMutableDictionary* tmpDict;
-	
 	//parse csv file.
-	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:@"movieDefine" ofType:@"csv"];
-	NSError* error;
-	NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
-	NSString* text2 = [text stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];
+	NSString* targetFilename = @"movieDefine";
+	NSArray* lines;
+	if ([self isMultiContents] == TRUE) {
+		lines = [FileUtility parseDefineCsv:targetFilename contentId:currentContentId];
+	} else {
+		lines = [FileUtility parseDefineCsv:targetFilename];
+	}
 	
-	bool hasError = FALSE;
-	NSArray* lines = [text2 componentsSeparatedByString:@"\n"];
+	//parse each line.
+	NSMutableDictionary* tmpDict;
 	for (NSString* line in lines) {
 		if ([line length] <= 0) {
 			continue;	//Skip blank line.
@@ -61,9 +62,6 @@
 		
 		[movieDefine addObject:tmpDict];
 	}
-	//
-	
-	return ! hasError;
 }
 
 - (void) renderMovieLinkAtIndex:(NSUInteger)index

@@ -141,13 +141,15 @@
 - (BOOL)setupPdfBasicInfo;
 // Handle PDF infomation.
 - (BOOL)isTransitionWithCurl;
-
+- (BOOL)isMultiContents;
 // Draw PDF.
 - (NSString*)getPageFilenameFull:(int)pageNum;
 - (NSString*)getPageFilenameFull:(int)pageNum;
 - (NSString*)getThumbnailFilenameFull:(int)pageNum;
 //
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum;
+- (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum WithContentId:(ContentId)cid;
+- (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum WithTargetFilenameFull:(NSString*)filename;
 //
 - (void)generateThumbnailImage:(CGFloat)newWidth;
 - (void)generateThumbnailImageFromImage:(UIImage*)baseImage width:(CGFloat)newWidth pageNumForSave:(NSUInteger)pageNum;
@@ -194,23 +196,23 @@
 - (BOOL)parseAndRenderUrlLinkDefine:(NSUInteger)index;
 
 // Treat PageJumpLink.
-- (BOOL)parsePageJumpLinkDefine;	// Parse PageJumpLink define in CSV.
+- (void)parsePageJumpLinkDefine;	// Parse PageJumpLink define in CSV.
 - (void)renderPageJumpLinkAtIndex:(NSUInteger)index;
 // Treat InPage ScrollView.
-- (BOOL)parseInPageScrollViewDefine;	// Parse define in CSV.
+- (void)parseInPageScrollViewDefine;	// Parse define in CSV.
 - (void)renderInPageScrollViewAtIndex:(NSUInteger)index;
 // Treat InPage Pdf.
-- (BOOL)parseInPagePdfDefine;	// Parse define in CSV.
+- (void)parseInPagePdfDefine;	// Parse define in CSV.
 - (BOOL)renderInPagePdfAtIndex:(NSUInteger)index;
 // Treat InPage Png image.
-- (BOOL)parseInPagePngDefine;	// Parse define in CSV.
+- (void)parseInPagePngDefine;	// Parse define in CSV.
 - (BOOL)renderInPagePngAtIndex:(NSUInteger)index;
 // Treat PopoverImage.
-- (BOOL)parsePopoverImageDefine;	// Parse PopoverImage define in CSV.
+- (void)parsePopoverImageDefine;	// Parse PopoverImage define in CSV.
 - (void)renderPopoverImageLinkAtIndex:(NSUInteger)index;
 - (void)showPopoverImagePlayer:(NSString*)filename;
 // Treat TOC.
-- (BOOL)parseTocDefine;		// Parse Table Of Contents define in CSV.
+- (void)parseTocDefine;		// Parse Table Of Contents define in CSV.
 //- (void)showTocView;
 - (void)hideTocView;
 - (void)showThumbnailScrollView;
@@ -241,7 +243,7 @@
 
 // Treat Movie.
 @interface ContentPlayerViewController (movie)
-- (BOOL)parseMovieDefine;	// Parse Movie define in CSV.
+- (void)parseMovieDefine;	// Parse Movie define in CSV.
 - (void)renderMovieLinkAtIndex:(NSUInteger)index;
 - (void)showMoviePlayer:(NSString*)filename;
 - (void)showMoviePlayer:(NSString*)filename WithFrame:(CGRect)frame;

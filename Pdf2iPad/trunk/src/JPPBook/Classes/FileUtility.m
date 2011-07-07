@@ -77,6 +77,9 @@
 	
 	//Delete comment line.
 	NSMutableArray* lines = [[NSMutableArray alloc] initWithArray:[text3 componentsSeparatedByString:@"\n"]];
+	if ([lines count] <= 0) {
+		return lines;
+	}
 	//NSLog(@"lines(count=%d)=%@", [lines count], [lines description]);
 	for (NSString* line in [lines reverseObjectEnumerator]) {
 		//NSLog(@"line(length=%d)=%@", [line length], [line stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);

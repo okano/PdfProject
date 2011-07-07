@@ -29,6 +29,8 @@
 	//
 	CGRect pageRectOriginal, pageRectForDraw;
 	
+	//
+	ContentId currentContentId;
 }
 @property (nonatomic, retain) UIImageView* pageImageView;
 @property (nonatomic, retain) UIImage* pdfImageTmp;
@@ -40,7 +42,8 @@
 - (void)setupUiScrollView;
 - (void)setupCurrentPageWithSize:(CGSize)newSize;
 - (void)setupWithPageNum:(NSUInteger)newPageNum;
-- (UIImage*)getPdfImageWithRect:(CGRect)pageRect scale:(CGFloat)pdfScale;
+- (void)setupWithPageNum:(NSUInteger)newPageNum ContentId:(ContentId)cid;
+//- (UIImage*)getPdfImageWithRect:(CGRect)pageRect scale:(CGFloat)pdfScale;
 //
 - (void)cleanupSubviews;
 - (void)resetScrollView;

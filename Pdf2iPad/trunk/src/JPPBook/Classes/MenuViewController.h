@@ -29,6 +29,8 @@
 //
 - (IBAction)enterMarkerMode:(id)sender;
 //
+- (IBAction)switchToContentListView:(id)sender;
+//
 - (void)hideTocView;
 //
 - (IBAction)closeThisView:(id)sender;

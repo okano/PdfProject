@@ -45,6 +45,11 @@
 
 - (void)setupWithPageNum:(NSUInteger)newPageNum
 {
+	LOG_CURRENT_METHOD;
+	[self setupWithPageNum:newPageNum ContentId:currentContentId];
+}
+- (void)setupWithPageNum:(NSUInteger)newPageNum ContentId:(ContentId)cid
+{
 	//Release before use.
 	if (pdfImageTmp) {
 		[pdfImageTmp release];
@@ -53,7 +58,13 @@
 	
 	//Get Page.
 	Pdf2iPadAppDelegate* appDelegate = (Pdf2iPadAppDelegate*)[[UIApplication sharedApplication] delegate];
+#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"newPageNum=%d, contentId=%d", newPageNum, cid);
+	pdfImageTmp = [appDelegate getPdfPageImageWithPageNum:newPageNum WithContentId:cid];
+#else
 	pdfImageTmp = [appDelegate getPdfPageImageWithPageNum:newPageNum];
+#endif
 	if (!pdfImageTmp) {
 		LOG_CURRENT_METHOD;
 		LOG_CURRENT_LINE;

@@ -16,6 +16,9 @@
 //Page Transition with Slide/Curl.
 #define IS_TRANSITION_CURL 0	/* 0:Slide, 1:Curl*/
 
+//Use Multi contents.
+#define IS_MULTI_CONTENTS	1	/* 0:single content, 1:multi contents */
+
 /**
  *
  */
@@ -76,6 +79,10 @@
 #define MARKERPEN_LINE_COLOR_B		0.2f
 #define MARKERPEN_LINE_COLOR_A		0.85f
 #define MARKERPEN_LINE_WIDTH		2.0f
+
+// for cache image.
+#define CACHE_IMAGE_WIDTH_MIN		 320.0f
+#define CACHE_IMAGE_WIDTH_MAX		1536.0f
 
 // for Thumbnail Image.
 #define THUMBNAIL_WIDTH				100.0f
@@ -139,9 +146,11 @@
 //#define HELP_SCREEN_IMAGE	@"help.png"
 
 // for Bookmark.
+#define BOOKMARK_MULTI_CONTENT	@"Bookmark_MultiContent"
 #define BOOKMARK_ARRAY			@"Bookmark_Array"
 #define BOOKMARK_PAGE_NUMBER	@"Bookmark_PageNumber"
 #define BOOKMARK_PAGE_MEMO		@"Bookmark_PageMemo"
 
 // for latest read page.
+#define USERDEFAULT_LATEST_READ_PAGE_MULTICONTENT @"Latest_Read_Page_MultiContent"
 #define USERDEFAULT_LATEST_READ_PAGE @"Latest_Read_Page"
