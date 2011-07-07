@@ -42,6 +42,10 @@
 #define TAP_AREA_BOTTOM_WIDTH	0.00f
 #define TAP_AREA_BOTTOM_HEIGHT	0.00f
 
+// for cache image.
+#define CACHE_IMAGE_WIDTH_MIN		320.0f
+#define THUMBNAIL_WIDTH				100.0f
+
 // for Page Animation.
 #define MY_ANIMATION_KIND					@"MyAnimationKind"
 #define MY_ANIMATION_KIND_PAGE_FROM_LEFT	@"PushFromLeft"
@@ -56,10 +60,8 @@
 // for Page Image.
 #define PAGE_FILE_PREFIX			@"Page_p"
 #define PAGE_FILE_EXTENSION			@"png"
-#define CACHE_IMAGE_WIDTH_MIN		640.0f
 
 // for Thumbnail Image.
-#define THUMBNAIL_WIDTH				100.0f
 #define THUMBNAIL_FILE_PREFIX		@"Thumbnail_p"
 #define THUMBNAIL_FILE_EXTENSION	@"png"
 
