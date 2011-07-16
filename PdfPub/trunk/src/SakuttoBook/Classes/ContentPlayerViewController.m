@@ -128,8 +128,15 @@
 	 [pdfScrolView3 addGestureRecognizer:panRecognizer3];
 	 */
 	
-	//
+	//Set current content id.
 	//currentContentId = [self getCurrentContentIdFromUserDefault];
+	if ([self isMultiContents] == TRUE) {
+		//Mulit Contents.
+		//Do-nothing.
+	} else {
+		//Single Content.
+		currentContentId = 1;
+	}
 	
 	//Setup maxPageNum.
 	if ([self setupPdfBasicInfo:currentContentId] == FALSE) {
@@ -254,10 +261,16 @@
 		NSLog(@"no PDF file specified.");
 		pdfFilename = [NSString stringWithFormat:@"document.pdf"];
 	} else {
-		if (cid <= [lines count]) {
-			pdfFilename = [lines objectAtIndex:(cid - 1)];
+		if ([self isMultiContents] == TRUE) {
+			//Multi Contents
+			if (cid <= [lines count]) {
+				pdfFilename = [lines objectAtIndex:(cid - 1)];
+			} else {
+				NSLog(@"illigal ContentId. maxnumber=%d, passedContentId=%d. open pdf at index 0.", [lines count], cid);
+				pdfFilename = [lines objectAtIndex:0];
+			}
 		} else {
-			NSLog(@"illigal ContentId. maxnumber=%d, passedContentId=%d. open pdf at index 0.", [lines count], cid);
+			//Single Content.
 			pdfFilename = [lines objectAtIndex:0];
 		}
 	}
@@ -1929,6 +1942,7 @@
 		
 		//Check page range.
 		if (maxPageNum < [[tmpDict objectForKey:TOC_PAGE] intValue]) {
+			NSLog(@"toc specify out of page range. maxPageNum=%d, page in toc=%d", maxPageNum, [[tmpDict objectForKey:TOC_PAGE] intValue]);
 			continue;	//skip to next object. not add to define.
 		}
 		

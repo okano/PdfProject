@@ -10,15 +10,33 @@
 
 
 @implementation MenuViewController
-@synthesize infoButton;
+@synthesize toolbar, contentListButton, infoButton;
 
-#if defined(HIDE_INFOMATION_BUTTON) && HIDE_INFOMATION_BUTTON != 0
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
-	infoButton.hidden = YES;
-}
+	
+	//Hide ContentList Button.
+#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+	//Mulit Contents. (Do-nothing.)
+#else
+	//Single Content(hide contentListButton on toolbar.)
+	NSMutableArray* itemArray = [[NSMutableArray alloc] initWithArray:toolbar.items];
+	for (id obj in [itemArray reverseObjectEnumerator]) {
+		if (obj == contentListButton) {
+			[itemArray removeObject:obj];
+		};
+	}
+	[toolbar setItems:itemArray];
 #endif
+	
+	//Hide Info Button.
+#if defined(HIDE_INFOMATION_BUTTON) && HIDE_INFOMATION_BUTTON != 0
+	infoButton.hidden = YES;
+#endif
+	
+}
+
 
 - (IBAction)showTocView:(id)sender
 {

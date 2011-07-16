@@ -31,7 +31,13 @@
 
 - (void)viewDidLoad
 {
+#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+	//Mulit Contents.
 	[self showContentListView];
+#else
+	//Single Content.
+	[self showContentPlayerView];
+#endif
 }
 
 - (void)showContentPlayerView

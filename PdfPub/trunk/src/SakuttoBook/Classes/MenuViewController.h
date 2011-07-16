@@ -15,8 +15,12 @@
 //#import "TocViewController.h"
 
 @interface MenuViewController : UIViewController {
+	IBOutlet UIToolbar* toolbar;
+	IBOutlet UIBarButtonItem* contentListButton;
 	IBOutlet UIButton* infoButton;
 }
+@property (nonatomic, retain) UIToolbar* toolbar;
+@property (nonatomic, retain) UIBarButtonItem* contentListButton;
 @property (nonatomic, retain) UIButton* infoButton;
 
 - (IBAction)showTocView:(id)sender;
