@@ -1135,12 +1135,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ePubs.jp Publishing";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SakuttoBook_Prefix.pch;
 				INFOPLIST_FILE = "SakuttoBook-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				PRODUCT_NAME = SakuttoBook;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B7EE5A11-45C8-4652-B81E-69B00C6E83E8";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
