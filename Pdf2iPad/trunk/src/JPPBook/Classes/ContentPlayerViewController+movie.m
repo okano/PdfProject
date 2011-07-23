@@ -79,7 +79,7 @@
 			
 			CGRect touchableArea;
 			//if (self.view.frame.size.width < originalPageRect.size.width) {
-			if (self.view.frame.size.width < currentPdfScrollView.originalPageWidth) {
+			if (self.view.frame.size.width < currentPdfScrollView.originalPageSize.width) {
 				touchableArea = CGRectMake(rect.origin.x / pdfScale,
 										   rect.origin.y / pdfScale,
 										   rect.size.width / pdfScale,

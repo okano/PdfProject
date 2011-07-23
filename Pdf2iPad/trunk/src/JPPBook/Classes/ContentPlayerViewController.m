@@ -233,7 +233,7 @@
 		NSLog(@"cannot get PDF page.");
 		return FALSE;
 	}
-	CGRect originalPageRect = CGPDFPageGetBoxRect(page1, kCGPDFMediaBox);
+	originalPageRect = CGPDFPageGetBoxRect(page1, kCGPDFMediaBox);
 	pdfScale = self.view.frame.size.width / originalPageRect.size.width;
 	//NSLog(@"self.view.frame=%@", NSStringFromCGRect(self.view.frame));
 	//NSLog(@"page rect from page1=%@", NSStringFromCGRect(originalPageRect));
@@ -709,16 +709,16 @@
 		//Generate frame for draw on pdf-image.
 		CGRect linkRect;
 		//if (self.view.frame.size.width < originalPageRect.size.width) {
-		if (self.view.frame.size.width < currentPdfScrollView.originalPageWidth) {
+		if (self.view.frame.size.width < currentPdfScrollView.originalPageSize.width) {
 			linkRect = CGRectMake(x1 / pdfScale,
-								  (currentPdfScrollView.originalPageHeight - y2) / pdfScale,	//does not "y1".
+								  (currentPdfScrollView.originalPageSize.height - y2) / pdfScale,	//does not "y1".
 								  fabsf(x2 - x1) / pdfScale,
 								  fabsf(y2 - y1) / pdfScale);
 			
 		} else {
 			//Arrange frame if PDF.Width < Screen.Width
 			linkRect = CGRectMake(x1 * pdfScale,
-								  (currentPdfScrollView.originalPageHeight - (y2 * pdfScale)),
+								  (currentPdfScrollView.originalPageSize.height - (y2 * pdfScale)),
 								  fabsf(x2 - x1) * pdfScale,
 								  fabsf(y2 - y1) * pdfScale);
 		}
@@ -1990,7 +1990,7 @@
 			
 			CGRect touchableArea;
 			//if (self.view.frame.size.width < originalPageRect.size.width) {
-			if (self.view.frame.size.width < currentPdfScrollView.originalPageWidth) {
+			if (self.view.frame.size.width < currentPdfScrollView.originalPageSize.width) {
 				touchableArea = CGRectMake(rect.origin.x / pdfScale,
 										   rect.origin.y / pdfScale,
 										   rect.size.width / pdfScale,
@@ -2103,7 +2103,7 @@
 			
 			CGRect touchableArea;
 			//if (self.view.frame.size.width < originalPageRect.size.width) {
-			if (self.view.frame.size.width < currentPdfScrollView.originalPageWidth) {
+			if (self.view.frame.size.width < currentPdfScrollView.originalPageSize.width) {
 				touchableArea = CGRectMake(rect.origin.x / pdfScale,
 										   rect.origin.y / pdfScale,
 										   rect.size.width / pdfScale,
@@ -2558,7 +2558,7 @@
 			
 			CGRect touchableArea;
 			//if (self.view.frame.size.width < originalPageRect.size.width) {
-			if (self.view.frame.size.width < currentPdfScrollView.originalPageWidth) {
+			if (self.view.frame.size.width < currentPdfScrollView.originalPageSize.width) {
 				touchableArea = CGRectMake(rect.origin.x / pdfScale,
 										   rect.origin.y / pdfScale,
 										   rect.size.width / pdfScale,

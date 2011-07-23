@@ -81,6 +81,7 @@
 	//CGPDFPageRef page;
 	//CGRect pageRect;
 	CGFloat pdfScale;
+	CGRect originalPageRect;	//Store original page width, height.(cache image doesnot hold original size!)
 	
 	//for pdf handle.
 	NSURL* pdfURL;

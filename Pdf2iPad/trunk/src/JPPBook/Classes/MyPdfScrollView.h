@@ -19,15 +19,13 @@
 	
 	//Size.
 	CGSize originalPageSize;
-	CGFloat originalPageWidth;
-	CGFloat originalPageHeight;
 	//Aspect.
 	CGFloat scaleWithAspectFitWidth;
 	CGFloat scaleWithAspectFitHeight;
 	CGFloat scaleForDraw;
 
 	//
-	CGRect pageRectOriginal, pageRectForDraw;
+	CGRect pageRectForDraw;
 	
 	//
 	ContentId currentContentId;
@@ -36,8 +34,6 @@
 @property (nonatomic, retain) UIImage* pdfImageTmp;
 @property (nonatomic) CGFloat scaleForDraw;
 @property (nonatomic) CGSize originalPageSize;
-@property (nonatomic) CGFloat originalPageWidth;
-@property (nonatomic) CGFloat originalPageHeight;
 
 - (void)setupUiScrollView;
 - (void)setupCurrentPageWithSize:(CGSize)newSize;

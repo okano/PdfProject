@@ -13,7 +13,7 @@
 @synthesize pageImageView;
 @synthesize pdfImageTmp;
 @synthesize scaleForDraw;
-@synthesize originalPageSize, originalPageWidth, originalPageHeight;
+@synthesize originalPageSize;
 
 /*
 - (id)initWithFrame:(CGRect)frame {
@@ -85,11 +85,10 @@
 	//NSLog(@"original size=%@", NSStringFromCGSize(pdfImageTmp.size));
 	
 	//Get size for touch.
-	//pageRectOriginal = CGPDFPageGetBoxRect(page, kCGPDFMediaBox);
-	originalPageWidth  = pdfImageTmp.size.width;
-	originalPageHeight = pdfImageTmp.size.height;
-	scaleWithAspectFitWidth  = newSize.width  / originalPageWidth;
-	scaleWithAspectFitHeight = newSize.height / originalPageHeight;
+	//originalPageWidth  is not use.
+	//originalPageHeight is not use.
+	scaleWithAspectFitWidth  = newSize.width  / originalPageSize.width;
+	scaleWithAspectFitHeight = newSize.height / originalPageSize.height;
 	//NSLog(@"original width=%f, height=%f", originalPageWidth, originalPageHeight);
 	//NSLog(@"newSize width=%f, height=%f", newSize.width, newSize.height);
 	
@@ -97,9 +96,10 @@
 	scaleForDraw = scaleWithAspectFitWidth;
 	//NSLog(@"scaleForDraw=%f", scaleForDraw);
 	
-	pageRectForDraw = pageRectOriginal;
-	pageRectForDraw.size = CGSizeMake(originalPageWidth  * scaleForDraw,
-									  originalPageHeight * scaleForDraw);
+	pageRectForDraw = CGRectMake(0,
+								 0,
+								 originalPageSize.width  * scaleForDraw,
+								 originalPageSize.height * scaleForDraw);
 	
 	//Remove old pageImageView before generate new.
 	if (pageImageView) {
