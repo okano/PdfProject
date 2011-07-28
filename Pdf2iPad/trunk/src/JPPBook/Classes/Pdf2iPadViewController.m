@@ -56,9 +56,30 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    //return (interfaceOrientation == UIInterfaceOrientationPortrait);
+	return YES;
 }
-
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+	LOG_CURRENT_METHOD;
+	if (contentPlayerViewController != nil) {
+		//LOG_CURRENT_LINE;
+		[contentPlayerViewController willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+	}
+	if (contentListVC != nil) {
+		//LOG_CURRENT_LINE;
+		[contentListVC willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+	}
+}
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+	LOG_CURRENT_METHOD;
+	if (contentPlayerViewController != nil) {
+		[contentPlayerViewController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+	}
+	if (contentListVC != nil) {
+		[contentListVC didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+	}
+}
 - (void)showContentPlayerView
 {
 	if (contentPlayerViewController == nil) {

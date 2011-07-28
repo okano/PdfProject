@@ -2908,10 +2908,14 @@
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-	if ([self isChangeOrientationKind:self.interfaceOrientation newOrientation:toInterfaceOrientation] == YES) {
+	LOG_CURRENT_METHOD;
+	
+	//if ([self isChangeOrientationKind:self.interfaceOrientation newOrientation:toInterfaceOrientation] == YES) {
+	if(0==0){
 		//Rotate MyPdfScrollView.
 		CGSize newSize;
 		CGFloat statusBarHeight = 0.0f;	//20.0f;	//status bar is hidden.
+		/*
 		if (toInterfaceOrientation == UIInterfaceOrientationPortrait
 			||
 			toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
@@ -2919,6 +2923,11 @@
 		} else {
 			newSize = CGSizeMake(self.view.frame.size.height + statusBarHeight, self.view.frame.size.width);
 		}
+		*/
+		newSize = CGSizeMake(self.view.frame.size.height + statusBarHeight, self.view.frame.size.width);
+		
+		NSLog(@"newSize=%@", NSStringFromCGSize(newSize));
+		NSLog(@"self.view.frame=%@", NSStringFromCGRect(self.view.frame));
 		[self hideThumbnailScrollView];
 		if (1 < currentPageNum) {
 			[prevPdfScrollView setupCurrentPageWithSize:newSize];
@@ -2927,11 +2936,16 @@
 		if (currentPageNum < maxPageNum) {
 			[nextPdfScrollView setupCurrentPageWithSize:newSize];
 		}
+	} else {
+		LOG_CURRENT_LINE;
+		NSLog(@"orientation not changed.");
 	}
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
+	LOG_CURRENT_METHOD;
+	
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
 	if (mplayer != nil) {
 		[mplayer stop];

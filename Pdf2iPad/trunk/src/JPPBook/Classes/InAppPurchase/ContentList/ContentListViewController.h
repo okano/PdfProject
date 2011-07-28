@@ -18,6 +18,7 @@
 
 @interface ContentListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
 	UITableView* myTableView;
+	UIToolbar* toolbar;
 	Pdf2iPadAppDelegate* appDelegate;
 }
 
@@ -27,5 +28,8 @@
 
 //Accessor for table
 - (void)reloadData;
+
+// Utility for Handle Rotate.
+- (bool)isChangeOrientationKind:(UIInterfaceOrientation)oldOrientation newOrientation:(UIInterfaceOrientation)newOrientation;
 
 @end

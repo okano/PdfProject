@@ -44,7 +44,7 @@
 									 0.0f,
 									 self.view.frame.size.width,
 									 toolBarHeight);
-	UIToolbar* toolbar = [[UIToolbar alloc] initWithFrame:toolBarFrame];
+	toolbar = [[UIToolbar alloc] initWithFrame:toolBarFrame];
 	UIBarButtonItem *paymentHistoryButton = [[UIBarButtonItem alloc] initWithTitle:@"購入履歴"
 																	   style:UIBarButtonItemStyleBordered
 																	  target:self
@@ -92,10 +92,77 @@
     [super viewDidDisappear:animated];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+#pragma mark -
+#pragma mark Handle Rotate.
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+	return YES;
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+	LOG_CURRENT_METHOD;
+	if ([self isChangeOrientationKind:self.interfaceOrientation newOrientation:toInterfaceOrientation] == YES) {
+		//Rotate view.
+		CGRect frameForTable;
+		CGRect frameForToolbar;
+		CGFloat statusBarHeight = 44.0f;
+		if (toInterfaceOrientation == UIInterfaceOrientationPortrait
+			||
+			toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
+			frameForToolbar = CGRectMake(0.0f,
+										 0.0f,
+										 self.view.frame.size.width,
+										 statusBarHeight);
+			frameForTable = CGRectMake(0.0f,
+							   statusBarHeight,
+							   self.view.frame.size.width,
+							   self.view.frame.size.height - statusBarHeight);
+		} else {
+			frameForToolbar = CGRectMake(0.0f, 
+										 0.0f, 
+										 self.view.frame.size.height,
+										 statusBarHeight)	;
+			frameForTable = CGRectMake(0.0f,
+							   statusBarHeight,
+							   self.view.frame.size.height,
+							   self.view.frame.size.width - statusBarHeight);
+		}
+		
+		toolbar.frame = frameForToolbar;
+		myTableView.frame = frameForTable;
+		[myTableView reloadData];
+		[myTableView reloadInputViews];
+	}
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+	LOG_CURRENT_METHOD;
+    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+}
+
+- (bool)isChangeOrientationKind:(UIInterfaceOrientation)oldOrientation newOrientation:(UIInterfaceOrientation)newOrientation {
+	if (oldOrientation == UIDeviceOrientationUnknown) { return NO; }
+	if (newOrientation == UIDeviceOrientationUnknown) { return NO; }
+	
+	if (oldOrientation == UIDeviceOrientationPortrait
+		||
+		oldOrientation == UIDeviceOrientationPortraitUpsideDown) {
+		if (newOrientation == UIDeviceOrientationLandscapeLeft
+			||
+			newOrientation == UIDeviceOrientationLandscapeRight) {
+			return YES;
+		} else {
+			return NO;
+		}
+	} else {
+		if (newOrientation == UIDeviceOrientationPortrait
+			||
+			newOrientation == UIDeviceOrientationPortraitUpsideDown) {
+			return YES;
+		} else {
+			return NO;
+		}
+	}
 }
 
 #pragma mark - show other view.
