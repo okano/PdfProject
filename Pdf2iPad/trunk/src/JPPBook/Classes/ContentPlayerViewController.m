@@ -235,6 +235,7 @@
 	}
 	originalPageRect = CGPDFPageGetBoxRect(page1, kCGPDFMediaBox);
 	pdfScale = self.view.frame.size.width / originalPageRect.size.width;
+	pdfScaleForCache = CACHE_IMAGE_WIDTH_MIN / originalPageRect.size.width;
 	//NSLog(@"self.view.frame=%@", NSStringFromCGRect(self.view.frame));
 	//NSLog(@"page rect from page1=%@", NSStringFromCGRect(originalPageRect));
 	//NSLog(@"pdfScale(by width)=%f (= %f / %f)", pdfScale, self.view.frame.size.width, originalPageRect.size.width);
@@ -1237,7 +1238,10 @@
 	
 	CGPoint touchedPointInPdf = CGPointMake(touchedPoint.x / pdfScale,
 											touchedPoint.y / pdfScale);
-	//NSLog(@"touchedPointInPdf = %@", NSStringFromCGPoint(touchedPointInPdf));
+	CGPoint touchedPointInPdf2 = CGPointMake(touchedPoint.x / pdfScaleForCache,
+											 touchedPoint.y / pdfScaleForCache);
+	NSLog(@"touchedPointInPdf = %@", NSStringFromCGPoint(touchedPointInPdf));
+	NSLog(@"touchedPointInPdf2 = %@", NSStringFromCGPoint(touchedPointInPdf2));
 	//NSLog(@"pdfScale = %f", pdfScale);
 	
 	//NSLog(@"original page =%f, %f", currentPdfScrollView.originalPageWidth, currentPdfScrollView.originalPageHeight);
@@ -1282,7 +1286,7 @@
 			rect.size.height= [[movieInfo valueForKey:MD_AREA_HEIGHT] floatValue];
 			//NSLog(@"Movie Link = %@", NSStringFromCGRect(rect));
 			
-			if (CGRectContainsPoint(rect, touchedPointInPdf)) {
+			if (CGRectContainsPoint(rect, touchedPointInPdf2)) {
 				NSString* filename = [movieInfo valueForKey:MD_MOVIE_FILENAME];
 				//NSLog(@"movie link touched. filename=%@", filename);
 				
@@ -1304,7 +1308,7 @@
 			rect.size.height= [[pageJumpLinkInfo valueForKey:PJ_PAGE_AREA_HEIGHT] floatValue];
 			//NSLog(@"PageJumpLink = %@", NSStringFromCGRect(rect));
 			
-			if (CGRectContainsPoint(rect, touchedPointInPdf)) {
+			if (CGRectContainsPoint(rect, touchedPointInPdf2)) {
 				int jumpToPage = [[pageJumpLinkInfo valueForKey:PJ_PAGE_JUMPTO] intValue];
 				//NSLog(@"PageJumpLink touched. jumpToPage=%d", jumpToPage);
 				
@@ -1325,7 +1329,7 @@
 			rect.size.width	= [[popoverImageInfo valueForKey:MD_AREA_WIDTH] floatValue];
 			rect.size.height= [[popoverImageInfo valueForKey:MD_AREA_HEIGHT] floatValue];
 			
-			if (CGRectContainsPoint(rect, touchedPointInPdf)) {
+			if (CGRectContainsPoint(rect, touchedPointInPdf2)) {
 				NSString* filename = [popoverImageInfo valueForKey:MD_MOVIE_FILENAME];
 				//NSLog(@"popoverImage link touched. filename=%@", filename);
 				
