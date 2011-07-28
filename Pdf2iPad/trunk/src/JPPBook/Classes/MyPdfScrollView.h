@@ -12,29 +12,8 @@
 #import "Utility.h"
 
 @interface MyPdfScrollView : SKBE_PdfScrollView2 <UIScrollViewDelegate> {
-	//View for zooming.
-	UIImageView* pageImageView;
-	
-	//Image
-	UIImage* pdfImageTmp;
-	
-	//Size.
-	CGSize originalPageSize;
-	//Aspect.
-	CGFloat scaleWithAspectFitWidth;
-	CGFloat scaleWithAspectFitHeight;
-	CGFloat scaleForDraw;
-
-	//
-	CGRect pageRectForDraw;
-	
-	//
 	ContentId currentContentId;
 }
-@property (nonatomic, retain) UIImageView* pageImageView;
-@property (nonatomic, retain) UIImage* pdfImageTmp;
-@property (nonatomic) CGFloat scaleForDraw;
-@property (nonatomic) CGSize originalPageSize;
 
 - (void)setupUiScrollView;
 - (void)setupCurrentPageWithSize:(CGSize)newSize;

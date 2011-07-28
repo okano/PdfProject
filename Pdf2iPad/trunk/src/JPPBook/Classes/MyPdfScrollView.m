@@ -10,10 +10,6 @@
 
 
 @implementation MyPdfScrollView
-@synthesize pageImageView;
-@synthesize pdfImageTmp;
-@synthesize scaleForDraw;
-@synthesize originalPageSize;
 
 /*
 - (id)initWithFrame:(CGRect)frame {
@@ -100,6 +96,12 @@
 								 0,
 								 originalPageSize.width  * scaleForDraw,
 								 originalPageSize.height * scaleForDraw);
+	
+	
+	
+	//Set scale with cache image.(fit width with CACHE_IMAGE_WIDTH)
+	scaleForCache = CACHE_IMAGE_WIDTH_MIN / originalPageSize.width;
+	
 	
 	//Remove old pageImageView before generate new.
 	if (pageImageView) {
