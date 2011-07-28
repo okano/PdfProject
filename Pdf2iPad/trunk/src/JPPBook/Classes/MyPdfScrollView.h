@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SKBE_PdfScrollView2.h"
 #import "Pdf2iPadAppDelegate.h"
 #import "Utility.h"
 
-@interface MyPdfScrollView : UIScrollView <UIScrollViewDelegate> {
+@interface MyPdfScrollView : SKBE_PdfScrollView2 <UIScrollViewDelegate> {
 	//View for zooming.
 	UIImageView* pageImageView;
 	
