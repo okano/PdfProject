@@ -1977,6 +1977,10 @@
 
 - (void) renderPageJumpLinkAtIndex:(NSUInteger)index
 {
+#if ! TARGET_IPHONE_SIMULATOR
+	return;
+#endif
+	
 	for (NSMutableDictionary* pageJumpLinkInfo in pageJumpLinkDefine) {
 		int targetPageNum = [[pageJumpLinkInfo valueForKey:PJ_PAGE_NUMBER] intValue];
 		if (targetPageNum == index) {
@@ -1988,39 +1992,9 @@
 			//int jumpToPage	= [[pageJumpLinkInfo valueForKey:PJ_PAGE_JUMPTO] floatValue];
 			//NSLog(@"rect for pageJumpLink=%@, jumpto=%d", NSStringFromCGRect(rect), jumpToPage);
 			
-			CGRect touchableArea;
-			//if (self.view.frame.size.width < originalPageRect.size.width) {
-			if (self.view.frame.size.width < currentPdfScrollView.originalPageSize.width) {
-				touchableArea = CGRectMake(rect.origin.x / pdfScale,
-										   rect.origin.y / pdfScale,
-										   rect.size.width / pdfScale,
-										   rect.size.height / pdfScale);
-			} else {
-				//Arrange frame if PDF.Width < Screen.Width
-				touchableArea = CGRectMake(rect.origin.x * pdfScale,
-										   rect.origin.y * pdfScale,
-										   rect.size.width * pdfScale,
-										   rect.size.height * pdfScale);
-			}
-			//NSLog(@"rect for pageJumpLink arranged=%@", NSStringFromCGRect(touchableArea));
-			//NSLog(@"pdfScale=%f", pdfScale);
 			
 			
-			//Show pageJumpLink link area with half-opaque.
-			//UIView* areaView = [[UIView alloc] initWithFrame:rect];
-			UIView* areaView = [[UIView alloc] initWithFrame:touchableArea];
-			
-#if TARGET_IPHONE_SIMULATOR
-			//Only show on Simulator.
-			[areaView setBackgroundColor:[UIColor purpleColor]];
-			[areaView setAlpha:0.2f];
-#else
-			[areaView setAlpha:0.0f];
-#endif
-			
-			//[currentPdfScrollView addSubview:areaView];
-			//[currentPdfScrollView addScalableSubview:areaView withNormalizedFrame:rect];
-			[currentPdfScrollView addScalableSubview:areaView withNormalizedFrame:touchableArea];
+			[currentPdfScrollView addScalableColorView:[UIColor purpleColor] alpha:0.2f withPdfBasedFrame:rect];
 		}
 	}
 }
@@ -2545,6 +2519,10 @@
 
 - (void) renderPopoverImageLinkAtIndex:(NSUInteger)index
 {
+#if ! TARGET_IPHONE_SIMULATOR
+	return;
+#endif
+	
 	//LOG_CURRENT_METHOD;
 	for (NSMutableDictionary* popoverImageInfo in popoverImageDefine) {
 		int targetPageNum = [[popoverImageInfo valueForKey:MD_PAGE_NUMBER] intValue];
@@ -2556,35 +2534,7 @@
 			rect.size.width	= [[popoverImageInfo valueForKey:MD_AREA_WIDTH] floatValue];
 			rect.size.height= [[popoverImageInfo valueForKey:MD_AREA_HEIGHT] floatValue];
 			
-			CGRect touchableArea;
-			//if (self.view.frame.size.width < originalPageRect.size.width) {
-			if (self.view.frame.size.width < currentPdfScrollView.originalPageSize.width) {
-				touchableArea = CGRectMake(rect.origin.x / pdfScale,
-										   rect.origin.y / pdfScale,
-										   rect.size.width / pdfScale,
-										   rect.size.height / pdfScale);
-			} else {
-				//Arrange frame if PDF.Width < Screen.Width
-				touchableArea = CGRectMake(rect.origin.x * pdfScale,
-										   rect.origin.y * pdfScale,
-										   rect.size.width * pdfScale,
-										   rect.size.height * pdfScale);
-			}
-			//NSLog(@"rect for PopoverImageLink arranged=%@", NSStringFromCGRect(touchableArea));
-			//NSLog(@"pdfScale=%f", pdfScale);
-			
-			//Show Movie link area with half-opaque.
-			UIView* areaView = [[UIView alloc] initWithFrame:touchableArea];
-#if TARGET_IPHONE_SIMULATOR
-			//Only show on Simulator.
-			[areaView setBackgroundColor:[UIColor greenColor]];
-			[areaView setAlpha:0.2f];
-#else
-			[areaView setAlpha:0.0f];
-#endif
-			
-			//[currentPdfScrollView addSubview:areaView];
-			[currentPdfScrollView addScalableSubview:areaView withNormalizedFrame:touchableArea];
+			[currentPdfScrollView addScalableColorView:[UIColor greenColor] alpha:0.2f withPdfBasedFrame:rect];
 		}
 	}
 }

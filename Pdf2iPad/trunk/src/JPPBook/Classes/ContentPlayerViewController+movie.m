@@ -66,10 +66,13 @@
 
 - (void) renderMovieLinkAtIndex:(NSUInteger)index
 {
+#if ! TARGET_IPHONE_SIMULATOR
+	return;
+#endif
+	
 	for (NSMutableDictionary* movieInfo in movieDefine) {
 		int targetPageNum = [[movieInfo valueForKey:MD_PAGE_NUMBER] intValue];
 		if (targetPageNum == index) {
-			//NSString* filename = [movieInfo valueForKey:MD_MOVIE_FILENAME];
 			CGRect rect;
 			rect.origin.x	= [[movieInfo valueForKey:MD_AREA_X] floatValue];
 			rect.origin.y	= [[movieInfo valueForKey:MD_AREA_Y] floatValue];
@@ -77,39 +80,10 @@
 			rect.size.height= [[movieInfo valueForKey:MD_AREA_HEIGHT] floatValue];
 			//NSLog(@"rect for movie=%@", NSStringFromCGRect(rect));
 			
-			CGRect touchableArea;
-			//if (self.view.frame.size.width < originalPageRect.size.width) {
-			if (self.view.frame.size.width < currentPdfScrollView.originalPageSize.width) {
-				touchableArea = CGRectMake(rect.origin.x / pdfScale,
-										   rect.origin.y / pdfScale,
-										   rect.size.width / pdfScale,
-										   rect.size.height / pdfScale);
-			} else {
-				//Arrange frame if PDF.Width < Screen.Width
-				touchableArea = CGRectMake(rect.origin.x * pdfScale,
-										   rect.origin.y * pdfScale,
-										   rect.size.width * pdfScale,
-										   rect.size.height * pdfScale);
-			}
-			//NSLog(@"rect for movie arranged=%@", NSStringFromCGRect(touchableArea));
-			//NSLog(@"pdfScale=%f", pdfScale);
-			
-			
-			//Show Movie link area with half-opaque.
-			//UIView* areaView = [[UIView alloc] initWithFrame:rect];
-			UIView* areaView = [[UIView alloc] initWithFrame:touchableArea];
-			
-#if TARGET_IPHONE_SIMULATOR
-			//Only show on Simulator.
-			[areaView setBackgroundColor:[UIColor yellowColor]];
-			[areaView setAlpha:0.2f];
-#else
-			[areaView setAlpha:0.0f];
-#endif
-			
-			//[currentPdfScrollView addSubview:areaView];
-			//[currentPdfScrollView addScalableSubview:areaView withNormalizedFrame:rect];
-			[currentPdfScrollView addScalableSubview:areaView withNormalizedFrame:touchableArea];
+			UIColor* targetColor = [UIColor yellowColor];
+			[currentPdfScrollView addScalableColorView:targetColor
+												 alpha:0.2f
+									 withPdfBasedFrame:rect];
 		}
 	}
 }
