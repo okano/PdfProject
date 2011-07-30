@@ -298,6 +298,8 @@
 			 UIGraphicsEndImageContext();
 			 */
 			
+			//Generate directory for save.
+			[FileUtility makeDir:[targetFilenameFull stringByDeletingLastPathComponent]];
 			//Save to file.
 			NSData *data = UIImagePNGRepresentation(resizedImage);
 			NSError* error = nil;
