@@ -262,7 +262,11 @@
 	//LOG_CURRENT_METHOD;
 	id pool = [ [ NSAutoreleasePool alloc] init];
 	
-	for (int i = 1; i <= maxPageNum; i = i + 1) {
+	int maxCount = 3;
+	if (maxPageNum < 3) {
+		maxCount = maxPageNum;
+	}
+	for (int i = 1; i <= maxCount; i = i + 1) {
 		NSString* targetFilenameFull = [self getThumbnailFilenameFull:i];
 		NSFileManager *fileManager = [NSFileManager defaultManager];
 		if (! [fileManager fileExistsAtPath:targetFilenameFull]) {
