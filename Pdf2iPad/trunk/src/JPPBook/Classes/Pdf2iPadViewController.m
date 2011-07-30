@@ -60,7 +60,7 @@
 	return YES;
 }
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
 	if (contentPlayerViewController != nil) {
 		//LOG_CURRENT_LINE;
 		[contentPlayerViewController willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
@@ -72,7 +72,7 @@
 }
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
 	if (contentPlayerViewController != nil) {
 		[contentPlayerViewController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
 	}

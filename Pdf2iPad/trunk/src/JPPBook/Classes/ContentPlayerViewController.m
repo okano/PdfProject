@@ -1186,8 +1186,8 @@
 											touchedPoint.y / pdfScale);
 	CGPoint touchedPointInPdf2 = CGPointMake(touchedPoint.x / pdfScaleForCache,
 											 touchedPoint.y / pdfScaleForCache);
-	NSLog(@"touchedPointInPdf = %@", NSStringFromCGPoint(touchedPointInPdf));
-	NSLog(@"touchedPointInPdf2 = %@", NSStringFromCGPoint(touchedPointInPdf2));
+	//NSLog(@"touchedPointInPdf = %@", NSStringFromCGPoint(touchedPointInPdf));
+	//NSLog(@"touchedPointInPdf2 = %@", NSStringFromCGPoint(touchedPointInPdf2));
 	//NSLog(@"pdfScale = %f", pdfScale);
 	
 	//NSLog(@"original page =%f, %f", currentPdfScrollView.originalPageWidth, currentPdfScrollView.originalPageHeight);
@@ -2860,7 +2860,7 @@
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
 	
 	//if ([self isChangeOrientationKind:self.interfaceOrientation newOrientation:toInterfaceOrientation] == YES) {
 	if(0==0){
@@ -2878,8 +2878,8 @@
 		*/
 		newSize = CGSizeMake(self.view.frame.size.height + statusBarHeight, self.view.frame.size.width);
 		
-		NSLog(@"newSize=%@", NSStringFromCGSize(newSize));
-		NSLog(@"self.view.frame=%@", NSStringFromCGRect(self.view.frame));
+		//NSLog(@"newSize=%@", NSStringFromCGSize(newSize));
+		//NSLog(@"self.view.frame=%@", NSStringFromCGRect(self.view.frame));
 		[self hideThumbnailScrollView];
 		if (1 < currentPageNum) {
 			[prevPdfScrollView setupCurrentPageWithSize:newSize];
@@ -2896,7 +2896,7 @@
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
 	
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
 	if (mplayer != nil) {

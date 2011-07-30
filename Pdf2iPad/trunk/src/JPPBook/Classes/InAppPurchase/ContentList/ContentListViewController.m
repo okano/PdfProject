@@ -99,7 +99,7 @@
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
 	if ([self isChangeOrientationKind:self.interfaceOrientation newOrientation:toInterfaceOrientation] == YES) {
 		//Rotate view.
 		CGRect frameForTable;
@@ -136,7 +136,7 @@
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
 }
 
