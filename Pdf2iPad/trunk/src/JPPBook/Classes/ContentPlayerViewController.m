@@ -1285,6 +1285,7 @@
 	//baseHeight = currentPdfScrollView.originalPageHeight;
 	//UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
 	//UIDeviceOrientation interfaceOrientation = [[UIDevice currentDevice] orientation];
+	/*
 	switch (interfaceOrientation) {
 		case UIInterfaceOrientationPortrait:
 		case UIInterfaceOrientationPortraitUpsideDown:
@@ -1298,23 +1299,28 @@
 			baseHeight = self.view.frame.size.width;
 			break;
 	}
+	*/
+	baseWidth = self.view.frame.size.width;
+	baseHeight = self.view.frame.size.height;
+	//NSLog(@"baseWidth=%f, baseHeight=%f", baseWidth, baseHeight);
 	
-	leftTapArea = CGRectMake(0.0f,
-							 baseHeight * 0.15f,
-							 baseWidth  * 0.40f,
-							 baseHeight * 0.70f);
-	rightTapArea = CGRectMake(baseWidth * 0.60f,
-							  baseHeight* 0.15f,
-							  baseWidth  * 0.40f,
-							  baseHeight * 0.70f);
-	topTapArea = CGRectMake(0.0f,
-							0.0f,
-							baseWidth  * 1.00f,
-							baseHeight * 0.15f);
-	bottomTapArea = CGRectMake(0.0f,
-							   baseHeight * 0.85f,
-							   baseWidth  * 1.00f,
-							   baseHeight * 0.15f);
+	
+	leftTapArea = CGRectMake(baseWidth   * TAP_AREA_LEFT_X,
+							 baseHeight  * TAP_AREA_LEFT_Y,
+							 baseWidth   * TAP_AREA_LEFT_WIDTH,
+							 baseHeight  * TAP_AREA_LEFT_HEIGHT);
+	rightTapArea = CGRectMake(baseWidth  * TAP_AREA_RIGHT_X,
+							  baseHeight * TAP_AREA_RIGHT_Y,
+							  baseWidth  * TAP_AREA_RIGHT_WIDTH,
+							  baseHeight * TAP_AREA_RIGHT_HEIGHT);
+	topTapArea = CGRectMake(baseWidth    * TAP_AREA_TOP_X,
+							baseHeight   * TAP_AREA_TOP_Y,
+							baseWidth    * TAP_AREA_TOP_WIDTH,
+							baseHeight   * TAP_AREA_TOP_HEIGHT);
+	bottomTapArea = CGRectMake(baseWidth * TAP_AREA_BOTTOM_X,
+							   baseHeight* TAP_AREA_BOTTOM_Y,
+							   baseWidth * TAP_AREA_BOTTOM_WIDTH,
+							   baseHeight* TAP_AREA_BOTTOM_HEIGHT);
 	//NSLog(@"leftTapArea=%@", NSStringFromCGRect(leftTapArea));
 	//NSLog(@"rightTapArea=%@", NSStringFromCGRect(rightTapArea));
 	//NSLog(@"topTapArea=%@", NSStringFromCGRect(topTapArea));
