@@ -716,7 +716,6 @@
 		NSLog(@"original link position= (x1,y1)-(x2,y2)=(%f,%f) - (%f,%f)", x1, y1, x2, y2);
 		
 		//Generate frame for draw on pdf-image.
-		//Generate frame for draw on pdf-image.
 		CGRect linkRect;
 		//if (self.view.frame.size.width < originalPageRect.size.width) {
 		if (self.view.frame.size.width < currentPdfScrollView.originalPageSize.width) {
@@ -740,40 +739,6 @@
 		//	  currentPdfScrollView.originalPageHeight);
 		//NSLog(@"originalPageRect.size=%@", NSStringFromCGSize(originalPageRect.size));
 		//NSLog(@"self.view.frame.size=%@", NSStringFromCGSize(self.view.frame.size));
-		
-		/*
-		CGRect rect = CGRectMake(x1,
-								 y1,
-								 fabsf(x2 - x1),
-								 fabsf(y2 - y1));
-		
-        CGAffineTransform trans = CGAffineTransformIdentity;
-        ////trans = CGAffineTransformTranslate(trans, 0, pageRect2.size.height);
-        trans = CGAffineTransformTranslate(trans, 0, pageRect.size.height);
-        trans = CGAffineTransformScale(trans, 1.0, -1.0);
-		
-        rect = CGRectApplyAffineTransform(rect, trans);
-		//rect.origin.y = rect.origin.y * 0.5;
-		//rect.origin.y = rect.origin.y * 2.15 - 567.0;
-		rect.origin.y = rect.origin.y * 1.0 - 567.0;
-		
-		float widthAspect = 320.0 / pageRect2.size.width;
-		float heightApsect = 480.0 / pageRect2.size.height;
-		NSLog(@"screen/PDF widthAspect = %f, heightAspect = %f", widthAspect, heightApsect);
-		
-		rect.size.width = rect.size.width * 2.2;
-		rect.size.height = rect.size.height * 1.5;
-		
-		// do whatever you need with the coordinates.
-		// e.g. you could create a button and put it on top of your page
-		// and use it to open the URL with UIApplication's openURL
-		NSURL *url = [NSURL URLWithString:uri];
-		NSLog(@"URL: %@, rext.(x,y)=%f,%f rect.width=%f, rect.height=%f", url, rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
-		//          CGPDFContextSetURLForRect(ctx, (CFURLRef)url, rect);
-		UIButton *button = [[UIButton alloc] initWithFrame:rect];
-		[button setTitle:@"LINK" forState:UIControlStateNormal];
-		[button setTitle:[url description] forState:UIControlStateNormal];
-		*/
 		
 		
 		//Add subView.
