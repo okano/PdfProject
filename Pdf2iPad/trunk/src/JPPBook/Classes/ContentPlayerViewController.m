@@ -238,7 +238,7 @@
 	}
 	originalPageRect = CGPDFPageGetBoxRect(page1, kCGPDFMediaBox);
 	pdfScale = self.view.frame.size.width / originalPageRect.size.width;
-	pdfScaleForCache = CACHE_IMAGE_WIDTH_MIN / originalPageRect.size.width;
+	pdfScaleForCache = CACHE_IMAGE_WIDTH / originalPageRect.size.width;
 	//NSLog(@"self.view.frame=%@", NSStringFromCGRect(self.view.frame));
 	//NSLog(@"page rect from page1=%@", NSStringFromCGRect(originalPageRect));
 	//NSLog(@"pdfScale(by width)=%f (= %f / %f)", pdfScale, self.view.frame.size.width, originalPageRect.size.width);
@@ -457,7 +457,7 @@
 #if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
 		ig.currentContentId	= currentContentId;
 #endif
-		[ig generateImageWithPageNum:pageNum fromUrl:pdfURL minWidth:CACHE_IMAGE_WIDTH_MIN maxWidth:CACHE_IMAGE_WIDTH_MAX];
+		[ig generateImageWithPageNum:pageNum fromUrl:pdfURL width:CACHE_IMAGE_WIDTH];
 		[ig release];
 		
 		UIImage* pdfImage = [[UIImage alloc] initWithContentsOfFile:targetFilenameFull];

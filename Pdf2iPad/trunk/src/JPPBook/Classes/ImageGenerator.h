@@ -21,7 +21,7 @@
 - (NSString*)getPageFilenameFull:(int)pageNum;
 //- (NSString*)getThumbnailFilenameFull:(int)pageNum;
 //
-- (void)generateImageWithPageNum:(NSUInteger)pageNum fromUrl:(NSURL*)pdfURL minWidth:(CGFloat)minWidth maxWidth:(CGFloat)maxWidth;
+- (void)generateImageWithPageNum:(NSUInteger)pageNum fromUrl:(NSURL*)pdfURL width:(CGFloat)width;
 
 
 

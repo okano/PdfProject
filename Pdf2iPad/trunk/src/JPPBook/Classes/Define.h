@@ -81,8 +81,7 @@
 #define MARKERPEN_LINE_WIDTH		2.0f
 
 // for cache image.
-#define CACHE_IMAGE_WIDTH_MIN		1024.0f
-#define CACHE_IMAGE_WIDTH_MAX		1024.0f
+#define CACHE_IMAGE_WIDTH			1024.0f
 
 // for Thumbnail Image.
 #define THUMBNAIL_WIDTH				100.0f

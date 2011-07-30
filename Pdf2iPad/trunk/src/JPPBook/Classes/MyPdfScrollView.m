@@ -102,7 +102,7 @@
 	
 	
 	//Set scale with cache image.(fit width with CACHE_IMAGE_WIDTH)
-	scaleForCache = CACHE_IMAGE_WIDTH_MIN / originalPageSize.width;
+	scaleForCache = CACHE_IMAGE_WIDTH / originalPageSize.width;
 	
 	
 	//Remove old pageImageView before generate new.

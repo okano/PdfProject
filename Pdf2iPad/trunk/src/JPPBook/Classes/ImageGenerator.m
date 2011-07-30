@@ -14,29 +14,12 @@
 
 - (void)generateImageWithPageNum:(NSUInteger)pageNum
 						 fromUrl:(NSURL*)pdfURL
-						minWidth:(CGFloat)minWidth
-						maxWidth:(CGFloat)maxWidth
+						   width:(CGFloat)width
 {
 	//LOG_CURRENT_METHOD;
-	if ((pageNum < 0) || (! pdfURL) || (minWidth < 0) || (maxWidth < 0)) {
+	if ((! pdfURL) || (width < 0)) {
 		return;
 	}
-	
-	/*
-	 //get Screen point/pixel rate. (for "Ratina" display)
-	 // (with iOS4.0 method)
-	 if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
-	 if (1.0 < [[UIScreen mainScreen] scale]) {
-	 minWidth = minWidth * [[UIScreen mainScreen] scale];
-	 } else {
-	 minWidth = minWidth * 2.0f;	//draw with double size for pinch-out.
-	 }
-	 } else {
-	 //old iOS 3.2
-	 minWidth = minWidth * 2.0f;
-	 }
-	 */
-	
 	
 	id pool = [ [ NSAutoreleasePool alloc] init];
 	//NSLog(@"pageNum=%d", pageNum);
@@ -72,20 +55,17 @@
 	//(scale < 1.0)  = pdf is large than screen(minSize)
 	//(scale ==1.0)  = pdf equal screen(minSize)
 	//(1.0   < scale)= pdf is small than screen(minSize)
-	CGFloat scaleToFitWidthMin = minWidth / originalPageRect.size.width;
-	CGFloat scaleToFitWidthMax = maxWidth / originalPageRect.size.width;
+	CGFloat scaleToFitWidth = width / originalPageRect.size.width;
 	
 	//set draw rect for image cache.
-	if (originalPageRect.size.width < minWidth) {
+	if ((originalPageRect.size.width < width)
+		||
+		(width < originalPageRect.size.width))
+	{
 		imageFrame = CGRectMake(0.0f,
 								0.0f,
-								originalPageRect.size.width * scaleToFitWidthMin,
-								originalPageRect.size.height * scaleToFitWidthMin);
-	} else if (maxWidth < originalPageRect.size.width) {
-		imageFrame = CGRectMake(0.0f,
-								0.0f,
-								originalPageRect.size.width * scaleToFitWidthMax,
-								originalPageRect.size.height * scaleToFitWidthMax);
+								originalPageRect.size.width * scaleToFitWidth,
+								originalPageRect.size.height * scaleToFitWidth);
 	} else {
 		imageFrame = originalPageRect;
 	}
@@ -109,12 +89,12 @@
 	CGContextScaleCTM(context, 1.0, -1.0);
 	
 	//Scale PDF for fit Screen. (streatch only PDF smaller than Screen.)
-	if (originalPageRect.size.width < minWidth) {
+	if (originalPageRect.size.width < width) {
 		//PDF.width <= Screen.width
-		CGContextScaleCTM(context, scaleToFitWidthMin, scaleToFitWidthMin);
+		CGContextScaleCTM(context, scaleToFitWidth, scaleToFitWidth);
 	}
-	if (maxWidth < originalPageRect.size.width) {
-		CGContextScaleCTM(context, scaleToFitWidthMax, scaleToFitWidthMax);
+	if (width < originalPageRect.size.width) {
+		CGContextScaleCTM(context, scaleToFitWidth, scaleToFitWidth);
 	}
 	
 	//setup for Draw PDF.
