@@ -874,8 +874,9 @@
 		[animation1 setDuration:PAGE_ANIMATION_DURATION_NEXT];
 		[animation1 setTimingFunction:UIViewAnimationCurveEaseInOut];
 		[animation1 setType:kCATransitionPush];
-		UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
+		//UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
 		//UIDeviceOrientation interfaceOrientation = [[UIDevice currentDevice] orientation];
+		/*
 		switch (interfaceOrientation) {
 			case UIInterfaceOrientationPortrait:
 				[animation1 setSubtype:kCATransitionFromRight];
@@ -897,6 +898,9 @@
 				[animation1 setSubtype:kCATransitionFromRight];
 				break;
 		}
+		 */
+		[animation1 setSubtype:kCATransitionFromRight];
+		
 		[animation1 setValue:MY_ANIMATION_KIND_PAGE_FROM_RIGHT forKey:MY_ANIMATION_KIND];
 		[[self.view layer] addAnimation:animation1 forKey:@"animation_to_NextPage"];
 		
@@ -990,8 +994,9 @@
 		[animation1 setDuration:PAGE_ANIMATION_DURATION_PREV];
 		[animation1 setTimingFunction:UIViewAnimationCurveEaseInOut];
 		[animation1 setType:kCATransitionPush];
-		UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
+		//UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
 		//UIDeviceOrientation interfaceOrientation = [[UIDevice currentDevice] orientation];
+		/*
 		switch (interfaceOrientation) {
 			case UIInterfaceOrientationPortrait:
 				[animation1 setSubtype:kCATransitionFromLeft];
@@ -1013,6 +1018,9 @@
 				[animation1 setSubtype:kCATransitionFromLeft];
 				break;
 		}
+		*/
+		[animation1 setSubtype:kCATransitionFromLeft];
+		
 		[animation1 setValue:MY_ANIMATION_KIND_PAGE_FROM_LEFT forKey:MY_ANIMATION_KIND];
 		[[self.view layer] addAnimation:animation1 forKey:@"animation_to_PrevPage"];
 		
