@@ -56,6 +56,9 @@
 	[pdfScrolView1 setupUiScrollView];
 	[pdfScrolView2 setupUiScrollView];
 	[pdfScrolView3 setupUiScrollView];
+	pdfScrolView1.currentContentId = currentContentId;
+	pdfScrolView2.currentContentId = currentContentId;
+	pdfScrolView3.currentContentId = currentContentId;
 	
 	//Set pointer.
 	prevPdfScrollView	= pdfScrolView1;
@@ -464,7 +467,7 @@
 			
 			return pdfImage;
 		} else {
-			NSLog(@"page generate but can not open image from file. for page %d filename=%@", pageNum, targetFilenameFull);
+			NSLog(@"page generate but can not open image from file. for page %d, filename=%@", pageNum, targetFilenameFull);
 #if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
 			NSLog(@"currentContentId=%d", currentContentId);
 #endif
@@ -529,7 +532,11 @@
 	}
 	
 	//Draw current rough imageView.
+#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+	[currentPdfScrollView setupWithPageNum:newPageNum ContentId:currentContentId];
+#else
 	[currentPdfScrollView setupWithPageNum:newPageNum];
+#endif
 	//bring currentImageView to Front.
 	[self.view bringSubviewToFront:currentPdfScrollView];
 	//[currentPdfScrollView layoutIfNeeded];

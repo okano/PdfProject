@@ -10,6 +10,7 @@
 
 
 @implementation MyPdfScrollView
+@synthesize currentContentId;
 
 /*
 - (id)initWithFrame:(CGRect)frame {
@@ -42,6 +43,7 @@
 - (void)setupWithPageNum:(NSUInteger)newPageNum
 {
 	LOG_CURRENT_METHOD;
+	//NSLog(@"newPageNum=%d, curentContentId=%d", newPageNum, currentContentId);
 	[self setupWithPageNum:newPageNum ContentId:currentContentId];
 }
 - (void)setupWithPageNum:(NSUInteger)newPageNum ContentId:(ContentId)cid

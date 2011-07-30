@@ -14,6 +14,7 @@
 @interface MyPdfScrollView : SKBE_PdfScrollView2 <UIScrollViewDelegate> {
 	ContentId currentContentId;
 }
+@property (nonatomic) ContentId currentContentId;
 
 - (void)setupUiScrollView;
 - (void)setupCurrentPageWithSize:(CGSize)newSize;
