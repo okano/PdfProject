@@ -54,7 +54,6 @@
 		296FE96E12D2F8EF00A5CBF6 /* flower.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 296FE96C12D2F8EF00A5CBF6 /* flower.jpg */; };
 		296FE96F12D2F8EF00A5CBF6 /* flower2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 296FE96D12D2F8EF00A5CBF6 /* flower2.jpg */; };
 		2974F0A51314AC0300188A77 /* ImageGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2974F0A41314AC0300188A77 /* ImageGenerator.m */; };
-		2979EE2B13E114550010E66E /* SKBE_PdfScrollView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 2979EE2A13E114550010E66E /* SKBE_PdfScrollView2.m */; };
 		297F587A13C30A4A00441312 /* Pdf2iPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297F587813C30A4A00441312 /* Pdf2iPadViewController.m */; };
 		297F587B13C30A4A00441312 /* Pdf2iPadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 297F587913C30A4A00441312 /* Pdf2iPadViewController.xib */; };
 		297F588213C30B6F00441312 /* PaymentConductor.m in Sources */ = {isa = PBXBuildFile; fileRef = 297F588113C30B6F00441312 /* PaymentConductor.m */; };
@@ -103,6 +102,7 @@
 		29E40976134C7F52005F7F8F /* pageJumpLinkDefine_1.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29E40975134C7F52005F7F8F /* pageJumpLinkDefine_1.csv */; };
 		29E87565137B9249002AC07D /* icon_recycle.png in Resources */ = {isa = PBXBuildFile; fileRef = 29E87564137B9249002AC07D /* icon_recycle.png */; };
 		29EF554E13039D3300C3C7ED /* image-100x120.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 29EF554D13039D3300C3C7ED /* image-100x120.jpg */; };
+		29F140F913E3E71400C1AFE9 /* SKBE_PdfScrollView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F140F813E3E71400C1AFE9 /* SKBE_PdfScrollView2.m */; };
 		29F36CA513C31B1400D0B289 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29F36CA413C31B1400D0B289 /* StoreKit.framework */; };
 		29F48C7A12DC7E2D00A9EC62 /* BookmarkModifyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29F48C7812DC7E2D00A9EC62 /* BookmarkModifyView.xib */; };
 		29F48C7B12DC7E2D00A9EC62 /* BookmarkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29F48C7912DC7E2D00A9EC62 /* BookmarkView.xib */; };
@@ -171,8 +171,6 @@
 		296FE96D12D2F8EF00A5CBF6 /* flower2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower2.jpg; sourceTree = "<group>"; };
 		2974F0A31314AC0300188A77 /* ImageGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGenerator.h; sourceTree = "<group>"; };
 		2974F0A41314AC0300188A77 /* ImageGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGenerator.m; sourceTree = "<group>"; };
-		2979EE2913E114550010E66E /* SKBE_PdfScrollView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKBE_PdfScrollView2.h; path = "../../../../../../../PdfProject-Git6-SKBEngine/SKBEngine/SKBEngine/SKBE_PdfScrollView2.h"; sourceTree = "<group>"; };
-		2979EE2A13E114550010E66E /* SKBE_PdfScrollView2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKBE_PdfScrollView2.m; path = "../../../../../../../PdfProject-Git6-SKBEngine/SKBEngine/SKBEngine/SKBE_PdfScrollView2.m"; sourceTree = "<group>"; };
 		297F587713C30A4A00441312 /* Pdf2iPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pdf2iPadViewController.h; sourceTree = "<group>"; };
 		297F587813C30A4A00441312 /* Pdf2iPadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pdf2iPadViewController.m; sourceTree = "<group>"; };
 		297F587913C30A4A00441312 /* Pdf2iPadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Pdf2iPadViewController.xib; sourceTree = "<group>"; };
@@ -243,6 +241,8 @@
 		29E87564137B9249002AC07D /* icon_recycle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_recycle.png; sourceTree = "<group>"; };
 		29EF554D13039D3300C3C7ED /* image-100x120.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "image-100x120.jpg"; sourceTree = "<group>"; };
 		29EF555713039E2700C3C7ED /* image-100x142.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "image-100x142.jpg"; sourceTree = "<group>"; };
+		29F140F713E3E71400C1AFE9 /* SKBE_PdfScrollView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKBE_PdfScrollView2.h; path = SKBEngine/SKBE_PdfScrollView2.h; sourceTree = "<group>"; };
+		29F140F813E3E71400C1AFE9 /* SKBE_PdfScrollView2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKBE_PdfScrollView2.m; path = SKBEngine/SKBE_PdfScrollView2.m; sourceTree = "<group>"; };
 		29F36CA413C31B1400D0B289 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		29F48C7812DC7E2D00A9EC62 /* BookmarkModifyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookmarkModifyView.xib; sourceTree = "<group>"; };
 		29F48C7912DC7E2D00A9EC62 /* BookmarkView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookmarkView.xib; sourceTree = "<group>"; };
@@ -407,8 +407,8 @@
 		29A7E3E3136EB88500EC64EC /* SKBEngine */ = {
 			isa = PBXGroup;
 			children = (
-				2979EE2913E114550010E66E /* SKBE_PdfScrollView2.h */,
-				2979EE2A13E114550010E66E /* SKBE_PdfScrollView2.m */,
+				29F140F713E3E71400C1AFE9 /* SKBE_PdfScrollView2.h */,
+				29F140F813E3E71400C1AFE9 /* SKBE_PdfScrollView2.m */,
 				299CD2A813861BD3001C2B4B /* SKBE_MainVC.h */,
 				299CD2A913861BD3001C2B4B /* SKBE_MainVC.m */,
 				299CD2AC13861BDD001C2B4B /* SKBEngine_PopoverScrollImageViewController.h */,
@@ -687,7 +687,7 @@
 				297F589A13C30BD100441312 /* ContentListViewController.m in Sources */,
 				297F589F13C30BF600441312 /* ContentDetailViewController.m in Sources */,
 				297F58A213C30C4C00441312 /* FileUtility.m in Sources */,
-				2979EE2B13E114550010E66E /* SKBE_PdfScrollView2.m in Sources */,
+				29F140F913E3E71400C1AFE9 /* SKBE_PdfScrollView2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
