@@ -137,15 +137,13 @@
 		mplayer.repeatMode = NO;
 		mplayer.endPlaybackTime = 0.0;
         mplayer.controlStyle = MPMovieControlStyleEmbedded;
-		CGRect newFrame = CGRectMake((frame.origin.x * pdfScale),
-									 (frame.origin.y * pdfScale),
-									 frame.size.width * pdfScale,
-									 frame.size.height * pdfScale);
 		[mplayer.view setFrame:frame];
+		mplayer.view.backgroundColor = [UIColor blackColor];
+        
 		//CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI * 90 / 180.0f);
         //[player.view setTransform:transform];
-        mplayer.view.backgroundColor = [UIColor blackColor];
-        [currentPdfScrollView addScalableSubview:mplayer.view withNormalizedFrame:newFrame];
+		
+        [currentPdfScrollView addScalableSubview2:mplayer.view withPdfBasedFrame:frame];
         [mplayer prepareToPlay];
         [mplayer play];
     }
