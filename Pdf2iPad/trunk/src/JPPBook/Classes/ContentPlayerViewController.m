@@ -715,43 +715,16 @@
 		
 		NSLog(@"original link position= (x1,y1)-(x2,y2)=(%f,%f) - (%f,%f)", x1, y1, x2, y2);
 		
-		//Generate frame for draw on pdf-image.
+		
+		//Draw link area.
 		CGRect linkRect;
-		//if (self.view.frame.size.width < originalPageRect.size.width) {
-		if (self.view.frame.size.width < currentPdfScrollView.originalPageSize.width) {
-			linkRect = CGRectMake(x1 / pdfScale,
-								  (currentPdfScrollView.originalPageSize.height - y2) / pdfScale,	//does not "y1".
-								  fabsf(x2 - x1) / pdfScale,
-								  fabsf(y2 - y1) / pdfScale);
-			
-		} else {
-			//Arrange frame if PDF.Width < Screen.Width
-			linkRect = CGRectMake(x1 * pdfScale,
-								  (currentPdfScrollView.originalPageSize.height - (y2 * pdfScale)),
-								  fabsf(x2 - x1) * pdfScale,
-								  fabsf(y2 - y1) * pdfScale);
-		}
-		//NSLog(@"scaleForDraw=%f", currentPdfScrollView.scaleForDraw);
+		linkRect = CGRectMake(x1,
+							  (currentPdfScrollView.originalPageSize.height - y2),	//does not "y1".
+							  fabsf(x2 - x1),
+							  fabsf(y2 - y1));
+		[currentPdfScrollView addScalableColorView:[UIColor blueColor] alpha:0.5f withPdfBasedFrame:linkRect];
 		//NSLog(@"linkRect   =%@", NSStringFromCGRect(linkRect));
-		//NSLog(@"pdfScale   =%f", pdfScale);
-		//NSLog(@"currentPdfScrollView.originalPage Size={%1.0f, %1.0f}",
-		//	  currentPdfScrollView.originalPageWidth,
-		//	  currentPdfScrollView.originalPageHeight);
-		//NSLog(@"originalPageRect.size=%@", NSStringFromCGSize(originalPageRect.size));
-		//NSLog(@"self.view.frame.size=%@", NSStringFromCGSize(self.view.frame.size));
 		
-		
-		//Add subView.
-		UIView* areaView = [[UIView alloc] initWithFrame:linkRect];
-#if TARGET_IPHONE_SIMULATOR
-		//Only show on Simulator.
-		[areaView setBackgroundColor:[UIColor blueColor]];
-		[areaView setAlpha:0.5f];
-#else
-		[areaView setAlpha:0.0f];
-#endif
-		
-		[currentPdfScrollView addScalableSubview:areaView withNormalizedFrame:linkRect];
 		
 		//Add link infomation for touch.
         char *uriString = (char *)CGPDFStringGetBytePtr(uriStringRef);
@@ -762,16 +735,7 @@
 		[tmpDict setValue:[url description] forKey:LINK_DICT_KEY_URL];
 		[tmpDict setValue:[NSValue valueWithCGRect:linkRect] forKey:LINK_DICT_KEY_RECT];
 		[linksInCurrentPage addObject:tmpDict];
-		
-		
-		/**
-		 *		From array to cgPoint variable.
-		 */		
-		//NSValue *val = [points objectAtIndex:0];
-		//CGPoint p = [val CGPointValue];
-		
 	}
-    //} 
 	
 	//Release PDFDocument.
 	if (pdfDocument) {
