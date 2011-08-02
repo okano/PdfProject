@@ -2035,34 +2035,7 @@
 			//(filename(s))
 			NSMutableArray* filenames = (NSMutableArray*)[ipsvInfo objectForKey:IPSD_FILENAMES];
 			
-			CGRect touchableArea;
-			//if (self.view.frame.size.width < originalPageRect.size.width) {
-			if (self.view.frame.size.width < currentPdfScrollView.originalPageSize.width) {
-				touchableArea = CGRectMake(rect.origin.x / pdfScale,
-										   rect.origin.y / pdfScale,
-										   rect.size.width / pdfScale,
-										   rect.size.height / pdfScale);
-			} else {
-				//Arrange frame if PDF.Width < Screen.Width
-				touchableArea = CGRectMake(rect.origin.x * pdfScale,
-										   rect.origin.y * pdfScale,
-										   rect.size.width * pdfScale,
-										   rect.size.height * pdfScale);
-			}
-			
-			//Show ScrollView.
-			UIScrollView* ipsvScrollView = [[UIScrollView alloc] initWithFrame:rect];
-			ipsvScrollView.backgroundColor = IPSD_BACKGROUND_COLOR;
-			ipsvScrollView.pagingEnabled = YES;
-			ipsvScrollView.bounces = NO;
-			ipsvScrollView.alwaysBounceVertical = NO;
-			ipsvScrollView.alwaysBounceHorizontal = YES;
-			ipsvScrollView.scrollIndicatorInsets = UIEdgeInsetsFromString(IPSD_SCROLL_INDICATOR_INSET_STRING);
-			ipsvScrollView.userInteractionEnabled = YES;
-			float x_space = 0.0f;
-			float x_offset = 0 + x_space;
-			float y_space = 0.0f;
-			float y_maxHeight = 0.0f;
+			NSMutableArray* images = [[NSMutableArray alloc] init];
 			for (NSString* filename in filenames) {
 				//Add each image.
 				NSString *path= [[NSBundle mainBundle] pathForResource:filename ofType:nil];
@@ -2076,46 +2049,16 @@
 					continue;	//next file.
 				}
 				
-				//Add white-space under ScrollBar.
-				CGFloat scrollBarInsetMinus = 10.0f;
-
-				//fit to ScrollView-Height.
-				CGFloat scaleWithHeight = (rect.size.height - scrollBarInsetMinus) / image.size.width;	//scale for fit Height with ScrollView.
-				//Streatch images when Landscape mode.
-				CGRect rectForStretchImage = CGRectMake(0.0f,
-														0.0f,
-														image.size.width * pdfScale * scaleWithHeight,
-														image.size.height * pdfScale * scaleWithHeight);
-				UIGraphicsBeginImageContextWithOptions(rectForStretchImage.size, NO, 0.0f);
-				[image drawInRect:rectForStretchImage];
-				UIImage* shrinkedImage = UIGraphicsGetImageFromCurrentImageContext();
-				UIGraphicsEndImageContext();
-				[image release];
-				image = shrinkedImage;
-				
-				//Add with UIImageView.
-				UIImageView* imageView = [[UIImageView alloc] initWithImage:image];
-				CGRect rectForImageView = imageView.frame;
-				rectForImageView.origin.x = x_offset;
-				rectForImageView.origin.y = y_space;
-				imageView.frame = rectForImageView;
-				[imageView retain];
-				
-				//Add images to ScrollView.
-				[ipsvScrollView addSubview:imageView];
-				
-				//move offset.
-				x_offset = x_offset + image.size.width + x_space;
-				if (y_maxHeight < image.size.height) {
-					y_maxHeight = image.size.height;
-				}
+				[images addObject:image];
 			}
-			ipsvScrollView.contentSize = CGSizeMake(x_offset, y_maxHeight);
 			
-			//[currentPdfScrollView addSubview:ipsvScrollView];
-			//[currentPdfScrollView addScalableSubview:ipsvScrollView withNormalizedFrame:rect];
-			[currentPdfScrollView addScalableSubview:ipsvScrollView withNormalizedFrame:touchableArea];
-			[ipsvScrollView flashScrollIndicators];
+			UIColor* bgColor = IPSD_BACKGROUND_COLOR;
+			
+			[currentPdfScrollView addScalableScrollView:images
+									  withPdfBasedFrame:rect
+										backgroundColor:bgColor
+							scrollIndicatorInsetsString:IPSD_SCROLL_INDICATOR_INSET_STRING
+								  flashScrollIndicators:YES];
 		}
 	}
 }
