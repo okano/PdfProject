@@ -2321,7 +2321,8 @@
 			[inPagePngScrollView setShowsHorizontalScrollIndicator:NO];
 			[inPagePngScrollView setShowsVerticalScrollIndicator:YES];
 			
-			[currentPdfScrollView addScalableSubview:inPagePngScrollView withNormalizedFrame:rect];
+			//[currentPdfScrollView addScalableSubview:inPagePngScrollView withNormalizedFrame:rect];
+			[currentPdfScrollView addScalableSubview2:inPagePngScrollView withPdfBasedFrame:rect];
 			[inPagePngScrollView flashScrollIndicators];
 			
 			//Set Delegate for zoom.
@@ -2339,7 +2340,11 @@
 			//	////scaleFitWidth = rect.size.width / image.size.width / currentPdfScrollView.scaleForDraw;
 			//	scaleFitWidth = rect.size.width / image.size.width;
 			//}
-			scaleFitWidth = rect.size.width / image.size.width;
+			CGFloat scaleForCache = currentPdfScrollView.scaleForCache;
+			scaleFitWidth = (rect.size.width * scaleForCache) / image.size.width;
+			//NSLog(@"rect.size=%@, image.size=%@, scaleFitWidth=%f",NSStringFromCGSize(rect.size), NSStringFromCGSize(image.size), scaleFitWidth);
+			//NSLog(@"scaleForCache=%f", scaleForCache);
+			//NSLog(@"scaleFitWidth=%f", scaleFitWidth);
 			
 			inPagePngScrollView.minimumZoomScale = scaleFitWidth;
 			inPagePngScrollView.maximumZoomScale = 8.0f;
