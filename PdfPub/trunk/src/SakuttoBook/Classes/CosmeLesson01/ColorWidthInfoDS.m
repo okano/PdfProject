@@ -28,7 +28,7 @@
 	//PK421, Kifujin.
 	//@"（資生堂）シャドーカスタマイズ　ＰＫ４２１"
 	tmpDict = [[NSMutableDictionary alloc] init];
-	[tmpDict setValue:@"ピンク色" forKey:MARKERPEN_NAME];
+	[tmpDict setValue:@"ピンク　　　　　(気分ハッピー　メイク)" forKey:MARKERPEN_NAME];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(239.0/256.0)] forKey:MARKERPEN_COLOR_R];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(123.0/256.0)] forKey:MARKERPEN_COLOR_G];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(165.0/256.0)] forKey:MARKERPEN_COLOR_B];
@@ -39,7 +39,7 @@
 	//BL603, midnight black.
 	//@"（資生堂）パーフェクトオートマティックライナー　ＢＬ６０３"
 	tmpDict = [[NSMutableDictionary alloc] init];
-	[tmpDict setValue:@"薄鼠色" forKey:MARKERPEN_NAME];
+	[tmpDict setValue:@"ダークブルー　（カラーライナー　メイク）" forKey:MARKERPEN_NAME];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(  0.0/256.0)] forKey:MARKERPEN_COLOR_R];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)( 16.0/256.0)] forKey:MARKERPEN_COLOR_G];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(107.0/256.0)] forKey:MARKERPEN_COLOR_B];
@@ -50,7 +50,7 @@
 	//Brawn.
 	//@"（資生堂）クリームペンシルライナー　ＢＲ６１１"
 	tmpDict = [[NSMutableDictionary alloc] init];
-	[tmpDict setValue:@"クリーム色" forKey:MARKERPEN_NAME];
+	[tmpDict setValue:@"ブラウン　　　　(隠しダブルライン　メイク)" forKey:MARKERPEN_NAME];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(115.0/256.0)] forKey:MARKERPEN_COLOR_R];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)( 33.0/256.0)] forKey:MARKERPEN_COLOR_G];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(  0.0/256.0)] forKey:MARKERPEN_COLOR_B];
@@ -61,7 +61,7 @@
 	//GR522, green juely.
 	//@"（資生堂）ジュエリングペンシル　ＧＲ５２２"
 	tmpDict = [[NSMutableDictionary alloc] init];
-	[tmpDict setValue:@"黄緑色" forKey:MARKERPEN_NAME];
+	[tmpDict setValue:@"グリーン　　　　(ラメライナー　メイク)" forKey:MARKERPEN_NAME];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)( 90.0/256.0)] forKey:MARKERPEN_COLOR_R];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(156.0/256.0)] forKey:MARKERPEN_COLOR_G];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(  0.0/256.0)] forKey:MARKERPEN_COLOR_B];
@@ -73,7 +73,7 @@
 	//kukkiri line seme make.(yellow)
 	//@"（プロフェッツ）プロパレットーＳ　イエロー"
 	tmpDict = [[NSMutableDictionary alloc] init];
-	[tmpDict setValue:@"黄色" forKey:MARKERPEN_NAME];
+	[tmpDict setValue:@"イエロー　　　　(くっきりライン　メイク)" forKey:MARKERPEN_NAME];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(231.0/256.0)] forKey:MARKERPEN_COLOR_R];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(214.0/256.0)] forKey:MARKERPEN_COLOR_G];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(123.0/256.0)] forKey:MARKERPEN_COLOR_B];
@@ -81,21 +81,10 @@
 	[tmpDict setValue:[NSNumber numberWithFloat:20.0f] forKey:MARKERPEN_WIDTH];
 	[colorWidthInfo addObject:tmpDict];
 
-	//shadow make 1(purple)
-	tmpDict = [[NSMutableDictionary alloc] init];
-	//@"（プロフェッツ）プロパレットーＤＸ　パープル"
-	[tmpDict setValue:@"紫色" forKey:MARKERPEN_NAME];
-	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(189.0/256.0)] forKey:MARKERPEN_COLOR_R];
-	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(107.0/256.0)] forKey:MARKERPEN_COLOR_G];
-	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(231.0/256.0)] forKey:MARKERPEN_COLOR_B];
-	[tmpDict setValue:[NSNumber numberWithFloat:0.25f] forKey:MARKERPEN_COLOR_ALPHA];
-	[tmpDict setValue:[NSNumber numberWithFloat:20.0f] forKey:MARKERPEN_WIDTH];
-	[colorWidthInfo addObject:tmpDict];
-	
 	//shadow make 2(blue-cyan)
 	//@"（プロフェッツ）プロパレットーＤＸ　ブルー"
 	tmpDict = [[NSMutableDictionary alloc] init];
-	[tmpDict setValue:@"水色" forKey:MARKERPEN_NAME];
+	[tmpDict setValue:@"ブルー　　　　　(２色シャドー　メイク　(1))" forKey:MARKERPEN_NAME];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(132.0/256.0)] forKey:MARKERPEN_COLOR_R];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(214.0/256.0)] forKey:MARKERPEN_COLOR_G];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(239.0/256.0)] forKey:MARKERPEN_COLOR_B];
@@ -103,10 +92,21 @@
 	[tmpDict setValue:[NSNumber numberWithFloat:20.0f] forKey:MARKERPEN_WIDTH];
 	[colorWidthInfo addObject:tmpDict];
 	
+	//shadow make 1(purple)
+	tmpDict = [[NSMutableDictionary alloc] init];
+	//@"（プロフェッツ）プロパレットーＤＸ　パープル"
+	[tmpDict setValue:@"ピンクパープル　(２色シャドー　メイク　(2))" forKey:MARKERPEN_NAME];
+	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(189.0/256.0)] forKey:MARKERPEN_COLOR_R];
+	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(107.0/256.0)] forKey:MARKERPEN_COLOR_G];
+	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(231.0/256.0)] forKey:MARKERPEN_COLOR_B];
+	[tmpDict setValue:[NSNumber numberWithFloat:0.25f] forKey:MARKERPEN_COLOR_ALPHA];
+	[tmpDict setValue:[NSNumber numberWithFloat:20.0f] forKey:MARKERPEN_WIDTH];
+	[colorWidthInfo addObject:tmpDict];
+	
 	//rennai ryoku sokusin make.
 	//@"（プロフェッツ）プロパレットーＤＸ　オレンジ"
 	tmpDict = [[NSMutableDictionary alloc] init];
-	[tmpDict setValue:@"オレンジ色" forKey:MARKERPEN_NAME];
+	[tmpDict setValue:@"オレンジ　　　　(恋愛力促進　メイク)" forKey:MARKERPEN_NAME];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(255.0/256.0)] forKey:MARKERPEN_COLOR_R];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(140.0/256.0)] forKey:MARKERPEN_COLOR_G];
 	[tmpDict setValue:[NSNumber numberWithFloat:(CGFloat)(132.0/256.0)] forKey:MARKERPEN_COLOR_B];
