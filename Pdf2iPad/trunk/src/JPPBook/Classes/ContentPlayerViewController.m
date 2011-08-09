@@ -291,6 +291,7 @@
 			[image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
 			resizedImage = UIGraphicsGetImageFromCurrentImageContext();
 			UIGraphicsEndImageContext();
+			[image release];
 			
 			/*
 			 CGRect rect = CGRectMake(0, 0,
