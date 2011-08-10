@@ -257,6 +257,6 @@
 
 // Treat Sound.
 @interface ContentPlayerViewController (soundonpage)
-- (BOOL)parseSoundOnPageDefine;
+- (void)parseSoundOnPageDefine;
 - (void)playSoundAtIndex:(NSUInteger)index;
 @end

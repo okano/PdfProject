@@ -13,20 +13,23 @@
 #pragma mark -
 #pragma mark Treat Sound on page.
 //Parse Sound Define.
-- (BOOL)parseSoundOnPageDefine
+- (void)parseSoundOnPageDefine
 {
 	soundDefine = [[NSMutableArray alloc] init];
 	
-	NSMutableDictionary* tmpDict;
+	
 	
 	//parse csv file.
-	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:@"soundDefine" ofType:@"csv"];
-	NSError* error;
-	NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
-	NSString* text2 = [text stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];
+	NSString* targetFilename = @"soundDefine";
+	NSArray* lines;
+	if ([self isMultiContents] == TRUE) {
+		lines = [FileUtility parseDefineCsv:targetFilename contentId:currentContentId];
+	} else {
+		lines = [FileUtility parseDefineCsv:targetFilename];
+	}
 	
-	bool hasError = FALSE;
-	NSArray* lines = [text2 componentsSeparatedByString:@"\n"];
+	//parse each line.
+	NSMutableDictionary* tmpDict;
 	for (NSString* line in lines) {
 		if ([line length] <= 0) {
 			continue;	//Skip blank line.
@@ -54,9 +57,6 @@
 		
 		[soundDefine addObject:tmpDict];
 	}
-	//
-	
-	return ! hasError;
 }
 
 - (void)playSoundAtIndex:(NSUInteger)index
