@@ -37,6 +37,20 @@
 	
 	pageImageView = nil;
 	pdfImageTmp = nil;
+	
+	//
+	/*
+	UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
+	if (interfaceOrientation == UIInterfaceOrientationLandscapeRight
+		||
+		interfaceOrientation == UIInterfaceOrientationLandscapeLeft) {
+		CGRect rect = CGRectMake(self.frame.origin.x,
+								 self.frame.origin.y,
+								 self.frame.size.height,
+								 self.frame.size.width);
+		self.frame = rect;
+	}
+	*/
 }
 
 
@@ -124,8 +138,20 @@
 	//[image release];
 	
 	//Set zoomScale range.
+	[self setupZoomScaleWithSize:newSize];
+	
+	//Zoom to full-size.
+	[self resetScrollView];
+}
+
+- (void)setupZoomScaleWithSize:(CGSize)newSize
+{
+	if (pdfImageTmp == nil) {
+		return;
+	}
 	CGFloat minZoomCandidate = 0.0f;
 	CGFloat maxZoomCandidate = 0.0f;
+	//NSLog(@"pdfImageTmp.size=%@, newSize=%@", NSStringFromCGSize(pdfImageTmp.size), NSStringFromCGSize(newSize));
 	if (pdfImageTmp.size.width <= newSize.width) {
 		//PDF < Screen.
 		minZoomCandidate = newSize.width / pdfImageTmp.size.width;
@@ -153,11 +179,11 @@
 			tmp = 0.0f;
 		}
 	}
+	[self setZoomScale:self.minimumZoomScale];
+
 	//NSLog(@"minimumZoomScale = %f (candidate = %f), maximumZoomScale = %f (candidate = %f)", self.minimumZoomScale, minZoomCandidate, self.maximumZoomScale, maxZoomCandidate);
-	
-	//Zoom to full-size.
-	[self resetScrollView];
 }
+
 
 /**
  *returns scaled image from pdfImage var.

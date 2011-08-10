@@ -567,6 +567,16 @@
 	}
 }
 
+
+- (void)setupZoomScaleWithFrameSize:(CGSize)newSize
+{
+	[prevPdfScrollView setupZoomScaleWithSize:newSize];
+	[currentPdfScrollView setupZoomScaleWithSize:newSize];
+	[nextPdfScrollView setupZoomScaleWithSize:newSize];
+}
+
+
+
 #pragma mark -
 - (void) renderPageLinkAtIndex:(NSUInteger)index
 {

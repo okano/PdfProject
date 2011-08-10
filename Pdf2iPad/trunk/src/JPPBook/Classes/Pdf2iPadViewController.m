@@ -115,6 +115,22 @@
 	if (contentPlayerViewController == nil) {
 		contentPlayerViewController = [[ContentPlayerViewController alloc] initWithNibName:@"ContentPlayerView" bundle:[NSBundle mainBundle] contentId:cid];
 	}
+	
+	//Treat startup with LandScape.
+	UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
+	if (interfaceOrientation == UIInterfaceOrientationLandscapeRight
+		||
+		interfaceOrientation == UIInterfaceOrientationLandscapeLeft) {
+		CGRect rect = CGRectMake(self.view.frame.origin.x,
+								 self.view.frame.origin.y,
+								 self.view.frame.size.height,
+								 self.view.frame.size.width);
+		contentPlayerViewController.view.frame = rect;
+		
+		[contentPlayerViewController setupZoomScaleWithFrameSize:rect.size];
+	}
+	
+	//
 	[self.view addSubview:contentPlayerViewController.view];
 }
 - (void)hideContentPlayerView

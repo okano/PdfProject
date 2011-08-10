@@ -157,6 +157,8 @@
 - (void)generateThumbnailImageFromImage:(UIImage*)baseImage width:(CGFloat)newWidth pageNumForSave:(NSUInteger)pageNum;
 //
 - (void)drawPageWithNumber:(int)newPagenum;
+//
+- (void)setupZoomScaleWithFrameSize:(CGSize)newSize;
 
 
 // Move Page.

@@ -18,6 +18,7 @@
 
 - (void)setupUiScrollView;
 - (void)setupCurrentPageWithSize:(CGSize)newSize;
+- (void)setupZoomScaleWithSize:(CGSize)newSize;
 - (void)setupWithPageNum:(NSUInteger)newPageNum;
 - (void)setupWithPageNum:(NSUInteger)newPageNum ContentId:(ContentId)cid;
 //- (UIImage*)getPdfImageWithRect:(CGRect)pageRect scale:(CGFloat)pdfScale;
