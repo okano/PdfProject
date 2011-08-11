@@ -103,5 +103,9 @@
 #define DEFAULT_BOOK_SUPPORT_URL_PREFIX	@"http://www.google.co.jp/search?q="
 #define PROGRAM_SUPPORT_URL			@"http://www.incunabula.co.jp/book/Sakutto/"
 
+// for Save application Version number what launchup before.
+//(treat first launch up after VersionUp.)
+#define APP_VERSION_PREVIOUS_LAUNCHUP	@"AppVersionPreviousLaunchup"
+
 // license key.
 #define LICENSE_KEY @"99840072-0000-0000-0253-000000000000"

@@ -44,6 +44,7 @@
     [super viewDidLoad];
 	self.title = @"PDF";
 	
+	//Setup current page number.
 	currentPageNum = 1;//;
 	//1-start.
 	
@@ -127,6 +128,13 @@
 	}
 	
 	
+	//Check application version up.
+	if ([self isApplicationVersionUp] == YES) {
+		[self removeAllImageCache];/* use "maxPageNum" */
+		[self writeApplicationVersionToUserDefault];
+	}
+	
+
 	//Generate Thumbnail image.
 	//generate when need.(for launch speed up.)
 	//[self generateThumbnailImage:100.0f];
@@ -206,6 +214,47 @@
 	if (0 < lastReadPage) {
 		[self switchToPage:lastReadPage];
 	}
+}
+
+
+#pragma mark -
+#pragma mark treat application version up.
+- (BOOL)isApplicationVersionUp
+{
+	//Get version number when previous launchup.
+	NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
+	id obj = [settings valueForKey:APP_VERSION_PREVIOUS_LAUNCHUP];
+	if (!obj) {		//no version info exists.
+		return YES;
+	}
+	if (![obj isKindOfClass:[NSString class]]) {
+		NSLog(@"illigal version infomation. class=%@", [obj class]);
+		return YES;
+	}
+	NSString* strVersionPrev = [NSString stringWithString:(NSString*)obj];
+	
+	//Get version number in current.
+	NSString *strVersionCurrent;
+	strVersionCurrent = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleVersion"];
+	
+	if ([strVersionPrev compare:strVersionCurrent] == NSOrderedSame) {
+		return NO;
+	}
+	
+	NSLog(@"version changed. in previous launchup=%@, current version=%@", strVersionPrev, strVersionCurrent);
+	return YES;
+}
+
+- (void)writeApplicationVersionToUserDefault
+{
+	//Get version number in current.
+	NSString *strVersionCurrent;
+	strVersionCurrent = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleVersion"];
+	
+	//Store version infomation to UserDefault.
+	NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
+	[userDefault setObject:strVersionCurrent forKey:APP_VERSION_PREVIOUS_LAUNCHUP];
+	[userDefault synchronize];
 }
 
 

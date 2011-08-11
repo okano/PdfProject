@@ -134,6 +134,9 @@
 /**
  *Functions.
  */
+// Treat application version up.
+- (BOOL)isApplicationVersionUp;
+- (void)writeApplicationVersionToUserDefault;
 // Treat PDF.
 - (BOOL)setupPdfBasicInfo;
 // Handle PDF infomation.
