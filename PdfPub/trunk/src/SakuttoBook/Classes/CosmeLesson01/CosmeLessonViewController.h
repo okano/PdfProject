@@ -32,7 +32,8 @@
 	bool isShownImagePicker;
 	//pan for MarkerPen.
 	UIPanGestureRecognizer* panRecognizer1;
-    CGPoint prevTouchPointForMakerPen;
+	UIPanGestureRecognizer* panRecognizer2;
+    CGPoint prevOffset;
 	//menuBar.
     UIToolbar* menuBarForMakerPen;
 	
@@ -84,6 +85,7 @@
 - (IBAction)exitMarkerMode;
 //Handle pan.
 - (void)handlePan:(UIPanGestureRecognizer*)gestureRecognizer;
+- (void)handlePan2:(UIPanGestureRecognizer*)gestureRecognizer;
 //Menubar.
 - (void)showMenuBarForMarker;
 - (void)hideMenuBarForMarker;

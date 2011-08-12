@@ -270,6 +270,23 @@
     }
 }
 
+//Scroll with 2-finger.
+- (void)handlePan2:(UIPanGestureRecognizer *)gestureRecognizer
+{
+	CGPoint point = [gestureRecognizer translationInView:self.view];
+	//CGPoint velocity = [gestureRecognizer velocityInView:self.view];
+	//NSLog(@"pan. translation: %@, velocity: %@", NSStringFromCGPoint(point), NSStringFromCGPoint(velocity));
+	
+	if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+        prevOffset = scrollView.contentOffset;
+	} else if (gestureRecognizer.state == UIGestureRecognizerStateChanged) {
+		CGPoint newOffset = CGPointMake(prevOffset.x - point.x, 
+										prevOffset.y - point.y);
+		[scrollView setContentOffset:newOffset];
+	}
+}
+
+
 #pragma mark - menubar.
 - (void)showMenuBarForMarker {
 	//LOG_CURRENT_METHOD;
@@ -598,19 +615,16 @@
 	LOG_CURRENT_METHOD;
 	switch (zoomLevel) {
 		case 0:
-			LOG_CURRENT_LINE;
 			scrollView.zoomScale = scrollView.maximumZoomScale;
 			zoomLevel = zoomLevel + 1;
 			break;
 			
 		case 1:
-			LOG_CURRENT_LINE;
 			scrollView.zoomScale = 1.0f;
 			zoomLevel = zoomLevel + 1;
 			break;
 			
 		default:
-			LOG_CURRENT_LINE;
 			scrollView.zoomScale = scrollView.minimumZoomScale;
 			zoomLevel = 0;
 			break;

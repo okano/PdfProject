@@ -81,6 +81,9 @@
 	//Gesture for MarkerPen.
 	panRecognizer1 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
 	[self.view addGestureRecognizer:panRecognizer1];
+	panRecognizer2 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan2:)];
+	panRecognizer2.minimumNumberOfTouches = 2;
+	[self.view addGestureRecognizer:panRecognizer2];
 	
 	//Exit marker mode when start.
 	[self exitMarkerMode];
