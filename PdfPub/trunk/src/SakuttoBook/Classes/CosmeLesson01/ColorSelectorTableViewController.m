@@ -126,7 +126,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 	
 	[parentViewController setLineColorAndWidthWithIndex:indexPath.row];
-	[parentViewController setupMarkerPenMenu];
+	//[parentViewController setupMarkerPenMenu];
 	
 	[parentViewController hideColorAndSizeSelector];
 }

@@ -59,7 +59,7 @@
 	//
 	CGRect imageRect = CGRectMake(0, 0, imageView.image.size.width, imageView.image.size.height);
 	[self setupMarkerPenView:imageRect];
-	[self setupMarkerPenMenu];
+	//[self setupMarkerPenMenu];
 
 	//
 	originalPageWidth  = image.size.width;
@@ -109,7 +109,7 @@
 	scrollView.delegate = self;
 	
 	
-	//Setup scale.
+	//Setup scale.(fit screen)
 	CGFloat widthRatio = self.view.frame.size.width / newImage.size.width;
 	CGFloat heightRatio = self.view.frame.size.height / newImage.size.height;
 	CGFloat ratio;
@@ -119,7 +119,7 @@
 		ratio = heightRatio;
 	}
 	scrollView.minimumZoomScale = ratio;
-	scrollView.maximumZoomScale = 1.0f;
+	scrollView.maximumZoomScale = 1.5f;
 	
 	[scrollView setZoomScale:scrollView.minimumZoomScale];
 }
@@ -255,6 +255,9 @@
 	//
 	colorWidthInfoDS = [[ColorWidthInfoDS alloc] init];
 	[self setupThisView];
+	
+	//
+	[self enterMarkerMode];
 }
 
 - (void)viewDidUnload

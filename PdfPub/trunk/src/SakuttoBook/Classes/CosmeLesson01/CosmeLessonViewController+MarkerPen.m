@@ -146,8 +146,8 @@
     //[self.view bringSubviewToFront:markerPenView];
 	
 	//Show menu bar, label for MakerPen.
-	[self setupMarkerPenMenu];
-    [self showMenuBarForMarker];
+	//[self setupMarkerPenMenu];
+    //[self showMenuBarForMarker];
     
     //Enable touch with view for maker.
     markerPenView.userInteractionEnabled = YES;
@@ -282,7 +282,7 @@
 }
 
 #pragma mark - show/hide Color and Width Selector.
-- (void)showColorAndSizeSelector
+- (IBAction)showColorAndSizeSelector
 {
 	//Generate view for add.
 	if (colorSelectorView == nil) {
@@ -481,7 +481,7 @@
 }
 
 #pragma mark - delete marker.
-- (void)prepareDeleteMarkerPenWithCurrentPage
+- (IBAction)prepareDeleteMarkerPenWithCurrentPage
 {
 	//Show ActionSheet
 	UIActionSheet *sheet;
@@ -589,6 +589,32 @@
 	}
 	[markerPenView deleteLastLine];
 	[markerPenView setNeedsDisplay];
+}
+
+
+#pragma mark - Change zoom level.
+- (IBAction)changeZoomLevel
+{
+	LOG_CURRENT_METHOD;
+	switch (zoomLevel) {
+		case 0:
+			LOG_CURRENT_LINE;
+			scrollView.zoomScale = scrollView.maximumZoomScale;
+			zoomLevel = zoomLevel + 1;
+			break;
+			
+		case 1:
+			LOG_CURRENT_LINE;
+			scrollView.zoomScale = 1.0f;
+			zoomLevel = zoomLevel + 1;
+			break;
+			
+		default:
+			LOG_CURRENT_LINE;
+			scrollView.zoomScale = scrollView.minimumZoomScale;
+			zoomLevel = 0;
+			break;
+	}
 }
 
 

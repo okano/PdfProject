@@ -53,7 +53,9 @@
 	CGFloat scaleWithAspectFitWidth;
 	CGFloat scaleWithAspectFitHeight;
 	CGFloat scaleForDraw;
-
+	
+	//Zoom level.
+	int zoomLevel;
 }
 @property (nonatomic, retain) UIScrollView* scrollView;
 @property (nonatomic, retain) ColorWidthInfoDS* colorWidthInfoDS;
@@ -86,7 +88,7 @@
 - (void)showMenuBarForMarker;
 - (void)hideMenuBarForMarker;
 //Color and Width.
-- (void)showColorAndSizeSelector;
+- (IBAction)showColorAndSizeSelector;
 //- (void)setLineColorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha;
 - (void)setLineColorAndWidthWithIndex:(NSInteger)index;
 - (void)setLineColor:(NSDictionary*)colorDict;
@@ -97,11 +99,13 @@
 //Rendering.
 - (void)renderMarkerPenFromUserDefaultAtPage:(NSUInteger)pageNum;
 //Delete.
-- (void)prepareDeleteMarkerPenWithCurrentPage;
+- (IBAction)prepareDeleteMarkerPenWithCurrentPage;
 - (void)deleteMarkerPenAtPage:(NSUInteger)pageNum;
 - (void)clearMarkerPenView;
 //Delete single line.
 - (IBAction)deleteLastLine:(id)sender;
+//Change zoom level.
+- (IBAction)changeZoomLevel;
 @end
 
 //
