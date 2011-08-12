@@ -25,6 +25,7 @@
 		colorSelectorTVC = nil;
 		colorSelectorView = nil;
 		colorSelectorToolbar = nil;
+		isShownImagePicker = NO;
     }
     return self;
 }
@@ -136,7 +137,7 @@
 - (IBAction)showImageSelector
 {
 	//show picture selector.
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
 	[self openImagePickerFromBarButtonItem:[[toolbar items] objectAtIndex:2]];
 }
 

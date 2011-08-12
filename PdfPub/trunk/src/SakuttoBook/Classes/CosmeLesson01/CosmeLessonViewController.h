@@ -29,6 +29,7 @@
 	CGFloat currentLineWidth;
 	
 	bool isMarkerPenMode;
+	bool isShownImagePicker;
 	//pan for MarkerPen.
 	UIPanGestureRecognizer* panRecognizer1;
     CGPoint prevTouchPointForMakerPen;

@@ -13,6 +13,11 @@
 
 - (void)openImagePickerFromBarButtonItem:(UIBarButtonItem*)button
 {
+    [self dismissModalViewControllerAnimated:YES];
+	
+	if (isShownImagePicker == YES) {
+		return;
+	}
 	
 	UIImagePickerController *picker = [[UIImagePickerController alloc] init];  
 	picker.delegate = self;  
@@ -31,6 +36,8 @@
 		//iPhone
 		[self presentModalViewController:picker animated:YES];  
 	}
+	//Set flag.(ignore multi open with ImagePicker.)
+	isShownImagePicker = YES;
 	
 	[picker release];
 }
@@ -44,6 +51,9 @@
 	
 	[picker dismissModalViewControllerAnimated:YES];  
 	LOG_CURRENT_METHOD;
+	
+	//Set flag.(ignore multi open with ImagePicker.)
+	isShownImagePicker = NO;
 }
 
 - (void) imagePickerControllerDidCancel:(UIImagePickerController*)picker {  
@@ -51,9 +61,15 @@
 	LOG_CURRENT_METHOD;
 	
 	[picker dismissModalViewControllerAnimated:YES];  
+	//Set flag.(ignore multi open with ImagePicker.)
+	isShownImagePicker = NO;
 }
 
 //- (BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController{}
-//- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController{}
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+	//Set flag.(ignore multi open with ImagePicker.)
+	isShownImagePicker = NO;
+}
 
 @end
