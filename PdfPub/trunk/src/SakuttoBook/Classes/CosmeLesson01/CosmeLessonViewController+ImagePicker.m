@@ -46,11 +46,9 @@
 		 didFinishPickingImage:(UIImage *)selectedImage
 				   editingInfo:(NSDictionary*)editingInfo {  
     // Get selected image.
-	LOG_CURRENT_METHOD;
 	[self setupImage:selectedImage];
 	
 	[picker dismissModalViewControllerAnimated:YES];  
-	LOG_CURRENT_METHOD;
 	
 	//Set flag.(ignore multi open with ImagePicker.)
 	isShownImagePicker = NO;
@@ -58,7 +56,7 @@
 
 - (void) imagePickerControllerDidCancel:(UIImagePickerController*)picker {  
     //Treat "cancel".
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
 	
 	[picker dismissModalViewControllerAnimated:YES];  
 	//Set flag.(ignore multi open with ImagePicker.)
