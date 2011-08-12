@@ -1453,10 +1453,10 @@
 		[tmpDict setValue:[NSNumber numberWithInt:[[tmpCsvArray objectAtIndex:4] intValue]] forKey:PJ_PAGE_AREA_HEIGHT];
 		//URL.(Jump TO)
 		[tmpDict setValue:[NSString stringWithString:[tmpCsvArray objectAtIndex:5]] forKey:PJ_PAGE_JUMPTO];
-		NSLog(@"tmpDict=%@", [tmpDict description]);
+		//NSLog(@"tmpDict=%@", [tmpDict description]);
 		
 		if ([[tmpDict valueForKey:PJ_PAGE_NUMBER] intValue] != index) {
-			LOG_CURRENT_LINE;
+			//LOG_CURRENT_LINE;
 			continue;	//skip to next line.
 			return FALSE;
 		}
