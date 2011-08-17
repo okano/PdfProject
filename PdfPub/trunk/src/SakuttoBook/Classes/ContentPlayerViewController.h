@@ -11,6 +11,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "SKBE_MainVC.h"
 #import "Utility.h"
+#import "FileUtility.h"
 #import "Define.h"
 #import "MenuViewController.h"
 #import "WebViewController.h"
@@ -57,7 +58,9 @@
 	//for pdf handle.
 	NSURL* pdfURL;
 	
-	// 
+	//
+	ContentId currentContentId;
+	//
 	int currentPageNum;
 	int maxPageNum;
 	
@@ -110,6 +113,8 @@
 //
 @property (nonatomic, retain) NSURL* pdfURL;
 
+@property (nonatomic) ContentId currentContentId;
+
 //@property (nonatomic, retain) UIImageView* imageView1;
 //@property (nonatomic, retain) UIImageView* imageView2;
 //@property (nonatomic, retain) UIImageView* imageView3;
@@ -134,18 +139,25 @@
 /**
  *Functions.
  */
+- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle contentId:(ContentId)cid;
 // Treat PDF.
-- (BOOL)setupPdfBasicInfo;
+- (ContentId)getCurrentContentIdFromUserDefault;
+- (BOOL)setupPdfBasicInfo:(ContentId)cid;
 // Handle PDF infomation.
 - (BOOL)isVerticalWriting;
 - (BOOL)isTransitionWithCurl;
+- (BOOL)isMultiContents;
 //- (void)getPdfDictionaryWithPageNum:(NSUInteger)pageNum;
 
 // Draw PDF.
 - (NSString*)getPageFilenameFull:(int)pageNum;
+- (NSString*)getPageFilenameFull:(int)pageNum WithContentId:(ContentId)cid;
 - (NSString*)getThumbnailFilenameFull:(int)pageNum;
+- (NSString*)getThumbnailFilenameFull:(int)pageNum WithContentId:(ContentId)cid;
 //
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum;
+- (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum WithContentId:(ContentId)cid;
+- (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum WithTargetFilenameFull:(NSString*)filename;
 - (void)generateThumbnailImageFromImage:(UIImage*)baseImage width:(CGFloat)newWidth pageNumForSave:(NSUInteger)pageNum;
 - (void)removeAllImageCache;
 //
@@ -173,26 +185,28 @@
 - (void) renderPageLinkAtIndex:(NSUInteger)index;
 
 // Treat Movie.
-- (BOOL)parseMovieDefine;	// Parse Movie define in CSV.
+- (void)parseMovieDefine;	// Parse Movie define in CSV.
 - (void)renderMovieLinkAtIndex:(NSUInteger)index;
 - (void)showMoviePlayer:(NSString*)filename;
 // Treat PageJumpLink.
-- (BOOL)parsePageJumpLinkDefine;	// Parse PageJumpLink define in CSV.
+- (void)parsePageJumpLinkDefine;	// Parse PageJumpLink define in CSV.
 - (void)renderPageJumpLinkAtIndex:(NSUInteger)index;
 // Treat InPage ScrollView.
-- (BOOL)parseInPageScrollViewDefine;	// Parse define in CSV.
+- (void)parseInPageScrollViewDefine;	// Parse define in CSV.
 - (void)renderInPageScrollViewAtIndex:(NSUInteger)index;
 // Treat Popover Scroll Image.
-- (BOOL)parsePopoverScrollImageDefine;	// Parse define in CSV.
+- (void)parsePopoverScrollImageDefine;	// Parse define in CSV.
 - (void)renderPopoverScrollImageLinkAtIndex:(NSUInteger)index;
 - (void)showPopoverScrollImagePlayer:(NSString*)filename;
 // Treat TOC.
-- (BOOL)parseTocDefine;			// Parse Table Of Contents define in CSV.
-- (BOOL)parseBookmarkDefine;	// get Bookmark infomation from UserDefault.
+- (void)parseTocDefine;			// Parse Table Of Contents define in CSV.
 - (void)showTocView;
 - (void)hideTocView;
 - (void)showThumbnailView;
 - (void)hideThumbnailView;
+// Treat Bookmark.
+- (BOOL)loadBookmark;	// get Bookmark infomation from UserDefault.
+- (void)saveBookmark;
 - (void)showBookmarkView;
 - (void)hideBookmarkView;
 - (void)showBookmarkModifyView;

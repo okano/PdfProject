@@ -131,6 +131,8 @@
 	}
 	
 	//Delete bookmark item from UserDefault.
+	[appDelegate saveBookmark];
+	/*
 	NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
 	id obj = [settings valueForKey:BOOKMARK_ARRAY];
 	if (!obj) {		//no bookmark exists.
@@ -148,6 +150,7 @@
 		[userDefault synchronize];
 	}
 	[bookmarkInUserDefault release];
+	*/
 	
 	//Reload TableView.
 	NSArray* rowsForDelete = [NSArray arrayWithObject:indexPath];
@@ -192,6 +195,7 @@
 		}
 	}
 	
+	/*
 	//Move bookmark item from UserDefault.
 	NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
 	id obj = [settings valueForKey:BOOKMARK_ARRAY];
@@ -223,6 +227,9 @@
 		[userDefault synchronize];
 	}
 	[bookmarkInUserDefault release];
+	*/
+	
+	[appDelegate saveBookmark];
 	
 	//Reload TableView.
 	//NSArray* targetRows = [NSArray arrayWithObjects:fromIndexPath, toIndexPath, nil];

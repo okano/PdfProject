@@ -10,6 +10,7 @@
 #import "SakuttoBookAppDelegate.h"
 #import "Utility.h"
 #import "Define.h"
+#import "FileUtility.h"
 
 @interface ThumbnailViewController : UIViewController {
 	UIToolbar* toolBar;

@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "SakuttoBookAppDelegate.h"
 #import "Utility.h"
+#import "FileUtility.h"
+#import "InAppPurchaseDefine.h"
 
 @interface MyPdfScrollView : UIScrollView <UIScrollViewDelegate> {
 	//View for zooming.
@@ -29,6 +31,8 @@
 	//
 	CGRect pageRectOriginal, pageRectForDraw;
 	
+	//
+	ContentId currentContentId;
 }
 @property (nonatomic, retain) UIImageView* pageImageView;
 @property (nonatomic, retain) UIImage* pdfImageTmp;
@@ -36,10 +40,12 @@
 @property (nonatomic) CGSize originalPageSize;
 @property (nonatomic) CGFloat originalPageWidth;
 @property (nonatomic) CGFloat originalPageHeight;
+@property (nonatomic) ContentId currentContentId;
 
 - (void)setupUiScrollView;
 - (void)setupCurrentPageWithSize:(CGSize)newSize;
 - (void)setupWithPageNum:(NSUInteger)newPageNum;
+- (void)setupWithPageNum:(NSUInteger)newPageNum ContentId:(ContentId)cid;
 //- (UIImage*)getPdfImageWithRect:(CGRect)pageRect scale:(CGFloat)pdfScale;
 //
 - (void)cleanupSubviews;

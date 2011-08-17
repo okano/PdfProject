@@ -8,6 +8,7 @@
 
 #import "SakuttoBookAppDelegate.h"
 #import "SakuttoBookViewController.h"
+#import "InAppPurchaseDefine.h"
 
 @implementation SakuttoBookAppDelegate
 
@@ -16,6 +17,10 @@
 @synthesize license;
 @synthesize tocDefine;
 @synthesize bookmarkDefine;
+//
+@synthesize paymentConductor;
+@synthesize contentListDS;
+@synthesize paymentHistoryDS;
 
 #pragma mark -
 #pragma mark Application lifecycle
@@ -26,6 +31,17 @@
 	license = [[License alloc] init];
 	//Hides status bar.
 	[[UIApplication sharedApplication] setStatusBarHidden:YES];
+	
+	//Setup Content List.
+	contentListDS = [[ContentListDS alloc] init];
+	
+	//Setup for InAppPurchase.
+	paymentConductor = [[PaymentConductor alloc] init];
+	
+	//Setup for InAppPurchase.
+	paymentHistoryDS = [[PaymentHistoryDS alloc] init];
+	[[SKPaymentQueue defaultQueue] addTransactionObserver:paymentConductor];
+	paymentConductor.paymentHistoryDS = paymentHistoryDS;
 	
     // Add the view controller's view to the window and display.
     [self.window addSubview:viewController.view];
@@ -83,6 +99,9 @@
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum {
 	return [viewController.contentPlayerViewController getPdfPageImageWithPageNum:pageNum];
 }
+- (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum WithContentId:(ContentId)cid {
+	return [viewController.contentPlayerViewController getPdfPageImageWithPageNum:pageNum WithContentId:cid];
+}
 - (void)switchToPage:(int)newPageNum {
 	[viewController.contentPlayerViewController switchToPage:newPageNum];
 }
@@ -103,6 +122,9 @@
 }
 - (void)setIsShownTocView:(bool)status {
 	viewController.contentPlayerViewController.isShownTocView = status;
+}
+- (void)saveBookmark {
+	[viewController.contentPlayerViewController saveBookmark];
 }
 - (void)showBookmarkView {
 	[viewController.contentPlayerViewController showBookmarkView];
@@ -134,6 +156,11 @@
 - (void)showInfoView {
 	[viewController.contentPlayerViewController showInfoView];
 }
+#pragma mark -
+- (ContentId)getCurrentContentIdInContentPlayer
+{
+	return viewController.contentPlayerViewController.currentContentId;
+}
 
 
 #pragma mark -
@@ -153,4 +180,28 @@
 }
 
 
+@end
+
+
+#pragma mark - InAppPurchase
+@implementation SakuttoBookAppDelegate (InAppPurchase)
+#pragma mark -
+- (void)showContentListView {
+	[self.viewController showContentListView];
+}
+- (void)hideContentListView {
+	[self.viewController hideContentListView];
+}
+- (void)showContentPlayerView:(ContentId)cid {
+	[self.viewController showContentPlayerView:cid];
+}
+- (void)hideContentPlayerView {
+	[self.viewController hideContentPlayerView];
+}
+- (void)showContentDetailView:(ContentId)cid {
+	[self.viewController showContentDetailView:cid];
+}
+- (void)hideContentDetailView {
+	[self.viewController hideContentDetailView];
+}
 @end

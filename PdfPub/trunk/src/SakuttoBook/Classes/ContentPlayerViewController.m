@@ -16,6 +16,7 @@
 @synthesize pdfURL;
 //@synthesize imageView1, imageView2, imageView3;
 //@synthesize image1, image2, image3;
+@synthesize currentContentId;
 @synthesize menuViewController, webViewController, tocViewController, thumbnailViewController, bookmarkViewController;
 @synthesize isShownMenuBar, isShownTocView, isShownThumbnailView, isShownBookmarkView;
 //@synthesize currentImageView;
@@ -39,8 +40,16 @@
 
 
 #pragma mark -
+- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle contentId:(ContentId)cid
+{
+	//LOG_CURRENT_METHOD;
+	currentContentId = cid;
+	return [self initWithNibName:nibName bundle:nibBundle];
+}
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+	//LOG_CURRENT_METHOD;
     [super viewDidLoad];
 	self.title = @"PDF";
 	
@@ -119,9 +128,18 @@
 	 [pdfScrolView3 addGestureRecognizer:panRecognizer3];
 	 */
 	
+	//Set current content id.
+	//currentContentId = [self getCurrentContentIdFromUserDefault];
+	if ([self isMultiContents] == TRUE) {
+		//Mulit Contents.
+		//Do-nothing.
+	} else {
+		//Single Content.
+		currentContentId = 1;
+	}
 	
 	//Setup maxPageNum.
-	if ([self setupPdfBasicInfo] == FALSE) {
+	if ([self setupPdfBasicInfo:currentContentId] == FALSE) {
 		NSLog(@"cannot get pdf infomation.");
 		return;
 	}
@@ -139,6 +157,12 @@
 #endif
 	
 	//Show top page.
+	//LOG_CURRENT_LINE;
+	//NSLog(@"currentContentId=%d", currentContentId);
+	////NSLog(@"pdf scroll view currentContentId=%d, %d, %d",
+	////	  pdfScrollView1.currentContentId,
+	////	  pdfScrollView2.currentContentId,
+	////	  pdfScrollView3.currentContentId);
 	[self drawPageWithNumber:currentPageNum];
 	[self.view setNeedsDisplay];
 	
@@ -192,7 +216,7 @@
 	// Setup Bookmark View.
 	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
 	appDelegate.bookmarkDefine = nil;
-	[self parseBookmarkDefine];
+	[self loadBookmark];
 	bookmarkViewController = [[BookmarkViewController alloc] initWithNibName:@"BookmarkView" bundle:[NSBundle mainBundle]];
 	CGRect bookmarkViewFrame = bookmarkViewController.view.frame;	//Fit with self.view.
 	bookmarkViewFrame.size.width = self.view.frame.size.width;
@@ -210,21 +234,45 @@
 
 #pragma mark -
 #pragma mark setup pdf infomation.
-- (BOOL)setupPdfBasicInfo
+- (ContentId)getCurrentContentIdFromUserDefault
+{
+	return (ContentId)currentContentId;
+}
+/*
+- (void)setCurrentContentId:(ContentId)cid
+{
+	currentContentId = cid;
+	pdfScrollView1.currentContentId = cid;
+	pdfScrollView2.currentContentId = cid;
+	pdfScrollView3.currentContentId = cid;
+}
+*/
+- (BOOL)setupPdfBasicInfo:(ContentId)cid
 {
 	//Setup PDF filename.(chached in this class)
-	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:@"pdfDefine" ofType:@"csv"];
-	NSError* error;
-	NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
-	NSString* text2 = [text stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];
-	
-	NSArray* lines = [text2 componentsSeparatedByString:@"\n"];
+	//parse csv file.
+	NSString* targetFilename = @"pdfDefine";
+	NSArray* lines;
+	lines = [FileUtility parseDefineCsv:targetFilename];
+	//NSLog(@"lines count=%d, lines=%@.", [lines count], [lines description]);
+
 	NSString* pdfFilename;
 	if ([lines count] < 1) {
 		NSLog(@"no PDF file specified.");
 		pdfFilename = [NSString stringWithFormat:@"document.pdf"];
 	} else {
-		pdfFilename = [lines objectAtIndex:0];
+		if ([self isMultiContents] == TRUE) {
+			//Multi Contents
+			if (cid <= [lines count]) {
+				pdfFilename = [lines objectAtIndex:(cid - 1)];
+			} else {
+				NSLog(@"illigal ContentId. maxnumber=%d, passedContentId=%d. open pdf at index 0.", [lines count], cid);
+				pdfFilename = [lines objectAtIndex:0];
+			}
+		} else {
+			//Single Content.
+			pdfFilename = [lines objectAtIndex:0];
+		}
 	}
 	NSString* pdfFilenameFormatted = [self formatStringWithAlphaNumeric:pdfFilename];
 	pdfURL = [[NSBundle mainBundle] URLForResource:pdfFilenameFormatted withExtension:nil];
@@ -291,23 +339,48 @@
 #endif
 }
 
+- (BOOL)isMultiContents
+{
+#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+	return YES;	//True, multi contents.
+#else
+	return NO;	//False, single content.
+#endif	
+}
+
 
 #pragma mark -
 #pragma mark draw pdf to screen.
 - (NSString*)getPageFilenameFull:(int)pageNum {
+	return [FileUtility getPageFilenameFull:pageNum];
+	/*
 	NSString* filename = [NSString stringWithFormat:@"%@%d", PAGE_FILE_PREFIX, pageNum];
 	NSString* targetFilenameFull = [[[NSHomeDirectory() stringByAppendingPathComponent:@"tmp"]
 									 stringByAppendingPathComponent:filename]
 									stringByAppendingPathExtension:PAGE_FILE_EXTENSION];
 	return targetFilenameFull;
+	*/
+}
+- (NSString*)getPageFilenameFull:(int)pageNum WithContentId:(ContentId)cid{
+	return [FileUtility getPageFilenameFull:pageNum WithContentId:cid];
 }
 
 - (NSString*)getThumbnailFilenameFull:(int)pageNum {
+	if ([self isMultiContents] == TRUE) {
+		return [FileUtility getThumbnailFilenameFull:pageNum WithContentId:currentContentId];
+	} else {
+		return [FileUtility getThumbnailFilenameFull:pageNum];
+	}
+	/*
 	NSString* filename = [NSString stringWithFormat:@"%@%d", THUMBNAIL_FILE_PREFIX, pageNum];
 	NSString* targetFilenameFull = [[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 									 stringByAppendingPathComponent:filename]
 									stringByAppendingPathExtension:THUMBNAIL_FILE_EXTENSION];
 	return targetFilenameFull;
+	*/
+}
+- (NSString*)getThumbnailFilenameFull:(int)pageNum WithContentId:(ContentId)cid{
+	return [FileUtility getThumbnailFilenameFull:pageNum WithContentId:cid];
 }
 
 #pragma mark -
@@ -322,12 +395,29 @@
 		NSLog(@"illigal page given. pageNum=%d, maxPageNum=%d", pageNum, maxPageNum);
 		return nil;
 	}
-	
-	//
-	//[self preparePdfPageImageWithPageNum:pageNum];
-	
 	//Get image from file if exists.
-	NSString* targetFilenameFull = [self getPageFilenameFull:pageNum];
+	NSString* targetFilenameFull;
+#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+	targetFilenameFull = [FileUtility getPageFilenameFull:pageNum WithContentId:currentContentId];
+#else
+	targetFilenameFull = [FileUtility getPageFilenameFull:pageNum];
+#endif
+	
+	//NSLog(@"targetFilenameFull=%@", targetFilenameFull);
+	return [self getPdfPageImageWithPageNum:pageNum WithTargetFilenameFull:targetFilenameFull];
+}
+- (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum WithContentId:(ContentId)cid
+{
+	if (maxPageNum < pageNum) {
+		NSLog(@"illigal page given. pageNum=%d, maxPageNum=%d", pageNum, maxPageNum);
+		return nil;
+	}
+	//Get image from file if exists.
+	NSString* targetFilenameFull = [FileUtility getPageFilenameFull:pageNum WithContentId:cid];
+	return [self getPdfPageImageWithPageNum:pageNum WithTargetFilenameFull:targetFilenameFull];
+}
+- (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum WithTargetFilenameFull:(NSString*)targetFilenameFull
+{
 	NSFileManager *fileManager = [NSFileManager defaultManager];
 	if ([fileManager fileExistsAtPath:targetFilenameFull]) {
 		UIImage* pdfImage = [[UIImage alloc] initWithContentsOfFile:targetFilenameFull];
@@ -341,7 +431,10 @@
 		//NSLog(@"page file for page %d not exist. generate. filename=%@", pageNum, targetFilenameFull);
 		//return [self generateImageWithPageNum:pageNum];
 		ImageGenerator* ig = [[ImageGenerator alloc] init];
-		[ig generateImageWithPageNum:pageNum fromUrl:pdfURL minWidth:CACHE_IMAGE_WIDTH_MIN];
+#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+		ig.currentContentId	= currentContentId;
+#endif
+		[ig generateImageWithPageNum:pageNum fromUrl:pdfURL minWidth:CACHE_IMAGE_WIDTH_MIN maxWidth:CACHE_IMAGE_WIDTH_MAX];
 		[ig release];
 		
 		UIImage* pdfImage = [[UIImage alloc] initWithContentsOfFile:targetFilenameFull];
@@ -352,6 +445,9 @@
 			return pdfImage;
 		} else {
 			NSLog(@"page generate but can not open image from file. for page %d filename=%@", pageNum, targetFilenameFull);
+#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+			NSLog(@"currentContentId=%d", currentContentId);
+#endif
 			return nil;
 		}
 	}
@@ -359,6 +455,9 @@
 	[targetFilenameFull release];
 	return nil;
 }
+
+
+
 
 - (void)generateThumbnailImageFromImage:(UIImage*)baseImage width:(CGFloat)newWidth pageNumForSave:(NSUInteger)pageNum
 {
@@ -385,9 +484,11 @@
 	//Save to file.
 	NSData *data = UIImagePNGRepresentation(resizedImage);
 	NSString* targetFilenameFull = [self getThumbnailFilenameFull:pageNum];
+	[FileUtility makeDir:targetFilenameFull];
 	NSError* error = nil;
 	[data writeToFile:targetFilenameFull options:NSDataWritingAtomic error:&error];
 	if (error) {
+		LOG_CURRENT_METHOD;
 		NSLog(@"thumbnail file write error. path=%@", targetFilenameFull);
 		NSLog(@"error=%@, error code=%d", [error localizedDescription], [error code]);
 		
@@ -430,7 +531,7 @@
 	//[self preparePdfPageImageWithPageNum:newPageNum];
 	
 	//Draw current rough imageView.
-	[currentPdfScrollView setupWithPageNum:newPageNum];
+	[currentPdfScrollView setupWithPageNum:newPageNum ContentId:currentContentId];
 	//bring currentImageView to Front.
 	[self.view bringSubviewToFront:currentPdfScrollView];
 	//[currentPdfScrollView layoutIfNeeded];
@@ -439,12 +540,20 @@
 	
 	//Draw next imageView.
 	if (currentPageNum + 1 <= maxPageNum) {
-		[nextPdfScrollView setupWithPageNum:newPageNum + 1];
+		if ([self isMultiContents] == YES) {
+			[nextPdfScrollView setupWithPageNum:(newPageNum + 1) ContentId:currentContentId];
+		} else {
+			[nextPdfScrollView setupWithPageNum:(newPageNum + 1)];
+		}
 	}
 	
 	//Draw prev imageView.
 	if (1 <= currentPageNum - 1) {
-		[prevPdfScrollView setupWithPageNum:newPageNum - 1];
+		if ([self isMultiContents] == YES) {
+			[prevPdfScrollView setupWithPageNum:(newPageNum - 1) ContentId:currentContentId];
+		} else {
+			[prevPdfScrollView setupWithPageNum:(newPageNum - 1)];
+		}
 	}
 }
 
@@ -564,7 +673,11 @@
 	
 	// Load (new)nextImage.
 	if (currentPageNum + 1 <= maxPageNum) {
-		[nextPdfScrollView setupWithPageNum:currentPageNum + 1];
+		if ([self isMultiContents] == YES) {
+			[nextPdfScrollView setupWithPageNum:(currentPageNum + 1) ContentId:currentContentId];
+		} else {
+			[nextPdfScrollView setupWithPageNum:(currentPageNum + 1)];
+		}
 	}
 	
 	//
@@ -704,7 +817,11 @@
 	
 	// Load (new)prevImage.
 	if (1 < currentPageNum) {
-		[prevPdfScrollView setupWithPageNum:currentPageNum - 1];
+		if ([self isMultiContents] == YES) {
+			[prevPdfScrollView setupWithPageNum:(currentPageNum - 1) ContentId:currentContentId];
+		} else {
+			[prevPdfScrollView setupWithPageNum:(currentPageNum - 1)];
+		}
 	}
 	
 	//NSLog(@"(new)currentPdfScrollView subviews = %d", [currentPdfScrollView.subviews count]);
@@ -734,17 +851,25 @@
     }
 	
 	// Load (new)currentImage.
-	[currentPdfScrollView setupWithPageNum:currentPageNum];
+	[currentPdfScrollView setupWithPageNum:currentPageNum ContentId:currentContentId];
 	[currentPdfScrollView scrollViewDidEndZooming:currentPdfScrollView withView:nil atScale:0.0f];
 	
 	// Load (new)nextImage.
 	if (currentPageNum + 1 <= maxPageNum) {
-		[nextPdfScrollView setupWithPageNum:currentPageNum + 1];
+		if ([self isMultiContents] == YES) {
+			[nextPdfScrollView setupWithPageNum:(currentPageNum + 1) ContentId:currentContentId];
+		} else {		
+			[nextPdfScrollView setupWithPageNum:(currentPageNum + 1)];
+		}
 	}
 	
 	// Load (new)prevImage.
 	if (1 < currentPageNum) {
-		[prevPdfScrollView setupWithPageNum:currentPageNum - 1];
+		if ([self isMultiContents] == YES) {
+			[prevPdfScrollView setupWithPageNum:(currentPageNum - 1) ContentId:currentContentId];
+		} else {
+			[prevPdfScrollView setupWithPageNum:(currentPageNum - 1)];
+		}
 	}
 	
 	//Reset zoomScale
@@ -957,22 +1082,22 @@
 	baseWidthForParentView = self.view.frame.size.width;
 	baseHeightForParentView = self.view.frame.size.height;
 	
-	leftTapArea = CGRectMake(0.0f,
-							 baseHeightForParentView * 0.15f,
-							 baseWidthForParentView  * 0.40f,
-							 baseHeightForParentView * 1.0f);
-	rightTapArea = CGRectMake(baseWidthForParentView * 0.60f,
-							  baseHeightForParentView* 0.15f,
-							  baseWidthForParentView  * 0.40f,
-							  baseHeightForParentView * 1.0f);
-	topTapArea = CGRectMake(0.0f,
-							0.0f,
-							baseWidthForParentView  * 1.00f,
-							baseHeightForParentView * 0.15f);
-	bottomTapArea = CGRectMake(0.0f,
-							   0.0f,
-							   0.0f,
-							   0.0f);
+	leftTapArea = CGRectMake(baseWidthForParentView   * TAP_AREA_LEFT_X,
+							 baseHeightForParentView  * TAP_AREA_LEFT_Y,
+							 baseWidthForParentView   * TAP_AREA_LEFT_WIDTH,
+							 baseHeightForParentView  * TAP_AREA_LEFT_HEIGHT);
+	rightTapArea = CGRectMake(baseWidthForParentView  * TAP_AREA_RIGHT_X,
+							  baseHeightForParentView * TAP_AREA_RIGHT_Y,
+							  baseWidthForParentView  * TAP_AREA_RIGHT_WIDTH,
+							  baseHeightForParentView * TAP_AREA_RIGHT_HEIGHT);
+	topTapArea = CGRectMake(baseWidthForParentView    * TAP_AREA_TOP_X,
+							baseHeightForParentView   * TAP_AREA_TOP_Y,
+							baseWidthForParentView    * TAP_AREA_TOP_WIDTH,
+							baseHeightForParentView   * TAP_AREA_TOP_HEIGHT);
+	bottomTapArea = CGRectMake(baseWidthForParentView * TAP_AREA_BOTTOM_X,
+							   baseHeightForParentView* TAP_AREA_BOTTOM_Y,
+							   baseWidthForParentView * TAP_AREA_BOTTOM_WIDTH,
+							   baseHeightForParentView* TAP_AREA_BOTTOM_HEIGHT);
 	//NSLog(@"leftTapArea=%@", NSStringFromCGRect(leftTapArea));
 	//NSLog(@"rightTapArea=%@", NSStringFromCGRect(rightTapArea));
 	//NSLog(@"topTapArea=%@", NSStringFromCGRect(topTapArea));
@@ -1039,6 +1164,10 @@
 
 - (void)handleSwipe:(UISwipeGestureRecognizer*)gestureRecognizer
 {
+#if defined(ENABLED_TRANSITION) && ENABLED_TRANSITION == 0
+	return;
+#endif
+	
 	//Switch to next/prev page.
 	if (gestureRecognizer.direction == UISwipeGestureRecognizerDirectionRight) {
 		//left to right, goto next.
@@ -1354,29 +1483,22 @@
 #pragma mark -
 #pragma mark Treat Movie.
 //Parse Movie Define.
-- (BOOL)parseMovieDefine
+- (void)parseMovieDefine
 {
 	movieDefine = [[NSMutableArray alloc] init];
 	
-	NSMutableDictionary* tmpDict;
-	
 	//parse csv file.
-	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:@"movieDefine" ofType:@"csv"];
-	NSError* error;
-	NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
-	NSString* text2 = [text stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];
+	NSString* targetFilename = @"movieDefine";
+	NSArray* lines;
+	if ([self isMultiContents] == TRUE) {
+		lines = [FileUtility parseDefineCsv:targetFilename contentId:currentContentId];
+	} else {
+		lines = [FileUtility parseDefineCsv:targetFilename];
+	}
 	
-	bool hasError = FALSE;
-	NSArray* lines = [text2 componentsSeparatedByString:@"\n"];
+	//parse each line.
+	NSMutableDictionary* tmpDict;
 	for (NSString* line in lines) {
-		if ([line length] <= 0) {
-			continue;	//Skip blank line.
-		}
-		if ([line characterAtIndex:0] == '#'
-			||
-			[line characterAtIndex:0] == ';') {
-			continue;	//Skip comment line.
-		}
 		NSArray* tmpCsvArray = [line componentsSeparatedByString:@","];
 		if ([tmpCsvArray count] < 6) {
 			NSLog(@"illigal CSV data. item count=%d, line=%@", [tmpCsvArray count], line);
@@ -1404,9 +1526,6 @@
 		//Add to movie define.
 		[movieDefine addObject:tmpDict];
 	}
-	//
-	
-	return ! hasError;
 }
 
 - (void) renderMovieLinkAtIndex:(NSUInteger)index
@@ -1467,35 +1586,22 @@
 #pragma mark -
 #pragma mark Treat page jump link.
 //Parse PageJumpLink Define.
-- (BOOL)parsePageJumpLinkDefine
+- (void)parsePageJumpLinkDefine
 {
 	pageJumpLinkDefine = [[NSMutableArray alloc] init];
 	
-	NSMutableDictionary* tmpDict;
-	
 	//parse csv file.
-	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:@"pageJumpLinkDefine" ofType:@"csv"];
-	NSError* error;
-	NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
-	NSString* text2 = [text stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];
-	/*
-	 if (error) {
-	 NSLog(@"error=%@, error code=%d", [error localizedDescription], [error code]);
-	 return FALSE;
-	 }
-	 */
+	NSString* targetFilename = @"pageJumpLinkDefine";
+	NSArray* lines;
+	if ([self isMultiContents] == TRUE) {
+		lines = [FileUtility parseDefineCsv:targetFilename contentId:currentContentId];
+	} else {
+		lines = [FileUtility parseDefineCsv:targetFilename];
+	}
 	
-	bool hasError = FALSE;
-	NSArray* lines = [text2 componentsSeparatedByString:@"\n"];
+	//parse each line.
+	NSMutableDictionary* tmpDict;
 	for (NSString* line in lines) {
-		if ([line length] <= 0) {
-			continue;	//Skip blank line.
-		}
-		if ([line characterAtIndex:0] == '#'
-			||
-			[line characterAtIndex:0] == ';') {
-			continue;	//Skip comment line.
-		}
 		NSArray* tmpCsvArray = [line componentsSeparatedByString:@","];
 		if ([tmpCsvArray count] < 6) {
 			NSLog(@"illigal CSV data. item count=%d, line=%@", [tmpCsvArray count], line);
@@ -1514,9 +1620,6 @@
 		
 		[pageJumpLinkDefine addObject:tmpDict];
 	}
-	//
-	
-	return ! hasError;
 }
 
 - (void) renderPageJumpLinkAtIndex:(NSUInteger)index
@@ -1578,29 +1681,22 @@
 #pragma mark -
 #pragma mark Treat InPage ScrollView.
 //Parse InPage ScrollView Define.
-- (BOOL)parseInPageScrollViewDefine
+- (void)parseInPageScrollViewDefine
 {
 	inPageScrollViewDefine = [[NSMutableArray alloc] init];
 	
-	NSMutableDictionary* tmpDict;
-	
 	//parse csv file.
-	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:@"inPageScrollViewDefine" ofType:@"csv"];
-	NSError* error;
-	NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
-	NSString* text2 = [text stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];
+	NSString* targetFilename = @"inPageScrollViewDefine";
+	NSArray* lines;
+	if ([self isMultiContents] == TRUE) {
+		lines = [FileUtility parseDefineCsv:targetFilename contentId:currentContentId];
+	} else {
+		lines = [FileUtility parseDefineCsv:targetFilename];
+	}
 	
-	bool hasError = FALSE;
-	NSArray* lines = [text2 componentsSeparatedByString:@"\n"];
+	//parse each line.
+	NSMutableDictionary* tmpDict;
 	for (NSString* line in lines) {
-		if ([line length] <= 0) {
-			continue;	//Skip blank line.
-		}
-		if ([line characterAtIndex:0] == '#'
-			||
-			[line characterAtIndex:0] == ';') {
-			continue;	//Skip comment line.
-		}
 		NSArray* tmpCsvArray = [line componentsSeparatedByString:@","];
 		if ([tmpCsvArray count] < 6) {
 			NSLog(@"illigal CSV data. item count=%d, line=%@", [tmpCsvArray count], line);
@@ -1635,8 +1731,6 @@
 		//Add to ipsd define.
 		[inPageScrollViewDefine addObject:tmpDict];
 	}
-	//
-	return ! hasError;
 }
 
 - (void) renderInPageScrollViewAtIndex:(NSUInteger)index
@@ -1701,29 +1795,22 @@
 #pragma mark -
 #pragma mark Treat popover scroll image view.
 //Parse Movie Define.
-- (BOOL)parsePopoverScrollImageDefine
+- (void)parsePopoverScrollImageDefine
 {
 	popoverScrollImageDefine = [[NSMutableArray alloc] init];
 	
-	NSMutableDictionary* tmpDict;
-	
 	//parse csv file.
-	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:@"popoverScrollImageDefine" ofType:@"csv"];
-	NSError* error;
-	NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
-	NSString* text2 = [text stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];
+	NSString* targetFilename = @"popoverScrollImageDefine";
+	NSArray* lines;
+	if ([self isMultiContents] == TRUE) {
+		lines = [FileUtility parseDefineCsv:targetFilename contentId:currentContentId];
+	} else {
+		lines = [FileUtility parseDefineCsv:targetFilename];
+	}
 	
-	bool hasError = FALSE;
-	NSArray* lines = [text2 componentsSeparatedByString:@"\n"];
+	//parse each line.
+	NSMutableDictionary* tmpDict;
 	for (NSString* line in lines) {
-		if ([line length] <= 0) {
-			continue;	//Skip blank line.
-		}
-		if ([line characterAtIndex:0] == '#'
-			||
-			[line characterAtIndex:0] == ';') {
-			continue;	//Skip comment line.
-		}
 		NSArray* tmpCsvArray = [line componentsSeparatedByString:@","];
 		if ([tmpCsvArray count] < 6) {
 			NSLog(@"illigal CSV data. item count=%d, line=%@", [tmpCsvArray count], line);
@@ -1751,9 +1838,6 @@
 		//Add to movie define.
 		[popoverScrollImageDefine addObject:tmpDict];
 	}
-	//
-	
-	return ! hasError;
 }
 
 - (void) renderPopoverScrollImageLinkAtIndex:(NSUInteger)index
@@ -1822,30 +1906,23 @@
 }
 #pragma mark -
 #pragma mark Treat TOC.
-- (BOOL)parseTocDefine
+- (void)parseTocDefine
 {
 	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
 	appDelegate.tocDefine = [[NSMutableArray alloc] init];
 	
-	NSMutableDictionary* tmpDict;
-	
 	//parse csv file.
-	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:@"tocDefine" ofType:@"csv"];
-	NSError* error;
-	NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
-	NSString* text2 = [text stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];
+	NSString* targetFilename = @"tocDefine";
+	NSArray* lines;
+	if ([self isMultiContents] == TRUE) {
+		lines = [FileUtility parseDefineCsv:targetFilename contentId:currentContentId];
+	} else {
+		lines = [FileUtility parseDefineCsv:targetFilename];
+	}
 	
-	bool hasError = FALSE;
-	NSArray* lines = [text2 componentsSeparatedByString:@"\n"];
+	//parse each line.
+	NSMutableDictionary* tmpDict;
 	for (NSString* line in lines) {
-		if ([line length] <= 0) {
-			continue;	//Skip blank line.
-		}
-		if ([line characterAtIndex:0] == '#'
-			||
-			[line characterAtIndex:0] == ';') {
-			continue;	//Skip comment line.
-		}
 		NSArray* tmpCsvArray = [line componentsSeparatedByString:@","];
 		if ([tmpCsvArray count] < 3) {
 			NSLog(@"illigal CSV data. item count=%d, line=%@", [tmpCsvArray count], line);
@@ -1865,34 +1942,13 @@
 		
 		//Check page range.
 		if (maxPageNum < [[tmpDict objectForKey:TOC_PAGE] intValue]) {
+			NSLog(@"toc specify out of page range. maxPageNum=%d, page in toc=%d", maxPageNum, [[tmpDict objectForKey:TOC_PAGE] intValue]);
 			continue;	//skip to next object. not add to define.
 		}
 		
 		//Add to toc define.
 		[appDelegate.tocDefine addObject:tmpDict];
 	}
-	return ! hasError;
-}
-- (BOOL)parseBookmarkDefine
-{
-	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
-	if (appDelegate.bookmarkDefine == nil) {
-		[appDelegate.bookmarkDefine release];
-		appDelegate.bookmarkDefine = nil;
-	}
-	appDelegate.bookmarkDefine = [[[NSMutableArray alloc] init] autorelease];	//use default autoreleasepool.
-	
-	NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
-	id obj = [settings valueForKey:BOOKMARK_ARRAY];
-	if (!obj) {		//no bookmark exists.
-		return YES;
-	}
-	if (![obj isKindOfClass:[NSArray class]]) {
-		NSLog(@"illigal bookmark infomation. class=%@", [obj class]);
-		return NO;
-	}
-	[appDelegate.bookmarkDefine addObjectsFromArray:obj];
-	return YES;
 }
 
 - (void)showTocView
@@ -1926,6 +1982,86 @@
 }
 
 #pragma mark Treat Bookmark.
+- (BOOL)loadBookmark
+{
+	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
+	if (appDelegate.bookmarkDefine == nil) {
+		[appDelegate.bookmarkDefine release];
+		appDelegate.bookmarkDefine = nil;
+	}
+	appDelegate.bookmarkDefine = [[[NSMutableArray alloc] init] autorelease];	//use default autoreleasepool.
+	
+	//
+	NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
+	id obj = nil;
+	if ([self isMultiContents] == YES) {
+		NSArray* bookmarkForMultiContent = [settings valueForKey:BOOKMARK_MULTI_CONTENT];
+		for (NSDictionary* tmpDict in bookmarkForMultiContent) {
+			ContentId candidateCid = [[tmpDict valueForKey:CONTENT_CID] intValue];
+			if (candidateCid == currentContentId) {
+				obj = [tmpDict valueForKey:BOOKMARK_ARRAY];
+				break;
+			}
+		}
+	} else {
+		obj = [settings valueForKey:BOOKMARK_ARRAY];
+	}
+	
+	//Check type.
+	if (!obj) {		//no bookmark exists.
+		return YES;
+	}
+	if (![obj isKindOfClass:[NSArray class]]) {
+		NSLog(@"illigal bookmark infomation. class=%@", [obj class]);
+		return NO;
+	}
+	[appDelegate.bookmarkDefine addObjectsFromArray:obj];
+	
+	//NSLog(@"bookmark(for cid=%d)=%@", currentContentId, [obj description]);
+	return YES;
+}
+- (void)saveBookmark
+{
+	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
+	if (appDelegate.bookmarkDefine == nil) {
+		return;
+	}
+	
+	//Store bookmark infomation to UserDefault.
+	NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
+	if ([self isMultiContents] == YES) {
+		//Load from UserDefault.
+		NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
+		NSMutableArray* bookmarkForMultiContent = nil;
+		bookmarkForMultiContent = [[NSMutableArray alloc] initWithArray:[settings valueForKey:BOOKMARK_MULTI_CONTENT]];
+		//NSLog(@"all bookmark before save=%@", [bookmarkForMultiContent description]);
+		
+		//Remove before marge.
+		if (bookmarkForMultiContent != nil) {
+			for (NSDictionary* tmpDict in bookmarkForMultiContent) {
+				ContentId candidateCid = [[tmpDict valueForKey:CONTENT_CID] intValue];
+				if (candidateCid == currentContentId) {
+					[bookmarkForMultiContent removeObject:tmpDict];
+					break;
+				}
+			}
+		} else {
+			bookmarkForMultiContent = [[NSMutableArray alloc] init];
+		}
+		//Merge bookmark infomation with another ContentId.
+		NSMutableDictionary* bookmarkWithContentId = [[NSMutableDictionary alloc] init];
+		[bookmarkWithContentId setValue:[NSNumber numberWithInt:currentContentId ] forKey:CONTENT_CID];
+		[bookmarkWithContentId setObject:appDelegate.bookmarkDefine forKey:BOOKMARK_ARRAY];
+		[bookmarkForMultiContent addObject:bookmarkWithContentId];
+		//NSLog(@"all bookmark after marge=%@", [bookmarkForMultiContent description]);
+		//Add to UserDefault.
+		[userDefault setObject:bookmarkForMultiContent forKey:BOOKMARK_MULTI_CONTENT];
+	} else {
+		[userDefault setObject:appDelegate.bookmarkDefine forKey:BOOKMARK_ARRAY];
+	}
+	[userDefault synchronize];
+}
+
 - (void)showBookmarkView
 {
 	[self.view addSubview:bookmarkViewController.view];
@@ -1953,24 +2089,70 @@
 	//Read bookmark infomation.
 	NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
 	NSMutableArray* bookmarks = [[NSMutableArray alloc] init];
-	id obj = [settings valueForKey:BOOKMARK_ARRAY];
+	NSMutableArray* bookmarkForMultiContent = nil;
+	id obj = nil;
+	if ([self isMultiContents] == TRUE) {
+		bookmarkForMultiContent = [settings valueForKey:BOOKMARK_MULTI_CONTENT];
+		for (NSDictionary* tmpDict in bookmarkForMultiContent) {
+			ContentId candidateCid = [[tmpDict valueForKey:CONTENT_CID] intValue];
+			if (candidateCid == currentContentId) {
+				obj = [tmpDict valueForKey:BOOKMARK_ARRAY];
+				break;
+			}
+		}
+	} else {
+		obj = [settings valueForKey:BOOKMARK_ARRAY];
+	}
 	if (obj && [obj isKindOfClass:[NSArray class]]) {
 		[bookmarks addObjectsFromArray:obj];
 	}
+	NSLog(@"bookmarks has %d items for cid=%d.", [bookmarks count], currentContentId);
 	
 	//Generate bookmark item from current pageNum.
 	NSMutableDictionary* tmpDict = [[NSMutableDictionary alloc] init];
 	[tmpDict setObject:[NSNumber numberWithInt:currentPageNum] forKey:BOOKMARK_PAGE_NUMBER];
 	[tmpDict setObject:bookmarkName forKey:BOOKMARK_PAGE_MEMO];
 	[bookmarks addObject:tmpDict];
+	NSLog(@"bookmarks has %d items after add for cid=%d.", [bookmarks count], currentContentId);
+	
 	
 	//Store bookmark infomation to UserDefault.
 	NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
-	[userDefault setObject:bookmarks forKey:BOOKMARK_ARRAY];
+	if ([self isMultiContents] == TRUE) {
+		bookmarkForMultiContent = [[NSMutableArray alloc] initWithArray:[settings valueForKey:BOOKMARK_MULTI_CONTENT]];
+		NSLog(@"bookmarkForMultiContent(before) = %@", [bookmarkForMultiContent description]);
+		
+		if (bookmarkForMultiContent == nil) {
+			bookmarkForMultiContent = [[NSMutableArray alloc] init];
+		}
+									   
+		//Generate bookmark with ContentId.
+		NSMutableDictionary* newBookMarkWithContentId = [[NSMutableDictionary alloc] init];
+		[newBookMarkWithContentId setValue:[NSNumber numberWithInt:currentContentId] forKey:CONTENT_CID];
+		[newBookMarkWithContentId setValue:bookmarks forKey:BOOKMARK_ARRAY];
+		//Replace.
+		for (NSDictionary* bmEachContent in bookmarkForMultiContent) {
+			ContentId candidateCid2 = [[bmEachContent valueForKey:CONTENT_CID] intValue];
+			if (candidateCid2 == currentContentId) {
+				[bookmarkForMultiContent removeObject:bmEachContent];
+				LOG_CURRENT_LINE;
+				NSLog(@"bookmarkForMultiContent(remove before add)=%@", [bookmarkForMultiContent description]);
+				break;
+			}
+		}
+		[bookmarkForMultiContent addObject:newBookMarkWithContentId];
+		[userDefault setObject:bookmarkForMultiContent forKey:BOOKMARK_MULTI_CONTENT];
+		LOG_CURRENT_LINE;
+		NSLog(@"bookmarkForMultiContent(after add)=%@", [bookmarkForMultiContent description]);
+	} else {
+		[userDefault setObject:bookmarks forKey:BOOKMARK_ARRAY];
+		LOG_CURRENT_LINE;
+		NSLog(@"bookmark=%@", bookmarks);
+	}
 	[userDefault synchronize];
 	
 	//Refresh TOC view and bookmark in appDelegate with UserDefault.
-	[self parseBookmarkDefine];
+	[self loadBookmark];
 	[bookmarkViewController reloadDataForce];
 	
 	[tmpDict release];
@@ -2013,10 +2195,13 @@
 	//LOG_CURRENT_METHOD;
 	[self hideMenuBar];
 	InfomationViewController* vc = [[InfomationViewController alloc] initWithNibName:@"InfomationView" bundle:[NSBundle mainBundle]];
+	vc.contentId = currentContentId;
+	//Setup frame.
 	CGRect infoViewFrame = vc.view.frame;	//Fit with self.view.
 	infoViewFrame.size.width = self.view.frame.size.width;
 	infoViewFrame.size.height = self.view.frame.size.height;
 	vc.view.frame = infoViewFrame;
+	//Show view.
 	[self.view addSubview:vc.view];
 }
 
@@ -2181,12 +2366,61 @@
 #pragma mark Latest Read Page.
 - (void)setLatestReadPage:(int)pageNum {
 	NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
-	[userDefault setInteger:pageNum forKey:USERDEFAULT_LATEST_READ_PAGE];
+	if ([self isMultiContents] == TRUE) {
+		//Multi Contents.
+		NSMutableArray* allLatestReadPageInfo = [[NSMutableArray alloc] initWithArray:[userDefault valueForKey:USERDEFAULT_LATEST_READ_PAGE_MULTICONTENT]];
+		if (! allLatestReadPageInfo) {
+			//Not exist any read page info. Generate it.
+			NSMutableDictionary* tmpDict = [[NSMutableDictionary alloc] init];
+			[tmpDict setValue:[NSNumber numberWithInt:currentContentId] forKey:CONTENT_CID];
+			[tmpDict setValue:[NSNumber numberWithInt:currentPageNum] forKey:USERDEFAULT_LATEST_READ_PAGE];
+			NSArray* tmpArray = [[NSArray alloc] initWithObjects:tmpDict, nil];
+			[userDefault setValue:tmpArray forKey:USERDEFAULT_LATEST_READ_PAGE_MULTICONTENT];
+		} else {
+			NSMutableDictionary* newReadPageInfo = [[NSMutableDictionary alloc] init];
+			[newReadPageInfo setValue:[NSNumber numberWithInt:currentContentId] forKey:CONTENT_CID];
+			[newReadPageInfo setValue:[NSNumber numberWithInt:currentPageNum] forKey:USERDEFAULT_LATEST_READ_PAGE];
+			
+			for (NSDictionary* readPageInfo in allLatestReadPageInfo) {
+				if (currentContentId == [[readPageInfo valueForKey:CONTENT_CID] intValue]) {
+					//Exist read page info for current content.
+					//remove it before add.
+					[allLatestReadPageInfo removeObject:readPageInfo];
+					break;
+				}
+			}
+			//add it.
+			[allLatestReadPageInfo addObject:newReadPageInfo];
+			//Store to UserDefault.
+			[userDefault setObject:allLatestReadPageInfo forKey:USERDEFAULT_LATEST_READ_PAGE_MULTICONTENT];
+		}
+	} else {
+		//Single Content.
+		[userDefault setInteger:pageNum forKey:USERDEFAULT_LATEST_READ_PAGE];
+	}
 	[userDefault synchronize];
 }
 - (int)getLatestReadPage {
 	NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
-	id obj = [settings valueForKey:USERDEFAULT_LATEST_READ_PAGE];
+	id obj = nil;
+	if ([self isMultiContents] == TRUE) {
+		//Multi Contents.
+		NSArray* tmpArray = [settings valueForKey:USERDEFAULT_LATEST_READ_PAGE_MULTICONTENT];
+		if (! tmpArray) {
+			return -1;
+		}
+		//NSLog(@"currentContentId=%d, candidateArray=%@", currentContentId, tmpArray);
+		
+		for (NSDictionary* latestReadPageInfo in tmpArray) {
+			if (currentContentId == [[latestReadPageInfo valueForKey:CONTENT_CID] intValue]) {
+				obj = [latestReadPageInfo valueForKey:USERDEFAULT_LATEST_READ_PAGE];
+				break;
+			}
+		}
+	} else {
+		//Single Content.
+		obj = [settings valueForKey:USERDEFAULT_LATEST_READ_PAGE];
+	}
 	if (obj) {
 		return [obj intValue];
 	} else {

@@ -11,6 +11,8 @@
 @implementation SakuttoBookViewController
 
 @synthesize contentPlayerViewController;
+@synthesize contentListVC;
+@synthesize contentDetailVC;
 
 /*
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -29,7 +31,13 @@
 
 - (void)viewDidLoad
 {
+#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+	//Mulit Contents.
+	[self showContentListView];
+#else
+	//Single Content.
 	[self showContentPlayerView];
+#endif
 }
 
 - (void)showContentPlayerView
@@ -86,4 +94,54 @@
 
 @end
 
-
+#pragma mark - InAppPurchase
+@implementation SakuttoBookViewController (InAppPurchase)
+#pragma mark - show/hide view.
+- (void)showContentListView
+{
+	if (contentListVC == nil) {
+		contentListVC = [[ContentListViewController alloc] init];
+	}
+	[self.view addSubview:contentListVC.view];
+	[contentListVC reloadData];
+}
+- (void)hideContentListView
+{
+	if (contentListVC != nil) {
+		[contentListVC.view removeFromSuperview]; 
+	}
+}
+#pragma mark -
+- (void)showContentPlayerView:(ContentId)cid
+{
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"cid=%d", cid);
+	if (contentPlayerViewController == nil) {
+		contentPlayerViewController = [[ContentPlayerViewController alloc] initWithNibName:@"ContentPlayerView" bundle:[NSBundle mainBundle] contentId:cid];
+	}
+	[self.view addSubview:contentPlayerViewController.view];
+}
+- (void)hideContentPlayerView
+{
+	if (contentPlayerViewController != nil) {
+		[contentPlayerViewController.view removeFromSuperview];
+		[contentPlayerViewController release];
+		contentPlayerViewController = nil;
+	}
+}
+#pragma mark -
+- (void)showContentDetailView:(ContentId)cid
+{
+	if (contentDetailVC == nil) {
+		contentDetailVC = [[ContentDetailViewController alloc] initWithNibName:@"ContentDetailView" bundle:[NSBundle mainBundle]];
+	}
+	[self.view addSubview:contentDetailVC.view];
+	[contentDetailVC setLabelsWithContentId:cid];
+}
+- (void)hideContentDetailView
+{
+	if (contentDetailVC != nil) {
+		[contentDetailVC.view removeFromSuperview];
+	}
+}
+@end

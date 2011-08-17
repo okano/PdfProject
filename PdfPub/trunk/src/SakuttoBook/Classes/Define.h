@@ -21,19 +21,34 @@
 //Page Transition Enable/Disable with tap left&right side.
 #define ENABLED_TRANSITION 1	/* 0:transition disable, 1:enable(normal) */
 
-// Tap area.
-#define TAP_AREA_LEFT_X			  0.0f
-#define TAP_AREA_LEFT_Y			 75.0f
-#define TAP_AREA_LEFT_WIDTH		140.0f
-#define TAP_AREA_LEFT_HEIGHT	600.0f
-#define TAP_AREA_RIGHT_X		180.0f
-#define TAP_AREA_RIGHT_Y		 75.0f
-#define TAP_AREA_RIGHT_WIDTH	320.0f
-#define TAP_AREA_RIGHT_HEIGHT	600.0f
-#define TAP_AREA_TOP_X			  0.0f
-#define TAP_AREA_TOP_Y			  0.0f
-#define TAP_AREA_TOP_WIDTH		320.0f
-#define TAP_AREA_TOP_HEIGHT		 75.0f
+//Use Multi contents.
+#define IS_MULTI_CONTENTS	1	/* 0:single content, 1:multi contents */
+
+//Hide Infomation button on Menu bar.
+#define HIDE_INFOMATION_BUTTON 0	/* 0:show, 1:hide */
+
+// Tap area. (0.00 - 1.00) (1.00 is "fit to screen")
+#define TAP_AREA_LEFT_X			0.00f
+#define TAP_AREA_LEFT_Y			0.15f
+#define TAP_AREA_LEFT_WIDTH		0.40f
+#define TAP_AREA_LEFT_HEIGHT	1.00f
+#define TAP_AREA_RIGHT_X		0.60f
+#define TAP_AREA_RIGHT_Y		0.15f
+#define TAP_AREA_RIGHT_WIDTH	0.40f
+#define TAP_AREA_RIGHT_HEIGHT	1.00f
+#define TAP_AREA_TOP_X			0.00f
+#define TAP_AREA_TOP_Y			0.00f
+#define TAP_AREA_TOP_WIDTH		1.00f
+#define TAP_AREA_TOP_HEIGHT		0.15f
+#define TAP_AREA_BOTTOM_X		0.00f
+#define TAP_AREA_BOTTOM_Y		0.00f
+#define TAP_AREA_BOTTOM_WIDTH	0.00f
+#define TAP_AREA_BOTTOM_HEIGHT	0.00f
+
+// for cache image.
+#define CACHE_IMAGE_WIDTH_MIN		 320.0f
+#define CACHE_IMAGE_WIDTH_MAX		1536.0f
+#define THUMBNAIL_WIDTH				 100.0f
 
 // for Page Animation.
 #define MY_ANIMATION_KIND					@"MyAnimationKind"
@@ -49,10 +64,8 @@
 // for Page Image.
 #define PAGE_FILE_PREFIX			@"Page_p"
 #define PAGE_FILE_EXTENSION			@"png"
-#define CACHE_IMAGE_WIDTH_MIN		640.0f
 
 // for Thumbnail Image.
-#define THUMBNAIL_WIDTH				100.0f
 #define THUMBNAIL_FILE_PREFIX		@"Thumbnail_p"
 #define THUMBNAIL_FILE_EXTENSION	@"png"
 
@@ -92,11 +105,13 @@
 //#define TOC_CELL_IMAGE		@"Toc_Cell_Image"
 
 // for Bookmark.
+#define BOOKMARK_MULTI_CONTENT	@"Bookmark_MultiContent"
 #define BOOKMARK_ARRAY			@"Bookmark_Array"
 #define BOOKMARK_PAGE_NUMBER	@"Bookmark_PageNumber"
 #define BOOKMARK_PAGE_MEMO		@"Bookmark_PageMemo"
 
 // for latest read page.
+#define USERDEFAULT_LATEST_READ_PAGE_MULTICONTENT @"Latest_Read_Page_MultiContent"
 #define USERDEFAULT_LATEST_READ_PAGE @"Latest_Read_Page"
 
 // for Information view.
