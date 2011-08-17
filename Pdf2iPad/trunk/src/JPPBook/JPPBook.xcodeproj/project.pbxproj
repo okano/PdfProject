@@ -289,39 +289,10 @@
 				297F587C13C30AD600441312 /* InAppPurchase */,
 				297F587E13C30AFB00441312 /* ContentList */,
 				297F587F13C30B1700441312 /* Contetndetail */,
-				28D7ACF60DDB3853001CB0EB /* ContentPlayerViewController.h */,
-				28D7ACF70DDB3853001CB0EB /* ContentPlayerViewController.m */,
-				29A71D4113A32F4C00DFB4C8 /* ContentPlayerViewController+movie.m */,
-				29FF4B8513B1D3B8002DAEDF /* ContentPlayerViewController+sound.m */,
-				2974F0A31314AC0300188A77 /* ImageGenerator.h */,
-				2974F0A41314AC0300188A77 /* ImageGenerator.m */,
-				2929AE6B12BF728700FEDD56 /* MyPdfScrollView.h */,
-				2929AE6C12BF728700FEDD56 /* MyPdfScrollView.m */,
-				2926873812BF53B3004830AB /* PDFScrollView.h */,
-				2926873912BF53B3004830AB /* PDFScrollView.m */,
-				2926873A12BF53B3004830AB /* TiledPDFView.h */,
-				2926873B12BF53B3004830AB /* TiledPDFView.m */,
-				29B7D4491330FFF30023BC81 /* MarkerPenView.h */,
-				29B7D44A1330FFF30023BC81 /* MarkerPenView.m */,
-				29074DBC12BA10D000F5D46D /* MenuViewController.h */,
-				29074DBD12BA10D000F5D46D /* MenuViewController.m */,
-				29074DBF12BA10DF00F5D46D /* WebViewController.h */,
-				29074DC012BA10DF00F5D46D /* WebViewController.m */,
-				29B36D4F12FFBFFD00897C08 /* PopoverImageViewController.h */,
-				29B36D5012FFBFFD00897C08 /* PopoverImageViewController.m */,
-				296319E912D2B7D200372D63 /* ThumbnailScrollViewController.h */,
-				296319EA12D2B7D200372D63 /* ThumbnailScrollViewController.m */,
-				29AAD5E812BC943C00CF7C91 /* TocTableViewController.h */,
-				29AAD5E912BC943C00CF7C91 /* TocTableViewController.m */,
-				29F48C7E12DC7E3E00A9EC62 /* BookmarkViewController.h */,
-				29F48C7F12DC7E3E00A9EC62 /* BookmarkViewController.m */,
-				29F48C7C12DC7E3E00A9EC62 /* BookmarkModifyViewController.h */,
-				29F48C7D12DC7E3E00A9EC62 /* BookmarkModifyViewController.m */,
-				2987EE1B12AA4D1600FB66E5 /* Utility.h */,
+				29D53CD613FB9C43000E0AC9 /* ContentPlayer */,
+				29D53CD713FB9C95000E0AC9 /* Utility */,
 				2987EDC912AA472400FB66E5 /* pdfDefine.h */,
 				29D9B86B12BA0F6D003E4CDA /* Define.h */,
-				297F58A013C30C4B00441312 /* FileUtility.h */,
-				297F58A113C30C4B00441312 /* FileUtility.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -495,6 +466,51 @@
 				29F36CA413C31B1400D0B289 /* StoreKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		29D53CD613FB9C43000E0AC9 /* ContentPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				28D7ACF60DDB3853001CB0EB /* ContentPlayerViewController.h */,
+				28D7ACF70DDB3853001CB0EB /* ContentPlayerViewController.m */,
+				29A71D4113A32F4C00DFB4C8 /* ContentPlayerViewController+movie.m */,
+				29FF4B8513B1D3B8002DAEDF /* ContentPlayerViewController+sound.m */,
+				2974F0A31314AC0300188A77 /* ImageGenerator.h */,
+				2974F0A41314AC0300188A77 /* ImageGenerator.m */,
+				2929AE6B12BF728700FEDD56 /* MyPdfScrollView.h */,
+				2929AE6C12BF728700FEDD56 /* MyPdfScrollView.m */,
+				2926873812BF53B3004830AB /* PDFScrollView.h */,
+				2926873912BF53B3004830AB /* PDFScrollView.m */,
+				2926873A12BF53B3004830AB /* TiledPDFView.h */,
+				2926873B12BF53B3004830AB /* TiledPDFView.m */,
+				29B7D4491330FFF30023BC81 /* MarkerPenView.h */,
+				29B7D44A1330FFF30023BC81 /* MarkerPenView.m */,
+				29074DBC12BA10D000F5D46D /* MenuViewController.h */,
+				29074DBD12BA10D000F5D46D /* MenuViewController.m */,
+				29074DBF12BA10DF00F5D46D /* WebViewController.h */,
+				29074DC012BA10DF00F5D46D /* WebViewController.m */,
+				29B36D4F12FFBFFD00897C08 /* PopoverImageViewController.h */,
+				29B36D5012FFBFFD00897C08 /* PopoverImageViewController.m */,
+				296319E912D2B7D200372D63 /* ThumbnailScrollViewController.h */,
+				296319EA12D2B7D200372D63 /* ThumbnailScrollViewController.m */,
+				29AAD5E812BC943C00CF7C91 /* TocTableViewController.h */,
+				29AAD5E912BC943C00CF7C91 /* TocTableViewController.m */,
+				29F48C7E12DC7E3E00A9EC62 /* BookmarkViewController.h */,
+				29F48C7F12DC7E3E00A9EC62 /* BookmarkViewController.m */,
+				29F48C7C12DC7E3E00A9EC62 /* BookmarkModifyViewController.h */,
+				29F48C7D12DC7E3E00A9EC62 /* BookmarkModifyViewController.m */,
+			);
+			name = ContentPlayer;
+			sourceTree = "<group>";
+		};
+		29D53CD713FB9C95000E0AC9 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				2987EE1B12AA4D1600FB66E5 /* Utility.h */,
+				297F58A013C30C4B00441312 /* FileUtility.h */,
+				297F58A113C30C4B00441312 /* FileUtility.m */,
+			);
+			name = Utility;
 			sourceTree = "<group>";
 		};
 		29D74A3D12BB7C4F00C33E10 /* image */ = {
