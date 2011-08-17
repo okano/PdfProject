@@ -287,8 +287,10 @@
 				297F587813C30A4A00441312 /* Pdf2iPadViewController.m */,
 				297F587913C30A4A00441312 /* Pdf2iPadViewController.xib */,
 				297F587C13C30AD600441312 /* InAppPurchase */,
-				297F587E13C30AFB00441312 /* ContentList */,
-				297F587F13C30B1700441312 /* Contetndetail */,
+				297F587E13C30AFB00441312 /* LocalContentList */,
+				297F587F13C30B1700441312 /* LocalContetndetail */,
+				29D53CD813FB9D36000E0AC9 /* ServerContentList */,
+				29D53CD913FB9D43000E0AC9 /* ServerContentDetail */,
 				29D53CD613FB9C43000E0AC9 /* ContentPlayer */,
 				29D53CD713FB9C95000E0AC9 /* Utility */,
 				2987EDC912AA472400FB66E5 /* pdfDefine.h */,
@@ -329,7 +331,7 @@
 			name = InAppPurchase;
 			sourceTree = "<group>";
 		};
-		297F587E13C30AFB00441312 /* ContentList */ = {
+		297F587E13C30AFB00441312 /* LocalContentList */ = {
 			isa = PBXGroup;
 			children = (
 				297F589213C30BD100441312 /* ContentListDS.h */,
@@ -342,17 +344,17 @@
 				297F589013C30BD100441312 /* ContentListCellController.h */,
 				297F589113C30BD100441312 /* ContentListCellController.m */,
 			);
-			name = ContentList;
+			name = LocalContentList;
 			sourceTree = "<group>";
 		};
-		297F587F13C30B1700441312 /* Contetndetail */ = {
+		297F587F13C30B1700441312 /* LocalContetndetail */ = {
 			isa = PBXGroup;
 			children = (
 				297F589C13C30BF600441312 /* ContentDetailViewController.h */,
 				297F589D13C30BF600441312 /* ContentDetailViewController.m */,
 				297F589B13C30BF600441312 /* ContentDetailView.xib */,
 			);
-			name = Contetndetail;
+			name = LocalContetndetail;
 			sourceTree = "<group>";
 		};
 		2987EDBB12AA470600FB66E5 /* pdf */ = {
@@ -511,6 +513,20 @@
 				297F58A113C30C4B00441312 /* FileUtility.m */,
 			);
 			name = Utility;
+			sourceTree = "<group>";
+		};
+		29D53CD813FB9D36000E0AC9 /* ServerContentList */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ServerContentList;
+			sourceTree = "<group>";
+		};
+		29D53CD913FB9D43000E0AC9 /* ServerContentDetail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ServerContentDetail;
 			sourceTree = "<group>";
 		};
 		29D74A3D12BB7C4F00C33E10 /* image */ = {
