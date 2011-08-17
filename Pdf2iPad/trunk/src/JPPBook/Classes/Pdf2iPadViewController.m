@@ -15,7 +15,7 @@
 @synthesize contentListVC;
 @synthesize contentDetailVC;
 @synthesize serverContentListVC;
-//@synthesize serverContentDetailVC;
+@synthesize serverContentDetailVC;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -163,7 +163,7 @@
 @implementation Pdf2iPadViewController (ServerContent)
 #pragma mark show/hide view.
 - (void)showServerContentListView{
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
 	if (serverContentListVC == nil) {
 		serverContentListVC = [[ServerContentListVC alloc] init];
 	}
@@ -171,12 +171,20 @@
 	[serverContentListVC reloadData];
 }
 - (void)hideServerContentListView{
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
 	if (serverContentListVC != nil) {
 		[serverContentListVC.view removeFromSuperview]; 
 	}
 }
-- (void)showServerContentDetailView:(ContentId)cid{LOG_CURRENT_METHOD;}
+- (void)showServerContentDetailView:(ContentId)cid{
+	//LOG_CURRENT_METHOD;
+	if (serverContentDetailVC == nil) {
+		serverContentDetailVC = [[ServerContentDetailVC alloc] initWithNibName:@"ServerContentDetailView" bundle:[NSBundle mainBundle]];
+	}
+	[self.view addSubview:serverContentDetailVC.view];
+	[serverContentDetailVC setLabelsWithContentId:cid];
+}
+
 - (void)hideServerContentDetailView{LOG_CURRENT_METHOD;}
 - (void)showDownloadView:(NSString*)productId{LOG_CURRENT_METHOD;}
 @end

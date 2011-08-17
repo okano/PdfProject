@@ -12,7 +12,7 @@
 #import "ContentListViewController.h"
 #import "ContentDetailViewController.h"
 #import "ServerContentListVC.h"
-//#import "ServerContentDetailVC.h"
+#import "ServerContentDetailVC.h"
 
 @interface Pdf2iPadViewController : UIViewController {
 	ContentPlayerViewController* contentPlayerViewController;
@@ -20,13 +20,13 @@
 	ContentDetailViewController* contentDetailVC;
 	//Server Content.
 	ServerContentListVC* serverContentListVC;
-	//ServerContentDetailViewController* serverContentDetailVC;
+	ServerContentDetailVC* serverContentDetailVC;
 }
 @property (nonatomic, retain) ContentPlayerViewController* contentPlayerViewController;
 @property (nonatomic, retain) ContentListViewController* contentListVC;
 @property (nonatomic, retain) ContentDetailViewController* contentDetailVC;
 @property (nonatomic, retain) ServerContentListVC* serverContentListVC;
-//@property (nonatomic, retain) ServerContentDetailVC* serverContentDetailVC;
+@property (nonatomic, retain) ServerContentDetailVC* serverContentDetailVC;
 
 - (void)showContentPlayerView;
 

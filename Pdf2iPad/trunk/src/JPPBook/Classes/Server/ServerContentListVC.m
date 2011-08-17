@@ -168,6 +168,9 @@
 	NSString* targetPid = [appDelegate.serverContentListDS productIdFromContentId:targetCid];
 	LOG_CURRENT_METHOD;
 	NSLog(@"indexPath.row=%d, targetCid=%d, targetPid=%@", indexPath.row, targetCid, targetPid);
+	
+	//Show detail view.
+	[self showServerContentDetailView:targetCid];
 }
 
 #pragma mark - Accessor for table
