@@ -45,11 +45,15 @@
 									 self.view.frame.size.width,
 									 toolBarHeight);
 	toolbar = [[UIToolbar alloc] initWithFrame:toolBarFrame];
+	UIBarButtonItem *serverContentButton = [[UIBarButtonItem alloc] initWithTitle:@"Store"
+																			 style:UIBarButtonItemStyleBordered
+																			target:self
+																			action:@selector(showServerContentListView)];
 	UIBarButtonItem *paymentHistoryButton = [[UIBarButtonItem alloc] initWithTitle:@"購入履歴"
 																	   style:UIBarButtonItemStyleBordered
 																	  target:self
 																	  action:@selector(showPaymentHistoryList)];
-	NSArray *items = [NSArray arrayWithObjects:paymentHistoryButton, nil];
+	NSArray *items = [NSArray arrayWithObjects:serverContentButton, paymentHistoryButton, nil];
 	[toolbar setItems:items];
 	[self.view addSubview:toolbar];
 	
@@ -179,6 +183,12 @@
 	//NSLog(@"cid=%d", cid);
 	[appDelegate hideContentListView];
 	[appDelegate showContentDetailView:cid];
+}
+- (void)showServerContentListView
+{
+	//LOG_CURRENT_METHOD;
+	[appDelegate hideContentListView];
+	[appDelegate showServerContentListView];
 }
 - (IBAction)showPaymentHistoryList
 {

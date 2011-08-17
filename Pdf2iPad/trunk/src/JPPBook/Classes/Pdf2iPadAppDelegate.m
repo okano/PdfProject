@@ -19,6 +19,7 @@
 //InAppPurchase
 @synthesize paymentConductor;
 @synthesize contentListDS;
+@synthesize serverContentListDS;
 @synthesize paymentHistoryDS;
 
 #pragma mark -
@@ -31,6 +32,8 @@
 	
 	//Setup Content List.
 	contentListDS = [[ContentListDS alloc] init];
+	//Setup Content List on Server.
+	serverContentListDS = [[ServerContentListDS alloc] init];
 	
 	//Setup for InAppPurchase.
 	paymentConductor = [[PaymentConductor alloc] init];
@@ -192,10 +195,19 @@
 
 @implementation Pdf2iPadAppDelegate (ServerContent)
 #pragma mark -
-- (void)showServerContentListView{LOG_CURRENT_METHOD;}
-- (void)hideServerContentListView{LOG_CURRENT_METHOD;}
-- (void)showServerContentDetailView:(ContentId)cid{LOG_CURRENT_METHOD;}
-- (void)hideServerContentDetailView{LOG_CURRENT_METHOD;}
-- (void)showDownloadView:(NSString*)productId{LOG_CURRENT_METHOD;}
-
+- (void)showServerContentListView{
+	[self.viewController showServerContentListView];
+}
+- (void)hideServerContentListView{
+	[self.viewController hideServerContentListView];
+}
+- (void)showServerContentDetailView:(ContentId)cid{
+	[self.viewController showServerContentDetailView:cid];
+}
+- (void)hideServerContentDetailView{
+	[self.viewController hideServerContentListView];
+}
+- (void)showDownloadView:(NSString*)productId{
+	[self.viewController showDownloadView:productId];
+}
 @end

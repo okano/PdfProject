@@ -16,7 +16,7 @@
 	//Pdf2iPadAppDelegate* appDelegate;
 }
 
-- (void)showContentList:(ContentId)cid;
+- (void)showContentList;
 - (void)showServerContentDetailView:(ContentId)cid;
 
 @end

@@ -14,6 +14,8 @@
 @synthesize contentPlayerViewController;
 @synthesize contentListVC;
 @synthesize contentDetailVC;
+@synthesize serverContentListVC;
+//@synthesize serverContentDetailVC;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -92,7 +94,7 @@
 
 #pragma mark - InAppPurchase
 @implementation Pdf2iPadViewController (InAppPurchase)
-#pragma mark - show/hide view.
+#pragma mark show/hide view.
 - (void)showContentListView
 {
 	if (contentListVC == nil) {
@@ -107,7 +109,6 @@
 		[contentListVC.view removeFromSuperview]; 
 	}
 }
-#pragma mark -
 - (void)showContentPlayerView:(ContentId)cid
 {
 	//LOG_CURRENT_METHOD;
@@ -141,7 +142,6 @@
 		contentPlayerViewController = nil;
 	}
 }
-#pragma mark -
 - (void)showContentDetailView:(ContentId)cid
 {
 	if (contentDetailVC == nil) {
@@ -156,4 +156,27 @@
 		[contentDetailVC.view removeFromSuperview];
 	}
 }
+@end
+
+
+#pragma mark - ServerContent
+@implementation Pdf2iPadViewController (ServerContent)
+#pragma mark show/hide view.
+- (void)showServerContentListView{
+	LOG_CURRENT_METHOD;
+	if (serverContentListVC == nil) {
+		serverContentListVC = [[ServerContentListVC alloc] init];
+	}
+	[self.view addSubview:serverContentListVC.view];
+	[serverContentListVC reloadData];
+}
+- (void)hideServerContentListView{
+	LOG_CURRENT_METHOD;
+	if (serverContentListVC != nil) {
+		[serverContentListVC.view removeFromSuperview]; 
+	}
+}
+- (void)showServerContentDetailView:(ContentId)cid{LOG_CURRENT_METHOD;}
+- (void)hideServerContentDetailView{LOG_CURRENT_METHOD;}
+- (void)showDownloadView:(NSString*)productId{LOG_CURRENT_METHOD;}
 @end

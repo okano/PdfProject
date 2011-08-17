@@ -10,6 +10,7 @@
 #import "InAppPurchaseDefine.h"
 #import "PaymentConductor.h"
 #import "ContentListDS.h"
+#import "ServerContentListDS.h"
 #import "PaymentHistoryDS.h"
 
 @class Pdf2iPadViewController;
@@ -28,6 +29,7 @@
 	PaymentConductor* paymentConductor;
 	// InAppPurchase data.
 	ContentListDS* contentListDS;
+	ServerContentListDS* serverContentListDS;
 	PaymentHistoryDS* paymentHistoryDS;
 }
 
@@ -41,6 +43,7 @@
 @property (nonatomic, retain) PaymentConductor* paymentConductor;
 // InAppPurchase data.
 @property (nonatomic, retain) ContentListDS* contentListDS;
+@property (nonatomic, retain) ServerContentListDS* serverContentListDS;
 @property (nonatomic, retain) PaymentHistoryDS* paymentHistoryDS;
 
 //
@@ -69,8 +72,6 @@
 - (void)gotoCoverPage;
 - (void)showHelpView;
 - (void)enterMarkerMode;
-
-
 @end
 
 @interface Pdf2iPadAppDelegate (InAppPurchase)
@@ -88,5 +89,4 @@
 - (void)showServerContentDetailView:(ContentId)cid;
 - (void)hideServerContentDetailView;
 - (void)showDownloadView:(NSString*)productId;
-
 @end

@@ -24,6 +24,7 @@
 
 - (void)showContentPlayer:(ContentId)cid;
 - (void)showContentDetailView:(ContentId)cid;
+- (void)showServerContentListView;
 - (IBAction)showPaymentHistoryList;
 
 //Accessor for table

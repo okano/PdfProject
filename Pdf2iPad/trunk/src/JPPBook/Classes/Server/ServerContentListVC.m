@@ -24,11 +24,23 @@
 	myTableView.delegate = self;
 	myTableView.dataSource = self;
 	
+	//Setup Toolbar.
+	UIBarButtonItem *localContentButton = [[UIBarButtonItem alloc] initWithTitle:@"Books"
+																			style:UIBarButtonItemStyleBordered
+																		   target:self
+																		   action:@selector(showContentList)];
+	UIBarButtonItem *paymentHistoryButton = [[UIBarButtonItem alloc] initWithTitle:@"購入履歴"
+																			 style:UIBarButtonItemStyleBordered
+																			target:self
+																			action:@selector(showPaymentHistoryList)];
+	NSArray *items = [NSArray arrayWithObjects:localContentButton, paymentHistoryButton, nil];
+	[toolbar setItems:items];
+
 	[self reloadData];
 }
 
 #pragma mark - show other view.
-- (void)showContentList:(ContentId)cid
+- (void)showContentList
 {
 	//LOG_CURRENT_METHOD;
 	//NSLog(@"cid=%d", cid);
@@ -56,7 +68,7 @@
 {
     // Return the number of rows in the section.	
     //return 5;
-	return [appDelegate.contentListDS count];
+	return [appDelegate.serverContentListDS count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -70,8 +82,8 @@
 		[cellController release];
 	}
     
-	ContentId targetCid = [appDelegate.contentListDS contentIdAtIndex:indexPath.row];
-	NSString* targetPid = [appDelegate.contentListDS productIdFromContentId:targetCid];
+	ContentId targetCid = [appDelegate.serverContentListDS contentIdAtIndex:indexPath.row];
+	NSString* targetPid = [appDelegate.serverContentListDS productIdFromContentId:targetCid];
 	if (targetPid == InvalidProductId) {
 		NSLog(@"Invalid productId. cid=%d", targetCid);
 		return nil;
@@ -79,8 +91,8 @@
 	//NSLog(@"indexPath.row=%d, cid=%d, pid=%@", indexPath.row, targetCid, targetPid);
 	
     // Configure the cell...
-	cell.titleLabel.text = [appDelegate.contentListDS titleByContentId:targetCid];
-	cell.authorLabel.text = [appDelegate.contentListDS authorByContentId:targetCid];
+	cell.titleLabel.text = [appDelegate.serverContentListDS titleByContentId:targetCid];
+	cell.authorLabel.text = [appDelegate.serverContentListDS authorByContentId:targetCid];
 	//Check payment status.
 	if (([InAppPurchaseUtility isFreeContent:targetPid] == TRUE)
 		||
@@ -94,7 +106,7 @@
 		cell.isDownloadedLabel.textColor = [UIColor orangeColor];
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	}
-	cell.imageView.image = [appDelegate.contentListDS contentIconByContentId:targetCid];
+	cell.imageView.image = [appDelegate.serverContentListDS contentIconByContentId:targetCid];
 	
 	
     return cell;
@@ -152,27 +164,10 @@
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	
 	//Check payment status.
-	ContentId targetCid = [appDelegate.contentListDS contentIdAtIndex:indexPath.row];
-	NSString* targetPid = [appDelegate.contentListDS productIdFromContentId:targetCid];
-	//LOG_CURRENT_METHOD;
-	//NSLog(@"indexPath.row=%d, targetCid=%d, targetPid=%@", indexPath.row, targetCid, targetPid);
-	
-	BOOL isPayedContent = NO;
-	if ([InAppPurchaseUtility isFreeContent:targetPid] == TRUE) {
-		isPayedContent = YES;
-		
-		//Record free content payment record only first time read.
-		[appDelegate.paymentHistoryDS recordHistoryOnceWithProductId:targetPid ];
-	}
-	if ([appDelegate.paymentHistoryDS isEnabledContent:targetCid] == TRUE) {
-		isPayedContent = YES;
-	}
-	
-	if (isPayedContent == YES) {
-		[self showContentPlayer:targetCid];
-	} else {
-		[self showContentDetailView:targetCid];
-	}
+	ContentId targetCid = [appDelegate.serverContentListDS contentIdAtIndex:indexPath.row];
+	NSString* targetPid = [appDelegate.serverContentListDS productIdFromContentId:targetCid];
+	LOG_CURRENT_METHOD;
+	NSLog(@"indexPath.row=%d, targetCid=%d, targetPid=%@", indexPath.row, targetCid, targetPid);
 }
 
 #pragma mark - Accessor for table
