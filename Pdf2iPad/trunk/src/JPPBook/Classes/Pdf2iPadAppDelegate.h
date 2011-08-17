@@ -81,3 +81,12 @@
 - (void)showContentDetailView:(ContentId)cid;
 - (void)hideContentDetailView;
 @end
+
+@interface Pdf2iPadAppDelegate (ServerContent)
+- (void)showServerContentListView;
+- (void)hideServerContentListView;
+- (void)showServerContentDetailView:(ContentId)cid;
+- (void)hideServerContentDetailView;
+- (void)showDownloadView:(NSString*)productId;
+
+@end

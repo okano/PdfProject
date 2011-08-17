@@ -187,4 +187,15 @@
 - (void)hideContentDetailView {
 	[self.viewController hideContentDetailView];
 }
+
+@end
+
+@implementation Pdf2iPadAppDelegate (ServerContent)
+#pragma mark -
+- (void)showServerContentListView{LOG_CURRENT_METHOD;}
+- (void)hideServerContentListView{LOG_CURRENT_METHOD;}
+- (void)showServerContentDetailView:(ContentId)cid{LOG_CURRENT_METHOD;}
+- (void)hideServerContentDetailView{LOG_CURRENT_METHOD;}
+- (void)showDownloadView:(NSString*)productId{LOG_CURRENT_METHOD;}
+
 @end

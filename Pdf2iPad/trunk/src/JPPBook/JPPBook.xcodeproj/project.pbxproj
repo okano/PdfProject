@@ -94,6 +94,8 @@
 		29B36D5112FFBFFD00897C08 /* PopoverImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B36D5012FFBFFD00897C08 /* PopoverImageViewController.m */; };
 		29B7D44B1330FFF30023BC81 /* MarkerPenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B7D44A1330FFF30023BC81 /* MarkerPenView.m */; };
 		29C6852113B9C66500FB164B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29C6852013B9C66500FB164B /* AVFoundation.framework */; };
+		29D53CDF13FB9E42000E0AC9 /* ServerContentListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D53CDE13FB9E42000E0AC9 /* ServerContentListVC.m */; };
+		29D53CE213FB9ECD000E0AC9 /* ServerContentListDS.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D53CE113FB9ECD000E0AC9 /* ServerContentListDS.m */; };
 		29D74A4312BB7C4F00C33E10 /* image1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 29D74A3E12BB7C4F00C33E10 /* image1.jpg */; };
 		29D74A4412BB7C4F00C33E10 /* image2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 29D74A3F12BB7C4F00C33E10 /* image2.jpg */; };
 		29D74A4512BB7C4F00C33E10 /* image3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 29D74A4012BB7C4F00C33E10 /* image3.jpg */; };
@@ -231,6 +233,10 @@
 		29B7D44A1330FFF30023BC81 /* MarkerPenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkerPenView.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29C6852013B9C66500FB164B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		29D53CDD13FB9E42000E0AC9 /* ServerContentListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServerContentListVC.h; path = Server/ServerContentListVC.h; sourceTree = "<group>"; };
+		29D53CDE13FB9E42000E0AC9 /* ServerContentListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServerContentListVC.m; path = Server/ServerContentListVC.m; sourceTree = "<group>"; };
+		29D53CE013FB9ECD000E0AC9 /* ServerContentListDS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServerContentListDS.h; path = Server/ServerContentListDS.h; sourceTree = "<group>"; };
+		29D53CE113FB9ECD000E0AC9 /* ServerContentListDS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServerContentListDS.m; path = Server/ServerContentListDS.m; sourceTree = "<group>"; };
 		29D74A3E12BB7C4F00C33E10 /* image1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image1.jpg; sourceTree = "<group>"; };
 		29D74A3F12BB7C4F00C33E10 /* image2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image2.jpg; sourceTree = "<group>"; };
 		29D74A4012BB7C4F00C33E10 /* image3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image3.jpg; sourceTree = "<group>"; };
@@ -518,6 +524,10 @@
 		29D53CD813FB9D36000E0AC9 /* ServerContentList */ = {
 			isa = PBXGroup;
 			children = (
+				29D53CE013FB9ECD000E0AC9 /* ServerContentListDS.h */,
+				29D53CE113FB9ECD000E0AC9 /* ServerContentListDS.m */,
+				29D53CDD13FB9E42000E0AC9 /* ServerContentListVC.h */,
+				29D53CDE13FB9E42000E0AC9 /* ServerContentListVC.m */,
 			);
 			name = ServerContentList;
 			sourceTree = "<group>";
@@ -720,6 +730,8 @@
 				297F589F13C30BF600441312 /* ContentDetailViewController.m in Sources */,
 				297F58A213C30C4C00441312 /* FileUtility.m in Sources */,
 				29F140F913E3E71400C1AFE9 /* SKBE_PdfScrollView2.m in Sources */,
+				29D53CDF13FB9E42000E0AC9 /* ServerContentListVC.m in Sources */,
+				29D53CE213FB9ECD000E0AC9 /* ServerContentListDS.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
