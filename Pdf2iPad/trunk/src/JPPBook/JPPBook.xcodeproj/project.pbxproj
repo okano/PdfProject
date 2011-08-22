@@ -226,6 +226,7 @@
 		299CD2AC13861BDD001C2B4B /* SKBEngine_PopoverScrollImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKBEngine_PopoverScrollImageViewController.h; path = SKBEngine/SKBEngine_PopoverScrollImageViewController.h; sourceTree = "<group>"; };
 		299CD2AD13861BDD001C2B4B /* SKBEngine_PopoverScrollImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKBEngine_PopoverScrollImageViewController.m; path = SKBEngine/SKBEngine_PopoverScrollImageViewController.m; sourceTree = "<group>"; };
 		29A71D4113A32F4C00DFB4C8 /* ContentPlayerViewController+movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ContentPlayerViewController+movie.m"; sourceTree = "<group>"; };
+		29A832A614021BCE00AD6207 /* UrlDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlDefine.h; sourceTree = "<group>"; };
 		29AAD5E412BC938400CF7C91 /* icon_list_bullets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_list_bullets.png; sourceTree = "<group>"; };
 		29AAD5E812BC943C00CF7C91 /* TocTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TocTableViewController.h; sourceTree = "<group>"; };
 		29AAD5E912BC943C00CF7C91 /* TocTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TocTableViewController.m; sourceTree = "<group>"; };
@@ -240,7 +241,7 @@
 		29D53CE013FB9ECD000E0AC9 /* ServerContentListDS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServerContentListDS.h; path = Server/ServerContentListDS.h; sourceTree = "<group>"; };
 		29D53CE113FB9ECD000E0AC9 /* ServerContentListDS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServerContentListDS.m; path = Server/ServerContentListDS.m; sourceTree = "<group>"; };
 		29D53CE313FBB306000E0AC9 /* ServerContentDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ServerContentDetailView.xib; path = Server/ServerContentDetailView.xib; sourceTree = "<group>"; };
-		29D53CE413FBB306000E0AC9 /* ServerContentDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; name = ServerContentDetailVC.h; path = Server/ServerContentDetailVC.h; sourceTree = "<group>"; };
+		29D53CE413FBB306000E0AC9 /* ServerContentDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServerContentDetailVC.h; path = Server/ServerContentDetailVC.h; sourceTree = "<group>"; };
 		29D53CE513FBB306000E0AC9 /* ServerContentDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServerContentDetailVC.m; path = Server/ServerContentDetailVC.m; sourceTree = "<group>"; };
 		29D74A3E12BB7C4F00C33E10 /* image1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image1.jpg; sourceTree = "<group>"; };
 		29D74A3F12BB7C4F00C33E10 /* image2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image2.jpg; sourceTree = "<group>"; };
@@ -305,6 +306,7 @@
 				29D53CD613FB9C43000E0AC9 /* ContentPlayer */,
 				29D53CD713FB9C95000E0AC9 /* Utility */,
 				2987EDC912AA472400FB66E5 /* pdfDefine.h */,
+				29A832A614021BCE00AD6207 /* UrlDefine.h */,
 				29D9B86B12BA0F6D003E4CDA /* Define.h */,
 			);
 			path = Classes;
