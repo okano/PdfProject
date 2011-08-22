@@ -257,6 +257,9 @@
     [super viewDidLoad];
 	//
 	colorWidthInfoDS = [[ColorWidthInfoDS alloc] init];
+	
+	//
+	//[self loadDefaultImage];
 	[self setupThisView];
 	
 	//
