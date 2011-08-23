@@ -55,7 +55,7 @@
 	[tmpDict setValue:@"desc4-server" forKey:CONTENT_DESCRIPTION];
 	[contentList addObject:tmpDict];
 	
-	[self storeContentListToPlist:contentList];
+	//[self storeContentListToPlist:contentList];
 	
 	[self loadContentList:10 delegate:nil];
 }
@@ -93,6 +93,7 @@
 	if (delegate != nil) {
 		//[delegate refreshTableData];
 	}
+	NSLog(@"contentList count=%d", [contentList count]);
 }
 
 - (NSArray*)loadContentListFromFile
@@ -117,50 +118,14 @@
 			[error release];
 			return nil;
 		} else {
-			NSLog(@"file not found.");
+			NSLog(@"file not found. file name=%@", pFile);
 			[error release];
+			return nil;
 		}
 	} else {
-		//NSLog(@"load success. file=%@", pFile);
+		NSLog(@"load success. file=%@", pFile);
+		NSLog(@"class=%@", [plist class]);
 	}
-	
-	
-	/*
-	NSMutableDictionary* tmpDict;
-	tmpDict = [NSMutableDictionary dictionaryWithDictionary:plist];
-	
-	
-	lastUpdate = [tmpDict objectForKey:PFILE_LAST_UPDATE];
-	listType = searchType;
-	[contentSummaryList removeAllObjects];
-	
-	NSArray *anArray = [tmpDict objectForKey:PFILE_CONTENT_SUMMARY_ARRAY];
-	NSEnumerator *enumerator = [anArray objectEnumerator];
-	id object;
-	NSMutableDictionary* singleContentSummary = [[NSMutableDictionary alloc] init];
-	while ((object = [enumerator nextObject]))
-	{
-		//single object(key-value pair).
-		singleContentSummary = object;
-		[singleContentSummary retain];
-		
-		//add thumbnail image(binary) from URL.
-		NSURL* url = [NSURL URLWithString:[singleContentSummary objectForKey:ITEM_THUMBNAIL_URL]];
-		NSData* thumbnailImageData = [NSData dataWithContentsOfURL:url];
-		if(thumbnailImageData != nil)
-		{
-			[singleContentSummary setObject:thumbnailImageData forKey:ITEM_THUMBNAIL_DATA];
-			//Cache image to local file.
-			[self saveThumbnailData:thumbnailImageData
-					  withContentId:[singleContentSummary objectForKey:ITEM_CONTENT_ID]
-						  overwrite:FALSE];
-		}
-		//
-		[self addContentSummary:singleContentSummary];
-	}
-	//NSLog(@"anArray array count=%d", [anArray count]);
-	//NSLog(@"self count=%d", [self countOfContent]);
-	*/
 	
 	return [self getContentListFromPlist:plist];
 }
@@ -172,7 +137,7 @@
 	pListUrl = [[[NSString stringWithString:URL_BASE_CONTENT]
 				 stringByAppendingPathComponent:SUMMARY_DIR]
 				stringByAppendingPathComponent:CONTENT_LIST_FAVORITE];
-	pListUrl =  @"http://kounago.jp/test2/contentNewest.xml";
+	pListUrl =  @"http://kounago.jp/test4/ContentList.plist";
 	
 	
 	//Load content List from Network.
