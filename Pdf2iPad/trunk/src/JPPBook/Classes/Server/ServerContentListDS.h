@@ -16,12 +16,16 @@
 @interface ServerContentListDS : ContentListDS {
 }
 
-#pragma mark -
+#pragma mark - load
 - (void)loadContentList:(NSUInteger)maxCount delegate:(id)delegate;
-- (NSArray*)loadContentListFromPlist;
+- (NSArray*)loadContentListFromFile;
 - (NSArray*)loadContentListFromNetwork;
+#pragma mark - parse
+- (NSDate*)getLastupdateFromPlist:(id)pList;
+- (NSArray*)getContentListFromPlist:(id)pList;
+#pragma mark - store
 - (void)storeContentListToPlist:(NSMutableArray*)pListArray;
-#pragma mark -
+#pragma mark - Utility
 - (NSString*)getContentListDirectoryname;
 - (NSString*)getContentListFilename;
 

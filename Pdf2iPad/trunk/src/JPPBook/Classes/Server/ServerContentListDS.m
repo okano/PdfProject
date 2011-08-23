@@ -55,8 +55,9 @@
 	[tmpDict setValue:@"desc4-server" forKey:CONTENT_DESCRIPTION];
 	[contentList addObject:tmpDict];
 	
-	//[self loadContentList:10 delegate:nil];
 	[self storeContentListToPlist:contentList];
+	
+	[self loadContentList:10 delegate:nil];
 }
 
 
@@ -69,7 +70,7 @@
 	NSLog(@"contentList count=%d", [contentList count]);
 	
 	//Get from plist.
-	[contentList addObjectsFromArray:[self loadContentListFromPlist]];
+	[contentList addObjectsFromArray:[self loadContentListFromFile]];
 	if ([contentList count] <= 0) {
 		//Get from Network.
 		[contentList addObjectsFromArray:[self loadContentListFromNetwork]];
@@ -93,11 +94,8 @@
 		//[delegate refreshTableData];
 	}
 }
-- (NSArray*)loadContentListFromPlist
-{
-	return nil;
-}
-- (void)getContentListFromFile
+
+- (NSArray*)loadContentListFromFile
 {
 	// generate file name.
 	NSString* pFile = [self getContentListFilename];
@@ -117,7 +115,7 @@
 			NSLog(@"load error:%@", error);
 			NSLog(@"(but file is exist. filename=%@", pFile);
 			[error release];
-			return;
+			return nil;
 		} else {
 			NSLog(@"file not found.");
 			[error release];
@@ -125,6 +123,46 @@
 	} else {
 		//NSLog(@"load success. file=%@", pFile);
 	}
+	
+	
+	/*
+	NSMutableDictionary* tmpDict;
+	tmpDict = [NSMutableDictionary dictionaryWithDictionary:plist];
+	
+	
+	lastUpdate = [tmpDict objectForKey:PFILE_LAST_UPDATE];
+	listType = searchType;
+	[contentSummaryList removeAllObjects];
+	
+	NSArray *anArray = [tmpDict objectForKey:PFILE_CONTENT_SUMMARY_ARRAY];
+	NSEnumerator *enumerator = [anArray objectEnumerator];
+	id object;
+	NSMutableDictionary* singleContentSummary = [[NSMutableDictionary alloc] init];
+	while ((object = [enumerator nextObject]))
+	{
+		//single object(key-value pair).
+		singleContentSummary = object;
+		[singleContentSummary retain];
+		
+		//add thumbnail image(binary) from URL.
+		NSURL* url = [NSURL URLWithString:[singleContentSummary objectForKey:ITEM_THUMBNAIL_URL]];
+		NSData* thumbnailImageData = [NSData dataWithContentsOfURL:url];
+		if(thumbnailImageData != nil)
+		{
+			[singleContentSummary setObject:thumbnailImageData forKey:ITEM_THUMBNAIL_DATA];
+			//Cache image to local file.
+			[self saveThumbnailData:thumbnailImageData
+					  withContentId:[singleContentSummary objectForKey:ITEM_CONTENT_ID]
+						  overwrite:FALSE];
+		}
+		//
+		[self addContentSummary:singleContentSummary];
+	}
+	//NSLog(@"anArray array count=%d", [anArray count]);
+	//NSLog(@"self count=%d", [self countOfContent]);
+	*/
+	
+	return [self getContentListFromPlist:plist];
 }
 
 
@@ -187,41 +225,43 @@
 	} 
 	
 	//
+	NSDate* lastUpdate = [self getLastupdateFromPlist:pList];
+	NSLog(@"lastUpdate=%@", [lastUpdate description]);
+	
+	//
+	NSArray* contentListTmp = [self getContentListFromPlist:pList];
+
+	return contentListTmp;
+}
+
+#pragma mark - parse
+- (NSDate*)getLastupdateFromPlist:(id)pList
+{
+	//
 	NSMutableDictionary* tmpDict;
 	tmpDict = [NSMutableDictionary dictionaryWithDictionary:pList];
-	NSLog(@"Dictionary from plist = ", [tmpDict description]);
+	NSLog(@"Dictionary from plist = %@", [tmpDict description]);
 	//
 	NSDate* lastUpdate;
 	lastUpdate = [tmpDict objectForKey:PFILE_LAST_UPDATE];
-	
+	return lastUpdate;
+}
+
+- (NSArray*)getContentListFromPlist:(id)pList
+{
+	//
+	NSMutableDictionary* tmpDict;
+	tmpDict = [NSMutableDictionary dictionaryWithDictionary:pList];
+	NSLog(@"Dictionary from plist = %@", [tmpDict description]);
 	//
 	NSArray *anArray = [tmpDict objectForKey:PFILE_CONTENT_SUMMARY_ARRAY];
-	NSLog(@"result array=%@", [anArray description]);
-	NSLog(@"result count=%d", [anArray count]);
-	
-	/*
-	//Convert
-	NSEnumerator *enumerator = [anArray objectEnumerator];
-	NSMutableArray* resultArray = [[NSMutableArray alloc] init];
-	while ((NSDictionary* singleContent = [enumerator nextObject]))
-	{
-		NSString* title = [singleContent objectForKey:ITEM_TITLE];
-		NSString* author = [singleContent objectForKey:ITEM_ARTIST];
-		ContentId cid = [singleContent objectForKey:ITEM_CONTENT_ID];
-		NSURL* url = [NSURL URLWithString:[singleContent objectForKey:ITEM_THUMBNAIL_URL]];
-		
-		NSMutableDictionary* tmpDict;
-		[tmpDict setValue:title forKey:CONTENT_TITLE];
-		[tmpDict setValue:author forKey:CONTENT_AUTHOR];
-		
-		[resultArray addObject:tmpDict];
-	}
-	 */
-
+	NSLog(@"result count=%d, array=%@", [anArray count], [anArray description]);
 	
 	return anArray;
 }
 
+
+#pragma mark - store
 - (void)storeContentListToPlist:(NSMutableArray*)pListArray
 {
 	NSMutableDictionary* tmpDict = [[NSMutableDictionary alloc] init];
@@ -259,7 +299,7 @@
 }
 
 
-#pragma mark -
+#pragma mark - Utility for filename.
 - (NSString*)getContentListDirectoryname
 {
 	NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
