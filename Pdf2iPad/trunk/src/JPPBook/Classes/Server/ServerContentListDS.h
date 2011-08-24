@@ -12,6 +12,7 @@
 #import "InAppPurchaseUtility.h"
 #import "FileUtility.h"
 #import "UrlDefine.h"
+#import "OpdsParser.h"
 
 @interface ServerContentListDS : ContentListDS {
 }

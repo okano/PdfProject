@@ -68,6 +68,7 @@
 		297F589E13C30BF600441312 /* ContentDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 297F589B13C30BF600441312 /* ContentDetailView.xib */; };
 		297F589F13C30BF600441312 /* ContentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297F589D13C30BF600441312 /* ContentDetailViewController.m */; };
 		297F58A213C30C4C00441312 /* FileUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 297F58A113C30C4B00441312 /* FileUtility.m */; };
+		2985D0EC1404D421008B96E5 /* OpdsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2985D0EB1404D421008B96E5 /* OpdsParser.m */; };
 		2991E94C13B1E208000630FB /* p1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2991E94913B1E208000630FB /* p1.mp3 */; };
 		2991E94D13B1E209000630FB /* p2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2991E94A13B1E208000630FB /* p2.mp3 */; };
 		2991E94E13B1E209000630FB /* p3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2991E94B13B1E208000630FB /* p3.mp3 */; };
@@ -94,6 +95,7 @@
 		29B36D5112FFBFFD00897C08 /* PopoverImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B36D5012FFBFFD00897C08 /* PopoverImageViewController.m */; };
 		29B7D44B1330FFF30023BC81 /* MarkerPenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B7D44A1330FFF30023BC81 /* MarkerPenView.m */; };
 		29C6852113B9C66500FB164B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29C6852013B9C66500FB164B /* AVFoundation.framework */; };
+		29D1AE2A1404D3D300BF50B0 /* OpdsRootDelegater.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D1AE281404D3D300BF50B0 /* OpdsRootDelegater.m */; };
 		29D53CDF13FB9E42000E0AC9 /* ServerContentListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D53CDE13FB9E42000E0AC9 /* ServerContentListVC.m */; };
 		29D53CE213FB9ECD000E0AC9 /* ServerContentListDS.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D53CE113FB9ECD000E0AC9 /* ServerContentListDS.m */; };
 		29D53CE613FBB306000E0AC9 /* ServerContentDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29D53CE313FBB306000E0AC9 /* ServerContentDetailView.xib */; };
@@ -201,6 +203,8 @@
 		297F589D13C30BF600441312 /* ContentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentDetailViewController.m; path = InAppPurchase/ContentDetail/ContentDetailViewController.m; sourceTree = "<group>"; };
 		297F58A013C30C4B00441312 /* FileUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtility.h; sourceTree = "<group>"; };
 		297F58A113C30C4B00441312 /* FileUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUtility.m; sourceTree = "<group>"; };
+		2985D0EA1404D421008B96E5 /* OpdsParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpdsParser.h; path = Server/OpdsParser.h; sourceTree = "<group>"; };
+		2985D0EB1404D421008B96E5 /* OpdsParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OpdsParser.m; path = Server/OpdsParser.m; sourceTree = "<group>"; };
 		2987EDC912AA472400FB66E5 /* pdfDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pdfDefine.h; sourceTree = "<group>"; };
 		2987EE1B12AA4D1600FB66E5 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		2991E94913B1E208000630FB /* p1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = p1.mp3; path = sound/p1.mp3; sourceTree = "<group>"; };
@@ -236,6 +240,8 @@
 		29B7D44A1330FFF30023BC81 /* MarkerPenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkerPenView.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29C6852013B9C66500FB164B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		29D1AE271404D3D300BF50B0 /* OpdsRootDelegater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpdsRootDelegater.h; path = Server/OpdsRootDelegater.h; sourceTree = "<group>"; };
+		29D1AE281404D3D300BF50B0 /* OpdsRootDelegater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OpdsRootDelegater.m; path = Server/OpdsRootDelegater.m; sourceTree = "<group>"; };
 		29D53CDD13FB9E42000E0AC9 /* ServerContentListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServerContentListVC.h; path = Server/ServerContentListVC.h; sourceTree = "<group>"; };
 		29D53CDE13FB9E42000E0AC9 /* ServerContentListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServerContentListVC.m; path = Server/ServerContentListVC.m; sourceTree = "<group>"; };
 		29D53CE013FB9ECD000E0AC9 /* ServerContentListDS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServerContentListDS.h; path = Server/ServerContentListDS.h; sourceTree = "<group>"; };
@@ -535,6 +541,10 @@
 				29D53CE113FB9ECD000E0AC9 /* ServerContentListDS.m */,
 				29D53CDD13FB9E42000E0AC9 /* ServerContentListVC.h */,
 				29D53CDE13FB9E42000E0AC9 /* ServerContentListVC.m */,
+				2985D0EA1404D421008B96E5 /* OpdsParser.h */,
+				2985D0EB1404D421008B96E5 /* OpdsParser.m */,
+				29D1AE271404D3D300BF50B0 /* OpdsRootDelegater.h */,
+				29D1AE281404D3D300BF50B0 /* OpdsRootDelegater.m */,
 			);
 			name = ServerContentList;
 			sourceTree = "<group>";
@@ -744,6 +754,8 @@
 				29D53CDF13FB9E42000E0AC9 /* ServerContentListVC.m in Sources */,
 				29D53CE213FB9ECD000E0AC9 /* ServerContentListDS.m in Sources */,
 				29D53CE713FBB306000E0AC9 /* ServerContentDetailVC.m in Sources */,
+				29D1AE2A1404D3D300BF50B0 /* OpdsRootDelegater.m in Sources */,
+				2985D0EC1404D421008B96E5 /* OpdsParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -759,8 +771,13 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = JPPBook_Prefix.pch;
+				HEADER_SEARCH_PATHS = "${SDKROOT}/usr/include/libxml2";
 				INFOPLIST_FILE = "JPPBook-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = JPPBook;
 			};
 			name = Debug;
@@ -773,8 +790,13 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = JPPBook_Prefix.pch;
+				HEADER_SEARCH_PATHS = "${SDKROOT}/usr/include/libxml2";
 				INFOPLIST_FILE = "JPPBook-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = JPPBook;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				VALIDATE_PRODUCT = YES;
@@ -804,8 +826,13 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = JPPBook_Prefix.pch;
+				HEADER_SEARCH_PATHS = "${SDKROOT}/usr/include/libxml2";
 				INFOPLIST_FILE = "JPPBook-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = JPPBook;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				VALIDATE_PRODUCT = YES;
