@@ -10,7 +10,13 @@
 #define OPDS_TAG_TITLE @"feed/entry/title"
 #define OPDS_TAG_LINK  @"feed/entry/link"
 
+@protocol OpdsRootHandler
+- (void)difFinishParseOpdfRoot:(NSMutableArray*)resultArray;
+@end
+
 @interface OpdsRootDelegater : NSObject <NSXMLParserDelegate> {
+	id<OpdsRootHandler> parentClass;
+	
 	NSMutableArray *tags;
 	
 	NSMutableArray* resultArray;
@@ -23,5 +29,7 @@
     BOOL inLinkElement;
 	
 }
+
+@property (nonatomic, retain) id parentClass;
 
 @end

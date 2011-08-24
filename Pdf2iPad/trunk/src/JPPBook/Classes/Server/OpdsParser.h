@@ -11,9 +11,10 @@
 #import "Utility.h"
 #import "OpdsRootDelegater.h"
 
-@interface OpdsParser : NSObject <NSXMLParserDelegate> {
+@interface OpdsParser : NSObject <NSXMLParserDelegate, OpdsRootHandler> {
 }
 
 - (NSMutableDictionary*)getOpdsRoot:(NSURL*)rootUrl;
 
 @end
+

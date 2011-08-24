@@ -24,12 +24,30 @@
 	//
 	OpdsRootDelegater* delegater = [[OpdsRootDelegater alloc] init];
 	[parser setDelegate:delegater];
-	
+	delegater.parentClass = self;
+	//[delegater setParent:self];
 	//
 	[parser parse];
 
 	return nil;
 }
 
+- (void)difFinishParseOpdfRoot:(NSMutableArray*)resultArray
+{
+	LOG_CURRENT_METHOD;
+	NSLog(@"resultArray=%@", [resultArray description]);
+	
+	
+	NSString* searchForMe = @"最新順";
+	for (NSDictionary* tmpDict in resultArray) {
+		NSString* searchThisString = [tmpDict valueForKey:OPDS_TAG_TITLE];
+		NSRange range = [searchThisString rangeOfString : searchForMe];
+	
+		if (range.location != NSNotFound) {
+			NSLog(@"I found something.");
+			NSLog(@"title=%@, link=%@", [tmpDict valueForKey:OPDS_TAG_TITLE], [tmpDict valueForKey:OPDS_TAG_LINK]);
+		}
+	}
+}
 
 @end

@@ -11,6 +11,9 @@
 
 @implementation OpdsRootDelegater
 
+@synthesize parentClass;
+
+
 - (id)init {
     self = [super init];
     if (self) {
@@ -123,7 +126,8 @@ didStartElement:(NSString *)elementName
 		[resultArray addObject:tmpDict2];
 		//[tmpDict removeAllObjects];
 		
-		NSLog(@"resultArray=%@", [resultArray description]);
+		//NSLog(@"resultArray=%@", [resultArray description]);
+		
 	}
 
 	
@@ -138,6 +142,7 @@ didStartElement:(NSString *)elementName
 		NSLog(@"tags解放");
 		
 		NSLog(@"result=%@", [resultArray description]);
+		[parentClass difFinishParseOpdfRoot:resultArray];
 	}
 	
 	
