@@ -64,6 +64,7 @@
 - (UIImage*)loadDefaultImage;
 - (void)setupImage:(UIImage*)newImage;
 - (void)addScalableSubview:(UIView *)view withNormalizedFrame:(CGRect)normalizedFrame;
+- (void)cleanupSubviews;
 - (IBAction)hideCosmeLessonView;
 - (IBAction)switchToContentPlayerView;
 - (IBAction)showImageSelector;
