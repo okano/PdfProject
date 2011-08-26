@@ -15,6 +15,7 @@
 //MARK: Treat marker marker pen.
 - (void)setupMarkerPenView:(CGRect)imageRect
 {
+	[self cleanupSubviews];
 	if (markerPenView != nil)
 	{
 		[markerPenArray removeAllObjects];//inner array.
