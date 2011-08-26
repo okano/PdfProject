@@ -61,6 +61,7 @@
 @property (nonatomic, retain) ColorWidthInfoDS* colorWidthInfoDS;
 
 - (void)setupThisView;
+- (void)setupThisViewWithImage:(UIImage*)image;
 - (UIImage*)loadDefaultImage;
 - (void)setupImage:(UIImage*)newImage;
 - (void)addScalableSubview:(UIView *)view withNormalizedFrame:(CGRect)normalizedFrame;

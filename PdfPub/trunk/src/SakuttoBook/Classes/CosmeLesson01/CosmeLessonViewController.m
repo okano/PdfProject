@@ -34,6 +34,12 @@
 
 - (void)setupThisView
 {
+	//load image.
+	UIImage* image = [self loadDefaultImage];
+	[self setupThisViewWithImage:image];
+}
+- (void)setupThisViewWithImage:(UIImage*)image
+{
 	currentPageNum = 1;	//only page 1.
 	
 	
@@ -55,8 +61,6 @@
 	self.view.frame = viewFrame;
 	
 	
-	//load image.
-	UIImage* image = [self loadDefaultImage];
 	[self setupImage:image];
 	
 	//
