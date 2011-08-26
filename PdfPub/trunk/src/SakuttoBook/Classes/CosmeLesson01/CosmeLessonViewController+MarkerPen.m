@@ -17,6 +17,10 @@
 {
 	if (markerPenView != nil)
 	{
+		[markerPenArray removeAllObjects];//inner array.
+		[pointsForSingleLine removeAllObjects];
+		[markerPenView clearLine];
+		[markerPenView removeFromSuperview];
 		[markerPenView release];
 		markerPenView = nil;
 	}
