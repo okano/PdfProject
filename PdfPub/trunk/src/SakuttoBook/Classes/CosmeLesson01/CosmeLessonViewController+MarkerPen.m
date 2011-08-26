@@ -15,6 +15,11 @@
 //MARK: Treat marker marker pen.
 - (void)setupMarkerPenView:(CGRect)imageRect
 {
+	if (markerPenView != nil)
+	{
+		[markerPenView release];
+		markerPenView = nil;
+	}
 	//Generate markerPenView.
 	markerPenView = [[MarkerPenView alloc] initWithFrame:imageRect];
 	//NSLog(@"markerPenView has %d recognizers", [[markerPenView gestureRecognizers] count]);

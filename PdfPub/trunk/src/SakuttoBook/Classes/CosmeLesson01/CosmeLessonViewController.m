@@ -26,6 +26,8 @@
 		colorSelectorView = nil;
 		colorSelectorToolbar = nil;
 		isShownImagePicker = NO;
+		//Clear markerPenView.(init when use.)
+		markerPenView = nil;
     }
     return self;
 }
