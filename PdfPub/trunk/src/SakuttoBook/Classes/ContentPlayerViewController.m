@@ -1464,18 +1464,18 @@
 		//Add link infomation for touch.
         NSString *uri = [NSString stringWithString:[NSString stringWithString:[tmpCsvArray objectAtIndex:5]]];
 		NSURL *url = [NSURL URLWithString:uri];
-		NSLog(@"URL=%@", [url description]);
+		//NSLog(@"URL=%@", [url description]);
 		CGRect linkRectInOriginalPdf = CGRectMake([[tmpDict valueForKey:PJ_PAGE_AREA_X] floatValue],
 												  [[tmpDict valueForKey:PJ_PAGE_AREA_Y] floatValue],
 												  [[tmpDict valueForKey:PJ_PAGE_AREA_WIDTH] floatValue],
 												  [[tmpDict valueForKey:PJ_PAGE_AREA_HEIGHT] floatValue]);
-		NSLog(@"linkRectInOriginalPdf=%@", NSStringFromCGRect(linkRectInOriginalPdf));
+		//NSLog(@"linkRectInOriginalPdf=%@", NSStringFromCGRect(linkRectInOriginalPdf));
 		
 		NSMutableDictionary* tmpDict2 = [[[NSMutableDictionary alloc] init] autorelease];
 		[tmpDict2 setValue:[url description] forKey:LINK_DICT_KEY_URL];
 		[tmpDict2 setValue:[NSValue valueWithCGRect:linkRectInOriginalPdf] forKey:LINK_DICT_KEY_RECT];
 		[linksInCurrentPage addObject:tmpDict2];
-		NSLog(@"linksInCurrentPage=%@", [linksInCurrentPage description]);
+		//NSLog(@"linksInCurrentPage=%@", [linksInCurrentPage description]);
 		
 		//Render.
 		UIView* areaView = [[UIView alloc] initWithFrame:CGRectZero];
