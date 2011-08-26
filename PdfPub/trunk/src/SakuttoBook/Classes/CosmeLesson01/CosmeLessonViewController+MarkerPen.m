@@ -325,14 +325,14 @@
 #pragma mark - Color and Width.
 - (void)setLineColorAndWidthWithIndex:(NSInteger)index
 {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
 	if (colorSelectorTVC == nil) {
 		colorSelectorTVC = [[ColorSelectorTableViewController alloc] init];
 		//NSLog(@"colorWidthInfoDS count=%d", [colorWidthInfoDS count]);
 		[colorSelectorTVC.tableView setDataSource:colorWidthInfoDS];
 	}
 	NSDictionary* tmpDict = [[NSDictionary alloc] initWithDictionary:[colorWidthInfoDS getColorWidthInfoAtIndex:index]];
-	NSLog(@"tmpDict=%@", [tmpDict description]);
+	//NSLog(@"tmpDict=%@", [tmpDict description]);
 	
 	//Color
 	[self setLineColor:tmpDict];
@@ -356,7 +356,7 @@
 	currentLineColor_G = [[colorDict valueForKey:MARKERPEN_COLOR_G] floatValue];
 	currentLineColor_B = [[colorDict valueForKey:MARKERPEN_COLOR_B] floatValue];
 	currentLineColor_Alpha = [[colorDict valueForKey:MARKERPEN_COLOR_ALPHA] floatValue];
-	NSLog(@"line color=%4.2f,%4.2f,%4.2f alpha=%4.2f", currentLineColor_R, currentLineColor_G, currentLineColor_B, currentLineColor_Alpha);
+	//NSLog(@"line color=%4.2f,%4.2f,%4.2f alpha=%4.2f", currentLineColor_R, currentLineColor_G, currentLineColor_B, currentLineColor_Alpha);
 }
 - (void)setLineWidth:(CGFloat)width
 {
@@ -580,6 +580,7 @@
 			zoomLevel = 0;
 			break;
 	}
+	NSLog(@"scrollView.zoomScale=%f", scrollView.zoomScale);
 }
 
 
