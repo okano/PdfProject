@@ -47,9 +47,10 @@
 #pragma mark - CosmeLesson.
 - (IBAction)showCosmeLessonView
 {
-	if (cosmeLessonVC == nil) {
+	
+	//if (cosmeLessonVC == nil) {
 		cosmeLessonVC = [[CosmeLessonViewController alloc] initWithNibName:@"CosmeLessonView" bundle:[NSBundle mainBundle]];
-	};
+	//};
 	[self.view addSubview:cosmeLessonVC.view];
 }
 

@@ -35,8 +35,12 @@
 - (void)setupThisView
 {
 	//load image.
-	UIImage* image = [self loadDefaultImage];
-	[self setupThisViewWithImage:image];
+	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
+	if (appDelegate.imageForLessonBook == nil)
+	{
+		appDelegate.imageForLessonBook = [self loadDefaultImage];
+	}
+	[self setupThisViewWithImage:appDelegate.imageForLessonBook];
 }
 - (void)setupThisViewWithImage:(UIImage*)image
 {
@@ -115,16 +119,28 @@
 	
 	
 	//Setup scale.(fit screen)
+	//NSLog(@"self.view.frame=%@", NSStringFromCGRect(self.view.frame));
+	//NSLog(@"newImage.size=%@", NSStringFromCGSize(newImage.size));
 	CGFloat widthRatio = self.view.frame.size.width / newImage.size.width;
 	CGFloat heightRatio = self.view.frame.size.height / newImage.size.height;
-	CGFloat ratio;
+	//CGFloat ratio;
 	if (widthRatio < heightRatio) {
-		ratio = widthRatio;
+		scrollView.minimumZoomScale = widthRatio;
+		scrollView.maximumZoomScale = heightRatio;
+		//ratio = widthRatio;
 	} else {
-		ratio = heightRatio;
+		scrollView.minimumZoomScale = heightRatio;
+		scrollView.maximumZoomScale = widthRatio;
+		//ratio = heightRatio;
 	}
-	scrollView.minimumZoomScale = ratio;
-	scrollView.maximumZoomScale = 1.5f;
+	if (1.0 < scrollView.minimumZoomScale) {
+		scrollView.minimumZoomScale = 1.0f;
+	}
+	if (scrollView.maximumZoomScale < 1.0f) {
+		scrollView.maximumZoomScale = 1.0f;
+	}
+	//scrollView.minimumZoomScale = ratio;
+	//scrollView.maximumZoomScale = ratio * 1.5f;
 	
 	[scrollView setZoomScale:scrollView.minimumZoomScale];
 }
@@ -144,6 +160,11 @@
 	//show picture selector.
 	//LOG_CURRENT_METHOD;
 	[self openImagePickerFromBarButtonItem:[[toolbar items] objectAtIndex:2]];
+}
+- (void)switchToCosmeLessonView
+{
+	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
+	[appDelegate switchToCosmeLessonView];
 }
 
 

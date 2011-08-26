@@ -69,6 +69,7 @@
 - (IBAction)hideCosmeLessonView;
 - (IBAction)switchToContentPlayerView;
 - (IBAction)showImageSelector;
+- (void)switchToCosmeLessonView;	//switch this view with new image.
 
 @end
 

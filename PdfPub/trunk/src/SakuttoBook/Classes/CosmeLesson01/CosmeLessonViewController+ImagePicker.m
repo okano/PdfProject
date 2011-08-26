@@ -52,6 +52,14 @@
 	
 	//Set flag.(ignore multi open with ImagePicker.)
 	isShownImagePicker = NO;
+	
+	//Store new image to appDelegate.
+	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
+	appDelegate.imageForLessonBook = selectedImage;
+	
+	//generate new CosmeLessonView with new image.
+	[self hideCosmeLessonView];
+	[self switchToCosmeLessonView];
 }
 
 - (void) imagePickerControllerDidCancel:(UIImagePickerController*)picker {  
