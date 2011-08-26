@@ -25,19 +25,6 @@
 	//NSLog(@"markerPenView has %d recognizers", [[markerPenView gestureRecognizers] count]);
 	[markerPenView clearLine];
 	
-	/*
-	 //Add gesture to markerPenView.(drag for add line.)
-	 panRecognizer21 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan2:)];
-	 panRecognizer21.enabled = YES;
-	 [markerPenView addGestureRecognizer:panRecognizer21];
-	 NSLog(@"markerPenView has %d recognizers", [[markerPenView gestureRecognizers] count]);
-	 for (id obj in [markerPenView gestureRecognizers]) {
-	 NSLog(@"class=%@", [obj class]);
-	 UIPanGestureRecognizer* r = (UIPanGestureRecognizer*)obj;
-	 NSLog(@"enabled=%d", r.enabled);
-	 }
-	 */
-	
 	//Set default line color, width with index 0.
 	NSDictionary* tmpDict = [colorWidthInfoDS getColorWidthInfoAtIndex:0];
 	currentLineColor_R = [[tmpDict objectForKey:MARKERPEN_COLOR_R] floatValue];
@@ -143,17 +130,6 @@
 
 - (void)enterMarkerMode
 {
-	//LOG_CURRENT_METHOD;
-    //Hide original menu.
-    //[self hideMenuBar];
-    
-    //Show markerPen view.
-    //[self.view bringSubviewToFront:markerPenView];
-	
-	//Show menu bar, label for MakerPen.
-	//[self setupMarkerPenMenu];
-    //[self showMenuBarForMarker];
-    
     //Enable touch with view for maker.
     markerPenView.userInteractionEnabled = YES;
 	scrollView.userInteractionEnabled = NO;
@@ -172,10 +148,6 @@
 		[self hideMenuBarForMarker];
     }
 	
-	/*
-	 //Disable gesture for add line.
-	 panRecognizer21.enabled = NO;
-	 */
 	panRecognizer1.enabled = NO;
 	
     //Disable touch with view for maker.
@@ -566,37 +538,6 @@
     }
 	//NSLog(@"after  line number=%d", [markerPenArray count]);
 }
-
-
-/*
- - (void)setupMarkerPenViewAtPage:(NSUInteger)pageNum
- {
- //LOG_CURRENT_METHOD;
- //NSLog(@"markerPenArray=%@", [markerPenArray description]);
- 
- 
- //[markerPenView clearLine];
- 
- //Add line info from UserDefault to markerPenView.
- for (id obj in markerPenArray) {
- if (!obj) {
- continue;
- }
- if (! [obj isKindOfClass:[NSDictionary class]]) {
- NSLog(@"Illigal markerPenArray.");
- continue;
- }
- 
- NSMutableDictionary* markerInfo = [[NSMutableDictionary alloc] initWithDictionary:obj];
- 
- int targetPageNum = [[markerInfo valueForKey:MARKERPEN_PAGE_NUMBER] intValue];
- if (targetPageNum == pageNum) {
- //[markerPenView addLinesWithDictionary:markerInfo];
- }
- }
- }
- */
-
 
 - (void)clearMarkerPenView 
 {
