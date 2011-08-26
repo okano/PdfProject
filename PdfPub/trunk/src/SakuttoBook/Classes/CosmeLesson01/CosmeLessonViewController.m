@@ -54,7 +54,8 @@
 	
 	
 	//load image.
-	[self loadDefaultImage];
+	UIImage* image = [self loadDefaultImage];
+	[self setupImage:image];
 	
 	//
 	CGRect imageRect = CGRectMake(0, 0, imageView.image.size.width, imageView.image.size.height);
@@ -92,15 +93,10 @@
 	[self setLineColorAndWidthWithIndex:0];
 }
 
-- (void)loadDefaultImage
+- (UIImage*)loadDefaultImage
 {
 	NSString* targetFilename =  [[NSBundle mainBundle] pathForResource:@"IMG_6267" ofType:@"JPG"];
-	image = [UIImage imageWithContentsOfFile:targetFilename];
-	if (image == nil) {
-		NSLog(@"image not found.");
-		return;
-	}
-	[self setupImage:image];
+	return [UIImage imageWithContentsOfFile:targetFilename];
 }
 - (void)setupImage:(UIImage*)newImage
 {

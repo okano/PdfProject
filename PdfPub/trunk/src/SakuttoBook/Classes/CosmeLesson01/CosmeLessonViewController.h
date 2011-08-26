@@ -16,7 +16,6 @@
     IBOutlet UIToolbar* toolbar;
 	IBOutlet UIScrollView* scrollView;
 	IBOutlet UIImageView* imageView;
-	UIImage* image;
 	
 	// MarkerPen.
 	MarkerPenView* markerPenView;
@@ -62,7 +61,7 @@
 @property (nonatomic, retain) ColorWidthInfoDS* colorWidthInfoDS;
 
 - (void)setupThisView;
-- (void)loadDefaultImage;
+- (UIImage*)loadDefaultImage;
 - (void)setupImage:(UIImage*)newImage;
 - (void)addScalableSubview:(UIView *)view withNormalizedFrame:(CGRect)normalizedFrame;
 - (IBAction)hideCosmeLessonView;
