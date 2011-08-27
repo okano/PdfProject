@@ -181,7 +181,7 @@
 	if (gestureRecognizer.state == UIGestureRecognizerStatePossible) {
         //NSLog(@"Possible");
     } else if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"pan Began");
+        //NSLog(@"pan Began");
 		
 		//Setup line info on markerPenView.
 		[markerPenView willStartAddLineWithRed:currentLineColor_R
@@ -210,7 +210,7 @@
         [pointsForSingleLine addObject:NSStringFromCGPoint(p)];
 		
     } else if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
-        NSLog(@"pan Ended");
+        //NSLog(@"pan Ended");
         
         touchedPoint = [gestureRecognizer locationInView:markerPenView];
 		
@@ -442,9 +442,9 @@
 	}
 	
     //has been Readed marker pen infomation.
-	if (! markerPenArray) {
-		LOG_CURRENT_LINE;
-		NSLog(@"markerPenArray not initialized.(no marker pen info at page %d.)", pageNum);
+	if (markerPenArray == nil) {
+		//LOG_CURRENT_LINE;
+		//NSLog(@"markerPenArray not initialized.(no marker pen info at page %d.)", pageNum);
 		return;
 	}
 	
@@ -474,7 +474,7 @@
 	//
 	//CGRect rect = self.view.frame;
 	CGRect rect = markerPenView.frame;
-	NSLog(@"add Scalable Subview: frame=%@", NSStringFromCGRect(rect));
+	//NSLog(@"add Scalable Subview: frame=%@", NSStringFromCGRect(rect));
 	[self addScalableSubview:markerPenView withNormalizedFrame:rect];
 	[markerPenView setNeedsDisplay];
 }
@@ -531,9 +531,9 @@
 	//LOG_CURRENT_METHOD;
 	//NSLog(@"pageNum=%d", pageNum);
 	
-	if (! markerPenArray) {
-		LOG_CURRENT_LINE;
-		NSLog(@"markerPenArray not initialized.(no marker pen info at page %d.)", pageNum);
+	if (markerPenArray == nil) {
+		//LOG_CURRENT_LINE;
+		//NSLog(@"markerPenArray not initialized.(no marker pen info at page %d.)", pageNum);
 		return;
 	}
 	
@@ -576,7 +576,7 @@
 #pragma mark - Change zoom level.
 - (IBAction)changeZoomLevel
 {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
 	switch (zoomLevel) {
 		case 0:
 			scrollView.zoomScale = scrollView.maximumZoomScale;
@@ -593,7 +593,7 @@
 			zoomLevel = 0;
 			break;
 	}
-	NSLog(@"scrollView.zoomScale=%f", scrollView.zoomScale);
+	//NSLog(@"scrollView.zoomScale=%f", scrollView.zoomScale);
 }
 
 

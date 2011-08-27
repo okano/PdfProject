@@ -143,7 +143,7 @@
 
 - (void)deleteLastLine
 {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
 	if (0 < [lineToDraw count]) {
 		[lineToDraw removeLastObject];
 	}
