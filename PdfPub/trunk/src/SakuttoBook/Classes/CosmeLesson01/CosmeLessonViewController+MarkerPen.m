@@ -510,6 +510,19 @@
 		[self deleteMarkerPenAtPage:currentPageNum];
 		[self saveMarkerPenToUserDefault];
 		[self renderMarkerPenFromUserDefaultAtPage:currentPageNum];
+		//
+		[self setupMarkerPenView:CGRectZero];
+		
+		//Remove all subviews.
+		for (UIView* view in self.view.subviews){
+			[view removeFromSuperview];
+		}
+		
+		// Reset image. use default.
+		SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
+		[appDelegate.imageForLessonBook release];
+		appDelegate.imageForLessonBook = nil;
+		[self switchToCosmeLessonView];
     }
 }
 
