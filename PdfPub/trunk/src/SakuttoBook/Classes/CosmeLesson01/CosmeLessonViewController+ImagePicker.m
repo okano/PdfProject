@@ -25,7 +25,7 @@
 	
 	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
 		//iPad('On iPad, UIImagePickerController must be presented via UIPopoverController')
-		UIPopoverController* popoverController =[[UIPopoverController alloc] initWithContentViewController:picker];
+		popoverController =[[UIPopoverController alloc] initWithContentViewController:picker];
 		popoverController.delegate = self;
 
 		//[popoverController setPopoverContentSize:CGSizeMake(160,160) animated:YES];
@@ -48,7 +48,14 @@
     // Get selected image.
 	[self setupImage:selectedImage];
 	
-	[picker dismissModalViewControllerAnimated:YES];  
+	//
+	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+		//iPad
+		[popoverController dismissPopoverAnimated:YES];
+	} else {
+		//iPhone
+		[picker dismissModalViewControllerAnimated:YES];  
+	}
 	
 	//Set flag.(ignore multi open with ImagePicker.)
 	isShownImagePicker = NO;

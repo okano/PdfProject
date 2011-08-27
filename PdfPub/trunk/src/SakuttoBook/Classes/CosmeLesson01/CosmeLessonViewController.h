@@ -42,6 +42,9 @@
 	ColorSelectorTableViewController* colorSelectorTVC;
 	ColorWidthInfoDS* colorWidthInfoDS;
 	
+	//Image Picker.
+	UIPopoverController* popoverController;
+	
 	// Page number at current showing. (for save/load marker info to UserDefault)
     int             currentPageNum;
 	
