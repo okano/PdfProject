@@ -141,13 +141,25 @@ didStartElement:(NSString *)elementName
 		tags = nil;
 		NSLog(@"tags解放");
 		
-		NSLog(@"result=%@", [resultArray description]);
-		[parentParser difFinishParseOpdfRoot:resultArray];
+		LOG_CURRENT_LINE;
+		//NSLog(@"result=%@", [resultArray description]);
+		//[parentParser didFinishParseOpdsRoot:resultArray];
 	}
 	
 	
 	inTitleElement = NO;
 	inLinkElement = NO;
+}
+
+
+- (void)parserDidEndDocument:(NSXMLParser *)parser
+{
+	LOG_CURRENT_METHOD;
+	if (parentParser != nil) {
+		[parentParser didFinishParseOpdsRoot:resultArray];
+	} else {
+		NSLog(@"parent Parse is null!");
+	}
 }
 
 @end

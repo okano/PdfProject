@@ -24,21 +24,27 @@
 	LOG_CURRENT_METHOD;
 	NSLog(@"rootUrl=%@", [rootUrl description]);
 	
+	//load XML to text.
+	NSString* feed = [[NSString alloc] initWithContentsOfURL:rootUrl];
+	NSLog(@"feed=%@", feed);
 
-	// NSXMLParserオブジェクトを作ってURLを指定する。
-	NSXMLParser *parser = [[[NSXMLParser alloc] initWithContentsOfURL:rootUrl] autorelease];
-	//
+	//Setup parser.
 	ParseEngine4OpdsRoot* parseEngine = [[ParseEngine4OpdsRoot alloc] init];
-	[parser setDelegate:parseEngine];
 	parseEngine.parentParser = self;
-	//[delegater setParent:self];
-	//
+	NSXMLParser *parser = [[[NSXMLParser alloc]
+							initWithData:[feed dataUsingEncoding:NSUTF8StringEncoding]]
+						   autorelease];
+	[parser setDelegate:parseEngine];
+	NSLog(@"parser=%@", [parser description]);
+	
+	//Do parse.
 	[parser parse];
 
 	return nil;
 }
 
-- (void)difFinishParseOpdfRoot:(NSMutableArray*)resultArray
+#pragma mark - OpdsParserProtocol
+- (void)didFinishParseOpdsRoot:(NSMutableArray*)resultArray
 {
 	LOG_CURRENT_METHOD;
 	NSLog(@"resultArray=%@", [resultArray description]);
@@ -55,5 +61,12 @@
 		}
 	}
 }
+
+- (void)didFinishParseOpdsElement:(NSMutableArray*)resultArray
+{
+	LOG_CURRENT_METHOD;
+	NSLog(@"resultArray=%@", [resultArray description]);
+}
+
 
 @end

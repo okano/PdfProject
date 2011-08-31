@@ -12,7 +12,7 @@
 #import "ParseEngine4OpdsRoot.h"
 #import "ProtocolDefine.h"
 
-@interface OpdsParser : NSObject <NSXMLParserDelegate, OpdsRootHandler> {
+@interface OpdsParser : NSObject <NSXMLParserDelegate, OpdsParserProtocol> {
 	id <ContentListProtocol> targetTableVC;
 }
 @property (nonatomic, retain) id targetTableVC;

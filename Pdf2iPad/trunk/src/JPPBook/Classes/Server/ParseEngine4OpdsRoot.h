@@ -7,15 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Utility.h"
+#import "ProtocolDefine.h"
+
 #define OPDS_TAG_TITLE @"feed/entry/title"
 #define OPDS_TAG_LINK  @"feed/entry/link"
 
-@protocol OpdsRootHandler
-- (void)difFinishParseOpdfRoot:(NSMutableArray*)resultArray;
-@end
-
 @interface ParseEngine4OpdsRoot : NSObject <NSXMLParserDelegate> {
-	id<OpdsRootHandler> parentParser;
+	id <OpdsParserProtocol> parentParser;
 	
 	NSMutableArray *tags;
 	
