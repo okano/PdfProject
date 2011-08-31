@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <libxml/tree.h>
 #import "Utility.h"
-#import "OpdsRootDelegater.h"
+#import "ParseEngine4OpdsRoot.h"
 #import "ProtocolDefine.h"
 
 @interface OpdsParser : NSObject <NSXMLParserDelegate, OpdsRootHandler> {

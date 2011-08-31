@@ -28,9 +28,9 @@
 	// NSXMLParserオブジェクトを作ってURLを指定する。
 	NSXMLParser *parser = [[[NSXMLParser alloc] initWithContentsOfURL:rootUrl] autorelease];
 	//
-	OpdsRootDelegater* delegater = [[OpdsRootDelegater alloc] init];
-	[parser setDelegate:delegater];
-	delegater.parentClass = self;
+	ParseEngine4OpdsRoot* parseEngine = [[ParseEngine4OpdsRoot alloc] init];
+	[parser setDelegate:parseEngine];
+	parseEngine.parentClass = self;
 	//[delegater setParent:self];
 	//
 	[parser parse];
