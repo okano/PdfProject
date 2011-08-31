@@ -59,7 +59,7 @@
 	
 	//[self loadContentList:10 delegate:nil];
 	
-	NSString* urlStr = [NSString stringWithFormat:@"http://192.168.1.8:8080/opds"];
+	NSString* urlStr = [NSString stringWithFormat:@"%@%@", URL_BASE_OPDS, URL_SUFFIX_OPDS];
 	NSURL *url = [NSURL URLWithString:urlStr];
 
 	OpdsParser* parser = [[OpdsParser alloc] init];
