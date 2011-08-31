@@ -58,12 +58,13 @@
 	//[self storeContentListToPlist:contentList];
 	
 	//[self loadContentList:10 delegate:nil];
-	
+	/*
 	NSString* urlStr = [NSString stringWithFormat:@"%@%@", URL_BASE_OPDS, URL_SUFFIX_OPDS];
 	NSURL *url = [NSURL URLWithString:urlStr];
 
 	OpdsParser* parser = [[OpdsParser alloc] init];
 	[parser getOpdsRoot:url];
+	 */
 }
 
 
@@ -78,8 +79,12 @@
 	//Get from plist.
 	[contentList addObjectsFromArray:[self loadContentListFromFile]];
 	if ([contentList count] <= 0) {
+		NSLog(@"not found contents from plist. load from network.");
+		[self loadContentListFromNetworkByOpds];
+		
+		/*
 		//Get from Network.
-		[contentList addObjectsFromArray:[self loadContentListFromNetwork]];
+		[contentList addObjectsFromArray:[self loadContentListFromNetworkByOpds]];
 		if ([contentList count] <= 0) {
 			//List cannot get.
 			NSLog(@"content list cannot get from network");
@@ -95,6 +100,7 @@
 			//Save it to plist.
 			[self storeContentListToPlist:contentList];
 		}
+		*/
 	}
 	if (delegate != nil) {
 		[delegate reloadData];
@@ -204,6 +210,20 @@
 
 	return contentListTmp;
 }
+
+- (void)loadContentListFromNetworkByOpds
+{
+	LOG_CURRENT_METHOD;
+	
+	OpdsParser* parser = [[OpdsParser alloc] init];
+	parser.targetTableVC = self;
+	
+	NSString* urlStr = [NSString stringWithFormat:@"%@%@", URL_BASE_OPDS, URL_SUFFIX_OPDS];
+	NSURL* url = [[NSURL alloc] initWithString:urlStr];
+	[parser getOpds:url];
+}
+
+
 
 #pragma mark - parse
 - (NSDate*)getLastupdateFromPlist:(id)pList

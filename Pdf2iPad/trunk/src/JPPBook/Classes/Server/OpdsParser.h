@@ -10,10 +10,14 @@
 #import <libxml/tree.h>
 #import "Utility.h"
 #import "OpdsRootDelegater.h"
+#import "ProtocolDefine.h"
 
 @interface OpdsParser : NSObject <NSXMLParserDelegate, OpdsRootHandler> {
+	id <ContentListProtocol> targetTableVC;
 }
+@property (nonatomic, retain) id targetTableVC;
 
+- (void)getOpds:(NSURL*)rootUrl;
 - (NSMutableDictionary*)getOpdsRoot:(NSURL*)rootUrl;
 
 @end

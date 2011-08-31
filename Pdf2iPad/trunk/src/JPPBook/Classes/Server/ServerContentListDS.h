@@ -24,6 +24,7 @@
 - (void)loadContentList:(NSUInteger)maxCount;
 - (NSArray*)loadContentListFromFile;
 - (NSArray*)loadContentListFromNetwork;
+- (void)loadContentListFromNetworkByOpds;
 #pragma mark - parse
 - (NSDate*)getLastupdateFromPlist:(id)pList;
 - (NSArray*)getContentListFromPlist:(id)pList;

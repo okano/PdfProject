@@ -10,6 +10,12 @@
 
 
 @implementation OpdsParser
+@synthesize targetTableVC;
+
+- (void)getOpds:(NSURL*)rootUrl
+{
+	[self getOpdsRoot:rootUrl];
+}
 
 
 //@see:http://w.livedoor.jp/iphone_tricks/d/XML%A5%D5%A5%A1%A5%A4%A5%EB(NSXMLParser)
