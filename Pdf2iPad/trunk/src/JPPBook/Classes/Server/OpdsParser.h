@@ -10,7 +10,9 @@
 #import <libxml/tree.h>
 #import "Utility.h"
 #import "ParseEngine4OpdsRoot.h"
+#import "ParseEngine4OpdsElement.h"
 #import "ProtocolDefine.h"
+#import "UrlDefine.h"
 
 @interface OpdsParser : NSObject <NSXMLParserDelegate, OpdsParserProtocol> {
 	id <ContentListProtocol> targetTableVC;
@@ -19,6 +21,7 @@
 
 - (void)getOpds:(NSURL*)rootUrl;
 - (NSMutableDictionary*)getOpdsRoot:(NSURL*)rootUrl;
+- (NSMutableDictionary*)getOpdsElement:(NSURL*)elementUrl;
 
 @end
 

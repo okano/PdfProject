@@ -34,6 +34,7 @@
 		292C55E712DC4DCE00D21556 /* icon_top.png in Resources */ = {isa = PBXBuildFile; fileRef = 292C55E312DC4DCE00D21556 /* icon_top.png */; };
 		292C560112DC4EAE00D21556 /* icon_list_thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 292C560012DC4EAE00D21556 /* icon_list_thumbnail.png */; };
 		293B7B4A134C5D6500FAF0B0 /* flower3-1280x960.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 293B7B49134C5D6500FAF0B0 /* flower3-1280x960.jpg */; };
+		294AFC6F140E16B40052AA05 /* ParseEngine4OpdsElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 294AFC6D140E16B40052AA05 /* ParseEngine4OpdsElement.m */; };
 		294FAF211315E5B2007D7F00 /* image-100x142.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 29EF555713039E2700C3C7ED /* image-100x142.jpg */; };
 		29519DC1134AA95200F1EFA6 /* 1-咽頭320.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 29519DC0134AA95200F1EFA6 /* 1-咽頭320.mp4 */; };
 		2953E4FA12DC6304007E3B57 /* help.png in Resources */ = {isa = PBXBuildFile; fileRef = 2953E4F912DC6304007E3B57 /* help.png */; };
@@ -156,6 +157,9 @@
 		292C55E312DC4DCE00D21556 /* icon_top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_top.png; sourceTree = "<group>"; };
 		292C560012DC4EAE00D21556 /* icon_list_thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_list_thumbnail.png; sourceTree = "<group>"; };
 		293B7B49134C5D6500FAF0B0 /* flower3-1280x960.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "flower3-1280x960.jpg"; sourceTree = "<group>"; };
+		294AFC6C140E16B40052AA05 /* ParseEngine4OpdsElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParseEngine4OpdsElement.h; path = Server/ParseEngine4OpdsElement.h; sourceTree = "<group>"; };
+		294AFC6D140E16B40052AA05 /* ParseEngine4OpdsElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ParseEngine4OpdsElement.m; path = Server/ParseEngine4OpdsElement.m; sourceTree = "<group>"; };
+		294AFC6E140E16B40052AA05 /* ProtocolDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProtocolDefine.h; path = Server/ProtocolDefine.h; sourceTree = "<group>"; };
 		29519DC0134AA95200F1EFA6 /* 1-咽頭320.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "1-咽頭320.mp4"; sourceTree = "<group>"; };
 		2953E4F912DC6304007E3B57 /* help.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = help.png; sourceTree = "<group>"; };
 		296319E912D2B7D200372D63 /* ThumbnailScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumbnailScrollViewController.h; sourceTree = "<group>"; };
@@ -240,7 +244,7 @@
 		29B7D44A1330FFF30023BC81 /* MarkerPenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkerPenView.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29C6852013B9C66500FB164B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		29D1AE271404D3D300BF50B0 /* ParseEngine4OpdsRoot.h */ = {isa = PBXFileReference; fileEncoding = 4; name = ParseEngine4OpdsRoot.h; path = Server/ParseEngine4OpdsRoot.h; sourceTree = "<group>"; };
+		29D1AE271404D3D300BF50B0 /* ParseEngine4OpdsRoot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParseEngine4OpdsRoot.h; path = Server/ParseEngine4OpdsRoot.h; sourceTree = "<group>"; };
 		29D1AE281404D3D300BF50B0 /* ParseEngine4OpdsRoot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ParseEngine4OpdsRoot.m; path = Server/ParseEngine4OpdsRoot.m; sourceTree = "<group>"; };
 		29D53CDD13FB9E42000E0AC9 /* ServerContentListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServerContentListVC.h; path = Server/ServerContentListVC.h; sourceTree = "<group>"; };
 		29D53CDE13FB9E42000E0AC9 /* ServerContentListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServerContentListVC.m; path = Server/ServerContentListVC.m; sourceTree = "<group>"; };
@@ -545,6 +549,9 @@
 				2985D0EB1404D421008B96E5 /* OpdsParser.m */,
 				29D1AE271404D3D300BF50B0 /* ParseEngine4OpdsRoot.h */,
 				29D1AE281404D3D300BF50B0 /* ParseEngine4OpdsRoot.m */,
+				294AFC6C140E16B40052AA05 /* ParseEngine4OpdsElement.h */,
+				294AFC6D140E16B40052AA05 /* ParseEngine4OpdsElement.m */,
+				294AFC6E140E16B40052AA05 /* ProtocolDefine.h */,
 			);
 			name = ServerContentList;
 			sourceTree = "<group>";
@@ -756,6 +763,7 @@
 				29D53CE713FBB306000E0AC9 /* ServerContentDetailVC.m in Sources */,
 				29D1AE2A1404D3D300BF50B0 /* ParseEngine4OpdsRoot.m in Sources */,
 				2985D0EC1404D421008B96E5 /* OpdsParser.m in Sources */,
+				294AFC6F140E16B40052AA05 /* ParseEngine4OpdsElement.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
