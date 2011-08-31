@@ -252,6 +252,28 @@
 }
 
 
+#pragma mark - ContentListProtocol
+- (void)didFinishParseOpds:(NSMutableArray*)resultArray
+{
+	LOG_CURRENT_METHOD;
+	
+	//Store to appDelegate.seaverContentListDS(self)
+	NSLog(@"list count before add=%d", [contentList count]);
+	[contentList addObjectsFromArray:resultArray];
+	NSLog(@"list count after  add=%d", [contentList count]);
+	
+	//Format contentList. (add CONTENT_STORE_PRODUCT_ID with NO_PRODUCT_ID)
+	
+	
+	//Store by plist in ~/Documents
+	
+	//Refresh table.
+	if (delegate != nil) {
+		[delegate reloadData];
+	}
+}
+
+
 #pragma mark - store
 - (void)storeContentListToPlist:(NSMutableArray*)pListArray
 {

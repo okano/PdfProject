@@ -120,6 +120,12 @@
 {
 	LOG_CURRENT_METHOD;
 	NSLog(@"resultArray=%@", [resultArray description]);
+	
+	if (targetTableVC != nil) {
+		[targetTableVC didFinishParseOpds:resultArray];
+	} else {
+		NSLog(@"targetTableVC is nil!");
+	}
 }
 
 

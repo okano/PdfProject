@@ -55,7 +55,11 @@
 - (NSString*)productIdFromContentId:(ContentId)cid
 {
 	//LOG_CURRENT_METHOD;
-	//NSLog(@"cid=%d", cid);
+	NSLog(@"cid=%d", cid);
+	if (cid <= 0) {
+		NSLog(@"ContentId is 1-start! (given %d)", cid);
+		cid = 1;
+	}
 	
 	//(when loading now, read csv file)
 	if ([contentList count] < cid) {
@@ -68,7 +72,12 @@
 		if (candidateCid == cid) {
 			//LOG_CURRENT_LINE;
 			//NSLog(@"pid=%@", [tmpDict valueForKey:CONTENT_STORE_PRODUCT_ID]);
-			return [NSString stringWithString:[tmpDict valueForKey:CONTENT_STORE_PRODUCT_ID]];
+			if ([tmpDict valueForKey:CONTENT_STORE_PRODUCT_ID] != nil) {
+				return [NSString stringWithString:[tmpDict valueForKey:CONTENT_STORE_PRODUCT_ID]];
+			} else {
+				NSLog(@"no product id. cid=%d", cid);
+				return @"";
+			}
 		}
 	}
 	//LOG_CURRENT_LINE;
