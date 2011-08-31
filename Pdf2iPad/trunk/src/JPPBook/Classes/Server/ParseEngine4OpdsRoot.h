@@ -15,7 +15,7 @@
 @end
 
 @interface ParseEngine4OpdsRoot : NSObject <NSXMLParserDelegate> {
-	id<OpdsRootHandler> parentClass;
+	id<OpdsRootHandler> parentParser;
 	
 	NSMutableArray *tags;
 	
@@ -30,6 +30,6 @@
 	
 }
 
-@property (nonatomic, retain) id parentClass;
+@property (nonatomic, retain) id parentParser;
 
 @end

@@ -11,7 +11,7 @@
 
 @implementation ParseEngine4OpdsRoot
 
-@synthesize parentClass;
+@synthesize parentParser;
 
 
 - (id)init {
@@ -142,7 +142,7 @@ didStartElement:(NSString *)elementName
 		NSLog(@"tags解放");
 		
 		NSLog(@"result=%@", [resultArray description]);
-		[parentClass difFinishParseOpdfRoot:resultArray];
+		[parentParser difFinishParseOpdfRoot:resultArray];
 	}
 	
 	

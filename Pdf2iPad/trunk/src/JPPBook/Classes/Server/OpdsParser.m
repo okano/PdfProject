@@ -30,7 +30,7 @@
 	//
 	ParseEngine4OpdsRoot* parseEngine = [[ParseEngine4OpdsRoot alloc] init];
 	[parser setDelegate:parseEngine];
-	parseEngine.parentClass = self;
+	parseEngine.parentParser = self;
 	//[delegater setParent:self];
 	//
 	[parser parse];
