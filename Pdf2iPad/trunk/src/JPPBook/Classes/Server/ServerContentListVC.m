@@ -46,7 +46,7 @@
 {
 	LOG_CURRENT_METHOD;
 	if (appDelegate.serverContentListDS == nil) {
-		[[ServerContentListDS alloc] init];
+		appDelegate.serverContentListDS = [[ServerContentListDS alloc] init];
 	}
 	appDelegate.serverContentListDS.delegate = self;
 	[appDelegate.serverContentListDS loadContentList:32];
