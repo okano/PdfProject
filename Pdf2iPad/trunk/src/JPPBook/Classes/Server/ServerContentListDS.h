@@ -13,12 +13,15 @@
 #import "FileUtility.h"
 #import "UrlDefine.h"
 #import "OpdsParser.h"
+#import "ProtocolDefine.h"
 
 @interface ServerContentListDS : ContentListDS {
+	id <MyTableViewVCProtocol> delegate;
 }
+@property (nonatomic, retain) id delegate;
 
 #pragma mark - load
-- (void)loadContentList:(NSUInteger)maxCount delegate:(id)delegate;
+- (void)loadContentList:(NSUInteger)maxCount;
 - (NSArray*)loadContentListFromFile;
 - (NSArray*)loadContentListFromNetwork;
 #pragma mark - parse

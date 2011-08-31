@@ -10,7 +10,7 @@
 
 
 @implementation ServerContentListDS
-
+@synthesize delegate;
 
 #pragma mark - setup data.
 - (void)setupData
@@ -69,7 +69,7 @@
 
 #pragma mark - Load ContentList
 //Set content list to var.
-- (void)loadContentList:(NSUInteger)maxCount delegate:(id)delegate
+- (void)loadContentList:(NSUInteger)maxCount
 {
 	//Clear all.
 	[contentList removeAllObjects];
@@ -97,7 +97,7 @@
 		}
 	}
 	if (delegate != nil) {
-		//[delegate refreshTableData];
+		[delegate reloadData];
 	}
 	NSLog(@"contentList count=%d", [contentList count]);
 }

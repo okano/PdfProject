@@ -9,13 +9,19 @@
 #import <UIKit/UIKit.h>
 #import "Pdf2iPadAppDelegate.h"
 #import "ContentListViewController.h"
+#import "ProtocolDefine.h"
 
-@interface ServerContentListVC : ContentListViewController {
+@interface ServerContentListVC : ContentListViewController <MyTableViewVCProtocol> {
 	//UITableView* myTableView;
 	//UIToolbar* toolbar;
 	//Pdf2iPadAppDelegate* appDelegate;
 }
 
+
+//Setup data.
+- (void)setupData;
+
+//Switch view.
 - (void)showContentList;
 - (void)showServerContentDetailView:(ContentId)cid;
 

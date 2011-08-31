@@ -33,7 +33,7 @@
 	//Setup Content List.
 	contentListDS = [[ContentListDS alloc] init];
 	//Setup Content List on Server.
-	serverContentListDS = [[ServerContentListDS alloc] init];
+	serverContentListDS = nil;
 	
 	//Setup for InAppPurchase.
 	paymentConductor = [[PaymentConductor alloc] init];

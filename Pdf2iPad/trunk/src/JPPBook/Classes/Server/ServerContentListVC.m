@@ -23,6 +23,8 @@
 	//Setup TableView.
 	myTableView.delegate = self;
 	myTableView.dataSource = self;
+	//Setup data.
+	[self setupData];
 	
 	//Setup Toolbar.
 	UIBarButtonItem *localContentButton = [[UIBarButtonItem alloc] initWithTitle:@"Books"
@@ -38,6 +40,18 @@
 
 	[self reloadData];
 }
+
+#pragma mark - setup data.
+- (void)setupData
+{
+	LOG_CURRENT_METHOD;
+	if (appDelegate.serverContentListDS == nil) {
+		[[ServerContentListDS alloc] init];
+	}
+	appDelegate.serverContentListDS.delegate = self;
+	[appDelegate.serverContentListDS loadContentList:32];
+}
+
 
 #pragma mark - show other view.
 - (void)showContentList
@@ -173,7 +187,7 @@
 	[self showServerContentDetailView:targetCid];
 }
 
-#pragma mark - Accessor for table
+#pragma mark - MyTableViewVCProtocol (Accessor for table)
 - (void)reloadData
 {
 	[myTableView reloadData];
