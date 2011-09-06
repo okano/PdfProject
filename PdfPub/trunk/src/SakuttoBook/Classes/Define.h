@@ -27,6 +27,9 @@
 //Hide Infomation button on Menu bar.
 #define HIDE_INFOMATION_BUTTON 0	/* 0:show, 1:hide */
 
+//Show 2-page in case of LandScape (yokonaga screen) mode.
+#define IS_2PAGE_VIEW		1	/* 0:normal single view, 1:2-page view in LandScape view. */
+
 // Tap area. (0.00 - 1.00) (1.00 is "fit to screen")
 #define TAP_AREA_LEFT_X			0.00f
 #define TAP_AREA_LEFT_Y			0.15f
