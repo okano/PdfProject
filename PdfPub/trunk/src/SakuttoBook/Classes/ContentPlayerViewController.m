@@ -395,6 +395,12 @@
 		NSLog(@"illigal page given. pageNum=%d, maxPageNum=%d", pageNum, maxPageNum);
 		return nil;
 	}
+	
+	//Treat 2-page view.
+#if defined(IS_2PAGE_VIEW) && IS_2PAGE_VIEW != 0
+	return [self getPdfPageImageDoubleWithPageNum:(NSUInteger)pageNum];
+#endif
+	
 	//Get image from file if exists.
 	NSString* targetFilenameFull;
 #if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
@@ -406,16 +412,104 @@
 	//NSLog(@"targetFilenameFull=%@", targetFilenameFull);
 	return [self getPdfPageImageWithPageNum:pageNum WithTargetFilenameFull:targetFilenameFull];
 }
+
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum WithContentId:(ContentId)cid
 {
 	if (maxPageNum < pageNum) {
 		NSLog(@"illigal page given. pageNum=%d, maxPageNum=%d", pageNum, maxPageNum);
 		return nil;
 	}
+	
+	//Treat 2-page view.
+#if defined(IS_2PAGE_VIEW) && IS_2PAGE_VIEW != 0
+	return [self getPdfPageImageDoubleWithPageNum:(NSUInteger)pageNum WithContentId:cid];
+#endif
+	
 	//Get image from file if exists.
 	NSString* targetFilenameFull = [FileUtility getPageFilenameFull:pageNum WithContentId:cid];
 	return [self getPdfPageImageWithPageNum:pageNum WithTargetFilenameFull:targetFilenameFull];
 }
+
+- (UIImage*)getPdfPageImageDoubleWithPageNum:(NSUInteger)pageNum
+{
+	LOG_CURRENT_METHOD;
+	//Get image from file if exists.
+	NSString* targetFilenameFull1;
+	NSString* targetFilenameFull2;
+#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+	targetFilenameFull1 = [FileUtility getPageFilenameFull:pageNum   WithContentId:currentContentId];
+	targetFilenameFull2 = [FileUtility getPageFilenameFull:pageNum+1 WithContentId:currentContentId];
+#else
+	targetFilenameFull1 = [FileUtility getPageFilenameFull:pageNum];
+	targetFilenameFull2 = [FileUtility getPageFilenameFull:pageNum+1];
+#endif
+	
+	//get 2 image.(n, n+1)
+	UIImage* image1 = [self getPdfPageImageWithPageNum:pageNum WithTargetFilenameFull:targetFilenameFull1];
+	UIImage* image2 = [self getPdfPageImageWithPageNum:pageNum WithTargetFilenameFull:targetFilenameFull2];
+	if (image1 == nil && image2 == nil) {
+		LOG_CURRENT_LINE;
+		return nil;
+	}
+	if (image1 == nil) {
+		LOG_CURRENT_LINE;
+		return image2;
+	}
+	if (image2 == nil) {
+		LOG_CURRENT_LINE;
+		return image1;
+	}
+	
+	//Merge 2 image.
+	UIGraphicsBeginImageContext(image1.size);
+	[image1 drawAtPoint:CGPointMake(0, 0)];
+	[image2 drawAtPoint:CGPointMake(image1.size.width, 0)];
+	UIImage *mergedImage = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	
+	return mergedImage;
+}
+- (UIImage*)getPdfPageImageDoubleWithPageNum:(NSUInteger)pageNum WithContentId:(ContentId)cid
+{
+	LOG_CURRENT_METHOD;
+	//get 2 image.(n, n+1)
+	NSString* targetFilenameFull1 = [FileUtility getPageFilenameFull:pageNum   WithContentId:currentContentId];
+	NSString* targetFilenameFull2 = [FileUtility getPageFilenameFull:pageNum+1 WithContentId:currentContentId];
+	UIImage* image1 = nil;
+	UIImage* image2 = nil;
+	image1 = [self getPdfPageImageWithPageNum:pageNum   WithTargetFilenameFull:targetFilenameFull1];
+	image2 = [self getPdfPageImageWithPageNum:pageNum+1 WithTargetFilenameFull:targetFilenameFull2];
+	if (image1 == nil && image2 == nil) {
+		LOG_CURRENT_LINE;
+		return nil;
+	}
+	if (image1 == nil) {
+		LOG_CURRENT_LINE;
+		return image2;
+	}
+	if (image2 == nil) {
+		LOG_CURRENT_LINE;
+		return image1;
+	}
+	
+	//Merge 2 image.
+	CGSize newSize = CGSizeMake(image1.size.width + image2.size.width, image2.size.height);
+	NSLog(@"newSize=%@", NSStringFromCGSize(newSize));
+	UIGraphicsBeginImageContext(newSize);
+	[image1 drawAtPoint:CGPointMake(0, 0)];
+	[image2 drawAtPoint:CGPointMake(image1.size.width, 0)];
+	UIImage *mergedImage = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	if (mergedImage == nil) {
+		LOG_CURRENT_LINE;
+	}
+	NSLog(@"image1 size=%@, image2 size=%@", NSStringFromCGSize(image1.size), NSStringFromCGSize(image2.size));
+	NSLog(@"merged image size=%@", NSStringFromCGSize(mergedImage.size));
+	
+	LOG_CURRENT_LINE;
+	return mergedImage;
+}
+
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum WithTargetFilenameFull:(NSString*)targetFilenameFull
 {
 	NSFileManager *fileManager = [NSFileManager defaultManager];
