@@ -22,11 +22,11 @@
 // Tap area. (0.00 - 1.00) (1.00 is "fit to screen")
 #define TAP_AREA_LEFT_X			0.00f
 #define TAP_AREA_LEFT_Y			0.15f
-#define TAP_AREA_LEFT_WIDTH		0.40f
+#define TAP_AREA_LEFT_WIDTH		0.25f
 #define TAP_AREA_LEFT_HEIGHT	1.00f
-#define TAP_AREA_RIGHT_X		0.60f
+#define TAP_AREA_RIGHT_X		0.75f
 #define TAP_AREA_RIGHT_Y		0.15f
-#define TAP_AREA_RIGHT_WIDTH	0.40f
+#define TAP_AREA_RIGHT_WIDTH	0.25f
 #define TAP_AREA_RIGHT_HEIGHT	1.00f
 #define TAP_AREA_TOP_X			0.00f
 #define TAP_AREA_TOP_Y			0.00f
