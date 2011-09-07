@@ -81,21 +81,24 @@
 		return lines;
 	}
 	//NSLog(@"lines(count=%d)=%@", [lines count], [lines description]);
+	NSMutableArray* resultArray = [[NSMutableArray alloc] init];
 	for (NSString* line in [lines reverseObjectEnumerator]) {
 		//NSLog(@"line(length=%d)=%@", [line length], [line stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
 		if ([line length] <= 0) {
-			[lines removeObject:line];	//Skip blank line.
+			//[lines removeObject:line];	//Skip blank line.
 			continue;
 		}
+		LOG_CURRENT_LINE;
 		if ([line characterAtIndex:0] == '#'
 			||
 			[line characterAtIndex:0] == ';') {
-			[lines removeObject:line];	//Skip comment line.
+			//[lines removeObject:line];	//Skip comment line.
 			continue;
 		}
+		[resultArray addObject:line];
 	}
 	
-	return lines;
+	return resultArray;
 }
 
 + (NSArray*)parseDefineCsv:(NSString*)filename contentId:(ContentId)cid 
