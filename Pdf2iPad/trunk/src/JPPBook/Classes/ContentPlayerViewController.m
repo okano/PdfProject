@@ -1508,6 +1508,9 @@
 		[menuBarForMakerPen setItems:[NSArray arrayWithObjects:doneButton, fspace1, titleLabelButton, fspace2, undoButton, deleteButton, nil]];
 		[self.view addSubview:menuBarForMakerPen];
 	}
+	
+	//Setup menu bar frame.
+	/*
 	UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
 	if (interfaceOrientation == UIInterfaceOrientationPortrait
 		||
@@ -1519,10 +1522,17 @@
 		menuBarForMakerPen.frame = rect;
 	} else {
 		CGRect rect = menuBarForMakerPen.frame;
-		rect.size.width = self.view.frame.size.height;
+		rect.size.width = self.view.frame.size.width;
 		rect.origin.y = 0.0f;	//self.view.frame.size.width - menuBarHeight;
 		menuBarForMakerPen.frame = rect;
 	}
+	*/
+	
+	CGRect rect = CGRectMake(0.0f,
+							 0.0f,
+							 self.view.frame.size.width,
+							 menuBarHeight);
+	menuBarForMakerPen.frame = rect;
 }
 
 - (void)enterMarkerMode
