@@ -27,7 +27,11 @@
 	//load XML to text.
 	NSString* feed = [[NSString alloc] initWithContentsOfURL:rootUrl];
 	NSLog(@"feed=%@", feed);
-
+	if (feed == nil) {
+		NSLog(@"no feed found.");
+		return nil;
+	}
+	
 	//Setup parser.
 	ParseEngine4OpdsRoot* parseEngine = [[ParseEngine4OpdsRoot alloc] init];
 	parseEngine.parentParser = self;
