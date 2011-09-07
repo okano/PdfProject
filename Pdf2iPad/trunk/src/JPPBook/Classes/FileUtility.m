@@ -88,7 +88,6 @@
 			//[lines removeObject:line];	//Skip blank line.
 			continue;
 		}
-		LOG_CURRENT_LINE;
 		if ([line characterAtIndex:0] == '#'
 			||
 			[line characterAtIndex:0] == ';') {
