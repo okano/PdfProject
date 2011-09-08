@@ -48,7 +48,7 @@
 	if (appDelegate.serverContentListDS == nil) {
 		appDelegate.serverContentListDS = [[ServerContentListDS alloc] init];
 	}
-	appDelegate.serverContentListDS.delegate = self;
+	appDelegate.serverContentListDS.targetTableVC = self;
 	[appDelegate.serverContentListDS loadContentList:32];
 }
 
@@ -192,4 +192,10 @@
 {
 	[myTableView reloadData];
 }
+
+- (void)didFinishParseOpdsRoot:(NSURL*)elementUrl{ LOG_CURRENT_METHOD; }
+- (void)didFailParseOpdsRoot{ LOG_CURRENT_METHOD; }
+- (void)didFinishParseOpdsElement:(NSMutableArray*)resultArray{ LOG_CURRENT_METHOD; }
+- (void)didFailParseOpdsElement{ LOG_CURRENT_METHOD; }
+
 @end

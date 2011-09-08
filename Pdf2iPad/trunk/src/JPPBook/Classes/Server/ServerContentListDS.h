@@ -16,14 +16,14 @@
 #import "ProtocolDefine.h"
 
 @interface ServerContentListDS : ContentListDS {
-	id <MyTableViewVCProtocol> delegate;
+	id <MyTableViewVCProtocol> targetTableVC;
 }
-@property (nonatomic, retain) id delegate;
+@property (nonatomic, retain) id <MyTableViewVCProtocol> targetTableVC;
 
 #pragma mark - load
 - (void)loadContentList:(NSUInteger)maxCount;
 - (NSArray*)loadContentListFromFile;
-- (NSArray*)loadContentListFromNetwork;
+//- (NSArray*)loadContentListFromNetwork;
 - (void)loadContentListFromNetworkByOpds;
 #pragma mark - parse
 - (NSDate*)getLastupdateFromPlist:(id)pList;

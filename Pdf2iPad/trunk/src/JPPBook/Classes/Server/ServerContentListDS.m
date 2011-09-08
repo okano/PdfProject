@@ -10,7 +10,7 @@
 
 
 @implementation ServerContentListDS
-@synthesize delegate;
+@synthesize targetTableVC;
 
 #pragma mark - setup data.
 - (void)setupData
@@ -102,8 +102,8 @@
 		}
 		*/
 	}
-	if (delegate != nil) {
-		[delegate reloadData];
+	if (targetTableVC != nil) {
+		[targetTableVC reloadData];
 	}
 	NSLog(@"contentList count=%d", [contentList count]);
 }
@@ -143,6 +143,7 @@
 }
 
 
+/*
 - (NSArray*)loadContentListFromNetwork
 {
 	NSString* pListUrl;
@@ -210,17 +211,40 @@
 
 	return contentListTmp;
 }
+*/
 
 - (void)loadContentListFromNetworkByOpds
 {
 	LOG_CURRENT_METHOD;
 	
 	OpdsParser* parser = [[OpdsParser alloc] init];
-	parser.targetTableVC = self;
+	//parser.targetTableVC = self;
 	
+	//Get OPDS Root.
 	NSString* urlStr = [NSString stringWithFormat:@"%@%@", URL_BASE_OPDS, URL_SUFFIX_OPDS];
-	NSURL* url = [[NSURL alloc] initWithString:urlStr];
-	[parser getOpds:url];
+	NSURL* rootUrl = [[NSURL alloc] initWithString:urlStr];
+	NSURL* elementUrl = [parser getOpdsRoot:rootUrl];
+	if (elementUrl != nil) {
+		[targetTableVC didFinishParseOpdsRoot:elementUrl];
+	} else {
+		[targetTableVC didFailParseOpdsRoot];
+		return;
+	}
+		
+	//Get OPDS Element.
+	NSMutableArray* resultArray;
+	resultArray = [parser getOpdsElement:elementUrl];
+	if (resultArray != nil) {
+		//Arrange format into inner-var.
+		
+		
+		//call parent.
+		[targetTableVC didFinishParseOpdsElement:resultArray];
+	} else {
+		[targetTableVC didFailParseOpdsElement];
+	}
+	
+	
 }
 
 
@@ -251,7 +275,7 @@
 	return anArray;
 }
 
-
+/*
 #pragma mark - ContentListProtocol
 - (void)didFinishParseOpds:(NSMutableArray*)resultArray
 {
@@ -272,6 +296,7 @@
 		[delegate reloadData];
 	}
 }
+*/
 
 
 #pragma mark - store

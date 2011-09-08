@@ -7,13 +7,21 @@
 //
 @protocol MyTableViewVCProtocol
 - (void)reloadData;
+//
+- (void)didFinishParseOpdsRoot:(NSURL*)elementUrl;
+- (void)didFailParseOpdsRoot;
+- (void)didFinishParseOpdsElement:(NSMutableArray*)resultArray;
+- (void)didFailParseOpdsElement;
 @end
-
+/*
 @protocol ContentListProtocol
 - (void)didFinishParseOpds:(NSMutableArray*)resultArray;
 @end
 
 @protocol OpdsParserProtocol
 - (void)didFinishParseOpdsRoot:(NSMutableArray*)resultArray;
+- (void)didFailParseOpdsRoot:(NSMutableArray*)resultArray;
 - (void)didFinishParseOpdsElement:(NSMutableArray*)resultArray;
+- (void)didFailParseOpdsElement:(NSMutableArray*)resultArray;
 @end
+*/
