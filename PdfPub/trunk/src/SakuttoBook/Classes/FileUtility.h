@@ -16,6 +16,8 @@
 }
 + (NSString*)getPageFilenameFull:(int)pageNum;
 + (NSString*)getPageFilenameFull:(int)pageNum WithContentId:(ContentId)cid;
++ (NSString*)getDoublePageFilenameFull:(int)pageNum;
++ (NSString*)getDoublePageFilenameFull:(int)pageNum WithContentId:(ContentId)cid;
 + (NSString*)getThumbnailFilenameFull:(int)pageNum;
 + (NSString*)getThumbnailFilenameFull:(int)pageNum WithContentId:(ContentId)cid;
 

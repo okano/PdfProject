@@ -33,6 +33,29 @@
 	return targetFilenameFull;
 }
 
+
+#pragma mark - page image cache(Double pain).
++ (NSString*)getDoublePageFilenameFull:(int)pageNum {
+	NSString* filename = [NSString stringWithFormat:@"%@%d-p%d", PAGE_FILE_PREFIX, pageNum, pageNum+1];
+	NSString* targetFilenameFull = [[[NSHomeDirectory() stringByAppendingPathComponent:@"tmp"]
+									 stringByAppendingPathComponent:filename]
+									stringByAppendingPathExtension:PAGE_FILE_EXTENSION];
+	return targetFilenameFull;
+}
+
++ (NSString*)getDoublePageFilenameFull:(int)pageNum WithContentId:(ContentId)cid {
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"pageNum=%d, ContentId=%d", pageNum, cid);
+	NSString* filename = [NSString stringWithFormat:@"%@%d-p%d", PAGE_FILE_PREFIX, pageNum, pageNum+1];
+	NSString* targetFilenameFull = [[[[NSHomeDirectory() stringByAppendingPathComponent:@"tmp"]
+									  stringByAppendingPathComponent:[NSString stringWithFormat:@"%d",cid]]
+									 stringByAppendingPathComponent:filename]
+									stringByAppendingPathExtension:PAGE_FILE_EXTENSION];
+	return targetFilenameFull;
+}
+
+
+
 #pragma mark - thumbnail.
 + (NSString*)getThumbnailFilenameFull:(int)pageNum {
 	NSString* filename = [NSString stringWithFormat:@"%@%d", THUMBNAIL_FILE_PREFIX, pageNum];
