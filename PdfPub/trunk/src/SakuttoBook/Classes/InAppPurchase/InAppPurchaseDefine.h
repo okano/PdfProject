@@ -19,7 +19,8 @@
 
 //typedef	NSString*	ContentId;
 typedef	NSUInteger	ContentId;	/* 1-start. */
-#define InvalidContentId			(-1)
+#define InvalidContentId			((NSUInteger)INT_MAX)
+#define HaveNotContentId			((NSUInteger)INT_MAX - 1)
 #define InvalidProductId			@"InvalidProductId"
 
 #define PAYMENT_STATUS_PAYED			(NSUInteger)1
