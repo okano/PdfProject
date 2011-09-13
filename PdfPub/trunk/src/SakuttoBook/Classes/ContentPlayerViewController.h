@@ -157,9 +157,10 @@
 //
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum;
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum WithContentId:(ContentId)cid;
-- (UIImage*)getPdfPageImageDoubleWithPageNum:(NSUInteger)pageNum;
-- (UIImage*)getPdfPageImageDoubleWithPageNum:(NSUInteger)pageNum WithContentId:(ContentId)cid;
+//- (UIImage*)getPdfPageImageDoubleWithPageNum:(NSUInteger)pageNum;
+//- (UIImage*)getPdfPageImageDoubleWithPageNum:(NSUInteger)pageNum WithContentId:(ContentId)cid;
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum WithTargetFilenameFull:(NSString*)filename;
+- (void)mergeImage:(UIImage*)pdfImage3 withImage:(UIImage*)pdfImage pageNum:(int)pageNum;
 - (void)generateThumbnailImageFromImage:(UIImage*)baseImage width:(CGFloat)newWidth pageNumForSave:(NSUInteger)pageNum;
 - (void)removeAllImageCache;
 //

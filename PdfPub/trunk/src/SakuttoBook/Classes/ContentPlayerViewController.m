@@ -396,10 +396,6 @@
 		return nil;
 	}
 	
-	//Treat 2-page view.
-#if defined(IS_2PAGE_VIEW) && IS_2PAGE_VIEW != 0
-	return [self getPdfPageImageDoubleWithPageNum:(NSUInteger)pageNum];
-#endif
 	
 	//Get image from file if exists.
 	NSString* targetFilenameFull;
@@ -408,6 +404,18 @@
 #else
 	targetFilenameFull = [FileUtility getPageFilenameFull:pageNum];
 #endif
+
+#if defined(IS_2PAGE_VIEW) && IS_2PAGE_VIEW != 0
+	//Treat 2-page view.
+  #if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+	targetFilenameFull = [FileUtility getDoublePageFilenameFull:pageNum WithContentId:currentContentId];
+  #else
+	targetFilenameFull = [FileUtility getDoublePageFilenameFull:pageNum];
+  #endif
+#endif
+
+	
+	
 	
 	//NSLog(@"targetFilenameFull=%@", targetFilenameFull);
 	return [self getPdfPageImageWithPageNum:pageNum WithTargetFilenameFull:targetFilenameFull];
@@ -420,16 +428,166 @@
 		return nil;
 	}
 	
+	//Set image filename from file if exists.
+	NSString* targetFilenameFull;
+#if !defined(IS_2PAGE_VIEW) || IS_2PAGE_VIEW == 0
+	//Treat 1-page view.
+	if (cid == HaveNotContentId) {
+		targetFilenameFull = [FileUtility getPageFilenameFull:pageNum WithContentId:cid];
+	} else {
+		targetFilenameFull = [FileUtility getPageFilenameFull:pageNum];
+	}
+#else
 	//Treat 2-page view.
-#if defined(IS_2PAGE_VIEW) && IS_2PAGE_VIEW != 0
-	return [self getPdfPageImageDoubleWithPageNum:(NSUInteger)pageNum WithContentId:cid];
+	if (cid != HaveNotContentId) {
+		targetFilenameFull = [FileUtility getDoublePageFilenameFull:pageNum WithContentId:cid];
+	} else {
+		targetFilenameFull = [FileUtility getDoublePageFilenameFull:pageNum];
+	}
+#endif
+	NSLog(@"targetFilenameFull=%@", targetFilenameFull);
+	
+	
+	//Get image filename from file if exists.
+	UIImage* pdfImage = nil;
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+	if ([fileManager fileExistsAtPath:targetFilenameFull]) {
+		pdfImage = [[UIImage alloc] initWithContentsOfFile:targetFilenameFull];
+		if (pdfImage) {
+			return pdfImage;
+		} else {
+			NSLog(@"page exists but can not generate image. for page %d filename=%@", pageNum, targetFilenameFull);
+			return nil;
+		}
+	}
+	
+	
+	//Generate image from pdf.
+#if !defined(IS_2PAGE_VIEW) || IS_2PAGE_VIEW == 0
+	//
+	//Single pain.
+	//
+	NSLog(@"page file for page %d not exist. generating it. filename=%@", pageNum, targetFilenameFull);
+	
+	//Generate image file.
+	ImageGenerator* ig = [[ImageGenerator alloc] init];
+#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+	ig.currentContentId	= currentContentId;
+#endif
+	[ig generateImageWithPageNum:pageNum
+						 fromUrl:pdfURL
+						minWidth:CACHE_IMAGE_WIDTH_MIN
+						maxWidth:CACHE_IMAGE_WIDTH_MAX];
+	
+	//Load generated image.
+	NSString* generatedImageFilename;
+#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+	generatedImageFilename = [FileUtility getPageFilenameFull:pageNum WithContentId:currentContentId];
+#else
+	generatedImageFilename = [FileUtility getPageFilenameFull:pageNum];
+#endif
+	NSLog(@"generatedImageFilename=%@", generatedImageFilename);
+	pdfImage = [[UIImage alloc] initWithContentsOfFile:generatedImageFilename];
+	if (pdfImage == nil) {
+		LOG_CURRENT_LINE;
+		NSLog(@"cannot load generate image.");
+		return nil;
+	}
+#else
+	
+	
+	
+	
+	//
+	//Generate image for 2-pain.
+	//
+	
+	//
+	//Generate left image.
+	//
+	NSString* leftImageFilenameFull;
+#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+	leftImageFilenameFull = [FileUtility getPageFilenameFull:pageNum WithContentId:currentContentId];
+#else
+	leftImageFilenameFull = [FileUtility getPageFilenameFull:pageNum];
+#endif
+	NSLog(@"leftImageFilenameFull=%@", leftImageFilenameFull);
+
+	UIImage* leftImage = nil;
+	if (! [fileManager fileExistsAtPath:leftImageFilenameFull]) {
+		//generate if file not exist.
+		ImageGenerator* ig = [[ImageGenerator alloc] init];
+#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+		ig.currentContentId	= currentContentId;
+#endif
+		[ig generateImageWithPageNum:pageNum
+							 fromUrl:pdfURL
+							minWidth:CACHE_IMAGE_WIDTH_MIN
+							maxWidth:CACHE_IMAGE_WIDTH_MAX];
+	}
+	//Load generated image.
+	leftImage = [[UIImage alloc] initWithContentsOfFile:leftImageFilenameFull];
+	if (leftImage == nil) {
+		LOG_CURRENT_LINE;
+		NSLog(@"cannot load generate leftImage.");
+		return nil;
+	}
+	
+	
+	
+	//
+	//Generate right image.
+	//
+	NSString* rightImageFilenameFull;
+#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+	rightImageFilenameFull = [FileUtility getPageFilenameFull:pageNum+1 WithContentId:currentContentId];
+#else
+	rightImageFilenameFull = [FileUtility getPageFilenameFull:pageNum+1];
+#endif
+	NSLog(@"rightImageFilenameFull=%@", rightImageFilenameFull);
+	
+	if (! [fileManager fileExistsAtPath:rightImageFilenameFull]) {
+		//generate if file not exist.
+		ImageGenerator* ig = [[ImageGenerator alloc] init];
+#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+		ig.currentContentId	= currentContentId;
+#endif
+		[ig generateImageWithPageNum:pageNum+1
+							 fromUrl:pdfURL
+							minWidth:CACHE_IMAGE_WIDTH_MIN
+							maxWidth:CACHE_IMAGE_WIDTH_MAX];
+	}
+	//Load generated image.
+	UIImage* rightImage = nil;
+	rightImage = [[UIImage alloc] initWithContentsOfFile:rightImageFilenameFull];
+	if (rightImage == nil) {
+		LOG_CURRENT_LINE;
+		NSLog(@"cannot load generate rightImage.");
+		return nil;
+	}
+	
+	
+	///
+	/// merge.
+	///
+	
+	//Do merge.
+	[self mergeImage:leftImage withImage:rightImage pageNum:pageNum];
+	//Load merged image.
+	UIImage* mergedImage = [[UIImage alloc] initWithContentsOfFile:targetFilenameFull];
+	if (mergedImage == nil) {
+		LOG_CURRENT_LINE;
+		NSLog(@"cannot load generate rightImage.");
+		return nil;
+	}
+	return mergedImage;
+	
 #endif
 	
-	//Get image from file if exists.
-	NSString* targetFilenameFull = [FileUtility getPageFilenameFull:pageNum WithContentId:cid];
-	return [self getPdfPageImageWithPageNum:pageNum WithTargetFilenameFull:targetFilenameFull];
+	
+	return nil;	//never used this line.
 }
-
+/*
 - (UIImage*)getPdfPageImageDoubleWithPageNum:(NSUInteger)pageNum
 {
 	LOG_CURRENT_METHOD;
@@ -509,49 +667,240 @@
 	LOG_CURRENT_LINE;
 	return mergedImage;
 }
-
+*/
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum WithTargetFilenameFull:(NSString*)targetFilenameFull
 {
+	LOG_CURRENT_METHOD;
+	NSLog(@"targetFilenameFull=%@", targetFilenameFull);
+	
+	UIImage* pdfImage = nil;
 	NSFileManager *fileManager = [NSFileManager defaultManager];
 	if ([fileManager fileExistsAtPath:targetFilenameFull]) {
-		UIImage* pdfImage = [[UIImage alloc] initWithContentsOfFile:targetFilenameFull];
+		pdfImage = [[UIImage alloc] initWithContentsOfFile:targetFilenameFull];
 		if (pdfImage) {
 			return pdfImage;
 		} else {
 			NSLog(@"page exists but can not generate image. for page %d filename=%@", pageNum, targetFilenameFull);
 			return nil;
 		}
-	} else {
-		//NSLog(@"page file for page %d not exist. generate. filename=%@", pageNum, targetFilenameFull);
-		//return [self generateImageWithPageNum:pageNum];
-		ImageGenerator* ig = [[ImageGenerator alloc] init];
+	}
+	
+	
+	
+	
+#if !defined(IS_2PAGE_VIEW) || IS_2PAGE_VIEW == 0
+	//
+	//Single pain.
+	//
+	NSLog(@"page file for page %d not exist. generate. filename=%@", pageNum, targetFilenameFull);
+	
+	//Generate image file.
+	ImageGenerator* ig = [[ImageGenerator alloc] init];
+  #if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+	ig.currentContentId	= currentContentId;
+  #endif
+	[ig generateImageWithPageNum:pageNum
+						 fromUrl:pdfURL
+						minWidth:CACHE_IMAGE_WIDTH_MIN
+						maxWidth:CACHE_IMAGE_WIDTH_MAX];
+	[ig release];
+	
+	//Load generated image.
+	NSString* generatedImageFilename;
+  #if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+	generatedImageFilename = [FileUtility getPageFilenameFull:pageNum WithContentId:currentContentId];
+  #else
+	generatedImageFilename = [FileUtility getPageFilenameFull:pageNum];
+  #endif
+	NSLog(@"generatedImageFilename=%@", generatedImageFilename);
+	pdfImage = [[UIImage alloc] initWithContentsOfFile:generatedImageFilename];
+	if (pdfImage == nil) {
+		LOG_CURRENT_LINE;
+		NSLog(@"cannot load generate image.");
+	}
+
+#else
+	//
+	//Generate image for 2-pain.
+	//
+	UIImage* pdfImage2 = nil;
+	UIImage* nextPdfImage3 = nil;
 #if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
-		ig.currentContentId	= currentContentId;
+	
+	//generate with left.
+	NSString* mergedFilenameFull;
+	if (1 < pageNum) {
+#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+		mergedFilenameFull = [FileUtility getDoublePageFilenameFull:pageNum-1 WithContentId:currentContentId];
+#else
+		mergedFilenameFull = [FileUtility getDoublePageFilenameFull:pageNum-1];
 #endif
-		[ig generateImageWithPageNum:pageNum fromUrl:pdfURL minWidth:CACHE_IMAGE_WIDTH_MIN maxWidth:CACHE_IMAGE_WIDTH_MAX];
-		[ig release];
+		NSLog(@"mergedFilenameFull=%@", mergedFilenameFull);
 		
-		UIImage* pdfImage = [[UIImage alloc] initWithContentsOfFile:targetFilenameFull];
-		if (pdfImage) {
-			//Thumbnail image is generated ondemand.
-			//[self generateThumbnailImageFromImage:pdfImage width:THUMBNAIL_WIDTH pageNumForSave:pageNum];
+		
+		NSLog(@"[fileManager fileExistsAtPath:mergedFilenameFull]=%d, TRUE=%d, FALSE=%d, mergedFilenameFull=%@",
+			  [fileManager fileExistsAtPath:mergedFilenameFull],TRUE,FALSE, mergedFilenameFull);
+		if (! [fileManager fileExistsAtPath:mergedFilenameFull]) {
+			//generate if merged file not exist.
+			NSString* targetFilenameFull2;
+#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0/**/
+			targetFilenameFull2 = [FileUtility getPageFilenameFull:pageNum-1 WithContentId:currentContentId];
+#else
+			targetFilenameFull2 = [FileUtility getPageFilenameFull:pageNum-1];
+#endif/**/
+			NSLog(@"targetFilenameFull2=%@", targetFilenameFull2);
 			
-			return pdfImage;
-		} else {
-			NSLog(@"page generate but can not open image from file. for page %d filename=%@", pageNum, targetFilenameFull);
-#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
-			NSLog(@"currentContentId=%d", currentContentId);
-#endif
-			return nil;
+			
+			//merge image if exists.
+			if ([fileManager fileExistsAtPath:targetFilenameFull2]) {
+				pdfImage2 = [[UIImage alloc] initWithContentsOfFile:targetFilenameFull2];
+				if (pdfImage2) {
+					
+					LOG_CURRENT_LINE;
+					NSLog(@"pdfImage class=%@", [pdfImage class]);
+					NSLog(@"targetFilenameFull=%@", targetFilenameFull);
+					NSLog(@"targetFilenameFull2=%@", targetFilenameFull2);
+					NSLog(@"pdfImage class=%@, pdfImage2 class=%@", [pdfImage class], [pdfImage2 class]);
+					[self mergeImage:pdfImage withImage:pdfImage2 pageNum:pageNum-1];
+				}
+			}	
 		}
 	}
+	
+	
+	//NSString* mergedFilenameFull;
+	if (pageNum < maxPageNum) {
+#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+		mergedFilenameFull = [FileUtility getDoublePageFilenameFull:pageNum-1 WithContentId:currentContentId];
+#else
+		mergedFilenameFull = [FileUtility getDoublePageFilenameFull:pageNum-1];
+#endif
+		NSLog(@"mergedFilenameFull=%@", mergedFilenameFull);
+		if ([fileManager fileExistsAtPath:mergedFilenameFull] == FALSE) {
+			//generate if merged file not exist.
+			NSString* nextPageFilenameFull3;
+#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+			nextPageFilenameFull3 = [FileUtility getPageFilenameFull:pageNum+1 WithContentId:currentContentId];
+#else
+			nextPageFilenameFull3 = [FileUtility getPageFilenameFull:pageNum+1];
+#endif
+			NSLog(@"nextPageFilenameFull3=%@", nextPageFilenameFull3);
+			
+			
+			//merge image if exists.
+			if ([fileManager fileExistsAtPath:nextPageFilenameFull3]) {
+				nextPdfImage3 = [[UIImage alloc] initWithContentsOfFile:nextPageFilenameFull3];
+				if (nextPdfImage3) {
+					NSLog(@"nextPageFilenameFull3=%@", nextPageFilenameFull3);
+					NSLog(@"targetFilenameFull=%@", targetFilenameFull);
+					NSLog(@"pdfImage3 class=%@, pdfImage class=%@", [nextPdfImage3 class], [pdfImage class]);
+					[self mergeImage:nextPdfImage3 withImage:pdfImage pageNum:pageNum];
+				} else {
+					LOG_CURRENT_LINE;
+					NSLog(@"image for merge is null.");
+				}
+			} else {
+				NSLog(@"nextPdfImage3(%@) is exist. do not merge.", nextPageFilenameFull3);
+			}
+		}
+	}
+#endif
+	
+#endif	/* 2-pain */
+	
+	
+	
+	
+	
+	
+	//Open image file.
+	pdfImage = [[UIImage alloc] initWithContentsOfFile:targetFilenameFull];
+	if (pdfImage) {
+		//Thumbnail image is generated ondemand.
+		//[self generateThumbnailImageFromImage:pdfImage width:THUMBNAIL_WIDTH pageNumForSave:pageNum];
+		
+		return pdfImage;
+	} else {
+		NSLog(@"page generate but can not open image from file. for page %d, filename=%@", pageNum, targetFilenameFull);
+#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+		NSLog(@"currentContentId=%d", currentContentId);
+#endif
+		return nil;
+	}
+	
 	
 	[targetFilenameFull release];
 	return nil;
 }
 
+- (void)mergeImage:(UIImage*)image1 withImage:(UIImage*)image2 pageNum:(int)pageNum
+{
+	LOG_CURRENT_METHOD;
+	NSLog(@"image1 class=%@, image2 class=%@", [image1 class], [image2 class]);
+	if ([image1 isKindOfClass:[UIImage class]] == FALSE) {
+		NSLog(@"image1 is not UIImage class. class=%@", [image1 class]);
+		return;
+	}
+	if ([image2 isKindOfClass:[UIImage class]] == FALSE) {
+		NSLog(@"image2 is not UIImage class. class=%@", [image2 class]);
+	}
+	
+	NSLog(@"image1.size=%@", NSStringFromCGSize(image1.size));
+	NSLog(@"image2.size=%@", NSStringFromCGSize(image2.size));
+	
+	if (image1 == nil && image2 == nil) {
+		LOG_CURRENT_LINE;
+		return;
+	}
+	if (image1 == nil) {
+		LOG_CURRENT_LINE;
+		return;
+	}
+	if (image2 == nil) {
+		LOG_CURRENT_LINE;
+		return;
+	}
+	
+	
+	//Merge 2 image.
+	CGSize newSize = CGSizeMake(image1.size.width + image2.size.width, image1.size.height);
+	UIGraphicsBeginImageContext(newSize);
+	[image1 drawAtPoint:CGPointMake(0, 0)];
+	[image2 drawAtPoint:CGPointMake(image1.size.width, 0)];
+	UIImage *mergedImage = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	NSLog(@"mergedImage.size=%@", NSStringFromCGSize(mergedImage.size));
+	
+	//Save to file.
+	NSString* targetFilenameFull;
+#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+	targetFilenameFull = [FileUtility getDoublePageFilenameFull:pageNum WithContentId:currentContentId];
+#else
+	targetFilenameFull = [FileUtility getDoublePageFilenameFull:pageNum];
+#endif
+	
+	//Generate directory.
+	[FileUtility makeDir:[targetFilenameFull stringByDeletingLastPathComponent]];
+	//Write.
+	NSData *data = UIImagePNGRepresentation(mergedImage);
+	NSError* error = nil;
+	[data writeToFile:targetFilenameFull options:NSDataWritingAtomic error:&error];
+	if (error) {
+		NSLog(@"page file write error. path=%@", targetFilenameFull);
+		NSLog(@"error=%@, error code=%d", [error localizedDescription], [error code]);
+		return;
+	} else {
+		NSLog(@"wrote page file to %@", targetFilenameFull);
+	}
+
+	
+	return;
+}
 
 
+	
+	
+	
 
 - (void)generateThumbnailImageFromImage:(UIImage*)baseImage width:(CGFloat)newWidth pageNumForSave:(NSUInteger)pageNum
 {
