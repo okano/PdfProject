@@ -1,31 +1,59 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
-    <title>404 Not Found</title>
-    <style type="text/css">
-    #powered_by {
-        margin-top: 20px;
-        border-top: 2px solid black;
-        font-style: italic;
-    }
-
-    #traceback {
-        color: red;
-    }
-    </style>
-</head>
-    <body>
-        <h2>404 Not Found</h2>
-        <p>The path '/navcatalog/4f6e6577657374' was not found.</p>
-        <pre id="traceback">Traceback (most recent call last):
-  File "site-packages/cherrypy/_cprequest.py", line 606, in respond
-  File "site-packages/cherrypy/_cperror.py", line 227, in __call__
-NotFound: (404, "The path '/navcatalog/4f6e6577657374' was not found.")
-</pre>
-    <div id="powered_by">
-    <span>Powered by <a href="http://www.cherrypy.org">CherryPy 3.1.2</a></span>
-    </div>
-    </body>
-</html>
+<?xml version='1.0' encoding='utf-8'?>
+<feed xmlns:dc="http://purl.org/dc/terms/" xmlns:opds="http://opds-spec.org/2010/catalog" xmlns="http://www.w3.org/2005/Atom">
+  <title>calibre ライブラリ</title>
+  <author>
+    <name>calibre</name>
+    <uri>http://calibre-ebook.com</uri>
+  </author>
+  <id>calibre-all:timestamp</id>
+  <updated>2011-09-13T13:33:17+00:00</updated>
+  <link href="/opds/search/{searchTerms}" type="application/atom+xml" rel="search" title="Search"/>
+  <link href="/opds" type="application/atom+xml;type=feed;profile=opds-catalog" rel="start"/>
+  <link href="/opds" type="application/atom+xml;type=feed;profile=opds-catalog" rel="up"/>
+  <link href="/opds/navcatalog/4f6e6577657374" type="application/atom+xml;type=feed;profile=opds-catalog" rel="first"/>
+  <link href="/opds/navcatalog/4f6e6577657374?offset=0" type="application/atom+xml;type=feed;profile=opds-catalog" rel="last"/>
+  <entry>
+    <title>P001-048 呼吸器臨床導入実習画像診断</title>
+    <author>
+      <name>iMac</name>
+    </author>
+    <id>urn:uuid:7f253758-4825-4842-b7b6-49f042fc748d</id>
+    <updated>2011-09-13T13:33:17+00:00</updated>
+    <link href="/get/pdf/4" type="application/pdf" rel="http://opds-spec.org/acquisition"/>
+    <link href="/get/cover/4" type="image/jpeg" rel="http://opds-spec.org/cover"/>
+    <link href="/get/thumb/4" type="image/jpeg" rel="http://opds-spec.org/thumbnail"/>
+  </entry>
+  <entry>
+    <title>ラフアント?ヒ?ース(1.5倍)128x170jpg_レイアウト 1</title>
+    <author>
+      <name>jpp</name>
+    </author>
+    <id>urn:uuid:ba6499bc-8da5-47d8-9ac4-f30e6edfd37d</id>
+    <updated>2011-09-13T13:33:17+00:00</updated>
+    <link href="/get/pdf/3" type="application/pdf" rel="http://opds-spec.org/acquisition"/>
+    <link href="/get/cover/3" type="image/jpeg" rel="http://opds-spec.org/cover"/>
+    <link href="/get/thumb/3" type="image/jpeg" rel="http://opds-spec.org/thumbnail"/>
+  </entry>
+  <entry>
+    <title>Microsoft Word - モデル教材</title>
+    <author>
+      <name>mouse</name>
+    </author>
+    <id>urn:uuid:1c923a0a-aebb-4a71-b32c-b63becc147a9</id>
+    <updated>2011-09-13T13:33:17+00:00</updated>
+    <link href="/get/pdf/2" type="application/pdf" rel="http://opds-spec.org/acquisition"/>
+    <link href="/get/cover/2" type="image/jpeg" rel="http://opds-spec.org/cover"/>
+    <link href="/get/thumb/2" type="image/jpeg" rel="http://opds-spec.org/thumbnail"/>
+  </entry>
+  <entry>
+    <title>Calibre Quick Start Guide</title>
+    <author>
+      <name>John Schember</name>
+    </author>
+    <id>urn:uuid:18a6cf53-631b-494f-a70f-4b44b388374e</id>
+    <updated>2011-09-13T13:33:17+00:00</updated>
+    <link href="/get/epub/1" type="application/epub+zip" rel="http://opds-spec.org/acquisition"/>
+    <link href="/get/cover/1" type="image/jpeg" rel="http://opds-spec.org/cover"/>
+    <link href="/get/thumb/1" type="image/jpeg" rel="http://opds-spec.org/thumbnail"/>
+  </entry>
+</feed>
