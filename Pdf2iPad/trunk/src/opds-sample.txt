@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='utf-8'?>
+<feed xmlns:dc="http://purl.org/dc/terms/" xmlns:opds="http://opds-spec.org/2010/catalog" xmlns="http://www.w3.org/2005/Atom">
+  <title>calibre ライブラリ</title>
+  <subtitle>ライブラリ中の本</subtitle>
+  <author>
+    <name>calibre</name>
+    <uri>http://calibre-ebook.com</uri>
+  </author>
+  <id>urn:calibre:main</id>
+  <updated>2011-09-13T12:26:29+00:00</updated>
+  <link href="/opds/search/{searchTerms}" type="application/atom+xml" rel="search" title="Search"/>
+  <link href="/opds" type="application/atom+xml;type=feed;profile=opds-catalog" rel="start"/>
+  <entry>
+    <title>&gt; 最新順</title>
+    <id>calibre-navcatalog:5ca994e1f74679d1ff943309d26c7dea85e822c9</id>
+    <updated>2011-09-13T12:26:29+00:00</updated>
+    <content type="text">本を並べ替え 日付</content>
+    <link href="/opds/navcatalog/4f6e6577657374" type="application/atom+xml;type=feed;profile=opds-catalog"/>
+  </entry>
+  <entry>
+    <title>&gt; 書籍名</title>
+    <id>calibre-navcatalog:2f6ad945151cb77327f0a8b06e618698991476f6</id>
+    <updated>2011-09-13T12:26:29+00:00</updated>
+    <content type="text">本を並べ替え 書籍名</content>
+    <link href="/opds/navcatalog/4f7469746c65" type="application/atom+xml;type=feed;profile=opds-catalog"/>
+  </entry>
+  <entry>
+    <title>&gt; 言語</title>
+    <id>calibre-navcatalog:df3721e9299003d0048e9829168e7917aa0b22c4</id>
+    <updated>2011-09-13T12:26:29+00:00</updated>
+    <content type="text">本を並べ替え 言語</content>
+    <link href="/opds/navcatalog/4e6c616e677561676573" type="application/atom+xml;type=feed;profile=opds-catalog"/>
+  </entry>
+  <entry>
+    <title>&gt; 著者</title>
+    <id>calibre-navcatalog:810d28ab48d4596c6183132df5e11e26bee8d4d7</id>
+    <updated>2011-09-13T12:26:29+00:00</updated>
+    <content type="text">本を並べ替え 著者</content>
+    <link href="/opds/navcatalog/4e617574686f7273" type="application/atom+xml;type=feed;profile=opds-catalog"/>
+  </entry>
+  <entry>
+    <title>&gt; 発行者</title>
+    <id>calibre-navcatalog:13cec840c9c290a83a208a3da8bcfd04b54ec4d0</id>
+    <updated>2011-09-13T12:26:29+00:00</updated>
+    <content type="text">本を並べ替え 発行者</content>
+    <link href="/opds/navcatalog/4e7075626c6973686572" type="application/atom+xml;type=feed;profile=opds-catalog"/>
+  </entry>
+</feed>
