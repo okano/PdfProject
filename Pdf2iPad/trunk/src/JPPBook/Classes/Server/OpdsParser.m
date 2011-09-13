@@ -62,7 +62,6 @@
 	NSLog(@"feedIds=%@", [feedIds description]);
 	NSLog(@"feedAuthors=%@", [feedAuthors description]);
 	NSLog(@"entryTitles=%@", [entryTitles description]);
-	NSLog(@"entryTitles=%@", [entryTitles description]);
 	NSLog(@"entryIds=%@", [entryIds description]);
 	NSLog(@"contents=%@", [contents description]);
 	NSLog(@"links=%@", [links description]);
@@ -103,26 +102,49 @@
 - (NSMutableArray*)getOpdsElement:(NSURL *)elementUrl
 {
 	LOG_CURRENT_METHOD;
-	NSLog(@"rootUrl=%@", [elementUrl description]);
+	NSLog(@"elementUrl=%@", [elementUrl description]);
 	
-	//load XML to text.
+	//check XML exists.
 	NSString* feed = [[NSString alloc] initWithContentsOfURL:elementUrl];
-	NSLog(@"feed=%@", feed);
-	/*
-	//Setup parser.
-	ParseEngine4OpdsElement* parseEngine = [[ParseEngine4OpdsElement alloc] init];
-	parseEngine.parentParser = self;
-	NSXMLParser *parser = [[[NSXMLParser alloc]
-							initWithData:[feed dataUsingEncoding:NSUTF8StringEncoding]]
-						   autorelease];
-	[parser setDelegate:parseEngine];
-	NSLog(@"parser=%@", [parser description]);
+	if (feed == nil) {
+		NSLog(@"no feed found.");
+		return nil;
+	}
+	//NSLog(@"feed=%@", feed);
 	
-	//Do parse.
-	[parser parse];
-	*/
+	//load XML to NSData.
+	NSData *_data = [NSData dataWithContentsOfURL:elementUrl];  
 	
+	//Prepare Parse.
+	NSError* error;
+    DDXMLDocument* doc = [[[DDXMLDocument alloc] initWithData:_data options:0 error:nil] autorelease];  
+	DDXMLElement *rootElement = [doc rootElement];
+	//NSLog(@"doc=%@", [doc description]);
+	//NSLog(@"root=%@", [root description]);
 	
+	//Add namespace to parser.
+	[rootElement addNamespace:[DDXMLNode namespaceWithName:@"dc" stringValue:@"http://purl.org/dc/terms/"]];
+	[rootElement addNamespace:[DDXMLNode namespaceWithName:@"opds" stringValue:@"http://opds-spec.org/2010/catalog"]];
+	[rootElement addNamespace:[DDXMLNode namespaceWithName:@"foo" stringValue:@"http://www.w3.org/2005/Atom"]];
+	
+	//Parse.
+	NSArray *feedTitles = [rootElement nodesForXPath:@"//foo:title" error:&error];
+	NSArray *feedIds = [rootElement nodesForXPath:@"//foo:id" error:&error];
+	NSArray *feedAuthors = [rootElement nodesForXPath:@"//foo:author" error:&error];
+	NSArray *entryTitles = [rootElement nodesForXPath:@"//foo:entry/foo:title" error:&error];
+	NSArray *entryIds = [rootElement nodesForXPath:@"//foo:entry/foo:id" error:&error];
+	NSArray *contents = [rootElement nodesForXPath:@"//foo:entry/foo:content" error:&error];
+	NSArray *links = [rootElement nodesForXPath:@"//foo:entry/foo:link" error:&error];
+	
+	NSLog(@"feedTitles=%@", [feedTitles description]);
+	NSLog(@"feedIds=%@", [feedIds description]);
+	NSLog(@"feedAuthors=%@", [feedAuthors description]);
+	NSLog(@"entryTitles=%@", [entryTitles description]);
+	NSLog(@"entryIds=%@", [entryIds description]);
+	NSLog(@"contents=%@", [contents description]);
+	NSLog(@"links=%@", [links description]);
+	
+
 	
 	return nil;
 }
