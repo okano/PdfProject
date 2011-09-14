@@ -1015,9 +1015,15 @@
 - (void)gotoNextPage
 {
 	//LOG_CURRENT_METHOD;
-	if (currentPageNum == maxPageNum) {
+	if (currentPageNum >= maxPageNum) {
 		return;
 	}
+#if defined(IS_2PAGE_VIEW) && IS_2PAGE_VIEW != 0
+	//2-pain
+	if (currentPageNum + 1 >= maxPageNum) {
+		return;
+	}
+#endif
 	
 	//Erase child view(like LINK button).
 	[currentPdfScrollView cleanupSubviews];
@@ -1117,13 +1123,22 @@
 	tmpPointer		= nil;
 	
 	//
+#if !defined(IS_2PAGE_VIEW) || IS_2PAGE_VIEW == 0
+	//Treat 1-page view.
 	currentPageNum = currentPageNum + 1;
+#else
+	//Treat 2-page view.
+	currentPageNum = currentPageNum + 2;
+#endif
 	if (maxPageNum < currentPageNum) {
 		currentPageNum = maxPageNum;
 	}
 	//NSLog(@"new page number=%d", currentPageNum);
 	
+	
 	// Load (new)nextImage.
+#if !defined(IS_2PAGE_VIEW) || IS_2PAGE_VIEW == 0
+	//Treat 1-page view.
 	if (currentPageNum + 1 <= maxPageNum) {
 		if ([self isMultiContents] == YES) {
 			[nextPdfScrollView setupWithPageNum:(currentPageNum + 1) ContentId:currentContentId];
@@ -1131,6 +1146,17 @@
 			[nextPdfScrollView setupWithPageNum:(currentPageNum + 1)];
 		}
 	}
+#else
+	//Treat 2-page view.
+	if (currentPageNum + 2 <= maxPageNum) {
+		if ([self isMultiContents] == YES) {
+			[nextPdfScrollView setupWithPageNum:(currentPageNum + 2) ContentId:currentContentId];
+		} else {
+			[nextPdfScrollView setupWithPageNum:(currentPageNum + 2)];
+		}
+	}
+#endif
+	
 	
 	//
 	//[self getPdfDictionaryWithPageNum:currentPageNum];
@@ -1155,9 +1181,15 @@
 - (void)gotoPrevPage
 {
 	//LOG_CURRENT_METHOD;
-	if (currentPageNum == 1) {
+	if (currentPageNum <= 1) {
 		return;
 	}
+#if defined(IS_2PAGE_VIEW) && IS_2PAGE_VIEW != 0
+	//2-pain
+	if (currentPageNum <= 2) {
+		return;
+	}
+#endif
 	
 	//Erase child view(like LINK button).
 	[currentPdfScrollView cleanupSubviews];
@@ -1261,13 +1293,25 @@
 	tmpPointer			= nil;
 	
 	//
+#if !defined(IS_2PAGE_VIEW) || IS_2PAGE_VIEW == 0
+	//Treat 1-page view.
 	currentPageNum = currentPageNum - 1;
 	if (currentPageNum < 1) {
 		currentPageNum = 1;
 	}
+#else
+	//Treat 2-page view.
+	currentPageNum = currentPageNum - 2;
+	if (currentPageNum < 2) {
+		currentPageNum = 1;	//set top page.(not page-2)
+	}
+#endif
 	//NSLog(@"new page number=%d", currentPageNum);
 	
+	
 	// Load (new)prevImage.
+#if !defined(IS_2PAGE_VIEW) || IS_2PAGE_VIEW == 0
+	//Treat 1-page view.
 	if (1 < currentPageNum) {
 		if ([self isMultiContents] == YES) {
 			[prevPdfScrollView setupWithPageNum:(currentPageNum - 1) ContentId:currentContentId];
@@ -1275,8 +1319,18 @@
 			[prevPdfScrollView setupWithPageNum:(currentPageNum - 1)];
 		}
 	}
+#else
+	//Treat 2-page view.
+	if (2 < currentPageNum) {
+		if ([self isMultiContents] == YES) {
+			[prevPdfScrollView setupWithPageNum:(currentPageNum - 2) ContentId:currentContentId];
+		} else {
+			[prevPdfScrollView setupWithPageNum:(currentPageNum - 2)];
+		}
+	}
+#endif
 	
-	//NSLog(@"(new)currentPdfScrollView subviews = %d", [currentPdfScrollView.subviews count]);
+	
 	//
 	[self renderPageLinkAtIndex:currentPageNum];
 	[self renderMovieLinkAtIndex:currentPageNum];
@@ -1294,6 +1348,12 @@
 	if (newPageNum < 1 || maxPageNum < newPageNum) {
 		return;
 	}
+#if defined(IS_2PAGE_VIEW) && IS_2PAGE_VIEW != 0
+	//2-pain
+	if (newPageNum < 1 || maxPageNum < newPageNum - 1) {
+		return;
+	}
+#endif
 	
 	currentPageNum = newPageNum;
 	
@@ -1306,7 +1366,10 @@
 	[currentPdfScrollView setupWithPageNum:currentPageNum ContentId:currentContentId];
 	[currentPdfScrollView scrollViewDidEndZooming:currentPdfScrollView withView:nil atScale:0.0f];
 	
+	
 	// Load (new)nextImage.
+#if !defined(IS_2PAGE_VIEW) || IS_2PAGE_VIEW == 0
+	//Treat 1-page view.
 	if (currentPageNum + 1 <= maxPageNum) {
 		if ([self isMultiContents] == YES) {
 			[nextPdfScrollView setupWithPageNum:(currentPageNum + 1) ContentId:currentContentId];
@@ -1314,8 +1377,21 @@
 			[nextPdfScrollView setupWithPageNum:(currentPageNum + 1)];
 		}
 	}
+#else
+	//Treat 2-page view.
+	if (currentPageNum + 2 <= maxPageNum) {
+		if ([self isMultiContents] == YES) {
+			[nextPdfScrollView setupWithPageNum:(currentPageNum + 2) ContentId:currentContentId];
+		} else {		
+			[nextPdfScrollView setupWithPageNum:(currentPageNum + 2)];
+		}
+	}
+#endif
+	
 	
 	// Load (new)prevImage.
+#if !defined(IS_2PAGE_VIEW) || IS_2PAGE_VIEW == 0
+	//Treat 1-page view.
 	if (1 < currentPageNum) {
 		if ([self isMultiContents] == YES) {
 			[prevPdfScrollView setupWithPageNum:(currentPageNum - 1) ContentId:currentContentId];
@@ -1323,6 +1399,17 @@
 			[prevPdfScrollView setupWithPageNum:(currentPageNum - 1)];
 		}
 	}
+#else
+	//Treat 2-page view.
+	if (2 < currentPageNum) {
+		if ([self isMultiContents] == YES) {
+			[prevPdfScrollView setupWithPageNum:(currentPageNum - 2) ContentId:currentContentId];
+		} else {
+			[prevPdfScrollView setupWithPageNum:(currentPageNum - 2)];
+		}
+	}
+#endif
+	
 	
 	//Reset zoomScale
 	[prevPdfScrollView resetScrollView];
