@@ -144,9 +144,82 @@
 	NSLog(@"contents=%@", [contents description]);
 	NSLog(@"links=%@", [links description]);
 	
+	
+	
+	NSArray* entries = [rootElement nodesForXPath:@"//foo:entry" error:&error];
+	//NSLog(@"entries=%@", [entries description]);
+	for (DDXMLElement* singleElement in entries){
+		NSLog(@"singleElement=%@", [singleElement description]);
+		//NSLog(@"title=%@", [[singleElement attributeForName:@"title"] description]);
+		//NSLog(@"title=%@", [[singleElement nodesForXPath:@"//foo:title" error:&error] description]);	
+		//NSLog(@"entry/title=%@", [[singleElement nodesForXPath:@"//foo:entry/foo:title" error:&error] description]);
+		
+		NSArray* titleElement = [singleElement elementsForName:@"title"];
+		NSLog(@"title=%@", [titleElement  description]);
+		//for (DDXMLElement* t in titleElement){
+		//	NSLog(@"title=%@", [[t attributes] description]);
+		//}
+		
+		NSArray* linkElements = [singleElement elementsForName:@"link"];
+		//NSString* linkRel = [[linkElement attributeForName:@"rel"] stringValue];
+		NSLog(@"linkElements=%@", [linkElements description]);
+		
+		//NSArray* linksInElement = [singleElement elementsForName:@"link"];
+		
+		//DDXMLNode* l = [singleElement attributeForName:@"link"];
+		//DDXMLNode* l = [singleElement attributeForName:@"title"];
+		//NSLog(@"l=%@", [l description]);
+		
+		NSLog(@"link=%@", [[singleElement elementsForName:@"link"] description]);
+		
+		for (id e in linkElements){
+			NSString* relAttribute = [[e attributeForName:@"rel"] stringValue];
+			NSString* hrefAttribute = [[e attributeForName:@"href"] stringValue];
+			NSLog(@"relAttribute=%@", relAttribute);
+			NSLog(@"hrefAttribute=%@", hrefAttribute);
+		}
+		
+		
+	}
+	
+	
+	
+	//Pickup links with PDF.
+	NSString* searchForMe = @"http://opds-spec.org/acquisition";
+	NSString* resultStr;
+	NSMutableArray* linksUrlArray = [[NSMutableArray alloc] init];
+	for (int cnt = 0; cnt < [links count]; cnt++) {
+		NSString* relAttribute = [[[links objectAtIndex:cnt] attributeForName:@"rel"] stringValue];
+		
+		NSString* searchThisString = [[links objectAtIndex:cnt] stringValue];
+		NSLog(@"searchThisString=%@", searchThisString);
+		NSLog(@"searchThisString=%@", [links objectAtIndex:cnt]);
+		NSLog(@"class=%@", [[links objectAtIndex:cnt] class]);
+		NSLog(@"rel=%@", [[links objectAtIndex:cnt] attributeForName:@"rel"]);
+		
+		NSRange range = [relAttribute rangeOfString : searchForMe];
+		
+		if (range.location != NSNotFound) {
+			NSLog(@"href=%@", [[links objectAtIndex:cnt] attributeForName:@"href"]);
+			NSLog(@"cnt = %d", cnt);
+			NSLog(@"title=%@", [[entryTitles objectAtIndex:cnt] stringValue]);
+			NSLog(@"links=%@", [[links objectAtIndex:cnt] description]);
+			
+			//resultStr = [[[links objectAtIndex:cnt] description] substringFromIndex:12];
+			
+			NSArray* arr = [[[links objectAtIndex:cnt] description]
+							componentsSeparatedByString:[NSString stringWithFormat:@"%c", 0x22]];	//["]
+			
+			resultStr = [NSString stringWithFormat:@"%@%@", URL_BASE_OPDS, [arr objectAtIndex:4]];
+			[linksUrlArray addObject:resultStr];
+		}
+	}
+	NSLog(@"resultStr=%@", resultStr);
+	NSLog(@"linksUrlArray=%@",[linksUrlArray description]);
+	[linksUrlArray addObject:resultStr];
 
 	
-	return nil;
+	return linksUrlArray;
 }
 
 @end
