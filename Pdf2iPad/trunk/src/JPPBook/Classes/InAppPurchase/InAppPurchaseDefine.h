@@ -12,6 +12,7 @@
 #define CONTENT_DESCRIPTION			@"Description"
 #define CONTENT_ICONFILE_PREFIX		@"ContentIcon_"
 #define CONTENT_ICONFILE_EXTENSION	@"png"
+#define CONTENT_ACQUISITION_LINK	@"AcquisitionLink"
 
 #define HISTORY_CID					@"ContentId"
 #define HISTORY_PAYMENT_DAYTIME		@"PaymentDaytime"
@@ -20,6 +21,7 @@
 //typedef	NSString*	ContentId;
 typedef	NSUInteger	ContentId;	/* 1-start. */
 #define InvalidContentId			(-1)
+#define UndefinedContentId			(-2)
 #define InvalidProductId			@"InvalidProductId"
 
 #define PAYMENT_STATUS_PAYED			(NSUInteger)1
