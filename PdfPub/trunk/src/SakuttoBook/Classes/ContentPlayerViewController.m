@@ -303,6 +303,15 @@
 		return FALSE;
 	}
 	CGRect originalPageRect = CGPDFPageGetBoxRect(page1, kCGPDFMediaBox);
+	
+	
+#if defined(IS_2PAGE_VIEW) && IS_2PAGE_VIEW != 0
+	//2-pain
+	originalPageRect = CGRectMake(originalPageRect.origin.x,
+								  originalPageRect.origin.y,
+								  originalPageRect.size.width * 2,
+								  originalPageRect.size.height);
+#endif
 	pdfScale = self.view.frame.size.width / originalPageRect.size.width;
 	//NSLog(@"self.view.frame=%@", NSStringFromCGRect(self.view.frame));
 	//NSLog(@"page rect from page1=%@", NSStringFromCGRect(originalPageRect));
