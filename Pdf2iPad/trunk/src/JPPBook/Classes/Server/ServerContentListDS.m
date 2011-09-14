@@ -237,6 +237,7 @@
 	if (resultArray != nil) {
 		//Arrange format into inner-var.
 		[contentList addObjectsFromArray:resultArray];
+		NSLog(@"contentList=%@", [contentList description]);
 		
 		//call parent.
 		[targetTableVC didFinishParseOpdsElement:resultArray];

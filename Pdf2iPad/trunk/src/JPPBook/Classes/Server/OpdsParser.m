@@ -50,14 +50,19 @@
 	[rootElement addNamespace:[DDXMLNode namespaceWithName:@"foo" stringValue:@"http://www.w3.org/2005/Atom"]];
 	
 	//Parse.
+	/*
 	NSArray *feedTitles = [rootElement nodesForXPath:@"//foo:title" error:&error];
 	NSArray *feedIds = [rootElement nodesForXPath:@"//foo:id" error:&error];
 	NSArray *feedAuthors = [rootElement nodesForXPath:@"//foo:author" error:&error];
+	*/
 	NSArray *entryTitles = [rootElement nodesForXPath:@"//foo:entry/foo:title" error:&error];
+	/*
 	NSArray *entryIds = [rootElement nodesForXPath:@"//foo:entry/foo:id" error:&error];
 	NSArray *contents = [rootElement nodesForXPath:@"//foo:entry/foo:content" error:&error];
+	*/
 	NSArray *links = [rootElement nodesForXPath:@"//foo:entry/foo:link" error:&error];
 
+	/*
 	NSLog(@"feedTitles=%@", [feedTitles description]);
 	NSLog(@"feedIds=%@", [feedIds description]);
 	NSLog(@"feedAuthors=%@", [feedAuthors description]);
@@ -65,23 +70,27 @@
 	NSLog(@"entryIds=%@", [entryIds description]);
 	NSLog(@"contents=%@", [contents description]);
 	NSLog(@"links=%@", [links description]);
+	*/
+	
 	
 	//Find specify feed.
 	NSString* resultStr;
 	//NSString* searchForMe = @"%C3%8A%C3%BA%C3%84%C3%8A%C3%B1%E2%88%9E%C3%88%E2%80%A0%C3%9C";
 	NSString* searchForMe = @"最新順";
-	NSLog(@"searchForMe=%@ (%@)", searchForMe, [searchForMe stringByAddingPercentEscapesUsingEncoding:
-												NSUTF8StringEncoding]);
+	//NSLog(@"searchForMe=%@ (%@)", searchForMe, [searchForMe stringByAddingPercentEscapesUsingEncoding:
+	//											NSUTF8StringEncoding]);
 	for (int cnt = 0; cnt < [entryTitles count]; cnt++) {
 		
 		NSString* searchThisString = [[entryTitles objectAtIndex:cnt] stringValue];
-		NSLog(@"searchThisString=%@", searchThisString);
+		//NSLog(@"searchThisString=%@", searchThisString);
 		NSRange range = [searchThisString rangeOfString : searchForMe];
 		
 		if (range.location != NSNotFound) {
+			/*
 			NSLog(@"cnt = %d", cnt);
 			NSLog(@"title=%@", [[entryTitles objectAtIndex:cnt] stringValue]);
 			NSLog(@"links=%@", [[links objectAtIndex:cnt] description]);
+			*/
 			
 			//resultStr = [[[links objectAtIndex:cnt] description] substringFromIndex:12];
 		
@@ -91,8 +100,7 @@
 			resultStr = [NSString stringWithFormat:@"%@%@", URL_BASE_OPDS, [arr objectAtIndex:1]];
 		}
 	}
-	NSLog(@"resultStr=%@", resultStr);
-	
+	//NSLog(@"resultStr=%@", resultStr);
 	
 	return [NSURL URLWithString:resultStr];
 }
