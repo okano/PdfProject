@@ -236,7 +236,7 @@
 	resultArray = [parser getOpdsElement:elementUrl];
 	if (resultArray != nil) {
 		//Arrange format into inner-var.
-		
+		[contentList addObjectsFromArray:resultArray];
 		
 		//call parent.
 		[targetTableVC didFinishParseOpdsElement:resultArray];
