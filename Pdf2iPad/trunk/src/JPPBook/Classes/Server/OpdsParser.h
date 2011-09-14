@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <libxml/tree.h>
 #import "Utility.h"
+#import "InAppPurchaseDefine.h"
 #import "ProtocolDefine.h"
 #import "UrlDefine.h"
 #import "DDXML.h"

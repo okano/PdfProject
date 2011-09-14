@@ -146,8 +146,12 @@
 	
 	
 	
+	
 	NSArray* entries = [rootElement nodesForXPath:@"//foo:entry" error:&error];
 	//NSLog(@"entries=%@", [entries description]);
+	
+	NSString* resultStr;
+	NSMutableArray* linksUrlArray = [[NSMutableArray alloc] init];
 	for (DDXMLElement* singleElement in entries){
 		NSLog(@"singleElement=%@", [singleElement description]);
 		//NSLog(@"title=%@", [[singleElement attributeForName:@"title"] description]);
@@ -155,14 +159,18 @@
 		//NSLog(@"entry/title=%@", [[singleElement nodesForXPath:@"//foo:entry/foo:title" error:&error] description]);
 		
 		NSArray* titleElement = [singleElement elementsForName:@"title"];
+		NSString* titleStr = [[titleElement objectAtIndex:0] description];
 		NSLog(@"title=%@", [titleElement  description]);
+		NSLog(@"title=%@", titleStr );
 		//for (DDXMLElement* t in titleElement){
 		//	NSLog(@"title=%@", [[t attributes] description]);
 		//}
 		
+		
 		NSArray* linkElements = [singleElement elementsForName:@"link"];
 		//NSString* linkRel = [[linkElement attributeForName:@"rel"] stringValue];
 		NSLog(@"linkElements=%@", [linkElements description]);
+		
 		
 		//NSArray* linksInElement = [singleElement elementsForName:@"link"];
 		
@@ -177,17 +185,33 @@
 			NSString* hrefAttribute = [[e attributeForName:@"href"] stringValue];
 			NSLog(@"relAttribute=%@", relAttribute);
 			NSLog(@"hrefAttribute=%@", hrefAttribute);
+			
+			NSString* searchForMe = @"http://opds-spec.org/acquisition";
+			NSRange range = [relAttribute rangeOfString : searchForMe];
+			if (range.location != NSNotFound) {
+				resultStr = [NSString stringWithFormat:@"%@%@", URL_BASE_OPDS, hrefAttribute];
+				NSMutableDictionary* tmpDict = [[NSMutableDictionary alloc] init];
+				[tmpDict setValue:titleStr forKey:CONTENT_TITLE];
+				[tmpDict setValue:titleStr forKey:CONTENT_AUTHOR];
+				[tmpDict setValue:resultStr forKey:CONTENT_ACQUISITION_LINK];
+				[tmpDict setValue:[NSNumber numberWithInteger:UndefinedContentId] forKey:CONTENT_CID];
+				[linksUrlArray addObject:tmpDict];
+				[tmpDict release];
+			}
 		}
 		
 		
 	}
+	NSLog(@"linksUrlArray=%@", [linksUrlArray description]);
 	
+	return linksUrlArray;
 	
+	/*
 	
 	//Pickup links with PDF.
 	NSString* searchForMe = @"http://opds-spec.org/acquisition";
-	NSString* resultStr;
-	NSMutableArray* linksUrlArray = [[NSMutableArray alloc] init];
+	//NSString* resultStr;
+	//NSMutableArray* linksUrlArray = [[NSMutableArray alloc] init];
 	for (int cnt = 0; cnt < [links count]; cnt++) {
 		NSString* relAttribute = [[[links objectAtIndex:cnt] attributeForName:@"rel"] stringValue];
 		
@@ -220,6 +244,7 @@
 
 	
 	return linksUrlArray;
+	*/
 }
 
 @end

@@ -195,7 +195,10 @@
 
 - (void)didFinishParseOpdsRoot:(NSURL*)elementUrl{ LOG_CURRENT_METHOD; }
 - (void)didFailParseOpdsRoot{ LOG_CURRENT_METHOD; }
-- (void)didFinishParseOpdsElement:(NSMutableArray*)resultArray{ LOG_CURRENT_METHOD; }
+- (void)didFinishParseOpdsElement:(NSMutableArray*)resultArray{
+	LOG_CURRENT_METHOD;
+	NSLog(@"contentList=%@", [appDelegate.serverContentListDS description]);
+}
 - (void)didFailParseOpdsElement{ LOG_CURRENT_METHOD; }
 
 @end
