@@ -991,6 +991,8 @@
 	[currentPdfScrollView setNeedsDisplay];
 	
 	//Draw next imageView.
+#if !defined(IS_2PAGE_VIEW) || IS_2PAGE_VIEW == 0
+	//Treat 1-page view.
 	if (currentPageNum + 1 <= maxPageNum) {
 		if ([self isMultiContents] == YES) {
 			[nextPdfScrollView setupWithPageNum:(newPageNum + 1) ContentId:currentContentId];
@@ -998,8 +1000,20 @@
 			[nextPdfScrollView setupWithPageNum:(newPageNum + 1)];
 		}
 	}
+#else
+	//Treat 2-page view.
+	if (currentPageNum + 2 <= maxPageNum) {
+		if ([self isMultiContents] == YES) {
+			[nextPdfScrollView setupWithPageNum:(newPageNum + 2) ContentId:currentContentId];
+		} else {
+			[nextPdfScrollView setupWithPageNum:(newPageNum + 2)];
+		}
+	}
+#endif
 	
 	//Draw prev imageView.
+#if !defined(IS_2PAGE_VIEW) || IS_2PAGE_VIEW == 0
+	//Treat 1-page view.
 	if (1 <= currentPageNum - 1) {
 		if ([self isMultiContents] == YES) {
 			[prevPdfScrollView setupWithPageNum:(newPageNum - 1) ContentId:currentContentId];
@@ -1007,6 +1021,16 @@
 			[prevPdfScrollView setupWithPageNum:(newPageNum - 1)];
 		}
 	}
+#else
+	//Treat 1-page view.
+	if (2 <= currentPageNum - 1) {
+		if ([self isMultiContents] == YES) {
+			[prevPdfScrollView setupWithPageNum:(newPageNum - 2) ContentId:currentContentId];
+		} else {
+			[prevPdfScrollView setupWithPageNum:(newPageNum - 2)];
+		}
+	}
+#endif	
 }
 
 
