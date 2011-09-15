@@ -8,7 +8,7 @@
  */
 
 //Vertical/Horizon mode in pdf.
-#define IS_VERTICAL_PDF 1		/* 0:yokogaki, 1:tategaki*/
+#define IS_VERTICAL_PDF 0		/* 0:yokogaki, 1:tategaki*/
 
 //Page Transition with Slide/Curl.
 #define IS_TRANSITION_CURL 0	/* 0:Slide, 1:Curl*/
