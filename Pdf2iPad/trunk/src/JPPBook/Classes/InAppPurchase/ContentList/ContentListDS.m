@@ -232,6 +232,27 @@
 	return @"";
 }
 
+#pragma mark Description
+- (NSURL*)acquisitionUrlAtIndex:(NSInteger)index
+{
+	NSDictionary* tmpDict;
+	tmpDict = [contentList objectAtIndex:index];
+	
+	NSString* urlStr = [tmpDict valueForKey:CONTENT_ACQUISITION_LINK];
+	return [NSURL URLWithString:urlStr];
+}
+- (NSURL*)acquisitionUrlByContentId:(ContentId)cid
+{
+	NSDictionary* tmpDict;
+	for (tmpDict in contentList){
+		if ([[tmpDict valueForKey:CONTENT_CID] intValue] == cid) {
+			NSString* urlStr = [tmpDict valueForKey:CONTENT_ACQUISITION_LINK];
+			return [NSURL URLWithString:urlStr];
+		}
+	}
+	return nil;
+}
+
 #pragma mark - TestData.
 - (void)setupTestData
 {

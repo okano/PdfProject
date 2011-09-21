@@ -34,6 +34,8 @@
 - (NSString*)descriptionByContentId:(ContentId)cid;
 - (UIImage*)contentIconAtIndex:(NSInteger)index;
 - (UIImage*)contentIconByContentId:(ContentId)cid;
+- (NSURL*)acquisitionUrlAtIndex:(NSInteger)index;
+- (NSURL*)acquisitionUrlByContentId:(ContentId)cid;
 
 #pragma mark - TestData.
 - (void)setupTestData;
