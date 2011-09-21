@@ -128,7 +128,11 @@
 		cell.isDownloadedLabel.textColor = [UIColor orangeColor];
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	}
-	cell.imageView.image = [appDelegate.serverContentListDS contentIconByContentId:targetCid];
+	//Thumbnail.
+	//cell.imageView.image = [appDelegate.serverContentListDS contentIconByContentId:targetCid];
+	UIImage* thumbnailImage = [CoverUtility thumbnailImageWithContentId:targetCid];
+	cell.imageView.image = thumbnailImage;
+
 	
 	NSLog(@"title=%@", cell.titleLabel.text);
     return cell;

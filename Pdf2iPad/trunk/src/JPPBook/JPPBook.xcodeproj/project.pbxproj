@@ -29,6 +29,7 @@
 		2916EC5E1429B912006DBDC0 /* URLDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 2916EC5B1429B912006DBDC0 /* URLDownload.m */; };
 		2916EC631429BC6D006DBDC0 /* ContentFileUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2916EC601429BC6D006DBDC0 /* ContentFileUtility.m */; };
 		2916EC641429BC6D006DBDC0 /* ContentUrlUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2916EC621429BC6D006DBDC0 /* ContentUrlUtility.m */; };
+		2916EC671429E9E1006DBDC0 /* CoverUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2916EC661429E9E1006DBDC0 /* CoverUtility.m */; };
 		291BF4D212BC64AF003F87C2 /* ImageTocView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 291BF4D112BC64AF003F87C2 /* ImageTocView.xib */; };
 		291D7FF812C09FEB007F8545 /* document.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 291D7FF712C09FEB007F8545 /* document.pdf */; };
 		291ECAC112BC8E8C0027C4CF /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 291ECAC012BC8E8C0027C4CF /* icon.png */; };
@@ -167,6 +168,8 @@
 		2916EC601429BC6D006DBDC0 /* ContentFileUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentFileUtility.m; path = Server/ContentFileUtility.m; sourceTree = "<group>"; };
 		2916EC611429BC6D006DBDC0 /* ContentUrlUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentUrlUtility.h; path = Server/ContentUrlUtility.h; sourceTree = "<group>"; };
 		2916EC621429BC6D006DBDC0 /* ContentUrlUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentUrlUtility.m; path = Server/ContentUrlUtility.m; sourceTree = "<group>"; };
+		2916EC651429E9E1006DBDC0 /* CoverUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoverUtility.h; sourceTree = "<group>"; };
+		2916EC661429E9E1006DBDC0 /* CoverUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverUtility.m; sourceTree = "<group>"; };
 		291BF4D112BC64AF003F87C2 /* ImageTocView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageTocView.xib; sourceTree = "<group>"; };
 		291D7FF712C09FEB007F8545 /* document.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = document.pdf; sourceTree = "<group>"; };
 		291ECAC012BC8E8C0027C4CF /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
@@ -644,6 +647,8 @@
 				2916EC601429BC6D006DBDC0 /* ContentFileUtility.m */,
 				2916EC611429BC6D006DBDC0 /* ContentUrlUtility.h */,
 				2916EC621429BC6D006DBDC0 /* ContentUrlUtility.m */,
+				2916EC651429E9E1006DBDC0 /* CoverUtility.h */,
+				2916EC661429E9E1006DBDC0 /* CoverUtility.m */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -881,6 +886,7 @@
 				2916EC5E1429B912006DBDC0 /* URLDownload.m in Sources */,
 				2916EC631429BC6D006DBDC0 /* ContentFileUtility.m in Sources */,
 				2916EC641429BC6D006DBDC0 /* ContentUrlUtility.m in Sources */,
+				2916EC671429E9E1006DBDC0 /* CoverUtility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

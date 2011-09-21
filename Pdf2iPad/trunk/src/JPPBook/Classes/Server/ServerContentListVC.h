@@ -10,6 +10,7 @@
 #import "Pdf2iPadAppDelegate.h"
 #import "ContentListViewController.h"
 #import "ProtocolDefine.h"
+#import "CoverUtility.h"
 
 @interface ServerContentListVC : ContentListViewController <MyTableViewVCProtocol> {
 	//UITableView* myTableView;

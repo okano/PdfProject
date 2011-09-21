@@ -57,7 +57,9 @@
 	
 	
 	//Thumbnail.
-	thumbnailImageView.image = [appDelegate.serverContentListDS contentIconByContentId:cid];
+	//thumbnailImageView.image = [appDelegate.serverContentListDS contentIconByContentId:cid];
+	UIImage* thumbnailImage = [CoverUtility thumbnailImageWithContentId:cid];
+	thumbnailImageView.image = thumbnailImage;
 	
 	//Title, Author, Description.
 	titleLabel.text = [appDelegate.serverContentListDS titleByContentId:cid];

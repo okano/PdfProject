@@ -11,6 +11,7 @@
 #import "InAppPurchaseUtility.h"
 #import "Pdf2iPadAppDelegate.h"
 #import "ServerContentDownloadVC.h"
+#import "CoverUtility.h"
 
 @interface ServerContentDetailVC : UIViewController {
 	Pdf2iPadAppDelegate* appDelegate;
