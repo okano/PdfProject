@@ -13,6 +13,8 @@
 #define CONTENT_ICONFILE_PREFIX		@"ContentIcon_"
 #define CONTENT_ICONFILE_EXTENSION	@"png"
 #define CONTENT_ACQUISITION_LINK	@"AcquisitionLink"
+#define CONTENT_THUMBNAIL_LINK		@"ThumbnailLink"
+#define CONTENT_COVER_LINK			@"CoverLink"
 
 #define HISTORY_CID					@"ContentId"
 #define HISTORY_PAYMENT_DAYTIME		@"PaymentDaytime"

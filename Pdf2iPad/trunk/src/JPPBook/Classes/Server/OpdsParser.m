@@ -149,6 +149,8 @@
 	
 	//Parse.
 	NSString* acquisitionLink;
+	NSString* thumbnailLink;
+	NSString* coverLink;
 	NSMutableArray* linksUrlArray = [[NSMutableArray alloc] init];
 	for (DDXMLElement* singleElement in entries){
 		//NSLog(@"singleElement=%@", [singleElement description]);
@@ -178,20 +180,39 @@
 			//NSLog(@"relAttribute=%@", relAttribute);
 			//NSLog(@"hrefAttribute=%@", hrefAttribute);
 			
+			//Link for Acquisition.
 			NSString* searchForMe = @"http://opds-spec.org/acquisition";
 			NSRange range = [relAttribute rangeOfString : searchForMe];
 			if (range.location != NSNotFound) {
 				acquisitionLink = [NSString stringWithFormat:@"%@%@", URL_BASE_OPDS, hrefAttribute];
 				
-				NSMutableDictionary* tmpDict = [[NSMutableDictionary alloc] init];
-				[tmpDict setValue:titleStr forKey:CONTENT_TITLE];
-				[tmpDict setValue:authorStr forKey:CONTENT_AUTHOR];
-				[tmpDict setValue:acquisitionLink forKey:CONTENT_ACQUISITION_LINK];
-				[tmpDict setValue:[NSNumber numberWithInteger:UndefinedContentId] forKey:CONTENT_CID];
-				[linksUrlArray addObject:tmpDict];
-				[tmpDict release];
+			}
+			//Link for Thumbnail.
+			searchForMe = @"http://opds-spec.org/thumbnail";
+			range = [relAttribute rangeOfString : searchForMe];
+			if (range.location != NSNotFound) {
+				thumbnailLink = [NSString stringWithFormat:@"%@%@", URL_BASE_OPDS, hrefAttribute];
+				
+			}
+			//Link for Cover.
+			searchForMe = @"http://opds-spec.org/cover";
+			range = [relAttribute rangeOfString : searchForMe];
+			if (range.location != NSNotFound) {
+				coverLink = [NSString stringWithFormat:@"%@%@", URL_BASE_OPDS, hrefAttribute];
+				
 			}
 		}
+		
+		//Store to Array.
+		NSMutableDictionary* tmpDict = [[NSMutableDictionary alloc] init];
+		[tmpDict setValue:titleStr			forKey:CONTENT_TITLE];
+		[tmpDict setValue:authorStr			forKey:CONTENT_AUTHOR];
+		[tmpDict setValue:acquisitionLink	forKey:CONTENT_ACQUISITION_LINK];
+		[tmpDict setValue:thumbnailLink		forKey:CONTENT_THUMBNAIL_LINK];
+		[tmpDict setValue:coverLink			forKey:CONTENT_COVER_LINK];
+		[tmpDict setValue:[NSNumber numberWithInteger:UndefinedContentId] forKey:CONTENT_CID];
+		[linksUrlArray addObject:tmpDict];
+		[tmpDict release];
 	}
 	NSLog(@"linksUrlArray=%@", [linksUrlArray description]);
 	
