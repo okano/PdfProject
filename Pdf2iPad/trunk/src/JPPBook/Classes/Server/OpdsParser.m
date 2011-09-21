@@ -171,6 +171,15 @@
 							   stringByReplacingOccurrencesOfString:@"</name>" withString:@""];
 		NSLog(@"author=%@", authorStr );
 		
+		//UUID
+		NSArray* uuidElement = [singleElement elementsForName:@"id"];
+		NSString* uuidStrTagged = [[uuidElement objectAtIndex:0] description];
+		NSString* uuidStr = [[uuidStrTagged stringByReplacingOccurrencesOfString:@"<id>" withString:@""]
+							  stringByReplacingOccurrencesOfString:@"</id>" withString:@""];
+		NSArray* uuidTmp = [uuidStr componentsSeparatedByString:@":"];
+		uuidStr = [uuidTmp objectAtIndex:2];
+		NSLog(@"uuid=%@", uuidStr );
+		
 		//Links
 		NSArray* links = [singleElement elementsForName:@"link"];
 		//NSLog(@"links=%@", [links description]);
@@ -211,6 +220,7 @@
 		[tmpDict setValue:thumbnailLink		forKey:CONTENT_THUMBNAIL_LINK];
 		[tmpDict setValue:coverLink			forKey:CONTENT_COVER_LINK];
 		[tmpDict setValue:[NSNumber numberWithInteger:UndefinedContentId] forKey:CONTENT_CID];
+		[tmpDict setValue:uuidStr			forKey:CONTENT_UUID];
 		[linksUrlArray addObject:tmpDict];
 		[tmpDict release];
 	}

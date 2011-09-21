@@ -7,6 +7,7 @@
 //
 #define CONTENT_CID					@"ContentId"
 #define CONTENT_STORE_PRODUCT_ID	@"StoreProductId"
+#define CONTENT_UUID				@"Uuid"
 #define CONTENT_TITLE				@"Title"
 #define CONTENT_AUTHOR				@"Autohr"
 #define CONTENT_DESCRIPTION			@"Description"
