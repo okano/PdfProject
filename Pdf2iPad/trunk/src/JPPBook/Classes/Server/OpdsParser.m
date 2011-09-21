@@ -155,13 +155,19 @@
 		
 		//Title
 		NSArray* titleElement = [singleElement elementsForName:@"title"];
-		NSString* titleStr = [[titleElement objectAtIndex:0] description];
+		NSString* titleStrTagged = [[titleElement objectAtIndex:0] description];
+		NSString* titleStr = [[titleStrTagged stringByReplacingOccurrencesOfString:@"<title>" withString:@""]
+							  stringByReplacingOccurrencesOfString:@"</title>" withString:@""];
 		//NSLog(@"title=%@", titleStr );
 		
 		//Author
 		NSArray* authorElement = [singleElement elementsForName:@"author"];
-		NSString* authorStr = [[authorElement objectAtIndex:0] description];
-		//NSLog(@"author=%@", authorStr );
+		NSString* authorStrTagged = [[authorElement objectAtIndex:0] description];
+		NSString* authorStr = [[[[authorStrTagged stringByReplacingOccurrencesOfString:@"<author>" withString:@""]
+								 stringByReplacingOccurrencesOfString:@"</author>" withString:@""]
+								stringByReplacingOccurrencesOfString:@"<name>" withString:@""]
+							   stringByReplacingOccurrencesOfString:@"</name>" withString:@""];
+		NSLog(@"author=%@", authorStr );
 		
 		//Links
 		NSArray* links = [singleElement elementsForName:@"link"];
