@@ -24,6 +24,7 @@
 - (NSString*)productIdFromContentId:(ContentId)cid;
 
 - (void)setupData;
+- (NSString*)description;
 
 - (NSString*)titleAtIndex:(NSInteger)index;
 - (NSString*)titleByContentId:(ContentId)cid;

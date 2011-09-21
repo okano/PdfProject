@@ -136,6 +136,11 @@
 #endif
 }
 
+#pragma mark - basic method.
+- (NSString*)description
+{
+	return [contentList description];
+}
 
 #pragma mark - (Getter) -
 #pragma mark Title

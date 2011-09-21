@@ -87,6 +87,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	LOG_CURRENT_METHOD;
+	NSLog(@"serverContentListDS=%@", [appDelegate.serverContentListDS description]);
+	NSLog(@"row=%d", indexPath.row);
 	
 	static NSString *identifier = @"ContentListCell";
 	ContentListCell *cell = (ContentListCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
@@ -102,7 +105,7 @@
 		NSLog(@"Invalid productId. cid=%d", targetCid);
 		return nil;
 	}
-	//NSLog(@"indexPath.row=%d, cid=%d, pid=%@", indexPath.row, targetCid, targetPid);
+	NSLog(@"indexPath.row=%d, cid=%d, pid=%@", indexPath.row, targetCid, targetPid);
 	
     // Configure the cell...
 	cell.titleLabel.text = [appDelegate.serverContentListDS titleByContentId:targetCid];
