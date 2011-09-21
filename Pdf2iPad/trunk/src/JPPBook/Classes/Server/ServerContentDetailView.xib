@@ -142,13 +142,13 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<object class="NSFont" key="IBUIFont">
+								<object class="NSFont" key="IBUIFont" id="887804555">
 									<string key="NSName">Helvetica-Bold</string>
 									<double key="NSSize">15</double>
 									<int key="NSfFlags">16</int>
 								</object>
 								<string key="IBUINormalTitle">loading..</string>
-								<object class="NSColor" key="IBUIHighlightedTitleColor">
+								<object class="NSColor" key="IBUIHighlightedTitleColor" id="213861827">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MQA</bytes>
 								</object>
@@ -156,7 +156,7 @@
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
-								<object class="NSColor" key="IBUINormalTitleShadowColor">
+								<object class="NSColor" key="IBUINormalTitleShadowColor" id="787345864">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC41AA</bytes>
 								</object>
@@ -164,10 +164,10 @@
 							<object class="IBUITextView" id="990687920">
 								<reference key="NSNextResponder" ref="451257259"/>
 								<int key="NSvFlags">290</int>
-								<string key="NSFrame">{{20, 85}, {280, 200}}</string>
+								<string key="NSFrame">{{20, 85}, {280, 155}}</string>
 								<reference key="NSSuperview" ref="451257259"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="558061184"/>
+								<reference key="NSNextKeyView" ref="742629928"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MSAxIDEAA</bytes>
@@ -221,6 +221,27 @@
 								<reference key="NSNextKeyView"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+							</object>
+							<object class="IBUIButton" id="742629928">
+								<reference key="NSNextResponder" ref="451257259"/>
+								<int key="NSvFlags">290</int>
+								<string key="NSFrame">{{20, 248}, {280, 37}}</string>
+								<reference key="NSSuperview" ref="451257259"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="558061184"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<int key="IBUIContentHorizontalAlignment">0</int>
+								<int key="IBUIContentVerticalAlignment">0</int>
+								<reference key="IBUIFont" ref="887804555"/>
+								<int key="IBUIButtonType">1</int>
+								<string key="IBUINormalTitle">Download</string>
+								<reference key="IBUIHighlightedTitleColor" ref="213861827"/>
+								<object class="NSColor" key="IBUINormalTitleColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+								</object>
+								<reference key="IBUINormalTitleShadowColor" ref="787345864"/>
 							</object>
 						</object>
 						<string key="NSFrame">{{0, 44}, {320, 480}}</string>
@@ -315,6 +336,15 @@
 					</object>
 					<int key="connectionID">23</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">downloadContent:</string>
+						<reference key="source" ref="742629928"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">26</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -360,6 +390,7 @@
 							<reference ref="668586155"/>
 							<reference ref="479304380"/>
 							<reference ref="963774085"/>
+							<reference ref="742629928"/>
 						</object>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -422,6 +453,11 @@
 						<reference key="object" ref="963774085"/>
 						<reference key="parent" ref="451257259"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">24</int>
+						<reference key="object" ref="742629928"/>
+						<reference key="parent" ref="451257259"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -438,6 +474,7 @@
 					<string>17.IBPluginDependency</string>
 					<string>18.IBPluginDependency</string>
 					<string>19.IBPluginDependency</string>
+					<string>24.IBPluginDependency</string>
 					<string>4.IBPluginDependency</string>
 					<string>5.IBPluginDependency</string>
 					<string>6.IBPluginDependency</string>
@@ -450,6 +487,7 @@
 					<string>ServerContentDetailVC</string>
 					<string>UIResponder</string>
 					<string>{{556, 412}, {320, 480}}</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -477,7 +515,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">23</int>
+			<int key="maxID">27</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -490,7 +528,7 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>buyContent:</string>
-							<string>showContentList:</string>
+							<string>downloadContent:</string>
 							<string>showServerContentList:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -505,7 +543,7 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>buyContent:</string>
-							<string>showContentList:</string>
+							<string>downloadContent:</string>
 							<string>showServerContentList:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -515,7 +553,7 @@
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
-								<string key="name">showContentList:</string>
+								<string key="name">downloadContent:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
@@ -531,6 +569,7 @@
 							<string>authorLabel</string>
 							<string>buyButton</string>
 							<string>descriptionTextView</string>
+							<string>downloadButton</string>
 							<string>priceLabel</string>
 							<string>thumbnailImageView</string>
 							<string>titleLabel</string>
@@ -540,6 +579,7 @@
 							<string>UILabel</string>
 							<string>UIButton</string>
 							<string>UITextView</string>
+							<string>UIButton</string>
 							<string>UILabel</string>
 							<string>UIImageView</string>
 							<string>UILabel</string>
@@ -552,6 +592,7 @@
 							<string>authorLabel</string>
 							<string>buyButton</string>
 							<string>descriptionTextView</string>
+							<string>downloadButton</string>
 							<string>priceLabel</string>
 							<string>thumbnailImageView</string>
 							<string>titleLabel</string>
@@ -569,6 +610,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">descriptionTextView</string>
 								<string key="candidateClassName">UITextView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">downloadButton</string>
+								<string key="candidateClassName">UIButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">priceLabel</string>

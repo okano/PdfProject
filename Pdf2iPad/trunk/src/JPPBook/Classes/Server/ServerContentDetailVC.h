@@ -24,6 +24,8 @@
 	IBOutlet UITextView* descriptionTextView;
 	IBOutlet UILabel* priceLabel;
 	IBOutlet UIButton* buyButton;
+	//
+	IBOutlet UIButton* downloadButton;
 }
 @property (nonatomic, retain) UIImageView* thumbnailImageView;
 @property (nonatomic, retain) UILabel* titleLabel;
@@ -31,10 +33,12 @@
 @property (nonatomic, retain) UITextView* descriptionTextView;
 @property (nonatomic, retain) UILabel* priceLabel;
 @property (nonatomic, retain) UIButton* buyButton;
+@property (nonatomic, retain) UIButton* downloadButton;
 
 - (void)setLabelsWithContentId:(ContentId)cid;
 - (IBAction)showServerContentList:(id)sender;
 - (IBAction)buyContent:(id)sender;
+- (IBAction)downloadContent:(id)sender;
 
 //called from SKProductsRequestDelegate related methods.
 - (void)productsRequest:(SKProductsRequest *)request

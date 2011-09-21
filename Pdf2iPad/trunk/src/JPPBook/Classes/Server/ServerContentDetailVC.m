@@ -13,6 +13,7 @@
 @synthesize thumbnailImageView, titleLabel, authorLabel, descriptionTextView;
 @synthesize priceLabel;
 @synthesize buyButton;
+@synthesize downloadButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -151,6 +152,14 @@
 	return;
 }
 
+- (IBAction)downloadContent:(id)sender
+{
+	LOG_CURRENT_METHOD;
+	
+	//UIView* view = [[UIView alloc] initWithFrame:self.view.bounds];
+	UIViewController* vc = [[UIViewController alloc] initWithNibName:@"ServerContentDownload" bundle:[NSBundle mainBundle]];
+	[self presentModalViewController:vc animated:YES];
+}
 
 
 
