@@ -10,6 +10,7 @@
 
 
 @implementation ServerContentDetailVC
+@synthesize targetUrl;
 @synthesize thumbnailImageView, titleLabel, authorLabel, descriptionTextView;
 @synthesize priceLabel;
 @synthesize buyButton;
@@ -63,6 +64,11 @@
 	authorLabel.text = [appDelegate.serverContentListDS authorByContentId:cid];
 	descriptionTextView.text = [appDelegate.serverContentListDS descriptionByContentId:cid];
 	
+	//URL for download.
+	NSURL* u = [appDelegate.serverContentListDS acquisitionUrlByContentId:cid];
+	targetUrl = [[NSURL alloc] initWithString:[u description]];
+	NSLog(@"targetUrl class=%@", [targetUrl class]);
+	NSLog(@"targetUrl=%@", [targetUrl description]);
 	
 	//Price.
 	//appDelegate.paymentConductor.productsRequestDelegate = self;
@@ -156,9 +162,17 @@
 {
 	LOG_CURRENT_METHOD;
 	
-	//UIView* view = [[UIView alloc] initWithFrame:self.view.bounds];
-	UIViewController* vc = [[UIViewController alloc] initWithNibName:@"ServerContentDownload" bundle:[NSBundle mainBundle]];
-	[self presentModalViewController:vc animated:YES];
+	NSLog(@"targetCid=%d", targetCid);
+	NSLog(@"targetUrl class=%@", [targetUrl class]);
+	NSLog(@"targetUrl=%@", [targetUrl description]);
+	
+	ServerContentDownloadVC* downloaderVC = [[ServerContentDownloadVC alloc] initWithNibName:@"ServerContentDownload"
+																					bundle:[NSBundle mainBundle] 
+																				 contentId:targetCid
+																				 targetUrl:targetUrl];
+	LOG_CURRENT_LINE;
+	[self presentModalViewController:downloaderVC animated:YES];
+	[downloaderVC doDownload];
 }
 
 

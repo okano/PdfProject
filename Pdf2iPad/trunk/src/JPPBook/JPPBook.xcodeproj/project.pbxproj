@@ -22,6 +22,13 @@
 		29074DCA12BA111900F5D46D /* TocView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29074DC912BA111900F5D46D /* TocView.xib */; };
 		29074DD612BA117500F5D46D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29074DD512BA117500F5D46D /* QuartzCore.framework */; };
 		29074DDA12BA118500F5D46D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29074DD912BA118500F5D46D /* MediaPlayer.framework */; };
+		2916EC4D1429B754006DBDC0 /* DownloadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2916EC4B1429B754006DBDC0 /* DownloadView.xib */; };
+		2916EC531429B8F8006DBDC0 /* ServerContentDownloadVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2916EC521429B8F8006DBDC0 /* ServerContentDownloadVC.m */; };
+		2916EC5C1429B912006DBDC0 /* NSFileManager+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2916EC571429B912006DBDC0 /* NSFileManager+Utility.m */; };
+		2916EC5D1429B912006DBDC0 /* Timer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2916EC591429B912006DBDC0 /* Timer.m */; };
+		2916EC5E1429B912006DBDC0 /* URLDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 2916EC5B1429B912006DBDC0 /* URLDownload.m */; };
+		2916EC631429BC6D006DBDC0 /* ContentFileUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2916EC601429BC6D006DBDC0 /* ContentFileUtility.m */; };
+		2916EC641429BC6D006DBDC0 /* ContentUrlUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2916EC621429BC6D006DBDC0 /* ContentUrlUtility.m */; };
 		291BF4D212BC64AF003F87C2 /* ImageTocView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 291BF4D112BC64AF003F87C2 /* ImageTocView.xib */; };
 		291D7FF812C09FEB007F8545 /* document.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 291D7FF712C09FEB007F8545 /* document.pdf */; };
 		291ECAC112BC8E8C0027C4CF /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 291ECAC012BC8E8C0027C4CF /* icon.png */; };
@@ -146,6 +153,20 @@
 		29074DC912BA111900F5D46D /* TocView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TocView.xib; sourceTree = "<group>"; };
 		29074DD512BA117500F5D46D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		29074DD912BA118500F5D46D /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		2916EC4B1429B754006DBDC0 /* DownloadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DownloadView.xib; path = Server/DownloadView.xib; sourceTree = "<group>"; };
+		2916EC511429B8F8006DBDC0 /* ServerContentDownloadVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerContentDownloadVC.h; sourceTree = "<group>"; };
+		2916EC521429B8F8006DBDC0 /* ServerContentDownloadVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerContentDownloadVC.m; sourceTree = "<group>"; };
+		2916EC551429B912006DBDC0 /* Define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Define.h; sourceTree = "<group>"; };
+		2916EC561429B912006DBDC0 /* NSFileManager+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+Utility.h"; sourceTree = "<group>"; };
+		2916EC571429B912006DBDC0 /* NSFileManager+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+Utility.m"; sourceTree = "<group>"; };
+		2916EC581429B912006DBDC0 /* Timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timer.h; sourceTree = "<group>"; };
+		2916EC591429B912006DBDC0 /* Timer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Timer.m; sourceTree = "<group>"; };
+		2916EC5A1429B912006DBDC0 /* URLDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLDownload.h; sourceTree = "<group>"; };
+		2916EC5B1429B912006DBDC0 /* URLDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLDownload.m; sourceTree = "<group>"; };
+		2916EC5F1429BC6D006DBDC0 /* ContentFileUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentFileUtility.h; path = Server/ContentFileUtility.h; sourceTree = "<group>"; };
+		2916EC601429BC6D006DBDC0 /* ContentFileUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentFileUtility.m; path = Server/ContentFileUtility.m; sourceTree = "<group>"; };
+		2916EC611429BC6D006DBDC0 /* ContentUrlUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentUrlUtility.h; path = Server/ContentUrlUtility.h; sourceTree = "<group>"; };
+		2916EC621429BC6D006DBDC0 /* ContentUrlUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentUrlUtility.m; path = Server/ContentUrlUtility.m; sourceTree = "<group>"; };
 		291BF4D112BC64AF003F87C2 /* ImageTocView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageTocView.xib; sourceTree = "<group>"; };
 		291D7FF712C09FEB007F8545 /* document.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = document.pdf; sourceTree = "<group>"; };
 		291ECAC012BC8E8C0027C4CF /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
@@ -353,10 +374,29 @@
 			path = movie;
 			sourceTree = "<group>";
 		};
+		2916EC541429B912006DBDC0 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				2916EC551429B912006DBDC0 /* Define.h */,
+				2916EC561429B912006DBDC0 /* NSFileManager+Utility.h */,
+				2916EC571429B912006DBDC0 /* NSFileManager+Utility.m */,
+				2916EC581429B912006DBDC0 /* Timer.h */,
+				2916EC591429B912006DBDC0 /* Timer.m */,
+				2916EC5A1429B912006DBDC0 /* URLDownload.h */,
+				2916EC5B1429B912006DBDC0 /* URLDownload.m */,
+			);
+			name = Util;
+			path = Server/Util;
+			sourceTree = "<group>";
+		};
 		296B930E14298830003CB4CB /* ServerContentDownload */ = {
 			isa = PBXGroup;
 			children = (
+				2916EC541429B912006DBDC0 /* Util */,
+				2916EC4B1429B754006DBDC0 /* DownloadView.xib */,
 				296B93101429887D003CB4CB /* ServerContentDownload.xib */,
+				2916EC511429B8F8006DBDC0 /* ServerContentDownloadVC.h */,
+				2916EC521429B8F8006DBDC0 /* ServerContentDownloadVC.m */,
 			);
 			name = ServerContentDownload;
 			sourceTree = "<group>";
@@ -600,6 +640,10 @@
 				2987EE1B12AA4D1600FB66E5 /* Utility.h */,
 				297F58A013C30C4B00441312 /* FileUtility.h */,
 				297F58A113C30C4B00441312 /* FileUtility.m */,
+				2916EC5F1429BC6D006DBDC0 /* ContentFileUtility.h */,
+				2916EC601429BC6D006DBDC0 /* ContentFileUtility.m */,
+				2916EC611429BC6D006DBDC0 /* ContentUrlUtility.h */,
+				2916EC621429BC6D006DBDC0 /* ContentUrlUtility.m */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -780,6 +824,7 @@
 				2994C05613C5C53200368AD3 /* ContentIcon_1.png in Resources */,
 				29D53CE613FBB306000E0AC9 /* ServerContentDetailView.xib in Resources */,
 				296B93111429887D003CB4CB /* ServerContentDownload.xib in Resources */,
+				2916EC4D1429B754006DBDC0 /* DownloadView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -830,6 +875,12 @@
 				2995613D1417822A001C1D53 /* DDXMLDocument.m in Sources */,
 				2995613E1417822A001C1D53 /* DDXMLElement.m in Sources */,
 				2995613F1417822A001C1D53 /* DDXMLNode.m in Sources */,
+				2916EC531429B8F8006DBDC0 /* ServerContentDownloadVC.m in Sources */,
+				2916EC5C1429B912006DBDC0 /* NSFileManager+Utility.m in Sources */,
+				2916EC5D1429B912006DBDC0 /* Timer.m in Sources */,
+				2916EC5E1429B912006DBDC0 /* URLDownload.m in Sources */,
+				2916EC631429BC6D006DBDC0 /* ContentFileUtility.m in Sources */,
+				2916EC641429BC6D006DBDC0 /* ContentUrlUtility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

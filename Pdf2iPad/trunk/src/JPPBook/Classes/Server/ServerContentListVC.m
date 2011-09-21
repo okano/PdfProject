@@ -100,6 +100,11 @@
 	}
     
 	ContentId targetCid = [appDelegate.serverContentListDS contentIdAtIndex:indexPath.row];
+	if (targetCid == InvalidContentId) {
+		NSLog(@"Invalid ContentId.");
+	} else if (targetCid == UndefinedContentId) {
+		NSLog(@"UndefinedContentId.");
+	}
 	NSString* targetPid = [appDelegate.serverContentListDS productIdFromContentId:targetCid];
 	if (targetPid == InvalidProductId) {
 		NSLog(@"Invalid productId. cid=%d", targetCid);
@@ -108,8 +113,8 @@
 	NSLog(@"indexPath.row=%d, cid=%d, pid=%@", indexPath.row, targetCid, targetPid);
 	
     // Configure the cell...
-	cell.titleLabel.text = [appDelegate.serverContentListDS titleByContentId:targetCid];
-	cell.authorLabel.text = [appDelegate.serverContentListDS authorByContentId:targetCid];
+	cell.titleLabel.text = [appDelegate.serverContentListDS titleAtIndex:indexPath.row];
+	cell.authorLabel.text = [appDelegate.serverContentListDS authorAtIndex:indexPath.row];
 	//Check payment status.
 	if (([InAppPurchaseUtility isFreeContent:targetPid] == TRUE)
 		||
@@ -125,7 +130,7 @@
 	}
 	cell.imageView.image = [appDelegate.serverContentListDS contentIconByContentId:targetCid];
 	
-	
+	NSLog(@"title=%@", cell.titleLabel.text);
     return cell;
 }
 

@@ -10,11 +10,13 @@
 #import "InAppPurchaseDefine.h"
 #import "InAppPurchaseUtility.h"
 #import "Pdf2iPadAppDelegate.h"
+#import "ServerContentDownloadVC.h"
 
 @interface ServerContentDetailVC : UIViewController {
 	Pdf2iPadAppDelegate* appDelegate;
 	ContentId targetCid;
 	NSString* targetProductId;
+	NSURL* targetUrl;
 	
 	//UserInterface.
     IBOutlet UIImageView* thumbnailImageView;
@@ -27,6 +29,7 @@
 	//
 	IBOutlet UIButton* downloadButton;
 }
+@property (nonatomic, retain) NSURL* targetUrl;
 @property (nonatomic, retain) UIImageView* thumbnailImageView;
 @property (nonatomic, retain) UILabel* titleLabel;
 @property (nonatomic, retain) UILabel* authorLabel;
