@@ -36,6 +36,10 @@
 - (UIImage*)contentIconByContentId:(ContentId)cid;
 - (NSURL*)acquisitionUrlAtIndex:(NSInteger)index;
 - (NSURL*)acquisitionUrlByContentId:(ContentId)cid;
+- (NSURL*)thumbnailUrlAtIndex:(NSInteger)index;
+- (NSURL*)thumbnailUrlByContentId:(ContentId)cid;
+- (NSURL*)coverUrlAtIndex:(NSInteger)index;
+- (NSURL*)coverUrlByContentId:(ContentId)cid;
 
 #pragma mark - TestData.
 - (void)setupTestData;
