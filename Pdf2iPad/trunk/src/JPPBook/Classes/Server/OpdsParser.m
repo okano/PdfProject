@@ -30,6 +30,14 @@
 	NSString* feed = [[NSString alloc] initWithContentsOfURL:rootUrl];
 	if (feed == nil) {
 		NSLog(@"no feed found.");
+		UIAlertView *alert = [[UIAlertView alloc]
+							  initWithTitle:nil
+							  message:@"no content list(Root) found."
+							  delegate:nil
+							  cancelButtonTitle:nil
+							  otherButtonTitles:@"OK", nil];
+		[alert show];
+
 		return nil;
 	}
 	//NSLog(@"feed=%@", feed);

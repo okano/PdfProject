@@ -194,7 +194,16 @@
 }
 
 - (void)didFinishParseOpdsRoot:(NSURL*)elementUrl{ LOG_CURRENT_METHOD; }
-- (void)didFailParseOpdsRoot{ LOG_CURRENT_METHOD; }
+- (void)didFailParseOpdsRoot{
+	LOG_CURRENT_METHOD;
+	UIAlertView *alert = [[UIAlertView alloc]
+						  initWithTitle:nil
+						  message:@"fail parse OPDS Root."
+						  delegate:nil
+						  cancelButtonTitle:nil
+						  otherButtonTitles:@"OK", nil];
+	[alert show];
+}
 - (void)didFinishParseOpdsElement:(NSMutableArray*)resultArray{
 	LOG_CURRENT_METHOD;
 	NSLog(@"contentList=%@", [appDelegate.serverContentListDS description]);
