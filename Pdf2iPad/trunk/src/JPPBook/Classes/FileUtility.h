@@ -14,6 +14,12 @@
 @interface FileUtility : NSObject {
     
 }
+//Pdf(Original) file.
++ (NSString*)getPdfFilename;
++ (NSString*)getPdfFilename:(ContentId)cId;
+#define TEST_PDF_FILENAME	@"TestPage.pdf"
+
+//Each page cache.
 + (NSString*)getPageFilenameFull:(int)pageNum;
 + (NSString*)getPageFilenameFull:(int)pageNum WithContentId:(ContentId)cid;
 + (NSString*)getThumbnailFilenameFull:(int)pageNum;
@@ -24,6 +30,7 @@
 + (NSArray*)parseDefineCsv:(NSString*)filename contentId:(ContentId)cid;
 
 #pragma mark - like POSIX file uty.
++ (NSArray*)fileList:(NSString*)path;
 + (BOOL)existsFile:(NSString*)fileNameFull;
 + (void)makeDir:(NSString*)fileNameFull;
 + (void)removeFile:(NSString*)fileNameFull;

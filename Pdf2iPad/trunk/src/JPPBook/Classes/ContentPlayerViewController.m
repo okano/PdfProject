@@ -193,22 +193,13 @@
 - (BOOL)setupPdfBasicInfo
 {
 	//parse csv file.
-	NSString* targetFilename = @"pdfDefine";
-	NSArray* lines;
-	if ([self isMultiContents] == TRUE) {
-		lines = [FileUtility parseDefineCsv:targetFilename contentId:currentContentId];
-	} else {
-		lines = [FileUtility parseDefineCsv:targetFilename];
-	}
-	//NSLog(@"lines count=%d, lines=%@.", [lines count], [lines description]);
-	
 	NSString* pdfFilename;
-	if ([lines count] < 1) {
-		NSLog(@"no PDF file specified.");
-		pdfFilename = [NSString stringWithFormat:@"TestPage.pdf"];
+	if ([self isMultiContents] == TRUE) {
+		pdfFilename = [FileUtility getPdfFilename:currentContentId];
 	} else {
-		pdfFilename = [lines objectAtIndex:0];
+		pdfFilename = [FileUtility getPdfFilename];
 	}
+	
 	pdfURL = [[NSBundle mainBundle] URLForResource:pdfFilename withExtension:nil];
 	[pdfURL retain]; //Owned by this class.
 	if (!pdfURL) {

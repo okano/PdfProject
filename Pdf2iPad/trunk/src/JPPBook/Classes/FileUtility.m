@@ -11,6 +11,39 @@
 
 @implementation FileUtility
 
+#pragma mark - PDF original file.
+//Pdf(Original) file.
++ (NSString*)getPdfFilename
+{
+	NSString* targetFilename = @"pdfDefine";
+	NSArray* lines;
+	lines = [FileUtility parseDefineCsv:targetFilename];
+	
+	NSString* pdfFilename;
+	if ([lines count] < 1) {
+		NSLog(@"no PDF file specified.");
+		pdfFilename = [NSString stringWithFormat:TEST_PDF_FILENAME];
+	} else {
+		pdfFilename = [lines objectAtIndex:0];
+	}
+	return pdfFilename;
+}
++ (NSString*)getPdfFilename:(ContentId)cId
+{
+	NSString* targetFilename = @"pdfDefine";
+	NSArray* lines;
+	lines = [FileUtility parseDefineCsv:targetFilename contentId:cId];
+	
+	NSString* pdfFilename;
+	if ([lines count] < 1) {
+		NSLog(@"no PDF file specified.");
+		pdfFilename = [NSString stringWithFormat:TEST_PDF_FILENAME];
+	} else {
+		pdfFilename = [lines objectAtIndex:0];
+	}
+	return pdfFilename;
+}
+
 #pragma mark - page image cache.
 + (NSString*)getPageFilenameFull:(int)pageNum {
 	NSString* filename = [NSString stringWithFormat:@"%@%d", PAGE_FILE_PREFIX, pageNum];
@@ -109,14 +142,12 @@
 
 #pragma mark - like POSIX file uty.
 //@see:http://www.saturn.dti.ne.jp/~npaka/iphone/util/index.html
-/*
 //Get file list.
-+ (NSArray*)fileNames:(NSString*)fileName {
-    NSString* path=[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-	path=[path stringByAppendingPathComponent:fileName]; 
-	return [[NSFileManager defaultManager] directoryContentsAtPath:path];
+//+ (NSArray*)fileNames:(NSString*)fileName {
++ (NSArray*)fileList:(NSString*)path {
+	NSError* error = nil;
+	return [[NSFileManager defaultManager] contentsOfDirectoryAtPath:(NSString *)path error:(NSError **)error];
 }
-*/
 
 //Check file/directory exist.
 + (BOOL)existsFile:(NSString*)fileNameFull {
