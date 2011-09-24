@@ -51,6 +51,16 @@
 	}
 	return InvalidContentId;
 }
+- (ContentId)contentIdFromUuid:(NSString*)uuid
+{
+	NSDictionary* tmpDict;
+	for (tmpDict in contentList) {
+		if ([[tmpDict valueForKey:CONTENT_UUID] compare:uuid options:NSCaseInsensitiveSearch] == NSOrderedSame) {
+			return (ContentId)[[tmpDict valueForKey:CONTENT_CID] intValue];
+		}
+	}
+	return InvalidContentId;
+}
 
 - (NSString*)productIdFromContentId:(ContentId)cid
 {
@@ -82,6 +92,50 @@
 	}
 	//LOG_CURRENT_LINE;
 	return InvalidProductId;
+}
+
+
+- (NSString*)uuidAtIndex:(NSInteger)index
+{
+	if ([contentList count] < index || index < 0) {
+		return @"";
+	}
+	NSDictionary* tmpDict;
+	tmpDict = [contentList objectAtIndex:index];
+	
+	return [tmpDict valueForKey:CONTENT_UUID];
+}
+- (NSString*)uuidFromContentId:(ContentId)cid
+{
+	//LOG_CURRENT_METHOD;
+	NSLog(@"cid=%d", cid);
+	if (cid <= 0) {
+		NSLog(@"ContentId is 1-start! (given %d)", cid);
+		cid = 1;
+	}
+	
+	//(when loading now, read csv file)
+	if ([contentList count] < cid) {
+		//return [InAppPurchaseUtility getProductIdentifier:cid];
+		return @"";
+	}
+	
+	for (NSDictionary* tmpDict in contentList) {
+		ContentId candidateCid = [[tmpDict valueForKey:CONTENT_CID] intValue];
+		//NSLog(@"candidate cid=%d", candidateCid);
+		if (candidateCid == cid) {
+			//LOG_CURRENT_LINE;
+			//NSLog(@"pid=%@", [tmpDict valueForKey:CONTENT_STORE_PRODUCT_ID]);
+			if ([tmpDict valueForKey:CONTENT_UUID] != nil) {
+				return [NSString stringWithString:[tmpDict valueForKey:CONTENT_UUID]];
+			} else {
+				NSLog(@"no uuid. cid=%d", cid);
+				return @"";
+			}
+		}
+	}
+	//LOG_CURRENT_LINE;
+	return @"";
 }
 
 #pragma mark - setup data.
@@ -161,6 +215,16 @@
 	}
 	return @"";
 }
+- (NSString*)titleByUuid:(NSString*)uuid
+{
+	NSDictionary* tmpDict;
+	for (tmpDict in contentList){
+		if ([[tmpDict valueForKey:CONTENT_UUID] compare:uuid options:NSCaseInsensitiveSearch] == NSOrderedSame) {
+			return [tmpDict valueForKey:CONTENT_TITLE];
+		}
+	}
+	return @"";
+}
 #pragma mark Author
 - (NSString*)authorAtIndex:(NSInteger)index
 {
@@ -174,6 +238,16 @@
 	NSDictionary* tmpDict;
 	for (tmpDict in contentList){
 		if ([[tmpDict valueForKey:CONTENT_CID] intValue] == cid) {
+			return [tmpDict valueForKey:CONTENT_AUTHOR];
+		}
+	}
+	return @"";
+}
+- (NSString*)authorByUuid:(NSString*)uuid
+{
+	NSDictionary* tmpDict;
+	for (tmpDict in contentList){
+		if ([[tmpDict valueForKey:CONTENT_UUID] compare:uuid options:NSCaseInsensitiveSearch] == NSOrderedSame) {
 			return [tmpDict valueForKey:CONTENT_AUTHOR];
 		}
 	}
@@ -212,6 +286,19 @@
 	UIImage* image = [UIImage imageNamed:filename];
 	return image;
 }
+- (UIImage*)contentIconByUuid:(NSString*)uuid
+{
+	ContentId cid = (ContentId)[self contentIconByUuid:uuid];
+	NSString* filename = [NSString stringWithFormat:@"%@%d.%@",
+						  CONTENT_ICONFILE_PREFIX,
+						  cid,
+						  CONTENT_ICONFILE_EXTENSION];
+	//NSLog(@"filename=%@", filename);
+	
+	// Open image from mainBundle.
+	UIImage* image = [UIImage imageNamed:filename];
+	return image;
+}
 
 #pragma mark Description
 - (NSString*)descriptionAtIndex:(NSInteger)index
@@ -226,6 +313,16 @@
 	NSDictionary* tmpDict;
 	for (tmpDict in contentList){
 		if ([[tmpDict valueForKey:CONTENT_CID] intValue] == cid) {
+			return [tmpDict valueForKey:CONTENT_DESCRIPTION];
+		}
+	}
+	return @"";
+}
+- (NSString*)descriptionByUuid:(NSString*)uuid
+{
+	NSDictionary* tmpDict;
+	for (tmpDict in contentList){
+		if ([[tmpDict valueForKey:CONTENT_UUID] compare:uuid options:NSCaseInsensitiveSearch] == NSOrderedSame) {
 			return [tmpDict valueForKey:CONTENT_DESCRIPTION];
 		}
 	}
@@ -252,6 +349,17 @@
 	}
 	return nil;
 }
+- (NSURL*)acquisitionUrlByUuid:(NSString*)uuid
+{
+	NSDictionary* tmpDict;
+	for (tmpDict in contentList){
+		if ([[tmpDict valueForKey:CONTENT_UUID] compare:uuid options:NSCaseInsensitiveSearch] == NSOrderedSame) {
+			NSString* urlStr = [tmpDict valueForKey:CONTENT_ACQUISITION_LINK];
+			return [NSURL URLWithString:urlStr];
+		}
+	}
+	return nil;
+}
 
 - (NSURL*)thumbnailUrlAtIndex:(NSInteger)index
 {
@@ -272,6 +380,17 @@
 	}
 	return nil;
 }
+- (NSURL*)thumbnailUrlByUuid:(NSString*)uuid
+{
+	NSDictionary* tmpDict;
+	for (tmpDict in contentList){
+		if ([[tmpDict valueForKey:CONTENT_UUID] compare:uuid options:NSCaseInsensitiveSearch] == NSOrderedSame) {
+			NSString* urlStr = [tmpDict valueForKey:CONTENT_THUMBNAIL_LINK];
+			return [NSURL URLWithString:urlStr];
+		}
+	}
+	return nil;
+}
 
 - (NSURL*)coverUrlAtIndex:(NSInteger)index
 {
@@ -286,6 +405,17 @@
 	NSDictionary* tmpDict;
 	for (tmpDict in contentList){
 		if ([[tmpDict valueForKey:CONTENT_CID] intValue] == cid) {
+			NSString* urlStr = [tmpDict valueForKey:CONTENT_COVER_LINK];
+			return [NSURL URLWithString:urlStr];
+		}
+	}
+	return nil;
+}
+- (NSURL*)coverUrlByUuid:(NSString*)uuid
+{
+	NSDictionary* tmpDict;
+	for (tmpDict in contentList){
+		if ([[tmpDict valueForKey:CONTENT_UUID] compare:uuid options:NSCaseInsensitiveSearch] == NSOrderedSame) {
 			NSString* urlStr = [tmpDict valueForKey:CONTENT_COVER_LINK];
 			return [NSURL URLWithString:urlStr];
 		}
