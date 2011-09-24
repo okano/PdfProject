@@ -49,31 +49,46 @@
 
 - (void)doDownload
 {
-	//Check if file already downloaded.
 	NSString* cidStr = [NSString stringWithFormat:@"%d", targetCid];
 	NSString* contentFilename = [ContentFileUtility getContentBodyFilename:cidStr];
+	NSLog(@"contentFilename=%@", contentFilename);
 	NSFileManager* fMgr = [NSFileManager defaultManager];
+	
+	//Check if file already downloaded.
 	if([fMgr fileExistsAtPath:contentFilename] == NO)
 	{
 		//File not exist. then Download it.
 		//NSLog(@"Download start. contentId=%@", contentId);
 		
+		//Create directory if not exists.
+		NSFileManager* fMgr = [NSFileManager defaultManager];
+		BOOL isDir;
+		NSError* err = nil;
+		NSString* contentBodyDirectory = [ContentFileUtility getContentBodyDirectory];
+		if ( !([fMgr fileExistsAtPath:contentBodyDirectory isDirectory:&isDir] && isDir))
+		{
+			[fMgr createDirectoryAtPath:contentBodyDirectory withIntermediateDirectories:TRUE attributes:nil error:&err];
+			if (err)
+			{
+				NSLog(@"content body directory cannot create. path=%@, err=%@", contentBodyDirectory, [err localizedDescription]);
+				return;
+			}
+		}
+		
+		//Prepare GUI and counter.
 		downloadedContentLength = 0;
 		//myProgressBar.progress = 0;
 		//progressLabel.text = NSLocalizedString(@"Downloading...", nil);
 		
-		//clear (system)temporary directory.
-//		LOG_CURRENT_LINE;
-//		[[NSFileManager defaultManager] clearTmpDirectory];
 		
 		//Generate Downloader.(and start download automatically.)
-		NSLog(@"targetUrl=%@", [targetUrl description]);
 		NSURLRequest* req = [NSURLRequest requestWithURL:targetUrl];
 		NSString* downloadDirectory = [ContentFileUtility getContentBodyDirectory];
+		NSLog(@"targetUrl=%@", [targetUrl description]);
+		NSLog(@"downloadDirectory=%@", downloadDirectory);
 		downloader = [[URLDownload alloc] initWithRequest:req
 												directory:downloadDirectory
 					  							 delegate:self];
-		//NSLog(@"download directory=%@", downloadDirectory);
 	}
 }
 
