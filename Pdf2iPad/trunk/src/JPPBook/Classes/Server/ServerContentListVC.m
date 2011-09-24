@@ -111,10 +111,13 @@
 		return nil;
 	}
 	NSLog(@"indexPath.row=%d, cid=%d, pid=%@", indexPath.row, targetCid, targetPid);
+	NSString* uuid = [appDelegate.serverContentListDS uuidAtIndex:indexPath.row];
+	NSLog(@"uuid=%@", uuid);
+	
 	
     // Configure the cell...
-	cell.titleLabel.text = [appDelegate.serverContentListDS titleAtIndex:indexPath.row];
-	cell.authorLabel.text = [appDelegate.serverContentListDS authorAtIndex:indexPath.row];
+	cell.titleLabel.text = [appDelegate.serverContentListDS titleByUuid:uuid];
+	cell.authorLabel.text = [appDelegate.serverContentListDS authorByUuid:uuid];
 	//Check payment status.
 	if (([InAppPurchaseUtility isFreeContent:targetPid] == TRUE)
 		||
