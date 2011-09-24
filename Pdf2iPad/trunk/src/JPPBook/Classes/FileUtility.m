@@ -143,5 +143,13 @@
     [[NSFileManager defaultManager] removeItemAtPath:fileNameFull error:nil];
 }
 
+//Resource to File.
++ (BOOL)res2file:(NSString*)res fileNameFull:(NSString*)filenameFull {
+    NSString* from=[[NSBundle mainBundle] pathForResource:res ofType:@""];
+    NSString* to=filenameFull;
+    [[NSFileManager defaultManager] copyItemAtPath:from toPath:to error:nil];
+    return YES;
+}
+
 
 @end

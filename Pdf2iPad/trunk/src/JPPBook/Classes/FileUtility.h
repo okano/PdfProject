@@ -27,5 +27,6 @@
 + (BOOL)existsFile:(NSString*)fileNameFull;
 + (void)makeDir:(NSString*)fileNameFull;
 + (void)removeFile:(NSString*)fileNameFull;
++ (BOOL)res2file:(NSString*)res fileNameFull:(NSString*)filenameFull;	//Resource to File.
 
 @end
