@@ -38,9 +38,10 @@
  */
 + (NSString*)getContentBodyDirectory
 {
-	NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString* documentsDirectory = [paths objectAtIndex:0];
-	NSString* dir = [documentsDirectory
+	//NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	//NSString* documentsDirectory = [paths objectAtIndex:0];
+	NSString* tmpDirectory = [self getContentTmpDirectory];
+	NSString* dir = [tmpDirectory
 					 stringByAppendingPathComponent:CONTENT_BODY_DIRECTORY];
 	return dir;
 }
