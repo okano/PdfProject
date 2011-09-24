@@ -12,6 +12,8 @@
 #import "ContentListDS.h"
 #import "ServerContentListDS.h"
 #import "PaymentHistoryDS.h"
+#import "FileUtility.h"
+#import "ContentFileUtility.h"
 
 @class Pdf2iPadViewController;
 @class ContentPlayerViewController;
@@ -45,6 +47,10 @@
 @property (nonatomic, retain) ContentListDS* contentListDS;
 @property (nonatomic, retain) ServerContentListDS* serverContentListDS;
 @property (nonatomic, retain) PaymentHistoryDS* paymentHistoryDS;
+
+//Copy KUMIKOMI contents to local directory.
+- (BOOL)isFirstLaunchUp;
+- (void)copyPdfFromResourceToFile;
 
 //
 - (NSString*)getThumbnailFilenameFull:(int)pageNum;

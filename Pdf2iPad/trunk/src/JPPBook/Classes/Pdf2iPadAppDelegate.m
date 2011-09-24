@@ -35,6 +35,11 @@
 	//Setup Content List on Server.
 	serverContentListDS = nil;
 	
+	//Copy PDF file in MainBundle resource to local file.
+	if ([self isFirstLaunchUp] == YES) {
+		[self copyPdfFromResourceToFile];
+	}
+	
 	//Setup for InAppPurchase.
 	paymentConductor = [[PaymentConductor alloc] init];
 	
@@ -49,7 +54,6 @@
 
 	return YES;
 }
-
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     /*
@@ -72,6 +76,40 @@
      See also applicationDidEnterBackground:.
      */
 }
+
+
+#pragma mark -
+- (BOOL)isFirstLaunchUp
+{
+	//LOG_CURRENT_METHOD;
+	NSString* tmpDirectory = [ContentFileUtility getContentTmpDirectory];
+	NSArray* fileList = [FileUtility fileList:tmpDirectory]; 
+	NSLog(@"path=%@, list=%@", tmpDirectory, [fileList description]);
+	if ([fileList count] <= 0) {
+		return YES;
+	}
+	return NO;
+}
+- (void)copyPdfFromResourceToFile
+{
+	LOG_CURRENT_METHOD;
+	//Create directory.
+	NSString* contentBodyDirectory = [ContentFileUtility getContentBodyDirectory];
+	[FileUtility makeDir:contentBodyDirectory];
+	
+	//Copy each contents in Bundle Resource to local directory.
+	int maxCount = [contentListDS count];
+	for (int i = 0; i < maxCount; i = i + 1) {
+		ContentId cid = [contentListDS contentIdAtIndex:i];
+		NSString* resourceName = [FileUtility getPdfFilename:cid];
+		NSString* newFilename = [NSString stringWithFormat:@"%d.%@", cid, @"pdf"];
+		NSString* filenameFull = [[ContentFileUtility getContentBodyDirectory]
+								  stringByAppendingPathComponent:newFilename];
+		//NSLog(@"resourceName=%@, filenameFull=%@", resourceName, filenameFull);
+		[FileUtility res2file:resourceName fileNameFull:filenameFull];
+	}
+}
+
 
 #pragma mark -
 - (void)switchToPage:(int)newPageNum {
