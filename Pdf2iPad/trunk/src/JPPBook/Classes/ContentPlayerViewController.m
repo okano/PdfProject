@@ -200,8 +200,21 @@
 		pdfFilename = [FileUtility getPdfFilename];
 	}
 	
-	pdfURL = [[NSBundle mainBundle] URLForResource:pdfFilename withExtension:nil];
+	//Open PDF file from (1)ContentBody Directory (2)mainBundle
+	NSString* pdfFilenameFull = [[[ContentFileUtility getContentBodyDirectory]
+								 stringByAppendingPathComponent:[NSString stringWithFormat:@"%d", currentContentId]]
+								 stringByAppendingPathExtension:@"pdf"];
+	//(1)get from ContentBody Directory.
+	pdfURL = [NSURL fileURLWithPath:pdfFilenameFull];
+	//NSLog(@"pdfFilenameFull=%@",pdfFilenameFull);
+	//NSLog(@"pdfURL=%@", [pdfURL description]);
+	if (!pdfURL)
+	{
+		//(2)get from mainBundle
+		pdfURL = [[NSBundle mainBundle] URLForResource:pdfFilename withExtension:nil];
+	}
 	[pdfURL retain]; //Owned by this class.
+	
 	if (!pdfURL) {
 		NSLog(@"PDF file not exist. filename=%@", pdfFilename);
 		return FALSE;

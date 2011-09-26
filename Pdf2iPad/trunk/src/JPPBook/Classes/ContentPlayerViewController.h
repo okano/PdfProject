@@ -12,6 +12,8 @@
 #import <AudioToolbox/AudioServices.h>
 #import <AVFoundation/AVFoundation.h>
 #import "Utility.h"
+#import "FileUtility.h"
+#import "ContentFileUtility.h"
 #import "Define.h"
 #import "pdfDefine.h"
 #import "MarkerPenView.h"
