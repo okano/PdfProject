@@ -138,3 +138,4 @@
 
 // for last assigned ContentId.
 #define LAST_CONTENT_ID		@"Assigned_Last_ContentId"
+#define FIRST_CONTENT_ID	1	/* 1-start */

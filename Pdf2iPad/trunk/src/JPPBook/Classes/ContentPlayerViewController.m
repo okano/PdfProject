@@ -363,7 +363,7 @@
 	id obj = [settings valueForKey:LAST_CONTENT_ID];
 	if (!obj) {		//not exists.
         NSLog(@"no contentId assigned.");
-		return (ContentId)InvalidContentId;
+		return (ContentId)FIRST_CONTENT_ID;
 	}
 	return [obj intValue];
 }
