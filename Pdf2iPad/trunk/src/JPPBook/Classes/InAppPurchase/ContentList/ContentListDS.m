@@ -196,6 +196,29 @@
 	return [contentList description];
 }
 
+#pragma mark - metadata of single content.
+- (NSMutableDictionary*)getMetadataByContentId:(ContentId)cid
+{
+	NSDictionary* tmpDict;
+	for (tmpDict in contentList){
+		if ([[tmpDict valueForKey:CONTENT_CID] intValue] == cid) {
+			return [NSMutableDictionary dictionaryWithDictionary:tmpDict];
+		}
+	}
+	return nil;
+}
+- (NSMutableDictionary*)getMetadataByUuid:(NSString*)uuid
+{
+	NSDictionary* tmpDict;
+	for (tmpDict in contentList){
+		if ([[tmpDict valueForKey:CONTENT_UUID] compare:uuid options:NSCaseInsensitiveSearch] == NSOrderedSame) {
+			return [NSMutableDictionary dictionaryWithDictionary:tmpDict];
+		}
+	}
+	return nil;
+}
+
+
 #pragma mark - (Getter) -
 #pragma mark Title
 - (NSString*)titleAtIndex:(NSInteger)index

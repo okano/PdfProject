@@ -28,6 +28,8 @@
 
 - (void)setupData;
 - (NSString*)description;
+- (NSMutableDictionary*)getMetadataByContentId:(ContentId)cid;
+- (NSMutableDictionary*)getMetadataByUuid:(NSString*)uuid;
 
 - (NSString*)titleAtIndex:(NSInteger)index;
 - (NSString*)titleByContentId:(ContentId)cid;
