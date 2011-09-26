@@ -52,6 +52,10 @@
 - (BOOL)isFirstLaunchUp;
 - (void)copyPdfFromResourceToFile;
 
+//ContentId for download.
+- (ContentId)nextContentId;
+- (void)stepupContentIdToUserDefault:(ContentId)lastAssignedContentId;
+
 //
 - (NSString*)getThumbnailFilenameFull:(int)pageNum;
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum;

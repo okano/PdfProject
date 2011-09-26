@@ -111,6 +111,28 @@
 }
 
 
+#pragma mark - ContentId for download.
+- (ContentId)nextContentId
+{
+    //load from UserDefault.
+    NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
+	id obj = [settings valueForKey:LAST_CONTENT_ID];
+	if (!obj) {		//not exists.
+        NSLog(@"no contentId assigned.");
+		return (ContentId)FIRST_CONTENT_ID;
+	}
+	return [obj intValue];
+}
+
+- (void)stepupContentIdToUserDefault:(ContentId)lastAssignedContentId;
+{
+	//Step +1 last assigned ContentId to UserDefault.
+	NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
+	[userDefault setInteger:lastAssignedContentId+1 forKey:LAST_CONTENT_ID];
+	[userDefault synchronize];
+}
+
+
 #pragma mark -
 - (void)switchToPage:(int)newPageNum {
 	[viewController.contentPlayerViewController switchToPage:newPageNum];
