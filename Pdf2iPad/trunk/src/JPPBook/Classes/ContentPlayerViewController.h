@@ -146,6 +146,10 @@
 // Handle PDF infomation.
 - (BOOL)isTransitionWithCurl;
 - (BOOL)isMultiContents;
+//ContentId for download.
+- (ContentId)nextContentId;
+- (void)stepupContentIdToUserDefault:(ContentId)lastAssignedContentId;
+
 // Draw PDF.
 - (NSString*)getPageFilenameFull:(int)pageNum;
 - (NSString*)getPageFilenameFull:(int)pageNum;
