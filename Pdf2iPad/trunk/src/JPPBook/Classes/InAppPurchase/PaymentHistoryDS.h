@@ -37,6 +37,7 @@
 
 //Misc.
 - (NSUInteger)count;
+- (NSString*)description;
 - (NSString*)descriptionAtIndex:(NSUInteger)index;
 @end
 

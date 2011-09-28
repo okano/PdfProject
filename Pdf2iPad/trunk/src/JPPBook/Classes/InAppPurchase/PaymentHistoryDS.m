@@ -193,6 +193,7 @@
 	[tmpDict setValue:[NSDate dateWithTimeIntervalSinceNow:0.0f] forKey:PURCHASE_DAYTIME];
 	//NSLog(@"enable content. cid=%d, pid=%@, dict=%@", cid, pid, [tmpDict description]);
 	[paymentHistory addObject:tmpDict];
+	//NSLog(@"paymentHistory=%@", [paymentHistory description]);
 	//
 	[self savePaymentHistory];
 	;
@@ -248,6 +249,15 @@
 - (NSUInteger)count
 {
 	return [paymentHistory count];
+}
+- (NSString*)description
+{
+	int maxCount = [paymentHistory count];
+	NSMutableString* resultStr = [[NSMutableString alloc] init];
+	for (int i = 0; i < maxCount; i = i + 1) {
+		[resultStr appendString:[self descriptionAtIndex:i]];
+	}
+	return resultStr;
 }
 - (NSString*)descriptionAtIndex:(NSUInteger)index
 {
