@@ -15,5 +15,6 @@
     
 }
 + (UIImage*)thumbnailImageWithContentId:(ContentId)cid;
++ (UIImage*)thumbnailImageWithUuid:(NSString*)uuid;
 
 @end

@@ -40,5 +40,25 @@
 	}
 }
 
+//force download from url.
++ (UIImage*)thumbnailImageWithUuid:(NSString*)uuid
+{
+	//download.
+	Pdf2iPadAppDelegate* appDelegate = (Pdf2iPadAppDelegate*)[[UIApplication sharedApplication] delegate];
+	NSURL* url = [appDelegate.serverContentListDS thumbnailUrlByUuid:uuid];
+	NSData* data = [NSData dataWithContentsOfURL:url];
+	if (data != nil) {
+		//NOT save to local folder.
+		//[data writeToFile:targetFilenameFull atomically:YES];
+		
+		//Generate image.
+		UIImage* img = [[UIImage alloc] initWithData:data];
+		return img;
+	} else {
+		NSLog(@"thumbnail image not found. url=%@", [url description]);
+	}
+	return nil;
+}
+
 
 @end
