@@ -22,9 +22,9 @@
 		NSArray* commaSeparated = [singleLine componentsSeparatedByString:@","];
 		return [commaSeparated objectAtIndex:0];
 	}
-	LOG_CURRENT_METHOD;
-	NSLog(@"productId not found. cid=%d", cid);
-	NSLog(@"lines=%@", [lines description]);
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"productId not found. cid=%d", cid);
+	//NSLog(@"lines=%@", [lines description]);
 	return @"";
 }
 + (ContentId)getContentIdentifier:(NSString *)pid

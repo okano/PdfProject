@@ -13,7 +13,7 @@
 
 + (UIImage*)thumbnailImageWithContentId:(ContentId)cid
 {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
 	
 	NSString* targetFilenameFull = [FileUtility getThumbnailFilenameFull:1 WithContentId:cid];
 	NSFileManager *fileManager = [NSFileManager defaultManager];

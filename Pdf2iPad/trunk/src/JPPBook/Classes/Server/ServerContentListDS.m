@@ -72,6 +72,7 @@
 //Set content list to var.
 - (void)loadContentList:(NSUInteger)maxCount
 {
+	LOG_CURRENT_METHOD;
 	//Clear all.
 	[contentList removeAllObjects];
 	NSLog(@"contentList count=%d", [contentList count]);
@@ -237,7 +238,7 @@
 	if (resultArray != nil) {
 		//Arrange format into inner-var.
 		[contentList addObjectsFromArray:resultArray];
-		NSLog(@"contentList=%@", [contentList description]);
+		//NSLog(@"contentList=%@", [contentList description]);
 		
 		//call parent.
 		[targetTableVC didFinishParseOpdsElement:resultArray];

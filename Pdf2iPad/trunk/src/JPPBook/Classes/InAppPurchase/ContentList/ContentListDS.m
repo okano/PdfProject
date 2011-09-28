@@ -65,7 +65,7 @@
 - (NSString*)productIdFromContentId:(ContentId)cid
 {
 	//LOG_CURRENT_METHOD;
-	NSLog(@"cid=%d", cid);
+	//NSLog(@"cid=%d", cid);
 	if (cid <= 0) {
 		NSLog(@"ContentId is 1-start! (given %d)", cid);
 		cid = 1;
@@ -108,7 +108,7 @@
 - (NSString*)uuidFromContentId:(ContentId)cid
 {
 	//LOG_CURRENT_METHOD;
-	NSLog(@"cid=%d", cid);
+	//NSLog(@"cid=%d", cid);
 	if (cid <= 0) {
 		NSLog(@"ContentId is 1-start! (given %d)", cid);
 		cid = 1;

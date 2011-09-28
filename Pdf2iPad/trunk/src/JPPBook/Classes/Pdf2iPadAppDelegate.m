@@ -81,10 +81,10 @@
 #pragma mark -
 - (BOOL)isFirstLaunchUp
 {
-	//LOG_CURRENT_METHOD;
 	NSString* tmpDirectory = [ContentFileUtility getContentTmpDirectory];
 	NSArray* fileList = [FileUtility fileList:tmpDirectory]; 
-	NSLog(@"path=%@, list=%@", tmpDirectory, [fileList description]);
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"path=%@, list=%@", tmpDirectory, [fileList description]);
 	if ([fileList count] <= 0) {
 		return YES;
 	}

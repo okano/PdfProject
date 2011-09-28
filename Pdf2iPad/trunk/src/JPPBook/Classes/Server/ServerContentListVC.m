@@ -88,8 +88,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	LOG_CURRENT_METHOD;
-	NSLog(@"serverContentListDS=%@", [appDelegate.serverContentListDS description]);
-	NSLog(@"row=%d", indexPath.row);
+	//NSLog(@"serverContentListDS=%@", [appDelegate.serverContentListDS description]);
+	//NSLog(@"row=%d", indexPath.row);
 	
 	static NSString *identifier = @"ContentListCell";
 	ContentListCell *cell = (ContentListCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
@@ -98,8 +98,10 @@
 		cell = (ContentListCell*)cellController.view;
 		[cellController release];
 	}
+	
     
 	ContentId targetCid = [appDelegate.serverContentListDS contentIdAtIndex:indexPath.row];
+	/*
 	if (targetCid == InvalidContentId) {
 		LOG_CURRENT_LINE;
 		NSLog(@"Invalid ContentId.");
@@ -113,6 +115,9 @@
 		return nil;
 	}
 	NSLog(@"indexPath.row=%d, cid=%d, pid=%@", indexPath.row, targetCid, targetPid);
+	*/
+	
+	//
 	NSString* uuid = [appDelegate.serverContentListDS uuidAtIndex:indexPath.row];
 	NSLog(@"uuid=%@", uuid);
 	
@@ -228,7 +233,7 @@
 }
 - (void)didFinishParseOpdsElement:(NSMutableArray*)resultArray{
 	LOG_CURRENT_METHOD;
-	NSLog(@"contentList=%@", [appDelegate.serverContentListDS description]);
+	//NSLog(@"contentList=%@", [appDelegate.serverContentListDS description]);
 }
 - (void)didFailParseOpdsElement{ LOG_CURRENT_METHOD; }
 
