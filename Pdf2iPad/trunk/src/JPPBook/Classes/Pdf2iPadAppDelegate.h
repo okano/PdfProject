@@ -53,8 +53,8 @@
 - (void)copyPdfFromResourceToFile;
 
 //ContentId for download.
-- (ContentId)nextContentId;
-- (void)stepupContentIdToUserDefault:(ContentId)lastAssignedContentId;
+//- (ContentId)nextContentId;
+//- (void)stepupContentIdToUserDefault:(ContentId)lastAssignedContentId;
 
 //
 - (NSString*)getThumbnailFilenameFull:(int)pageNum;

@@ -110,7 +110,7 @@
 	}
 }
 
-
+/*
 #pragma mark - ContentId for download.
 - (ContentId)nextContentId
 {
@@ -118,7 +118,7 @@
     NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
 	id obj = [settings valueForKey:LAST_CONTENT_ID];
 	if (!obj) {		//not exists.
-        NSLog(@"no contentId assigned.");
+        NSLog(@"no contentId assigned. nextContentId=%d", [self nextContentId]);
 		return (ContentId)FIRST_CONTENT_ID;
 	}
 	return [obj intValue];
@@ -131,7 +131,7 @@
 	[userDefault setInteger:lastAssignedContentId+1 forKey:LAST_CONTENT_ID];
 	[userDefault synchronize];
 }
-
+*/
 
 #pragma mark -
 - (void)switchToPage:(int)newPageNum {

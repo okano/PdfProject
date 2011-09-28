@@ -112,7 +112,7 @@
 	
 	//Get new ContentId.
 	Pdf2iPadAppDelegate* appDelegate = (Pdf2iPadAppDelegate*)[[UIApplication sharedApplication] delegate];
-	ContentId newContentId = [appDelegate nextContentId];
+	ContentId newContentId = [appDelegate.contentListDS nextContentId];
 	NSLog(@"new ContentId=%d", newContentId);
 	
 	//Move downloaded file to ContentBodyDirectory.
@@ -145,7 +145,7 @@
 	[appDelegate.contentListDS syncronize];	//save into UserDefault[FIXME] or Info.Plist[FIXME].
 	
 	//StepUp nextContentId.
-	[appDelegate stepupContentIdToUserDefault:newContentId];
+	[appDelegate.contentListDS stepupContentIdToUserDefault:newContentId];
 	
 	
 	//Add Download(purchase) history.

@@ -291,7 +291,7 @@
     NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
 	id obj = [settings valueForKey:LAST_CONTENT_ID];
 	if (!obj) {		//not exists.
-        NSLog(@"no contentId assigned.");
+        NSLog(@"no contentId assigned. nextContentId=%d", FIRST_CONTENT_ID);
 		return (ContentId)FIRST_CONTENT_ID;
 	}
 	return [obj intValue];
