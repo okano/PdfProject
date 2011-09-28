@@ -100,7 +100,7 @@
 	}
 	
     
-	ContentId targetCid = [appDelegate.serverContentListDS contentIdAtIndex:indexPath.row];
+	//ContentId targetCid = [appDelegate.serverContentListDS contentIdAtIndex:indexPath.row];
 	/*
 	if (targetCid == InvalidContentId) {
 		LOG_CURRENT_LINE;
