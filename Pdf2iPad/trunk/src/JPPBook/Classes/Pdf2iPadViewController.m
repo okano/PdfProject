@@ -176,13 +176,13 @@
 		[serverContentListVC.view removeFromSuperview]; 
 	}
 }
-- (void)showServerContentDetailView:(ContentId)cid{
+- (void)showServerContentDetailView:(NSString*)uuid{
 	//LOG_CURRENT_METHOD;
 	if (serverContentDetailVC == nil) {
 		serverContentDetailVC = [[ServerContentDetailVC alloc] initWithNibName:@"ServerContentDetailView" bundle:[NSBundle mainBundle]];
 	}
 	[self.view addSubview:serverContentDetailVC.view];
-	[serverContentDetailVC setLabelsWithContentId:cid];
+	[serverContentDetailVC setLabelsWithUuid:uuid];
 }
 
 - (void)hideServerContentDetailView{LOG_CURRENT_METHOD;}

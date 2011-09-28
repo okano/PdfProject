@@ -10,6 +10,7 @@
 
 
 @implementation ServerContentDownloadVC
+@synthesize targetUuid;
 @synthesize targetUrl;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -24,18 +25,19 @@
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil
 			   bundle:(NSBundle *)nibBundleOrNil
-			contentId:(ContentId)cid
 			targetUrl:(NSURL *)url
+		   targetUuid:(NSString *)uuid
 {
 	LOG_CURRENT_METHOD;
 	LOG_CURRENT_LINE;
-	NSLog(@"url=%@(class %@", [url description], [url class]);
+	NSLog(@"url=%@(class %@)", [url description], [url class]);
 	
-	targetCid = cid;
 	targetUrl = url;
+	targetUuid = [NSString stringWithString:uuid];
 	LOG_CURRENT_LINE;
 	NSLog(@"targetUrl class=%@", [targetUrl class]);
 	NSLog(@"targetUrl=%@", [targetUrl description]);
+	NSLog(@"targetUuid=%@", targetUuid);
 	
 	//NSLog(@"cid=%d, url=%@", cid, [url description]);
 	
@@ -44,9 +46,6 @@
 }
 
 #pragma mark -
-
-
-
 - (void)doDownload
 {
 	NSString* cidStr = [NSString stringWithFormat:@"%d", targetCid];
@@ -110,6 +109,52 @@
 	LOG_CURRENT_METHOD;
 	NSLog(@"%@", download.filePath);
 	[self releaseDownloader];
+	
+	//Get new ContentId.
+	Pdf2iPadAppDelegate* appDelegate = (Pdf2iPadAppDelegate*)[[UIApplication sharedApplication] delegate];
+	ContentId newContentId = [appDelegate nextContentId];
+	NSLog(@"new ContentId=%d", newContentId);
+	
+	//Move downloaded file to ContentBodyDirectory.
+	NSString* newFilename = [NSString stringWithFormat:@"%d.%@", newContentId, @"pdf"];
+	NSString* bodyDirectory = [ContentFileUtility getContentBodyDirectory];
+	NSString* toFilenameFull = [bodyDirectory stringByAppendingPathComponent:newFilename] ;
+	NSLog(@"toFilenameFull=%@", toFilenameFull);
+	
+	NSError* error = nil;
+	[FileUtility makeDir:[ContentFileUtility getContentBodyDirectory]];
+	BOOL result = [[NSFileManager defaultManager] moveItemAtPath:download.filePath
+														  toPath:toFilenameFull
+														   error:&error];
+	if (result == NO) {
+		LOG_CURRENT_LINE;
+		NSLog(@"fail to move downloaded file. fromPath=%@, toPath=%@, result=%@, %@",
+			  download.filePath, toFilenameFull, [error localizedDescription], [error localizedFailureReason]);
+	}
+	
+	//Add downloaded metadata to (inner)ContentListDS.
+	NSString* uuid = targetUuid;
+	NSLog(@"uuid=%@(%@)", uuid, targetUuid);
+	NSMutableDictionary* metaData = [NSMutableDictionary dictionaryWithDictionary:[appDelegate.serverContentListDS getMetadataByUuid:uuid]];
+	[metaData setValue:[NSNumber numberWithInteger:newContentId] forKey:CONTENT_CID];	//Set new ContentId.
+	NSLog(@"metaData=%@", [metaData description]);
+	if (! metaData) {
+		NSLog(@"cannot get metadata. UUID=%@", targetUuid);
+	}
+	[appDelegate.contentListDS addMetadata:metaData];
+	[appDelegate.contentListDS syncronize];	//save into UserDefault[FIXME] or Info.Plist[FIXME].
+	
+	//StepUp nextContentId.
+	[appDelegate stepupContentIdToUserDefault:newContentId];
+	
+	
+	//Add Download(purchase) history.
+	[appDelegate.paymentHistoryDS enableContent:newContentId];
+	
+	//Open ContentPlayer.
+	[appDelegate hideServerContentDetailView];
+	[appDelegate showContentPlayerView:newContentId];
+	
 }
 
 // ダウンロードをキャンセルした際に呼ばれる
@@ -144,7 +189,7 @@
 		[downloader release];
 		downloader = nil;
 	}
-	[[NSFileManager defaultManager] clearTmpDirectory];
+	//[[NSFileManager defaultManager] clearTmpDirectory];
 	[downloaderLock unlock];
 }
 

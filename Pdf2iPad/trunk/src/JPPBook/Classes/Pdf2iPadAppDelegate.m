@@ -261,8 +261,8 @@
 - (void)hideServerContentListView{
 	[self.viewController hideServerContentListView];
 }
-- (void)showServerContentDetailView:(ContentId)cid{
-	[self.viewController showServerContentDetailView:cid];
+- (void)showServerContentDetailView:(NSString*)uuid{
+	[self.viewController showServerContentDetailView:uuid];
 }
 - (void)hideServerContentDetailView{
 	[self.viewController hideServerContentListView];

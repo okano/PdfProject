@@ -141,6 +141,12 @@
 #pragma mark - setup data.
 - (void)setupData
 {
+	
+	//Load Metadata from plist
+	int resultCount;
+	resultCount = [self loadFromPlist];
+	
+	//Load Metadata from CSV. (when plist not found or First Launch.)
 #if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
 	
 	//Foreach contentId.
@@ -188,6 +194,51 @@
 #else
 	[self setupTestData];
 #endif
+	
+	
+	//Update nextContentId.
+	ContentId nextContentIdOld = [self nextContentId];
+	ContentId nextContentIdCurrent = resultCount;
+	if (resultCount <= 0) {
+		nextContentIdCurrent = contentIdInt;
+	}
+	if (nextContentIdOld < nextContentIdCurrent) {
+		[self stepupContentIdToUserDefault:nextContentIdCurrent];
+	}
+	
+}
+
+//Init metadata with plist.
+//return: count of metadata. or 0(init fail)
+- (int)loadFromPlist
+{
+	// generate file name.
+	NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString* documentsDirectory = [paths objectAtIndex:0];
+	NSString* pFile = [documentsDirectory stringByAppendingPathComponent:METADATA_PLIST_FILENAME];
+	
+	
+	// load from file via NSData
+	NSData* pData = [NSData dataWithContentsOfFile:pFile];
+	
+	// de-serialize.
+	id plist;
+	NSString* error;
+	plist = [NSPropertyListSerialization propertyListFromData:pData
+											 mutabilityOption:NSPropertyListMutableContainersAndLeaves
+													   format:NULL
+											 errorDescription:&error];
+	if (!plist) {
+		return 0;
+	}
+	
+	//Add to contentList array.
+	int i;
+	for (i=0; i<[plist count]; i++) {
+		[contentList addObject:[plist objectAtIndex:i]];
+	}
+	
+	return [contentList count];
 }
 
 #pragma mark - basic method.
@@ -195,6 +246,14 @@
 {
 	return [contentList description];
 }
+
+//Save metadata to plist.
+- (void)syncronize
+{
+	;
+}
+
+
 
 #pragma mark - metadata of single content.
 - (NSMutableDictionary*)getMetadataByContentId:(ContentId)cid
@@ -216,6 +275,34 @@
 		}
 	}
 	return nil;
+}
+- (void)addMetadata:(NSDictionary*)metaDataDict
+{
+	[contentList addObject:metaDataDict];
+}
+
+
+
+
+#pragma mark - ContentId for download.
+- (ContentId)nextContentId
+{
+    //load from UserDefault.
+    NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
+	id obj = [settings valueForKey:LAST_CONTENT_ID];
+	if (!obj) {		//not exists.
+        NSLog(@"no contentId assigned.");
+		return (ContentId)FIRST_CONTENT_ID;
+	}
+	return [obj intValue];
+}
+
+- (void)stepupContentIdToUserDefault:(ContentId)lastAssignedContentId;
+{
+	//Step +1 last assigned ContentId to UserDefault.
+	NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
+	[userDefault setInteger:lastAssignedContentId+1 forKey:LAST_CONTENT_ID];
+	[userDefault synchronize];
 }
 
 
@@ -311,7 +398,7 @@
 }
 - (UIImage*)contentIconByUuid:(NSString*)uuid
 {
-	ContentId cid = (ContentId)[self contentIconByUuid:uuid];
+	ContentId cid = (ContentId)[self contentIdFromUuid:uuid];
 	NSString* filename = [NSString stringWithFormat:@"%@%d.%@",
 						  CONTENT_ICONFILE_PREFIX,
 						  cid,
@@ -322,6 +409,8 @@
 	UIImage* image = [UIImage imageNamed:filename];
 	return image;
 }
+//- (NSURL*)contentIconUrlByUuid:(NSString*)uuid
+//@see - (NSURL*)thumbnailUrlByUuid:(NSString*)uuid;
 
 #pragma mark Description
 - (NSString*)descriptionAtIndex:(NSInteger)index

@@ -10,6 +10,7 @@
 
 
 @implementation ServerContentDetailVC
+@synthesize targetUuid;
 @synthesize targetUrl;
 @synthesize thumbnailImageView, titleLabel, authorLabel, descriptionTextView;
 @synthesize priceLabel;
@@ -47,27 +48,27 @@
 }
 
 #pragma mark - Implement.
-- (void)setLabelsWithContentId:(ContentId)cid
+//- (void)setLabelsWithContentId:(ContentId)cid
+- (void)setLabelsWithUuid:(NSString *)uuid
 {
 	//LOG_CURRENT_METHOD;
 	//NSLog(@"cid=%d", cid);
-	
+	NSLog(@"uuid=%@", uuid);
 	//inner var.
-	targetCid = cid;
+	targetUuid = uuid;
 	
 	
 	//Thumbnail.
-	//thumbnailImageView.image = [appDelegate.serverContentListDS contentIconByContentId:cid];
-	UIImage* thumbnailImage = [CoverUtility thumbnailImageWithContentId:cid];
+	UIImage* thumbnailImage = [CoverUtility thumbnailImageWithUuid:uuid];
 	thumbnailImageView.image = thumbnailImage;
 	
 	//Title, Author, Description.
-	titleLabel.text = [appDelegate.serverContentListDS titleByContentId:cid];
-	authorLabel.text = [appDelegate.serverContentListDS authorByContentId:cid];
-	descriptionTextView.text = [appDelegate.serverContentListDS descriptionByContentId:cid];
+	titleLabel.text = [appDelegate.serverContentListDS titleByUuid:uuid];
+	authorLabel.text = [appDelegate.serverContentListDS authorByUuid:uuid];
+	descriptionTextView.text = [appDelegate.serverContentListDS descriptionByUuid:uuid];
 	
 	//URL for download.
-	NSURL* u = [appDelegate.serverContentListDS acquisitionUrlByContentId:cid];
+	NSURL* u = [appDelegate.serverContentListDS acquisitionUrlByUuid:uuid];
 	targetUrl = [[NSURL alloc] initWithString:[u description]];
 	NSLog(@"targetUrl class=%@", [targetUrl class]);
 	NSLog(@"targetUrl=%@", [targetUrl description]);
@@ -167,11 +168,12 @@
 	NSLog(@"targetCid=%d", targetCid);
 	NSLog(@"targetUrl class=%@", [targetUrl class]);
 	NSLog(@"targetUrl=%@", [targetUrl description]);
+	NSLog(@"targetUuid=%@", targetUuid);
 	
 	ServerContentDownloadVC* downloaderVC = [[ServerContentDownloadVC alloc] initWithNibName:@"ServerContentDownload"
 																					bundle:[NSBundle mainBundle] 
-																				 contentId:targetCid
-																				 targetUrl:targetUrl];
+																				 targetUrl:targetUrl
+																				  targetUuid:targetUuid];
 	LOG_CURRENT_LINE;
 	[self presentModalViewController:downloaderVC animated:YES];
 	[downloaderVC doDownload];

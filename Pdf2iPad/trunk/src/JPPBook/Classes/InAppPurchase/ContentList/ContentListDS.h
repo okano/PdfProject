@@ -27,9 +27,17 @@
 - (NSString*)uuidFromContentId:(ContentId)cid;
 
 - (void)setupData;
+- (int)loadFromPlist;
 - (NSString*)description;
+- (void)syncronize;
+
 - (NSMutableDictionary*)getMetadataByContentId:(ContentId)cid;
 - (NSMutableDictionary*)getMetadataByUuid:(NSString*)uuid;
+- (void)addMetadata:(NSDictionary*)metaDataDict;
+
+//ContentId for download.
+- (ContentId)nextContentId;
+- (void)stepupContentIdToUserDefault:(ContentId)lastAssignedContentId;
 
 - (NSString*)titleAtIndex:(NSInteger)index;
 - (NSString*)titleByContentId:(ContentId)cid;

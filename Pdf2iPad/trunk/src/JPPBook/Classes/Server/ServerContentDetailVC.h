@@ -17,6 +17,7 @@
 	Pdf2iPadAppDelegate* appDelegate;
 	ContentId targetCid;
 	NSString* targetProductId;
+	NSString* taregetUuid;
 	NSURL* targetUrl;
 	
 	//UserInterface.
@@ -30,6 +31,7 @@
 	//
 	IBOutlet UIButton* downloadButton;
 }
+@property (nonatomic, retain) NSString* targetUuid;
 @property (nonatomic, retain) NSURL* targetUrl;
 @property (nonatomic, retain) UIImageView* thumbnailImageView;
 @property (nonatomic, retain) UILabel* titleLabel;
@@ -39,7 +41,8 @@
 @property (nonatomic, retain) UIButton* buyButton;
 @property (nonatomic, retain) UIButton* downloadButton;
 
-- (void)setLabelsWithContentId:(ContentId)cid;
+//- (void)setLabelsWithContentId:(ContentId)cid;
+- (void)setLabelsWithUuid:(NSString*)uuid;
 - (IBAction)showServerContentList:(id)sender;
 - (IBAction)buyContent:(id)sender;
 - (IBAction)downloadContent:(id)sender;

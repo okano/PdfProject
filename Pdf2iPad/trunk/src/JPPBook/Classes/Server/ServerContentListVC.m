@@ -61,12 +61,12 @@
 	[appDelegate hideServerContentListView];
 	[appDelegate showContentListView];
 }
-- (void)showServerContentDetailView:(ContentId)cid
+- (void)showServerContentDetailView:(NSString*)uuid
 {
 	//LOG_CURRENT_METHOD;
 	//NSLog(@"cid=%d", cid);
 	[appDelegate hideServerContentListView];
-	[appDelegate showServerContentDetailView:cid];
+	[appDelegate showServerContentDetailView:uuid];
 }
 
 
@@ -101,8 +101,10 @@
     
 	ContentId targetCid = [appDelegate.serverContentListDS contentIdAtIndex:indexPath.row];
 	if (targetCid == InvalidContentId) {
+		LOG_CURRENT_LINE;
 		NSLog(@"Invalid ContentId.");
 	} else if (targetCid == UndefinedContentId) {
+		LOG_CURRENT_LINE;
 		NSLog(@"UndefinedContentId.");
 	}
 	NSString* targetPid = [appDelegate.serverContentListDS productIdFromContentId:targetCid];
@@ -118,6 +120,7 @@
     // Configure the cell...
 	cell.titleLabel.text = [appDelegate.serverContentListDS titleByUuid:uuid];
 	cell.authorLabel.text = [appDelegate.serverContentListDS authorByUuid:uuid];
+	/*
 	//Check payment status.
 	if (([InAppPurchaseUtility isFreeContent:targetPid] == TRUE)
 		||
@@ -131,6 +134,7 @@
 		cell.isDownloadedLabel.textColor = [UIColor orangeColor];
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	}
+	*/
 	//Thumbnail.
 	//cell.imageView.image = [appDelegate.serverContentListDS contentIconByContentId:targetCid];
 	UIImage* thumbnailImage = [CoverUtility thumbnailImageWithContentId:targetCid];
@@ -193,13 +197,16 @@
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	
 	//Check payment status.
-	ContentId targetCid = [appDelegate.serverContentListDS contentIdAtIndex:indexPath.row];
-	NSString* targetPid = [appDelegate.serverContentListDS productIdFromContentId:targetCid];
+	//ContentId targetCid = [appDelegate.serverContentListDS contentIdAtIndex:indexPath.row];
+	//NSString* targetPid = [appDelegate.serverContentListDS productIdFromContentId:targetCid];
+	NSString* targetUuid = [appDelegate.serverContentListDS uuidAtIndex:indexPath.row];
 	LOG_CURRENT_METHOD;
-	NSLog(@"indexPath.row=%d, targetCid=%d, targetPid=%@", indexPath.row, targetCid, targetPid);
+	//NSLog(@"indexPath.row=%d, targetCid=%d, targetPid=%@", indexPath.row, targetCid, targetPid);
+	NSLog(@"indexPath.row=%d, targetUuid=%@", indexPath.row, targetUuid);
 	
 	//Show detail view.
-	[self showServerContentDetailView:targetCid];
+	//[self showServerContentDetailView:targetCid];
+	[self showServerContentDetailView:targetUuid];
 }
 
 #pragma mark - MyTableViewVCProtocol (Accessor for table)

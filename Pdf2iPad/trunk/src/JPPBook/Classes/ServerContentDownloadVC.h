@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Pdf2iPadAppDelegate.h"
 #import "InAppPurchaseDefine.h"
 #import "URLDownload.h"
 #import "NSFileManager+Utility.h"
@@ -20,6 +21,8 @@
 	
 	//Content ID.
 	ContentId targetCid;
+	//UUID
+	NSString* targetUuid;
 	//URL download from.
 	NSURL* targetUrl;
 	
@@ -29,12 +32,13 @@
 	long long expectedUmcompressedContentSize;
 }
 //targetCid is typedef UInteger. non @property.
+@property (nonatomic, retain) NSString* targetUuid;
 @property (nonatomic, retain) NSURL* targetUrl;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil
 			   bundle:(NSBundle *)nibBundleOrNil
-			contentId:(ContentId)cid
-			targetUrl:(NSURL*)url;
+			targetUrl:(NSURL*)url
+		   targetUuid:(NSString*)uuid;
 - (void)doDownload;
 - (void)releaseDownloader;
 

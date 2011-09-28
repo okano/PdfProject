@@ -24,6 +24,7 @@
 
 //Switch view.
 - (void)showContentList;
-- (void)showServerContentDetailView:(ContentId)cid;
+//- (void)showServerContentDetailView:(ContentId)cid;
+- (void)showServerContentDetailView:(NSString*)uuid;
 
 @end

@@ -249,6 +249,14 @@
 	}
 	cell.imageView.image = [appDelegate.contentListDS contentIconByContentId:targetCid];
 	
+	/*
+	if (10 < targetCid) {
+		NSLog(@"indexPath.row=%d", indexPath.row);
+		NSLog(@"contentListDS[%d]=%@", indexPath.row, [appDelegate.contentListDS descriptionAtIndex:indexPath.row]);
+		NSLog(@"contentListDS=%@", [appDelegate.contentListDS description]);
+		NSLog(@"cid=%d, paymentHistory=%@", targetCid, [appDelegate.paymentHistoryDS description]);
+	}
+	*/
 	
     return cell;
 }
