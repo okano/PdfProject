@@ -234,7 +234,9 @@
     // Configure the cell...
 	cell.titleLabel.text = [appDelegate.contentListDS titleByContentId:targetCid];
 	cell.authorLabel.text = [appDelegate.contentListDS authorByContentId:targetCid];
+	
 	//Check payment status.
+	cell.isDownloadedLabel.hidden = NO;
 	if (([InAppPurchaseUtility isFreeContent:targetPid] == TRUE)
 		||
 		([appDelegate.paymentHistoryDS isEnabledContent:targetCid] == TRUE))

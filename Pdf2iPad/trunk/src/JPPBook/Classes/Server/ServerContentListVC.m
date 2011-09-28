@@ -125,6 +125,8 @@
     // Configure the cell...
 	cell.titleLabel.text = [appDelegate.serverContentListDS titleByUuid:uuid];
 	cell.authorLabel.text = [appDelegate.serverContentListDS authorByUuid:uuid];
+	
+	cell.isDownloadedLabel.hidden = YES;
 	/*
 	//Check payment status.
 	if (([InAppPurchaseUtility isFreeContent:targetPid] == TRUE)
