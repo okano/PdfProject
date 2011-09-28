@@ -59,7 +59,7 @@
 	
 	
 	//Thumbnail.
-	UIImage* thumbnailImage = [CoverUtility thumbnailImageWithUuid:uuid];
+	UIImage* thumbnailImage = [CoverUtility coverImageWithUuid:uuid];
 	thumbnailImageView.image = thumbnailImage;
 	
 	//Title, Author, Description.

@@ -11,9 +11,18 @@
 
 @implementation CoverUtility
 
-+ (UIImage*)thumbnailImageWithContentId:(ContentId)cid
++ (UIImage*)coverImageWithContentId:(ContentId)cid
 {
 	//LOG_CURRENT_METHOD;
+	if (cid == InvalidContentId) {
+		LOG_CURRENT_METHOD;
+		NSLog(@"Invalid ContentId");
+		return nil;
+	} else if (cid == UndefinedContentId) {
+		LOG_CURRENT_METHOD;
+		NSLog(@"Undefined ContentId.");
+		return nil;
+	}
 	
 	NSString* targetFilenameFull = [FileUtility getThumbnailFilenameFull:1 WithContentId:cid];
 	NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -39,9 +48,14 @@
 		return nil;
 	}
 }
++ (NSString*)getCoverFilenameFull:(ContentId)cid
+{
+	return @"";
+}
+
 
 //force download from url.
-+ (UIImage*)thumbnailImageWithUuid:(NSString*)uuid
++ (UIImage*)coverImageWithUuid:(NSString*)uuid
 {
 	//download.
 	Pdf2iPadAppDelegate* appDelegate = (Pdf2iPadAppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -60,5 +74,9 @@
 	return nil;
 }
 
++ (NSString*)getCoverLocalFilenameFull:(ContentId)cid
+{
+	;
+}
 
 @end

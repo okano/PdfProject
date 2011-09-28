@@ -142,9 +142,10 @@
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	}
 	*/
+	
 	//Thumbnail.
 	//cell.imageView.image = [appDelegate.serverContentListDS contentIconByContentId:targetCid];
-	UIImage* thumbnailImage = [CoverUtility thumbnailImageWithContentId:targetCid];
+	UIImage* thumbnailImage = [CoverUtility coverImageWithUuid:uuid];
 	cell.imageView.image = thumbnailImage;
 
 	

@@ -108,5 +108,23 @@
 	return filename;
 }
 
++ (NSString*)getCoverIconDirectory{
+	return [NSHomeDirectory() stringByAppendingPathComponent:CONTENT_TMP_DIRECTORY];
+}
+
++ (NSString*)getCoverIconDirectory:(NSString*)cId;
+{
+	return  [[[self getCoverIconDirectory]
+			  stringByAppendingPathComponent:cId]
+			 stringByAppendingPathExtension:@"jpg"];
+}
+
++ (UIImage*)getCoverImage:(NSString*)cId
+{
+	NSString* filenameFull = [self getCoverIconDirectory:cId];
+	UIImage* image = [UIImage imageNamed:filenameFull];
+	return image;
+}
+
 
 @end

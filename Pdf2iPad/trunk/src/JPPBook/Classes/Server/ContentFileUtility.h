@@ -21,12 +21,21 @@
 + (NSString*)getContentBodyDirectory;
 //+ (NSString*)getContentBodyDirectoryWithContentId:(NSString*)cId;
 + (NSString*)getContentBodyFilename:(NSString*)targetContentId;
+//
 + (NSString*)getContentTmpDirectory;
 + (NSString*)getContentTmpDirectoryWithContentId:(NSString*)cId;
 + (NSString*)getContentTmpDirectoryHasResourcesWithContentId:(NSString*)cId;
+
 //thumbnail image.
 + (NSString*)getThumbnailIconFilenameWithContentId:(NSString*)cId;
 //preview image.
 //+ (NSString*)getPreviewImage1FilenameWithContentId:(NSString*)cId;
+
+//Cover image
++ (NSString*)getCoverIconDirectory;
++ (NSString*)getCoverIconDirectory:(NSString*)cId;
++ (UIImage*)getCoverImage:(NSString*)cId;
+
+
 
 @end

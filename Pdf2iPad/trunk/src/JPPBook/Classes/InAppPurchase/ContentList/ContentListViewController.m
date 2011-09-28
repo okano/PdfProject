@@ -249,6 +249,8 @@
 		cell.isDownloadedLabel.textColor = [UIColor orangeColor];
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	}
+	
+	//cover Icon(not page chache thumbnail)
 	cell.imageView.image = [appDelegate.contentListDS contentIconByContentId:targetCid];
 	
 	/*

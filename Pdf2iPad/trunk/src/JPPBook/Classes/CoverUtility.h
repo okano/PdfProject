@@ -14,7 +14,9 @@
 @interface CoverUtility : NSObject {
     
 }
-+ (UIImage*)thumbnailImageWithContentId:(ContentId)cid;
-+ (UIImage*)thumbnailImageWithUuid:(NSString*)uuid;
++ (UIImage*)coverImageWithContentId:(ContentId)cid;
++ (UIImage*)coverImageWithUuid:(NSString*)uuid;
+//
++ (NSString*)getCoverLocalFilenameFull:(ContentId)cid;
 
 @end

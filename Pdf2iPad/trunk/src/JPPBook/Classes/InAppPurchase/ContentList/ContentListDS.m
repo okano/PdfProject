@@ -404,6 +404,7 @@
 #pragma mark Thumbnail Image
 - (UIImage*)contentIconAtIndex:(NSInteger)index
 {
+	ContentId cid = InvalidContentId;//FIXME. get cid by index.
 	return [self contentIconByContentId:(index + 1)];
 }
 - (UIImage*)contentIconByContentId:(ContentId)cid
@@ -412,24 +413,18 @@
 						   CONTENT_ICONFILE_PREFIX,
 						   cid,
 						   CONTENT_ICONFILE_EXTENSION];
+	//NSString* coverIconDirectory = 
+	//NSString* filenameFull = [NSString string;
 	//NSLog(@"filename=%@", filename);
 	
-	// Open image from mainBundle.
+	// Open image from file.
 	UIImage* image = [UIImage imageNamed:filename];
 	return image;
 }
 - (UIImage*)contentIconByUuid:(NSString*)uuid
 {
 	ContentId cid = (ContentId)[self contentIdFromUuid:uuid];
-	NSString* filename = [NSString stringWithFormat:@"%@%d.%@",
-						  CONTENT_ICONFILE_PREFIX,
-						  cid,
-						  CONTENT_ICONFILE_EXTENSION];
-	//NSLog(@"filename=%@", filename);
-	
-	// Open image from mainBundle.
-	UIImage* image = [UIImage imageNamed:filename];
-	return image;
+	return [self contentIconByContentId:cid];
 }
 - (UIImage*)contentIconDummyWithIndex:(NSInteger)index
 {
