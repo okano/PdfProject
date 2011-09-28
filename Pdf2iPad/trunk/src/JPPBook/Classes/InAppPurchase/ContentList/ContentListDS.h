@@ -57,6 +57,8 @@
 - (UIImage*)contentIconAtIndex:(NSInteger)index;
 - (UIImage*)contentIconByContentId:(ContentId)cid;
 - (UIImage*)contentIconByUuid:(NSString*)uuid;
+- (UIImage*)contentIconDummyWithIndex:(NSInteger)index;
+
 //
 - (NSURL*)acquisitionUrlAtIndex:(NSInteger)index;
 - (NSURL*)acquisitionUrlByContentId:(ContentId)cid;
