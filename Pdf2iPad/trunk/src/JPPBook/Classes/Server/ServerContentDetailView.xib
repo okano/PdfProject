@@ -85,7 +85,7 @@
 							</object>
 							<object class="IBUILabel" id="546025410">
 								<reference key="NSNextResponder" ref="451257259"/>
-								<int key="NSvFlags">294</int>
+								<int key="NSvFlags">290</int>
 								<string key="NSFrame">{{85, 20}, {215, 21}}</string>
 								<reference key="NSSuperview" ref="451257259"/>
 								<reference key="NSWindow"/>
@@ -218,7 +218,6 @@
 								<string key="NSFrame">{{236, 293}, {64, 96}}</string>
 								<reference key="NSSuperview" ref="451257259"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
