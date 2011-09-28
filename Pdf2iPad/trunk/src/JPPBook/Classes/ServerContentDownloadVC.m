@@ -142,7 +142,7 @@
 		NSLog(@"cannot get metadata. UUID=%@", targetUuid);
 	}
 	[appDelegate.contentListDS addMetadata:metaData];
-	[appDelegate.contentListDS syncronize];	//save into UserDefault[FIXME] or Info.Plist[FIXME].
+	[appDelegate.contentListDS saveToPlist];	//save into UserDefault[FIXME] or Info.Plist[FIXME].
 	
 	//StepUp nextContentId.
 	[appDelegate.contentListDS stepupContentIdToUserDefault:newContentId];

@@ -141,11 +141,28 @@
 #pragma mark - setup data.
 - (void)setupData
 {
-	
 	//Load Metadata from plist
 	int resultCount;
 	resultCount = [self loadFromPlist];
 	
+	//Set Metadata default if plist does not found.
+	if (resultCount <= 0) {
+		resultCount = [self setupDefaultData];
+	}
+	
+	//Update nextContentId.
+	ContentId nextContentIdOld = [self nextContentId];
+	ContentId nextContentIdCurrent = resultCount;
+	if (resultCount <= 0) {
+		nextContentIdCurrent = 1;
+	}
+	if (nextContentIdOld < nextContentIdCurrent) {
+		[self stepupContentIdToUserDefault:nextContentIdCurrent];
+	}
+}
+
+- (int)setupDefaultData
+{
 	//Load Metadata from CSV. (when plist not found or First Launch.)
 #if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
 	
@@ -195,16 +212,8 @@
 	[self setupTestData];
 #endif
 	
+	return [contentList count];
 	
-	//Update nextContentId.
-	ContentId nextContentIdOld = [self nextContentId];
-	ContentId nextContentIdCurrent = resultCount;
-	if (resultCount <= 0) {
-		nextContentIdCurrent = contentIdInt;
-	}
-	if (nextContentIdOld < nextContentIdCurrent) {
-		[self stepupContentIdToUserDefault:nextContentIdCurrent];
-	}
 	
 }
 
@@ -212,11 +221,9 @@
 //return: count of metadata. or 0(init fail)
 - (int)loadFromPlist
 {
+	LOG_CURRENT_METHOD;
 	// generate file name.
-	NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString* documentsDirectory = [paths objectAtIndex:0];
-	NSString* pFile = [documentsDirectory stringByAppendingPathComponent:METADATA_PLIST_FILENAME];
-	
+	NSString* pFile = [self getPlistFilenameFull];
 	
 	// load from file via NSData
 	NSData* pData = [NSData dataWithContentsOfFile:pFile];
@@ -248,11 +255,41 @@
 }
 
 //Save metadata to plist.
-- (void)syncronize
+- (void)saveToPlist
 {
-	;
+	// generate file name.
+	NSString* pFile = [self getPlistFilenameFull];
+	
+	// serialize data with PropertyList.
+	NSString* error;
+	NSData* pData = [NSPropertyListSerialization dataFromPropertyList:contentList
+															   format:NSPropertyListXMLFormat_v1_0
+													 errorDescription:&error];
+	// Check error.
+	if(!pData) {
+		NSLog(@"serialization error:%@", error);
+		return;
+	}
+	
+	// save file.
+	if ( [pData writeToFile:pFile atomically:YES] ) {
+#if TARGET_IPHONE_SIMULATOR
+		NSLog(@"save success. file=%@", pFile);
+#endif
+	} else {
+		NSLog(@"save failed. file=%@", pFile);
+		[error release];
+	}
 }
 
+- (NSString*)getPlistFilenameFull
+{
+	// generate file name.
+	NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString* documentsDirectory = [paths objectAtIndex:0];
+	NSString* pFileName = [documentsDirectory stringByAppendingPathComponent:METADATA_PLIST_FILENAME];
+	return pFileName;
+}
 
 
 #pragma mark - metadata of single content.

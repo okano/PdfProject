@@ -28,9 +28,14 @@
 
 - (void)setupData;
 - (int)loadFromPlist;
+- (int)setupDefaultData;
+//
+- (void)saveToPlist;
+- (NSString*)getPlistFilenameFull;
+//Misc.
 - (NSString*)description;
-- (void)syncronize;
 
+//Metadata each content.
 - (NSMutableDictionary*)getMetadataByContentId:(ContentId)cid;
 - (NSMutableDictionary*)getMetadataByUuid:(NSString*)uuid;
 - (void)addMetadata:(NSDictionary*)metaDataDict;
