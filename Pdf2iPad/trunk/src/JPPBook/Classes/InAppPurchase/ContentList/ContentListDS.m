@@ -404,23 +404,40 @@
 #pragma mark Thumbnail Image
 - (UIImage*)contentIconAtIndex:(NSInteger)index
 {
-	ContentId cid = InvalidContentId;//FIXME. get cid by index.
-	return [self contentIconByContentId:(index + 1)];
+	ContentId cid = [self contentIdAtIndex:index];
+	return [self contentIconByContentId:cid];
 }
 - (UIImage*)contentIconByContentId:(ContentId)cid
 {
+	//Load from MainBundle.
 	NSString* filename = [NSString stringWithFormat:@"%@%d.%@",
 						   CONTENT_ICONFILE_PREFIX,
 						   cid,
 						   CONTENT_ICONFILE_EXTENSION];
-	//NSString* coverIconDirectory = 
-	//NSString* filenameFull = [NSString string;
 	//NSLog(@"filename=%@", filename);
+	UIImage* image = [UIImage imageNamed:filename];
+	
 	
 	// Open image from file.
-	UIImage* image = [UIImage imageNamed:filename];
+	if (! image) {
+		filename = [self getCoverLocalFilenameFull:cid]; 
+		NSLog(@"filename=%@", filename);
+		image = [UIImage imageNamed:filename];
+	}
+	
 	return image;
 }
+- (NSString*)getCoverLocalFilenameFull:(ContentId)cid
+{
+	NSString* filename = [NSString stringWithFormat:@"%@%d", COVER_FILE_PREFIX, cid];
+	NSString* targetFilenameFull = [[[[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
+									   stringByAppendingPathComponent:DETAIL_DIR]
+									  stringByAppendingPathComponent:[NSString stringWithFormat:@"%d",cid]]
+									 stringByAppendingPathComponent:filename]
+									stringByAppendingPathExtension:COVER_FILE_EXTENSION];
+	return targetFilenameFull;
+}
+
 - (UIImage*)contentIconByUuid:(NSString*)uuid
 {
 	ContentId cid = (ContentId)[self contentIdFromUuid:uuid];

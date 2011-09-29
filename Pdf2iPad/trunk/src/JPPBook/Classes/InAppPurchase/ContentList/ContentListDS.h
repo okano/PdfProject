@@ -58,6 +58,7 @@
 - (UIImage*)contentIconByContentId:(ContentId)cid;
 - (UIImage*)contentIconByUuid:(NSString*)uuid;
 - (UIImage*)contentIconDummyWithIndex:(NSInteger)index;
+- (NSString*)getCoverLocalFilenameFull:(ContentId)cid;
 
 //
 - (NSURL*)acquisitionUrlAtIndex:(NSInteger)index;
