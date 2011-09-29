@@ -77,7 +77,8 @@
 
 + (NSString*)getThumbnailFilenameFull:(int)pageNum WithContentId:(ContentId)cid {
 	NSString* filename = [NSString stringWithFormat:@"%@%d", THUMBNAIL_FILE_PREFIX, pageNum];
-	NSString* targetFilenameFull = [[[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
+	NSString* targetFilenameFull = [[[[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
+									   stringByAppendingPathComponent:DETAIL_DIR]
 									  stringByAppendingPathComponent:[NSString stringWithFormat:@"%d",cid]]
 									 stringByAppendingPathComponent:filename]
 									stringByAppendingPathExtension:THUMBNAIL_FILE_EXTENSION];

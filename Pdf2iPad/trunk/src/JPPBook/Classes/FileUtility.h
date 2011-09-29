@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Utility.h"
 #import "Define.h"
+#import "UrlDefine.h"
 #import "InAppPurchaseDefine.h"
 
 @interface FileUtility : NSObject {
