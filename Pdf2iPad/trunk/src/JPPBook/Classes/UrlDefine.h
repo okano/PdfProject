@@ -21,6 +21,7 @@
 #define DETAIL_DIR		@"contentDetail"
 #define BODY_DIR		@"contentBody"
 #define THUMBNAIL_DIR	@"contentThumbnail"
+#define COVER_CACHE_DIR	@"contentCoverCache"
 //
 #define CONTENT_LIST_NEWEST @"contentListNewest.xml"
 #define CONTENT_LIST_FAVORITE @"contentListFavorite.xml"

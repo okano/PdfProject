@@ -113,6 +113,7 @@
 	//Get new ContentId.
 	Pdf2iPadAppDelegate* appDelegate = (Pdf2iPadAppDelegate*)[[UIApplication sharedApplication] delegate];
 	ContentId newContentId = [appDelegate.contentListDS nextContentId];
+	NSString* newContentIdStr = [NSString stringWithFormat:@"%d", newContentId];
 	NSLog(@"new ContentId=%d", newContentId);
 	
 	//Move downloaded file to ContentBodyDirectory.
@@ -151,6 +152,26 @@
 	//Add Download(purchase) history.
 	[appDelegate.paymentHistoryDS enableContent:newContentId];
 	
+	//Copy image cache for Cover.
+	//NSString* cacheFilenameFull = [CoverUtility getCoverCacheFilenameFull:uuid];
+	NSString* cacheFilenameFull = [[[[NSHomeDirectory() stringByAppendingPathComponent:@"Tmp"]
+									  stringByAppendingPathComponent:COVER_CACHE_DIR]
+									 stringByAppendingPathComponent:uuid]
+									stringByAppendingPathExtension:COVER_FILE_EXTENSION];
+	NSString* targetFilenameFull = [[[[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
+									   stringByAppendingPathComponent:DETAIL_DIR]
+									  stringByAppendingPathComponent:newContentIdStr]
+									 stringByAppendingPathComponent:newContentIdStr]
+									stringByAppendingPathExtension:COVER_FILE_EXTENSION];
+	//targetFilenameFull = [ContentFileUtility getCoverIconDirectory:newContentIdStr];
+	[FileUtility makeDir:[targetFilenameFull stringByDeletingLastPathComponent]];
+	NSLog(@"cacheFilenameFull=%@", cacheFilenameFull);
+	NSLog(@"targetFilenameFull=%@", targetFilenameFull);
+	result = [[NSFileManager defaultManager] moveItemAtPath:cacheFilenameFull
+													 toPath:targetFilenameFull
+													  error:&error];
+
+
 	//Open ContentPlayer.
 	[appDelegate hideServerContentDetailView];
 	[appDelegate showContentPlayerView:newContentId];

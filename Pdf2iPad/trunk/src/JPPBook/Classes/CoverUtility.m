@@ -62,8 +62,12 @@
 	NSURL* url = [appDelegate.serverContentListDS thumbnailUrlByUuid:uuid];
 	NSData* data = [NSData dataWithContentsOfURL:url];
 	if (data != nil) {
-		//NOT save to local folder.
-		//[data writeToFile:targetFilenameFull atomically:YES];
+		//Generate directory for save.
+		NSString* targetFilenameFull = [self getCoverCacheFilenameFull:uuid];
+		[FileUtility makeDir:[targetFilenameFull stringByDeletingLastPathComponent]];
+		//Save to file.
+		NSLog(@"targetFilenameFull=%@", targetFilenameFull);
+		[data writeToFile:targetFilenameFull atomically:YES];
 		
 		//Generate image.
 		UIImage* img = [[UIImage alloc] initWithData:data];
@@ -85,4 +89,13 @@
 	return targetFilenameFull;
 }
 
++ (NSString*)getCoverCacheFilenameFull:(NSString*)uuid
+{
+	NSString* targetFilenameFull = [[[[NSHomeDirectory() stringByAppendingPathComponent:@"Tmp"]
+									   stringByAppendingPathComponent:COVER_CACHE_DIR]
+									 stringByAppendingPathComponent:uuid]
+									stringByAppendingPathExtension:COVER_FILE_EXTENSION];
+	return targetFilenameFull;
+}
+										
 @end
