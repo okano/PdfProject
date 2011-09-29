@@ -76,7 +76,13 @@
 
 + (NSString*)getCoverLocalFilenameFull:(ContentId)cid
 {
-	;
+	NSString* filename = [NSString stringWithFormat:@"%@%d", COVER_FILE_PREFIX, cid];
+	NSString* targetFilenameFull = [[[[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
+									   stringByAppendingPathComponent:DETAIL_DIR]
+									  stringByAppendingPathComponent:[NSString stringWithFormat:@"%d",cid]]
+									 stringByAppendingPathComponent:filename]
+									stringByAppendingPathExtension:COVER_FILE_EXTENSION];
+	return targetFilenameFull;
 }
 
 @end

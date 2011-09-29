@@ -10,6 +10,7 @@
 #import "Pdf2iPadAppDelegate.h"
 #import "InAppPurchaseDefine.h"
 #import "FileUtility.h"
+#import "Define.h"
 
 @interface CoverUtility : NSObject {
     

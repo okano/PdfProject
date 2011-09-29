@@ -70,6 +70,10 @@
 #define THUMBNAIL_FILE_PREFIX		@"Thumbnail_p"
 #define THUMBNAIL_FILE_EXTENSION	@"png"
 
+// for Cover Image.
+#define COVER_FILE_PREFIX			@""	/* no prefix */
+#define COVER_FILE_EXTENSION		@"jpg"
+
 // for Link Define.
 #define LINK_DICT_KEY_URL	@"Url"
 #define LINK_DICT_KEY_RECT	@"Rect"
