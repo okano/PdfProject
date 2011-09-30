@@ -421,7 +421,6 @@
 	// Open image from file.
 	if (! image) {
 		filename = [self getCoverLocalFilenameFull:cid]; 
-		NSLog(@"filename=%@", filename);
 		image = [UIImage imageWithContentsOfFile:filename];
 	}
 	
