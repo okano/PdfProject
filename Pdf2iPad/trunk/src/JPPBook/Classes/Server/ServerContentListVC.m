@@ -127,10 +127,15 @@
 	cell.authorLabel.text = [appDelegate.serverContentListDS authorByUuid:uuid];
 	
 	cell.isDownloadedLabel.hidden = YES;
-	/*
+	
 	//Check payment status.
-	if (([InAppPurchaseUtility isFreeContent:targetPid] == TRUE)
-		||
+	cell.isDownloadedLabel.hidden = NO;
+	ContentId targetCid = [appDelegate.contentListDS contentIdFromUuid:uuid];
+	NSLog(@"targetCid=%d", targetCid);
+	if ((targetCid != UndefinedContentId)
+		&&
+		(targetCid != InvalidContentId)
+		&&
 		([appDelegate.paymentHistoryDS isEnabledContent:targetCid] == TRUE))
 	{
 		cell.isDownloadedLabel.text = @"購入済";
@@ -141,7 +146,7 @@
 		cell.isDownloadedLabel.textColor = [UIColor orangeColor];
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	}
-	*/
+	
 	
 	//Thumbnail.
 	//cell.imageView.image = [appDelegate.serverContentListDS contentIconByContentId:targetCid];
