@@ -79,9 +79,21 @@
 	//priceLabel.text = @"(Now Loading...)";
 	
 	//BuyButton
-	buyButton.titleLabel.text = @"(Now Loading...)";
 	buyButton.enabled = NO;
 	buyButton.hidden = NO;
+	NSLog(@"targetCid=%d", targetCid);
+	if ((targetCid != UndefinedContentId)
+		&&
+		(targetCid != InvalidContentId)
+		&&
+		([appDelegate.paymentHistoryDS isEnabledContent:targetCid] == TRUE))
+	{
+		buyButton.titleLabel.text = @"購入済";
+	} else {
+		buyButton.titleLabel.text = @"購入可";
+	}
+	
+	
 }
 #pragma mark - SKProductsRequestDelegate methods.
 - (void)productsRequest:(SKProductsRequest *)request
