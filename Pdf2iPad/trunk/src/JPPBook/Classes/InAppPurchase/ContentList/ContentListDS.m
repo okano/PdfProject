@@ -55,6 +55,9 @@
 {
 	NSDictionary* tmpDict;
 	for (tmpDict in contentList) {
+		if ([tmpDict valueForKey:CONTENT_UUID] == nil) {
+			continue;	//skip to next.
+		}
 		if ([[tmpDict valueForKey:CONTENT_UUID] compare:uuid options:NSCaseInsensitiveSearch] == NSOrderedSame) {
 			return (ContentId)[[tmpDict valueForKey:CONTENT_CID] intValue];
 		}
