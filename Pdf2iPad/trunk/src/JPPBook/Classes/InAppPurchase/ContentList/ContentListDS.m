@@ -422,7 +422,7 @@
 	if (! image) {
 		filename = [self getCoverLocalFilenameFull:cid]; 
 		NSLog(@"filename=%@", filename);
-		image = [UIImage imageNamed:filename];
+		image = [UIImage imageWithContentsOfFile:filename];
 	}
 	
 	return image;
