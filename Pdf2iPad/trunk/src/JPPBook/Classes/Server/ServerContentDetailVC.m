@@ -81,16 +81,21 @@
 	//BuyButton
 	buyButton.enabled = NO;
 	buyButton.hidden = NO;
-	NSLog(@"targetCid=%d", targetCid);
+	targetCid = [appDelegate.contentListDS contentIdFromUuid:uuid];	/* USE contentListDS(not use ServerContentListDS) */
+	//NSLog(@"targetCid=%d", targetCid);
 	if ((targetCid != UndefinedContentId)
 		&&
 		(targetCid != InvalidContentId)
 		&&
 		([appDelegate.paymentHistoryDS isEnabledContent:targetCid] == TRUE))
 	{
-		buyButton.titleLabel.text = @"購入済";
+		buyButton.titleLabel.text = @"購入済み";
+		downloadButton.enabled = NO;
+		downloadButton.hidden = YES;
 	} else {
-		buyButton.titleLabel.text = @"購入可";
+		buyButton.titleLabel.text = @"未購入";
+		downloadButton.enabled = YES;
+		downloadButton.hidden = NO;
 	}
 	
 	
