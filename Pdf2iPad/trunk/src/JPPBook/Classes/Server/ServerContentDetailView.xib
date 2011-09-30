@@ -130,7 +130,7 @@
 							<object class="IBUIButton" id="848643642">
 								<reference key="NSNextResponder" ref="451257259"/>
 								<int key="NSvFlags">291</int>
-								<string key="NSFrame">{{207, 63}, {100, 21}}</string>
+								<string key="NSFrame">{{164, 63}, {143, 21}}</string>
 								<reference key="NSSuperview" ref="451257259"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="990687920"/>
@@ -147,6 +147,7 @@
 									<double key="NSSize">15</double>
 									<int key="NSfFlags">16</int>
 								</object>
+								<int key="IBUILineBreakMode">2</int>
 								<string key="IBUINormalTitle">loading..</string>
 								<object class="NSColor" key="IBUIHighlightedTitleColor" id="213861827">
 									<int key="NSColorSpace">3</int>
