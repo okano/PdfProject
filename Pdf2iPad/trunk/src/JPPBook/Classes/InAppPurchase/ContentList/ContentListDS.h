@@ -34,6 +34,7 @@
 - (NSString*)getPlistFilenameFull;
 //Misc.
 - (NSString*)description;
+- (void)removeAllObjects;
 
 //Metadata each content.
 - (NSMutableDictionary*)getMetadataByContentId:(ContentId)cid;

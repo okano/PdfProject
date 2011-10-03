@@ -257,6 +257,11 @@
 	return [contentList description];
 }
 
+- (void)removeAllObjects
+{
+	[contentList removeAllObjects];
+}
+
 //Save metadata to plist.
 - (void)saveToPlist
 {

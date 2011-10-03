@@ -35,7 +35,11 @@
 																			 style:UIBarButtonItemStyleBordered
 																			target:self
 																			action:@selector(showPaymentHistoryList)];
-	NSArray *items = [NSArray arrayWithObjects:localContentButton, paymentHistoryButton, nil];
+	UIBarButtonItem *spacer1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+	UIBarButtonItem *reloadButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
+																				  target:self
+																				  action:@selector(reloadFromNetwork)];
+	NSArray *items = [NSArray arrayWithObjects:localContentButton, paymentHistoryButton, spacer1, reloadButton, nil];
 	[toolbar setItems:items];
 
 	[self reloadData];
@@ -52,6 +56,11 @@
 	[appDelegate.serverContentListDS loadContentList:32];
 }
 
+- (void)reloadFromNetwork;
+{
+	[appDelegate.serverContentListDS removeAllObjects];
+	[appDelegate.serverContentListDS loadContentListFromNetworkByOpds];
+}
 
 #pragma mark - show other view.
 - (void)showContentList

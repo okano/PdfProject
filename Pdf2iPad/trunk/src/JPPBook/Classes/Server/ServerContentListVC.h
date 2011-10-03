@@ -21,6 +21,7 @@
 
 //Setup data.
 - (void)setupData;
+- (void)reloadFromNetwork;
 
 //Switch view.
 - (void)showContentList;
