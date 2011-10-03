@@ -11,6 +11,7 @@
 #import "ContentListViewController.h"
 #import "ProtocolDefine.h"
 #import "CoverUtility.h"
+#import "ConfigViewController.h"
 
 @interface ServerContentListVC : ContentListViewController <MyTableViewVCProtocol> {
 	//UITableView* myTableView;
@@ -27,5 +28,6 @@
 - (void)showContentList;
 //- (void)showServerContentDetailView:(ContentId)cid;
 - (void)showServerContentDetailView:(NSString*)uuid;
+- (void)showConfigView;
 
 @end

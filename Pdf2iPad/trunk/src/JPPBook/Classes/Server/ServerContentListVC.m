@@ -36,10 +36,16 @@
 																			target:self
 																			action:@selector(showPaymentHistoryList)];
 	UIBarButtonItem *spacer1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+	UIBarButtonItem *configButton = [[UIBarButtonItem alloc] initWithTitle:@"Config"
+																	 style:UIBarButtonItemStyleBordered
+																	target:self
+																	action:@selector(showConfigView)];
+	UIBarButtonItem *spacer2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+	spacer2.width = 40.0f;
 	UIBarButtonItem *reloadButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
 																				  target:self
 																				  action:@selector(reloadFromNetwork)];
-	NSArray *items = [NSArray arrayWithObjects:localContentButton, paymentHistoryButton, spacer1, reloadButton, nil];
+	NSArray *items = [NSArray arrayWithObjects:localContentButton, paymentHistoryButton, spacer1, configButton, spacer2, reloadButton, nil];
 	[toolbar setItems:items];
 
 	[self reloadData];
@@ -76,6 +82,12 @@
 	//NSLog(@"cid=%d", cid);
 	[appDelegate hideServerContentListView];
 	[appDelegate showServerContentDetailView:uuid];
+}
+- (void)showConfigView
+{
+	ConfigViewController* configVC = [[ConfigViewController alloc] initWithNibName:@"ConfigView"
+																			bundle:[NSBundle mainBundle]];
+	[self presentModalViewController:configVC animated:YES];
 }
 
 

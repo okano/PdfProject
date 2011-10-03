@@ -108,6 +108,8 @@
 		29AAD5EA12BC943C00CF7C91 /* TocTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29AAD5E912BC943C00CF7C91 /* TocTableViewController.m */; };
 		29B36D5112FFBFFD00897C08 /* PopoverImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B36D5012FFBFFD00897C08 /* PopoverImageViewController.m */; };
 		29B7D44B1330FFF30023BC81 /* MarkerPenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B7D44A1330FFF30023BC81 /* MarkerPenView.m */; };
+		29BA980E143A040200F1FAEB /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BA980C143A040200F1FAEB /* ConfigViewController.m */; };
+		29BA980F143A040200F1FAEB /* ConfigView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29BA980D143A040200F1FAEB /* ConfigView.xib */; };
 		29C6852113B9C66500FB164B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29C6852013B9C66500FB164B /* AVFoundation.framework */; };
 		29D53CDF13FB9E42000E0AC9 /* ServerContentListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D53CDE13FB9E42000E0AC9 /* ServerContentListVC.m */; };
 		29D53CE213FB9ECD000E0AC9 /* ServerContentListDS.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D53CE113FB9ECD000E0AC9 /* ServerContentListDS.m */; };
@@ -282,6 +284,9 @@
 		29B7D4491330FFF30023BC81 /* MarkerPenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkerPenView.h; sourceTree = "<group>"; };
 		29B7D44A1330FFF30023BC81 /* MarkerPenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkerPenView.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29BA980B143A040200F1FAEB /* ConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = ConfigViewController.h; sourceTree = "<group>"; };
+		29BA980C143A040200F1FAEB /* ConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigViewController.m; sourceTree = "<group>"; };
+		29BA980D143A040200F1FAEB /* ConfigView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigView.xib; sourceTree = "<group>"; };
 		29C6852013B9C66500FB164B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		29D53CDD13FB9E42000E0AC9 /* ServerContentListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServerContentListVC.h; path = Server/ServerContentListVC.h; sourceTree = "<group>"; };
 		29D53CDE13FB9E42000E0AC9 /* ServerContentListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServerContentListVC.m; path = Server/ServerContentListVC.m; sourceTree = "<group>"; };
@@ -649,6 +654,9 @@
 				2916EC621429BC6D006DBDC0 /* ContentUrlUtility.m */,
 				2916EC651429E9E1006DBDC0 /* CoverUtility.h */,
 				2916EC661429E9E1006DBDC0 /* CoverUtility.m */,
+				29BA980B143A040200F1FAEB /* ConfigViewController.h */,
+				29BA980C143A040200F1FAEB /* ConfigViewController.m */,
+				29BA980D143A040200F1FAEB /* ConfigView.xib */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -830,6 +838,7 @@
 				29D53CE613FBB306000E0AC9 /* ServerContentDetailView.xib in Resources */,
 				296B93111429887D003CB4CB /* ServerContentDownload.xib in Resources */,
 				2916EC4D1429B754006DBDC0 /* DownloadView.xib in Resources */,
+				29BA980F143A040200F1FAEB /* ConfigView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -887,6 +896,7 @@
 				2916EC631429BC6D006DBDC0 /* ContentFileUtility.m in Sources */,
 				2916EC641429BC6D006DBDC0 /* ContentUrlUtility.m in Sources */,
 				2916EC671429E9E1006DBDC0 /* CoverUtility.m in Sources */,
+				29BA980E143A040200F1FAEB /* ConfigViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
