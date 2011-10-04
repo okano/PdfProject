@@ -81,6 +81,9 @@
 	*/
 	
 	
+	//Get BASE URL for link.
+	NSString* baseUrlStr = [ConfigViewController getUrlBaseWithOpds];
+	
 	//Find specify feed.
 	NSString* resultStr;
 	//NSString* searchForMe = @"%C3%8A%C3%BA%C3%84%C3%8A%C3%B1%E2%88%9E%C3%88%E2%80%A0%C3%9C";
@@ -105,7 +108,7 @@
 			NSArray* arr = [[[links objectAtIndex:cnt] description]
 								   componentsSeparatedByString:[NSString stringWithFormat:@"%c", 0x22]];
 			
-			resultStr = [NSString stringWithFormat:@"%@%@", URL_BASE_OPDS, [arr objectAtIndex:1]];
+			resultStr = [NSString stringWithFormat:@"%@%@", baseUrlStr, [arr objectAtIndex:1]];
 		}
 	}
 	//NSLog(@"resultStr=%@", resultStr);
@@ -146,6 +149,9 @@
 	//Get each entry.
 	NSArray* entries = [rootElement nodesForXPath:@"//foo:entry" error:&error];
 	//NSLog(@"entries=%@", [entries description]);
+	
+	//Get BASE URL for link.
+	NSString* baseUrlStr = [ConfigViewController getUrlBaseWithOpds];
 	
 	//Parse.
 	NSString* acquisitionLink;
@@ -193,21 +199,21 @@
 			NSString* searchForMe = @"http://opds-spec.org/acquisition";
 			NSRange range = [relAttribute rangeOfString : searchForMe];
 			if (range.location != NSNotFound) {
-				acquisitionLink = [NSString stringWithFormat:@"%@%@", URL_BASE_OPDS, hrefAttribute];
+				acquisitionLink = [NSString stringWithFormat:@"%@%@", baseUrlStr, hrefAttribute];
 				
 			}
 			//Link for Thumbnail.
 			searchForMe = @"http://opds-spec.org/thumbnail";
 			range = [relAttribute rangeOfString : searchForMe];
 			if (range.location != NSNotFound) {
-				thumbnailLink = [NSString stringWithFormat:@"%@%@", URL_BASE_OPDS, hrefAttribute];
+				thumbnailLink = [NSString stringWithFormat:@"%@%@", baseUrlStr, hrefAttribute];
 				
 			}
 			//Link for Cover.
 			searchForMe = @"http://opds-spec.org/cover";
 			range = [relAttribute rangeOfString : searchForMe];
 			if (range.location != NSNotFound) {
-				coverLink = [NSString stringWithFormat:@"%@%@", URL_BASE_OPDS, hrefAttribute];
+				coverLink = [NSString stringWithFormat:@"%@%@", baseUrlStr, hrefAttribute];
 				
 			}
 		}

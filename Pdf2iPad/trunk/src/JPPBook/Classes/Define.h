@@ -145,3 +145,6 @@
 #define FIRST_CONTENT_ID	1	/* 1-start */
 
 #define METADATA_PLIST_FILENAME	@"ContentMetadata.plist"
+
+//for const URL for OPDS.
+#define URL_OPDS			@"UrlBaseWithOpds"

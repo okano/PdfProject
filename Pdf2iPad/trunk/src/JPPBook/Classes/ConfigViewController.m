@@ -34,20 +34,46 @@
 }
 
 
-#pragma mark - 
+#pragma mark -
 - (IBAction)handleDoneButton:(id)sender
 {
-	[self saveUrlToUserDefault:nil];
+	[self saveUrlToUserDefault:textField.text];
 	[self closeThisView:sender];
-}
-- (void)saveUrlToUserDefault:(NSString*)urlStr
-{
-	LOG_CURRENT_METHOD;
-	NSLog(@"field=%@", textField.text);
 }
 - (IBAction)closeThisView:(id)sender
 {
 	[self dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark -
+- (IBAction)setDefaultUrl1:(id)sender
+{
+	textField.text = URL_BASE_OPDS_DEFAULT1;
+}
+- (IBAction)setDefaultUrl2:(id)sender
+{
+	textField.text = URL_BASE_OPDS_DEFAULT2;
+}
+
+#pragma mark -
+- (void)saveUrlToUserDefault:(NSString*)urlStr
+{
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"field=%@", textField.text);
+	NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
+	[userDefault setValue:urlStr forKey:URL_OPDS];
+}
+												 
++ (NSString*)getUrlBaseWithOpds
+{
+	//load from UserDefault.
+    NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
+	id obj = [settings valueForKey:URL_OPDS];
+	if (!obj) {		//not exists.
+        NSLog(@"no URL for opds in UserDefault.");
+		return URL_BASE_OPDS_DEFAULT1;
+	}
+	return (NSString*)obj;
 }
 
 
@@ -57,6 +83,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+	textField.text = [ConfigViewController getUrlBaseWithOpds];
 }
 
 - (void)viewDidUnload

@@ -14,7 +14,8 @@
 
 #define URL_BASE_CONTENT	@"http://202.172.29.93/pcms/"
 #define URL_BASE_CMS		@"http://202.172.29.93/cm/cakephp/"
-#define URL_BASE_OPDS			@"http://localhost:8080"
+#define URL_BASE_OPDS_DEFAULT1			@"http://ec2-50-18-132-34.us-west-1.compute.amazonaws.com:8080"
+#define URL_BASE_OPDS_DEFAULT2			@"http://localhost:8080"
 #define URL_SUFFIX_OPDS		@"/opds"
 //
 #define SUMMARY_DIR		@"contentList"

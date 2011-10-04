@@ -222,7 +222,8 @@
 	//parser.targetTableVC = self;
 	
 	//Get OPDS Root.
-	NSString* urlStr = [NSString stringWithFormat:@"%@%@", URL_BASE_OPDS, URL_SUFFIX_OPDS];
+	NSString* urlBaseStr = [ConfigViewController getUrlBaseWithOpds];
+	NSString* urlStr = [NSString stringWithFormat:@"%@%@", urlBaseStr, URL_SUFFIX_OPDS];
 	NSURL* rootUrl = [[NSURL alloc] initWithString:urlStr];
 	NSURL* elementUrl = [parser getOpdsRoot:rootUrl];
 	if (elementUrl != nil) {

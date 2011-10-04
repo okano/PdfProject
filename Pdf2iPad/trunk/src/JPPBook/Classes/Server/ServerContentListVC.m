@@ -263,6 +263,7 @@
 - (void)didFinishParseOpdsElement:(NSMutableArray*)resultArray{
 	LOG_CURRENT_METHOD;
 	//NSLog(@"contentList=%@", [appDelegate.serverContentListDS description]);
+	[self reloadData];
 }
 - (void)didFailParseOpdsElement{ LOG_CURRENT_METHOD; }
 

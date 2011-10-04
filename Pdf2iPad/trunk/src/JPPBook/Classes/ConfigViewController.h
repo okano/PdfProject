@@ -8,12 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "Utility.h"
+#import "Define.h"
+#import "UrlDefine.h"
 
 @interface ConfigViewController : UIViewController {
 	IBOutlet UITextField* textField;   
 }
 - (IBAction)handleDoneButton:(id)sender;
-- (void)saveUrlToUserDefault:(NSString*)urlStr;
 - (IBAction)closeThisView:(id)sender;
+//
+- (IBAction)setDefaultUrl1:(id)sender;
+- (IBAction)setDefaultUrl2:(id)sender;
+//
+- (void)saveUrlToUserDefault:(NSString*)urlStr;
++ (NSString*)getUrlBaseWithOpds;
 
 @end
