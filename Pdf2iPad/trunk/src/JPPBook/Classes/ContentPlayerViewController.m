@@ -111,9 +111,22 @@
 	//Open PDF file.
 	//[self initPdfWithFilename:pdfFilename];
 	//Setup maxPageNum.
+	BOOL errorInSetupPdfBasicInfo = NO;	//***use before exit "viewDidLoad"!.
 	if ([self setupPdfBasicInfo] == FALSE) {
 		NSLog(@"cannot get pdf infomation.");
-		return;
+		//Show alert.
+		UIAlertView *alert = [[UIAlertView alloc]
+							  initWithTitle:nil
+							  message:@"cannot open pdf file."
+							  delegate:nil
+							  cancelButtonTitle:nil
+							  otherButtonTitles:@"OK", nil];
+		[alert show];
+		
+		
+		//close this view after setup complete.
+		errorInSetupPdfBasicInfo = YES;
+		//return;
 	}
 	
 	//Generate Thumbnail image.
@@ -185,6 +198,13 @@
 	
 	[self renderAllLinks];
 	[self playSoundAtIndex:currentPageNum];
+	
+	
+	//
+	if (errorInSetupPdfBasicInfo == YES) {
+		NSLog(@"errorInSetupPdfBasicInfo=%d", errorInSetupPdfBasicInfo);
+		[self showMenuBar];
+	}
 }
 
 
