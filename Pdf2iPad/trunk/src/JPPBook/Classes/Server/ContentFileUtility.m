@@ -76,6 +76,7 @@
 }
 
 
+#pragma mark - Temporary Directory.
 /**
  *Temporary Directory.
  */
@@ -97,6 +98,20 @@
 }
 
 
+#pragma mark - Download/Extract director for zip file.
++ (NSString*)getContentDownloadDirectory
+{
+	return [[self getContentTmpDirectory]
+			stringByAppendingPathComponent:CONTENT_DONWLOAD_DIRECTORY];
+}
++ (NSString*)getContentExtractDirectory
+{
+	return [[self getContentTmpDirectory]
+			stringByAppendingPathComponent:CONTENT_EXTRACT_DIRECTORY];
+}
+
+
+#pragma mark - Cover image Directory.
 /**
  *Thumbnail Directory.
  */

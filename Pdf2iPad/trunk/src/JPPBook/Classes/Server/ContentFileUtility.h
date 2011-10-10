@@ -11,6 +11,8 @@
 #define CONTENT_DETAIL_DIRECTORY	@"contentDetail"
 #define CONTENT_BODY_DIRECTORY		@"contentBody"
 #define CONTENT_TMP_DIRECTORY		@"tmp"
+#define CONTENT_DONWLOAD_DIRECTORY  @"downloads"
+#define CONTENT_EXTRACT_DIRECTORY	@"extract"
 
 @interface ContentFileUtility : NSObject {
 }
@@ -25,6 +27,9 @@
 + (NSString*)getContentTmpDirectory;
 + (NSString*)getContentTmpDirectoryWithContentId:(NSString*)cId;
 + (NSString*)getContentTmpDirectoryHasResourcesWithContentId:(NSString*)cId;
+//
++ (NSString*)getContentDownloadDirectory;
++ (NSString*)getContentExtractDirectory;
 
 //thumbnail image.
 + (NSString*)getThumbnailIconFilenameWithContentId:(NSString*)cId;
