@@ -101,8 +101,16 @@
 		2995613D1417822A001C1D53 /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 299561341417822A001C1D53 /* DDXMLDocument.m */; };
 		2995613E1417822A001C1D53 /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 299561361417822A001C1D53 /* DDXMLElement.m */; };
 		2995613F1417822A001C1D53 /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 299561381417822A001C1D53 /* DDXMLNode.m */; };
+		299C2DBA1441D94300F3CAFB /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 299C2DB91441D94300F3CAFB /* libz.1.2.3.dylib */; };
 		299CD2AA13861BD3001C2B4B /* SKBE_MainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 299CD2A913861BD3001C2B4B /* SKBE_MainVC.m */; };
 		299CD2AE13861BDD001C2B4B /* SKBEngine_PopoverScrollImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 299CD2AD13861BDD001C2B4B /* SKBEngine_PopoverScrollImageViewController.m */; };
+		29A26341143EBFF900D417E0 /* ServerContentDownloadVC+extract.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A26340143EBFF900D417E0 /* ServerContentDownloadVC+extract.m */; };
+		29A26355143EC0F800D417E0 /* HetimaUnZipContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A26345143EC0F800D417E0 /* HetimaUnZipContainer.m */; };
+		29A26356143EC0F800D417E0 /* HetimaUnZipItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A26347143EC0F800D417E0 /* HetimaUnZipItem.m */; };
+		29A26357143EC0F800D417E0 /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 29A26348143EC0F800D417E0 /* License.txt */; };
+		29A26358143EC0F800D417E0 /* Read me.txt in Resources */ = {isa = PBXBuildFile; fileRef = 29A26349143EC0F800D417E0 /* Read me.txt */; };
+		29A2635B143EC0F800D417E0 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 29A2634E143EC0F800D417E0 /* ioapi.c */; };
+		29A2635F143EC0F800D417E0 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 29A26353143EC0F800D417E0 /* unzip.c */; };
 		29A71D4213A32F4C00DFB4C8 /* ContentPlayerViewController+movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A71D4113A32F4C00DFB4C8 /* ContentPlayerViewController+movie.m */; };
 		29AAD5E512BC938400CF7C91 /* icon_list_bullets.png in Resources */ = {isa = PBXBuildFile; fileRef = 29AAD5E412BC938400CF7C91 /* icon_list_bullets.png */; };
 		29AAD5EA12BC943C00CF7C91 /* TocTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29AAD5E912BC943C00CF7C91 /* TocTableViewController.m */; };
@@ -270,10 +278,24 @@
 		299561371417822A001C1D53 /* DDXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLNode.h; sourceTree = "<group>"; };
 		299561381417822A001C1D53 /* DDXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLNode.m; sourceTree = "<group>"; };
 		2995613A1417822A001C1D53 /* DDXMLPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLPrivate.h; sourceTree = "<group>"; };
+		299C2DB91441D94300F3CAFB /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
 		299CD2A813861BD3001C2B4B /* SKBE_MainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKBE_MainVC.h; path = SKBEngine/SKBE_MainVC.h; sourceTree = "<group>"; };
 		299CD2A913861BD3001C2B4B /* SKBE_MainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKBE_MainVC.m; path = SKBEngine/SKBE_MainVC.m; sourceTree = "<group>"; };
 		299CD2AC13861BDD001C2B4B /* SKBEngine_PopoverScrollImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKBEngine_PopoverScrollImageViewController.h; path = SKBEngine/SKBEngine_PopoverScrollImageViewController.h; sourceTree = "<group>"; };
 		299CD2AD13861BDD001C2B4B /* SKBEngine_PopoverScrollImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKBEngine_PopoverScrollImageViewController.m; path = SKBEngine/SKBEngine_PopoverScrollImageViewController.m; sourceTree = "<group>"; };
+		29A26340143EBFF900D417E0 /* ServerContentDownloadVC+extract.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ServerContentDownloadVC+extract.m"; path = "Server/ServerContentDownloadVC+extract.m"; sourceTree = "<group>"; };
+		29A26343143EC0F800D417E0 /* HetimaUnZip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HetimaUnZip.h; sourceTree = "<group>"; };
+		29A26344143EC0F800D417E0 /* HetimaUnZipContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HetimaUnZipContainer.h; sourceTree = "<group>"; };
+		29A26345143EC0F800D417E0 /* HetimaUnZipContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HetimaUnZipContainer.m; sourceTree = "<group>"; };
+		29A26346143EC0F800D417E0 /* HetimaUnZipItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HetimaUnZipItem.h; sourceTree = "<group>"; };
+		29A26347143EC0F800D417E0 /* HetimaUnZipItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HetimaUnZipItem.m; sourceTree = "<group>"; };
+		29A26348143EC0F800D417E0 /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
+		29A26349143EC0F800D417E0 /* Read me.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Read me.txt"; sourceTree = "<group>"; };
+		29A2634D143EC0F800D417E0 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		29A2634E143EC0F800D417E0 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		29A2634F143EC0F800D417E0 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		29A26353143EC0F800D417E0 /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		29A26354143EC0F800D417E0 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
 		29A71D4113A32F4C00DFB4C8 /* ContentPlayerViewController+movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ContentPlayerViewController+movie.m"; sourceTree = "<group>"; };
 		29A832A614021BCE00AD6207 /* UrlDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlDefine.h; sourceTree = "<group>"; };
 		29AAD5E412BC938400CF7C91 /* icon_list_bullets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_list_bullets.png; sourceTree = "<group>"; };
@@ -284,7 +306,7 @@
 		29B7D4491330FFF30023BC81 /* MarkerPenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkerPenView.h; sourceTree = "<group>"; };
 		29B7D44A1330FFF30023BC81 /* MarkerPenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkerPenView.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		29BA980B143A040200F1FAEB /* ConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = ConfigViewController.h; sourceTree = "<group>"; };
+		29BA980B143A040200F1FAEB /* ConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigViewController.h; sourceTree = "<group>"; };
 		29BA980C143A040200F1FAEB /* ConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigViewController.m; sourceTree = "<group>"; };
 		29BA980D143A040200F1FAEB /* ConfigView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigView.xib; sourceTree = "<group>"; };
 		29C6852013B9C66500FB164B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -336,6 +358,7 @@
 				29FF4B8813B1D61A002DAEDF /* AudioToolbox.framework in Frameworks */,
 				29C6852113B9C66500FB164B /* AVFoundation.framework in Frameworks */,
 				29F36CA513C31B1400D0B289 /* StoreKit.framework in Frameworks */,
+				299C2DBA1441D94300F3CAFB /* libz.1.2.3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,11 +423,13 @@
 		296B930E14298830003CB4CB /* ServerContentDownload */ = {
 			isa = PBXGroup;
 			children = (
-				2916EC541429B912006DBDC0 /* Util */,
 				2916EC4B1429B754006DBDC0 /* DownloadView.xib */,
 				296B93101429887D003CB4CB /* ServerContentDownload.xib */,
 				2916EC511429B8F8006DBDC0 /* ServerContentDownloadVC.h */,
 				2916EC521429B8F8006DBDC0 /* ServerContentDownloadVC.m */,
+				29A26340143EBFF900D417E0 /* ServerContentDownloadVC+extract.m */,
+				2916EC541429B912006DBDC0 /* Util */,
+				29A26342143EC0F800D417E0 /* HetimaUnZip */,
 			);
 			name = ServerContentDownload;
 			sourceTree = "<group>";
@@ -514,6 +539,33 @@
 			path = Private;
 			sourceTree = "<group>";
 		};
+		29A26342143EC0F800D417E0 /* HetimaUnZip */ = {
+			isa = PBXGroup;
+			children = (
+				29A26343143EC0F800D417E0 /* HetimaUnZip.h */,
+				29A26344143EC0F800D417E0 /* HetimaUnZipContainer.h */,
+				29A26345143EC0F800D417E0 /* HetimaUnZipContainer.m */,
+				29A26346143EC0F800D417E0 /* HetimaUnZipItem.h */,
+				29A26347143EC0F800D417E0 /* HetimaUnZipItem.m */,
+				29A26348143EC0F800D417E0 /* License.txt */,
+				29A26349143EC0F800D417E0 /* Read me.txt */,
+				29A2634A143EC0F800D417E0 /* unzip */,
+			);
+			path = HetimaUnZip;
+			sourceTree = "<group>";
+		};
+		29A2634A143EC0F800D417E0 /* unzip */ = {
+			isa = PBXGroup;
+			children = (
+				29A2634D143EC0F800D417E0 /* crypt.h */,
+				29A2634E143EC0F800D417E0 /* ioapi.c */,
+				29A2634F143EC0F800D417E0 /* ioapi.h */,
+				29A26353143EC0F800D417E0 /* unzip.c */,
+				29A26354143EC0F800D417E0 /* unzip.h */,
+			);
+			path = unzip;
+			sourceTree = "<group>";
+		};
 		29A7E3E3136EB88500EC64EC /* SKBEngine */ = {
 			isa = PBXGroup;
 			children = (
@@ -543,6 +595,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				299C2DB91441D94300F3CAFB /* libz.1.2.3.dylib */,
 				32CA4F630368D1EE00C91783 /* JPPBook_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
@@ -839,6 +892,8 @@
 				296B93111429887D003CB4CB /* ServerContentDownload.xib in Resources */,
 				2916EC4D1429B754006DBDC0 /* DownloadView.xib in Resources */,
 				29BA980F143A040200F1FAEB /* ConfigView.xib in Resources */,
+				29A26357143EC0F800D417E0 /* License.txt in Resources */,
+				29A26358143EC0F800D417E0 /* Read me.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -897,6 +952,11 @@
 				2916EC641429BC6D006DBDC0 /* ContentUrlUtility.m in Sources */,
 				2916EC671429E9E1006DBDC0 /* CoverUtility.m in Sources */,
 				29BA980E143A040200F1FAEB /* ConfigViewController.m in Sources */,
+				29A26341143EBFF900D417E0 /* ServerContentDownloadVC+extract.m in Sources */,
+				29A26355143EC0F800D417E0 /* HetimaUnZipContainer.m in Sources */,
+				29A26356143EC0F800D417E0 /* HetimaUnZipItem.m in Sources */,
+				29A2635B143EC0F800D417E0 /* ioapi.c in Sources */,
+				29A2635F143EC0F800D417E0 /* unzip.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

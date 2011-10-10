@@ -13,8 +13,9 @@
 #import "NSFileManager+Utility.h"
 #import "ContentFileUtility.h"
 #import "ContentUrlUtility.h"
+#import "HetimaUnZip.h"
 
-@interface ServerContentDownloadVC : UIViewController <URLDownloadDeleagte> {
+@interface ServerContentDownloadVC : UIViewController <URLDownloadDeleagte, UIActionSheetDelegate, HetimaUnZipItemDelegate> {
 	//Downloader
 	URLDownload *downloader;
 	NSLock *downloaderLock;
@@ -30,10 +31,22 @@
 	long long expectedContentLength;
 	long long downloadedContentLength;
 	long long expectedUmcompressedContentSize;
+	//UI
+	IBOutlet UILabel* progressLabel;
+	IBOutlet UIProgressView* myProgressBar;
+	IBOutlet UILabel* myProgressLabel;
+	IBOutlet UILabel* downloadedContentLengthLabel;
+	IBOutlet UILabel* expectedContentLengthLabel;
 }
 //targetCid is typedef UInteger. non @property.
 @property (nonatomic, retain) NSString* targetUuid;
 @property (nonatomic, retain) NSURL* targetUrl;
+//GUI
+@property (nonatomic, retain) UILabel* progressLabel;
+@property (nonatomic, retain) UILabel* myProgressLabel;
+@property (nonatomic, retain) UILabel* downloadedContentLengthLabel;
+@property (nonatomic, retain) UILabel* expectedContentLengthLabel;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil
 			   bundle:(NSBundle *)nibBundleOrNil
@@ -43,4 +56,14 @@
 - (void)releaseDownloader;
 
 
+@end
+
+// Handle zip.
+@interface ServerContentDownloadVC (extract)
+//- (BOOL)ensureExtractContentWithContentId:(NSString*)cId;
+//- (BOOL)unzipFileToTmpDirectory:(NSString*)fromFileFullname contentId:(ContentId)cId;
+- (BOOL)unzipFile:(NSString*)fromFileFullname ToDirectory:(NSString*)toDirectory;
+
+//
+- (void)item:(HetimaUnZipItem *)item didExtractDataOfLength:(NSUInteger)length;
 @end

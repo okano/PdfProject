@@ -12,6 +12,7 @@
 @implementation ServerContentDownloadVC
 @synthesize targetUuid;
 @synthesize targetUrl;
+@synthesize progressLabel, myProgressLabel, downloadedContentLengthLabel, expectedContentLengthLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -63,13 +64,13 @@
 		NSFileManager* fMgr = [NSFileManager defaultManager];
 		BOOL isDir;
 		NSError* err = nil;
-		NSString* contentBodyDirectory = [ContentFileUtility getContentBodyDirectory];
-		if ( !([fMgr fileExistsAtPath:contentBodyDirectory isDirectory:&isDir] && isDir))
+		NSString* contentDownloadDirectory = [ContentFileUtility getContentDownloadDirectory];
+		if ( !([fMgr fileExistsAtPath:contentDownloadDirectory isDirectory:&isDir] && isDir))
 		{
-			[fMgr createDirectoryAtPath:contentBodyDirectory withIntermediateDirectories:TRUE attributes:nil error:&err];
+			[fMgr createDirectoryAtPath:contentDownloadDirectory withIntermediateDirectories:TRUE attributes:nil error:&err];
 			if (err)
 			{
-				NSLog(@"content body directory cannot create. path=%@, err=%@", contentBodyDirectory, [err localizedDescription]);
+				NSLog(@"content download directory cannot create. path=%@, err=%@", contentDownloadDirectory, [err localizedDescription]);
 				return;
 			}
 		}
@@ -82,11 +83,10 @@
 		
 		//Generate Downloader.(and start download automatically.)
 		NSURLRequest* req = [NSURLRequest requestWithURL:targetUrl];
-		NSString* downloadDirectory = [ContentFileUtility getContentBodyDirectory];
 		NSLog(@"targetUrl=%@", [targetUrl description]);
-		NSLog(@"downloadDirectory=%@", downloadDirectory);
+		NSLog(@"contentDownloadDirectory=%@", contentDownloadDirectory);
 		downloader = [[URLDownload alloc] initWithRequest:req
-												directory:downloadDirectory
+												directory:contentDownloadDirectory
 					  							 delegate:self];
 	}
 }
@@ -116,6 +116,19 @@
 	NSString* newContentIdStr = [NSString stringWithFormat:@"%d", newContentId];
 	NSLog(@"new ContentId=%d", newContentId);
 	
+	
+	//Extract file.
+	[FileUtility makeDir:[ContentFileUtility getContentExtractDirectory]];
+
+	//Unzip Content file.
+	if ( [self ensureExtractContentWithContentId:newContentIdStr] == FALSE)
+	{
+		NSLog(@"extract fail.");
+		[self.navigationController popViewControllerAnimated:NO];
+	}
+	
+	
+	
 	//Move downloaded file to ContentBodyDirectory.
 	NSString* newFilename = [NSString stringWithFormat:@"%d.%@", newContentId, @"pdf"];
 	NSString* bodyDirectory = [ContentFileUtility getContentBodyDirectory];
@@ -132,6 +145,9 @@
 		NSLog(@"fail to move downloaded file. fromPath=%@, toPath=%@, result=%@, %@",
 			  download.filePath, toFilenameFull, [error localizedDescription], [error localizedFailureReason]);
 	}
+	
+	
+	
 	
 	//Add downloaded metadata to (inner)ContentListDS.
 	NSString* uuid = targetUuid;
@@ -199,6 +215,8 @@
 	// プログレスバーの表示でもやる
 	LOG_CURRENT_METHOD;
 	NSLog(@"length=%d", length);
+	downloadedContentLength += length;
+	downloadedContentLengthLabel.text = [NSString stringWithFormat:@"%10ld", downloadedContentLength];
 }
 
 
