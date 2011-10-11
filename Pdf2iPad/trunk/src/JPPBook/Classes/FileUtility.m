@@ -86,6 +86,7 @@
 }
 
 #pragma mark - CSV file parser.
+//only from MainBundle.
 + (NSArray*)parseDefineCsv:(NSString*)filename
 {
 	//LOG_CURRENT_METHOD;
@@ -98,8 +99,15 @@
 		NSLog(@"csvfile not found. filename=%@.%@", filename, @"csv");
 		return nil;
 	}
+	
+	return [self parseDefineCsvWithFullFilename:csvFilePath];
+}
+
+
++ (NSArray*)parseDefineCsvWithFullFilename:(NSString*)filenameFull
+{
 	NSError* error = nil;
-	NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
+	NSString* text = [NSString stringWithContentsOfFile:filenameFull encoding:NSUTF8StringEncoding error:&error];
 	if (error != nil) {
 		NSLog(@"Error:%@", [error localizedDescription]);
 		return nil;
@@ -136,6 +144,22 @@
 
 + (NSArray*)parseDefineCsv:(NSString*)filename contentId:(ContentId)cid 
 {
+	//NSString* filenameWithCid = [NSString stringWithFormat:@"%@_%d", filename, cid];
+	//return [self parseDefineCsv:filenameWithCid];
+
+
+	//Open CSV file from (1)ContentBody Directory (2)mainBundle
+	NSString* cidStr = [NSString stringWithFormat:@"%d", cid];
+	NSString* csvFilePath1 = [[[[ContentFileUtility getContentBodyDirectoryWithContentId:cidStr]
+							  stringByAppendingPathComponent:@"csv"]
+							   stringByAppendingPathComponent:filename]
+							  stringByAppendingPathExtension:@"csv"];
+	if ([self existsFile:csvFilePath1] == YES) {
+		//(1)get from ContentBody Directory.
+		return [self parseDefineCsvWithFullFilename:csvFilePath1];
+	}
+	
+	//(2)get from mainBundle
 	NSString* filenameWithCid = [NSString stringWithFormat:@"%@_%d", filename, cid];
 	return [self parseDefineCsv:filenameWithCid];
 }

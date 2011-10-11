@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Utility.h"
+#import "ContentFileUtility.h"
 #import "Define.h"
 #import "UrlDefine.h"
 #import "InAppPurchaseDefine.h"
@@ -28,6 +29,7 @@
 
 //CSV file parser.
 + (NSArray*)parseDefineCsv:(NSString*)filename;
++ (NSArray*)parseDefineCsvWithFullFilename:(NSString*)filenameFull;
 + (NSArray*)parseDefineCsv:(NSString*)filename contentId:(ContentId)cid;
 
 #pragma mark - like POSIX file uty.
