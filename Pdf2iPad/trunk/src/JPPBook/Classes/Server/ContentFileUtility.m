@@ -45,11 +45,14 @@
 					 stringByAppendingPathComponent:CONTENT_BODY_DIRECTORY];
 	return dir;
 }
-
 + (NSString*)getContentBodyDirectoryWithContentId:(NSString*)cId
 {
-	return [[[self getContentBodyDirectory]
-			  stringByAppendingPathComponent:cId]
+	return [[self getContentBodyDirectory]
+			stringByAppendingPathComponent:cId];
+}
++ (NSString*)getContentBodyPdfDirectoryWithContentId:(NSString*)cId
+{
+	return [[self getContentBodyDirectoryWithContentId:cId]
 			 stringByAppendingPathComponent:@"pdf"];
 }
 
@@ -59,7 +62,7 @@
 + (NSString*)getContentBodyFilenamePdf:(NSString*)cId
 {
 	// generate file name.
-	NSString* contentDirectory = [self getContentBodyDirectoryWithContentId:cId];
+	NSString* contentDirectory = [self getContentBodyPdfDirectoryWithContentId:cId];
 	NSString* filename = [NSString stringWithFormat:@"%@.pdf", cId];
 	NSString* filenameFull = [contentDirectory stringByAppendingPathComponent:filename];
 	

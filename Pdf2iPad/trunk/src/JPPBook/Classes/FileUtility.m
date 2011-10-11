@@ -224,5 +224,16 @@
     return YES;
 }
 
+#pragma mark -
++ (NSString*)cleanString:(NSString*)str
+{
+	NSString* tmpStrWithoutDoubleQuote = [str stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c", 0x22]
+																		withString:@""];	/* delete DoubleQuote. */
+	NSString* tmpStrWithoutCR = [tmpStrWithoutDoubleQuote stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c", 0x0d]
+																					withString:@""];	/* delete CR. */
+	NSString* tmpStrWithoutLF = [tmpStrWithoutCR stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c", 0x22]
+																		   withString:@""];	/* delete LF. */
+	return tmpStrWithoutLF;
+}
 
 @end

@@ -38,6 +38,7 @@
 	//Copy PDF file in MainBundle resource to local file.
 	if ([self isFirstLaunchUp] == YES) {
 		[self copyPdfFromResourceToFile];
+		[self copyOtherfileFromResourceToFile];
 	}
 	
 	//Setup for InAppPurchase.
@@ -112,12 +113,105 @@
 		//NSLog(@"resourceName=%@, filenameFull=%@", resourceName, filenameFull);
 		
 		//Make directory.
-		[FileUtility makeDir:[ContentFileUtility getContentBodyDirectoryWithContentId:cidStr]];
+		[FileUtility makeDir:[ContentFileUtility getContentBodyPdfDirectoryWithContentId:cidStr]];
 		
 		//Copy.
 		[FileUtility res2file:resourceName fileNameFull:filenameFull];
 	}
 }
+
+- (void)copyOtherfileFromResourceToFile
+{
+	NSString* resourceName;
+	NSString* toFilenameFull;
+	NSArray* lines;
+	
+	/*
+	 * Copy CSV files, other resource files.
+	 */
+	
+	//Copy each contents in Bundle Resource to local directory.
+	int maxCount = [contentListDS count];
+	for (int i = 0; i < maxCount; i = i + 1) {
+		ContentId cid = [contentListDS contentIdAtIndex:i];
+		NSString* cidStr = [NSString stringWithFormat:@"%d", cid];
+		
+		/**
+		 * Create directory.
+		 */
+		NSString* csvDirectory = [[ContentFileUtility getContentBodyDirectoryWithContentId:cidStr]
+								  stringByAppendingPathComponent:@"csv"];
+		[FileUtility makeDir:csvDirectory];
+		
+		/**
+		 * Movie define.
+		 */
+		//Create Folder.
+		NSString* toDir = [[ContentFileUtility getContentBodyDirectoryWithContentId:cidStr]
+						   stringByAppendingPathComponent:@"movie"];
+		[FileUtility makeDir:toDir];
+		//Copy CSV file for movie define.
+		resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_MOVIE contentId:cid]
+						stringByAppendingPathExtension:@"csv"];
+		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_MOVIE contentId:cid];
+		[FileUtility res2file:resourceName fileNameFull:toFilenameFull];
+		//Copy movie file.
+		lines = [FileUtility parseDefineCsv:CSVFILE_MOVIE contentId:cid];
+		for (NSString* line in lines) {
+			NSArray* tmpCsvArray = [line componentsSeparatedByString:@","];
+			if ([tmpCsvArray count] < 6) {
+				continue;	//skip error line.
+			}
+			NSString* tmpStr = [tmpCsvArray objectAtIndex:5];
+			NSString* filename = [FileUtility cleanString:tmpStr];
+			[FileUtility res2file:filename
+					 fileNameFull:[toDir stringByAppendingPathComponent:filename]];
+		}
+		
+		
+		/**
+		 * URL Link define.
+		 */
+		//Copy CSV file for URL Link define.
+		resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_URLLINK contentId:cid]
+						stringByAppendingPathExtension:@"csv"];
+		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_URLLINK contentId:cid];
+		NSLog(@"resourceName=%@, toFilenameFull=%@", resourceName, toFilenameFull);
+		[FileUtility res2file:resourceName fileNameFull:toFilenameFull];
+		
+		
+		/**
+		 * Sound define.
+		 */
+		
+		/**
+		 * PageJumpLink define.
+		 */
+		
+		/**
+		 * InPageScrollView define.
+		 */
+		
+		/**
+		 * InPagePdf define.
+		 */
+		
+		/**
+		 * InPagePng define.
+		 */
+		
+		/**
+		 * PopoverImage define.
+		 */
+		
+		/**
+		 * TOC define.
+		 */
+		
+		
+	}
+}
+
 
 /*
 #pragma mark - ContentId for download.

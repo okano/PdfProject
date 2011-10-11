@@ -186,7 +186,7 @@
 	NSError* error = nil;
 
 	//Make directory for extract.
-	NSString* dirStr = [ContentFileUtility getContentBodyDirectoryWithContentId:contentIdStr];
+	NSString* dirStr = [ContentFileUtility getContentBodyPdfDirectoryWithContentId:contentIdStr];
 	[FileUtility makeDir:dirStr];	
 	
 	//Copy file.

@@ -42,6 +42,8 @@
 + (void)removeFile:(NSString*)fileNameFull;
 + (BOOL)res2file:(NSString*)res fileNameFull:(NSString*)filenameFull;	//Resource to File.
 
+//String cleaner
++ (NSString*)cleanString:(NSString*)str;
 @end
 
 //

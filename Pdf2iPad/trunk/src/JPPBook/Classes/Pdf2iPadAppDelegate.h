@@ -51,6 +51,7 @@
 //Copy KUMIKOMI contents to local directory.
 - (BOOL)isFirstLaunchUp;
 - (void)copyPdfFromResourceToFile;
+- (void)copyOtherfileFromResourceToFile;
 
 //ContentId for download.
 //- (ContentId)nextContentId;

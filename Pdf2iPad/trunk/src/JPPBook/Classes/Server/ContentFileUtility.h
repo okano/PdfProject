@@ -21,7 +21,8 @@
 + (NSString*)getContentDetailDirectoryWithContentId:(NSString*)cId;
 + (NSString*)getContentDetailFilename:(NSString*)cId;
 + (NSString*)getContentBodyDirectory;								//contentBody/
-+ (NSString*)getContentBodyDirectoryWithContentId:(NSString*)cId;	//contentBody/{cId}/pdf/
++ (NSString*)getContentBodyDirectoryWithContentId:(NSString*)cId;	//contentBody/{cId}/
++ (NSString*)getContentBodyPdfDirectoryWithContentId:(NSString*)cId;//contentBody/{cId}/pdf/
 + (NSString*)getContentBodyFilenamePdf:(NSString*)targetContentId;	//contentBody/{cId}/pdf/{cId}.pdf
 + (NSString*)getContentBodyFilenameZip:(NSString*)targetContentId;	//contentBody/{cId}/pdf/{cId}.zip
 //
