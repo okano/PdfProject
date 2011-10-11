@@ -20,7 +20,7 @@
 	
 	
 	//parse csv file.
-	NSString* targetFilename = @"soundDefine";
+	NSString* targetFilename = CSVFILE_SOUND;
 	NSArray* lines;
 	if ([self isMultiContents] == TRUE) {
 		lines = [FileUtility parseDefineCsv:targetFilename contentId:currentContentId];

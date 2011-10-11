@@ -40,3 +40,16 @@
 + (BOOL)res2file:(NSString*)res fileNameFull:(NSString*)filenameFull;	//Resource to File.
 
 @end
+
+//
+#define CSVFILE_URLLINK			@"urlLinkDefine"
+//
+#define CSVFILE_MOVIE			@"movieDefine"
+#define CSVFILE_SOUND			@"soundDefine"
+#define CSVFILE_PAGEJUMPLINK 	@"pageJumpLinkDefine"
+#define CSVFILE_INPAGE_SCROLLVIEW	@"inPageScrollViewDefine"
+#define CSVFILE_INPAGE_PDF		@"inPagePdfDefine"
+#define CSVFILE_INPAGE_PNG		@"inPagePngDefine"
+#define CSVFILE_POPOVER_IMAGE	@"popoverImageDefine"
+//
+#define CSVFILE_TOC				@"tocDefine"

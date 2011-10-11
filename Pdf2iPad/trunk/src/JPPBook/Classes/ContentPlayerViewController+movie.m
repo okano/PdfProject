@@ -18,7 +18,7 @@
 	movieDefine = [[NSMutableArray alloc] init];
 	
 	//parse csv file.
-	NSString* targetFilename = @"movieDefine";
+	NSString* targetFilename = CSVFILE_MOVIE;
 	NSArray* lines;
 	if ([self isMultiContents] == TRUE) {
 		lines = [FileUtility parseDefineCsv:targetFilename contentId:currentContentId];

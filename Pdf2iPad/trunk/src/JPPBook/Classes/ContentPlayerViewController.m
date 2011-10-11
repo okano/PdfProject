@@ -795,7 +795,7 @@
 	NSMutableDictionary* tmpDict;
 	
 	//parse csv file.
-	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:@"urlLinkDefine" ofType:@"csv"];
+	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:CSVFILE_URLLINK ofType:@"csv"];
 	NSError* error;
 	NSString* text = [NSString stringWithContentsOfFile:csvFilePath encoding:NSUTF8StringEncoding error:&error];
 	NSString* text2 = [text stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];
@@ -1939,7 +1939,7 @@
 	pageJumpLinkDefine = [[NSMutableArray alloc] init];
 	
 	//parse csv file.
-	NSString* targetFilename = @"pageJumpLinkDefine";
+	NSString* targetFilename = CSVFILE_PAGEJUMPLINK;
 	NSArray* lines;
 	if ([self isMultiContents] == TRUE) {
 		lines = [FileUtility parseDefineCsv:targetFilename contentId:currentContentId];
@@ -2012,7 +2012,7 @@
 	inPageScrollViewDefine = [[NSMutableArray alloc] init];
 	
 	//parse csv file.
-	NSString* targetFilename = @"inPageScrollViewDefine";
+	NSString* targetFilename = CSVFILE_INPAGE_SCROLLVIEW;
 	NSArray* lines;
 	if ([self isMultiContents] == TRUE) {
 		lines = [FileUtility parseDefineCsv:targetFilename contentId:currentContentId];
@@ -2115,7 +2115,7 @@
 	inPagePdfDefine = [[NSMutableArray alloc] init];
 	
 	//parse csv file.
-	NSString* targetFilename = @"inPagePdfDefine";
+	NSString* targetFilename = CSVFILE_INPAGE_PDF;
 	NSArray* lines;
 	if ([self isMultiContents] == TRUE) {
 		lines = [FileUtility parseDefineCsv:targetFilename contentId:currentContentId];
@@ -2283,7 +2283,7 @@
 	inPagePngDefine = [[NSMutableArray alloc] init];
 	
 	//parse csv file.
-	NSString* targetFilename = @"inPagePngDefine";
+	NSString* targetFilename = CSVFILE_INPAGE_PNG;
 	NSArray* lines;
 	if ([self isMultiContents] == TRUE) {
 		lines = [FileUtility parseDefineCsv:targetFilename contentId:currentContentId];
@@ -2423,7 +2423,7 @@
 	popoverImageDefine = [[NSMutableArray alloc] init];
 	
 	//parse csv file.
-	NSString* targetFilename = @"popoverImageDefine";
+	NSString* targetFilename = CSVFILE_POPOVER_IMAGE;
 	NSArray* lines;
 	if ([self isMultiContents] == TRUE) {
 		lines = [FileUtility parseDefineCsv:targetFilename contentId:currentContentId];
@@ -2584,7 +2584,7 @@
 	appDelegate.tocDefine = [[NSMutableArray alloc] init];
 	
 	//parse csv file.
-	NSString* targetFilename = @"tocDefine";
+	NSString* targetFilename = CSVFILE_TOC;
 	NSArray* lines;
 	if ([self isMultiContents] == TRUE) {
 		lines = [FileUtility parseDefineCsv:targetFilename contentId:currentContentId];
