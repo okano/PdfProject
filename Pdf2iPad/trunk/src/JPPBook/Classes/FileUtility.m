@@ -149,19 +149,32 @@
 
 
 	//Open CSV file from (1)ContentBody Directory (2)mainBundle
-	NSString* cidStr = [NSString stringWithFormat:@"%d", cid];
-	NSString* csvFilePath1 = [[[[ContentFileUtility getContentBodyDirectoryWithContentId:cidStr]
-							  stringByAppendingPathComponent:@"csv"]
-							   stringByAppendingPathComponent:filename]
-							  stringByAppendingPathExtension:@"csv"];
+	NSString* csvFilePath1 = [self getCsvFilenameInFolder:filename contentId:cid];
 	if ([self existsFile:csvFilePath1] == YES) {
 		//(1)get from ContentBody Directory.
 		return [self parseDefineCsvWithFullFilename:csvFilePath1];
 	}
 	
 	//(2)get from mainBundle
-	NSString* filenameWithCid = [NSString stringWithFormat:@"%@_%d", filename, cid];
+	//NSString* filenameWithCid = [NSString stringWithFormat:@"%@_%d", filename, cid];
+	NSString* filenameWithCid = [self getCsvFilenameInMainBundle:filename contentId:cid];
 	return [self parseDefineCsv:filenameWithCid];
+}
+
+#pragma mark CSV filename utility.
++ (NSString*)getCsvFilenameInFolder:(NSString*)filename contentId:(ContentId)cid
+{
+	NSString* cidStr = [NSString stringWithFormat:@"%d", cid];
+	NSString* csvFilePath1 = [[[[ContentFileUtility getContentBodyDirectoryWithContentId:cidStr]
+								stringByAppendingPathComponent:@"csv"]
+							   stringByAppendingPathComponent:filename]
+							  stringByAppendingPathExtension:@"csv"];
+	return csvFilePath1;
+}
++ (NSString*)getCsvFilenameInMainBundle:(NSString*)filename contentId:(ContentId)cid
+{
+	NSString* filenameWithCid = [NSString stringWithFormat:@"%@_%d", filename, cid];
+	return filenameWithCid;
 }
 
 

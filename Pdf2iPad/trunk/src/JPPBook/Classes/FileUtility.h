@@ -31,6 +31,9 @@
 + (NSArray*)parseDefineCsv:(NSString*)filename;
 + (NSArray*)parseDefineCsvWithFullFilename:(NSString*)filenameFull;
 + (NSArray*)parseDefineCsv:(NSString*)filename contentId:(ContentId)cid;
+//CSV filename utility.
++ (NSString*)getCsvFilenameInFolder:(NSString*)filename contentId:(ContentId)cid;
++ (NSString*)getCsvFilenameInMainBundle:(NSString*)filename contentId:(ContentId)cid;
 
 #pragma mark - like POSIX file uty.
 + (NSArray*)fileList:(NSString*)path;
