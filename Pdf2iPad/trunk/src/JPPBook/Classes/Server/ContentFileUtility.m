@@ -46,33 +46,30 @@
 	return dir;
 }
 
-/*
 + (NSString*)getContentBodyDirectoryWithContentId:(NSString*)cId
 {
-	NSString* dir = [self getContentBodyDirectory];
-	return [dir stringByAppendingPathComponent:cId];
+	return [[[self getContentBodyDirectory]
+			  stringByAppendingPathComponent:cId]
+			 stringByAppendingPathComponent:@"pdf"];
 }
-*/
 
 /**
  *
  */
-+ (NSString*)getContentBodyFilename:(NSString*)cId
++ (NSString*)getContentBodyFilenamePdf:(NSString*)cId
 {
 	// generate file name.
-	/*
-	NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString* documentsDirectory = [paths objectAtIndex:0];
-	NSString* filename = [NSString stringWithFormat:@"%@.zip", cId];
-	NSString* filenameFull = [ [documentsDirectory
-								stringByAppendingPathComponent:@"contentBody"]
-							  stringByAppendingPathComponent:filename];
-	*/
-	NSString* contentDirectory = [self getContentBodyDirectory];
-	NSString* filename = [NSString stringWithFormat:@"%@.zip", cId];
-	NSString* filenameFull = [ contentDirectory stringByAppendingPathComponent:filename];
+	NSString* contentDirectory = [self getContentBodyDirectoryWithContentId:cId];
+	NSString* filename = [NSString stringWithFormat:@"%@.pdf", cId];
+	NSString* filenameFull = [contentDirectory stringByAppendingPathComponent:filename];
 	
 	return filenameFull;
+}
++ (NSString*)getContentBodyFilenameZip:(NSString*)cId
+{
+	return [[[self getContentBodyFilenamePdf:cId]
+			 stringByDeletingPathExtension]
+			stringByAppendingPathComponent:@"zip"];
 }
 
 

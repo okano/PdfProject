@@ -102,10 +102,19 @@
 	for (int i = 0; i < maxCount; i = i + 1) {
 		ContentId cid = [contentListDS contentIdAtIndex:i];
 		NSString* resourceName = [FileUtility getPdfFilename:cid];
+		/*
 		NSString* newFilename = [NSString stringWithFormat:@"%d.%@", cid, @"pdf"];
 		NSString* filenameFull = [[ContentFileUtility getContentBodyDirectory]
 								  stringByAppendingPathComponent:newFilename];
+		 */
+		NSString* cidStr = [NSString stringWithFormat:@"%d", cid];
+		NSString* filenameFull = [ContentFileUtility getContentBodyFilenamePdf:cidStr];
 		//NSLog(@"resourceName=%@, filenameFull=%@", resourceName, filenameFull);
+		
+		//Make directory.
+		[FileUtility makeDir:[ContentFileUtility getContentBodyDirectoryWithContentId:cidStr]];
+		
+		//Copy.
 		[FileUtility res2file:resourceName fileNameFull:filenameFull];
 	}
 }

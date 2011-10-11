@@ -50,7 +50,7 @@
 - (void)doDownload
 {
 	NSString* cidStr = [NSString stringWithFormat:@"%d", targetCid];
-	NSString* contentFilename = [ContentFileUtility getContentBodyFilename:cidStr];
+	NSString* contentFilename = [ContentFileUtility getContentBodyFilenamePdf:cidStr];
 	NSLog(@"contentFilename=%@", contentFilename);
 	NSFileManager* fMgr = [NSFileManager defaultManager];
 	
@@ -185,10 +185,13 @@
 	//Only copy if simple PDF file.
 	NSError* error = nil;
 
-	NSString* toPathFull = [[[[ContentFileUtility getContentBodyDirectory]
-							  stringByAppendingPathComponent:contentIdStr]
-							 stringByAppendingPathComponent:contentIdStr]
-							stringByAppendingPathExtension:@"pdf"];
+	//Make directory for extract.
+	NSString* dirStr = [ContentFileUtility getContentBodyDirectoryWithContentId:contentIdStr];
+	[FileUtility makeDir:dirStr];	
+	
+	//Copy file.
+	NSString* toPathFull = [[dirStr stringByAppendingPathComponent:contentIdStr]
+								   stringByAppendingPathExtension:@"pdf"];
 	[[NSFileManager defaultManager] moveItemAtPath:filePath
 											toPath:toPathFull		
 											 error:&error];

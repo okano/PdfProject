@@ -20,9 +20,10 @@
 //Filename utility.
 + (NSString*)getContentDetailDirectoryWithContentId:(NSString*)cId;
 + (NSString*)getContentDetailFilename:(NSString*)cId;
-+ (NSString*)getContentBodyDirectory;
-//+ (NSString*)getContentBodyDirectoryWithContentId:(NSString*)cId;
-+ (NSString*)getContentBodyFilename:(NSString*)targetContentId;
++ (NSString*)getContentBodyDirectory;								//contentBody/
++ (NSString*)getContentBodyDirectoryWithContentId:(NSString*)cId;	//contentBody/{cId}/pdf/
++ (NSString*)getContentBodyFilenamePdf:(NSString*)targetContentId;	//contentBody/{cId}/pdf/{cId}.pdf
++ (NSString*)getContentBodyFilenameZip:(NSString*)targetContentId;	//contentBody/{cId}/pdf/{cId}.zip
 //
 + (NSString*)getContentTmpDirectory;
 + (NSString*)getContentTmpDirectoryWithContentId:(NSString*)cId;

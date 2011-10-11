@@ -221,9 +221,7 @@
 	}
 	
 	//Open PDF file from (1)ContentBody Directory (2)mainBundle
-	NSString* pdfFilenameFull = [[[ContentFileUtility getContentBodyDirectory]
-								 stringByAppendingPathComponent:[NSString stringWithFormat:@"%d", currentContentId]]
-								 stringByAppendingPathExtension:@"pdf"];
+	NSString* pdfFilenameFull = [ContentFileUtility getContentBodyFilenamePdf:[NSString stringWithFormat:@"%d", currentContentId]];
 	//(1)get from ContentBody Directory.
 	pdfURL = [NSURL fileURLWithPath:pdfFilenameFull];
 	//NSLog(@"pdfFilenameFull=%@",pdfFilenameFull);
