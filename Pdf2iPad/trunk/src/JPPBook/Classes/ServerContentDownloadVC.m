@@ -120,74 +120,14 @@
 	
 	
 	//Only copy if simple PDF file.
-	NSLog(@"pathExtension=%@", [download.filePath pathExtension]);
 	if ([[download.filePath pathExtension] caseInsensitiveCompare:@"pdf"] == NSOrderedSame) {
-		NSString* toPathFull = [[[[ContentFileUtility getContentBodyDirectory]
-										   stringByAppendingPathComponent:newContentIdStr]
-										  stringByAppendingPathComponent:newContentIdStr]
-										 stringByAppendingPathExtension:@"pdf"];
-		[[NSFileManager defaultManager] moveItemAtPath:download.filePath
-															  toPath:toPathFull		
-															   error:&error];
-		if (error != nil) {
-			NSLog(@"fail to move downloaded file. fromPath=%@, toPath=%@, result=%@, %@",
-				  download.filePath, toPathFull, [error localizedDescription], [error localizedFailureReason]);
-		}
+		[self handleDownloadedPdf:download.filePath contentIdStr:newContentIdStr];
+	} else if ([[download.filePath pathExtension] caseInsensitiveCompare:@"cbz"] == NSOrderedSame) {
+		[self handleDownloadedCbz:download.filePath contentIdStr:newContentIdStr];
+	} else if ([[download.filePath pathExtension] caseInsensitiveCompare:@"zip"] == NSOrderedSame) {
+		[self handleDownloadedZip:download.filePath contentIdStr:newContentIdStr];
 	} else {
-		//Extract.
-	
-		//Make directory for extract.
-		[FileUtility removeFile:[ContentFileUtility	getContentExtractDirectory]];
-		[FileUtility makeDir:[ContentFileUtility getContentExtractDirectory]];
-		
-		//Rename file if "*.cbz".
-		if ([[download.filePath pathExtension] caseInsensitiveCompare:@"cbz"] == NSOrderedSame) {
-			NSString* newFilePath = [[download.filePath stringByDeletingPathExtension]
-									 stringByAppendingPathExtension:@"zip"];
-			[[NSFileManager defaultManager] moveItemAtPath:download.filePath
-													toPath:newFilePath
-													 error:&error];
-			if (error != nil) {
-				NSLog(@"file rename failed. fromPath=%@, toPath=%@, result=%@, %@",
-				download.filePath, newFilePath, [error localizedDescription], [error localizedFailureReason]);
-			}
-		}
-
-		
-		//Extract file.
-		BOOL extractResult;
-		NSString* f = [[download.filePath stringByDeletingPathExtension]
-					   stringByAppendingPathExtension:@"zip"];
-		extractResult = [self unzipFile:f ToDirectory:[ContentFileUtility getContentExtractDirectory]];
-		if (extractResult == FALSE) {
-			NSLog(@"extract error.");
-		}
-		
-		
-		//Move downloaded file to ContentBodyDirectory.
-		/*
-		NSString* newFilename = [NSString stringWithFormat:@"%d.%@", newContentId, @"pdf"];
-		NSString* bodyDirectory = [ContentFileUtility getContentBodyDirectory];
-		NSString* toFilenameFull = [bodyDirectory stringByAppendingPathComponent:newFilename] ;
-		NSLog(@"toFilenameFull=%@", toFilenameFull);
-		
-		[FileUtility makeDir:[ContentFileUtility getContentBodyDirectory]];
-		BOOL result = [[NSFileManager defaultManager] moveItemAtPath:download.filePath
-															  toPath:toFilenameFull
-															   error:&error];
-		if (result == NO) {
-			LOG_CURRENT_LINE;
-			NSLog(@"fail to move downloaded file. fromPath=%@, toPath=%@, result=%@, %@",
-				  download.filePath, toFilenameFull, [error localizedDescription], [error localizedFailureReason]);
-		}
-		*/
-		
-		[FileUtility makeDir:[ContentFileUtility getContentBodyDirectory]];
-		NSString* contentDirectoryWithContentId = [[ContentFileUtility getContentBodyDirectory]
-												   stringByAppendingPathComponent:newContentIdStr];
-		[[NSFileManager defaultManager] moveItemAtPath:[ContentFileUtility getContentExtractDirectory]
-												toPath:contentDirectoryWithContentId 
-												 error:&error];
+		NSLog(@"Illigal file extensions. filename=%@, ext=%@", download.filePath, [download.filePath pathExtension]);
 	}
 	
 	
@@ -239,6 +179,70 @@
 	[appDelegate showContentPlayerView:newContentId];
 	
 }
+
+- (void)handleDownloadedPdf:(NSString*)filePath contentIdStr:(NSString*)contentIdStr;
+{
+	//Only copy if simple PDF file.
+	NSError* error = nil;
+
+	NSString* toPathFull = [[[[ContentFileUtility getContentBodyDirectory]
+							  stringByAppendingPathComponent:contentIdStr]
+							 stringByAppendingPathComponent:contentIdStr]
+							stringByAppendingPathExtension:@"pdf"];
+	[[NSFileManager defaultManager] moveItemAtPath:filePath
+											toPath:toPathFull		
+											 error:&error];
+	if (error != nil) {
+		NSLog(@"fail to move downloaded file. fromPath=%@, toPath=%@, result=%@, %@",
+			  filePath, toPathFull, [error localizedDescription], [error localizedFailureReason]);
+	}
+}
+
+- (void)handleDownloadedCbz:(NSString*)filePath contentIdStr:(NSString*)contentIdStr;
+{
+	//Rename filename from "*.cbz" to "*.zip".
+	NSError* error = nil;
+	NSString* newFilePath = [[filePath stringByDeletingPathExtension]
+							 stringByAppendingPathExtension:@"zip"];
+	[[NSFileManager defaultManager] moveItemAtPath:filePath
+											toPath:newFilePath
+											 error:&error];
+	if (error != nil) {
+		NSLog(@"file rename failed. fromPath=%@, toPath=%@, result=%@, %@",
+			  filePath, newFilePath, [error localizedDescription], [error localizedFailureReason]);
+	}
+	
+	//Extract file.
+	[self handleDownloadedZip:newFilePath contentIdStr:contentIdStr];
+}
+
+- (void)handleDownloadedZip:(NSString*)filePath contentIdStr:(NSString*)contentIdStr;
+{
+	//Extract.
+	NSError* error = nil;
+	
+	//Make directory for extract.
+	[FileUtility removeFile:[ContentFileUtility	getContentExtractDirectory]];
+	[FileUtility makeDir:[ContentFileUtility getContentExtractDirectory]];
+	
+	//Extract file.
+	BOOL extractResult;
+	NSString* f = [[filePath stringByDeletingPathExtension]
+				   stringByAppendingPathExtension:@"zip"];
+	extractResult = [self unzipFile:f ToDirectory:[ContentFileUtility getContentExtractDirectory]];
+	if (extractResult == FALSE) {
+		NSLog(@"extract error.");
+	}
+	
+	//Move downloaded file to ContentBodyDirectory.
+	[FileUtility makeDir:[ContentFileUtility getContentBodyDirectory]];
+	NSString* contentDirectoryWithContentId = [[ContentFileUtility getContentBodyDirectory]
+											   stringByAppendingPathComponent:contentIdStr];
+	[[NSFileManager defaultManager] moveItemAtPath:[ContentFileUtility getContentExtractDirectory]
+											toPath:contentDirectoryWithContentId 
+											 error:&error];
+}
+
 
 // ダウンロードをキャンセルした際に呼ばれる
 - (void)download:(URLDownload *)download didCancelBecauseOf:(NSException *)exception {
