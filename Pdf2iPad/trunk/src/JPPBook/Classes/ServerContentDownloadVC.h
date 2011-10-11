@@ -30,7 +30,7 @@
 	//Length
 	long long expectedContentLength;
 	long long downloadedContentLength;
-	long long expectedUmcompressedContentSize;
+	long long expectedUncompressedContentSize;
 	//UI
 	IBOutlet UILabel* progressLabel;
 	IBOutlet UIProgressView* myProgressBar;
@@ -60,8 +60,6 @@
 
 // Handle zip.
 @interface ServerContentDownloadVC (extract)
-//- (BOOL)ensureExtractContentWithContentId:(NSString*)cId;
-//- (BOOL)unzipFileToTmpDirectory:(NSString*)fromFileFullname contentId:(ContentId)cId;
 - (BOOL)unzipFile:(NSString*)fromFileFullname ToDirectory:(NSString*)toDirectory;
 
 //
