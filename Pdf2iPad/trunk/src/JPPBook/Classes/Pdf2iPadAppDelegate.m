@@ -328,6 +328,17 @@
 		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_TOC contentId:cid];
 		NSLog(@"resourceName=%@, toFilenameFull=%@", resourceName, toFilenameFull);
 		[FileUtility res2file:resourceName fileNameFull:toFilenameFull];
+		
+		
+		/**
+		 * PDF define.(csv)
+		 */
+		//Copy CSV file.
+		resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_PDFDEFINE contentId:cid]
+						stringByAppendingPathExtension:@"csv"];
+		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_TOC contentId:cid];
+		NSLog(@"resourceName=%@, toFilenameFull=%@", resourceName, toFilenameFull);
+		[FileUtility res2file:resourceName fileNameFull:toFilenameFull];
 	}
 }
 

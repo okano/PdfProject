@@ -225,6 +225,7 @@
 	NSString* urlBaseStr = [ConfigViewController getUrlBaseWithOpds];
 	NSString* urlStr = [NSString stringWithFormat:@"%@%@", urlBaseStr, URL_SUFFIX_OPDS];
 	NSURL* rootUrl = [[NSURL alloc] initWithString:urlStr];
+	[targetTableVC didStartParseOpdsRoot];
 	NSURL* elementUrl = [parser getOpdsRoot:rootUrl];
 	if (elementUrl != nil) {
 		[targetTableVC didFinishParseOpdsRoot:elementUrl];
@@ -235,6 +236,7 @@
 		
 	//Get OPDS Element.
 	NSMutableArray* resultArray;
+	[targetTableVC didStartParseOpdsElement];
 	resultArray = [parser getOpdsElement:elementUrl];
 	if (resultArray != nil) {
 		//Arrange format into inner-var.

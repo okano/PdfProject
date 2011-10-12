@@ -17,6 +17,7 @@
 	//UITableView* myTableView;
 	//UIToolbar* toolbar;
 	//Pdf2iPadAppDelegate* appDelegate;
+	UIActivityIndicatorView* activityIndicator;
 }
 
 
@@ -29,5 +30,9 @@
 //- (void)showServerContentDetailView:(ContentId)cid;
 - (void)showServerContentDetailView:(NSString*)uuid;
 - (void)showConfigView;
+
+//for UIActivitiIndicator.
+- (void)startIndicator;
+- (void)stopIndicator;
 
 @end

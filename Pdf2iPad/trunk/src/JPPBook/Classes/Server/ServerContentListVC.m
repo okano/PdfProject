@@ -45,7 +45,10 @@
 	UIBarButtonItem *reloadButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
 																				  target:self
 																				  action:@selector(reloadFromNetwork)];
-	NSArray *items = [NSArray arrayWithObjects:localContentButton, paymentHistoryButton, spacer1, configButton, spacer2, reloadButton, nil];
+	activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActionSheetStyleDefault];
+	UIBarButtonItem *activityItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
+
+	NSArray *items = [NSArray arrayWithObjects:localContentButton, paymentHistoryButton, spacer1, activityItem,  configButton, spacer2, reloadButton, nil];
 	[toolbar setItems:items];
 
 	[self reloadData];
@@ -249,7 +252,11 @@
 	[myTableView reloadData];
 }
 
-- (void)didFinishParseOpdsRoot:(NSURL*)elementUrl{ LOG_CURRENT_METHOD; }
+- (void)didFinishParseOpdsRoot:(NSURL*)elementUrl
+{
+	LOG_CURRENT_METHOD;
+	[self performSelector:@selector(stopIndicator) withObject:nil];
+}
 - (void)didFailParseOpdsRoot{
 	LOG_CURRENT_METHOD;
 	UIAlertView *alert = [[UIAlertView alloc]
@@ -259,12 +266,42 @@
 						  cancelButtonTitle:nil
 						  otherButtonTitles:@"OK", nil];
 	[alert show];
+	[self performSelector:@selector(stopIndicator) withObject:nil];
 }
 - (void)didFinishParseOpdsElement:(NSMutableArray*)resultArray{
 	LOG_CURRENT_METHOD;
 	//NSLog(@"contentList=%@", [appDelegate.serverContentListDS description]);
 	[self reloadData];
+	[self performSelector:@selector(stopIndicator) withObject:nil];
 }
-- (void)didFailParseOpdsElement{ LOG_CURRENT_METHOD; }
+- (void)didFailParseOpdsElement
+{
+	LOG_CURRENT_METHOD;
+	[self performSelector:@selector(stopIndicator) withObject:nil];
+}
+#pragma mark - MyTableViewVCProtocol(@optional) (Accessor for table)
+- (void)didStartParseOpdsRoot
+{
+	LOG_CURRENT_METHOD;
+	[self performSelector:@selector(startIndicator) withObject:nil];
+}
+
+- (void)didStartParseOpdsElement
+{
+	LOG_CURRENT_METHOD;
+	[self performSelector:@selector(startIndicator) withObject:nil];
+}
+
+
+#pragma mark - UIActivityIndicator.
+- (void)startIndicator
+{
+	[activityIndicator startAnimating];
+}
+- (void)stopIndicator
+{
+	[activityIndicator stopAnimating];
+}
+
 
 @end

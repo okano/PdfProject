@@ -12,6 +12,9 @@
 - (void)didFailParseOpdsRoot;
 - (void)didFinishParseOpdsElement:(NSMutableArray*)resultArray;
 - (void)didFailParseOpdsElement;
+@optional
+- (void)didStartParseOpdsRoot;
+- (void)didStartParseOpdsElement;
 @end
 /*
 @protocol ContentListProtocol
