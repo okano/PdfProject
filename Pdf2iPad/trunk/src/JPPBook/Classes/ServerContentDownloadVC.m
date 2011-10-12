@@ -244,9 +244,51 @@
 	[[NSFileManager defaultManager] moveItemAtPath:[ContentFileUtility getContentExtractDirectory]
 											toPath:contentDirectoryWithContentId 
 											 error:&error];
+	
+	//Rename pdf file with "{cid}.pdf"
+	[self renamePdfWithCid:contentIdStr];
+}
+
+- (void)renamePdfWithCid:(NSString*)cidStr
+{
+	LOG_CURRENT_METHOD;
+	
+	//Parse pdfDefine for get pdf filename.
+	NSString* pdfFilename = [FileUtility getPdfFilename:[cidStr intValue]];
+
+	//Generate new pdfFilename.
+	NSString* newPdfFilename = [NSString stringWithFormat:@"%@.pdf", cidStr];
+	
+	//Prepare for copy.
+	NSString* dirStr = [ContentFileUtility getContentBodyPdfDirectoryWithContentId:cidStr];
+	NSString* fromPath = [dirStr stringByAppendingPathComponent:pdfFilename];
+	NSString* toPath = [dirStr stringByAppendingPathComponent:newPdfFilename];
+	NSError* error = nil;
+	
+	//Check file exists.
+	if([[NSFileManager defaultManager] fileExistsAtPath:fromPath] == NO)
+	{
+		NSLog(@"pdf file cannot found in archive file. expect filename=%@", fromPath);
+		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Downloaded file error"
+														 message:@"pdf file cannot found in archive file."
+														delegate:self
+											   cancelButtonTitle:nil
+											   otherButtonTitles:@"OK",nil]
+							  autorelease];
+		[alert show];
+	} else {
+		NSLog(@"pdf file exist. filename=%@", fromPath);
+	}
+	
+	//Rename.
+	[[NSFileManager defaultManager] moveItemAtPath:fromPath toPath:toPath error:&error];
+	if (error != nil) {
+		NSLog(@"cannot rename pdf file. from=%@, to=%@", fromPath, toPath);
+	}
 }
 
 
+#pragma mark -
 // ダウンロードをキャンセルした際に呼ばれる
 - (void)download:(URLDownload *)download didCancelBecauseOf:(NSException *)exception {
 	LOG_CURRENT_METHOD;

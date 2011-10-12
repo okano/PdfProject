@@ -58,6 +58,7 @@
 - (void)handleDownloadedPdf:(NSString*)filePath contentIdStr:(NSString*)contentIdStr;
 - (void)handleDownloadedCbz:(NSString*)filePath contentIdStr:(NSString*)contentIdStr;
 - (void)handleDownloadedZip:(NSString*)filePath contentIdStr:(NSString*)contentIdStr;
+- (void)renamePdfWithCid:(NSString*)cidStr;
 
 @end
 
