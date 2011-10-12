@@ -250,14 +250,70 @@
 		/**
 		 * InPagePdf define.
 		 */
+		resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_INPAGE_PDF contentId:cid]
+						stringByAppendingPathExtension:@"csv"];
+		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_INPAGE_PDF contentId:cid];
+		NSLog(@"resourceName=%@, toFilenameFull=%@", resourceName, toFilenameFull);
+		[FileUtility res2file:resourceName fileNameFull:toFilenameFull];
+		
+		//Copy png file for inpage.
+		lines = [FileUtility parseDefineCsv:CSVFILE_INPAGE_PDF contentId:cid];
+		for (NSString* line in lines) {
+			NSArray* tmpCsvArray = [line componentsSeparatedByString:@","];
+			if ([tmpCsvArray count] < 6) {
+				continue;	//skip error line.
+			}
+			NSString* tmpStr = [tmpCsvArray objectAtIndex:5];
+			NSString* filename = [FileUtility cleanString:tmpStr];
+			[FileUtility res2file:filename
+					 fileNameFull:[toDir stringByAppendingPathComponent:filename]];
+		}
+		
 		
 		/**
 		 * InPagePng define.
 		 */
+		resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_INPAGE_PNG contentId:cid]
+						stringByAppendingPathExtension:@"csv"];
+		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_INPAGE_PNG contentId:cid];
+		NSLog(@"resourceName=%@, toFilenameFull=%@", resourceName, toFilenameFull);
+		[FileUtility res2file:resourceName fileNameFull:toFilenameFull];
+		
+		//Copy png file for inpage.
+		lines = [FileUtility parseDefineCsv:CSVFILE_INPAGE_PNG contentId:cid];
+		for (NSString* line in lines) {
+			NSArray* tmpCsvArray = [line componentsSeparatedByString:@","];
+			if ([tmpCsvArray count] < 6) {
+				continue;	//skip error line.
+			}
+			NSString* tmpStr = [tmpCsvArray objectAtIndex:5];
+			NSString* filename = [FileUtility cleanString:tmpStr];
+			[FileUtility res2file:filename
+					 fileNameFull:[toDir stringByAppendingPathComponent:filename]];
+		}
+		
 		
 		/**
 		 * PopoverImage define.
 		 */
+		resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_POPOVER_IMAGE contentId:cid]
+						stringByAppendingPathExtension:@"csv"];
+		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_POPOVER_IMAGE contentId:cid];
+		NSLog(@"resourceName=%@, toFilenameFull=%@", resourceName, toFilenameFull);
+		[FileUtility res2file:resourceName fileNameFull:toFilenameFull];
+		
+		//Copy png file for inpage.
+		lines = [FileUtility parseDefineCsv:CSVFILE_POPOVER_IMAGE contentId:cid];
+		for (NSString* line in lines) {
+			NSArray* tmpCsvArray = [line componentsSeparatedByString:@","];
+			if ([tmpCsvArray count] < 6) {
+				continue;	//skip error line.
+			}
+			NSString* tmpStr = [tmpCsvArray objectAtIndex:5];
+			NSString* filename = [FileUtility cleanString:tmpStr];
+			[FileUtility res2file:filename
+					 fileNameFull:[toDir stringByAppendingPathComponent:filename]];
+		}
 		
 		/**
 		 * TOC define.
