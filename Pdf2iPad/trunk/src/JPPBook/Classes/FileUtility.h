@@ -47,6 +47,8 @@
 @end
 
 //
+#define CSVFILE_PDFDEFINE		@"pdfDefine"
+//
 #define CSVFILE_URLLINK			@"urlLinkDefine"
 //
 #define CSVFILE_MOVIE			@"movieDefine"

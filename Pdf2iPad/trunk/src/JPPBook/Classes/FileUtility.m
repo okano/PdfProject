@@ -15,7 +15,7 @@
 //Pdf(Original) file.
 + (NSString*)getPdfFilename
 {
-	NSString* targetFilename = @"pdfDefine";
+	NSString* targetFilename = CSVFILE_PDFDEFINE;
 	NSArray* lines;
 	lines = [FileUtility parseDefineCsv:targetFilename];
 	
@@ -30,7 +30,7 @@
 }
 + (NSString*)getPdfFilename:(ContentId)cId
 {
-	NSString* targetFilename = @"pdfDefine";
+	NSString* targetFilename = CSVFILE_PDFDEFINE;
 	NSArray* lines;
 	lines = [FileUtility parseDefineCsv:targetFilename contentId:cId];
 	
