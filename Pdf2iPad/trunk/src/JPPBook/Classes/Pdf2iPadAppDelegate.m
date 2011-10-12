@@ -209,14 +209,43 @@
 		}
 
 		
-		
 		/**
 		 * PageJumpLink define.
 		 */
-		
+		//Copy CSV file.
+		resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_PAGEJUMPLINK contentId:cid]
+						stringByAppendingPathExtension:@"csv"];
+		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_PAGEJUMPLINK contentId:cid];
+		NSLog(@"resourceName=%@, toFilenameFull=%@", resourceName, toFilenameFull);
+		[FileUtility res2file:resourceName fileNameFull:toFilenameFull];
+
 		/**
 		 * InPageScrollView define.
 		 */
+		//Copy CSV file.
+		resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_INPAGE_SCROLLVIEW contentId:cid]
+						stringByAppendingPathExtension:@"csv"];
+		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_INPAGE_SCROLLVIEW contentId:cid];
+		NSLog(@"resourceName=%@, toFilenameFull=%@", resourceName, toFilenameFull);
+		[FileUtility res2file:resourceName fileNameFull:toFilenameFull];
+
+		//Create Folder.
+		toDir = [[ContentFileUtility getContentBodyDirectoryWithContentId:cidStr]
+				 stringByAppendingPathComponent:@"image"];
+		[FileUtility makeDir:toDir];
+		//Copy image file.
+		lines = [FileUtility parseDefineCsv:CSVFILE_INPAGE_SCROLLVIEW contentId:cid];
+		for (NSString* line in lines) {
+			NSArray* tmpCsvArray = [line componentsSeparatedByString:@","];
+			if ([tmpCsvArray count] < 6) {
+				continue;	//skip error line.
+			}
+			NSString* tmpStr = [tmpCsvArray objectAtIndex:5];
+			NSString* filename = [FileUtility cleanString:tmpStr];
+			[FileUtility res2file:filename
+					 fileNameFull:[toDir stringByAppendingPathComponent:filename]];
+		}
+		
 		
 		/**
 		 * InPagePdf define.
