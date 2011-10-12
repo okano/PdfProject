@@ -207,7 +207,7 @@
 			[FileUtility res2file:filename
 					 fileNameFull:[toDir stringByAppendingPathComponent:filename]];
 		}
-
+		
 		
 		/**
 		 * PageJumpLink define.
@@ -218,7 +218,8 @@
 		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_PAGEJUMPLINK contentId:cid];
 		NSLog(@"resourceName=%@, toFilenameFull=%@", resourceName, toFilenameFull);
 		[FileUtility res2file:resourceName fileNameFull:toFilenameFull];
-
+		
+		
 		/**
 		 * InPageScrollView define.
 		 */
@@ -250,6 +251,7 @@
 		/**
 		 * InPagePdf define.
 		 */
+		//Copy CSV file.
 		resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_INPAGE_PDF contentId:cid]
 						stringByAppendingPathExtension:@"csv"];
 		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_INPAGE_PDF contentId:cid];
@@ -273,6 +275,7 @@
 		/**
 		 * InPagePng define.
 		 */
+		//Copy CSV file.
 		resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_INPAGE_PNG contentId:cid]
 						stringByAppendingPathExtension:@"csv"];
 		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_INPAGE_PNG contentId:cid];
@@ -296,6 +299,7 @@
 		/**
 		 * PopoverImage define.
 		 */
+		//Copy CSV file.
 		resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_POPOVER_IMAGE contentId:cid]
 						stringByAppendingPathExtension:@"csv"];
 		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_POPOVER_IMAGE contentId:cid];
@@ -318,8 +322,12 @@
 		/**
 		 * TOC define.
 		 */
-		
-		
+		//Copy CSV file.
+		resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_TOC contentId:cid]
+						stringByAppendingPathExtension:@"csv"];
+		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_TOC contentId:cid];
+		NSLog(@"resourceName=%@, toFilenameFull=%@", resourceName, toFilenameFull);
+		[FileUtility res2file:resourceName fileNameFull:toFilenameFull];
 	}
 }
 
