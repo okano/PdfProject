@@ -124,6 +124,7 @@
 {
 	NSString* resourceName;
 	NSString* toFilenameFull;
+	NSString* toDir;
 	NSArray* lines;
 	
 	/*
@@ -147,7 +148,7 @@
 		 * Movie define.
 		 */
 		//Create Folder.
-		NSString* toDir = [[ContentFileUtility getContentBodyDirectoryWithContentId:cidStr]
+		toDir = [[ContentFileUtility getContentBodyDirectoryWithContentId:cidStr]
 						   stringByAppendingPathComponent:@"movie"];
 		[FileUtility makeDir:toDir];
 		//Copy CSV file for movie define.
@@ -183,6 +184,31 @@
 		/**
 		 * Sound define.
 		 */
+		//Copy CSV file.
+		resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_SOUND contentId:cid]
+						stringByAppendingPathExtension:@"csv"];
+		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_SOUND contentId:cid];
+		NSLog(@"resourceName=%@, toFilenameFull=%@", resourceName, toFilenameFull);
+		[FileUtility res2file:resourceName fileNameFull:toFilenameFull];
+		
+		//Create Folder.
+		toDir = [[ContentFileUtility getContentBodyDirectoryWithContentId:cidStr]
+				 stringByAppendingPathComponent:@"sound"];
+		[FileUtility makeDir:toDir];
+		//Copy movie file.
+		lines = [FileUtility parseDefineCsv:CSVFILE_SOUND contentId:cid];
+		for (NSString* line in lines) {
+			NSArray* tmpCsvArray = [line componentsSeparatedByString:@","];
+			if ([tmpCsvArray count] < 2) {
+				continue;	//skip error line.
+			}
+			NSString* tmpStr = [tmpCsvArray objectAtIndex:1];
+			NSString* filename = [FileUtility cleanString:tmpStr];
+			[FileUtility res2file:filename
+					 fileNameFull:[toDir stringByAppendingPathComponent:filename]];
+		}
+
+		
 		
 		/**
 		 * PageJumpLink define.
