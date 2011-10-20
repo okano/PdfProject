@@ -124,18 +124,91 @@
 	NSLog(@"elementUrl=%@", [elementUrl description]);
 	
 	//check XML exists.
+	/*
 	NSString* feed = [[NSString alloc] initWithContentsOfURL:elementUrl];
 	if (feed == nil) {
 		NSLog(@"no feed found.");
 		return nil;
 	}
 	//NSLog(@"feed=%@", feed);
+	*/
+	NSHTTPURLResponse* res = nil;
+	NSError* error = nil;
+	
+	//Set security infomation.
+	NSURLCredential* credential = [NSURLCredential credentialWithUser:@"AbCd"
+															 password:@"pass"
+														  persistence:NSURLCredentialPersistencePermanent];
+	NSLog(@"credential = %@", [credential description]);
+	NSURLProtectionSpace* protectionSpace = [[NSURLProtectionSpace alloc] initWithHost:@"localhost"
+																				  port:8080
+																			  protocol:@"http"
+																				 realm:@"Authorization Required"
+																  authenticationMethod:nil];
+	[[NSURLCredentialStorage sharedCredentialStorage] setDefaultCredential:credential
+														forProtectionSpace:protectionSpace];
+	[protectionSpace release];
+	
+	NSLog(@"all credential=%@", [[[NSURLCredentialStorage sharedCredentialStorage] allCredentials] description]);
+	
+	
+	//Set timeout = 10s.
+	NSMutableURLRequest* req = [[NSURLRequest alloc] initWithURL:elementUrl
+								cachePolicy:NSURLRequestUseProtocolCachePolicy
+												 timeoutInterval:10.0];
+	//
+	NSData* data = [NSURLConnection sendSynchronousRequest:req
+										 returningResponse:&res
+													 error:&error];
+	
+	if (!data || error)
+	{
+		NSLog(@"url=%@", [elementUrl description]);
+		NSLog(@"failed to get data. error=%@", [error localizedDescription]);
+		
+		NSString* errorMsg;
+		if ([[error domain] isEqualToString:@"NSURLErrorDomain"]) {
+			NSLog(@"error code=%d", [error code]);
+			switch ([error code]) {
+				case NSURLErrorCannotFindHost:
+					errorMsg = NSLocalizedString(@"Cannot find specified host. Retype URL.", nil);
+					break;
+				case NSURLErrorCannotConnectToHost:
+					errorMsg = NSLocalizedString(@"Cannot connect to specified host. Server may be down.", nil);
+					break;
+				case NSURLErrorNotConnectedToInternet:
+					errorMsg = NSLocalizedString(@"Cannot connect to the internet. Service may not be available.", nil);
+					break;
+				case NSURLErrorUserCancelledAuthentication:
+					errorMsg = [NSString stringWithFormat:@"Returned when an asynchronous request for authentication is cancelled by the user."];
+					break;
+				case NSURLErrorUserAuthenticationRequired:
+					errorMsg = [NSString stringWithFormat:@"Returned when authentication is required to access a resource."];
+					break;
+				default:
+					errorMsg = [error localizedDescription];
+					break;
+			}
+		} else {
+			errorMsg = [error localizedDescription];
+		}
+		
+		NSLog(@"error message=%@", errorMsg);
+		NSLog(@"error domain=%@", [error domain]);
+	}
+	
+	if (res) {
+		NSLog(@"stat = %d", [(NSHTTPURLResponse*)res statusCode]);
+	} else {
+		NSLog(@"res is null");
+	}
+	
 	
 	//load XML to NSData.
 	NSData *_data = [NSData dataWithContentsOfURL:elementUrl];  
 	
 	//Prepare Parse.
-	NSError* error;
+	//NSError* error;
     DDXMLDocument* doc = [[[DDXMLDocument alloc] initWithData:_data options:0 error:nil] autorelease];  
 	DDXMLElement *rootElement = [doc rootElement];
 	//NSLog(@"doc=%@", [doc description]);
