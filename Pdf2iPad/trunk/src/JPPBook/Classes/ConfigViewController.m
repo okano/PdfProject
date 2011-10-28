@@ -38,6 +38,7 @@
 - (IBAction)handleDoneButton:(id)sender
 {
 	[self saveUrlToUserDefault:textField.text];
+	[self saveUsernameAndPasswordToUserDefault:usernameField.text withPassword:passwordField.text];
 	[self closeThisView:sender];
 }
 - (IBAction)closeThisView:(id)sender
@@ -62,6 +63,7 @@
 	//NSLog(@"field=%@", textField.text);
 	NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
 	[userDefault setValue:urlStr forKey:URL_OPDS];
+	[userDefault synchronize];
 }
 												 
 + (NSString*)getUrlBaseWithOpds
@@ -76,6 +78,47 @@
 	return (NSString*)obj;
 }
 
+#pragma mark -
+- (void)saveUsernameAndPasswordToUserDefault:(NSString*)username
+								withPassword:(NSString*)password
+{
+	NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
+	[userDefault setValue:username forKey:USERNAME];
+	[userDefault setValue:password forKey:PASSWORD];
+	[userDefault synchronize];
+}
+
+- (NSDictionary*)loadUsernameAndPasswordFromUserDefault
+{
+	NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
+	id obj;
+	//Get username.
+	obj = [settings valueForKey:USERNAME];
+	if (!obj) {
+		return nil;
+	}
+	if (![obj isKindOfClass:[NSString class]]) {
+		NSLog(@"illigal username infomation. class=%@", [obj class]);
+		return nil;
+	}
+	NSString* username = [NSString stringWithString:obj];
+	
+	//Get password.
+	obj = [settings valueForKey:PASSWORD];
+	if (!obj) {
+		return nil;
+	}
+	if (![obj isKindOfClass:[NSString class]]) {
+		NSLog(@"illigal password infomation. class=%@", [obj class]);
+		return nil;
+	}
+	NSString* password = [NSString stringWithString:obj];
+	NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:
+						  username, USERNAME,
+						  password, PASSWORD,
+						  nil];
+	return dict;
+}
 
 #pragma mark - View lifecycle
 
@@ -84,6 +127,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 	textField.text = [ConfigViewController getUrlBaseWithOpds];
+	NSDictionary* userinfoDict = [self loadUsernameAndPasswordFromUserDefault];
+	usernameField.text = [userinfoDict valueForKey:USERNAME];
+	if (usernameField.text == nil)
+	{
+		usernameField.text = USERNAME_DEFAULT;
+	}
+	passwordField.text = [userinfoDict valueForKey:PASSWORD];
+	if (passwordField.text == nil)
+	{
+		passwordField.text = PASSWORD_DEFAULT;
+	}
 }
 
 - (void)viewDidUnload

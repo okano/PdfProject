@@ -30,6 +30,7 @@
 	NSString* feed = [[NSString alloc] initWithContentsOfURL:rootUrl];
 	if (feed == nil) {
 		NSLog(@"no feed found.");
+		NSLog(@"rootUrl=%@", rootUrl);
 		UIAlertView *alert = [[UIAlertView alloc]
 							  initWithTitle:nil
 							  message:@"no content list(Root) found."
@@ -136,15 +137,45 @@
 	NSError* error = nil;
 	
 	//Set security infomation.
+	NSDictionary* dict = [[ConfigViewController alloc] loadUsernameAndPasswordFromUserDefault];
+	NSString* username = [dict valueForKey:USERNAME];
+	NSString* password = [dict valueForKey:PASSWORD];
+	NSLog(@"username=%@", username);
+	NSLog(@"password=%@", password);
+	NSLog(@"host=%@", [elementUrl host]);
+	if (username == nil || password == nil){
+		NSLog(@"username or password is nil.");
+		UIAlertView *alert = [[UIAlertView alloc]
+							  initWithTitle:nil
+							  message:@"username or password is nil."
+							  delegate:nil
+							  cancelButtonTitle:nil
+							  otherButtonTitles:@"OK", nil];
+		[alert show];
+		
+		return nil;
+	}
+	
+	NSURLCredential* credential = [NSURLCredential credentialWithUser:username //@"AbCd"
+															 password:password //@"pass"
+														  persistence:NSURLCredentialPersistencePermanent];
+	
+	/*
 	NSURLCredential* credential = [NSURLCredential credentialWithUser:@"AbCd"
 															 password:@"pass"
 														  persistence:NSURLCredentialPersistencePermanent];
+	*/
 	NSLog(@"credential = %@", [credential description]);
-	NSURLProtectionSpace* protectionSpace = [[NSURLProtectionSpace alloc] initWithHost:@"localhost"
+	NSURLProtectionSpace* protectionSpace = [[NSURLProtectionSpace alloc] initWithHost:[elementUrl host] //@"192.168.1.6" //@"192.168.1.8" //[elementUrl host] //@"localhost"
 																				  port:8080
-																			  protocol:@"http"
+																			  protocol:NSURLProtectionSpaceHTTP //@"http"
 																				 realm:@"Authorization Required"
-																  authenticationMethod:nil];
+																  authenticationMethod:NSURLAuthenticationMethodHTTPBasic];
+	NSLog(@"protectionSpace=%@, host=%@, port=%d", [protectionSpace description],
+		  [protectionSpace host], [protectionSpace port]);
+	NSLog(@"protocol=%@, realm=%@", [protectionSpace protocol], [protectionSpace realm]);
+	NSLog(@"receivesCredentialSecurely=%d(YES=%d,NO=%d)", [protectionSpace receivesCredentialSecurely], YES, NO);
+	NSLog(@"distinguishedNames=%@", [[protectionSpace distinguishedNames] description]);
 	[[NSURLCredentialStorage sharedCredentialStorage] setDefaultCredential:credential
 														forProtectionSpace:protectionSpace];
 	[protectionSpace release];

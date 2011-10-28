@@ -148,3 +148,10 @@
 
 //for const URL for OPDS.
 #define URL_OPDS			@"UrlBaseWithOpds"
+
+//
+#define USERNAME			@"UserName"
+#define PASSWORD			@"PassWord"
+#define USERNAME_DEFAULT	@"defaultUser"
+#define PASSWORD_DEFAULT	@"defaultPassword(change me)"
+

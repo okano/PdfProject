@@ -12,7 +12,9 @@
 #import "UrlDefine.h"
 
 @interface ConfigViewController : UIViewController {
-	IBOutlet UITextField* textField;   
+	IBOutlet UITextField* textField;
+	IBOutlet UITextField* usernameField;
+	IBOutlet UITextField* passwordField;
 }
 - (IBAction)handleDoneButton:(id)sender;
 - (IBAction)closeThisView:(id)sender;
@@ -22,5 +24,8 @@
 //
 - (void)saveUrlToUserDefault:(NSString*)urlStr;
 + (NSString*)getUrlBaseWithOpds;
+//
+- (void)saveUsernameAndPasswordToUserDefault:(NSString*)username withPassword:(NSString*)password;
+- (NSDictionary*)loadUsernameAndPasswordFromUserDefault;
 
 @end
