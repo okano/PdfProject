@@ -184,7 +184,7 @@
 	
 	
 	//Set timeout = 10s.
-	NSMutableURLRequest* req = [[NSURLRequest alloc] initWithURL:elementUrl
+	NSURLRequest* req = [[NSURLRequest alloc] initWithURL:elementUrl
 								cachePolicy:NSURLRequestUseProtocolCachePolicy
 												 timeoutInterval:10.0];
 	//
