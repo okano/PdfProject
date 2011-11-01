@@ -278,7 +278,6 @@
 		299561371417822A001C1D53 /* DDXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLNode.h; sourceTree = "<group>"; };
 		299561381417822A001C1D53 /* DDXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLNode.m; sourceTree = "<group>"; };
 		2995613A1417822A001C1D53 /* DDXMLPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLPrivate.h; sourceTree = "<group>"; };
-		299C2DB91441D94300F3CAFB /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
 		299CD2A813861BD3001C2B4B /* SKBE_MainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKBE_MainVC.h; path = SKBEngine/SKBE_MainVC.h; sourceTree = "<group>"; };
 		299CD2A913861BD3001C2B4B /* SKBE_MainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKBE_MainVC.m; path = SKBEngine/SKBE_MainVC.m; sourceTree = "<group>"; };
 		299CD2AC13861BDD001C2B4B /* SKBEngine_PopoverScrollImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKBEngine_PopoverScrollImageViewController.h; path = SKBEngine/SKBEngine_PopoverScrollImageViewController.h; sourceTree = "<group>"; };
@@ -583,7 +582,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				29ABC76F145F9A7200141504 /* libz.1.dylib */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29A7E3E3136EB88500EC64EC /* SKBEngine */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -597,7 +595,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				299C2DB91441D94300F3CAFB /* libz.1.2.3.dylib */,
+				29ABC76F145F9A7200141504 /* libz.1.dylib */,
 				32CA4F630368D1EE00C91783 /* JPPBook_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
