@@ -27,7 +27,8 @@
 	//NSLog(@"rootUrl=%@", [rootUrl description]);
 	
 	//check XML exists.
-	NSString* feed = [[NSString alloc] initWithContentsOfURL:rootUrl];
+	NSError* error = nil;
+	NSString* feed = [[NSString alloc] initWithContentsOfURL:rootUrl encoding:NSUTF8StringEncoding error:&error];
 	if (feed == nil) {
 		NSLog(@"no feed found.");
 		NSLog(@"rootUrl=%@", rootUrl);
@@ -47,7 +48,6 @@
 	NSData *_data = [NSData dataWithContentsOfURL:rootUrl];  
 	
 	//Prepare Parse.
-	NSError* error;
     DDXMLDocument* doc = [[[DDXMLDocument alloc] initWithData:_data options:0 error:nil] autorelease];  
 	DDXMLElement *rootElement = [doc rootElement];
 	//NSLog(@"doc=%@", [doc description]);
