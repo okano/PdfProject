@@ -101,7 +101,6 @@
 		2995613D1417822A001C1D53 /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 299561341417822A001C1D53 /* DDXMLDocument.m */; };
 		2995613E1417822A001C1D53 /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 299561361417822A001C1D53 /* DDXMLElement.m */; };
 		2995613F1417822A001C1D53 /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 299561381417822A001C1D53 /* DDXMLNode.m */; };
-		299C2DBA1441D94300F3CAFB /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 299C2DB91441D94300F3CAFB /* libz.1.2.3.dylib */; };
 		299CD2AA13861BD3001C2B4B /* SKBE_MainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 299CD2A913861BD3001C2B4B /* SKBE_MainVC.m */; };
 		299CD2AE13861BDD001C2B4B /* SKBEngine_PopoverScrollImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 299CD2AD13861BDD001C2B4B /* SKBEngine_PopoverScrollImageViewController.m */; };
 		29A26341143EBFF900D417E0 /* ServerContentDownloadVC+extract.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A26340143EBFF900D417E0 /* ServerContentDownloadVC+extract.m */; };
@@ -114,6 +113,7 @@
 		29A71D4213A32F4C00DFB4C8 /* ContentPlayerViewController+movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A71D4113A32F4C00DFB4C8 /* ContentPlayerViewController+movie.m */; };
 		29AAD5E512BC938400CF7C91 /* icon_list_bullets.png in Resources */ = {isa = PBXBuildFile; fileRef = 29AAD5E412BC938400CF7C91 /* icon_list_bullets.png */; };
 		29AAD5EA12BC943C00CF7C91 /* TocTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29AAD5E912BC943C00CF7C91 /* TocTableViewController.m */; };
+		29ABC770145F9A7200141504 /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 29ABC76F145F9A7200141504 /* libz.1.dylib */; };
 		29B36D5112FFBFFD00897C08 /* PopoverImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B36D5012FFBFFD00897C08 /* PopoverImageViewController.m */; };
 		29B7D44B1330FFF30023BC81 /* MarkerPenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B7D44A1330FFF30023BC81 /* MarkerPenView.m */; };
 		29BA980E143A040200F1FAEB /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BA980C143A040200F1FAEB /* ConfigViewController.m */; };
@@ -301,6 +301,7 @@
 		29AAD5E412BC938400CF7C91 /* icon_list_bullets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_list_bullets.png; sourceTree = "<group>"; };
 		29AAD5E812BC943C00CF7C91 /* TocTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TocTableViewController.h; sourceTree = "<group>"; };
 		29AAD5E912BC943C00CF7C91 /* TocTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TocTableViewController.m; sourceTree = "<group>"; };
+		29ABC76F145F9A7200141504 /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = usr/lib/libz.1.dylib; sourceTree = SDKROOT; };
 		29B36D4F12FFBFFD00897C08 /* PopoverImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverImageViewController.h; sourceTree = "<group>"; };
 		29B36D5012FFBFFD00897C08 /* PopoverImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverImageViewController.m; sourceTree = "<group>"; };
 		29B7D4491330FFF30023BC81 /* MarkerPenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkerPenView.h; sourceTree = "<group>"; };
@@ -350,6 +351,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29ABC770145F9A7200141504 /* libz.1.dylib in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -358,7 +360,6 @@
 				29FF4B8813B1D61A002DAEDF /* AudioToolbox.framework in Frameworks */,
 				29C6852113B9C66500FB164B /* AVFoundation.framework in Frameworks */,
 				29F36CA513C31B1400D0B289 /* StoreKit.framework in Frameworks */,
-				299C2DBA1441D94300F3CAFB /* libz.1.2.3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,6 +583,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				29ABC76F145F9A7200141504 /* libz.1.dylib */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29A7E3E3136EB88500EC64EC /* SKBEngine */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -796,6 +798,9 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "JPPBook" */;
 			compatibilityVersion = "Xcode 3.1";
 			developmentRegion = English;
