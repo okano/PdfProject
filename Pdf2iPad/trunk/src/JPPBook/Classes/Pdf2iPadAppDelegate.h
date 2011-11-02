@@ -14,6 +14,7 @@
 #import "PaymentHistoryDS.h"
 #import "FileUtility.h"
 #import "ContentFileUtility.h"
+#import "ConfigViewController.h"
 
 @class Pdf2iPadViewController;
 @class ContentPlayerViewController;
@@ -52,6 +53,7 @@
 - (BOOL)isFirstLaunchUp;
 - (void)copyPdfFromResourceToFile;
 - (void)copyOtherfileFromResourceToFile;
+- (void)setDefaultUsernameAndPassword;
 
 //ContentId for download.
 //- (ContentId)nextContentId;
