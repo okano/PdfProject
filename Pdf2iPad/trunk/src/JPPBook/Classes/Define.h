@@ -152,6 +152,6 @@
 //
 #define USERNAME			@"UserName"
 #define PASSWORD			@"PassWord"
-#define USERNAME_DEFAULT	@"defaultUser"
-#define PASSWORD_DEFAULT	@"defaultPassword(change me)"
+#define USERNAME_DEFAULT	@"guest"
+#define PASSWORD_DEFAULT	@"guest"
 
