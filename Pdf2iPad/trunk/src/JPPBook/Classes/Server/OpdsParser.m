@@ -86,7 +86,7 @@
 	NSString* baseUrlStr = [ConfigViewController getUrlBaseWithOpds];
 	
 	//Find specify feed.
-	NSString* resultStr;
+	NSString* resultStr = nil;
 	//NSString* searchForMe = @"%C3%8A%C3%BA%C3%84%C3%8A%C3%B1%E2%88%9E%C3%88%E2%80%A0%C3%9C";
 	NSString* searchForMe = @"最新順";
 	//NSLog(@"searchForMe=%@ (%@)", searchForMe, [searchForMe stringByAddingPercentEscapesUsingEncoding:
@@ -113,6 +113,9 @@
 		}
 	}
 	//NSLog(@"resultStr=%@", resultStr);
+	if (resultStr == nil) {
+		return nil;
+	}
 	
 	return [NSURL URLWithString:resultStr];
 }
