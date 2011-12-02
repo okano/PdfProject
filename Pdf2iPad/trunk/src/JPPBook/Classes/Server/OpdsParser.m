@@ -264,6 +264,7 @@
 	NSString* acquisitionLink;
 	NSString* thumbnailLink;
 	NSString* coverLink;
+	NSUInteger contentId;
 	NSMutableArray* linksUrlArray = [[NSMutableArray alloc] init];
 	for (DDXMLElement* singleElement in entries){
 		//NSLog(@"singleElement=%@", [singleElement description]);
@@ -320,8 +321,14 @@
 			searchForMe = @"http://opds-spec.org/cover";
 			range = [relAttribute rangeOfString : searchForMe];
 			if (range.location != NSNotFound) {
+				//get cover.
 				coverLink = [NSString stringWithFormat:@"%@%@", baseUrlStr, hrefAttribute];
-				
+				//get Cid.
+				//convert "http://localhost/path/to/1.jpg" -> "1.jpg" -> "1"
+				//
+				NSString* coverFilename = [hrefAttribute lastPathComponent];
+				NSString* coverId = [coverFilename stringByDeletingPathExtension];
+				contentId = [coverId intValue];
 			}
 		}
 		
@@ -332,7 +339,7 @@
 		[tmpDict setValue:acquisitionLink	forKey:CONTENT_ACQUISITION_LINK];
 		[tmpDict setValue:thumbnailLink		forKey:CONTENT_THUMBNAIL_LINK];
 		[tmpDict setValue:coverLink			forKey:CONTENT_COVER_LINK];
-		[tmpDict setValue:[NSNumber numberWithInteger:UndefinedContentId] forKey:CONTENT_CID];
+		[tmpDict setValue:[NSNumber numberWithInteger:contentId] forKey:CONTENT_CID];
 		[tmpDict setValue:uuidStr			forKey:CONTENT_UUID];
 		[linksUrlArray addObject:tmpDict];
 		[tmpDict release];
