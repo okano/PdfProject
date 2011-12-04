@@ -16,15 +16,14 @@
 	//LOG_CURRENT_METHOD;
 	//NSLog(@"cid=%d", cid);
 	NSArray* lines = [self getAllProductIdentifier];
-	if (cid <= [lines count]) {
-		//return [lines objectAtIndex:(cid-1)];
-		NSString* singleLine = [lines objectAtIndex:(cid-1)];
+	for (NSString* singleLine in lines) {
 		NSArray* commaSeparated = [singleLine componentsSeparatedByString:@","];
-		return [commaSeparated objectAtIndex:0];
+		NSString* candidateCid = [commaSeparated objectAtIndex:0];
+		NSString* candidatePid = [commaSeparated objectAtIndex:1];
+		if ([candidateCid intValue] == cid) {
+			return candidatePid;
+		}
 	}
-	//LOG_CURRENT_METHOD;
-	//NSLog(@"productId not found. cid=%d", cid);
-	//NSLog(@"lines=%@", [lines description]);
 	return @"";
 }
 + (ContentId)getContentIdentifier:(NSString *)pid
@@ -32,14 +31,13 @@
 	//LOG_CURRENT_METHOD;
 	//NSLog(@"cid=%d", cid);
 	NSArray* lines = [self getAllProductIdentifier];
-	int i = 0;
 	for (NSString* singleLine in lines) {
 		NSArray* commaSeparated = [singleLine componentsSeparatedByString:@","];
-		NSString* candidatePid = [commaSeparated objectAtIndex:0];
+		NSString* candidateCid = [commaSeparated objectAtIndex:0];
+		NSString* candidatePid = [commaSeparated objectAtIndex:1];
 		if ([candidatePid compare:pid] == NSOrderedSame) {
-			return (ContentId)(i + 1);
+			return (ContentId)([candidateCid intValue]);
 		}
-		i++;
 	}
 	return InvalidContentId;
 }
@@ -57,9 +55,9 @@
 	NSArray* lines = [self getAllProductIdentifier];
 	for (NSString* singleLine in lines) {
 		NSArray* commaSeparated = [singleLine componentsSeparatedByString:@","];
-		NSString* candidateProductId = [commaSeparated objectAtIndex:0];
+		NSString* candidateProductId = [commaSeparated objectAtIndex:1];
 		if ([productId compare:candidateProductId] == NSOrderedSame) {
-			if (1 <= [commaSeparated count] && PRODUCT_KIND_FREE == [[commaSeparated objectAtIndex:1] intValue]) {
+			if (1 <= [commaSeparated count] && PRODUCT_KIND_FREE == [[commaSeparated objectAtIndex:2] intValue]) {
 				return TRUE;	//Free
 			} else {
 				return FALSE;	//Not Free
