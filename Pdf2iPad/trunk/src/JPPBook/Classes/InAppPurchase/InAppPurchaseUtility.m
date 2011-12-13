@@ -49,6 +49,27 @@
 	return [FileUtility parseDefineCsv:targetFilename];
 }
 
+
+#pragma mark -
++ (NSString*)productIdWithFullQualifier:(NSString*)sinpleProductId
+{
+	NSString* bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+	if (0==0) { //Debug.
+		bundleIdentifier = @"jp.kounago.PurchaseTest02";
+	}
+	
+	NSString* fullProductId = [NSString stringWithFormat:@"%@.%@", bundleIdentifier, sinpleProductId];
+	return fullProductId;
+}
++ (NSString*)productIdWithoutFullQualifier:(NSString*)fullProductId
+{
+	 NSArray *tmpArray = [fullProductId componentsSeparatedByString:@"."];
+	NSString* sinpleProductId = (NSString*)[tmpArray lastObject];
+	return sinpleProductId;
+}
+
+
+#pragma mark -
 //Check free contents for read without download.
 + (BOOL)isFreeContent:(NSString*)productId
 {

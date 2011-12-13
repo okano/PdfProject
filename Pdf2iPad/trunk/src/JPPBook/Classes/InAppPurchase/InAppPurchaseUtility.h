@@ -19,6 +19,9 @@
 + (NSString*)getProductIdentifier:(ContentId)cid;
 + (ContentId)getContentIdentifier:(NSString*)pid;
 + (NSArray*)getAllProductIdentifier;
+//Convert productId with/without Full.
++ (NSString*)productIdWithFullQualifier:(NSString*)sinpleProductId;
++ (NSString*)productIdWithoutFullQualifier:(NSString*)fullProductId;
 //Judge free comtent.
 + (BOOL)isFreeContent:(NSString*)productId;
 + (NSString*)getBookDefineFilename:(ContentId)cid;
