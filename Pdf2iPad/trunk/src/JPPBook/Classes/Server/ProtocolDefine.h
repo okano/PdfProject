@@ -5,6 +5,7 @@
 //  Created by okano on 11/08/31.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
+#import <StoreKit/StoreKit.h>
 @protocol MyTableViewVCProtocol
 - (void)reloadData;
 //
@@ -28,3 +29,10 @@
 - (void)didFailParseOpdsElement:(NSMutableArray*)resultArray;
 @end
 */
+
+@protocol VCWithInAppPurchaseProtocol
+- (void)productRequestDidSuccess:(SKProduct*)product;
+- (void)productRequestDidFailed:(NSString*)invalidProductIdentifier;
+- (void)purchaseDidSuccess:(NSString*)productId;
+- (void)purchaseDidFailed:(NSError*)error;
+@end
