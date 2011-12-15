@@ -10,7 +10,7 @@
 
 
 @implementation PaymentConductor
-@synthesize productsRequestDelegate;
+@synthesize parentVC;
 @synthesize paymentHistoryDS;
 
 #pragma mark - Get product infomation from Store, notify with Delegate.
@@ -29,21 +29,43 @@
 		[alert show];
 #if TARGET_IPHONE_SIMULATOR
 		NSLog(@"simulator not support SKProductsRequest.");
-		[productsRequestDelegate productsRequest:nil
-							  didReceiveResponse:nil];
+		[parentVC productRequestDidFailed:nil];
 #endif
 	}
 	
 	//Make Payments.
 	NSLog(@"can make payments");
 	NSString* productId = [InAppPurchaseUtility getProductIdentifier:cid];
+	NSString* fullProductId = [InAppPurchaseUtility productIdWithFullQualifier:productId];
+	NSLog(@"productId=%@, fullProductId=%@", productId, fullProductId);
+	//NSSet* productIdList =[NSSet setWithObject:fullProductId];
 	NSSet* productIdList =[NSSet setWithObject:productId];
+
+	/*
+	NSString* productName = [NSString stringWithFormat:@"jp.kounago.PurchaseTest02.Product2_1"];
+
+	//SKProductsRequest* request = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:fullProductId]];
+	SKProductsRequest* request = [[SKProductsRequest alloc] initWithProductIdentifiers:productIdList];
+	
+	request.delegate = self;
+	[request start];
+	*/
+	/*
+	SKProductsRequest* request = [[SKProductsRequest alloc]
+								  initWithProductIdentifiers:[NSSet setWithObject:productName]];
+	request.delegate = self;
+	[request start];
+	 */
+	
+	
 	SKProductsRequest* pRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:productIdList];
 	pRequest.delegate = self;
 	[pRequest start];
+	 
+
 }
 
-#pragma mark - SKProductsRequestDelegate methods.
+#pragma mark - Get product infomation from Store, SKProductsRequestDelegate methods.
 - (void)productsRequest:(SKProductsRequest *)request
 	 didReceiveResponse:(SKProductsResponse *)responseParameters
 {
@@ -58,28 +80,57 @@
 		}
 	}
 	
-	for (SKProduct* resultProduct in responseParameters.products) {
-		NSLog(@"valid productIdentifier=%@, localizedTitle=%@, localizedDescription=%@, price=%@, priceLocale=%@", 
-			  resultProduct.productIdentifier,
-			  resultProduct.localizedTitle,
-			  resultProduct.localizedDescription,
-			  resultProduct.price,
-			  resultProduct.priceLocale
-			  );
+	if (0 < [responseParameters.products count]) {
+		for (SKProduct* resultProduct in responseParameters.products) {
+			NSLog(@"valid productIdentifier=%@, localizedTitle=%@, localizedDescription=%@, price=%@, priceLocale=%@", 
+				  resultProduct.productIdentifier,
+				  resultProduct.localizedTitle,
+				  resultProduct.localizedDescription,
+				  resultProduct.price,
+				  resultProduct.priceLocale
+				  );
+		}
+		
+		[parentVC productRequestDidSuccess:[responseParameters.products objectAtIndex:0]];
+	} else {
+		[parentVC productRequestDidFailed:@"no product in result."];
 	}
-	
-	[productsRequestDelegate productsRequest:request
-						  didReceiveResponse:responseParameters];
 	
 	[request autorelease];
 }
 
-#pragma mark - SKPaymentTransactionObserver Protocol methods.
+#pragma mark - Buy Content.
+- (void)buyContent:(NSString*)productId
+{
+	LOG_CURRENT_METHOD;
+	NSLog(@"productId=%@", productId);
+	//Check enable payment.
+	if (! [SKPaymentQueue canMakePayments]) {
+		NSLog(@"cannot make payments");
+		
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"cannot make payments."
+													   delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+		[alert show];
+		return;
+	}
+	
+	//Process Payment.
+	//NSString* fullProductId = [InAppPurchaseUtility productIdWithFullQualifier:productId];
+	//NSLog(@"fullProductId=%@", fullProductId);
+	//SKPayment* payment = [SKPayment paymentWithProductIdentifier:fullProductId];
+	
+	SKPayment* payment = [SKPayment paymentWithProductIdentifier:productId];
+	[[SKPaymentQueue defaultQueue] addPayment:payment];
+}
+
+
+#pragma mark - Handle purhcase. (SKPaymentTransactionObserver Protocol methods.)
 //Handling Transactions
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
 {
 	//LOG_CURRENT_METHOD;
 	for (SKPaymentTransaction* transaction in transactions) {
+		NSLog(@"transactionIdentifier=%@", [transaction transactionIdentifier]);
 		switch (transaction.transactionState) {
 			case SKPaymentTransactionStatePurchased:
 				//NSLog(@"SKPaymentTransactionStatePurchased");
@@ -109,7 +160,7 @@
 - (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error{;}
 - (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue{;}
 
-#pragma mark - related SKPaymentTransactionObserver methods.
+#pragma mark - handle purchase. (related SKPaymentTransactionObserver methods.)
 - (void)completeTransaction:(SKPaymentTransaction*)transaction
 {
 	//Record Transaction.
@@ -126,6 +177,7 @@
 	//NSLog(@"signing-status=%@", [dict valueForKey:@"signing-status"]);
 	
 	//Enable contents.
+	//(Add Download(purchase) history.)
 	NSString* productID = transaction.payment.productIdentifier;
 	[paymentHistoryDS enableContentWithProductId:productID WithDict:dict];
 	
@@ -134,13 +186,15 @@
 	
 	
 	//Throw to parent.
-	[productsRequestDelegate completeTransaction:transaction];
+	[parentVC purchaseDidSuccess:productID];
 }
 - (void)restoreTransaction:(SKPaymentTransaction*)transaction
 {
 	LOG_CURRENT_METHOD;
 }
-- (void)failedTransaction:(SKPaymentTransaction*)transaction{;}
+- (void)failedTransaction:(SKPaymentTransaction*)transaction {
+	[parentVC purchaseDidFailed:transaction.error];
+}
 
 
 @end

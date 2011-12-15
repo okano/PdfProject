@@ -14,16 +14,16 @@
 @synthesize targetUrl;
 @synthesize thumbnailImageView, titleLabel, authorLabel, descriptionTextView;
 @synthesize priceLabel;
-@synthesize buyButton;
-@synthesize downloadButton;
+@synthesize buyButton, reDownloadButton;
 
+#pragma mark -
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
 		appDelegate = (Pdf2iPadAppDelegate*)[[UIApplication sharedApplication] delegate];
-		targetCid = -1;
+		targetCid = UndefinedContentId;
 		targetProductId = nil;
 		
 		//Change view size in iPad.
@@ -47,8 +47,6 @@
     return self;
 }
 
-#pragma mark - Implement.
-//- (void)setLabelsWithContentId:(ContentId)cid
 - (void)setLabelsWithUuid:(NSString *)uuid
 {
 	//LOG_CURRENT_METHOD;
@@ -82,25 +80,34 @@
 	buyButton.enabled = NO;
 	buyButton.hidden = NO;
 	targetCid = [appDelegate.contentListDS contentIdFromUuid:uuid];	/* USE contentListDS(not use ServerContentListDS) */
-	//NSLog(@"targetCid=%d", targetCid);
+	NSLog(@"targetCid=%d", targetCid);
+	
+	targetCid = [appDelegate.serverContentListDS contentIdFromUuid:uuid];
+	NSLog(@"targetCid=%d", targetCid);
+	
+	
 	if ((targetCid != UndefinedContentId)
 		&&
 		(targetCid != InvalidContentId)
 		&&
 		([appDelegate.paymentHistoryDS isEnabledContent:targetCid] == TRUE))
 	{
-		buyButton.titleLabel.text = @"購入済み";
-		downloadButton.enabled = NO;
-		downloadButton.hidden = YES;
+		//購入済み
+		buyButton.hidden = YES;
+		reDownloadButton.hidden = NO;
 	} else {
-		buyButton.titleLabel.text = @"未購入";
-		downloadButton.enabled = YES;
-		downloadButton.hidden = NO;
+		//未購入
+		buyButton.hidden = NO;
+		reDownloadButton.hidden = YES;
 	}
 	
 	
+	//Get Price.
+	appDelegate.paymentConductor.parentVC = self;
+	[appDelegate.paymentConductor getProductInfomation:targetCid];
 }
-#pragma mark - SKProductsRequestDelegate methods.
+#pragma mark - related SKProductsRequestDelegate methods.
+/*
 - (void)productsRequest:(SKProductsRequest *)request
 	 didReceiveResponse:(SKProductsResponse *)responseParameters
 {
@@ -146,8 +153,43 @@
 		//NSLog(@"targetProductId=%@", targetProductId);
 	}
 }
+*/
+
+#pragma mark -
+- (void)productRequestDidSuccess:(SKProduct *)product
+{
+	LOG_CURRENT_METHOD;
+	
+	//Set price label.
+	NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+	[numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+	[numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+	[numberFormatter setLocale:product.priceLocale];
+	NSString *formattedString = [numberFormatter stringFromNumber:product.price];
+	priceLabel.text = [formattedString stringByAppendingString:@"-"];
+	
+	//Set buy button.
+	buyButton.enabled = YES;
+	
+	//Set product id.
+	NSLog(@"product=%@",[product description]);
+	NSLog(@"product id = %@", [product productIdentifier]);
+	NSLog(@"class=%@", [product.productIdentifier class]);
+	targetProductId = [[NSString  alloc] initWithFormat:[product productIdentifier]];
+}
+- (void)productRequestDidFailed:(NSString *)invalidProductIdentifier
+{
+	LOG_CURRENT_METHOD;
+	
+	priceLabel.text = @"error";
+	[buyButton setTitle:@"購入できません" forState:UIControlStateNormal];
+	[buyButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+	//buyButton.enabled = NO;
+}
+
 
 #pragma mark - related SKPaymentTransactionObserver methods.
+/*
 - (void)completeTransaction:(SKPaymentTransaction*)transaction
 {
 	LOG_CURRENT_METHOD;
@@ -157,6 +199,32 @@
 	NSLog(@"pid=%@, cid=%d", productID, cid);
 	[appDelegate hideContentDetailView];
 	[appDelegate showContentPlayerView:cid];
+}
+*/
+
+- (void)purchaseDidSuccess:(NSString *)productId
+{
+	targetCid = [InAppPurchaseUtility getContentIdentifier:productId];
+	NSLog(@"pid=%@, cid=%d", productId, targetCid);
+	[self downloadContent:nil];
+}
+- (void)purchaseDidFailed:(NSError *)error
+{
+	NSLog(@"purchase error. error description=%@", [error description]);
+	
+	//Show alert.
+	UIAlertView *alert = [[UIAlertView alloc]
+						  initWithTitle:@"purchse error"
+						  message:[NSString stringWithFormat:@"課金処理に失敗しました。詳細：%@", [error description]]
+						  delegate:nil
+						  cancelButtonTitle:nil
+						  otherButtonTitles:@"OK", nil];
+	[alert show];
+	NSLog(@"error userinfo=%@", [[error userInfo] description]);
+	
+	//ReEnable buy button.
+	buyButton.enabled = YES;
+	
 }
 
 #pragma mark -
@@ -169,12 +237,17 @@
 
 - (IBAction)buyContent:(id)sender
 {
-	//LOG_CURRENT_METHOD;
+	LOG_CURRENT_METHOD;
 	//NSLog(@"targetProductId class=%@", [targetProductId class]);
-	//NSLog(@"targetProductId=%@", targetProductId);
+	NSLog(@"targetProductId=%@", targetProductId);
+	if (targetProductId == nil) {
+		LOG_CURRENT_LINE;
+		NSLog(@"no productId found.");
+	}
+
 	
 	buyButton.enabled = NO;		//Disable buy at twice.
-	[appDelegate.paymentHistoryDS buyContent:targetProductId];
+	[appDelegate.paymentConductor buyContent:targetProductId];
 	return;
 }
 
@@ -197,36 +270,7 @@
 }
 
 
-
-#pragma mark -
-- (void)dealloc
-{
-    [super dealloc];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
 #pragma mark - View lifecycle
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations

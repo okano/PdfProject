@@ -11,7 +11,7 @@
 #import "InAppPurchaseUtility.h"
 #import "Pdf2iPadAppDelegate.h"
 
-@interface ContentDetailViewController : UIViewController {
+@interface ContentDetailViewController : UIViewController <VCWithInAppPurchaseProtocol> {
 	Pdf2iPadAppDelegate* appDelegate;
 	ContentId targetCid;
 	NSString* targetProductId;

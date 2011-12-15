@@ -33,7 +33,7 @@
 //- (void)disableContent:(ContentId)cid;
 - (void)recordHistoryOnceWithProductId:(NSString*)productId;
 
-- (void)buyContent:(NSString*)productId;
+//- (void)buyContent:(NSString*)productId;
 
 //Misc.
 - (NSUInteger)count;

@@ -54,7 +54,8 @@
 + (NSString*)productIdWithFullQualifier:(NSString*)sinpleProductId
 {
 	NSString* bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
-	if (0==0) { //Debug.
+	NSLog(@"original bundleIdentifier=%@", bundleIdentifier);
+	if (10==0) { //Debug.
 		bundleIdentifier = @"jp.kounago.PurchaseTest02";
 	}
 	

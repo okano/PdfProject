@@ -164,6 +164,7 @@
 	}
 	return FALSE;
 }
+/*
 - (void)buyContent:(NSString*)productId
 {
 	LOG_CURRENT_METHOD;
@@ -182,6 +183,7 @@
 	SKPayment* payment = [SKPayment paymentWithProductIdentifier:productId];
 	[[SKPaymentQueue defaultQueue] addPayment:payment];
 }
+*/
 - (void)enableContent:(ContentId)cid
 {
 	//LOG_CURRENT_METHOD;

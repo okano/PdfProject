@@ -54,6 +54,13 @@
 	NSLog(@"contentFilename=%@", contentFilename);
 	NSFileManager* fMgr = [NSFileManager defaultManager];
 	
+	
+	//Ask with OverWrite to exist file.
+	if ([fMgr fileExistsAtPath:contentFilename] == YES) {
+		[self askOverwrite];
+	}
+	
+	
 	//Check if file already downloaded.
 	if([fMgr fileExistsAtPath:contentFilename] == NO)
 	{
@@ -90,6 +97,56 @@
 					  							 delegate:self];
 	}
 }
+
+- (void)askOverwrite
+{
+	UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Downloaded file error"
+													 message:@"pdf file cannot found in archive file."
+													delegate:self
+										   cancelButtonTitle:@"Cancel"
+										   otherButtonTitles:@"OK",nil]
+						  autorelease];
+	[alert show];
+}
+
+#pragma mark - UIActionSheetDelegate Protocol.
+- (void)actionSheet:(UIActionSheet *)sheet didDismissWithButtonIndex:(NSInteger)index
+{
+	//NSLog(@"action sheet: index=%d", index);
+    if( index == [sheet cancelButtonIndex])
+    {
+        //Close this window.
+		Pdf2iPadAppDelegate* appDelegate = (Pdf2iPadAppDelegate*)[[UIApplication sharedApplication] delegate];
+		[appDelegate hideServerContentDetailView];
+		[appDelegate showServerContentDetailView:targetUuid];
+    }
+	else if( index == [sheet destructiveButtonIndex] )
+    {
+        // Do Nothing
+    }
+    else if(index == 0)
+	{
+		//Delete directory for contents.
+		NSString* cidStr = [NSString stringWithFormat:@"%d", targetCid];
+		//NSString* contentFilename = [ContentFileUtility getContentBodyFilenamePdf:cidStr];
+		//NSLog(@"contentFilename=%@", contentFilename);
+		NSString* contentFileDirectory = [ContentFileUtility getContentBodyDirectoryWithContentId:cidStr];
+		NSLog(@"contentFileDirectory=%@", contentFileDirectory);
+		NSFileManager* fMgr = [NSFileManager defaultManager];
+		
+		NSError* error = nil;
+		[fMgr removeItemAtPath:contentFileDirectory error:&error];
+		if (error) {
+			NSLog(@"error. %@", [error localizedDescription]);
+		}
+
+		//Do(retry) download.
+		[self doDownload];
+    }
+}
+
+
+
 
 /*
 //  ダウンロード開始
@@ -130,7 +187,7 @@
 		NSLog(@"Illigal file extensions. filename=%@, ext=%@", download.filePath, [download.filePath pathExtension]);
 	}
 	
-	
+	/*
 	//Add downloaded metadata to (inner)ContentListDS.
 	NSString* uuid = targetUuid;
 	NSLog(@"uuid=%@(%@)", uuid, targetUuid);
@@ -145,16 +202,31 @@
 	
 	//StepUp nextContentId.
 	[appDelegate.contentListDS stepupContentIdToUserDefault:newContentId];
+	*/
+	
+	//Copy metadata from server to local ContentListDS.
+	NSString* serverUuid = targetUuid;
+	NSLog(@"uuid at server = %@", targetUuid);
+	NSMutableDictionary* metaData2 = [NSMutableDictionary dictionaryWithDictionary:[appDelegate.serverContentListDS getMetadataByUuid:serverUuid]];
+	if (! metaData2) {
+		NSLog(@"cannot get metadata. UUID=%@", targetUuid);
+	}
+	NSLog(@"metaData2=%@", [metaData2 description]);
+	[appDelegate.contentListDS addMetadata:metaData2];
+	[appDelegate.contentListDS saveToPlist];
 	
 	
-	//Add Download(purchase) history.
-	[appDelegate.paymentHistoryDS enableContent:newContentId];
+	
+	//Add Download(purchase) history. -> do it by PaymentConductor.
+	//[appDelegate.paymentHistoryDS enableContent:newContentId];
+	
+	
 	
 	//Copy image cache for Cover.
 	//NSString* cacheFilenameFull = [CoverUtility getCoverCacheFilenameFull:uuid];
 	NSString* cacheFilenameFull = [[[[NSHomeDirectory() stringByAppendingPathComponent:@"Tmp"]
 									  stringByAppendingPathComponent:COVER_CACHE_DIR]
-									 stringByAppendingPathComponent:uuid]
+									 stringByAppendingPathComponent:targetUuid]
 									stringByAppendingPathExtension:COVER_FILE_EXTENSION];
 	NSString* targetFilenameFull = [[[[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 									   stringByAppendingPathComponent:DETAIL_DIR]

@@ -52,6 +52,7 @@
 			   bundle:(NSBundle *)nibBundleOrNil
 			targetUrl:(NSURL*)url
 		   targetUuid:(NSString*)uuid;
+- (void)askOverwrite;
 - (void)doDownload;
 - (void)releaseDownloader;
 //

@@ -13,7 +13,7 @@
 #import "ServerContentDownloadVC.h"
 #import "CoverUtility.h"
 
-@interface ServerContentDetailVC : UIViewController {
+@interface ServerContentDetailVC : UIViewController <VCWithInAppPurchaseProtocol> {
 	Pdf2iPadAppDelegate* appDelegate;
 	ContentId targetCid;
 	NSString* targetProductId;
@@ -27,9 +27,9 @@
 	IBOutlet UILabel* authorLabel;
 	IBOutlet UITextView* descriptionTextView;
 	IBOutlet UILabel* priceLabel;
-	IBOutlet UIButton* buyButton;
 	//
-	IBOutlet UIButton* downloadButton;
+	IBOutlet UIButton* buyButton;
+	IBOutlet UIButton* reDownloadButton;
 }
 @property (nonatomic, retain) NSString* targetUuid;
 @property (nonatomic, retain) NSURL* targetUrl;
@@ -38,8 +38,9 @@
 @property (nonatomic, retain) UILabel* authorLabel;
 @property (nonatomic, retain) UITextView* descriptionTextView;
 @property (nonatomic, retain) UILabel* priceLabel;
+
 @property (nonatomic, retain) UIButton* buyButton;
-@property (nonatomic, retain) UIButton* downloadButton;
+@property (nonatomic, retain) UIButton* reDownloadButton;
 
 //- (void)setLabelsWithContentId:(ContentId)cid;
 - (void)setLabelsWithUuid:(NSString*)uuid;
@@ -48,9 +49,9 @@
 - (IBAction)downloadContent:(id)sender;
 
 //called from SKProductsRequestDelegate related methods.
-- (void)productsRequest:(SKProductsRequest *)request
-	 didReceiveResponse:(SKProductsResponse *)responseParameters;
+//- (void)productsRequest:(SKProductsRequest *)request
+//	 didReceiveResponse:(SKProductsResponse *)responseParameters;
 //called from SKPaymentTransactionObserver related methods.
-- (void)completeTransaction:(SKPaymentTransaction*)transaction;
+//- (void)completeTransaction:(SKPaymentTransaction*)transaction;
 
 @end
