@@ -1374,18 +1374,18 @@
 	
 	CGPoint touchedPointInParentView = [gestureRecognizer locationInView:self.view];
 	//NSLog(@"location in currentPdfScrollView = %@", NSStringFromCGPoint(touchedPointInParentView));
-	if (CGRectContainsPoint(leftTapArea, touchedPointInParentView)) {
-		//NSLog(@"touch leftTapArea");
-		[self handleTapInLeftArea:gestureRecognizer];
-	} else if (CGRectContainsPoint(rightTapArea, touchedPointInParentView)) {
-		//NSLog(@"touch rightTapArea");
-		[self handleTapInRightArea:gestureRecognizer];
-	} else if (CGRectContainsPoint(topTapArea, touchedPointInParentView)) {
+	if (CGRectContainsPoint(topTapArea, touchedPointInParentView)) {
 		//NSLog(@"touch topTapArea");
 		[self handleTapInTopArea:gestureRecognizer];
 	} else if (CGRectContainsPoint(bottomTapArea, touchedPointInParentView)) {
 		//NSLog(@"touch bottomTapArea");
 		[self handleTapInBottomArea:gestureRecognizer];
+	} else if (CGRectContainsPoint(leftTapArea, touchedPointInParentView)) {
+		//NSLog(@"touch leftTapArea");
+		[self handleTapInLeftArea:gestureRecognizer];
+	} else if (CGRectContainsPoint(rightTapArea, touchedPointInParentView)) {
+		//NSLog(@"touch rightTapArea");
+		[self handleTapInRightArea:gestureRecognizer];
 	} else {
 		//NSLog(@"touch other Area");
 		[self hideMenuBar];
