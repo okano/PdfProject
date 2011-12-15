@@ -130,22 +130,21 @@
 {
 	//LOG_CURRENT_METHOD;
 	for (SKPaymentTransaction* transaction in transactions) {
-		NSLog(@"transactionIdentifier=%@", [transaction transactionIdentifier]);
 		switch (transaction.transactionState) {
 			case SKPaymentTransactionStatePurchased:
-				//NSLog(@"SKPaymentTransactionStatePurchased");
+				//NSLog(@"SKPaymentTransactionStatePurchased, transactionIdentifier=%@", [transaction transactionIdentifier]);
 				[self completeTransaction:transaction];
 				break;
 			case SKPaymentTransactionStateFailed:
-				NSLog(@"SKPaymentTransactionStateFailed");
+				NSLog(@"SKPaymentTransactionStateFailed, transactionIdentifier=%@", [transaction transactionIdentifier]);
 				[self failedTransaction:transaction];
 				break;
 			case SKPaymentTransactionStateRestored:
-				NSLog(@"SKPaymentTransactionStateRestored");
+				NSLog(@"SKPaymentTransactionStateRestored, transactionIdentifier=%@", [transaction transactionIdentifier]);
 				[self restoreTransaction:transaction];
 				break;
 			case SKPaymentTransactionStatePurchasing:
-				//NSLog(@"SKPaymentTransactionStatePurchasing");
+				//NSLog(@"SKPaymentTransactionStatePurchasing, transactionIdentifier=%@", [transaction transactionIdentifier]);
 				break;
 				
 			default:
@@ -193,6 +192,9 @@
 	LOG_CURRENT_METHOD;
 }
 - (void)failedTransaction:(SKPaymentTransaction*)transaction {
+	//Delete failed transaction in queue.
+	[[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+	//
 	[parentVC purchaseDidFailed:transaction.error];
 }
 
