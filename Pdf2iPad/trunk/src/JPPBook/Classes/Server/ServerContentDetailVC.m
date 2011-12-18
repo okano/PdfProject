@@ -47,6 +47,11 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+	[self enableReDownloadButton];	//for cancel overwrite confirm.
+}
+
 - (void)setLabelsWithUuid:(NSString *)uuid
 {
 	//LOG_CURRENT_METHOD;
@@ -300,6 +305,8 @@
 	NSLog(@"targetUrl class=%@", [targetUrl class]);
 	NSLog(@"targetUrl=%@", [targetUrl description]);
 	NSLog(@"targetUuid=%@", targetUuid);
+	
+	[self disableReDownloadButton];
 	
 	ServerContentDownloadVC* downloaderVC = [[ServerContentDownloadVC alloc] initWithNibName:@"ServerContentDownload"
 																					bundle:[NSBundle mainBundle] 
