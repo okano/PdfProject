@@ -35,6 +35,8 @@
 //Misc.
 - (NSString*)description;
 - (void)removeAllObjects;
+- (void)removeMetadataWithContentId:(ContentId)cid;
+- (void)removeMetadataWithUuid:(NSString*)uuid;
 
 //Metadata each content.
 - (NSMutableDictionary*)getMetadataByContentId:(ContentId)cid;

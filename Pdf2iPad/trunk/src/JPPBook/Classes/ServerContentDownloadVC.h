@@ -15,7 +15,7 @@
 #import "ContentUrlUtility.h"
 #import "HetimaUnZip.h"
 
-@interface ServerContentDownloadVC : UIViewController <URLDownloadDeleagte, UIActionSheetDelegate, HetimaUnZipItemDelegate> {
+@interface ServerContentDownloadVC : UIViewController <URLDownloadDeleagte, UIAlertViewDelegate, HetimaUnZipItemDelegate> {
 	//Downloader
 	URLDownload *downloader;
 	NSLock *downloaderLock;
@@ -51,7 +51,8 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil
 			   bundle:(NSBundle *)nibBundleOrNil
 			targetUrl:(NSURL*)url
-		   targetUuid:(NSString*)uuid;
+		   targetUuid:(NSString*)uuid
+			targetCid:(ContentId)cid;
 - (void)askOverwrite;
 - (void)doDownload;
 - (void)releaseDownloader;
@@ -70,3 +71,9 @@
 //
 - (void)item:(HetimaUnZipItem *)item didExtractDataOfLength:(NSUInteger)length;
 @end
+
+#define ALERTVIEW_TAG_PDF_NOT_FOUND		20
+#define ALERTVIEW_TAG_CONFIRM_OVERWRITE	35
+#define ALERTVIEW_TAG_DOWNLOAD_CANCELED	40
+#define ALERTVIEW_TAG_DOWNLOAD_FAILED	41
+

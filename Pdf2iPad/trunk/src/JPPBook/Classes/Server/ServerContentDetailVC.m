@@ -77,8 +77,9 @@
 	//priceLabel.text = @"(Now Loading...)";
 	
 	//BuyButton
-	buyButton.enabled = NO;
-	buyButton.hidden = NO;
+	[self disableBuyButton];	//show but cannot push.
+	
+	//
 	targetCid = [appDelegate.contentListDS contentIdFromUuid:uuid];	/* USE contentListDS(not use ServerContentListDS) */
 	NSLog(@"targetCid=%d", targetCid);
 	
@@ -86,19 +87,26 @@
 	NSLog(@"targetCid=%d", targetCid);
 	
 	
-	if ((targetCid != UndefinedContentId)
-		&&
-		(targetCid != InvalidContentId)
-		&&
-		([appDelegate.paymentHistoryDS isEnabledContent:targetCid] == TRUE))
+	if ((targetCid == UndefinedContentId)
+		||
+		(targetCid == InvalidContentId)
+		)
 	{
+		//未購入
+		NSLog(@"not yet buy(targetCid=%d)", targetCid);
+		[self disableBuyButton];	//enable with price get.
+		[self hideReDownloadButton];
+	} else if ([appDelegate.paymentHistoryDS isEnabledContent:targetCid] == TRUE) {
 		//購入済み
-		buyButton.hidden = YES;
-		reDownloadButton.hidden = NO;
+		NSLog(@"paymentHistoryDS=%@", [appDelegate.paymentHistoryDS description]);
+		NSLog(@"has been buy");
+		[self hideBuyButton];
+		[self enableReDownloadButton];
 	} else {
 		//未購入
-		buyButton.hidden = NO;
-		reDownloadButton.hidden = YES;
+		NSLog(@"not yet buy");
+		[self disableBuyButton];	//enable with price get.
+		[self hideReDownloadButton];
 	}
 	
 	
@@ -106,6 +114,37 @@
 	appDelegate.paymentConductor.parentVC = self;
 	[appDelegate.paymentConductor getProductInfomation:targetCid];
 }
+
+
+- (void)enableBuyButton {
+	buyButton.hidden = NO;
+	buyButton.enabled = YES;
+	[buyButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+}
+- (void)disableBuyButton { //Disable but shown.
+	buyButton.hidden = NO;
+	buyButton.enabled = NO;
+	[buyButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+}
+- (void)hideBuyButton {
+	buyButton.hidden = YES;
+}
+
+- (void)enableReDownloadButton {
+	reDownloadButton.hidden = NO;
+	reDownloadButton.enabled = YES;
+	[reDownloadButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+}
+- (void)disableReDownloadButton { //Disable but shown.
+	reDownloadButton.hidden = NO;
+	reDownloadButton.enabled = NO;
+	[reDownloadButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+}
+- (void)hideReDownloadButton {
+	reDownloadButton.hidden = YES;
+}
+
+
 #pragma mark - related SKProductsRequestDelegate methods.
 /*
 - (void)productsRequest:(SKProductsRequest *)request
@@ -169,7 +208,12 @@
 	priceLabel.text = [formattedString stringByAppendingString:@"-"];
 	
 	//Set buy button.
-	buyButton.enabled = YES;
+	if ([appDelegate.paymentHistoryDS isEnabledContent:targetCid] == TRUE) {
+		[self disableBuyButton];
+		[buyButton setTitle:@"購入済み" forState:UIControlStateNormal];
+	} else {
+		[self enableBuyButton];
+	}
 	
 	//Set product id.
 	NSLog(@"product=%@",[product description]);
@@ -183,8 +227,7 @@
 	
 	priceLabel.text = @"error";
 	[buyButton setTitle:@"購入できません" forState:UIControlStateNormal];
-	[buyButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-	//buyButton.enabled = NO;
+	[self disableBuyButton];
 }
 
 
@@ -223,8 +266,7 @@
 	NSLog(@"error userinfo=%@", [[error userInfo] description]);
 	
 	//ReEnable buy button.
-	buyButton.enabled = YES;
-	
+	[self enableBuyButton];
 }
 
 #pragma mark -
@@ -245,8 +287,7 @@
 		NSLog(@"no productId found.");
 	}
 
-	
-	buyButton.enabled = NO;		//Disable buy at twice.
+	[self disableBuyButton];	//Disable buy at twice.
 	[appDelegate.paymentConductor buyContent:targetProductId];
 	return;
 }
@@ -263,7 +304,9 @@
 	ServerContentDownloadVC* downloaderVC = [[ServerContentDownloadVC alloc] initWithNibName:@"ServerContentDownload"
 																					bundle:[NSBundle mainBundle] 
 																				 targetUrl:targetUrl
-																				  targetUuid:targetUuid];
+																				  targetUuid:targetUuid
+																				   targetCid:targetCid];
+	
 	LOG_CURRENT_LINE;
 	[self presentModalViewController:downloaderVC animated:YES];
 	[downloaderVC doDownload];

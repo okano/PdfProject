@@ -261,6 +261,43 @@
 {
 	[contentList removeAllObjects];
 }
+- (void)removeMetadataWithContentId:(ContentId)cid
+{
+	LOG_CURRENT_METHOD;
+	NSLog(@"old contentList=%@", [contentList description]);
+	
+	for (NSDictionary* tmpDict in [contentList reverseObjectEnumerator]){
+		id object = [tmpDict valueForKey:CONTENT_CID];
+		if (object == nil) {
+			continue;	//skip to next.
+		}
+		if ([[tmpDict valueForKey:CONTENT_CID] intValue] == cid) {
+			[contentList removeObject:tmpDict];
+		}
+	}
+	
+	NSLog(@"new contentList=%@", [contentList description]);
+}
+
+- (void)removeMetadataWithUuid:(NSString*)uuid
+{
+	LOG_CURRENT_METHOD;
+	NSLog(@"old contentList=%@", [contentList description]);
+	
+	for (NSDictionary* tmpDict in contentList){
+		NSString* candidateUuid = [tmpDict valueForKey:CONTENT_UUID];
+		if (candidateUuid == nil) {
+			continue;	//skip to next.
+		}
+		if ([candidateUuid compare:uuid options:NSCaseInsensitiveSearch] == NSOrderedSame) {
+			[contentList removeObject:tmpDict];
+		}
+	}
+	
+	NSLog(@"new contentList=%@", [contentList description]);
+}
+
+
 
 //Save metadata to plist.
 - (void)saveToPlist

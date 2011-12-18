@@ -44,7 +44,16 @@
 
 //- (void)setLabelsWithContentId:(ContentId)cid;
 - (void)setLabelsWithUuid:(NSString*)uuid;
+- (void)enableBuyButton;
+- (void)disableBuyButton;
+- (void)hideBuyButton;
+- (void)enableReDownloadButton;
+- (void)disableReDownloadButton;
+- (void)hideReDownloadButton;
+
+//Close this view.
 - (IBAction)showServerContentList:(id)sender;
+//Buy and Download.
 - (IBAction)buyContent:(id)sender;
 - (IBAction)downloadContent:(id)sender;
 

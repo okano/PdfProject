@@ -28,6 +28,7 @@
 			   bundle:(NSBundle *)nibBundleOrNil
 			targetUrl:(NSURL *)url
 		   targetUuid:(NSString *)uuid
+			targetCid:(ContentId)cid
 {
 	LOG_CURRENT_METHOD;
 	LOG_CURRENT_LINE;
@@ -35,6 +36,7 @@
 	
 	targetUrl = url;
 	targetUuid = [NSString stringWithString:uuid];
+	targetCid = cid;
 	LOG_CURRENT_LINE;
 	NSLog(@"targetUrl class=%@", [targetUrl class]);
 	NSLog(@"targetUrl=%@", [targetUrl description]);
@@ -102,19 +104,28 @@
 #pragma mark -
 - (void)askOverwrite
 {
+	LOG_CURRENT_METHOD;
 	UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Downloaded file was exist"
 													 message:@"Do you want to overwrite it?"
 													delegate:self
 										   cancelButtonTitle:@"Cancel"
 										   otherButtonTitles:@"OK",nil]
 						  autorelease];
+	alert.tag = ALERTVIEW_TAG_CONFIRM_OVERWRITE;
 	[alert show];
 }
 
-- (void)actionSheet:(UIActionSheet *)sheet didDismissWithButtonIndex:(NSInteger)index
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-	//NSLog(@"action sheet: index=%d", index);
-    if( index == [sheet cancelButtonIndex])	//"Cancel" selected.
+	LOG_CURRENT_METHOD;
+	NSLog(@"action sheet: index=%d", buttonIndex);
+    
+	if (alertView.tag != ALERTVIEW_TAG_CONFIRM_OVERWRITE) {
+		return;
+	}
+	
+	if( buttonIndex == [alertView cancelButtonIndex])	//"Cancel" selected.
     {
         //Close this window.
 		[self dismissModalViewControllerAnimated:YES];
@@ -124,7 +135,7 @@
 		[appDelegate showServerContentDetailView:targetUuid];
 		*/
 	}
-    else if(index == 0)	//"OK" Selected.
+    else if(buttonIndex == [alertView firstOtherButtonIndex])	//"OK" Selected.
 	{
 		//Delete directory for contents.
 		NSString* cidStr = [NSString stringWithFormat:@"%d", targetCid];
@@ -138,12 +149,33 @@
 		[fMgr removeItemAtPath:contentFileDirectory error:&error];
 		if (error) {
 			LOG_CURRENT_METHOD;
-			NSLog(@"directory delete error. %@", [error localizedDescription]);
+			NSLog(@"content directory delete error. %@", [error localizedDescription]);
+			NSLog(@"content directory =%@", contentFileDirectory);
 		}
-
+		
+		//Delete old metadata.
+		Pdf2iPadAppDelegate* appDelegate = (Pdf2iPadAppDelegate*)[[UIApplication sharedApplication] delegate];
+		[appDelegate.contentListDS removeMetadataWithContentId:targetCid];
+		
+		//Delete old page cache.
+		NSString* topPageCacheFilename = [FileUtility getPageFilenameFull:1 WithContentId:targetCid];
+		NSString* pageCacheDir = [topPageCacheFilename stringByDeletingLastPathComponent];
+		//NSLog(@"page cache dir = %@", pageCacheDir);
+		[fMgr removeItemAtPath:pageCacheDir error:&error];
+		if (error) {
+			LOG_CURRENT_METHOD;
+			NSLog(@"pageCache directory delete error. %@", [error localizedDescription]);
+			NSLog(@"pageCache directory =%@", pageCacheDir);
+		}
+		
+		
 		//Do(retry) download.
 		[self doDownload];
-    }
+    } else {
+		NSLog(@"button tapped. index=%d", buttonIndex);
+        //Close this window.
+		[self dismissModalViewControllerAnimated:YES];
+	}
 }
 
 
@@ -181,6 +213,7 @@
 		NSLog(@"cannot get metadata. UUID=%@", targetUuid);
 	}
 	NSLog(@"metaData2=%@", [metaData2 description]);
+	[appDelegate.contentListDS removeMetadataWithUuid:targetUuid];
 	[appDelegate.contentListDS addMetadata:metaData2];
 	[appDelegate.contentListDS saveToPlist];
 	
@@ -298,7 +331,7 @@
 	//Extract.
 	NSError* error = nil;
 	
-	//Make directory for extract.
+	//Clear directory for extract.
 	[FileUtility removeFile:[ContentFileUtility	getContentExtractDirectory]];
 	[FileUtility makeDir:[ContentFileUtility getContentExtractDirectory]];
 	
@@ -344,12 +377,14 @@
 	{
 		NSLog(@"pdf file cannot found in archive file. expect filename=%@", fromPath);
 		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Downloaded file error"
-														 message:@"pdf file cannot found in archive file."
+														 message:@"PDF file does not found in archive file."
 														delegate:self
 											   cancelButtonTitle:nil
 											   otherButtonTitles:@"OK",nil]
 							  autorelease];
+		alert.tag = ALERTVIEW_TAG_PDF_NOT_FOUND;
 		[alert show];
+		return;
 	} else {
 		NSLog(@"copy-from pdf file found. filename=%@", fromPath);
 	}
@@ -367,6 +402,7 @@
 - (void)download:(URLDownload *)download didCancelBecauseOf:(NSException *)exception {
 	LOG_CURRENT_METHOD;
 	UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"download canceled." message:[exception reason] delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK",nil] autorelease];
+	alert.tag = ALERTVIEW_TAG_DOWNLOAD_CANCELED;
 	[alert show];
 	[self releaseDownloader];
 }
@@ -375,6 +411,7 @@
 - (void)download:(URLDownload *)download didFailWithError:(NSError *)error {
 	LOG_CURRENT_METHOD;
 	UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"download failed." message:[error localizedDescription] delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK",nil] autorelease];
+	alert.tag = ALERTVIEW_TAG_DOWNLOAD_FAILED;
 	[alert show];
 	[self releaseDownloader];
 }

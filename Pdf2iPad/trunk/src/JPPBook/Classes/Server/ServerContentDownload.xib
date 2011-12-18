@@ -82,7 +82,7 @@
 							<object class="IBUILabel" id="404861644">
 								<reference key="NSNextResponder" ref="451257259"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{20, 37}, {126, 21}}</string>
+								<string key="NSFrame">{{17, 37}, {129, 21}}</string>
 								<reference key="NSSuperview" ref="451257259"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1062912095"/>
@@ -91,7 +91,7 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">Label</string>
+								<string key="IBUIText">downloaded size</string>
 								<object class="NSColor" key="IBUITextColor" id="1016564784">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MCAwIDAAA</bytes>
@@ -143,7 +143,7 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">Label</string>
+								<string key="IBUIText">total size</string>
 								<reference key="IBUITextColor" ref="1016564784"/>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
