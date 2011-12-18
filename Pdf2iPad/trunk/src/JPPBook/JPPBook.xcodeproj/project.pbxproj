@@ -81,20 +81,9 @@
 		2991E94C13B1E208000630FB /* p1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2991E94913B1E208000630FB /* p1.mp3 */; };
 		2991E94D13B1E209000630FB /* p2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2991E94A13B1E208000630FB /* p2.mp3 */; };
 		2991E94E13B1E209000630FB /* p3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2991E94B13B1E208000630FB /* p3.mp3 */; };
-		2994C03A13C5BF1A00368AD3 /* document-2.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2994C03913C5BF1A00368AD3 /* document-2.pdf */; };
-		2994C03C13C5BF2000368AD3 /* document-3.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2994C03B13C5BF2000368AD3 /* document-3.pdf */; };
-		2994C04313C5BFB200368AD3 /* pdfDefine_2.csv in Resources */ = {isa = PBXBuildFile; fileRef = 2994C03D13C5BFB200368AD3 /* pdfDefine_2.csv */; };
-		2994C04413C5BFB200368AD3 /* pdfDefine_3.csv in Resources */ = {isa = PBXBuildFile; fileRef = 2994C03E13C5BFB200368AD3 /* pdfDefine_3.csv */; };
-		2994C04513C5BFB200368AD3 /* popoverImageDefine_2.csv in Resources */ = {isa = PBXBuildFile; fileRef = 2994C03F13C5BFB200368AD3 /* popoverImageDefine_2.csv */; };
 		2994C04613C5BFB200368AD3 /* productIdList.csv in Resources */ = {isa = PBXBuildFile; fileRef = 2994C04013C5BFB200368AD3 /* productIdList.csv */; };
-		2994C04713C5BFB200368AD3 /* tocDefine_2.csv in Resources */ = {isa = PBXBuildFile; fileRef = 2994C04113C5BFB200368AD3 /* tocDefine_2.csv */; };
-		2994C04813C5BFB200368AD3 /* tocDefine_3.csv in Resources */ = {isa = PBXBuildFile; fileRef = 2994C04213C5BFB200368AD3 /* tocDefine_3.csv */; };
 		2994C04C13C5C1DF00368AD3 /* bookDefine_1.csv in Resources */ = {isa = PBXBuildFile; fileRef = 2994C04913C5C1DD00368AD3 /* bookDefine_1.csv */; };
-		2994C04D13C5C1DF00368AD3 /* bookDefine_2.csv in Resources */ = {isa = PBXBuildFile; fileRef = 2994C04A13C5C1DE00368AD3 /* bookDefine_2.csv */; };
-		2994C04E13C5C1DF00368AD3 /* bookDefine_3.csv in Resources */ = {isa = PBXBuildFile; fileRef = 2994C04B13C5C1DE00368AD3 /* bookDefine_3.csv */; };
 		2994C05013C5C2C700368AD3 /* icon_folder20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = 2994C04F13C5C2C700368AD3 /* icon_folder20x20.png */; };
-		2994C05213C5C50A00368AD3 /* ContentIcon_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2994C05113C5C50900368AD3 /* ContentIcon_2.png */; };
-		2994C05413C5C51500368AD3 /* ContentIcon_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 2994C05313C5C51400368AD3 /* ContentIcon_3.png */; };
 		2994C05613C5C53200368AD3 /* ContentIcon_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2994C05513C5C53200368AD3 /* ContentIcon_1.png */; };
 		2995613B1417822A001C1D53 /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2995612E1417822A001C1D53 /* DDXMLElementAdditions.m */; };
 		2995613C1417822A001C1D53 /* NSString+DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 299561311417822A001C1D53 /* NSString+DDXML.m */; };
@@ -251,20 +240,9 @@
 		2991E94913B1E208000630FB /* p1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = p1.mp3; path = sound/p1.mp3; sourceTree = "<group>"; };
 		2991E94A13B1E208000630FB /* p2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = p2.mp3; path = sound/p2.mp3; sourceTree = "<group>"; };
 		2991E94B13B1E208000630FB /* p3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = p3.mp3; path = sound/p3.mp3; sourceTree = "<group>"; };
-		2994C03913C5BF1A00368AD3 /* document-2.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "document-2.pdf"; sourceTree = "<group>"; };
-		2994C03B13C5BF2000368AD3 /* document-3.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "document-3.pdf"; sourceTree = "<group>"; };
-		2994C03D13C5BFB200368AD3 /* pdfDefine_2.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pdfDefine_2.csv; path = csv/pdfDefine_2.csv; sourceTree = "<group>"; };
-		2994C03E13C5BFB200368AD3 /* pdfDefine_3.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pdfDefine_3.csv; path = csv/pdfDefine_3.csv; sourceTree = "<group>"; };
-		2994C03F13C5BFB200368AD3 /* popoverImageDefine_2.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = popoverImageDefine_2.csv; path = csv/popoverImageDefine_2.csv; sourceTree = "<group>"; };
 		2994C04013C5BFB200368AD3 /* productIdList.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = productIdList.csv; path = csv/productIdList.csv; sourceTree = "<group>"; };
-		2994C04113C5BFB200368AD3 /* tocDefine_2.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tocDefine_2.csv; path = csv/tocDefine_2.csv; sourceTree = "<group>"; };
-		2994C04213C5BFB200368AD3 /* tocDefine_3.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tocDefine_3.csv; path = csv/tocDefine_3.csv; sourceTree = "<group>"; };
 		2994C04913C5C1DD00368AD3 /* bookDefine_1.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bookDefine_1.csv; path = csv/bookDefine_1.csv; sourceTree = "<group>"; };
-		2994C04A13C5C1DE00368AD3 /* bookDefine_2.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bookDefine_2.csv; path = csv/bookDefine_2.csv; sourceTree = "<group>"; };
-		2994C04B13C5C1DE00368AD3 /* bookDefine_3.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bookDefine_3.csv; path = csv/bookDefine_3.csv; sourceTree = "<group>"; };
 		2994C04F13C5C2C700368AD3 /* icon_folder20x20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_folder20x20.png; sourceTree = "<group>"; };
-		2994C05113C5C50900368AD3 /* ContentIcon_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ContentIcon_2.png; sourceTree = "<group>"; };
-		2994C05313C5C51400368AD3 /* ContentIcon_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ContentIcon_3.png; sourceTree = "<group>"; };
 		2994C05513C5C53200368AD3 /* ContentIcon_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ContentIcon_1.png; sourceTree = "<group>"; };
 		2995612D1417822A001C1D53 /* DDXMLElementAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElementAdditions.h; sourceTree = "<group>"; };
 		2995612E1417822A001C1D53 /* DDXMLElementAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLElementAdditions.m; sourceTree = "<group>"; };
@@ -480,8 +458,6 @@
 			isa = PBXGroup;
 			children = (
 				291D7FF712C09FEB007F8545 /* document.pdf */,
-				2994C03913C5BF1A00368AD3 /* document-2.pdf */,
-				2994C03B13C5BF2000368AD3 /* document-3.pdf */,
 			);
 			path = pdf;
 			sourceTree = "<group>";
@@ -607,27 +583,18 @@
 			children = (
 				2994C04013C5BFB200368AD3 /* productIdList.csv */,
 				29633230134AB7CC00F01B7C /* pdfDefine_1.csv */,
-				2994C03D13C5BFB200368AD3 /* pdfDefine_2.csv */,
-				2994C03E13C5BFB200368AD3 /* pdfDefine_3.csv */,
 				2994C04913C5C1DD00368AD3 /* bookDefine_1.csv */,
-				2994C04A13C5C1DE00368AD3 /* bookDefine_2.csv */,
-				2994C04B13C5C1DE00368AD3 /* bookDefine_3.csv */,
 				29633232134AB7CC00F01B7C /* tocDefine_1.csv */,
-				2994C04113C5BFB200368AD3 /* tocDefine_2.csv */,
-				2994C04213C5BFB200368AD3 /* tocDefine_3.csv */,
 				2963322F134AB7CC00F01B7C /* movieDefine_1.csv */,
 				29FF4B8913B1D87E002DAEDF /* soundDefine_1.csv */,
 				2963322C134AB7CC00F01B7C /* inPagePdfDefine_1.csv */,
 				2963322D134AB7CC00F01B7C /* inPagePngDefine_1.csv */,
 				2963322E134AB7CC00F01B7C /* inPageScrollViewDefine_1.csv */,
 				29633231134AB7CC00F01B7C /* popoverImageDefine_1.csv */,
-				2994C03F13C5BFB200368AD3 /* popoverImageDefine_2.csv */,
 				29E40975134C7F52005F7F8F /* pageJumpLinkDefine_1.csv */,
 				29FF4B8313B1D0BC002DAEDF /* urlLinkDefine_1.csv */,
 				291ECAC012BC8E8C0027C4CF /* icon.png */,
 				2994C05513C5C53200368AD3 /* ContentIcon_1.png */,
-				2994C05113C5C50900368AD3 /* ContentIcon_2.png */,
-				2994C05313C5C51400368AD3 /* ContentIcon_3.png */,
 				8D1107310486CEB800E47090 /* JPPBook-Info.plist */,
 				2987EDBB12AA470600FB66E5 /* pdf */,
 				2912441812BA0E44001E4AC7 /* movie */,
@@ -876,20 +843,9 @@
 				297F587B13C30A4A00441312 /* Pdf2iPadViewController.xib in Resources */,
 				297F589713C30BD100441312 /* ContentListCell.xib in Resources */,
 				297F589E13C30BF600441312 /* ContentDetailView.xib in Resources */,
-				2994C03A13C5BF1A00368AD3 /* document-2.pdf in Resources */,
-				2994C03C13C5BF2000368AD3 /* document-3.pdf in Resources */,
-				2994C04313C5BFB200368AD3 /* pdfDefine_2.csv in Resources */,
-				2994C04413C5BFB200368AD3 /* pdfDefine_3.csv in Resources */,
-				2994C04513C5BFB200368AD3 /* popoverImageDefine_2.csv in Resources */,
 				2994C04613C5BFB200368AD3 /* productIdList.csv in Resources */,
-				2994C04713C5BFB200368AD3 /* tocDefine_2.csv in Resources */,
-				2994C04813C5BFB200368AD3 /* tocDefine_3.csv in Resources */,
 				2994C04C13C5C1DF00368AD3 /* bookDefine_1.csv in Resources */,
-				2994C04D13C5C1DF00368AD3 /* bookDefine_2.csv in Resources */,
-				2994C04E13C5C1DF00368AD3 /* bookDefine_3.csv in Resources */,
 				2994C05013C5C2C700368AD3 /* icon_folder20x20.png in Resources */,
-				2994C05213C5C50A00368AD3 /* ContentIcon_2.png in Resources */,
-				2994C05413C5C51500368AD3 /* ContentIcon_3.png in Resources */,
 				2994C05613C5C53200368AD3 /* ContentIcon_1.png in Resources */,
 				29D53CE613FBB306000E0AC9 /* ServerContentDetailView.xib in Resources */,
 				296B93111429887D003CB4CB /* ServerContentDownload.xib in Resources */,
