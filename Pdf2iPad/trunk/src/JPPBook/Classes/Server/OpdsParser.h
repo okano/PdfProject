@@ -22,5 +22,6 @@
 - (NSURL*)getOpdsRoot:(NSURL*)rootUrl;
 - (NSMutableArray*)getOpdsElement:(NSURL*)elementUrl;
 
+- (BOOL)networkReachability;
 @end
 

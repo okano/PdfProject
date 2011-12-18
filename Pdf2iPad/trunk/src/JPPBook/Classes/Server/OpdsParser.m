@@ -26,6 +26,20 @@
 	//LOG_CURRENT_METHOD;
 	//NSLog(@"rootUrl=%@", [rootUrl description]);
 	
+	//Check network connection.
+	if ([self networkReachability] == FALSE) {
+		UIAlertView *alert = [[UIAlertView alloc]
+							  initWithTitle:nil
+							  message:@"no network connection."
+							  delegate:nil
+							  cancelButtonTitle:nil
+							  otherButtonTitles:@"OK", nil];
+		[alert show];
+		
+		return nil;
+	}
+	
+	
 	//check XML exists.
 	NSError* error = nil;
 	NSString* feed = [[NSString alloc] initWithContentsOfURL:rootUrl encoding:NSUTF8StringEncoding error:&error];
@@ -349,4 +363,10 @@
 	return linksUrlArray;
 }
 
+
+#pragma mark - Utility method.
+- (BOOL)networkReachability
+{
+	return TRUE;	//
+}
 @end
