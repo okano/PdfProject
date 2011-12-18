@@ -58,6 +58,7 @@
 	//Ask with OverWrite to exist file.
 	if ([fMgr fileExistsAtPath:contentFilename] == YES) {
 		[self askOverwrite];
+		return;
 	}
 	
 	
@@ -98,10 +99,11 @@
 	}
 }
 
+#pragma mark -
 - (void)askOverwrite
 {
-	UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Downloaded file error"
-													 message:@"pdf file cannot found in archive file."
+	UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Downloaded file was exist"
+													 message:@"Do you want to overwrite it?"
 													delegate:self
 										   cancelButtonTitle:@"Cancel"
 										   otherButtonTitles:@"OK",nil]
@@ -109,35 +111,34 @@
 	[alert show];
 }
 
-#pragma mark - UIActionSheetDelegate Protocol.
 - (void)actionSheet:(UIActionSheet *)sheet didDismissWithButtonIndex:(NSInteger)index
 {
 	//NSLog(@"action sheet: index=%d", index);
-    if( index == [sheet cancelButtonIndex])
+    if( index == [sheet cancelButtonIndex])	//"Cancel" selected.
     {
         //Close this window.
+		[self dismissModalViewControllerAnimated:YES];
+		/*
 		Pdf2iPadAppDelegate* appDelegate = (Pdf2iPadAppDelegate*)[[UIApplication sharedApplication] delegate];
 		[appDelegate hideServerContentDetailView];
 		[appDelegate showServerContentDetailView:targetUuid];
-    }
-	else if( index == [sheet destructiveButtonIndex] )
-    {
-        // Do Nothing
-    }
-    else if(index == 0)
+		*/
+	}
+    else if(index == 0)	//"OK" Selected.
 	{
 		//Delete directory for contents.
 		NSString* cidStr = [NSString stringWithFormat:@"%d", targetCid];
+		NSString* contentFileDirectory = [ContentFileUtility getContentBodyDirectoryWithContentId:cidStr];
 		//NSString* contentFilename = [ContentFileUtility getContentBodyFilenamePdf:cidStr];
 		//NSLog(@"contentFilename=%@", contentFilename);
-		NSString* contentFileDirectory = [ContentFileUtility getContentBodyDirectoryWithContentId:cidStr];
-		NSLog(@"contentFileDirectory=%@", contentFileDirectory);
-		NSFileManager* fMgr = [NSFileManager defaultManager];
+		//NSLog(@"contentFileDirectory=%@", contentFileDirectory);
 		
+		NSFileManager* fMgr = [NSFileManager defaultManager];
 		NSError* error = nil;
 		[fMgr removeItemAtPath:contentFileDirectory error:&error];
 		if (error) {
-			NSLog(@"error. %@", [error localizedDescription]);
+			LOG_CURRENT_METHOD;
+			NSLog(@"directory delete error. %@", [error localizedDescription]);
 		}
 
 		//Do(retry) download.
@@ -169,11 +170,24 @@
 	
 	NSError* error = nil;
 
-	//Get new ContentId.
 	Pdf2iPadAppDelegate* appDelegate = (Pdf2iPadAppDelegate*)[[UIApplication sharedApplication] delegate];
-	ContentId newContentId = [appDelegate.contentListDS nextContentId];
+
+	
+	//Copy metadata from server to local ContentListDS.
+	NSString* serverUuid = targetUuid;
+	NSLog(@"uuid at server = %@", targetUuid);
+	NSMutableDictionary* metaData2 = [NSMutableDictionary dictionaryWithDictionary:[appDelegate.serverContentListDS getMetadataByUuid:serverUuid]];
+	if (! metaData2) {
+		NSLog(@"cannot get metadata. UUID=%@", targetUuid);
+	}
+	NSLog(@"metaData2=%@", [metaData2 description]);
+	[appDelegate.contentListDS addMetadata:metaData2];
+	[appDelegate.contentListDS saveToPlist];
+	
+	//Get ContentId from metadata in server.
+	ContentId newContentId = [[metaData2 objectForKey:CONTENT_CID] intValue];
 	NSString* newContentIdStr = [NSString stringWithFormat:@"%d", newContentId];
-	NSLog(@"new ContentId=%d", newContentId);
+	//NSLog(@"new ContentId=%d", newContentId);
 	
 	
 	//Only copy if simple PDF file.
@@ -203,18 +217,6 @@
 	//StepUp nextContentId.
 	[appDelegate.contentListDS stepupContentIdToUserDefault:newContentId];
 	*/
-	
-	//Copy metadata from server to local ContentListDS.
-	NSString* serverUuid = targetUuid;
-	NSLog(@"uuid at server = %@", targetUuid);
-	NSMutableDictionary* metaData2 = [NSMutableDictionary dictionaryWithDictionary:[appDelegate.serverContentListDS getMetadataByUuid:serverUuid]];
-	if (! metaData2) {
-		NSLog(@"cannot get metadata. UUID=%@", targetUuid);
-	}
-	NSLog(@"metaData2=%@", [metaData2 description]);
-	[appDelegate.contentListDS addMetadata:metaData2];
-	[appDelegate.contentListDS saveToPlist];
-	
 	
 	
 	//Add Download(purchase) history. -> do it by PaymentConductor.
@@ -337,7 +339,7 @@
 	NSString* toPath = [dirStr stringByAppendingPathComponent:newPdfFilename];
 	NSError* error = nil;
 	
-	//Check file exists.
+	//Check pdf file included in zip file.
 	if([[NSFileManager defaultManager] fileExistsAtPath:fromPath] == NO)
 	{
 		NSLog(@"pdf file cannot found in archive file. expect filename=%@", fromPath);
@@ -349,7 +351,7 @@
 							  autorelease];
 		[alert show];
 	} else {
-		NSLog(@"pdf file exist. filename=%@", fromPath);
+		NSLog(@"copy-from pdf file found. filename=%@", fromPath);
 	}
 	
 	//Rename.
@@ -364,7 +366,7 @@
 // ダウンロードをキャンセルした際に呼ばれる
 - (void)download:(URLDownload *)download didCancelBecauseOf:(NSException *)exception {
 	LOG_CURRENT_METHOD;
-	UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"" message:[exception reason] delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK",nil] autorelease];
+	UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"download canceled." message:[exception reason] delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK",nil] autorelease];
 	[alert show];
 	[self releaseDownloader];
 }
@@ -372,7 +374,7 @@
 // ダウンロードに失敗した際に呼ばれる
 - (void)download:(URLDownload *)download didFailWithError:(NSError *)error {
 	LOG_CURRENT_METHOD;
-	UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"" message:[error localizedDescription] delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK",nil] autorelease];
+	UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"download failed." message:[error localizedDescription] delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK",nil] autorelease];
 	[alert show];
 	[self releaseDownloader];
 }
@@ -380,10 +382,18 @@
 // ダウンロード進行中に呼ばれる
 - (void)download:(URLDownload *)download didReceiveDataOfLength:(NSUInteger)length {
 	// プログレスバーの表示でもやる
-	LOG_CURRENT_METHOD;
-	NSLog(@"length=%d", length);
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"length=%d", length);
 	downloadedContentLength += length;
 	downloadedContentLengthLabel.text = [NSString stringWithFormat:@"%10ld", downloadedContentLength];
+}
+
+- (void)download:(URLDownload *)download didReceiveResponse:(NSURLResponse *)response {
+	expectedContentLength = [response expectedContentLength];
+	expectedContentLengthLabel.text = [NSString stringWithFormat:@"%ld", expectedContentLength];
+#if IS_DEBUG
+	NSLog(@"expected content length=%d", expectedContentLength);
+#endif
 }
 
 
