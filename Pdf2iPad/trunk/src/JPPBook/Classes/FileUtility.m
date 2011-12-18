@@ -153,6 +153,8 @@
 	if ([self existsFile:csvFilePath1] == YES) {
 		//(1)get from ContentBody Directory.
 		return [self parseDefineCsvWithFullFilename:csvFilePath1];
+	} else {
+		NSLog(@"csv file not found in ContentBody directory. file=%@", csvFilePath1);
 	}
 	
 	//(2)get from mainBundle
