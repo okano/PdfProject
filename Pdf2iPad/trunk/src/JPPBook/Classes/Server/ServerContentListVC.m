@@ -259,6 +259,7 @@
 }
 - (void)didFailParseOpdsRoot{
 	LOG_CURRENT_METHOD;
+	/*
 	UIAlertView *alert = [[UIAlertView alloc]
 						  initWithTitle:nil
 						  message:@"fail parse OPDS Root."
@@ -266,6 +267,7 @@
 						  cancelButtonTitle:nil
 						  otherButtonTitles:@"OK", nil];
 	[alert show];
+	*/
 	[self performSelector:@selector(stopIndicator) withObject:nil];
 }
 - (void)didFinishParseOpdsElement:(NSMutableArray*)resultArray{
