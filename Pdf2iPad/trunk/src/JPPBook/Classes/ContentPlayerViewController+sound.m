@@ -72,7 +72,17 @@
 			
 			//Play sound.
 			NSString *soundPath = [[NSBundle mainBundle] pathForResource:filename ofType:nil];
+			if (! soundPath) {
+				//LOG_CURRENT_METHOD;
+				NSLog(@"no sound file found. filename=%@", filename);
+				continue;	//Skip to next file.
+			}
 			NSURL* soundURL = [NSURL fileURLWithPath:soundPath];
+			if (! soundURL) {
+				LOG_CURRENT_METHOD;
+				NSLog(@"no sound file found. filePath=%@, soundURL=%@", soundPath, soundURL);
+				continue;	//Skip to next file.
+			}
 			
 			//CFURLRef soundURL = (CFURLRef)[NSURL fileURLWithPath:soundPath];
 			//SystemSoundID soundID;
