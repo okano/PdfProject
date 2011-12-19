@@ -70,8 +70,13 @@
 		if (targetPageNum == index) {
 			NSString* filename = [soundInfo valueForKey:SD_SOUND_FILENAME];
 			
-			//Play sound.
-			NSString *soundPath = [[NSBundle mainBundle] pathForResource:filename ofType:nil];
+			//Play sound. file from mainBundle.
+			//NSString *soundPath = [[NSBundle mainBundle] pathForResource:filename ofType:nil];
+			
+			//Play sound. file from mainBundle.
+			NSString* cidStr = [NSString stringWithFormat:@"%d", currentContentId];
+			NSString *soundPath = [[ContentFileUtility getContentBodySoundDirectoryWithContentId:cidStr]
+								   stringByAppendingPathComponent:filename];
 			if (! soundPath) {
 				//LOG_CURRENT_METHOD;
 				NSLog(@"no sound file found. filename=%@", filename);
