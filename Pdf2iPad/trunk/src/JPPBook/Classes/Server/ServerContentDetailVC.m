@@ -117,7 +117,7 @@
 	
 	
 	//Get Price.
-	if (targetProductId == nil) {
+//	if (targetProductId == nil) {
 		targetProductId = [appDelegate.productIdList getProductIdentifier:targetCid];
 		if ((targetProductId == nil) || ([targetProductId length] <= 0)) {
 			LOG_CURRENT_METHOD;
@@ -126,8 +126,13 @@
 			
 			priceLabel.text = @"no productId found.";
 			return;
+		} else {
+			NSLog(@"get pid. targetProductId=%@", targetProductId);
 		}
-	}
+//	} else {
+//		LOG_CURRENT_METHOD;
+//		NSLog(@"targetProductId=%@", targetProductId);
+//	}
 	appDelegate.paymentConductor.parentVC = self;
 	[appDelegate.paymentConductor getProductInfomation:targetProductId];
 }
