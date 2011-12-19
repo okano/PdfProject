@@ -74,6 +74,24 @@
 			 stringByDeletingPathExtension]
 			stringByAppendingPathComponent:@"zip"];
 }
++ (NSString*)getContentBodyImageDirectoryWithContentId:(NSString*)cId
+{
+	//contentBody/{cId}/image/
+	return [[self getContentBodyDirectoryWithContentId:cId]
+			stringByAppendingPathComponent:@"image"];
+}
++ (NSString*)getContentBodyMovieDirectoryWithContentId:(NSString*)cId
+{
+	//contentBody/{cId}/movie/
+	return [[self getContentBodyDirectoryWithContentId:cId]
+			stringByAppendingPathComponent:@"movie"];
+}
++ (NSString*)getContentBodySoundDirectoryWithContentId:(NSString*)cId
+{
+	//contentBody/{cId}/sound/
+	return [[self getContentBodyDirectoryWithContentId:cId]
+			stringByAppendingPathComponent:@"sound"];
+}
 
 
 #pragma mark - Temporary Directory.

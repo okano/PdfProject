@@ -25,6 +25,9 @@
 + (NSString*)getContentBodyPdfDirectoryWithContentId:(NSString*)cId;//contentBody/{cId}/pdf/
 + (NSString*)getContentBodyFilenamePdf:(NSString*)targetContentId;	//contentBody/{cId}/pdf/{cId}.pdf
 + (NSString*)getContentBodyFilenameZip:(NSString*)targetContentId;	//contentBody/{cId}/pdf/{cId}.zip
++ (NSString*)getContentBodyImageDirectoryWithContentId:(NSString*)cId;	//contentBody/{cId}/image/
++ (NSString*)getContentBodyMovieDirectoryWithContentId:(NSString*)cId;	//contentBody/{cId}/movie/
++ (NSString*)getContentBodySoundDirectoryWithContentId:(NSString*)cId;	//contentBody/{cId}/sound/
 //
 + (NSString*)getContentTmpDirectory;
 + (NSString*)getContentTmpDirectoryWithContentId:(NSString*)cId;
