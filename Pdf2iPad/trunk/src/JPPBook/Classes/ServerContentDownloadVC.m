@@ -314,12 +314,18 @@
 	NSError* error = nil;
 	NSString* newFilePath = [[filePath stringByDeletingPathExtension]
 							 stringByAppendingPathExtension:@"zip"];
+	//Delete old destination.
+	[[NSFileManager defaultManager] removeItemAtPath:newFilePath error:&error];
+	//Rename
 	[[NSFileManager defaultManager] moveItemAtPath:filePath
 											toPath:newFilePath
 											 error:&error];
 	if (error != nil) {
 		NSLog(@"file rename failed. fromPath=%@, toPath=%@, result=%@, %@",
 			  filePath, newFilePath, [error localizedDescription], [error localizedFailureReason]);
+		if (error.code == 516) {
+			NSLog(@"code NSFileWriteFileExistsError = 516, Write error returned when NSFileManager class’s copy, move, and link methods report errors when the destination file already exists.");
+		}
 	}
 	
 	//Extract file.
