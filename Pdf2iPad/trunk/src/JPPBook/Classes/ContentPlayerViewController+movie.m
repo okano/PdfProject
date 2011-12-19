@@ -90,17 +90,21 @@
 
 - (void)showMoviePlayer:(NSString*)filename
 {
-	LOG_CURRENT_METHOD;
-	NSLog(@"filename=%@", filename);
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"filename=%@", filename);
 	
-	NSString* path = [[NSBundle mainBundle] pathForResource:filename ofType:nil];
-	if (!path) {
-		NSLog(@"illigal filename. filename=%@, bundle_resourceURL=%@", 
-			  [filename stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-			  [[NSBundle mainBundle] resourceURL]);
-		NSLog(@"f = %@ %@", [filename stringByDeletingPathExtension], [filename pathExtension]);
-		return;
-	}
+	//NSString* path = [[NSBundle mainBundle] pathForResource:filename ofType:nil];
+	//if (!path) {
+	//	NSLog(@"illigal filename. filename=%@, bundle_resourceURL=%@", 
+	//		  [filename stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+	//		  [[NSBundle mainBundle] resourceURL]);
+	//	NSLog(@"f = %@ %@", [filename stringByDeletingPathExtension], [filename pathExtension]);
+	//	return;
+	//}
+	
+	NSString* cidStr = [NSString stringWithFormat:@"%d", currentContentId];
+	NSString* path = [[ContentFileUtility getContentBodyMovieDirectoryWithContentId:cidStr]
+					  stringByAppendingPathComponent:filename];
 	NSURL* url;
 	
 	if ((url = [NSURL fileURLWithPath:path]) != nil) {
@@ -115,20 +119,22 @@
 
 - (void)showMoviePlayer:(NSString*)filename WithFrame:(CGRect)frame
 {
-	LOG_CURRENT_METHOD;
-	NSLog(@"filename=%@", filename);
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"filename=%@", filename);
 	
-	NSString* path = [[NSBundle mainBundle] pathForResource:filename ofType:nil];
-	if (!path) {
-		NSLog(@"illigal filename. filename=%@, bundle_resourceURL=%@", 
-			  [filename stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-			  [[NSBundle mainBundle] resourceURL]);
-		NSLog(@"f = %@ %@", [filename stringByDeletingPathExtension], [filename pathExtension]);
-		return;
-	}
+	//NSString* path = [[NSBundle mainBundle] pathForResource:filename ofType:nil];
+	//if (!path) {
+	//	NSLog(@"illigal filename. filename=%@, bundle_resourceURL=%@", 
+	//		  [filename stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+	//		  [[NSBundle mainBundle] resourceURL]);
+	//	NSLog(@"f = %@ %@", [filename stringByDeletingPathExtension], [filename pathExtension]);
+	//	return;
+	//}
 	//NSURL* url;
 	
-	
+	NSString* cidStr = [NSString stringWithFormat:@"%d", currentContentId];
+	NSString* path = [[ContentFileUtility getContentBodyMovieDirectoryWithContentId:cidStr]
+					  stringByAppendingPathComponent:filename];
     mplayer = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL fileURLWithPath:path]];
     mplayer.scalingMode = MPMovieScalingModeNone;
 	
