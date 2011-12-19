@@ -14,6 +14,8 @@
 #define CONTENT_DONWLOAD_DIRECTORY  @"downloads"
 #define CONTENT_EXTRACT_DIRECTORY	@"extract"
 
+#import "InAppPurchaseDefine.h"	//for ContentId.
+
 @interface ContentFileUtility : NSObject {
 }
 
@@ -46,6 +48,8 @@
 + (NSString*)getCoverIconDirectory:(NSString*)cId;
 + (UIImage*)getCoverImage:(NSString*)cId;
 
+//Other files.
++ (NSString*)getBookDefineFilename:(ContentId)cid;
 
 
 @end
