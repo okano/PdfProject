@@ -12,6 +12,7 @@
 #import "InAppPurchaseDefine.h"
 #import "FileUtility.h"
 #import "UrlDefine.h"
+#import "ConfigViewController.h"
 
 @interface InAppPurchaseUtility : NSObject {
     NSMutableArray* productIdList;
@@ -25,14 +26,14 @@
 
 
 //Get id from file.
-+ (NSString*)getProductIdentifier:(ContentId)cid;
-+ (ContentId)getContentIdentifier:(NSString*)pid;
-+ (NSArray*)getAllProductIdentifier;
+- (NSString*)getProductIdentifier:(ContentId)cid;
+- (ContentId)getContentIdentifier:(NSString*)pid;
+- (NSArray*)getAllProductIdentifier;
 //Convert productId with/without Full.
 + (NSString*)productIdWithFullQualifier:(NSString*)sinpleProductId;
 + (NSString*)productIdWithoutFullQualifier:(NSString*)fullProductId;
 //Judge free comtent.
-+ (BOOL)isFreeContent:(NSString*)productId;
+- (BOOL)isFreeContent:(NSString*)productId;
 //+ (NSString*)getBookDefineFilename:(ContentId)cid;
 
 //Misc.

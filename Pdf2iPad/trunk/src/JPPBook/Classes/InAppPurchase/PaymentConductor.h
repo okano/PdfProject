@@ -24,7 +24,8 @@
 
 
 //Get product infomation from Store.
-- (void)getProductInfomation:(ContentId)cid;
+//- (void)getProductInfomation:(ContentId)cid;
+- (void)getProductInfomation:(NSString*)productId;
 
 - (void)buyContent:(NSString*)productId;
 

@@ -14,15 +14,17 @@
 
 @interface ContentListDS : NSObject {
     NSMutableArray* contentList;
+	InAppPurchaseUtility* productIdListPointer;
 }
 
 @property (nonatomic, retain) NSMutableArray* contentList;
+@property (nonatomic, retain) InAppPurchaseUtility* productIdListPointer;
 
 - (uint)count;
 - (ContentId)contentIdAtIndex:(NSInteger)index;
 - (ContentId)contentIdFromProductId:(NSString*)productId;
 - (ContentId)contentIdFromUuid:(NSString*)uuid;
-- (NSString*)productIdFromContentId:(ContentId)cid;
+//- (NSString*)productIdFromContentId:(ContentId)cid;
 - (NSString*)uuidAtIndex:(NSInteger)index;
 - (NSString*)uuidFromContentId:(ContentId)cid;
 

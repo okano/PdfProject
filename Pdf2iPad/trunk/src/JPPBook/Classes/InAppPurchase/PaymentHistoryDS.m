@@ -12,6 +12,7 @@
 @implementation PaymentHistoryDS
 @synthesize paymentHistory;
 @synthesize productsRequestDelegate;
+@synthesize productIdListPointer;
 
 #pragma mark - initialize.
 - (id)init
@@ -147,10 +148,10 @@
 - (BOOL)isEnabledContent:(ContentId)cid
 {
 	//Check if Free Content.
-	NSString* pid = [InAppPurchaseUtility getProductIdentifier:cid];
+	NSString* pid = [productIdListPointer getProductIdentifier:cid];
 	//LOG_CURRENT_METHOD;
 	//NSLog(@"cid=%d, pid=%@", cid, pid);
-	if ([InAppPurchaseUtility isFreeContent:pid] == TRUE)
+	if ([productIdListPointer isFreeContent:pid] == TRUE)
 	{
 		return TRUE;
 	}
@@ -187,7 +188,7 @@
 - (void)enableContent:(ContentId)cid
 {
 	//LOG_CURRENT_METHOD;
-	NSString* pid = [InAppPurchaseUtility getProductIdentifier:cid];
+	NSString* pid = [productIdListPointer getProductIdentifier:cid];
 
 	NSMutableDictionary* tmpDict = [[NSMutableDictionary alloc] init];
 	[tmpDict setValue:pid forKey:PURCHASE_PRODUCT_ID];
@@ -209,7 +210,7 @@
 - (void)enableContentWithProductId:(NSString*)productId WithDict:(NSDictionary*)dict
 {
 	//LOG_CURRENT_METHOD;
-	ContentId cid = [InAppPurchaseUtility getContentIdentifier:productId];
+	ContentId cid = [productIdListPointer getContentIdentifier:productId];
 	
 	NSMutableDictionary* tmpDict = [[NSMutableDictionary alloc] initWithDictionary:dict];
 	[tmpDict setValue:productId forKey:PURCHASE_PRODUCT_ID];
@@ -235,7 +236,7 @@
 	}
 	
 	//Record it.
-	ContentId cid = [InAppPurchaseUtility	getContentIdentifier:productId];
+	ContentId cid = [productIdListPointer getContentIdentifier:productId];
 	NSMutableDictionary* tmpDict = [[NSMutableDictionary alloc] init];
 	[tmpDict setValue:productId forKey:PURCHASE_PRODUCT_ID];
 	[tmpDict setValue:[NSNumber numberWithInt:cid] forKey:PURCHASE_CONTENT_ID];

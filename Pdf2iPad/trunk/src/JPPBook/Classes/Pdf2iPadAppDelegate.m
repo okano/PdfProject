@@ -36,11 +36,16 @@
 	//Setup Content List on Server.
 	serverContentListDS = nil;
 	
+	//Setup productIdList.
+	productIdList = [[InAppPurchaseUtility alloc] init];
+	contentListDS.productIdListPointer = productIdList;
+	
 	//Copy PDF file in MainBundle resource to local file.
 	if ([self isFirstLaunchUp] == YES) {
 		[self copyPdfFromResourceToFile];
 		[self copyOtherfileFromResourceToFile];
 		[self setDefaultUsernameAndPassword];
+		[productIdList loadProductIdListFromMainBundle];
 	}
 	
 	//Setup for InAppPurchase.
@@ -48,12 +53,12 @@
 	
 	//Setup for InAppPurchase.
 	paymentHistoryDS = [[PaymentHistoryDS alloc] init];
+	paymentHistoryDS.productIdListPointer = productIdList;
 	[[SKPaymentQueue defaultQueue] addTransactionObserver:paymentConductor];
 	paymentConductor.paymentHistoryDS = paymentHistoryDS;
 	
-	//Setup productIdList.
-	productIdList = [[InAppPurchaseUtility alloc] init];
-
+	
+	
     // Add the view controller's view to the window and display.
     [self.window addSubview:viewController.view];
     [self.window makeKeyAndVisible];

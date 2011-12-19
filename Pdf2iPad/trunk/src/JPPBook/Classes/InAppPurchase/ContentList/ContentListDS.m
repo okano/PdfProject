@@ -12,6 +12,8 @@
 @implementation ContentListDS
 
 @synthesize contentList;
+@synthesize productIdListPointer;
+
 - (id)init
 {
 	self = [super init];
@@ -64,7 +66,7 @@
 	}
 	return InvalidContentId;
 }
-
+/*
 - (NSString*)productIdFromContentId:(ContentId)cid
 {
 	//LOG_CURRENT_METHOD;
@@ -76,7 +78,7 @@
 	
 	//(when loading now, read csv file)
 	if ([contentList count] < cid) {
-		return [InAppPurchaseUtility getProductIdentifier:cid];
+		return [InAppPurchaseUtility getProductIdentifier:cid];	// @NOTE:
 	}
 	
 	for (NSDictionary* tmpDict in contentList) {
@@ -96,6 +98,7 @@
 	//LOG_CURRENT_LINE;
 	return InvalidProductId;
 }
+*/
 
 
 - (NSString*)uuidAtIndex:(NSInteger)index
@@ -188,7 +191,7 @@
 		NSMutableDictionary* tmpDict;
 		tmpDict = [[NSMutableDictionary alloc] init];
 		[tmpDict setValue:[NSNumber numberWithInteger:contentIdInt] forKey:CONTENT_CID];
-		[tmpDict setValue:[InAppPurchaseUtility getProductIdentifier:contentIdInt] forKey:CONTENT_STORE_PRODUCT_ID];
+		[tmpDict setValue:[productIdListPointer getProductIdentifier:contentIdInt] forKey:CONTENT_STORE_PRODUCT_ID];
 		[tmpDict setValue:[lines objectAtIndex:0] forKey:CONTENT_TITLE];
 		if (2 <= [lines count]) {
 			[tmpDict setValue:[lines objectAtIndex:1] forKey:CONTENT_AUTHOR];

@@ -15,7 +15,8 @@
 
 #pragma mark - Get product infomation from Store, notify with Delegate.
 
-- (void)getProductInfomation:(ContentId)cid
+//- (void)getProductInfomation:(ContentId)cid
+- (void)getProductInfomation:(NSString*)productId
 {
 	//Check if disabled payment.(like on simulator)
 	if (! [SKPaymentQueue canMakePayments]) {
@@ -35,12 +36,12 @@
 	
 	//Make Payments.
 	NSLog(@"can make payments");
-	NSString* productId = [InAppPurchaseUtility getProductIdentifier:cid];
-	NSString* fullProductId = [InAppPurchaseUtility productIdWithFullQualifier:productId];
-	NSLog(@"productId=%@, fullProductId=%@", productId, fullProductId);
-	//NSSet* productIdList =[NSSet setWithObject:fullProductId];
+	NSLog(@"productId=%@", productId);
 	NSSet* productIdList =[NSSet setWithObject:productId];
-
+	//NSString* fullProductId = [InAppPurchaseUtility productIdWithFullQualifier:productId];
+	//NSLog(@"fullProductId=%@", fullProductId);
+	//NSSet* productIdList =[NSSet setWithObject:fullProductId];
+	
 	/*
 	NSString* productName = [NSString stringWithFormat:@"jp.kounago.PurchaseTest02.Product2_1"];
 

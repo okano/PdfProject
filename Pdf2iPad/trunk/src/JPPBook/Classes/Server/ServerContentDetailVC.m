@@ -77,6 +77,7 @@
 	NSLog(@"targetUrl=%@", [targetUrl description]);
 	
 	//Price.
+	//NSString* pid = [appDelegate.productIdList getProductIdentifier:cid];
 	//appDelegate.paymentConductor.productsRequestDelegate = self;
 	//[appDelegate.paymentConductor getProductInfomation:cid];
 	//priceLabel.text = @"(Now Loading...)";
@@ -116,8 +117,19 @@
 	
 	
 	//Get Price.
+	if (targetProductId == nil) {
+		targetProductId = [appDelegate.productIdList getProductIdentifier:targetCid];
+		if ((targetProductId == nil) || ([targetProductId length] <= 0)) {
+			LOG_CURRENT_METHOD;
+			NSLog(@"cid=%d, but targetProductId is nil or 0-length.", targetCid);
+			NSLog(@"appDelegate.productIdList count=%d, %@", [appDelegate.productIdList count], [appDelegate.productIdList description]);
+			
+			priceLabel.text = @"no productId found.";
+			return;
+		}
+	}
 	appDelegate.paymentConductor.parentVC = self;
-	[appDelegate.paymentConductor getProductInfomation:targetCid];
+	[appDelegate.paymentConductor getProductInfomation:targetProductId];
 }
 
 
@@ -252,7 +264,7 @@
 
 - (void)purchaseDidSuccess:(NSString *)productId
 {
-	targetCid = [InAppPurchaseUtility getContentIdentifier:productId];
+	targetCid = [appDelegate.productIdList getContentIdentifier:productId];
 	NSLog(@"pid=%@, cid=%d", productId, targetCid);
 	[self downloadContent:nil];
 }

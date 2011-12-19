@@ -63,20 +63,16 @@
 	descriptionTextView.text = [appDelegate.contentListDS descriptionByContentId:cid];
 	
 	
-	//Price.
+	//Get Price.
+	NSString* pid = [appDelegate.productIdList getProductIdentifier:cid];
 	appDelegate.paymentConductor.parentVC = self;
-	[appDelegate.paymentConductor getProductInfomation:cid];
+	[appDelegate.paymentConductor getProductInfomation:pid];
 	//priceLabel.text = @"(Now Loading...)";
 	
 	//BuyButton
 	buyButton.titleLabel.text = @"(Now Loading...)";
 	buyButton.enabled = NO;
 	buyButton.hidden = NO;
-	
-	
-	//Get Price.
-	appDelegate.paymentConductor.parentVC = self;
-	[appDelegate.paymentConductor getProductInfomation:cid];
 }
 #pragma mark - SKProductsRequestDelegate methods.
 - (void)productsRequest:(SKProductsRequest *)request
@@ -148,13 +144,14 @@
 
 
 - (void)purchaseDidSuccess:(NSString*)productId
-{	targetCid = [InAppPurchaseUtility getContentIdentifier:productId];
+{
+	targetCid = [appDelegate.productIdList getContentIdentifier:productId];
 	NSLog(@"pid=%@, cid=%d", productId, targetCid);
 	//[self downloadContent:nil];
 	
 	
 	//
-	ContentId cid = [InAppPurchaseUtility getContentIdentifier:productId];
+	ContentId cid = [appDelegate.productIdList getContentIdentifier:productId];
 	NSLog(@"pid=%@, cid=%d", productId, cid);
 	[appDelegate hideContentDetailView];
 	[appDelegate showContentPlayerView:cid];
@@ -180,7 +177,7 @@
 	LOG_CURRENT_METHOD;
 	//
 	NSString* productID = transaction.payment.productIdentifier;
-	ContentId cid = [InAppPurchaseUtility getContentIdentifier:productID];
+	ContentId cid = [appDelegate.productIdList getContentIdentifier:productID];
 	NSLog(@"pid=%@, cid=%d", productID, cid);
 	[appDelegate hideContentDetailView];
 	[appDelegate showContentPlayerView:cid];

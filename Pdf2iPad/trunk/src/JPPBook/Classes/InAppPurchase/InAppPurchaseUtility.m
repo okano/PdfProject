@@ -58,15 +58,16 @@
 	NSError* error = nil;
 	
 	NSString* csvStr = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
+	//NSString* csvStr = [[NSString alloc] initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
 	if (csvStr == nil) {
 		NSLog(@"no productIdList.csv file found.");
 		NSLog(@"url=%@", url);
 		UIAlertView *alert = [[UIAlertView alloc]
-		initWithTitle:nil
-		message:@"no product id list found."
-		delegate:nil
-		cancelButtonTitle:nil
-		otherButtonTitles:@"OK", nil];
+							  initWithTitle:nil
+							  message:@"no product id list found."
+							  delegate:nil
+							  cancelButtonTitle:nil
+								otherButtonTitles:@"OK", nil];
 		[alert show];
 		return;
 	}
@@ -83,6 +84,10 @@
 	//Replace to new.
 	[productIdList removeAllObjects];
 	[productIdList addObjectsFromArray:tmpArray];
+	
+	LOG_CURRENT_METHOD;
+	NSLog(@"tmpArray=%@", [tmpArray description]);
+	NSLog(@"productIdList=%@", [productIdList description]);
 }
 
 - (void)loadProductIdListFromMainBundle	//for first launch.
@@ -103,34 +108,38 @@
 	//Replace to new.
 	[productIdList removeAllObjects];
 	[productIdList addObjectsFromArray:tmpArray];
+	LOG_CURRENT_METHOD;
+	NSLog(@"productIdList=%@", [productIdList description]);
 }
 
 - (NSString*)getProductIdListUrl
 {
+	NSString* urlBase = nil;
 	NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
 	id obj;	//Get username.	
 	obj = [settings valueForKey:URL_OPDS];
 	if (!obj) {
-		return nil;	
-	}	
+		urlBase = [ConfigViewController getUrlBaseWithOpds];
+		return [urlBase stringByAppendingPathComponent:PRODUCT_ID_LIST_FILENAME];
+	}
 	if (![obj isKindOfClass:[NSString class]]) {
 		NSLog(@"illigal username infomation. class=%@", [obj class]);
-		return nil;	
+		urlBase = [ConfigViewController getUrlBaseWithOpds];
+		return [urlBase stringByAppendingPathComponent:PRODUCT_ID_LIST_FILENAME];
 	}
-	NSString* urlBase = [NSString stringWithString:obj];
 	
+	urlBase = [NSString stringWithString:obj];
 	return [urlBase stringByAppendingPathComponent:PRODUCT_ID_LIST_FILENAME];
 }
 
 
 
 #pragma mark - Get id from file.
-+ (NSString*)getProductIdentifier:(ContentId)cid
+- (NSString*)getProductIdentifier:(ContentId)cid
 {
 	//LOG_CURRENT_METHOD;
 	//NSLog(@"cid=%d", cid);
-	NSArray* lines = [self getAllProductIdentifier];
-	for (NSString* singleLine in lines) {
+	for (NSString* singleLine in productIdList) {
 		NSArray* commaSeparated = [singleLine componentsSeparatedByString:@","];
 		NSString* candidateCid = [commaSeparated objectAtIndex:0];
 		NSString* candidatePid = [commaSeparated objectAtIndex:1];
@@ -140,7 +149,7 @@
 	}
 	return @"";
 }
-+ (ContentId)getContentIdentifier:(NSString *)pid
+- (ContentId)getContentIdentifier:(NSString *)pid
 {
 	//LOG_CURRENT_METHOD;
 	//NSLog(@"cid=%d", cid);
@@ -156,11 +165,14 @@
 	return InvalidContentId;
 }
 
-+ (NSArray*)getAllProductIdentifier
+- (NSArray*)getAllProductIdentifier
 {
+	return productIdList;
+	/*
 	//parse csv file.
 	NSString* targetFilename = @"productIdList";
 	return [FileUtility parseDefineCsv:targetFilename];
+	*/
 }
 
 
@@ -184,12 +196,11 @@
 }
 
 
-#pragma mark -
+#pragma mark - Judge free comtent.
 //Check free contents for read without download.
-+ (BOOL)isFreeContent:(NSString*)productId
+- (BOOL)isFreeContent:(NSString*)productId
 {
-	NSArray* lines = [self getAllProductIdentifier];
-	for (NSString* singleLine in lines) {
+	for (NSString* singleLine in productIdList) {
 		NSArray* commaSeparated = [singleLine componentsSeparatedByString:@","];
 		NSString* candidateProductId = [commaSeparated objectAtIndex:1];
 		if ([productId compare:candidateProductId] == NSOrderedSame) {
@@ -210,6 +221,13 @@
 {
 	return [productIdList count];
 }
+
+- (NSString*)description
+{
+	return [productIdList description];
+}
+
+/*
 - (NSString*)description
 {
 	int maxCount = [productIdList count];
@@ -219,6 +237,8 @@
 	}
 	return resultStr;
 }
+*/
+
 - (NSString*)descriptionAtIndex:(NSUInteger)index
 {
 	if ([productIdList count] <= index) {

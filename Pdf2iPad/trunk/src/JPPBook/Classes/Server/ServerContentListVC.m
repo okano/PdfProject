@@ -63,10 +63,17 @@
 	}
 	appDelegate.serverContentListDS.targetTableVC = self;
 	[appDelegate.serverContentListDS loadContentList:32];
+	
+	//Get productIdList.
+	[appDelegate.productIdList refreshProductIdListFromNetwork];
 }
 
 - (void)reloadFromNetwork;
 {
+	//Get productIdList before get opds.
+	[appDelegate.productIdList refreshProductIdListFromNetwork];
+	
+	//Reload OPDS from network.
 	[appDelegate.serverContentListDS removeAllObjects];
 	[appDelegate.serverContentListDS loadContentListFromNetworkByOpds];
 }
