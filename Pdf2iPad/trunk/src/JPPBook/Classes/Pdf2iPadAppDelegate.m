@@ -242,10 +242,12 @@
 			if ([tmpCsvArray count] < 6) {
 				continue;	//skip error line.
 			}
-			NSString* tmpStr = [tmpCsvArray objectAtIndex:5];
-			NSString* filename = [FileUtility cleanString:tmpStr];
-			[FileUtility res2file:filename
-					 fileNameFull:[toDir stringByAppendingPathComponent:filename]];
+			for (int i = 5; i < [tmpCsvArray count]; i = i + 1) {
+				NSString* tmpStr = [tmpCsvArray objectAtIndex:i];
+				NSString* filename = [FileUtility cleanString:tmpStr];
+				[FileUtility res2file:filename
+						 fileNameFull:[toDir stringByAppendingPathComponent:filename]];
+			}
 		}
 		
 		
