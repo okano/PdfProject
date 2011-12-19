@@ -2081,15 +2081,20 @@
 			
 			NSMutableArray* images = [[NSMutableArray alloc] init];
 			for (NSString* filename in filenames) {
-				//Add each image.
-				NSString *path= [[NSBundle mainBundle] pathForResource:filename ofType:nil];
-				if (!path) {
-					NSLog(@"file not found:%@", [filename stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
-					continue;	//next file.
-				}
+				//Add each image from mainBundle.
+				//NSString *path= [[NSBundle mainBundle] pathForResource:filename ofType:nil];
+				
+				//Add each image from contentBody image directory.
+				NSString* cidStr = [NSString stringWithFormat:@"%d", currentContentId];
+				NSString* path = [[ContentFileUtility getContentBodyImageDirectoryWithContentId:cidStr]
+										  stringByAppendingPathComponent:filename];
+				//if (!path) {
+				//	NSLog(@"file not found. path=%@", [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
+				//	continue;	//next file.
+				//}
 				UIImage* image = [[UIImage alloc] initWithContentsOfFile:path];
 				if (!image) {
-					NSLog(@"can not create image:%@", filename);
+					NSLog(@"can not create image from %@", path);
 					continue;	//next file.
 				}
 				
@@ -2514,7 +2519,8 @@
 	}
 
 	PopoverImageViewController* psivc;
-	psivc = [[PopoverImageViewController alloc] initWithImageFilename:filename frame:rect];
+	NSString* cidStr = [NSString stringWithFormat:@"%d", currentContentId];
+	psivc = [[PopoverImageViewController alloc] initWithImageFilename:filename frame:rect withContentIdStr:cidStr];
 	//Save scrollView position, zoomScale.
 	[psivc setParentScrollView:currentPdfScrollView
 				  fromPosition:currentPdfScrollView.contentOffset

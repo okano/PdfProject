@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "SKBEngine_PopoverScrollImageViewController.h"
+#import "ContentFileUtility.h"
 
 @interface PopoverImageViewController : SKBEngine_PopoverScrollImageViewController <UIScrollViewDelegate> {
-    
+
 }
+- (id)initWithImageFilename:(NSString*)filename frame:(CGRect)frame withContentIdStr:(NSString*)cidStr;
 
 @end
