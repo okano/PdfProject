@@ -2347,7 +2347,14 @@
 			UIImage* image = nil;
 			if (filename) {
 				// Open image from mainBundle.
-				image = [UIImage imageNamed:filename];
+				//image = [UIImage imageNamed:filename];
+				
+				// Open image from contentBody image directory.
+				NSString* cidStr = [NSString stringWithFormat:@"%d", currentContentId];
+				NSString* fullFilename = [[ContentFileUtility getContentBodyImageDirectoryWithContentId:cidStr]
+										  stringByAppendingPathComponent:filename];
+				image = [[UIImage alloc] initWithContentsOfFile:fullFilename];
+				
 				if (! image) {
 					LOG_CURRENT_METHOD;
 					LOG_CURRENT_LINE;
