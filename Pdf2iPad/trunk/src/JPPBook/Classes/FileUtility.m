@@ -112,7 +112,11 @@
 		NSLog(@"Error:%@", [error localizedDescription]);
 		return nil;
 	}
-	
+	return [self parseDefineCsvFromString:text];
+}
+
++ (NSArray*)parseDefineCsvFromString:(NSString*)text
+{
 	//Replace '¥r' to '¥n'
 	NSString* text2 = [text stringByReplacingOccurrencesOfString:@"\r\n" withString:@"\n"];
 	NSString* text3 = [text2 stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];

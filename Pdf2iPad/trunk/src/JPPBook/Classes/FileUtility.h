@@ -31,6 +31,7 @@
 + (NSArray*)parseDefineCsv:(NSString*)filename;
 + (NSArray*)parseDefineCsvWithFullFilename:(NSString*)filenameFull;
 + (NSArray*)parseDefineCsv:(NSString*)filename contentId:(ContentId)cid;
++ (NSArray*)parseDefineCsvFromString:(NSString*)text;
 //CSV filename utility.
 + (NSString*)getCsvFilenameInFolder:(NSString*)filename contentId:(ContentId)cid;
 + (NSString*)getCsvFilenameInMainBundle:(NSString*)filename contentId:(ContentId)cid;
