@@ -15,6 +15,7 @@
 #import "FileUtility.h"
 #import "ContentFileUtility.h"
 #import "ConfigViewController.h"
+#import "InAppPurchaseUtility.h"
 
 @class Pdf2iPadViewController;
 @class ContentPlayerViewController;
@@ -34,6 +35,9 @@
 	ContentListDS* contentListDS;
 	ServerContentListDS* serverContentListDS;
 	PaymentHistoryDS* paymentHistoryDS;
+	
+	// ProductIdList
+	InAppPurchaseUtility* productIdList;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -48,6 +52,8 @@
 @property (nonatomic, retain) ContentListDS* contentListDS;
 @property (nonatomic, retain) ServerContentListDS* serverContentListDS;
 @property (nonatomic, retain) PaymentHistoryDS* paymentHistoryDS;
+// ProductIdList
+@property (nonatomic, retain) InAppPurchaseUtility* productIdList;
 
 //Copy KUMIKOMI contents to local directory.
 - (BOOL)isFirstLaunchUp;

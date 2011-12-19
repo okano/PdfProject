@@ -21,6 +21,7 @@
 @synthesize contentListDS;
 @synthesize serverContentListDS;
 @synthesize paymentHistoryDS;
+@synthesize productIdList;
 
 #pragma mark -
 #pragma mark Application lifecycle
@@ -50,6 +51,9 @@
 	[[SKPaymentQueue defaultQueue] addTransactionObserver:paymentConductor];
 	paymentConductor.paymentHistoryDS = paymentHistoryDS;
 	
+	//Setup productIdList.
+	productIdList = [[InAppPurchaseUtility alloc] init];
+
     // Add the view controller's view to the window and display.
     [self.window addSubview:viewController.view];
     [self.window makeKeyAndVisible];

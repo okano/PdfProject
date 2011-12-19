@@ -8,8 +8,122 @@
 
 #import "InAppPurchaseUtility.h"
 
-
 @implementation InAppPurchaseUtility
+
+#pragma mark - initialize.
+- (id)init
+{
+    self = [super init];
+    if (self) {
+		productIdList = [[NSMutableArray alloc] init];
+		[self loadProductIdList];
+    }
+    return self;
+}
+
+#pragma mark - save/load with file.
+
+- (void)loadProductIdList
+{
+	NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
+	id obj = [settings valueForKey:PRODUCT_ID_LIST_ARRAY];
+	if (!obj) {		//no product id list exists.
+		return;
+	}
+	if (![obj isKindOfClass:[NSArray class]]) {
+		NSLog(@"illigal product id list infomation. class=%@", [obj class]);
+		return;
+	}
+	[productIdList removeAllObjects];
+	[productIdList addObjectsFromArray:obj];
+	return;
+}
+
+
+- (void)saveProductIdList
+{
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"all productIdList=%@", [productIdList description]);
+	
+	//Store bookmark infomation to UserDefault.
+	NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
+	[userDefault setObject:productIdList forKey:PRODUCT_ID_LIST_ARRAY];
+	[userDefault synchronize];
+}
+
+- (void)refreshProductIdListFromNetwork
+{
+	NSString* urlStr = [self getProductIdListUrl];
+	NSURL* url = [NSURL URLWithString:urlStr];
+	NSError* error = nil;
+	
+	NSString* csvStr = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
+	if (csvStr == nil) {
+		NSLog(@"no productIdList.csv file found.");
+		NSLog(@"url=%@", url);
+		UIAlertView *alert = [[UIAlertView alloc]
+		initWithTitle:nil
+		message:@"no product id list found."
+		delegate:nil
+		cancelButtonTitle:nil
+		otherButtonTitles:@"OK", nil];
+		[alert show];
+		return;
+	}
+	//NSLog(@"csvStr=%@", csvStr);
+	
+	//Parse csv to Array.
+	NSArray* tmpArray = [FileUtility parseDefineCsvFromString:csvStr];
+	if ([tmpArray count] <= 0)
+	{
+		return;
+	}
+	
+	
+	//Replace to new.
+	[productIdList removeAllObjects];
+	[productIdList addObjectsFromArray:tmpArray];
+}
+
+- (void)loadProductIdListFromMainBundle	//for first launch.
+{
+	//load from mainBundle.
+	NSError* error = nil;
+	NSString* filename = [[NSBundle mainBundle]  pathForResource:PRODUCT_ID_LIST_FILENAME ofType:nil];
+	NSString* csvStr = [NSString stringWithContentsOfFile:filename encoding:NSUTF8StringEncoding error:&error];
+	
+	//Parse csv to Array.
+	NSArray* tmpArray = [FileUtility parseDefineCsvFromString:csvStr];
+	if ([tmpArray count] <= 0)
+	{
+		return;
+	}
+	
+	
+	//Replace to new.
+	[productIdList removeAllObjects];
+	[productIdList addObjectsFromArray:tmpArray];
+}
+
+- (NSString*)getProductIdListUrl
+{
+	NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
+	id obj;	//Get username.	
+	obj = [settings valueForKey:URL_OPDS];
+	if (!obj) {
+		return nil;	
+	}	
+	if (![obj isKindOfClass:[NSString class]]) {
+		NSLog(@"illigal username infomation. class=%@", [obj class]);
+		return nil;	
+	}
+	NSString* urlBase = [NSString stringWithString:obj];
+	
+	return [urlBase stringByAppendingPathComponent:PRODUCT_ID_LIST_FILENAME];
+}
+
+
+
 #pragma mark - Get id from file.
 + (NSString*)getProductIdentifier:(ContentId)cid
 {
@@ -88,6 +202,57 @@
 		}
 	}
 	return FALSE;	//Not Free
+}
+
+
+#pragma mark - Misc.
+- (NSUInteger)count
+{
+	return [productIdList count];
+}
+- (NSString*)description
+{
+	int maxCount = [productIdList count];
+	NSMutableString* resultStr = [[NSMutableString alloc] init];
+	for (int i = 0; i < maxCount; i = i + 1) {
+		[resultStr appendString:[self descriptionAtIndex:i]];
+	}
+	return resultStr;
+}
+- (NSString*)descriptionAtIndex:(NSUInteger)index
+{
+	if ([productIdList count] <= index) {
+		return @"";
+	}
+	
+	NSDictionary* tmpDict = [productIdList objectAtIndex:index];
+	//LOG_CURRENT_LINE;
+	//NSLog(@"tmpDict=%@", [tmpDict description]);
+	
+	
+	/*
+	ContentId cid = [[tmpDict valueForKey:PURCHASE_CONTENT_ID] intValue];
+	NSString* pid = [tmpDict valueForKey:PURCHASE_PRODUCT_ID];
+	
+	ContentListDS* tmpList = [[ContentListDS alloc] init];
+	NSString* title = [tmpList titleByContentId:cid];
+	
+	//format date.
+	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+	[formatter setDateFormat:@"yyyy-MM-dd(E) HH:mm:ss"];
+	NSString *purchaseDaytime = [formatter stringFromDate:[tmpDict valueForKey:PURCHASE_DAYTIME]];
+	
+	return [NSString stringWithFormat:@" %@%c w“ü“úŽž:%@%c (ContentId=%@ ProductId=%@)",
+			title,
+			0x0d,
+			purchaseDaytime,
+			0x0d,
+			[NSString stringWithFormat:@"%d", cid],
+			pid
+			];
+	*/
+	
+	return [tmpDict description];
 }
 
 
