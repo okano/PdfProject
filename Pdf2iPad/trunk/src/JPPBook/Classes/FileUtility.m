@@ -128,7 +128,8 @@
 	}
 	//NSLog(@"lines(count=%d)=%@", [lines count], [lines description]);
 	NSMutableArray* resultArray = [[NSMutableArray alloc] init];
-	for (NSString* line in [lines reverseObjectEnumerator]) {
+	//for (NSString* line in [lines reverseObjectEnumerator]) {
+	for (NSString* line in [lines objectEnumerator]) {
 		//NSLog(@"line(length=%d)=%@", [line length], [line stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
 		if ([line length] <= 0) {
 			//[lines removeObject:line];	//Skip blank line.
