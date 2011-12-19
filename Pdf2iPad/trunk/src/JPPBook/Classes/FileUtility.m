@@ -95,8 +95,8 @@
 	//parse csv file.
 	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:filename ofType:@"csv"];
 	if (csvFilePath == nil) {
-		LOG_CURRENT_METHOD;
-		NSLog(@"csvfile not found. filename=%@.%@", filename, @"csv");
+		//LOG_CURRENT_METHOD;
+		//NSLog(@"csvfile not found in mainBundle. filename=%@.%@", filename, @"csv");
 		return nil;
 	}
 	
