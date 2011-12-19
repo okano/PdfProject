@@ -34,6 +34,21 @@
 		NSLog(@"illigal product id list infomation. class=%@", [obj class]);
 		return;
 	}
+	
+	if ([obj count] <= 0) {
+		NSLog(@"no product Id found in standardUserDefaults.");
+		/*
+		UIAlertView *alert = [[UIAlertView alloc]
+								initWithTitle:nil
+								message:@"no product id list founded."
+								delegate:nil
+								cancelButtonTitle:nil
+								otherButtonTitles:@"OK", nil];
+		[alert show];
+		*/
+		return;		//do nothing if no data found.
+	}
+	
 	[productIdList removeAllObjects];
 	[productIdList addObjectsFromArray:obj];
 	return;
@@ -62,14 +77,13 @@
 	if (csvStr == nil) {
 		NSLog(@"no productIdList.csv file found.");
 		NSLog(@"url=%@", url);
-		UIAlertView *alert = [[UIAlertView alloc]
-							  initWithTitle:nil
-							  message:@"no product id list found."
-							  delegate:nil
-							  cancelButtonTitle:nil
-								otherButtonTitles:@"OK", nil];
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+														message:@"no product id list found."
+													   delegate:nil
+											  cancelButtonTitle:nil
+											  otherButtonTitles:@"OK", nil];
 		[alert show];
-		return;
+		return;		//do nothing if no data found.
 	}
 	//NSLog(@"csvStr=%@", csvStr);
 	
@@ -77,7 +91,7 @@
 	NSArray* tmpArray = [FileUtility parseDefineCsvFromString:csvStr];
 	if ([tmpArray count] <= 0)
 	{
-		return;
+		return;		//do nothing if no data found.
 	}
 	
 	
@@ -101,13 +115,14 @@
 	NSArray* tmpArray = [FileUtility parseDefineCsvFromString:csvStr];
 	if ([tmpArray count] <= 0)
 	{
-		return;
+		return;		//do nothing if no data found.
 	}
 	
 	
 	//Replace to new.
 	[productIdList removeAllObjects];
 	[productIdList addObjectsFromArray:tmpArray];
+	
 	LOG_CURRENT_METHOD;
 	NSLog(@"productIdList=%@", [productIdList description]);
 }
@@ -153,8 +168,7 @@
 {
 	//LOG_CURRENT_METHOD;
 	//NSLog(@"cid=%d", cid);
-	NSArray* lines = [self getAllProductIdentifier];
-	for (NSString* singleLine in lines) {
+	for (NSString* singleLine in productIdList) {
 		NSArray* commaSeparated = [singleLine componentsSeparatedByString:@","];
 		NSString* candidateCid = [commaSeparated objectAtIndex:0];
 		NSString* candidatePid = [commaSeparated objectAtIndex:1];
