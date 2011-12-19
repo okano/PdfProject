@@ -246,10 +246,18 @@
 - (void)productRequestDidFailed:(NSString *)invalidProductIdentifier
 {
 	LOG_CURRENT_METHOD;
+	NSLog(@"targetCid=%d", targetCid);
 	
 	priceLabel.text = @"error";
 	[buyButton setTitle:@"購入できません" forState:UIControlStateNormal];
 	[self disableBuyButton];
+	
+	if ([appDelegate.paymentHistoryDS isEnabledContent:targetCid] == TRUE) {
+		//購入済み
+	} else {
+		//未購入
+		[self hideReDownloadButton];
+	}
 }
 
 
