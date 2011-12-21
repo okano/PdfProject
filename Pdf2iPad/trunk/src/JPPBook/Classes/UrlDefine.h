@@ -6,15 +6,6 @@
  *  Copyright 2009 __MyCompanyName__. All rights reserved.
  *
  */
-
-//#define URL_BASE_CONTENT	@"http://kounago.jp/test3/"
-////#define URL_BASE_CONTENT	@"http://192.168.1.3/pcms/"
-////#define URL_BASE_CMS		@"http://192.168.1.3/cm/cakephp/"
-//#define URL_BASE_CMS		@"http://192.168.1.3/pcms/"
-
-#define URL_BASE_CONTENT	@"http://202.172.29.93/pcms/"
-#define URL_BASE_CMS		@"http://202.172.29.93/cm/cakephp/"
-//#define URL_BASE_OPDS_DEFAULT1			@"http://ec2-50-18-132-34.us-west-1.compute.amazonaws.com:8080"
 #define URL_BASE_OPDS_DEFAULT1			@"http://www5066ua.sakura.ne.jp:8080"
 #define URL_BASE_OPDS_DEFAULT2			@"http://localhost:8080"
 #define URL_SUFFIX_OPDS		@"/opds"
