@@ -12,12 +12,22 @@
 #import "ProtocolDefine.h"
 #import "CoverUtility.h"
 #import "ConfigViewController.h"
+#import "Reachability.h"
 
 @interface ServerContentListVC : ContentListViewController <MyTableViewVCProtocol> {
 	//UITableView* myTableView;
 	//UIToolbar* toolbar;
 	//Pdf2iPadAppDelegate* appDelegate;
 	UIActivityIndicatorView* activityIndicator;
+	
+	//to check with NetworkReachable.
+	//@see:Apple sample "Reachability - Apple Developer"
+	Reachability* internetReachable;
+    Reachability* hostReachable;
+	Reachability* wifiReachable;
+	BOOL status3G;
+	BOOL statusWifi;
+	BOOL internetActive;
 }
 
 
@@ -34,5 +44,9 @@
 //for UIActivitiIndicator.
 - (void)startIndicator;
 - (void)stopIndicator;
+
+//Network Reachability.
+- (void)reachabilityChanged:(NSNotification*)note;
+- (void)updateInterfaceWithReachability:(Reachability*)curReach;
 
 @end

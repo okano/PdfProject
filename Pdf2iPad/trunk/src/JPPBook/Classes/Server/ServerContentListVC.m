@@ -15,6 +15,23 @@
 
 - (void)viewDidLoad
 {
+	//Setup network reachability.
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(reachabilityChanged:)
+												 name:kReachabilityChangedNotification
+											   object:nil];
+	status3G = YES;
+	statusWifi = YES;
+	internetActive = YES;
+	internetReachable = [[Reachability reachabilityForInternetConnection] retain];
+	[self updateInterfaceWithReachability:internetReachable];
+	
+	wifiReachable = [[Reachability reachabilityForLocalWiFi] retain];
+	[self updateInterfaceWithReachability:wifiReachable];
+	
+	NSLog(@"internetEnable=%d, YES=%d, NO=%d", internetActive, YES, NO);
+	
+	
 	//Setup TableView, Toolbar..
     [super viewDidLoad];
 	
@@ -64,12 +81,40 @@
 	appDelegate.serverContentListDS.targetTableVC = self;
 	[appDelegate.serverContentListDS loadContentList:32];
 	
+	//Check network enable before get productIdList.
+	if (internetActive == NO) {
+		LOG_CURRENT_METHOD;
+		UIAlertView *alert = [[UIAlertView alloc]
+							  initWithTitle:@"Network error"
+							  message:@"Network not found."
+							  delegate:nil
+							  cancelButtonTitle:nil
+							  otherButtonTitles:@"OK", nil];
+		[alert show];
+		
+		return;
+	}
+	
 	//Get productIdList.
 	[appDelegate.productIdList refreshProductIdListFromNetwork];
 }
 
 - (void)reloadFromNetwork;
 {
+	//Check network enable before connect.
+	if (internetActive == NO)
+	{
+		LOG_CURRENT_METHOD;
+		UIAlertView *alert = [[UIAlertView alloc]
+							  initWithTitle:@"Network error"
+							  message:@"Network not found."
+							  delegate:nil
+							  cancelButtonTitle:nil
+							  otherButtonTitles:@"OK", nil];
+		[alert show];
+		return;
+	}
+	
 	//Get productIdList before get opds.
 	[appDelegate.productIdList refreshProductIdListFromNetwork];
 	
@@ -310,6 +355,58 @@
 - (void)stopIndicator
 {
 	[activityIndicator stopAnimating];
+}
+
+
+#pragma mark - Network reachability.
+- (void)updateInterfaceWithReachability:(Reachability*)curReach
+{
+	//LOG_CURRENT_METHOD;
+	NetworkStatus status = [curReach currentReachabilityStatus];
+	
+	if (curReach == hostReachable) {
+		if (status == NotReachable) {
+			NSLog(@"host failed");
+			internetActive = NO;
+		} else {
+			NSLog(@"host success");
+			internetActive = YES;
+		}
+	}
+	
+	if (curReach == internetReachable) {
+		if (status == NotReachable) {
+			NSLog(@"3G failed.");
+			status3G = NO;
+		} else {
+			NSLog(@"3G success.");
+			status3G = YES;
+		}
+	}
+	
+	if (curReach == wifiReachable) {
+		if (status == NotReachable) {
+			NSLog(@"Wi-Fi failed");
+			statusWifi = NO;
+		} else {
+			NSLog(@"Wi-Fi success");
+			statusWifi = YES;
+		}
+	}
+	
+	if ((status3G == NO) && (statusWifi == NO)) {
+		internetActive = NO;
+	} else {
+		internetActive = YES;
+	}
+}
+
+- (void)reachabilityChanged:(NSNotification*)note
+{
+	//LOG_CURRENT_METHOD;
+	Reachability* curReach = [note object];
+	NSParameterAssert([curReach isKindOfClass:[Reachability class]]);
+	[self updateInterfaceWithReachability:curReach];
 }
 
 
