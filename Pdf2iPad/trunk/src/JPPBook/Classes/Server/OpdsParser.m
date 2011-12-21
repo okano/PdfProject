@@ -28,6 +28,7 @@
 	
 	//Check network connection.
 	if ([self networkReachability] == FALSE) {
+		/*
 		UIAlertView *alert = [[UIAlertView alloc]
 							  initWithTitle:nil
 							  message:@"no network connection."
@@ -35,6 +36,7 @@
 							  cancelButtonTitle:nil
 							  otherButtonTitles:@"OK", nil];
 		[alert show];
+		*/
 		
 		return nil;
 	}
@@ -46,6 +48,7 @@
 	if (feed == nil) {
 		NSLog(@"no feed found.");
 		NSLog(@"rootUrl=%@", rootUrl);
+		/*
 		UIAlertView *alert = [[UIAlertView alloc]
 							  initWithTitle:nil
 							  message:@"no content list(Root) found."
@@ -53,7 +56,7 @@
 							  cancelButtonTitle:nil
 							  otherButtonTitles:@"OK", nil];
 		[alert show];
-
+		*/
 		return nil;
 	}
 	//NSLog(@"feed=%@", feed);
