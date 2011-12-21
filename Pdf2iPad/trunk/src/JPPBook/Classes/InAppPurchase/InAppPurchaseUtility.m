@@ -228,6 +228,21 @@
 	}
 	return FALSE;	//Not Free
 }
+- (BOOL)isFreeContentWithCid:(ContentId)cid{
+	for (NSString* singleLine in productIdList) {
+		NSArray* commaSeparated = [singleLine componentsSeparatedByString:@","];
+		ContentId candidateContentId = [[commaSeparated objectAtIndex:0] intValue];
+		if (candidateContentId == cid) {
+			if (1 <= [commaSeparated count] && PRODUCT_KIND_FREE == [[commaSeparated objectAtIndex:2] intValue]) {
+				return TRUE;	//Free
+			} else {
+				return FALSE;	//Not Free
+			}
+			break;
+		}
+	}
+	return FALSE;	//Not Free
+}
 
 
 #pragma mark - Misc.

@@ -34,6 +34,7 @@
 + (NSString*)productIdWithoutFullQualifier:(NSString*)fullProductId;
 //Judge free comtent.
 - (BOOL)isFreeContent:(NSString*)productId;
+- (BOOL)isFreeContentWithCid:(ContentId)cid;
 //+ (NSString*)getBookDefineFilename:(ContentId)cid;
 
 //Misc.
