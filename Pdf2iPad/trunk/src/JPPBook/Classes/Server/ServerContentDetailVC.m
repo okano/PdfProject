@@ -133,8 +133,19 @@
 //		LOG_CURRENT_METHOD;
 //		NSLog(@"targetProductId=%@", targetProductId);
 //	}
-	appDelegate.paymentConductor.parentVC = self;
-	[appDelegate.paymentConductor getProductInfomation:targetProductId];
+	
+	// Do not need productId for Apple-server if content is free.
+	if ([appDelegate.productIdList isFreeContentWithCid:targetCid] == TRUE) {
+		[priceLabel setText:@"無料コンテンツ"];
+		[self enableReDownloadButton];
+		[reDownloadButton setTitle:@"無料ダウンロード" forState:UIControlStateNormal];
+	} else {
+		appDelegate.paymentConductor.parentVC = self;
+		[appDelegate.paymentConductor getProductInfomation:targetProductId];
+	}
+
+
+
 }
 
 
