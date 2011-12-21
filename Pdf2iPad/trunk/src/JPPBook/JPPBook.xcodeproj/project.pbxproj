@@ -80,6 +80,8 @@
 		2991E94C13B1E208000630FB /* p1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2991E94913B1E208000630FB /* p1.mp3 */; };
 		2991E94D13B1E209000630FB /* p2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2991E94A13B1E208000630FB /* p2.mp3 */; };
 		2991E94E13B1E209000630FB /* p3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2991E94B13B1E208000630FB /* p3.mp3 */; };
+		29933D4614A180A900DB588C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 29933D4514A180A900DB588C /* Reachability.m */; };
+		29933D4814A180F000DB588C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29933D4714A180F000DB588C /* SystemConfiguration.framework */; };
 		2994C04613C5BFB200368AD3 /* productIdList.csv in Resources */ = {isa = PBXBuildFile; fileRef = 2994C04013C5BFB200368AD3 /* productIdList.csv */; };
 		2994C04C13C5C1DF00368AD3 /* bookDefine_1.csv in Resources */ = {isa = PBXBuildFile; fileRef = 2994C04913C5C1DD00368AD3 /* bookDefine_1.csv */; };
 		2994C05013C5C2C700368AD3 /* icon_folder20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = 2994C04F13C5C2C700368AD3 /* icon_folder20x20.png */; };
@@ -237,6 +239,9 @@
 		2991E94913B1E208000630FB /* p1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = p1.mp3; path = sound/p1.mp3; sourceTree = "<group>"; };
 		2991E94A13B1E208000630FB /* p2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = p2.mp3; path = sound/p2.mp3; sourceTree = "<group>"; };
 		2991E94B13B1E208000630FB /* p3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = p3.mp3; path = sound/p3.mp3; sourceTree = "<group>"; };
+		29933D4414A180A900DB588C /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		29933D4514A180A900DB588C /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		29933D4714A180F000DB588C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		2994C04013C5BFB200368AD3 /* productIdList.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = productIdList.csv; path = csv/productIdList.csv; sourceTree = "<group>"; };
 		2994C04913C5C1DD00368AD3 /* bookDefine_1.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bookDefine_1.csv; path = csv/bookDefine_1.csv; sourceTree = "<group>"; };
 		2994C04F13C5C2C700368AD3 /* icon_folder20x20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_folder20x20.png; sourceTree = "<group>"; };
@@ -334,6 +339,7 @@
 				29FF4B8813B1D61A002DAEDF /* AudioToolbox.framework in Frameworks */,
 				29C6852113B9C66500FB164B /* AVFoundation.framework in Frameworks */,
 				29F36CA513C31B1400D0B289 /* StoreKit.framework in Frameworks */,
+				29933D4814A180F000DB588C /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,6 +473,16 @@
 				2991E94B13B1E208000630FB /* p3.mp3 */,
 			);
 			name = sound;
+			sourceTree = "<group>";
+		};
+		29933D4314A180A900DB588C /* NetworkReachability */ = {
+			isa = PBXGroup;
+			children = (
+				29933D4414A180A900DB588C /* Reachability.h */,
+				29933D4514A180A900DB588C /* Reachability.m */,
+			);
+			name = NetworkReachability;
+			path = Server/NetworkReachability;
 			sourceTree = "<group>";
 		};
 		2995612B1417822A001C1D53 /* KissXML */ = {
@@ -620,6 +636,7 @@
 				29FF4B8713B1D61A002DAEDF /* AudioToolbox.framework */,
 				29C6852013B9C66500FB164B /* AVFoundation.framework */,
 				29F36CA413C31B1400D0B289 /* StoreKit.framework */,
+				29933D4714A180F000DB588C /* SystemConfiguration.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -672,6 +689,7 @@
 				29BA980B143A040200F1FAEB /* ConfigViewController.h */,
 				29BA980C143A040200F1FAEB /* ConfigViewController.m */,
 				29BA980D143A040200F1FAEB /* ConfigView.xib */,
+				29933D4314A180A900DB588C /* NetworkReachability */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -910,6 +928,7 @@
 				29A26356143EC0F800D417E0 /* HetimaUnZipItem.m in Sources */,
 				29A2635B143EC0F800D417E0 /* ioapi.c in Sources */,
 				29A2635F143EC0F800D417E0 /* unzip.c in Sources */,
+				29933D4614A180A900DB588C /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
