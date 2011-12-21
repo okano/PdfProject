@@ -6,8 +6,15 @@
  *  Copyright 2009 __MyCompanyName__. All rights reserved.
  *
  */
+
+//Debug server.
 #define URL_BASE_OPDS_DEFAULT1			@"http://www5066ua.sakura.ne.jp:8080"
+//JPPBook server.
+//#define URL_BASE_OPDS_DEFAULT1			@"http://ns.jpp.co.jp:8080"
+//Local server.
 #define URL_BASE_OPDS_DEFAULT2			@"http://localhost:8080"
+
+
 #define URL_SUFFIX_OPDS		@"/opds"
 //
 #define SUMMARY_DIR		@"contentList"
