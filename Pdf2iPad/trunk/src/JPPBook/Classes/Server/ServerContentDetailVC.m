@@ -86,8 +86,8 @@
 	[self disableBuyButton];	//show but cannot push.
 	
 	//
-	targetCid = [appDelegate.contentListDS contentIdFromUuid:uuid];	/* USE contentListDS(not use ServerContentListDS) */
-	NSLog(@"targetCid=%d", targetCid);
+	//targetCid = [appDelegate.contentListDS contentIdFromUuid:uuid];	/* USE contentListDS(not use ServerContentListDS) */
+	//NSLog(@"targetCid=%d", targetCid);
 	
 	targetCid = [appDelegate.serverContentListDS contentIdFromUuid:uuid];
 	NSLog(@"targetCid=%d", targetCid);
