@@ -263,3 +263,5 @@
 - (void)parseSoundOnPageDefine;
 - (void)playSoundAtIndex:(NSUInteger)index;
 @end
+
+#define ALERTVIEW_TAG_CANNOT_GET_PDF_INFOMATION	400

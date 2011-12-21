@@ -118,15 +118,17 @@
 		UIAlertView *alert = [[UIAlertView alloc]
 							  initWithTitle:nil
 							  message:@"cannot open pdf file."
-							  delegate:nil
+							  delegate:self
 							  cancelButtonTitle:nil
 							  otherButtonTitles:@"OK", nil];
+		alert.tag = ALERTVIEW_TAG_CANNOT_GET_PDF_INFOMATION;
 		[alert show];
 		
 		
 		//close this view after setup complete.
 		errorInSetupPdfBasicInfo = YES;
-		//return;
+		
+		return;
 	}
 	
 	//Generate Thumbnail image.
@@ -206,6 +208,18 @@
 		[self showMenuBar];
 	}
 }
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	if (alertView.tag == ALERTVIEW_TAG_CANNOT_GET_PDF_INFOMATION) {
+		//Close this view. show (inner)ContentListView.
+		Pdf2iPadAppDelegate* appDelegate = (Pdf2iPadAppDelegate*)[[UIApplication sharedApplication] delegate];
+		[appDelegate hideContentPlayerView];
+		[appDelegate showContentListView];
+	}
+}
+
+
 
 
 #pragma mark -
