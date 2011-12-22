@@ -79,7 +79,12 @@
 	 */
 	if ([[unzipContainer contents] count] == 0) {
 		NSString *err = NSLocalizedString(@"No zip file is found.", nil);
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"no file found." message:err delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK",nil];
+		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"no file found."
+														 message:err
+														delegate:nil
+											   cancelButtonTitle:nil
+											   otherButtonTitles:@"OK",nil]
+							  autorelease];
 		[alert show];
 		[alert release];
 		return FALSE;
@@ -183,7 +188,11 @@
 		BOOL result = [item extractTo:extractToFilename delegate:self];
 		if (!result) {
 			NSString *err = [NSString stringWithFormat:NSLocalizedString(@"Failed to extract %@.", nil), [item path]];
-			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:err delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK",nil];
+			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"" message:err
+															delegate:nil
+												   cancelButtonTitle:nil
+												   otherButtonTitles:@"OK",nil]
+								  autorelease];
 			[alert show];
 			[alert release];
 			return FALSE;

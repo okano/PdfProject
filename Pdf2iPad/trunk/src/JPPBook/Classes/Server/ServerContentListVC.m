@@ -84,12 +84,13 @@
 	//Check network enable before get productIdList.
 	if (internetActive == NO) {
 		LOG_CURRENT_METHOD;
-		UIAlertView *alert = [[UIAlertView alloc]
-							  initWithTitle:@"Network error"
-							  message:@"Network not found."
-							  delegate:nil
-							  cancelButtonTitle:nil
-							  otherButtonTitles:@"OK", nil];
+		UIAlertView *alert = [[[UIAlertView alloc]
+							   initWithTitle:@"Network error"
+							   message:@"Network not found."
+							   delegate:nil
+							   cancelButtonTitle:nil
+							   otherButtonTitles:@"OK", nil]
+							  autorelease];
 		[alert show];
 		
 		return;
@@ -105,12 +106,13 @@
 	if (internetActive == NO)
 	{
 		LOG_CURRENT_METHOD;
-		UIAlertView *alert = [[UIAlertView alloc]
-							  initWithTitle:@"Network error"
-							  message:@"Network not found."
-							  delegate:nil
-							  cancelButtonTitle:nil
-							  otherButtonTitles:@"OK", nil];
+		UIAlertView *alert = [[[UIAlertView alloc]
+							   initWithTitle:@"Network error"
+							   message:@"Network not found."
+							   delegate:nil
+							   cancelButtonTitle:nil
+							   otherButtonTitles:@"OK", nil]
+							  autorelease];
 		[alert show];
 		return;
 	}
@@ -312,12 +314,13 @@
 - (void)didFailParseOpdsRoot{
 	LOG_CURRENT_METHOD;
 	/*
-	UIAlertView *alert = [[UIAlertView alloc]
-						  initWithTitle:nil
-						  message:@"fail parse OPDS Root."
-						  delegate:nil
-						  cancelButtonTitle:nil
-						  otherButtonTitles:@"OK", nil];
+	UIAlertView *alert = [[[UIAlertView alloc]
+						   initWithTitle:nil
+						   message:@"fail parse OPDS Root."
+						   delegate:nil
+						   cancelButtonTitle:nil
+						   otherButtonTitles:@"OK", nil]
+						  autorelease];
 	[alert show];
 	*/
 	[self performSelector:@selector(stopIndicator) withObject:nil];

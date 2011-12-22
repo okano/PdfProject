@@ -91,11 +91,12 @@
 			NSLog(@"content list cannot get from network");
 			//Show alert.
 			UIAlertView* errorAleart;
-			errorAleart = [[UIAlertView alloc] initWithTitle:@"network error"
-													 message:nil	//NSStringFromSelector(_cmd)
-													delegate:self
-										   cancelButtonTitle:nil
-										   otherButtonTitles:@"OK", nil];
+			errorAleart = [[[UIAlertView alloc] initWithTitle:@"network error"
+													  message:nil	//NSStringFromSelector(_cmd)
+													 delegate:self
+										    cancelButtonTitle:nil
+										    otherButtonTitles:@"OK", nil]
+										   autorelease];
 			[errorAleart show];
 		} else {
 			//Save it to plist.
@@ -170,11 +171,12 @@
 		//NSAssert(NO, @"test1no");
 		
 		UIAlertView* errorAleart;
-		errorAleart = [[UIAlertView alloc] initWithTitle:@"network error"
-												 message:nil	//NSStringFromSelector(_cmd)
-												delegate:self
-									   cancelButtonTitle:nil
-									   otherButtonTitles:@"OK", nil];
+		errorAleart = [[[UIAlertView alloc] initWithTitle:@"network error"
+												  message:nil	//NSStringFromSelector(_cmd)
+												 delegate:self
+									    cancelButtonTitle:nil
+									    otherButtonTitles:@"OK", nil]
+									   autorelease];
 		[errorAleart show];
 		
 		return FALSE;	
@@ -194,11 +196,12 @@
 		LOG_CURRENT_LINE;
 		NSLog(@"error=%@", errStr);				
 		UIAlertView* errorAleart;
-		errorAleart = [[UIAlertView alloc] initWithTitle:@"serialize error"
-												 message:errStr 
-												delegate:self
-									   cancelButtonTitle:nil
-									   otherButtonTitles:@"OK", nil];
+		errorAleart = [[[UIAlertView alloc] initWithTitle:@"serialize error"
+												  message:errStr 
+												 delegate:self
+									    cancelButtonTitle:nil
+									    otherButtonTitles:@"OK", nil]
+									   autorelease];
 		[errorAleart show];
 		return FALSE;
 	} 

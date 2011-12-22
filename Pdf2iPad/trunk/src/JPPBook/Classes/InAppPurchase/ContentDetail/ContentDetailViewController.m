@@ -162,12 +162,13 @@
 	NSLog(@"purchase error. error description=%@", [error description]);
 	
 	//Show alert.
-	UIAlertView *alert = [[UIAlertView alloc]
-						  initWithTitle:@"purchse error"
-						  message:[NSString stringWithFormat:@"課金処理に失敗しました。詳細：%@", [error description]]
-						  delegate:nil
-						  cancelButtonTitle:nil
-						  otherButtonTitles:@"OK", nil];
+	UIAlertView *alert = [[[UIAlertView alloc]
+						   initWithTitle:@"purchse error"
+						   message:[NSString stringWithFormat:@"課金処理に失敗しました。詳細：%@", [error description]]
+						   delegate:nil
+						   cancelButtonTitle:nil
+						   otherButtonTitles:@"OK", nil]
+						  autorelease];
 	[alert show];
 }
 

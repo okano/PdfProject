@@ -115,12 +115,13 @@
 	if ([self setupPdfBasicInfo] == FALSE) {
 		NSLog(@"cannot get pdf infomation.");
 		//Show alert.
-		UIAlertView *alert = [[UIAlertView alloc]
-							  initWithTitle:nil
-							  message:@"cannot open pdf file."
-							  delegate:self
-							  cancelButtonTitle:nil
-							  otherButtonTitles:@"OK", nil];
+		UIAlertView *alert = [[[UIAlertView alloc]
+							   initWithTitle:nil
+							   message:@"cannot open pdf file."
+							   delegate:self
+							   cancelButtonTitle:nil
+							   otherButtonTitles:@"OK", nil]
+							  autorelease];
 		alert.tag = ALERTVIEW_TAG_CANNOT_GET_PDF_INFOMATION;
 		[alert show];
 		

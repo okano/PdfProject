@@ -29,12 +29,13 @@
 	//Check network connection.
 	if ([self networkReachability] == FALSE) {
 		/*
-		UIAlertView *alert = [[UIAlertView alloc]
-							  initWithTitle:nil
-							  message:@"no network connection."
-							  delegate:nil
-							  cancelButtonTitle:nil
-							  otherButtonTitles:@"OK", nil];
+		UIAlertView *alert = [[[UIAlertView alloc]
+							   initWithTitle:nil
+							   message:@"no network connection."
+							   delegate:nil
+							   cancelButtonTitle:nil
+							   otherButtonTitles:@"OK", nil]
+							  autorelease];
 		[alert show];
 		*/
 		
@@ -49,12 +50,13 @@
 		NSLog(@"no feed found.");
 		NSLog(@"rootUrl=%@", rootUrl);
 		/*
-		UIAlertView *alert = [[UIAlertView alloc]
-							  initWithTitle:nil
-							  message:@"no content list(Root) found."
-							  delegate:nil
-							  cancelButtonTitle:nil
-							  otherButtonTitles:@"OK", nil];
+		UIAlertView *alert = [[[UIAlertView alloc]
+							   initWithTitle:nil
+							   message:@"no content list(Root) found."
+							   delegate:nil
+							   cancelButtonTitle:nil
+							   otherButtonTitles:@"OK", nil]
+							  autorelease];
 		[alert show];
 		*/
 		return nil;
@@ -165,12 +167,13 @@
 	NSLog(@"host=%@", [elementUrl host]);
 	if (username == nil || password == nil){
 		NSLog(@"username or password is nil.");
-		UIAlertView *alert = [[UIAlertView alloc]
-							  initWithTitle:nil
-							  message:@"username or password is nil."
-							  delegate:nil
-							  cancelButtonTitle:nil
-							  otherButtonTitles:@"OK", nil];
+		UIAlertView *alert = [[[UIAlertView alloc]
+							   initWithTitle:nil
+							   message:@"username or password is nil."
+							   delegate:nil
+							   cancelButtonTitle:nil
+							   otherButtonTitles:@"OK", nil]
+							  autorelease];
 		[alert show];
 		
 		return nil;

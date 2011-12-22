@@ -174,8 +174,13 @@
 	if (! [SKPaymentQueue canMakePayments]) {
 		NSLog(@"cannot make payments");
 		
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"cannot make payments."
-							  delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+		UIAlertView *alert = [[[UIAlertView alloc]
+							   initWithTitle:nil
+							   message:@"cannot make payments."
+							   delegate:nil
+							   cancelButtonTitle:nil
+							   otherButtonTitles:@"OK", nil]
+							  autorelease];
 		[alert show];
 		return;
 	}

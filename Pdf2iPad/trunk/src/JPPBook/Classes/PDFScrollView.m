@@ -36,13 +36,13 @@
 	if (!pdfURL) {
 		NSLog(@"file not found. filename=%@", filename);
 		//
-		UIAlertView *alert = [[UIAlertView alloc]
-							  initWithTitle:@"file not found"
-							  message:[NSString stringWithFormat:@"%@ not found.", filename]
-							  delegate:nil
-							  cancelButtonTitle:nil
-							  otherButtonTitles:@"OK", nil
-							  ];
+		UIAlertView *alert = [[[UIAlertView alloc]
+							   initWithTitle:@"file not found"
+							   message:[NSString stringWithFormat:@"%@ not found.", filename]
+							   delegate:nil
+							   cancelButtonTitle:nil
+							   otherButtonTitles:@"OK", nil]
+							  autorelease];
 		[alert show];
 		return;
 	}

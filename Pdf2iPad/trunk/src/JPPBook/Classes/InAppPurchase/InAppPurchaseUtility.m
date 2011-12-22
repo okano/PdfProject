@@ -38,12 +38,13 @@
 	if ([obj count] <= 0) {
 		NSLog(@"no product Id found in standardUserDefaults.");
 		/*
-		UIAlertView *alert = [[UIAlertView alloc]
-								initWithTitle:nil
-								message:@"no product id list founded."
-								delegate:nil
-								cancelButtonTitle:nil
-								otherButtonTitles:@"OK", nil];
+		UIAlertView *alert = [[[UIAlertView alloc]
+							   initWithTitle:nil
+							   message:@"no product id list founded."
+							   delegate:nil
+							   cancelButtonTitle:nil
+							   otherButtonTitles:@"OK", nil]
+							  autorelease];
 		[alert show];
 		*/
 		return;		//do nothing if no data found.
@@ -77,11 +78,12 @@
 	if (csvStr == nil) {
 		NSLog(@"no productIdList.csv file found.");
 		NSLog(@"url=%@", url);
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-														message:@"no product id list found."
-													   delegate:nil
-											  cancelButtonTitle:nil
-											  otherButtonTitles:@"OK", nil];
+		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil
+														 message:@"no product id list found."
+														delegate:nil
+											   cancelButtonTitle:nil
+											   otherButtonTitles:@"OK", nil]
+							  autorelease];
 		[alert show];
 		return;		//do nothing if no data found.
 	}
