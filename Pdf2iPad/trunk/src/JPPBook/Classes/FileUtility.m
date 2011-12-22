@@ -21,7 +21,7 @@
 	
 	NSString* pdfFilename;
 	if ([lines count] < 1) {
-		NSLog(@"no PDF file specified.");
+		NSLog(@"no PDF file specified in %@.%@", targetFilename, @"csv");
 		pdfFilename = [NSString stringWithFormat:TEST_PDF_FILENAME];
 	} else {
 		pdfFilename = [lines objectAtIndex:0];
@@ -36,7 +36,7 @@
 	
 	NSString* pdfFilename;
 	if ([lines count] < 1) {
-		NSLog(@"no PDF file specified.");
+		NSLog(@"no PDF file specified in %@.%@", targetFilename, @"csv");
 		pdfFilename = [NSString stringWithFormat:TEST_PDF_FILENAME];
 	} else {
 		pdfFilename = [lines objectAtIndex:0];
@@ -124,6 +124,8 @@
 	//Delete comment line.
 	NSMutableArray* lines = [[NSMutableArray alloc] initWithArray:[text3 componentsSeparatedByString:@"\n"]];
 	if ([lines count] <= 0) {
+		LOG_CURRENT_METHOD;
+		NSLog(@"no line found.");
 		return lines;
 	}
 	//NSLog(@"lines(count=%d)=%@", [lines count], [lines description]);
