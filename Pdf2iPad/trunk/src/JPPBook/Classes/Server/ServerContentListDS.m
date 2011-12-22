@@ -30,6 +30,7 @@
 	[tmpDict setValue:@"author1-server" forKey:CONTENT_AUTHOR];
 	[tmpDict setValue:@"desc1-server" forKey:CONTENT_DESCRIPTION];
 	[contentList addObject:tmpDict];
+	[tmpDict release]; tmpDict = nil;
 	
 	tmpDict = [[NSMutableDictionary alloc] init];
 	[tmpDict setValue:[NSNumber numberWithInteger:2] forKey:CONTENT_CID];
@@ -38,6 +39,7 @@
 	[tmpDict setValue:@"author2-server" forKey:CONTENT_AUTHOR];
 	[tmpDict setValue:@"desc2-server" forKey:CONTENT_DESCRIPTION];
 	[contentList addObject:tmpDict];
+	[tmpDict release]; tmpDict = nil;
 	
 	tmpDict = [[NSMutableDictionary alloc] init];
 	[tmpDict setValue:[NSNumber numberWithInteger:3] forKey:CONTENT_CID];
@@ -46,6 +48,7 @@
 	[tmpDict setValue:@"author3-server" forKey:CONTENT_AUTHOR];
 	[tmpDict setValue:@"desc3-server" forKey:CONTENT_DESCRIPTION];
 	[contentList addObject:tmpDict];
+	[tmpDict release]; tmpDict = nil;
 	
 	tmpDict = [[NSMutableDictionary alloc] init];
 	[tmpDict setValue:[NSNumber numberWithInteger:4] forKey:CONTENT_CID];
@@ -54,6 +57,7 @@
 	[tmpDict setValue:@"author4-server" forKey:CONTENT_AUTHOR];
 	[tmpDict setValue:@"desc4-server" forKey:CONTENT_DESCRIPTION];
 	[contentList addObject:tmpDict];
+	[tmpDict release]; tmpDict = nil;
 	
 	//[self storeContentListToPlist:contentList];
 	
@@ -227,13 +231,14 @@
 	//Get OPDS Root.
 	NSString* urlBaseStr = [ConfigViewController getUrlBaseWithOpds];
 	NSString* urlStr = [NSString stringWithFormat:@"%@%@", urlBaseStr, URL_SUFFIX_OPDS];
-	NSURL* rootUrl = [[NSURL alloc] initWithString:urlStr];
+	NSURL* rootUrl = [NSURL URLWithString:urlStr];
 	[targetTableVC didStartParseOpdsRoot];
 	NSURL* elementUrl = [parser getOpdsRoot:rootUrl];
 	if (elementUrl != nil) {
 		[targetTableVC didFinishParseOpdsRoot:elementUrl];
 	} else {
 		[targetTableVC didFailParseOpdsRoot];
+		[parser release]; parser = nil;
 		return;
 	}
 		
@@ -252,7 +257,7 @@
 		[targetTableVC didFailParseOpdsElement];
 	}
 	
-	
+	[parser release]; parser = nil;
 }
 
 
@@ -334,6 +339,7 @@
 			NSLog(@"content detail directory cannot create. path=%@", contentDetailDirectory);
 			NSLog(@"err=%@", [err localizedDescription]);
 			NSLog(@"File Manager: %@ %d %@", [err domain], [err code], [[err userInfo] description]);
+			[tmpDict release]; tmpDict = nil;
 			return;
 		}
 	}
@@ -342,6 +348,7 @@
 	//Save
 	NSString* filename = [self getContentListFilename];
 	[tmpDict writeToFile:filename atomically:YES];
+	[tmpDict release]; tmpDict = nil;
 }
 
 

@@ -197,6 +197,7 @@
 	//LOG_CURRENT_METHOD;
 	PaymentHistoryListViewController* paymentHistoryListVC = [[PaymentHistoryListViewController alloc] init];
 	[self.view addSubview:paymentHistoryListVC.view];
+	[paymentHistoryListVC release]; paymentHistoryListVC = nil;
 }
 
 #pragma mark - Table view data source

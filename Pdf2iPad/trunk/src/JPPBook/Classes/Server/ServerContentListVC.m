@@ -67,6 +67,13 @@
 
 	NSArray *items = [NSArray arrayWithObjects:localContentButton, paymentHistoryButton, spacer1, activityItem,  configButton, spacer2, reloadButton, nil];
 	[toolbar setItems:items];
+	[localContentButton release]; localContentButton = nil;
+	[paymentHistoryButton release]; paymentHistoryButton = nil;
+	[spacer1 release]; spacer1 = nil;
+	[configButton release]; configButton = nil;
+	[spacer2 release]; spacer2 = nil;
+	[reloadButton release]; reloadButton = nil;
+	[activityItem release]; activityItem = nil;
 
 	[self reloadData];
 }
@@ -145,6 +152,7 @@
 	ConfigViewController* configVC = [[ConfigViewController alloc] initWithNibName:@"ConfigView"
 																			bundle:[NSBundle mainBundle]];
 	[self presentModalViewController:configVC animated:YES];
+	[configVC release]; configVC = nil;
 }
 
 

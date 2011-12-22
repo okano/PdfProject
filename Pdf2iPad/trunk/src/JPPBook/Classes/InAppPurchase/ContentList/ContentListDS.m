@@ -209,8 +209,10 @@
 				[tmpStr appendString:@"\n"];
 			}
 			[tmpDict setValue:tmpStr forKey:CONTENT_DESCRIPTION];
+			[tmpStr release]; tmpStr = nil;
 		}
 		[contentList addObject:tmpDict];
+		[tmpDict release]; tmpDict = nil;
 		
 		contentIdInt++;
 	}//end-while.
@@ -645,6 +647,7 @@
 	[tmpDict setValue:@"author1" forKey:CONTENT_AUTHOR];
 	[tmpDict setValue:@"desc1" forKey:CONTENT_DESCRIPTION];
 	[contentList addObject:tmpDict];
+	[tmpDict release]; tmpDict = nil;
 	
 	tmpDict = [[NSMutableDictionary alloc] init];
 	[tmpDict setValue:[NSNumber numberWithInteger:2] forKey:CONTENT_CID];
@@ -653,6 +656,7 @@
 	[tmpDict setValue:@"author2" forKey:CONTENT_AUTHOR];
 	[tmpDict setValue:@"desc2" forKey:CONTENT_DESCRIPTION];
 	[contentList addObject:tmpDict];
+	[tmpDict release]; tmpDict = nil;
 	
 	tmpDict = [[NSMutableDictionary alloc] init];
 	[tmpDict setValue:[NSNumber numberWithInteger:3] forKey:CONTENT_CID];
@@ -661,6 +665,7 @@
 	[tmpDict setValue:@"author3" forKey:CONTENT_AUTHOR];
 	[tmpDict setValue:@"desc3" forKey:CONTENT_DESCRIPTION];
 	[contentList addObject:tmpDict];
+	[tmpDict release]; tmpDict = nil;
 	
 	tmpDict = [[NSMutableDictionary alloc] init];
 	[tmpDict setValue:[NSNumber numberWithInteger:4] forKey:CONTENT_CID];
@@ -669,5 +674,6 @@
 	[tmpDict setValue:@"author4" forKey:CONTENT_AUTHOR];
 	[tmpDict setValue:@"desc4" forKey:CONTENT_DESCRIPTION];
 	[contentList addObject:tmpDict];
+	[tmpDict release]; tmpDict = nil;
 }
 @end
