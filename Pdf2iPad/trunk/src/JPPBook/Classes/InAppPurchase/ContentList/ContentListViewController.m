@@ -55,6 +55,8 @@
 																	  action:@selector(showPaymentHistoryList)];
 	NSArray *items = [NSArray arrayWithObjects:serverContentButton, paymentHistoryButton, nil];
 	[toolbar setItems:items];
+	[serverContentButton release];
+	[paymentHistoryButton release];
 	[self.view addSubview:toolbar];
 	
 	//Setup TableView size.
