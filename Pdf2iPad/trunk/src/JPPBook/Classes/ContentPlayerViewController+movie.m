@@ -61,6 +61,7 @@
 		[tmpDict setValue:tmpStrWithoutLF forKey:MD_MOVIE_FILENAME];
 		
 		[movieDefine addObject:tmpDict];
+		[tmpDict release]; tmpDict = nil;
 	}
 }
 
