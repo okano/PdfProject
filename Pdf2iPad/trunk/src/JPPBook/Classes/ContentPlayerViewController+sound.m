@@ -56,6 +56,7 @@
 		[tmpDict setValue:tmpStrWithoutLF forKey:SD_SOUND_FILENAME];
 		
 		[soundDefine addObject:tmpDict];
+		[tmpDict release]; tmpDict = nil;
 	}
 }
 
