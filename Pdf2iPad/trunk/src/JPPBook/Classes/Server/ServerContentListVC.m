@@ -151,8 +151,10 @@
 {
 	ConfigViewController* configVC = [[ConfigViewController alloc] initWithNibName:@"ConfigView"
 																			bundle:[NSBundle mainBundle]];
-	[self presentModalViewController:configVC animated:YES];
-	[configVC release]; configVC = nil;
+	//[self presentModalViewController:configVC animated:YES];
+	configVC.view.frame = self.view.frame;
+	[self.view addSubview:configVC.view];
+	//[configVC release]; configVC = nil;
 }
 
 

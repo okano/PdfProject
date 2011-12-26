@@ -43,7 +43,8 @@
 }
 - (IBAction)closeThisView:(id)sender
 {
-	[self dismissModalViewControllerAnimated:YES];
+	//[self dismissModalViewControllerAnimated:YES];
+	[self.view removeFromSuperview];
 }
 
 #pragma mark -
@@ -125,7 +126,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
+	//Setup GUI.
 	textField.text = [ConfigViewController getUrlBaseWithOpds];
 	NSDictionary* userinfoDict = [self loadUsernameAndPasswordFromUserDefault];
 	usernameField.text = [userinfoDict valueForKey:USERNAME];
