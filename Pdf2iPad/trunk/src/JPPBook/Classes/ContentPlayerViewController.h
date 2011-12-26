@@ -151,6 +151,7 @@
 - (NSString*)getPageFilenameFull:(int)pageNum;
 - (NSString*)getPageFilenameFull:(int)pageNum;
 - (NSString*)getThumbnailFilenameFull:(int)pageNum;
+- (NSString*)getThumbnailFilenameFullWithFilename:(NSString*)filename withCid:(ContentId)cid;
 //
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum;
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum WithContentId:(ContentId)cid;

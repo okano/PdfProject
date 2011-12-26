@@ -11,6 +11,7 @@
 
 @implementation ThumbnailScrollViewController
 @synthesize scrollView;
+@synthesize currentContentId;
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
@@ -150,8 +151,10 @@
 		NSString* filename = [tmpDict objectForKey:TOC_FILENAME];
 		UIImage* image = nil;
 		if (filename) {
-			// Open image from mainBundle.
-			image = [UIImage imageNamed:filename];
+			// Open image with specified filename in tocDefine.csv.
+			NSString* imageNameFull = [FileUtility getThumbnailFilenameFullWithFilename:filename WithContentId:currentContentId];
+			NSLog(@"thumbnail imageNameFull=%@", imageNameFull);
+			image = [UIImage imageWithContentsOfFile:imageNameFull];
 			if (! image) {
 				LOG_CURRENT_METHOD;
 				LOG_CURRENT_LINE;
@@ -159,7 +162,7 @@
 				continue;	//skip to next object.
 			}
 		} else {
-			// Open image from thumbnail file.
+			// Open image with pageNum.
 			NSString* filenameFull = [appDelegate getThumbnailFilenameFull:pageNum];
 			image = [UIImage imageWithContentsOfFile:filenameFull];
 			if (! image) {

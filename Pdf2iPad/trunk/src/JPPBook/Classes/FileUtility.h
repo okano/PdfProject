@@ -26,6 +26,7 @@
 + (NSString*)getPageFilenameFull:(int)pageNum WithContentId:(ContentId)cid;
 + (NSString*)getThumbnailFilenameFull:(int)pageNum;
 + (NSString*)getThumbnailFilenameFull:(int)pageNum WithContentId:(ContentId)cid;
++ (NSString*)getThumbnailFilenameFullWithFilename:(NSString*)filename WithContentId:(ContentId)cid;
 
 //CSV file parser.
 + (NSArray*)parseDefineCsv:(NSString*)filename;

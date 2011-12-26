@@ -12,9 +12,11 @@
 #import "Define.h"
 
 @interface ThumbnailScrollViewController : UIViewController {
+	ContentId currentContentId;
 	UIScrollView* scrollView;
 }
 @property (nonatomic, retain) UIScrollView* scrollView;
+@property ContentId currentContentId;
 //
 - (IBAction)closeThisView:(id)sender;
 - (void)setupViewFrame:(CGRect)frame;

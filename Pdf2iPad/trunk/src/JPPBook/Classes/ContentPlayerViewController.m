@@ -416,6 +416,10 @@
 	*/
 }
 
+- (NSString*)getThumbnailFilenameFullWithFilename:(NSString*)filename withCid:(ContentId)cid {
+	return [FileUtility getThumbnailFilenameFullWithFilename:filename WithContentId:cid];	
+}
+
 
 /**
  *
@@ -2663,6 +2667,7 @@
 #pragma mark -
 - (void)showThumbnailScrollView {
 	//Setup with tocDefine.
+	thumbnailScrollViewController.currentContentId = currentContentId;
 	[thumbnailScrollViewController setupImages];
 	
 	

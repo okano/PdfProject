@@ -85,6 +85,15 @@
 	return targetFilenameFull;
 }
 
++ (NSString*)getThumbnailFilenameFullWithFilename:(NSString*)filename WithContentId:(ContentId)cid {
+	NSString* cidStr = [NSString stringWithFormat:@"%d", cid];
+	NSString* targetFilenameFull = [[[ContentFileUtility getContentBodyDirectoryWithContentId:cidStr]
+									 stringByAppendingPathComponent:@"image"]
+									stringByAppendingPathComponent:filename];
+	return targetFilenameFull;
+}
+
+
 #pragma mark - CSV file parser.
 //only from MainBundle.
 + (NSArray*)parseDefineCsv:(NSString*)filename
