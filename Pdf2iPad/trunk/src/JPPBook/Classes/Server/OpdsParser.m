@@ -281,9 +281,9 @@
 	NSString* baseUrlStr = [ConfigViewController getUrlBaseWithOpds];
 	
 	//Parse.
-	NSString* acquisitionLink;
-	NSString* thumbnailLink;
-	NSString* coverLink;
+	NSString* acquisitionLink = nil;
+	NSString* thumbnailLink = nil;
+	NSString* coverLink = nil;
 	NSUInteger contentId;
 	NSMutableArray* linksUrlArray = [[NSMutableArray alloc] init];
 	for (DDXMLElement* singleElement in entries){
