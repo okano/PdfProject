@@ -106,7 +106,7 @@
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
 	//LOG_CURRENT_METHOD;
-	if ([self isChangeOrientationKind:self.interfaceOrientation newOrientation:toInterfaceOrientation] == YES) {
+	//if ([self isChangeOrientationKind:self.interfaceOrientation newOrientation:toInterfaceOrientation] == YES) {
 		//Rotate view.
 		CGRect frameForTable;
 		CGRect frameForToolbar;
@@ -116,28 +116,28 @@
 			toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
 			frameForToolbar = CGRectMake(0.0f,
 										 0.0f,
-										 self.view.frame.size.width,
+										 self.view.bounds.size.width,
 										 statusBarHeight);
 			frameForTable = CGRectMake(0.0f,
 							   statusBarHeight,
-							   self.view.frame.size.width,
-							   self.view.frame.size.height - statusBarHeight);
+							   self.view.bounds.size.height,
+							   self.view.bounds.size.height - statusBarHeight);
 		} else {
 			frameForToolbar = CGRectMake(0.0f, 
 										 0.0f, 
-										 self.view.frame.size.height,
+										 self.view.bounds.size.height,
 										 statusBarHeight)	;
 			frameForTable = CGRectMake(0.0f,
 							   statusBarHeight,
-							   self.view.frame.size.height,
-							   self.view.frame.size.width - statusBarHeight);
+							   self.view.bounds.size.height,
+							   self.view.bounds.size.width - statusBarHeight);
 		}
 		
 		toolbar.frame = frameForToolbar;
 		myTableView.frame = frameForTable;
 		[myTableView reloadData];
 		[myTableView reloadInputViews];
-	}
+	//}
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation

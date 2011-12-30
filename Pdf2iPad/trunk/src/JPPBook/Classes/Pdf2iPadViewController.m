@@ -44,6 +44,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	self.view.autoresizesSubviews = YES;
     // Do any additional setup after loading the view from its nib.
 	[self showContentListView];
 }
@@ -99,6 +100,7 @@
 {
 	if (contentListVC == nil) {
 		contentListVC = [[ContentListViewController alloc] init];
+		contentListVC.view.frame = self.view.frame;
 	}
 	[self.view addSubview:contentListVC.view];
 	[contentListVC reloadData];
@@ -166,6 +168,7 @@
 	//LOG_CURRENT_METHOD;
 	if (serverContentListVC == nil) {
 		serverContentListVC = [[ServerContentListVC alloc] init];
+		serverContentListVC.view.frame = self.view.frame;
 	}
 	[self.view addSubview:serverContentListVC.view];
 	[serverContentListVC reloadData];
