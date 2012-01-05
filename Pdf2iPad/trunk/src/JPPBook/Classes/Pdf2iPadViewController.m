@@ -72,6 +72,10 @@
 		//LOG_CURRENT_LINE;
 		[contentListVC willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
 	}
+	if (serverContentListVC != nil) {
+		//LOG_CURRENT_LINE;
+		[serverContentListVC willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+	}
 }
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
@@ -81,6 +85,9 @@
 	}
 	if (contentListVC != nil) {
 		[contentListVC didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+	}
+	if (serverContentListVC != nil) {
+		[serverContentListVC didRotateFromInterfaceOrientation:fromInterfaceOrientation];
 	}
 }
 - (void)showContentPlayerView
@@ -108,7 +115,10 @@
 - (void)hideContentListView
 {
 	if (contentListVC != nil) {
-		[contentListVC.view removeFromSuperview]; 
+		LOG_CURRENT_METHOD;
+		[contentListVC.view removeFromSuperview];
+		[contentListVC release];
+		contentListVC = nil;
 	}
 }
 - (void)showContentPlayerView:(ContentId)cid
