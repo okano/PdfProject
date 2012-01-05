@@ -115,10 +115,7 @@
 - (void)hideContentListView
 {
 	if (contentListVC != nil) {
-		LOG_CURRENT_METHOD;
 		[contentListVC.view removeFromSuperview];
-		[contentListVC release];
-		contentListVC = nil;
 	}
 }
 - (void)showContentPlayerView:(ContentId)cid
