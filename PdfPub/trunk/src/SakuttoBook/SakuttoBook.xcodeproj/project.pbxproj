@@ -44,7 +44,6 @@
 		297DF1FB12C600320082C680 /* InfomationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 297DF1FA12C600320082C680 /* InfomationView.xib */; };
 		297DF1FF12C601AD0082C680 /* InfomationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297DF1FE12C601AD0082C680 /* InfomationViewController.m */; };
 		299448EC12B7370B00E7D108 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299448EB12B7370B00E7D108 /* MediaPlayer.framework */; };
-		2999FA9512B7BDE5002ACB2B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2999FA9412B7BDE5002ACB2B /* icon.png */; };
 		2999FDC512D6A8D500D0F145 /* License.m in Sources */ = {isa = PBXBuildFile; fileRef = 2999FDC412D6A8D500D0F145 /* License.m */; };
 		29A1CB7A138616AA00326759 /* SKBE_MainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A1CB79138616AA00326759 /* SKBE_MainVC.m */; };
 		29A1CB7E138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A1CB7D138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m */; };
@@ -57,6 +56,7 @@
 		29B16E06139876E200B4D958 /* ContentListDS.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B16E05139876E200B4D958 /* ContentListDS.m */; };
 		29B16E09139876E900B4D958 /* PaymentHistoryDS.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B16E08139876E900B4D958 /* PaymentHistoryDS.m */; };
 		29B16E0B1398779600B4D958 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B16E0A1398779600B4D958 /* StoreKit.framework */; };
+		29B1795814BC8C94007024AD /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 29B1795714BC8C94007024AD /* Icon.png */; };
 		29B3B7C812C57DE00014F866 /* MyPdfScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B3B7C712C57DE00014F866 /* MyPdfScrollView.m */; };
 		29B3B90C12C58C820014F866 /* ThumbnailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B3B90B12C58C820014F866 /* ThumbnailViewController.m */; };
 		29BD25FC13A4963A0029E2B4 /* document-1.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 29BD25F913A4963A0029E2B4 /* document-1.pdf */; };
@@ -144,7 +144,6 @@
 		297DF1FD12C601AD0082C680 /* InfomationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfomationViewController.h; sourceTree = "<group>"; };
 		297DF1FE12C601AD0082C680 /* InfomationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfomationViewController.m; sourceTree = "<group>"; };
 		299448EB12B7370B00E7D108 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		2999FA9412B7BDE5002ACB2B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		2999FDC312D6A8D500D0F145 /* License.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = License.h; sourceTree = "<group>"; };
 		2999FDC412D6A8D500D0F145 /* License.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = License.m; sourceTree = "<group>"; };
 		29A1CB78138616AA00326759 /* SKBE_MainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKBE_MainVC.h; path = SKBEngine/SKBEngine/SKBE_MainVC.h; sourceTree = "<group>"; };
@@ -165,6 +164,7 @@
 		29B16E07139876E900B4D958 /* PaymentHistoryDS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaymentHistoryDS.h; path = InAppPurchase/PaymentHistoryDS.h; sourceTree = "<group>"; };
 		29B16E08139876E900B4D958 /* PaymentHistoryDS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PaymentHistoryDS.m; path = InAppPurchase/PaymentHistoryDS.m; sourceTree = "<group>"; };
 		29B16E0A1398779600B4D958 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		29B1795714BC8C94007024AD /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		29B3B7C612C57DE00014F866 /* MyPdfScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPdfScrollView.h; sourceTree = "<group>"; };
 		29B3B7C712C57DE00014F866 /* MyPdfScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPdfScrollView.m; sourceTree = "<group>"; };
 		29B3B90A12C58C820014F866 /* ThumbnailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumbnailViewController.h; sourceTree = "<group>"; };
@@ -383,7 +383,7 @@
 				2963BDF212B5BE1C001041EB /* pdf */,
 				2994490212B737C600E7D108 /* movie */,
 				2921370D12C604B800FC071D /* image */,
-				2999FA9412B7BDE5002ACB2B /* icon.png */,
+				29B1795714BC8C94007024AD /* Icon.png */,
 				29F3391D1398894E0005CF10 /* folder20x20.png */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				2899E5210DE3E06400AC0155 /* SakuttoBookViewController.xib */,
@@ -506,7 +506,6 @@
 				2935764412B5EAAD00F46754 /* MenuView.xib in Resources */,
 				293BB9F212B6218500DDA3E3 /* WebView.xib in Resources */,
 				297AC25812B7870B00962CED /* TocView.xib in Resources */,
-				2999FA9512B7BDE5002ACB2B /* icon.png in Resources */,
 				29431E2212C5D29C00914DBD /* list_bullets.png in Resources */,
 				29787BE112C5FBDC00EC2681 /* document.pdf in Resources */,
 				297DF1FB12C600320082C680 /* InfomationView.xib in Resources */,
@@ -549,6 +548,7 @@
 				29F4B95313AB2AC200519DAA /* ContentIcon_1.png in Resources */,
 				29F4B95413AB2AC200519DAA /* ContentIcon_2.png in Resources */,
 				29F4B95513AB2AC200519DAA /* ContentIcon_3.png in Resources */,
+				29B1795814BC8C94007024AD /* Icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
