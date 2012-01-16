@@ -1,0 +1,20 @@
+####
+#Clone parent.
+####
+git clone git@github.com:okano/PdfProject.git
+cd PdfProject
+
+git submodule
+#  ('-' with head.)
+
+git submodule init PdfPub/trunk/src/SakuttoBook/SKBEngine
+# (need init.)
+# (not need '/' with tail.)
+
+####
+#Clone child.
+####
+git submodule update PdfPub/trunk/src/SakuttoBook/SKBEngine
+
+git submodule
+# (' ' with head.)
