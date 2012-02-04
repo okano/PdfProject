@@ -258,7 +258,7 @@
 	if (currentPageNum + 2 <= maxPageNum) {
 		//nextPdfScrollView.frame = viewFrame;
 		[nextPdfScrollView setupUiScrollView];
-		[nextPdfScrollView setupWithPageNum:currentPageNum + 1 ContentId:currentContentId];
+		[nextPdfScrollView setupWithPageNum:currentPageNum + 2 ContentId:currentContentId];
 		[nextPdfScrollView setupCurrentPageWithSize:viewFrame.size];
 		[nextPdfScrollView resetScrollView];
 	}
@@ -279,7 +279,7 @@
 	if (1 <= currentPageNum - 2) {
 		//prevPdfScrollView.frame = viewFrame;
 		[prevPdfScrollView setupUiScrollView];
-		[prevPdfScrollView setupWithPageNum:currentPageNum - 1 ContentId:currentContentId];
+		[prevPdfScrollView setupWithPageNum:currentPageNum - 2 ContentId:currentContentId];
 		[prevPdfScrollView setupCurrentPageWithSize:viewFrame.size];
 		[prevPdfScrollView resetScrollView];
 	}
