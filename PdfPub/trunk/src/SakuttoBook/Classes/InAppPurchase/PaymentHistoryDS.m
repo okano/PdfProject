@@ -221,7 +221,7 @@
 
 - (void)recordHistoryOnceWithProductId:(NSString*)productId
 {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
 	
 	//Check if already recorded, do nothing.
 	for (NSDictionary* candidateDict in paymentHistory){
