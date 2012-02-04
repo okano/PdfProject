@@ -1138,45 +1138,29 @@
 		if ([self isVerticalWriting]) {//tategaki.
 			switch (interfaceOrientation) {
 				case UIInterfaceOrientationPortrait:
+				case UIInterfaceOrientationLandscapeLeft:
+				case UIInterfaceOrientationLandscapeRight:
 					[animation1 setSubtype:kCATransitionFromLeft];
 					//NSLog(@"kCATransitionFromLeft");
 					break;
 				case UIInterfaceOrientationPortraitUpsideDown:
-					[animation1 setSubtype:kCATransitionFromRight];
-					//NSLog(@"kCATransitionFromRight");
-					break;
-				case UIInterfaceOrientationLandscapeLeft:
-					[animation1 setSubtype:kCATransitionFromBottom];
-					//NSLog(@"kCATransitionFromBottom(LandscapeLeft)");
-					break;
-				case UIInterfaceOrientationLandscapeRight:
-					[animation1 setSubtype:kCATransitionFromTop];
-					//NSLog(@"kCATransitionFromTop");
-					break;
 				default://Unknown
 					[animation1 setSubtype:kCATransitionFromRight];
+					//NSLog(@"kCATransitionFromRight");
 					break;
 			}
 		}else{
 			switch (interfaceOrientation) {
 				case UIInterfaceOrientationPortrait:
+				case UIInterfaceOrientationLandscapeLeft:
+				case UIInterfaceOrientationLandscapeRight:
 					[animation1 setSubtype:kCATransitionFromRight];
 					//NSLog(@"kCATransitionFromRight");
 					break;
 				case UIInterfaceOrientationPortraitUpsideDown:
+				default://Unknown
 					[animation1 setSubtype:kCATransitionFromLeft];
 					//NSLog(@"kCATransitionFromLeft");
-					break;
-				case UIInterfaceOrientationLandscapeLeft:
-					[animation1 setSubtype:kCATransitionFromBottom];
-					//NSLog(@"kCATransitionFromBottom(LandscapeLeft)");
-					break;
-				case UIInterfaceOrientationLandscapeRight:
-					[animation1 setSubtype:kCATransitionFromTop];
-					//NSLog(@"kCATransitionFromTop");
-					break;
-				default://Unknown
-					[animation1 setSubtype:kCATransitionFromRight];
 					break;
 			}
 		}
@@ -1308,45 +1292,29 @@
 		if ([self isVerticalWriting]) {
 			switch (interfaceOrientation) {
 				case UIInterfaceOrientationPortrait:
+				case UIInterfaceOrientationLandscapeLeft:
+				case UIInterfaceOrientationLandscapeRight:
 					[animation1 setSubtype:kCATransitionFromRight];
 					//NSLog(@"kCATransitionFromRight");
 					break;
 				case UIInterfaceOrientationPortraitUpsideDown:
-					[animation1 setSubtype:kCATransitionFromLeft];
-					//NSLog(@"kCATransitionFromLeft");
-					break;
-				case UIInterfaceOrientationLandscapeLeft:
-					[animation1 setSubtype:kCATransitionFromTop];
-					//NSLog(@"kCATransitionFromTop(LandscapeLeft)");
-					break;
-				case UIInterfaceOrientationLandscapeRight:
-					[animation1 setSubtype:kCATransitionFromBottom];
-					//NSLog(@"kCATransitionFromBottom");
-					break;
 				default://Unknown
 					[animation1 setSubtype:kCATransitionFromLeft];
+					//NSLog(@"kCATransitionFromLeft");
 					break;
 			}
 		} else {
 			switch (interfaceOrientation) {
 				case UIInterfaceOrientationPortrait:
+				case UIInterfaceOrientationLandscapeLeft:
+				case UIInterfaceOrientationLandscapeRight:
 					[animation1 setSubtype:kCATransitionFromLeft];
 					//NSLog(@"kCATransitionFromLeft");
 					break;
 				case UIInterfaceOrientationPortraitUpsideDown:
+				default://Unknown
 					[animation1 setSubtype:kCATransitionFromRight];
 					//NSLog(@"kCATransitionFromRight");
-					break;
-				case UIInterfaceOrientationLandscapeLeft:
-					[animation1 setSubtype:kCATransitionFromTop];
-					//NSLog(@"kCATransitionFromTop(LandscapeLeft)");
-					break;
-				case UIInterfaceOrientationLandscapeRight:
-					[animation1 setSubtype:kCATransitionFromBottom];
-					//NSLog(@"kCATransitionFromBottom");
-					break;
-				default://Unknown
-					[animation1 setSubtype:kCATransitionFromLeft];
 					break;
 			}
 		}
