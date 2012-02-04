@@ -1748,12 +1748,29 @@
 #endif
 	
 	[self hideMenuBar];
-	if ([self isVerticalWriting]) {
-		[self gotoNextPage];
-	} else {
-		[self gotoPrevPage];
-	}
 	
+	switch (self.interfaceOrientation) {
+		case UIInterfaceOrientationPortrait:
+			if ([self isVerticalWriting]) {
+				[self gotoNextPage];
+			} else {
+				[self gotoPrevPage];
+			}
+			break;
+		case UIInterfaceOrientationPortraitUpsideDown:
+			if ([self isVerticalWriting]) {
+				[self gotoPrevPage];
+			} else {
+				[self gotoNextPage];
+			}
+		case UIInterfaceOrientationLandscapeLeft:
+			[self toggleMenuBar];
+			break;
+		case UIInterfaceOrientationLandscapeRight:
+			break;	//Do nothing.
+		default://Unknown
+			break;	//Do nothing.
+	}
 }
 - (void)handleTapInRightArea:(UIGestureRecognizer*)gestureRecognizer
 {
@@ -1762,20 +1779,83 @@
 #endif
 	
 	[self hideMenuBar];
-	if ([self isVerticalWriting]) {
-		[self gotoPrevPage];
-	} else {
-		[self gotoNextPage];
+	
+	switch (self.interfaceOrientation) {
+		case UIInterfaceOrientationPortrait:
+			if ([self isVerticalWriting]) {
+				[self gotoPrevPage];
+			} else {
+				[self gotoNextPage];
+			}
+			break;
+		case UIInterfaceOrientationPortraitUpsideDown:
+			if ([self isVerticalWriting]) {
+				[self gotoNextPage];
+			} else {
+				[self gotoPrevPage];
+			}
+			break;
+		case UIInterfaceOrientationLandscapeLeft:
+			break;	//Do nothing.
+		case UIInterfaceOrientationLandscapeRight:
+			[self toggleMenuBar];
+			break;
+		default://Unknown
+			break;	//Do nothing.
 	}
 }
 - (void)handleTapInTopArea:(UIGestureRecognizer*)gestureRecognizer
 {
-	[self toggleMenuBar];
+	switch (self.interfaceOrientation) {
+		case UIInterfaceOrientationPortrait:
+			[self toggleMenuBar];
+			break;
+		case UIInterfaceOrientationPortraitUpsideDown:
+			break;	//Do nothing.
+		case UIInterfaceOrientationLandscapeLeft:
+			if ([self isVerticalWriting]) {
+				[self gotoPrevPage];
+			} else {
+				[self gotoNextPage];
+			}
+			break;
+		case UIInterfaceOrientationLandscapeRight:
+			if ([self isVerticalWriting]) {
+				[self gotoNextPage];
+			} else {
+				[self gotoPrevPage];
+			}
+		default://Unknown
+			break;	//Do nothing.
+	}
 }
 - (void)handleTapInBottomArea:(UIGestureRecognizer*)gestureRecognizer
 {
-	//[self toggleMenuBar];
-	//Do nothing for iPhone/iPod touch. User often touch bottom for page change.
+	switch (self.interfaceOrientation) {
+		case UIInterfaceOrientationPortrait:
+			//[self toggleMenuBar];
+			//Do nothing for iPhone/iPod touch. User often touch bottom for page change.
+			break;	//Do nothing.
+		case UIInterfaceOrientationPortraitUpsideDown:
+			[self toggleMenuBar];
+			break;
+		case UIInterfaceOrientationLandscapeLeft:
+			if ([self isVerticalWriting]) {
+				[self gotoNextPage];
+			} else {
+				[self gotoPrevPage];
+			}
+			break;
+		case UIInterfaceOrientationLandscapeRight:
+			if ([self isVerticalWriting]) {
+				[self gotoPrevPage];
+			} else {
+				[self gotoNextPage];
+			}
+			break;
+		default://Unknown
+			break;	//Do nothing.
+	}
 }
 
 - (void)handleTapInScrollView:(UIGestureRecognizer*)sender
