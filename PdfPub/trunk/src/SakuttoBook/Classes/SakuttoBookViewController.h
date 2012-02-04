@@ -21,13 +21,14 @@
 @property (nonatomic, retain) ContentListViewController* contentListVC;
 @property (nonatomic, retain) ContentDetailViewController* contentDetailVC;
 
-- (void)showContentPlayerView;
+- (bool)isChangeOrientationKind:(UIInterfaceOrientation)oldOrientation newOrientation:(UIInterfaceOrientation)newOrientation;
 
 @end
 
 @interface SakuttoBookViewController (InAppPurchase)
 - (void)showContentListView;
 - (void)hideContentListView;
+- (void)showContentPlayerView;
 - (void)showContentPlayerView:(ContentId)cid;
 - (void)hideContentPlayerView;
 - (void)showContentDetailView:(ContentId)cid;

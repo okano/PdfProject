@@ -31,6 +31,9 @@
 
 - (void)viewDidLoad
 {
+	//Initialize var.
+	contentPlayerViewController = nil;
+	
 #if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
 	//Mulit Contents.
 	[self showContentListView];
@@ -40,13 +43,6 @@
 #endif
 }
 
-- (void)showContentPlayerView
-{
-	if (contentPlayerViewController == nil) {
-		contentPlayerViewController = [[ContentPlayerViewController alloc] initWithNibName:@"ContentPlayerView" bundle:[NSBundle mainBundle]];
-	}
-	[self.view addSubview:contentPlayerViewController.view];
-}
 
 
 - (void)dealloc
@@ -86,10 +82,72 @@
     // e.g. self.myOutlet = nil;
 }
 
+
+#pragma mark - Handle Rotate.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    //return (interfaceOrientation == UIInterfaceOrientationPortrait);
+	return YES;
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+	[super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+	
+	//Rotate contentPlayer.
+	if (contentPlayerViewController != nil) {
+		if ([self isChangeOrientationKind:self.interfaceOrientation newOrientation:toInterfaceOrientation] == YES) {
+			//Rotate.
+			ContentId currentContentId = contentPlayerViewController.currentContentId;
+			LOG_CURRENT_LINE;
+			[self hideContentPlayerView];
+			LOG_CURRENT_LINE;
+			[self showContentPlayerView:currentContentId];
+			//Resize.
+			CGRect newFrame;
+			if (toInterfaceOrientation == UIInterfaceOrientationPortrait
+				||
+				toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
+				newFrame = CGRectMake(self.view.frame.origin.x, 
+									  self.view.frame.origin.y, 
+									  self.view.frame.size.width,
+									  self.view.frame.size.height);
+			} else {
+				newFrame = CGRectMake(self.view.frame.origin.x, 
+									  self.view.frame.origin.y, 
+									  self.view.frame.size.height,
+									  self.view.frame.size.width);
+			}
+			LOG_CURRENT_LINE;
+			[contentPlayerViewController setupCurrentPageWithSize:newFrame];
+			LOG_CURRENT_LINE;
+		}
+	}
+}
+
+- (bool)isChangeOrientationKind:(UIInterfaceOrientation)oldOrientation newOrientation:(UIInterfaceOrientation)newOrientation {
+	if (oldOrientation == UIDeviceOrientationUnknown) { return NO; }
+	if (newOrientation == UIDeviceOrientationUnknown) { return NO; }
+	
+	if (oldOrientation == UIDeviceOrientationPortrait
+		||
+		oldOrientation == UIDeviceOrientationPortraitUpsideDown) {
+		if (newOrientation == UIDeviceOrientationLandscapeLeft
+			||
+			newOrientation == UIDeviceOrientationLandscapeRight) {
+			return YES;
+		} else {
+			return NO;
+		}
+	} else {
+		if (newOrientation == UIDeviceOrientationPortrait
+			||
+			newOrientation == UIDeviceOrientationPortraitUpsideDown) {
+			return YES;
+		} else {
+			return NO;
+		}
+	}
 }
 
 @end
@@ -108,10 +166,20 @@
 - (void)hideContentListView
 {
 	if (contentListVC != nil) {
-		[contentListVC.view removeFromSuperview]; 
+		[contentListVC.view removeFromSuperview];
+		[contentListVC release];
+		contentListVC = nil;
 	}
 }
 #pragma mark -
+- (void)showContentPlayerView
+{
+	if (contentPlayerViewController == nil) {
+		contentPlayerViewController = [[ContentPlayerViewController alloc] initWithNibName:@"ContentPlayerView" bundle:[NSBundle mainBundle]];
+	}
+	[self.view addSubview:contentPlayerViewController.view];
+}
+
 - (void)showContentPlayerView:(ContentId)cid
 {
 	//LOG_CURRENT_METHOD;

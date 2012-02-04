@@ -231,6 +231,31 @@
 	}
 }
 
+- (void)setupCurrentPageWithSize:(CGRect)viewFrame
+{
+	LOG_CURRENT_METHOD;
+	
+	//Resize current imageView.
+	//currentPdfScrollView.frame = viewFrame;
+	[currentPdfScrollView setupCurrentPageWithSize:viewFrame.size];
+	[currentPdfScrollView resetScrollView];
+	
+	//Resize next imageView.
+	//Treat 1-page view/2-page view.
+	if (currentPageNum + 1 <= maxPageNum) {
+		//nextPdfScrollView.frame = viewFrame;
+		[nextPdfScrollView setupCurrentPageWithSize:viewFrame.size];
+		[nextPdfScrollView resetScrollView];
+	}
+	
+	//Resize prev imageView.
+	//Treat 1-page view/2-page view.
+	if (1 <= currentPageNum - 1) {
+		//prevPdfScrollView.frame = viewFrame;
+		[prevPdfScrollView setupCurrentPageWithSize:viewFrame.size];
+		[prevPdfScrollView resetScrollView];
+	}
+}
 
 #pragma mark -
 #pragma mark setup pdf infomation.

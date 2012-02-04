@@ -140,6 +140,7 @@
  *Functions.
  */
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle contentId:(ContentId)cid;
+- (void)setupCurrentPageWithSize:(CGRect)viewFrame;
 // Treat PDF.
 - (ContentId)getCurrentContentIdFromUserDefault;
 - (BOOL)setupPdfBasicInfo:(ContentId)cid;
