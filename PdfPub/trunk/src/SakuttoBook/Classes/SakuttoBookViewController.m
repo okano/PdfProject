@@ -91,36 +91,40 @@
 	return YES;
 }
 
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-	[super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+//- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+//	[super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+	
+	
+	[super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
 	
 	//Rotate contentPlayer.
 	if (contentPlayerViewController != nil) {
-		if ([self isChangeOrientationKind:self.interfaceOrientation newOrientation:toInterfaceOrientation] == YES) {
+		if ([self isChangeOrientationKind:fromInterfaceOrientation newOrientation:self.interfaceOrientation] == YES) {
 			//Rotate.
 			ContentId currentContentId = contentPlayerViewController.currentContentId;
-			LOG_CURRENT_LINE;
 			[self hideContentPlayerView];
-			LOG_CURRENT_LINE;
 			[self showContentPlayerView:currentContentId];
 			//Resize.
 			CGRect newFrame;
-			if (toInterfaceOrientation == UIInterfaceOrientationPortrait
+			if (fromInterfaceOrientation == UIInterfaceOrientationPortrait
 				||
-				toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
-				newFrame = CGRectMake(self.view.frame.origin.x, 
-									  self.view.frame.origin.y, 
-									  self.view.frame.size.width,
-									  self.view.frame.size.height);
-			} else {
+				fromInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
 				newFrame = CGRectMake(self.view.frame.origin.x, 
 									  self.view.frame.origin.y, 
 									  self.view.frame.size.height,
 									  self.view.frame.size.width);
+			} else {
+				newFrame = CGRectMake(self.view.frame.origin.x, 
+									  self.view.frame.origin.y, 
+				self.view.frame.size.width,
+				self.view.frame.size.height);
 			}
-			LOG_CURRENT_LINE;
+			
+			LOG_CURRENT_METHOD;
+			NSLog(@"newFrame=%@", NSStringFromCGRect(newFrame));
 			[contentPlayerViewController setupCurrentPageWithSize:newFrame];
-			LOG_CURRENT_LINE;
 		}
 	}
 }

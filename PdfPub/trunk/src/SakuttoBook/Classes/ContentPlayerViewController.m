@@ -234,27 +234,57 @@
 - (void)setupCurrentPageWithSize:(CGRect)viewFrame
 {
 	LOG_CURRENT_METHOD;
+	NSLog(@"viewFrame=%@", NSStringFromCGRect(viewFrame));
 	
 	//Resize current imageView.
 	//currentPdfScrollView.frame = viewFrame;
+	[currentPdfScrollView setupUiScrollView];
+	[currentPdfScrollView setupWithPageNum:currentPageNum ContentId:currentContentId];
 	[currentPdfScrollView setupCurrentPageWithSize:viewFrame.size];
 	[currentPdfScrollView resetScrollView];
 	
 	//Resize next imageView.
-	//Treat 1-page view/2-page view.
+#if !defined(IS_2PAGE_VIEW) || IS_2PAGE_VIEW == 0
+	//Treat 1-page view.
 	if (currentPageNum + 1 <= maxPageNum) {
 		//nextPdfScrollView.frame = viewFrame;
+		[nextPdfScrollView setupUiScrollView];
+		[nextPdfScrollView setupWithPageNum:currentPageNum + 1 ContentId:currentContentId];
 		[nextPdfScrollView setupCurrentPageWithSize:viewFrame.size];
 		[nextPdfScrollView resetScrollView];
 	}
+#else
+	//Treat 2-page view.
+	if (currentPageNum + 2 <= maxPageNum) {
+		//nextPdfScrollView.frame = viewFrame;
+		[nextPdfScrollView setupUiScrollView];
+		[nextPdfScrollView setupWithPageNum:currentPageNum + 1 ContentId:currentContentId];
+		[nextPdfScrollView setupCurrentPageWithSize:viewFrame.size];
+		[nextPdfScrollView resetScrollView];
+	}
+#endif
 	
 	//Resize prev imageView.
-	//Treat 1-page view/2-page view.
+#if !defined(IS_2PAGE_VIEW) || IS_2PAGE_VIEW == 0
+	//Treat 1-page view.
 	if (1 <= currentPageNum - 1) {
 		//prevPdfScrollView.frame = viewFrame;
+		[prevPdfScrollView setupUiScrollView];
+		[prevPdfScrollView setupWithPageNum:currentPageNum - 1 ContentId:currentContentId];
 		[prevPdfScrollView setupCurrentPageWithSize:viewFrame.size];
 		[prevPdfScrollView resetScrollView];
 	}
+#else
+	//Treat 2-page view.
+	if (1 <= currentPageNum - 2) {
+		//prevPdfScrollView.frame = viewFrame;
+		[prevPdfScrollView setupUiScrollView];
+		[prevPdfScrollView setupWithPageNum:currentPageNum - 1 ContentId:currentContentId];
+		[prevPdfScrollView setupCurrentPageWithSize:viewFrame.size];
+		[prevPdfScrollView resetScrollView];
+	}
+#endif
+	
 }
 
 #pragma mark -
@@ -479,7 +509,7 @@
 		targetFilenameFull = [FileUtility getDoublePageFilenameFull:pageNum];
 	}
 #endif
-	NSLog(@"targetFilenameFull=%@", targetFilenameFull);
+	//NSLog(@"targetFilenameFull=%@", targetFilenameFull);
 	
 	
 	//Get image filename from file if exists.
@@ -704,8 +734,8 @@
 */
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum WithTargetFilenameFull:(NSString*)targetFilenameFull
 {
-	LOG_CURRENT_METHOD;
-	NSLog(@"targetFilenameFull=%@", targetFilenameFull);
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"targetFilenameFull=%@", targetFilenameFull);
 	
 	UIImage* pdfImage = nil;
 	NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -789,12 +819,13 @@
 			if ([fileManager fileExistsAtPath:targetFilenameFull2]) {
 				pdfImage2 = [[UIImage alloc] initWithContentsOfFile:targetFilenameFull2];
 				if (pdfImage2) {
-					
+					/*
 					LOG_CURRENT_LINE;
 					NSLog(@"pdfImage class=%@", [pdfImage class]);
 					NSLog(@"targetFilenameFull=%@", targetFilenameFull);
 					NSLog(@"targetFilenameFull2=%@", targetFilenameFull2);
 					NSLog(@"pdfImage class=%@, pdfImage2 class=%@", [pdfImage class], [pdfImage2 class]);
+					*/
 					[self mergeImage:pdfImage withImage:pdfImage2 pageNum:pageNum-1];
 				}
 			}	
@@ -825,9 +856,11 @@
 			if ([fileManager fileExistsAtPath:nextPageFilenameFull3]) {
 				nextPdfImage3 = [[UIImage alloc] initWithContentsOfFile:nextPageFilenameFull3];
 				if (nextPdfImage3) {
+					/*
 					NSLog(@"nextPageFilenameFull3=%@", nextPageFilenameFull3);
 					NSLog(@"targetFilenameFull=%@", targetFilenameFull);
 					NSLog(@"pdfImage3 class=%@, pdfImage class=%@", [nextPdfImage3 class], [pdfImage class]);
+					*/
 					[self mergeImage:nextPdfImage3 withImage:pdfImage pageNum:pageNum];
 				} else {
 					LOG_CURRENT_LINE;

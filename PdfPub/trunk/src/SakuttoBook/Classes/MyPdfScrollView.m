@@ -79,7 +79,8 @@
  */
 - (void)setupCurrentPageWithSize:(CGSize)newSize
 {
-	//LOG_CURRENT_METHOD;
+	LOG_CURRENT_METHOD;
+	NSLog(@"newSize=%@", NSStringFromCGSize(newSize));
 	
 	//Get size for touch.
 	//pageRectOriginal = CGPDFPageGetBoxRect(page, kCGPDFMediaBox);
@@ -160,8 +161,8 @@
 			self.maximumZoomScale = 1.0f;
 		}
 	}
-	//NSLog(@"self.frame.size=%@", NSStringFromCGSize(self.frame.size));
-	//NSLog(@"minimumZoomScale=%f, maximumZoomScale=%f",self.minimumZoomScale, self.maximumZoomScale);
+	NSLog(@"self.frame.size=%@", NSStringFromCGSize(self.frame.size));
+	NSLog(@"minimumZoomScale=%f, maximumZoomScale=%f",self.minimumZoomScale, self.maximumZoomScale);
 	
 	//Zoom to full-size.
 	[self resetScrollView];
@@ -194,10 +195,16 @@
 #pragma mark -
 - (void)resetScrollView
 {
-	//LOG_CURRENT_METHOD;
+	LOG_CURRENT_METHOD;
 	
 	//Zoom to full-size.
-	[self setZoomScale:self.minimumZoomScale animated:YES];
+	if (self.minimumZoomScale < INFINITY) {
+		NSLog(@"self.minimumZoomScale=%f", self.minimumZoomScale);
+		[self setZoomScale:self.minimumZoomScale animated:YES];
+	} else {
+		LOG_CURRENT_METHOD;
+		NSLog(@"self.minimumZoomScale=inf");
+	}
 	[self setContentOffset:CGPointMake(0.0f, 0.0f) animated:YES];
 	//[self zoomToRect:pageImageView.frame animated:YES];
 	
