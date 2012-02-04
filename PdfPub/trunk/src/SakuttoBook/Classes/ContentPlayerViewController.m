@@ -1763,6 +1763,7 @@
 			} else {
 				[self gotoNextPage];
 			}
+			break;
 		case UIInterfaceOrientationLandscapeLeft:
 			[self toggleMenuBar];
 			break;
@@ -1811,7 +1812,8 @@
 			[self toggleMenuBar];
 			break;
 		case UIInterfaceOrientationPortraitUpsideDown:
-			break;	//Do nothing.
+			[self toggleMenuBar];
+			break;
 		case UIInterfaceOrientationLandscapeLeft:
 			if ([self isVerticalWriting]) {
 				[self gotoPrevPage];
@@ -1825,6 +1827,7 @@
 			} else {
 				[self gotoPrevPage];
 			}
+			break;
 		default://Unknown
 			break;	//Do nothing.
 	}
@@ -1837,8 +1840,9 @@
 			//Do nothing for iPhone/iPod touch. User often touch bottom for page change.
 			break;	//Do nothing.
 		case UIInterfaceOrientationPortraitUpsideDown:
-			[self toggleMenuBar];
-			break;
+			//[self toggleMenuBar];
+			//Do nothing for iPhone/iPod touch. User often touch bottom for page change.
+			break;	//Do nothing.
 		case UIInterfaceOrientationLandscapeLeft:
 			if ([self isVerticalWriting]) {
 				[self gotoNextPage];
