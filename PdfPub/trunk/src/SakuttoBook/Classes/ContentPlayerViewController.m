@@ -180,6 +180,7 @@
 	webViewController = nil;
 	urlForWeb = [[NSMutableString alloc] init];
 	
+#if !defined(IS_2PAGE_VIEW) || IS_2PAGE_VIEW == 0	//1-pain.
 	//Setup Links.
 	linksInCurrentPage = [[NSMutableArray alloc] init];
 	[self renderPageLinkAtIndex:currentPageNum];
@@ -199,6 +200,7 @@
 	// Setup for Popover ScrollView.
 	[self parsePopoverScrollImageDefine];
 	[self renderPopoverScrollImageLinkAtIndex:currentPageNum];
+#endif
 	
 	// Setup TOC(Table Of Contents).
 	[self parseTocDefine];
@@ -1226,11 +1228,13 @@
 	
 	//
 	//[self getPdfDictionaryWithPageNum:currentPageNum];
+#if !defined(IS_2PAGE_VIEW) || IS_2PAGE_VIEW == 0	//1-pain.
 	[self renderPageLinkAtIndex:currentPageNum];
 	[self renderMovieLinkAtIndex:currentPageNum];
 	[self renderPageJumpLinkAtIndex:currentPageNum];
 	[self renderInPageScrollViewAtIndex:currentPageNum];
 	[self renderPopoverScrollImageLinkAtIndex:currentPageNum];
+#endif
 	
 	/*
 	 NSLog(@"prev-subviews=%d, curr-subview=%d, next-subview=%d",
@@ -1382,11 +1386,13 @@
 	
 	
 	//
+#if !defined(IS_2PAGE_VIEW) || IS_2PAGE_VIEW == 0	//1-pain.
 	[self renderPageLinkAtIndex:currentPageNum];
 	[self renderMovieLinkAtIndex:currentPageNum];
 	[self renderPageJumpLinkAtIndex:currentPageNum];
 	[self renderInPageScrollViewAtIndex:currentPageNum];
 	[self renderPopoverScrollImageLinkAtIndex:currentPageNum];
+#endif
 	
 	//Save LastReadPage.
 	[self setLatestReadPage:currentPageNum];
@@ -1470,11 +1476,13 @@
 	[self.tocViewController.view removeFromSuperview];
 	
 	//Draw link to URL, Movie.
+#if !defined(IS_2PAGE_VIEW) || IS_2PAGE_VIEW == 0	//1-pain.
 	[self renderPageLinkAtIndex:currentPageNum];
 	[self renderMovieLinkAtIndex:currentPageNum];
 	[self renderPageJumpLinkAtIndex:currentPageNum];
 	[self renderInPageScrollViewAtIndex:currentPageNum];
 	[self renderPopoverScrollImageLinkAtIndex:currentPageNum];
+#endif
 	
 	// Set animation
 	CATransition* animation1 = [CATransition animation];
@@ -2989,10 +2997,12 @@
 {
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
 	[currentPdfScrollView resetScrollView];
+#if !defined(IS_2PAGE_VIEW) || IS_2PAGE_VIEW == 0	//1-pain.
 	[self renderPageLinkAtIndex:currentPageNum];
 	[self renderMovieLinkAtIndex:currentPageNum];
 	[self renderPageJumpLinkAtIndex:currentPageNum];
 	[self renderInPageScrollViewAtIndex:currentPageNum];
+#endif
 }
 
 - (bool)isChangeOrientationKind:(UIInterfaceOrientation)oldOrientation newOrientation:(UIInterfaceOrientation)newOrientation {
