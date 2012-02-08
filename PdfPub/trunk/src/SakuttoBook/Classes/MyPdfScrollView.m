@@ -123,6 +123,9 @@
 		[pageImageView release];
 		pageImageView = nil;
 	}
+	for (UIView* v in self.subviews) {
+		[v removeFromSuperview];
+	}
 	
 	//Generate new pageImageView.
 	pageImageView = [[UIImageView alloc] initWithImage:pdfImageTmp];
