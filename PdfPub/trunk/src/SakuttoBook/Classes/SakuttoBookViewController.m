@@ -125,6 +125,33 @@
 			LOG_CURRENT_METHOD;
 			NSLog(@"newFrame=%@", NSStringFromCGRect(newFrame));
 			[contentPlayerViewController setupCurrentPageWithSize:newFrame];
+			//
+			if(0==1){
+				LOG_CURRENT_METHOD;
+				for (id v in self.view.superview.subviews) {
+					NSLog(@"view class=%@", [v class]);
+					if ([v isKindOfClass:[UIView class]] != TRUE) { continue; }
+					UIView* vi = (UIView*)v;
+					for (id v2 in vi.subviews) {
+						NSLog(@"  subview class=%@", [v2 class]);
+						if ([v2 isKindOfClass:[UIView class]] != TRUE) { continue; }
+						UIView* vi2 = (UIView*)v2;
+						for (id v3 in vi2.subviews) {
+							NSLog(@"    subsubview class=%@", [v3 class]);
+							if ([v3 isKindOfClass:[UIView class]] != TRUE) { continue; }
+							UIView* vi3 = (UIView*)v3;
+							for (id v4 in vi3.subviews) {
+								NSLog(@"      subsubsubview class=%@", [v4 class]);
+								if ([v4 isKindOfClass:[UIView class]] != TRUE) { continue; }
+								UIView* vi4 = (UIView*)v4;
+								for (id v5 in vi4.subviews) {
+									NSLog(@"        subsubsubsubview class=%@", [v5 class]);
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 }
