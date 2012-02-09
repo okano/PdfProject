@@ -1,1 +1,1 @@
-branch merged with master, purchase.
+branch "switchPdf" for switch PDF with iPhone, iPad.
