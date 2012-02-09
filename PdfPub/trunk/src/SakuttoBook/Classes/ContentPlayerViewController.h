@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import <AudioToolbox/AudioServices.h>
+#import <AVFoundation/AVFoundation.h>
 #import "SKBE_MainVC.h"
 #import "Utility.h"
 #import "FileUtility.h"
@@ -21,6 +23,7 @@
 #import "BookmarkViewController.h"
 #import "BookmarkModifyViewController.h"
 #import "ThumbnailViewController.h"
+
 @class TiledPDFView;
 //#import "PDFScrollView.h"
 //
@@ -85,6 +88,7 @@
 	//
 	NSMutableArray* linksInCurrentPage;
 	NSMutableArray* movieDefine;
+	NSMutableArray* soundDefine;
 	NSMutableArray* pageJumpLinkDefine;
 	NSMutableArray* inPageScrollViewDefine;
 	//NSMutableArray* tocDefine;
@@ -106,6 +110,10 @@
 	bool isShownThumbnailView;
 	bool isShownBookmarkView;
 	//bool isTocWithBookmarkMode;
+	
+	
+	// Audio(sound for page open)
+	AVAudioPlayer* audioPlayer;
 }
 @property (nonatomic, retain) MyPdfScrollView* pdfScrollView1;
 @property (nonatomic, retain) MyPdfScrollView* pdfScrollView2;
@@ -234,3 +242,23 @@
 
 @end
 
+
+
+
+
+// Treat Sound.
+@interface ContentPlayerViewController (soundonpage)
+- (NSString*)getContentTmpDirectory;
+- (NSString*)getContentBodyDirectory;
+- (NSString*)getContentBodyDirectoryWithContentId:(NSString*)cId;
+- (NSString*)getContentBodySoundDirectoryWithContentId:(NSString*)cId;	//contentBody/{cId}/sound/
+- (void)parseSoundOnPageDefine;
+- (void)playSoundAtIndex:(NSUInteger)index;
+@end
+
+//#define EPUB_RESOURCES_DIRECTORY	@"content/resources"
+//#define CONTENT_DETAIL_DIRECTORY	@"contentDetail"
+#define CONTENT_BODY_DIRECTORY		@"contentBody"
+#define CONTENT_TMP_DIRECTORY		@"tmp"
+//#define CONTENT_DONWLOAD_DIRECTORY  @"downloads"
+//#define CONTENT_EXTRACT_DIRECTORY	@"extract"

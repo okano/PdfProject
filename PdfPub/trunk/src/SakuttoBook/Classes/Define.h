@@ -81,6 +81,10 @@
 #define MD_AREA_WIDTH		@"Movie_Area_Width"
 #define MD_AREA_HEIGHT		@"Movie_Area_Height"
 
+// for Sound Define.
+#define SD_PAGE_NUMBER		@"Sound_PageNumber"
+#define SD_SOUND_FILENAME	@"Sound_Filename"
+
 // for PageJump Link.
 #define PJ_PAGE_NUMBER		@"PageJumpLink_PageNumber"
 #define PJ_PAGE_AREA_X		@"PageJumpLink_Area_X"

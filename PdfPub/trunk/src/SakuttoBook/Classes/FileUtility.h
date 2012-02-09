@@ -29,3 +29,6 @@
 + (void)removeFile:(NSString*)fileNameFull;
 
 @end
+
+
+#define CSVFILE_SOUND			@"soundDefine"
