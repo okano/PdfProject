@@ -273,6 +273,18 @@
 			//Single Content.
 			pdfFilename = [lines objectAtIndex:0];
 		}
+		
+		//Check line with comma. ex:"document.pdf,document-ipad.pdf"
+		NSArray* tmpCsvArray = [pdfFilename componentsSeparatedByString:@","];
+		if (2 <= [tmpCsvArray count]) {		//line with comma.
+			if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+				// iPad
+				pdfFilename = [tmpCsvArray objectAtIndex:1];
+			} else {
+				// iPhone
+				pdfFilename = [tmpCsvArray objectAtIndex:0];
+			}
+		}
 	}
 	NSString* pdfFilenameFormatted = [self formatStringWithAlphaNumeric:pdfFilename];
 	pdfURL = [[NSBundle mainBundle] URLForResource:pdfFilenameFormatted withExtension:nil];
