@@ -12,6 +12,7 @@
 #import "PaymentConductor.h"
 #import "ContentListDS.h"
 #import "PaymentHistoryDS.h"
+#import "ContentFileUtility.h"
 
 @class SakuttoBookViewController;
 
@@ -51,6 +52,11 @@
 /**
  * Functions in SakuttoBookViewController.
  */
+//
+//Copy KUMIKOMI contents to local directory.
+- (BOOL)isFirstLaunchUp;
+- (void)copyPdfFromResourceToFile;
+- (void)copyOtherfileFromResourceToFile;
 //
 - (NSString*)getThumbnailFilenameFull:(int)pageNum;
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum;
