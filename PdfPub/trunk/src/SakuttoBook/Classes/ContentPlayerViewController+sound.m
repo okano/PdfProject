@@ -74,19 +74,14 @@
 			//Play sound. file from mainBundle.
 			//NSString *soundPath = [[NSBundle mainBundle] pathForResource:filename ofType:nil];
 			
-			//Play sound. file from mainBundle.
-			//NSString* cidStr = [NSString stringWithFormat:@"%d", currentContentId];
-			/*
-			NSString *soundPath = [[self getContentBodySoundDirectoryWithContentId:cidStr]
+			//Play sound. file from local file.
+			NSString* cidStr = [NSString stringWithFormat:@"%d", currentContentId];
+			NSString *soundPath = [[ContentFileUtility getContentBodySoundDirectoryWithContentId:cidStr]
 								   stringByAppendingPathComponent:filename];
-			*/
-			/* [FIXME] */
-			NSString *soundPath = [[NSBundle mainBundle] pathForResource:filename
-																  ofType:nil];
 			
 			if (! soundPath) {
 				//LOG_CURRENT_METHOD;
-				NSLog(@"no sound file found. filename=%@", filename);
+				NSLog(@"no sound file found. filename=%@, soundPath=%@", filename, soundPath);
 				continue;	//Skip to next file.
 			}
 			NSURL* soundURL = [NSURL fileURLWithPath:soundPath];
@@ -95,9 +90,10 @@
 				NSLog(@"no sound file found. filePath=%@, soundURL=%@", soundPath, soundURL);
 				continue;	//Skip to next file.
 			}
-			LOG_CURRENT_METHOD;
-			NSLog(@"soundURL=%@", [soundURL description]);
+			//LOG_CURRENT_METHOD;
+			//NSLog(@"soundURL=%@", [soundURL description]);
 			
+			//Play with "AudioServicesPlaySystemSound" method.
 			//CFURLRef soundURL = (CFURLRef)[NSURL fileURLWithPath:soundPath];
 			//SystemSoundID soundID;
 			//AudioServicesCreateSystemSoundID((CFURLRef)soundURL, &soundID);
