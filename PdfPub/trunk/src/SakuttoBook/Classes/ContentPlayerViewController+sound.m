@@ -108,10 +108,42 @@
 			//LOG_CURRENT_METHOD;
 			//NSLog(@"soundURL=%@", [soundURL description]);
 			
-			[self playSoundWithUrl:soundURL];
+			NSNumber* delayTime = [soundInfo valueForKey:SD_DELAY_TIME];
+			if (0 < [delayTime floatValue]) {
+				[self playSoundWithUrl:soundURL withDelay:delayTime];
+			} else {
+				[self playSoundWithUrl:soundURL];
+			}
 		}
 	}
 }
+
+- (void)playSoundWithUrl:(NSURL*)soundURL withDelay:(NSNumber*)delayTime
+{
+	/*
+	if (soundDelayTimer != nil) {
+		if ([soundDelayTimer isValid] == YES) {
+			[soundDelayTimer invalidate];
+		}
+		
+		//Do not release NSTimer! (managed in main loop, should onli Invalidated.)
+	}
+	*/
+	
+	soundDelayTimer = [NSTimer scheduledTimerWithTimeInterval:[delayTime floatValue]
+													   target:self
+													 selector:@selector(timerHandlerForPlaySound:)
+													 userInfo:soundURL
+													  repeats:NO];
+}
+
+- (void)timerHandlerForPlaySound:(NSTimer*)timer
+{
+	NSURL* soundURL = (NSURL*)[timer userInfo];
+	[self playSoundWithUrl:soundURL];
+	[timer invalidate];
+}
+
 
 - (void)playSoundWithUrl:(NSURL*)soundURL
 {

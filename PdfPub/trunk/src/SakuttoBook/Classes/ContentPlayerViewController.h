@@ -114,6 +114,7 @@
 	
 	// Audio(sound for page open)
 	AVAudioPlayer* audioPlayer;
+	NSTimer* soundDelayTimer;
 }
 @property (nonatomic, retain) MyPdfScrollView* pdfScrollView1;
 @property (nonatomic, retain) MyPdfScrollView* pdfScrollView2;
@@ -251,6 +252,8 @@
 - (void)parseSoundOnPageDefine;
 - (void)playSoundAtIndex:(NSUInteger)index;
 - (void)playSoundWithUrl:(NSURL*)soundURL;
+- (void)playSoundWithUrl:(NSURL*)soundURL withDelay:(NSNumber*)delayTime;
+- (void)timerHandlerForPlaySound:(NSTimer*)timer;
 @end
 
 //#define EPUB_RESOURCES_DIRECTORY	@"content/resources"
