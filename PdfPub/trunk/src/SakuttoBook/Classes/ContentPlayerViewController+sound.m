@@ -48,12 +48,27 @@
 		tmpDict = [[NSMutableDictionary alloc] init];
 		//Page Number.
 		[tmpDict setValue:[NSNumber numberWithInt:[[tmpCsvArray objectAtIndex:0] intValue]] forKey:SD_PAGE_NUMBER];
+		
 		//Filename.
 		NSString* tmpStr = [tmpCsvArray objectAtIndex:1];
 		NSString* tmpStrWithoutDoubleQuote = [tmpStr stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c", 0x22] withString:@""];	/* delete DoubleQuote. */
 		NSString* tmpStrWithoutCR = [tmpStrWithoutDoubleQuote stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c", 0x0d] withString:@""];	/* delete CR. */
 		NSString* tmpStrWithoutLF = [tmpStrWithoutCR stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c", 0x22] withString:@""];	/* delete LF. */
 		[tmpDict setValue:tmpStrWithoutLF forKey:SD_SOUND_FILENAME];
+		
+		//Delay time. (optional)
+		if (3 <= [tmpCsvArray count]) {
+			NSString* tmpStrForDelayTime = [tmpCsvArray objectAtIndex:2];
+			NSNumber* delayTimeNumber = [NSNumber numberWithFloat:[tmpStrForDelayTime floatValue]];
+			NSLog(@"delay time for sound=%@(%f)", tmpStrForDelayTime, [delayTimeNumber floatValue]);
+			[tmpDict setValue:delayTimeNumber forKey:SD_DELAY_TIME];
+		}
+		
+		//Terminate message. (optional)
+		if (4 <= [tmpCsvArray count]) {
+			NSString* message = [tmpCsvArray objectAtIndex:3];
+			[tmpDict setValue:message forKey:SD_TERMINATE_MESSAGE];
+		}
 		
 		[soundDefine addObject:tmpDict];
 		[tmpDict release]; tmpDict = nil;

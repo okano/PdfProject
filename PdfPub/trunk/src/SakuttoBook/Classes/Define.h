@@ -84,6 +84,8 @@
 // for Sound Define.
 #define SD_PAGE_NUMBER		@"Sound_PageNumber"
 #define SD_SOUND_FILENAME	@"Sound_Filename"
+#define SD_DELAY_TIME		@"Sound_Delay_Time"
+#define SD_TERMINATE_MESSAGE	@"Sound_Terminate_Message"
 
 // for PageJump Link.
 #define PJ_PAGE_NUMBER		@"PageJumpLink_PageNumber"
