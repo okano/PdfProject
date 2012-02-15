@@ -108,21 +108,26 @@
 			//LOG_CURRENT_METHOD;
 			//NSLog(@"soundURL=%@", [soundURL description]);
 			
-			//Play with "AudioServicesPlaySystemSound" method.
-			//CFURLRef soundURL = (CFURLRef)[NSURL fileURLWithPath:soundPath];
-			//SystemSoundID soundID;
-			//AudioServicesCreateSystemSoundID((CFURLRef)soundURL, &soundID);
-			//AudioServicesPlaySystemSound(soundID);
-			
-			if (audioPlayer != NULL) {
-				[audioPlayer stop];
-				[audioPlayer release];
-				audioPlayer = NULL;
-			}
-			audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundURL error:NULL];
-			[audioPlayer play];
+			[self playSoundWithUrl:soundURL];
 		}
 	}
+}
+
+- (void)playSoundWithUrl:(NSURL*)soundURL
+{
+	//Play with "AudioServicesPlaySystemSound" method.
+	//CFURLRef soundURL = (CFURLRef)[NSURL fileURLWithPath:soundPath];
+	//SystemSoundID soundID;
+	//AudioServicesCreateSystemSoundID((CFURLRef)soundURL, &soundID);
+	//AudioServicesPlaySystemSound(soundID);
+
+	if (audioPlayer != NULL) {
+		[audioPlayer stop];
+		[audioPlayer release];
+		audioPlayer = NULL;
+	}
+	audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundURL error:NULL];
+	[audioPlayer play];
 }
 
 - (NSString*)getContentTmpDirectory

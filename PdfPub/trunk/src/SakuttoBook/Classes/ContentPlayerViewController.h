@@ -254,6 +254,7 @@
 - (NSString*)getContentBodySoundDirectoryWithContentId:(NSString*)cId;	//contentBody/{cId}/sound/
 - (void)parseSoundOnPageDefine;
 - (void)playSoundAtIndex:(NSUInteger)index;
+- (void)playSoundWithUrl:(NSURL*)soundURL;
 @end
 
 //#define EPUB_RESOURCES_DIRECTORY	@"content/resources"
