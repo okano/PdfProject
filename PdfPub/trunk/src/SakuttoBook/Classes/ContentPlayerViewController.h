@@ -248,10 +248,6 @@
 
 // Treat Sound.
 @interface ContentPlayerViewController (soundonpage)
-- (NSString*)getContentTmpDirectory;
-- (NSString*)getContentBodyDirectory;
-- (NSString*)getContentBodyDirectoryWithContentId:(NSString*)cId;
-- (NSString*)getContentBodySoundDirectoryWithContentId:(NSString*)cId;	//contentBody/{cId}/sound/
 - (void)parseSoundOnPageDefine;
 - (void)playSoundAtIndex:(NSUInteger)index;
 - (void)playSoundWithUrl:(NSURL*)soundURL;

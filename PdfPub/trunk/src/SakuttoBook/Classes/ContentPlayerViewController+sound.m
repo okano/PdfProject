@@ -130,29 +130,4 @@
 	[audioPlayer play];
 }
 
-- (NSString*)getContentTmpDirectory
-{
-	return [NSHomeDirectory() stringByAppendingPathComponent:CONTENT_TMP_DIRECTORY];
-}
-- (NSString*)getContentBodyDirectory
-{
-	//NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	//NSString* documentsDirectory = [paths objectAtIndex:0];
-	NSString* tmpDirectory = [self getContentTmpDirectory];
-	NSString* dir = [tmpDirectory
-					 stringByAppendingPathComponent:CONTENT_BODY_DIRECTORY];
-	return dir;
-}
-- (NSString*)getContentBodyDirectoryWithContentId:(NSString*)cId
-{
-	return [[self getContentBodyDirectory]
-			stringByAppendingPathComponent:cId];
-}
-- (NSString*)getContentBodySoundDirectoryWithContentId:(NSString*)cId
-{
-	//contentBody/{cId}/sound/
-	return [[self getContentBodyDirectoryWithContentId:cId]
-			stringByAppendingPathComponent:@"sound"];
-}
-
 @end
