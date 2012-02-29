@@ -188,6 +188,11 @@
 	[self parseMovieDefine];
 	[self renderMovieLinkAtIndex:currentPageNum];
 	
+	// Setup for Sound play.
+	[self parseSoundOnPageDefine];
+	audioPlayer = nil;	//init when use.
+	soundDelayTimer = nil;
+	
 	// Setup for PageJumpLink.
 	[self parsePageJumpLinkDefine];
 	[self renderPageJumpLinkAtIndex:currentPageNum];
@@ -229,6 +234,9 @@
 	if (0 < lastReadPage) {
 		[self switchToPage:lastReadPage];
 	}
+	
+	
+	[self playSoundAtIndex:currentPageNum];
 }
 
 
@@ -699,6 +707,7 @@
 	[self renderPageJumpLinkAtIndex:currentPageNum];
 	[self renderInPageScrollViewAtIndex:currentPageNum];
 	[self renderPopoverScrollImageLinkAtIndex:currentPageNum];
+	[self playSoundAtIndex:currentPageNum];	//play sound for new page.
 	
 	/*
 	 NSLog(@"prev-subviews=%d, curr-subview=%d, next-subview=%d",
@@ -843,7 +852,8 @@
 	[self renderPageJumpLinkAtIndex:currentPageNum];
 	[self renderInPageScrollViewAtIndex:currentPageNum];
 	[self renderPopoverScrollImageLinkAtIndex:currentPageNum];
-	
+	[self playSoundAtIndex:currentPageNum];	//play sound for new page.
+
 	//Save LastReadPage.
 	[self setLatestReadPage:currentPageNum];
 }
@@ -898,7 +908,8 @@
 	[self renderPageJumpLinkAtIndex:currentPageNum];
 	[self renderInPageScrollViewAtIndex:currentPageNum];
 	[self renderPopoverScrollImageLinkAtIndex:currentPageNum];
-	
+	[self playSoundAtIndex:currentPageNum];	//play sound for new page.
+
 	// Set animation
 	CATransition* animation1 = [CATransition animation];
 	[animation1 setDelegate:self];
@@ -2457,6 +2468,13 @@
 
 - (void)dealloc {
     [super dealloc];
+	if (soundDelayTimer != nil) {
+		if ([soundDelayTimer isValid] == YES) {
+			[soundDelayTimer invalidate];
+		}
+		
+		//Do not release NSTimer! (managed in main loop, should onli Invalidated.)
+	}
 }
 
 @end

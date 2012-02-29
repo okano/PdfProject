@@ -35,6 +35,13 @@
 		293BB9F212B6218500DDA3E3 /* WebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 293BB9F112B6218500DDA3E3 /* WebView.xib */; };
 		29431E2212C5D29C00914DBD /* list_bullets.png in Resources */ = {isa = PBXBuildFile; fileRef = 29431E2112C5D29C00914DBD /* list_bullets.png */; };
 		2943E85713A662480034AC62 /* InAppPurchaseUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2943E85613A662480034AC62 /* InAppPurchaseUtility.m */; };
+		29452CA014E39B4300DD15ED /* ContentPlayerViewController+sound.m in Sources */ = {isa = PBXBuildFile; fileRef = 29452C9F14E39B4300DD15ED /* ContentPlayerViewController+sound.m */; };
+		29452CA314E39BFB00DD15ED /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29452CA214E39BFA00DD15ED /* AVFoundation.framework */; };
+		29452CA514E39C0500DD15ED /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29452CA414E39C0500DD15ED /* AudioToolbox.framework */; };
+		29452CA714E3A12200DD15ED /* soundDefine_1.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29452CA614E3A12200DD15ED /* soundDefine_1.csv */; };
+		29452CAC14E3A58700DD15ED /* p1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 29452CA914E3A58700DD15ED /* p1.mp3 */; };
+		29452CAD14E3A58700DD15ED /* p2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 29452CAA14E3A58700DD15ED /* p2.mp3 */; };
+		29452CAE14E3A58700DD15ED /* p3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 29452CAB14E3A58700DD15ED /* p3.mp3 */; };
 		294E1F1E131E2A5B00E49BAF /* popoverScrollImageDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 294E1F1D131E2A5B00E49BAF /* popoverScrollImageDefine.csv */; };
 		294E1FC1131E313800E49BAF /* PopoverScrollImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 294E1FC0131E313800E49BAF /* PopoverScrollImageViewController.m */; };
 		2962C40C1394B9EC002E57F9 /* ContentPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2962C40B1394B9EC002E57F9 /* ContentPlayerView.xib */; };
@@ -65,6 +72,7 @@
 		29BD260313A499B50029E2B4 /* bookDefine_1.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29BD260013A499B50029E2B4 /* bookDefine_1.csv */; };
 		29BD260413A499B50029E2B4 /* bookDefine_2.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29BD260113A499B50029E2B4 /* bookDefine_2.csv */; };
 		29BD260713A4A3AC0029E2B4 /* FileUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BD260613A4A3AC0029E2B4 /* FileUtility.m */; };
+		29DB52D814EB51B0006920EF /* ContentFileUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 29DB52D714EB51B0006920EF /* ContentFileUtility.m */; };
 		29E1089A12D46D4700FC5210 /* BookmarkModifyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29E1089912D46D4700FC5210 /* BookmarkModifyView.xib */; };
 		29E108A912D46ECF00FC5210 /* BookmarkModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E108A812D46ECF00FC5210 /* BookmarkModifyViewController.m */; };
 		29F003FA1353CC5500D0D74D /* pageJumpLinkDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29F003F91353CC5500D0D74D /* pageJumpLinkDefine.csv */; };
@@ -131,6 +139,13 @@
 		29431E2112C5D29C00914DBD /* list_bullets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = list_bullets.png; path = Classes/list_bullets.png; sourceTree = "<group>"; };
 		2943E85513A662480034AC62 /* InAppPurchaseUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InAppPurchaseUtility.h; path = InAppPurchase/InAppPurchaseUtility.h; sourceTree = "<group>"; };
 		2943E85613A662480034AC62 /* InAppPurchaseUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InAppPurchaseUtility.m; path = InAppPurchase/InAppPurchaseUtility.m; sourceTree = "<group>"; };
+		29452C9F14E39B4300DD15ED /* ContentPlayerViewController+sound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ContentPlayerViewController+sound.m"; sourceTree = "<group>"; };
+		29452CA214E39BFA00DD15ED /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		29452CA414E39C0500DD15ED /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		29452CA614E3A12200DD15ED /* soundDefine_1.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = soundDefine_1.csv; path = csv/soundDefine_1.csv; sourceTree = "<group>"; };
+		29452CA914E3A58700DD15ED /* p1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = p1.mp3; sourceTree = "<group>"; };
+		29452CAA14E3A58700DD15ED /* p2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = p2.mp3; sourceTree = "<group>"; };
+		29452CAB14E3A58700DD15ED /* p3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = p3.mp3; sourceTree = "<group>"; };
 		294E1F1D131E2A5B00E49BAF /* popoverScrollImageDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = popoverScrollImageDefine.csv; path = csv/popoverScrollImageDefine.csv; sourceTree = "<group>"; };
 		294E1FBF131E313800E49BAF /* PopoverScrollImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverScrollImageViewController.h; sourceTree = "<group>"; };
 		294E1FC0131E313800E49BAF /* PopoverScrollImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverScrollImageViewController.m; sourceTree = "<group>"; };
@@ -177,6 +192,8 @@
 		29BD260113A499B50029E2B4 /* bookDefine_2.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bookDefine_2.csv; path = csv/bookDefine_2.csv; sourceTree = "<group>"; };
 		29BD260513A4A3AB0029E2B4 /* FileUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtility.h; sourceTree = "<group>"; };
 		29BD260613A4A3AC0029E2B4 /* FileUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUtility.m; sourceTree = "<group>"; };
+		29DB52D614EB51B0006920EF /* ContentFileUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentFileUtility.h; sourceTree = "<group>"; };
+		29DB52D714EB51B0006920EF /* ContentFileUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentFileUtility.m; sourceTree = "<group>"; };
 		29E1089912D46D4700FC5210 /* BookmarkModifyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookmarkModifyView.xib; sourceTree = "<group>"; };
 		29E108A712D46ECF00FC5210 /* BookmarkModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkModifyViewController.h; sourceTree = "<group>"; };
 		29E108A812D46ECF00FC5210 /* BookmarkModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkModifyViewController.m; sourceTree = "<group>"; };
@@ -217,6 +234,8 @@
 				290BA0B012B5E0D1009C01C8 /* QuartzCore.framework in Frameworks */,
 				299448EC12B7370B00E7D108 /* MediaPlayer.framework in Frameworks */,
 				29B16E0B1398779600B4D958 /* StoreKit.framework in Frameworks */,
+				29452CA314E39BFB00DD15ED /* AVFoundation.framework in Frameworks */,
+				29452CA514E39C0500DD15ED /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,6 +254,7 @@
 				29B16DF41398739E00B4D958 /* ContentDetail */,
 				291593121394B54700387697 /* ContentPlayerViewController.h */,
 				291593131394B54700387697 /* ContentPlayerViewController.m */,
+				29452C9F14E39B4300DD15ED /* ContentPlayerViewController+sound.m */,
 				291EDE0213124E2C00DBD3E5 /* ImageGenerator.h */,
 				291EDE0313124E2C00DBD3E5 /* ImageGenerator.m */,
 				29B3B7C612C57DE00014F866 /* MyPdfScrollView.h */,
@@ -261,6 +281,8 @@
 				293988DD12B5E9DB008017BE /* Define.h */,
 				29BD260513A4A3AB0029E2B4 /* FileUtility.h */,
 				29BD260613A4A3AC0029E2B4 /* FileUtility.m */,
+				29DB52D614EB51B0006920EF /* ContentFileUtility.h */,
+				29DB52D714EB51B0006920EF /* ContentFileUtility.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -292,6 +314,16 @@
 				29A1CB7D138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m */,
 			);
 			name = SKBEngine;
+			sourceTree = "<group>";
+		};
+		29452CA814E3A58700DD15ED /* sound */ = {
+			isa = PBXGroup;
+			children = (
+				29452CA914E3A58700DD15ED /* p1.mp3 */,
+				29452CAA14E3A58700DD15ED /* p2.mp3 */,
+				29452CAB14E3A58700DD15ED /* p3.mp3 */,
+			);
+			path = sound;
 			sourceTree = "<group>";
 		};
 		2963BDF212B5BE1C001041EB /* pdf */ = {
@@ -382,6 +414,7 @@
 				29F4B93113AB2A4100519DAA /* csv */,
 				2963BDF212B5BE1C001041EB /* pdf */,
 				2994490212B737C600E7D108 /* movie */,
+				29452CA814E3A58700DD15ED /* sound */,
 				2921370D12C604B800FC071D /* image */,
 				29B1795714BC8C94007024AD /* Icon.png */,
 				29F3391D1398894E0005CF10 /* folder20x20.png */,
@@ -410,6 +443,8 @@
 				290BA0AF12B5E0D1009C01C8 /* QuartzCore.framework */,
 				299448EB12B7370B00E7D108 /* MediaPlayer.framework */,
 				29B16E0A1398779600B4D958 /* StoreKit.framework */,
+				29452CA414E39C0500DD15ED /* AudioToolbox.framework */,
+				29452CA214E39BFA00DD15ED /* AVFoundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -437,6 +472,7 @@
 				29F4B93B13AB2A6800519DAA /* popoverScrollImageDefine_1.csv */,
 				29F4B93C13AB2A6800519DAA /* popoverScrollImageDefine_2.csv */,
 				29F4B93D13AB2A6800519DAA /* popoverScrollImageDefine_3.csv */,
+				29452CA614E3A12200DD15ED /* soundDefine_1.csv */,
 				29014A9C12D6EC9100936BF0 /* tocDefine.csv */,
 				29F4B93E13AB2A6800519DAA /* tocDefine_1.csv */,
 				29F4B93F13AB2A6800519DAA /* tocDefine_2.csv */,
@@ -549,6 +585,10 @@
 				29F4B95413AB2AC200519DAA /* ContentIcon_2.png in Resources */,
 				29F4B95513AB2AC200519DAA /* ContentIcon_3.png in Resources */,
 				29B1795814BC8C94007024AD /* Icon.png in Resources */,
+				29452CA714E3A12200DD15ED /* soundDefine_1.csv in Resources */,
+				29452CAC14E3A58700DD15ED /* p1.mp3 in Resources */,
+				29452CAD14E3A58700DD15ED /* p2.mp3 in Resources */,
+				29452CAE14E3A58700DD15ED /* p3.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -602,6 +642,8 @@
 				2936624B13A894D60010A808 /* ContentListCellController.m in Sources */,
 				290731E913A89C0200AE5B35 /* ContentListCell.m in Sources */,
 				29F1489413A89E3700309126 /* PaymentHistoryListViewController.m in Sources */,
+				29452CA014E39B4300DD15ED /* ContentPlayerViewController+sound.m in Sources */,
+				29DB52D814EB51B0006920EF /* ContentFileUtility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
