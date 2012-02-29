@@ -31,7 +31,7 @@
 
 #import "ImageGenerator.h"
 
-@interface ContentPlayerViewController : SKBE_MainVC <UIActionSheetDelegate> {
+@interface ContentPlayerViewController : SKBE_MainVC <UIActionSheetDelegate, AVAudioPlayerDelegate> {
 	// Views.
 	IBOutlet MyPdfScrollView* pdfScrollView1;
 	IBOutlet MyPdfScrollView* pdfScrollView2;

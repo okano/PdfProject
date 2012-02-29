@@ -159,7 +159,33 @@
 		audioPlayer = NULL;
 	}
 	audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundURL error:NULL];
+	audioPlayer.delegate = self;
 	[audioPlayer play];
+}
+
+#pragma mark - AVAudioPlayerDelegate methods.
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
+{
+	//Get message for alert.
+	NSString* terminateMessage = nil;
+	for (NSMutableDictionary* soundInfo in soundDefine) {
+		int targetPageNum = [[soundInfo valueForKey:SD_PAGE_NUMBER] intValue];
+		if (targetPageNum == currentPageNum) {
+			terminateMessage = [soundInfo valueForKey:SD_TERMINATE_MESSAGE];
+			NSLog(@"currentPageNum=%d, filename=%@", currentPageNum, terminateMessage);
+		}
+	}
+	
+	//Show alert when terminate sound if message exist.
+	if (terminateMessage != nil) {
+		UIAlertView *alert = [[UIAlertView alloc]
+							  initWithTitle:nil
+							  message:terminateMessage
+							  delegate:nil
+							  cancelButtonTitle:nil
+							  otherButtonTitles:@"OK", nil];
+		[alert show];
+	}
 }
 
 @end
