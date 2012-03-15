@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import <AudioToolbox/AudioServices.h>
+#import <AVFoundation/AVFoundation.h>
 #import "SKBE_MainVC.h"
 #import "Utility.h"
 #import "FileUtility.h"
@@ -21,6 +23,7 @@
 #import "BookmarkViewController.h"
 #import "BookmarkModifyViewController.h"
 #import "ThumbnailViewController.h"
+
 @class TiledPDFView;
 //#import "PDFScrollView.h"
 //
@@ -28,7 +31,7 @@
 
 #import "ImageGenerator.h"
 
-@interface ContentPlayerViewController : SKBE_MainVC <UIActionSheetDelegate> {
+@interface ContentPlayerViewController : SKBE_MainVC <UIActionSheetDelegate, AVAudioPlayerDelegate> {
 	// Views.
 	IBOutlet MyPdfScrollView* pdfScrollView1;
 	IBOutlet MyPdfScrollView* pdfScrollView2;
@@ -85,6 +88,7 @@
 	//
 	NSMutableArray* linksInCurrentPage;
 	NSMutableArray* movieDefine;
+	NSMutableArray* soundDefine;
 	NSMutableArray* pageJumpLinkDefine;
 	NSMutableArray* inPageScrollViewDefine;
 	//NSMutableArray* tocDefine;
@@ -106,6 +110,11 @@
 	bool isShownThumbnailView;
 	bool isShownBookmarkView;
 	//bool isTocWithBookmarkMode;
+	
+	
+	// Audio(sound for page open)
+	AVAudioPlayer* audioPlayer;
+	NSTimer* soundDelayTimer;
 }
 @property (nonatomic, retain) MyPdfScrollView* pdfScrollView1;
 @property (nonatomic, retain) MyPdfScrollView* pdfScrollView2;
@@ -234,3 +243,22 @@
 
 @end
 
+
+
+
+
+// Treat Sound.
+@interface ContentPlayerViewController (soundonpage)
+- (void)parseSoundOnPageDefine;
+- (void)playSoundAtIndex:(NSUInteger)index;
+- (void)playSoundWithUrl:(NSURL*)soundURL;
+- (void)playSoundWithUrl:(NSURL*)soundURL withDelay:(NSNumber*)delayTime;
+- (void)timerHandlerForPlaySound:(NSTimer*)timer;
+@end
+
+//#define EPUB_RESOURCES_DIRECTORY	@"content/resources"
+//#define CONTENT_DETAIL_DIRECTORY	@"contentDetail"
+#define CONTENT_BODY_DIRECTORY		@"contentBody"
+#define CONTENT_TMP_DIRECTORY		@"tmp"
+//#define CONTENT_DONWLOAD_DIRECTORY  @"downloads"
+//#define CONTENT_EXTRACT_DIRECTORY	@"extract"

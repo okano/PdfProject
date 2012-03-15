@@ -18,7 +18,7 @@
 						maxWidth:(CGFloat)maxWidth
 {
 	//LOG_CURRENT_METHOD;
-	if ((! pdfURL) || (minWidth < 0) || (maxWidth < 0)) {
+	if ((minWidth < 0) || (maxWidth < 0)) {
 		return;
 	}
 	
