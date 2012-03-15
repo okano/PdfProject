@@ -85,6 +85,7 @@
 #define MD_AREA_WIDTH		@"Movie_Area_Width"
 #define MD_AREA_HEIGHT		@"Movie_Area_Height"
 #define MD_MOVIE_FILENAME	@"Movie_Filename"
+#define MD_DELAY_TIME		@"Movie_Delay_Time"
 
 // for Sound Define.
 #define SD_PAGE_NUMBER		@"Sound_PageNumber"
