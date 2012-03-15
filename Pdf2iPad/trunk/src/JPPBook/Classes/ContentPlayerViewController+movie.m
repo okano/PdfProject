@@ -60,6 +60,14 @@
 		//[tmpDict setValue:tmpStrURLEncoded forKey:MD_MOVIE_FILENAME];
 		[tmpDict setValue:tmpStrWithoutLF forKey:MD_MOVIE_FILENAME];
 		
+		//Delay time. (optional)
+		if (7 <= [tmpCsvArray count]) {
+			NSString* tmpStrForDelayTime = [tmpCsvArray objectAtIndex:6];
+			NSNumber* delayTimeNumber = [NSNumber numberWithFloat:[tmpStrForDelayTime floatValue]];
+			NSLog(@"delay time for movie=%@(%f)", tmpStrForDelayTime, [delayTimeNumber floatValue]);
+			[tmpDict setValue:delayTimeNumber forKey:MD_DELAY_TIME];
+		}
+		
 		[movieDefine addObject:tmpDict];
 		[tmpDict release]; tmpDict = nil;
 	}
@@ -81,10 +89,19 @@
 			rect.size.height= [[movieInfo valueForKey:MD_AREA_HEIGHT] floatValue];
 			//NSLog(@"rect for movie=%@", NSStringFromCGRect(rect));
 			
+			NSString* filename = [movieInfo valueForKey:MD_MOVIE_FILENAME];
+			//NSLog(@"filename=%@", filename);
+			
 			UIColor* targetColor = [UIColor yellowColor];
 			[currentPdfScrollView addScalableColorView:targetColor
 												 alpha:0.2f
 									 withPdfBasedFrame:rect];
+			//play when open page with no touch.
+			NSNumber* delayTime = [movieInfo valueForKey:MD_DELAY_TIME];
+			if (delayTime != nil) {
+				NSLog(@"delayTime=%f", [delayTime floatValue]);
+				[self showMoviePlayer:filename WithFrame:rect];
+			}
 		}
 	}
 }
