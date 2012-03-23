@@ -30,7 +30,7 @@
 @property (nonatomic, retain) UIButton* bookSupportPageButton;
 @property (nonatomic, retain) UILabel* licenceNumberLabel;
 
-- (void)closeThisView:(id)sender;
+- (IBAction)closeThisView:(id)sender;
 - (void)setBookInfoFromDefineFile;
 - (void)showWebView:(NSString*)urlString;
 - (IBAction)openBookSupportPage:(id)sender;
