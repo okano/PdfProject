@@ -124,6 +124,9 @@
 #pragma mark (MenuBar and other)
 	//Setup MenuBar.
 	menuViewController = [[MenuViewController alloc] initWithNibName:@"MenuView" bundle:[NSBundle mainBundle]];
+	CGRect menuBarFrame = menuViewController.view.frame;	//Fit with self.view.
+	menuBarFrame.size.width = self.view.frame.size.width;//Fit size only width.
+	menuViewController.view.frame = menuBarFrame;
 	[self.view addSubview:menuViewController.view];
 	[self hideMenuBar];
 	
@@ -142,6 +145,10 @@
 	// Setup TOC(Table Of Contents).
 	[self parseTocDefine];
 	tocViewController = [[TocViewController alloc] initWithNibName:@"TocView" bundle:[NSBundle mainBundle]];
+	CGRect tocViewFrame = tocViewController.view.frame;	//Fit with self.view.
+	tocViewFrame.size.width = self.view.frame.size.width;
+	tocViewFrame.size.height = self.view.frame.size.height;
+	tocViewController.view.frame = tocViewFrame;
 	isShownTocView = FALSE;
 	
 	// Setup Thumbnail Image Toc View.
@@ -975,6 +982,12 @@
 	//LOG_CURRENT_METHOD;
 	[self hideMenuBar];
 	InfomationViewController* vc = [[InfomationViewController alloc] initWithNibName:@"InfomationView" bundle:[NSBundle mainBundle]];
+	//Setup frame.
+	CGRect infoViewFrame = vc.view.frame;	//Fit with self.view.
+	infoViewFrame.size.width = self.view.frame.size.width;
+	infoViewFrame.size.height = self.view.frame.size.height;
+	vc.view.frame = infoViewFrame;
+	//Show view.
 	[self.view addSubview:vc.view];
 }
 
