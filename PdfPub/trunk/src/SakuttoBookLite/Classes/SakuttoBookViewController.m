@@ -135,12 +135,18 @@
 	webViewController = nil;
 	
 	//Setup Links.
+	linksInCurrentPage = [[NSMutableArray alloc] init];
+	[self renderPageLinkAtIndex:currentPageNum];
 	
 	// Setup for Movie play.
+	[self parseMovieDefine];
+	[self renderMovieLinkAtIndex:currentPageNum];
 	
 	// Setup for InPage ScrollView.
 	
 	// Setup for Popover ScrollView.
+	[self parsePopoverScrollImageDefine];
+	[self renderPopoverScrollImageLinkAtIndex:currentPageNum];
 	
 	// Setup TOC(Table Of Contents).
 	[self parseTocDefine];
@@ -234,6 +240,10 @@
 #endif
 }
 
+- (BOOL)isMultiContents
+{
+	return NO;	//False, single content.
+}
 
 
 
@@ -452,6 +462,12 @@
 	
 	//
 	//[self getPdfDictionaryWithPageNum:currentPageNum];
+	[self renderPageLinkAtIndex:currentPageNum];
+	[self renderMovieLinkAtIndex:currentPageNum];
+	//[self renderPageJumpLinkAtIndex:currentPageNum];
+	//[self renderInPageScrollViewAtIndex:currentPageNum];
+	[self renderPopoverScrollImageLinkAtIndex:currentPageNum];
+	//[self playSoundAtIndex:currentPageNum];	//play sound for new page.
 	
 	/*
 	 NSLog(@"prev-subviews=%d, curr-subview=%d, next-subview=%d",
@@ -571,7 +587,13 @@
 	
 	//NSLog(@"(new)currentPdfScrollView subviews = %d", [currentPdfScrollView.subviews count]);
 	//
-	
+	[self renderPageLinkAtIndex:currentPageNum];
+	[self renderMovieLinkAtIndex:currentPageNum];
+	//[self renderPageJumpLinkAtIndex:currentPageNum];
+	//[self renderInPageScrollViewAtIndex:currentPageNum];
+	[self renderPopoverScrollImageLinkAtIndex:currentPageNum];
+	//[self playSoundAtIndex:currentPageNum];	//play sound for new page.
+
 	//Save LastReadPage.
 	[self setLatestReadPage:currentPageNum];
 }
@@ -613,6 +635,12 @@
 	[self.tocViewController.view removeFromSuperview];
 	
 	//Draw link to URL, Movie.
+	[self renderPageLinkAtIndex:currentPageNum];
+	[self renderMovieLinkAtIndex:currentPageNum];
+	//[self renderPageJumpLinkAtIndex:currentPageNum];
+	//[self renderInPageScrollViewAtIndex:currentPageNum];
+	[self renderPopoverScrollImageLinkAtIndex:currentPageNum];
+	//[self playSoundAtIndex:currentPageNum];	//play sound for new page.
 	
 	// Set animation
 	CATransition* animation1 = [CATransition animation];
@@ -688,11 +716,88 @@
 	}
 	
 	// Compare with URL Link in page.
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"linksInCurrentPage=%@", [linksInCurrentPage description]);
+	for (NSMutableDictionary* tmpDict in linksInCurrentPage) {
+		if (!tmpDict) {
+			continue;
+		}
+		//NSLog(@"tmpDict=%@", [tmpDict description]);
+		NSValue* val = [tmpDict objectForKey:LINK_DICT_KEY_RECT];
+		CGRect r = [val CGRectValue];
+		//NSLog(@"frame with URL Link=%@", NSStringFromCGRect(r));
+		//NSLog(@"touchedPoint=%@", NSStringFromCGPoint(touchedPoint));
+		//NSLog(@"touchedPointInOriginalPdf=%@", NSStringFromCGPoint(touchedPointInOriginalPdf));
+		//NSLog(@"touched point in Screen = %@", NSStringFromCGPoint(touchedPointInScreen));
+		
+		if (CGRectContainsPoint(r, touchedPointInOriginalPdf)) {
+			NSString* urlStr = [tmpDict objectForKey:LINK_DICT_KEY_URL];
+			//NSLog(@"URL link touched. url=%@", urlStr);
+			
+			//open with another view.
+			[self showWebView:urlStr];
+			//open with Safari.
+			//[self showWebWithSafari:urlStr];
+			//open with anotherView/Safari(show selecter).
+			//[self showWebViewSelector:urlStr];
+			
+			//no-continue.
+			return;
+		}
+	}
 	
 	// Compare with Movie Link in page.
+	for (NSMutableDictionary* movieInfo in movieDefine) {
+		int targetPageNum = [[movieInfo valueForKey:MD_PAGE_NUMBER] intValue];
+		if (targetPageNum == currentPageNum) {
+			CGRect rect;
+			rect.origin.x	= [[movieInfo valueForKey:MD_AREA_X] floatValue];
+			rect.origin.y	= [[movieInfo valueForKey:MD_AREA_Y] floatValue];
+			rect.size.width	= [[movieInfo valueForKey:MD_AREA_WIDTH] floatValue];
+			rect.size.height= [[movieInfo valueForKey:MD_AREA_HEIGHT] floatValue];
+			//NSLog(@"frame with movie info=%@", NSStringFromCGRect(rect));
+			//NSLog(@"touchedPoint=%@", NSStringFromCGPoint(touchedPoint));
+			//NSLog(@"touchedPointInOriginalPdf=%@", NSStringFromCGPoint(touchedPointInOriginalPdf));
+			
+			if (CGRectContainsPoint(rect, touchedPointInOriginalPdf)) {
+				NSString* filename = [movieInfo valueForKey:MD_MOVIE_FILENAME];
+				//NSLog(@"movie link touched. filename=%@", filename);
+				
+				//open with another view.
+				[self showMoviePlayer:filename];
+				
+				//no-continue.
+				return;
+			}
+		}
+	}
 	
 	// Compare with Popover Scroll Image Link in page.
-	
+	for (NSMutableDictionary* popoverScrollImageInfo in popoverScrollImageDefine) {
+		int targetPageNum = [[popoverScrollImageInfo valueForKey:MD_PAGE_NUMBER] intValue];
+		if (targetPageNum == currentPageNum) {
+			CGRect rect;
+			rect.origin.x	= [[popoverScrollImageInfo valueForKey:MD_AREA_X] floatValue];
+			rect.origin.y	= [[popoverScrollImageInfo valueForKey:MD_AREA_Y] floatValue];
+			rect.size.width	= [[popoverScrollImageInfo valueForKey:MD_AREA_WIDTH] floatValue];
+			rect.size.height= [[popoverScrollImageInfo valueForKey:MD_AREA_HEIGHT] floatValue];
+			//NSLog(@"frame with popover Scroll Image Info info=%@", NSStringFromCGRect(rect));
+			//NSLog(@"touchedPoint=%@", NSStringFromCGPoint(touchedPoint));
+			//NSLog(@"touchedPointInOriginalPdf=%@", NSStringFromCGPoint(touchedPointInOriginalPdf));
+			
+			if (CGRectContainsPoint(rect, touchedPointInOriginalPdf)) {
+				NSString* filename = [popoverScrollImageInfo valueForKey:MD_MOVIE_FILENAME];
+				//NSLog(@"popoverScrollImageInfo link touched. filename=%@", filename);
+				
+				//open with another view.
+				[self showPopoverScrollImagePlayer:filename];
+				
+				//no-continue.
+				return;
+			}
+		}
+	}
+
 	// Compare with in left_area, in right_area.
 	CGRect leftTapArea, rightTapArea, bottomTapArea, topTapArea;
 	CGFloat baseWidthForParentView, baseHeightForParentView;
@@ -869,15 +974,440 @@
 
 #pragma mark -
 #pragma mark Treat URL Link.
+/**
+ * @see:http://stackoverflow.com/questions/4080373/get-pdf-hyperlinks-on-ios-with-quartz
+ */
+- (void) renderPageLinkAtIndex:(NSUInteger)index
+{
+	//LOG_CURRENT_METHOD;
+	
+	//Remove old view for URL_Link.
+	[linksInCurrentPage removeAllObjects];
+	
+	id pool = [ [ NSAutoreleasePool alloc] init];
+	
+	//get pdf document.
+	CGPDFDocumentRef pdfDocument;
+	pdfDocument = CGPDFDocumentCreateWithURL((CFURLRef)pdfURL);
+	if (!pdfDocument) {
+		LOG_CURRENT_LINE;
+		NSLog(@"cannot open PDF document.");
+		[pool release];
+		return;
+	}
+	
+	//get target page in PDF.
+    CGPDFPageRef pageAd = CGPDFDocumentGetPage(pdfDocument, index);
+	if (!pageAd) {
+		LOG_CURRENT_LINE;
+		NSLog(@"CGPDFPageRef is nil.");
+		//Release PDFDocument.
+		if (pdfDocument) {
+			CGPDFDocumentRelease(pdfDocument);
+			pdfDocument = nil;
+		}
+		[pool release];
+		return;
+	}
+	
+    CGPDFDictionaryRef pageDictionary = CGPDFPageGetDictionary(pageAd);
+	if (!pageDictionary) {
+		LOG_CURRENT_LINE;
+		NSLog(@"CGPDFDictionaryRef is nil.");
+		//Release PDFDocument.
+		if (pdfDocument) {
+			CGPDFDocumentRelease(pdfDocument);
+			pdfDocument = nil;
+		}
+		[pool release];
+		return;
+	}
+	
+    CGPDFArrayRef outputArray = nil;
+    if(!CGPDFDictionaryGetArray(pageDictionary, "Annots", &outputArray)) {
+		//LOG_CURRENT_LINE;
+		//Release PDFDocument.
+		if (pdfDocument) {
+			CGPDFDocumentRelease(pdfDocument);
+			pdfDocument = nil;
+		}
+		//NSLog(@"Annots not found");
+		[pool release];
+        return;
+    }
+	
+    int arrayCount = CGPDFArrayGetCount( outputArray );
+    if(!arrayCount) {
+        //continue;
+    }
+	
+    for( int j = 0; j < arrayCount; ++j ) {
+        CGPDFObjectRef aDictObj;
+        if(!CGPDFArrayGetObject(outputArray, j, &aDictObj)) {
+			[pool release];
+            return;
+        }
+		
+        CGPDFDictionaryRef annotDict = nil;
+        if(!CGPDFObjectGetValue(aDictObj, kCGPDFObjectTypeDictionary, &annotDict)) {
+			[pool release];
+            return;
+        }
+		
+        CGPDFDictionaryRef aDict = nil;
+        if(!CGPDFDictionaryGetDictionary(annotDict, "A", &aDict)) {
+			[pool release];
+            return;
+        }
+		
+        CGPDFStringRef uriStringRef = nil;
+        if(!CGPDFDictionaryGetString(aDict, "URI", &uriStringRef)) {
+			[pool release];
+            return;
+        }
+		
+        CGPDFArrayRef rectArray = nil;
+        if(!CGPDFDictionaryGetArray(annotDict, "Rect", &rectArray)) {
+			[pool release];
+            return;
+        }
+		
+        int arrayCount = CGPDFArrayGetCount( rectArray );
+        CGPDFReal coords[4];
+        for( int k = 0; k < arrayCount; ++k ) {
+            CGPDFObjectRef rectObj;
+            if(!CGPDFArrayGetObject(rectArray, k, &rectObj)) {
+				[pool release];
+                return;
+            }
+			
+            CGPDFReal coord;
+            if(!CGPDFObjectGetValue(rectObj, kCGPDFObjectTypeReal, &coord)) {
+				[pool release];
+                return;
+            }
+			
+            coords[k] = coord;
+        }               
+		
+		CGFloat x1 = coords[0];
+		CGFloat y1 = coords[1];
+		CGFloat x2 = coords[2];
+		CGFloat y2 = coords[3];
+		
+		//Treat PageRotate in pdf(exchange width,height)
+        CGPDFInteger pageRotateDegree = 0;
+        CGPDFDictionaryGetInteger( pageDictionary, "Rotate", &pageRotateDegree ); 
+		//NSLog(@"pageRotateDegree=%d", pageRotateDegree);
+		if( pageRotateDegree == 90 || pageRotateDegree == 270 ) {
+			//exchange x2 <=> y2.
+			CGFloat wr;
+			wr = x2;
+			x2 = y2;
+			y2 = wr;
+			wr = 0;
+        }
+		
+		//keep x1 < x2, y1 < y2.
+		if (x2 < x1) {
+			//exchange x1, x2. tmp<-x1<-x2<-tmp
+			CGFloat fx;
+			fx = x1;
+			x1 = x2;
+			x2 = fx;
+			fx = 0.0f;
+		}
+		if (y2 < y1) {
+			//exchange y1, y2. tmp<-y1<-y2<-tmp
+			CGFloat fy;
+			fy = y1;
+			y1 = y2;
+			y2 = fy;
+			fy = 0.0f;
+		}
+		//NSLog(@"original link position= (x1,y1)-(x2,y2)=(%f, %f) - (%f, %f)", x1, y1, x2, y2);
+		
+		//Generate frame in original pdf.
+		CGRect linkRectInOriginalPdf;
+		linkRectInOriginalPdf = CGRectMake(x1,
+										   currentPdfScrollView.originalPageHeight - y2,	//does not "y1".
+										   fabsf(x2 - x1),
+										   fabsf(y2 - y1));
+		
+		//NSLog(@"scaleForDraw=%f", currentPdfScrollView.scaleForDraw);
+		//NSLog(@"linkRect   =%@", NSStringFromCGRect(linkRect));
+		//NSLog(@"linkRectInOriginalPdf   =%@", NSStringFromCGRect(linkRectInOriginalPdf));
+		//NSLog(@"pdfScale   =%f", pdfScale);
+		//NSLog(@"currentPdfScrollView.originalPage Size={%1.0f, %1.0f}",
+		//	  currentPdfScrollView.originalPageWidth,
+		//	  currentPdfScrollView.originalPageHeight);
+		//NSLog(@"originalPageRect.size=%@", NSStringFromCGSize(originalPageRect.size));
+		//NSLog(@"self.view.frame.size=%@", NSStringFromCGSize(self.view.frame.size));
+		
+		//Add subView.
+		UIView* areaView = [[UIView alloc] initWithFrame:CGRectZero];
+#if TARGET_IPHONE_SIMULATOR
+		//Only show on Simulator.
+		[areaView setBackgroundColor:[UIColor blueColor]];
+		[areaView setAlpha:0.2f];
+#else
+		[areaView setAlpha:0.0f];
+#endif
+		[currentPdfScrollView addScalableSubview:areaView withPdfBasedFrame:linkRectInOriginalPdf];
+		
+		
+		//Add link infomation for touch.
+        char *uriString = (char *)CGPDFStringGetBytePtr(uriStringRef);
+        NSString *uri = [NSString stringWithCString:uriString encoding:NSUTF8StringEncoding];
+		NSURL *url = [NSURL URLWithString:uri];
+		//NSLog(@"URL=%@", url);
+		NSMutableDictionary* tmpDict = [[[NSMutableDictionary alloc] init] autorelease];
+		[tmpDict setValue:[url description] forKey:LINK_DICT_KEY_URL];
+		[tmpDict setValue:[NSValue valueWithCGRect:linkRectInOriginalPdf] forKey:LINK_DICT_KEY_RECT];
+		[linksInCurrentPage addObject:tmpDict];
+		
+		
+		
+		/**
+		 *		From array to cgPoint variable.
+		 */		
+		//NSValue *val = [points objectAtIndex:0];
+		//CGPoint p = [val CGPointValue];
+	}
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"linksInCurrentPage=%@", [linksInCurrentPage description]);
+	/*
+	 if (!pageAd) {
+	 CGPDFPageRelease(pageAd);
+	 pageAd = nil;
+	 }
+	 */
+	
+	//Release PDFDocument.
+	if (pdfDocument) {
+		CGPDFDocumentRelease(pdfDocument);
+		pdfDocument = nil;
+	}
+	[pool release];
+}
+
 
 #pragma mark -
 #pragma mark Treat Movie.
+//Parse Movie Define.
+- (void)parseMovieDefine
+{
+	movieDefine = [[NSMutableArray alloc] init];
+	
+	//parse csv file.
+	NSString* targetFilename = @"movieDefine";
+	NSArray* lines;
+	//if ([self isMultiContents] == TRUE) {
+	//	lines = [FileUtility parseDefineCsv:targetFilename contentId:currentContentId];
+	//} else {
+		lines = [FileUtility parseDefineCsv:targetFilename];
+	//}
+	
+	//parse each line.
+	NSMutableDictionary* tmpDict;
+	for (NSString* line in lines) {
+		NSArray* tmpCsvArray = [line componentsSeparatedByString:@","];
+		if ([tmpCsvArray count] < 6) {
+			NSLog(@"illigal CSV data. item count=%d, line=%@", [tmpCsvArray count], line);
+			continue;	//Skip illigal line.
+		}
+		
+		tmpDict = [[NSMutableDictionary alloc] init];
+		//Page Number.
+		[tmpDict setValue:[NSNumber numberWithInt:[[tmpCsvArray objectAtIndex:0] intValue]] forKey:MD_PAGE_NUMBER];
+		//Position.
+		[tmpDict setValue:[NSNumber numberWithInt:[[tmpCsvArray objectAtIndex:1] intValue]] forKey:MD_AREA_X];
+		[tmpDict setValue:[NSNumber numberWithInt:[[tmpCsvArray objectAtIndex:2] intValue]] forKey:MD_AREA_Y];
+		[tmpDict setValue:[NSNumber numberWithInt:[[tmpCsvArray objectAtIndex:3] intValue]] forKey:MD_AREA_WIDTH];
+		[tmpDict setValue:[NSNumber numberWithInt:[[tmpCsvArray objectAtIndex:4] intValue]] forKey:MD_AREA_HEIGHT];
+		//Filename.
+		NSString* tmpStr = [tmpCsvArray objectAtIndex:5];
+		NSString* tmpStrFormatted = [self formatStringWithAlphaNumeric:tmpStr];
+		[tmpDict setValue:tmpStrFormatted forKey:MD_MOVIE_FILENAME];
+		
+		//Check page range.
+		if (maxPageNum < [[tmpDict objectForKey:MD_PAGE_NUMBER] intValue]) {
+			continue;	//skip to next object. not add to define.
+		}
+		
+		//Add to movie define.
+		[movieDefine addObject:tmpDict];
+	}
+}
+
+- (void) renderMovieLinkAtIndex:(NSUInteger)index
+{
+	for (NSMutableDictionary* movieInfo in movieDefine) {
+		int targetPageNum = [[movieInfo valueForKey:MD_PAGE_NUMBER] intValue];
+		if (targetPageNum == index) {
+			CGRect linkRectInOriginalPdf;
+			linkRectInOriginalPdf.origin.x	= [[movieInfo valueForKey:MD_AREA_X] floatValue];
+			linkRectInOriginalPdf.origin.y	= [[movieInfo valueForKey:MD_AREA_Y] floatValue];
+			linkRectInOriginalPdf.size.width	= [[movieInfo valueForKey:MD_AREA_WIDTH] floatValue];
+			linkRectInOriginalPdf.size.height= [[movieInfo valueForKey:MD_AREA_HEIGHT] floatValue];
+			//NSLog(@"linkRectInOriginalPdf for movie=%@", NSStringFromCGRect(linkRectInOriginalPdf));
+			
+			//NSString* filename = [movieInfo valueForKey:MD_MOVIE_FILENAME];
+			
+			//Show Movie link area with half-opaque.
+			UIView* areaView = [[UIView alloc] initWithFrame:CGRectZero];
+#if TARGET_IPHONE_SIMULATOR
+			//Only show on Simulator.
+			[areaView setBackgroundColor:[UIColor yellowColor]];
+			[areaView setAlpha:0.2f];
+#else
+			[areaView setAlpha:0.0f];
+#endif
+			//LOG_CURRENT_METHOD;
+			//NSLog(@"render movie link. rect=%f, %f, %f, %f", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
+			//[currentPdfScrollView addSubview:areaView];
+			[currentPdfScrollView addScalableSubview:areaView withPdfBasedFrame:linkRectInOriginalPdf];
+		}
+	}
+}
+
+- (void)showMoviePlayer:(NSString*)filename
+{
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"filename=%@", filename);
+	
+	NSString* path = [[NSBundle mainBundle] pathForResource:filename ofType:nil];
+	if (!path) {
+		NSLog(@"illigal filename. filename=%@, bundle_resourceURL=%@", filename, [[NSBundle mainBundle] resourceURL]);
+		NSLog(@"f = %@ %@", [filename stringByDeletingPathExtension], [filename pathExtension]);
+		return;
+	}
+	NSURL* url;
+	
+	if ((url = [NSURL fileURLWithPath:path]) != nil) {
+		MPMoviePlayerViewController* mpview;
+		if ((mpview = [[MPMoviePlayerViewController alloc] initWithContentURL:url]) != nil) {
+			[self presentMoviePlayerViewControllerAnimated:mpview];
+			[mpview.moviePlayer play];
+			[mpview release];
+		}
+	}
+}
 
 #pragma mark -
 #pragma mark Treat InPage ScrollView.
 
 #pragma mark -
 #pragma mark Treat popover scroll image view.
+- (void)parsePopoverScrollImageDefine
+{
+	popoverScrollImageDefine = [[NSMutableArray alloc] init];
+	
+	//parse csv file.
+	NSString* targetFilename = @"popoverScrollImageDefine";
+	NSArray* lines;
+	//if ([self isMultiContents] == TRUE) {
+	//	lines = [FileUtility parseDefineCsv:targetFilename contentId:currentContentId];
+	//} else {
+		lines = [FileUtility parseDefineCsv:targetFilename];
+	//}
+	
+	//parse each line.
+	NSMutableDictionary* tmpDict;
+	for (NSString* line in lines) {
+		NSArray* tmpCsvArray = [line componentsSeparatedByString:@","];
+		if ([tmpCsvArray count] < 6) {
+			NSLog(@"illigal CSV data. item count=%d, line=%@", [tmpCsvArray count], line);
+			continue;	//Skip illigal line.
+		}
+		
+		tmpDict = [[NSMutableDictionary alloc] init];
+		//Page Number.
+		[tmpDict setValue:[NSNumber numberWithInt:[[tmpCsvArray objectAtIndex:0] intValue]] forKey:MD_PAGE_NUMBER];
+		//Position.
+		[tmpDict setValue:[NSNumber numberWithInt:[[tmpCsvArray objectAtIndex:1] intValue]] forKey:MD_AREA_X];
+		[tmpDict setValue:[NSNumber numberWithInt:[[tmpCsvArray objectAtIndex:2] intValue]] forKey:MD_AREA_Y];
+		[tmpDict setValue:[NSNumber numberWithInt:[[tmpCsvArray objectAtIndex:3] intValue]] forKey:MD_AREA_WIDTH];
+		[tmpDict setValue:[NSNumber numberWithInt:[[tmpCsvArray objectAtIndex:4] intValue]] forKey:MD_AREA_HEIGHT];
+		//Filename.
+		NSString* tmpStr = [tmpCsvArray objectAtIndex:5];
+		NSString* tmpStrFormatted = [self formatStringWithAlphaNumeric:tmpStr];
+		[tmpDict setValue:tmpStrFormatted forKey:MD_MOVIE_FILENAME];
+		
+		//Check page range.
+		if (maxPageNum < [[tmpDict objectForKey:MD_PAGE_NUMBER] intValue]) {
+			continue;	//skip to next object. not add to define.
+		}
+		
+		//Add to movie define.
+		[popoverScrollImageDefine addObject:tmpDict];
+	}
+}
+
+- (void) renderPopoverScrollImageLinkAtIndex:(NSUInteger)index
+{
+	for (NSMutableDictionary* popoverScrollImageInfo in popoverScrollImageDefine) {
+		int targetPageNum = [[popoverScrollImageInfo valueForKey:MD_PAGE_NUMBER] intValue];
+		if (targetPageNum == index) {
+			CGRect linkRectInOriginalPdf;
+			linkRectInOriginalPdf.origin.x	= [[popoverScrollImageInfo valueForKey:MD_AREA_X] floatValue];
+			linkRectInOriginalPdf.origin.y	= [[popoverScrollImageInfo valueForKey:MD_AREA_Y] floatValue];
+			linkRectInOriginalPdf.size.width	= [[popoverScrollImageInfo valueForKey:MD_AREA_WIDTH] floatValue];
+			linkRectInOriginalPdf.size.height= [[popoverScrollImageInfo valueForKey:MD_AREA_HEIGHT] floatValue];
+			//NSLog(@"linkRectInOriginalPdf for popoverScrollImageInfo=%@", NSStringFromCGRect(linkRectInOriginalPdf));
+			
+			//NSString* filename = [movieInfo valueForKey:MD_MOVIE_FILENAME];
+			
+			//Show PopoverScrollImage link area with half-opaque.
+			UIView* areaView = [[UIView alloc] initWithFrame:CGRectZero];
+#if TARGET_IPHONE_SIMULATOR
+			//Only show on Simulator.
+			[areaView setBackgroundColor:[UIColor orangeColor]];
+			[areaView setAlpha:0.2f];
+#else
+			[areaView setAlpha:0.0f];
+#endif
+			//LOG_CURRENT_METHOD;
+			//NSLog(@"render movie link. rect=%f, %f, %f, %f", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
+			//[currentPdfScrollView addSubview:areaView];
+			[currentPdfScrollView addScalableSubview:areaView withPdfBasedFrame:linkRectInOriginalPdf];
+		}
+	}
+}
+
+- (void)showPopoverScrollImagePlayer:(NSString*)filename
+{
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"filename=%@", filename);
+	CGRect rect;
+	UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
+	if (interfaceOrientation == UIInterfaceOrientationPortrait
+		||
+		interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
+		rect = self.view.frame;
+	} else {
+		rect = CGRectMake(self.view.frame.origin.x,
+						  self.view.frame.origin.y,
+						  self.view.frame.size.height,
+						  self.view.frame.size.width);
+	}
+	
+	
+	PopoverScrollImageViewController* psivc;
+	psivc = [[PopoverScrollImageViewController alloc] initWithImageFilename:filename frame:rect];
+	//Save scrollView position, zoomScale.
+	[psivc setParentScrollView:currentPdfScrollView
+				  fromPosition:currentPdfScrollView.contentOffset
+				 fromZoomScale:currentPdfScrollView.zoomScale];
+	
+	//
+	//[currentPdfScrollView setContentOffset:CGPointZero];
+	[currentPdfScrollView setZoomScale:currentPdfScrollView.minimumZoomScale];
+	[currentPdfScrollView setScrollEnabled:NO];
+	
+	//
+	[currentPdfScrollView addSubview:psivc.view];
+}
 
 #pragma mark -
 #pragma mark Treat TOC.
@@ -1071,6 +1601,21 @@
 	}
 }
 
+#pragma mark utility method.
+- (NSString*)formatStringWithAlphaNumeric:(NSString*)originalStr
+{
+	NSString* tmpStrWithoutDoubleQuote = [originalStr
+										  stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c", 0x22]
+										  withString:@""];	/* delete DoubleQuote. */
+	NSString* tmpStrWithoutCR = [tmpStrWithoutDoubleQuote 
+								 stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c", 0x0d]
+								 withString:@""];	/* delete CR. */
+	NSString* tmpStrWithoutLF = [tmpStrWithoutCR
+								 stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c", 0x0a]
+								 withString:@""];	/* delete LF. */
+	
+	return tmpStrWithoutLF;
+}
 
 #pragma mark Latest Read Page.
 - (void)setLatestReadPage:(int)pageNum {

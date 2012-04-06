@@ -10,10 +10,11 @@
 #import <QuartzCore/QuartzCore.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import "Utility.h"
+#import "FileUtility.h"
 #import "Define.h"
 #import "MenuViewController.h"
 #import "WebViewController.h"
-//#import "PopoverScrollImageViewController.h"
+#import "PopoverScrollImageViewController.h"
 #import "InfomationViewController.h"
 #import "TocViewController.h"
 //#import "BookmarkViewController.h"
@@ -79,11 +80,11 @@
 	id panTargetView;
 	
 	//
-	//NSMutableArray* linksInCurrentPage;
-	//NSMutableArray* movieDefine;
+	NSMutableArray* linksInCurrentPage;
+	NSMutableArray* movieDefine;
 	//NSMutableArray* inPageScrollViewDefine;
 	//NSMutableArray* tocDefine;
-	//NSMutableArray* popoverScrollImageDefine;
+	NSMutableArray* popoverScrollImageDefine;
 
 	
 	// Menu
@@ -135,6 +136,7 @@
 - (BOOL)setupPdfBasicInfo;
 // Handle PDF infomation.
 - (BOOL)isVerticalWriting;
+- (BOOL)isMultiContents;
 //- (void)getPdfDictionaryWithPageNum:(NSUInteger)pageNum;
 
 // Draw PDF.
