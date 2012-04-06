@@ -735,11 +735,11 @@
 			//NSLog(@"URL link touched. url=%@", urlStr);
 			
 			//open with another view.
-			[self showWebView:urlStr];
+			//[self showWebView:urlStr];
 			//open with Safari.
 			//[self showWebWithSafari:urlStr];
 			//open with anotherView/Safari(show selecter).
-			//[self showWebViewSelector:urlStr];
+			[self showWebViewSelector:urlStr];
 			
 			//no-continue.
 			return;
@@ -1521,11 +1521,52 @@
 	[self.view addSubview:vc.view];
 }
 
+#pragma mark -
+#pragma mark Show Web view.
+- (void)showWebViewSelector:(NSString*)urlString
+{
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"urlString=%@", urlString);
+	[urlForWeb setString:urlString];
+	//NSLog(@"urlForWeb=%@", urlForWeb);
+    UIActionSheet *sheet =[[UIActionSheet alloc]
+                           initWithTitle:@"URLリンクを開く (リンクからAppStoreにアクセスする場合は、Safariを起動してください)"
+						   delegate:self
+						   cancelButtonTitle:@"Cancel"
+                           destructiveButtonTitle:nil
+                           otherButtonTitles:@"アプリ内のビューワで開く", @"Safariを起動して開く", nil];
+	
+    [sheet showInView:self.view];	//[sheet showInView:self.view.window];
+    [sheet release];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	//LOG_CURRENT_METHOD;
+	if (! urlForWeb) {
+		LOG_CURRENT_LINE;
+		NSLog(@"no URL set");
+		return;
+	}
+	//NSLog(@"urlForWeb=%@", urlForWeb);
+	
+	if (buttonIndex == 0) {
+		[self showWebView:urlForWeb];
+	} else if (buttonIndex == 1) {
+		[self showWebWithSafari:urlForWeb];
+	}
+}
+
+- (void)actionSheetCancel:(UIActionSheet *)actionSheet
+{
+	return;
+}
+
 - (void)showWebView:(NSString*)urlString
 {
 	//LOG_CURRENT_METHOD;
-	[self hideMenuBar];
 	//NSLog(@"urlString = %@", urlString);
+	[self hideMenuBar];
 	
 	if (webViewController) {
 		webViewController.webView.delegate = nil;	//set nil before release because of ASync-load.
@@ -1533,11 +1574,28 @@
 		webViewController = nil;
 	}
 	webViewController = [[WebViewController alloc] initWithNibName:@"WebView" bundle:[NSBundle mainBundle]];
+	CGRect webViewFrame = webViewController.view.frame;	//Fit with self.view.
+	webViewFrame.size.width = self.view.frame.size.width;
+	webViewFrame.size.height = self.view.frame.size.height;
+	webViewController.view.frame = webViewFrame;
 	
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
 	[self.view addSubview:webViewController.view];
     [webViewController.webView loadRequest:request];
+}
+
+- (void)showWebWithSafari:(NSString*)urlString
+{
+	//LOG_CURRENT_METHOD;
+	[self hideMenuBar];
+	//NSLog(@"urlString = %@", urlString);
+	
+	
+	NSURL* url = [NSURL URLWithString:urlString];
+	if ([[UIApplication sharedApplication] canOpenURL:url]) {
+		[[UIApplication sharedApplication] openURL:url];
+	}
 }
 
 #pragma mark -

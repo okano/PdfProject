@@ -27,7 +27,7 @@
 
 #import "ImageGenerator.h"
 
-@interface SakuttoBookViewController : UIViewController {
+@interface SakuttoBookViewController : UIViewController <UIActionSheetDelegate> {
 	// Views.
 	IBOutlet MyPdfScrollView* pdfScrollView1;
 	IBOutlet MyPdfScrollView* pdfScrollView2;
@@ -91,6 +91,7 @@
 	MenuViewController* menuViewController;
 	// WebView
 	WebViewController* webViewController;
+	NSMutableString* urlForWeb;
 	// TocView, ThumbnailView.
 	TocViewController* tocViewController;
 	//ThumbnailViewController* thumbnailViewController;
