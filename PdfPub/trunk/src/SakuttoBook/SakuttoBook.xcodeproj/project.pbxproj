@@ -250,8 +250,8 @@
 				28D7ACF60DDB3853001CB0EB /* SakuttoBookViewController.h */,
 				28D7ACF70DDB3853001CB0EB /* SakuttoBookViewController.m */,
 				29B16E03139876C700B4D958 /* InAppPurchase */,
-				29B16DF21398739100B4D958 /* ContentList */,
-				29B16DF41398739E00B4D958 /* ContentDetail */,
+				29B16DF21398739100B4D958 /* LocalContentList */,
+				29B16DF41398739E00B4D958 /* LocalContentDetail */,
 				291593121394B54700387697 /* ContentPlayerViewController.h */,
 				291593131394B54700387697 /* ContentPlayerViewController.m */,
 				29452C9F14E39B4300DD15ED /* ContentPlayerViewController+sound.m */,
@@ -344,7 +344,7 @@
 			path = movie;
 			sourceTree = "<group>";
 		};
-		29B16DF21398739100B4D958 /* ContentList */ = {
+		29B16DF21398739100B4D958 /* LocalContentList */ = {
 			isa = PBXGroup;
 			children = (
 				29B16DF5139873F300B4D958 /* ContentListViewController.h */,
@@ -355,17 +355,17 @@
 				2936624913A894D60010A808 /* ContentListCellController.h */,
 				2936624A13A894D60010A808 /* ContentListCellController.m */,
 			);
-			name = ContentList;
+			name = LocalContentList;
 			sourceTree = "<group>";
 		};
-		29B16DF41398739E00B4D958 /* ContentDetail */ = {
+		29B16DF41398739E00B4D958 /* LocalContentDetail */ = {
 			isa = PBXGroup;
 			children = (
 				29B16DFD1398744C00B4D958 /* ContentDetailViewController.h */,
 				29B16DFE1398744C00B4D958 /* ContentDetailViewController.m */,
 				29B16DFF1398744C00B4D958 /* ContentDetailView.xib */,
 			);
-			name = ContentDetail;
+			name = LocalContentDetail;
 			sourceTree = "<group>";
 		};
 		29B16E03139876C700B4D958 /* InAppPurchase */ = {
