@@ -128,6 +128,58 @@
 	}
 }
 
+- (void)productRequestDidSuccess:(SKProduct*)product
+{
+	//Set price label.
+	NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+	[numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+	[numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+	[numberFormatter setLocale:product.priceLocale];
+	NSString *formattedString = [numberFormatter stringFromNumber:product.price];
+	priceLabel.text = [formattedString stringByAppendingString:@"-"];
+}
+
+- (void)productRequestDidFailed:(NSString*)invalidProductIdentifier
+{
+	LOG_CURRENT_METHOD;
+	
+	priceLabel.text = @"error";
+	[buyButton setTitle:@"購入できません" forState:UIControlStateNormal];
+	[buyButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+	//buyButton.enabled = NO;
+	
+};
+
+- (void)purchaseDidSuccess:(NSString*)productId
+{
+	targetCid = [appDelegate.productIdList getContentIdentifier:productId];
+	NSLog(@"pid=%@, cid=%d", productId, targetCid);
+	//[self downloadContent:nil];
+	
+	
+	//
+	ContentId cid = [appDelegate.productIdList getContentIdentifier:productId];
+	NSLog(@"pid=%@, cid=%d", productId, cid);
+	[appDelegate hideContentDetailView];
+	[appDelegate showContentPlayerView:cid];
+	
+}
+- (void)purchaseDidFailed:(NSError *)error
+{
+	NSLog(@"purchase error. error description=%@", [error description]);
+	
+	//Show alert.
+	UIAlertView *alert = [[[UIAlertView alloc]
+						   initWithTitle:@"purchse error"
+						   message:[NSString stringWithFormat:@"課金処理に失敗しました。詳細：%@", [error description]]
+						   delegate:nil
+						   cancelButtonTitle:nil
+						   otherButtonTitles:@"OK", nil]
+						  autorelease];
+	[alert show];
+}
+
+
 #pragma mark - related SKPaymentTransactionObserver methods.
 - (void)completeTransaction:(SKPaymentTransaction*)transaction
 {

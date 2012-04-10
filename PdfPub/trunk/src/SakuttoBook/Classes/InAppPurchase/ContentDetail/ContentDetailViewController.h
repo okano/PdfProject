@@ -11,7 +11,7 @@
 #import "InAppPurchaseUtility.h"
 #import "SakuttoBookAppDelegate.h"
 
-@interface ContentDetailViewController : UIViewController {
+@interface ContentDetailViewController : UIViewController <VCWithInAppPurchaseProtocol> {
 	SakuttoBookAppDelegate* appDelegate;
 	ContentId targetCid;
 	NSString* targetProductId;
