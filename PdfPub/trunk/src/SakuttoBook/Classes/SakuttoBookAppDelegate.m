@@ -50,6 +50,9 @@
 		[self copyOtherfileFromResourceToFile];
 		[self setDefaultUsernameAndPassword];
 		[productIdList loadProductIdListFromMainBundle];
+		if ([productIdList count] > 0) {
+			[productIdList saveProductIdList];
+		}
 	}
 	
 	//Setup for InAppPurchase.
