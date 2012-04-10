@@ -41,6 +41,8 @@
 	if ([self isFirstLaunchUp] == YES) {
 		[self copyPdfFromResourceToFile];
 		[self copyOtherfileFromResourceToFile];
+		[self setDefaultUsernameAndPassword];
+		[productIdList loadProductIdListFromMainBundle];
 	}
 	
 	//Setup for InAppPurchase.
@@ -362,6 +364,13 @@
 		NSLog(@"resourceName=%@, toFilenameFull=%@", resourceName, toFilenameFull);
 		[FileUtility res2file:resourceName fileNameFull:toFilenameFull];
 	}
+}
+
+- (void)setDefaultUsernameAndPassword
+{
+	ConfigViewController* cfgvc = [[ConfigViewController alloc] initWithNibName:@"ConfigView" bundle:[NSBundle mainBundle]];
+	[cfgvc saveUsernameAndPasswordToUserDefault:USERNAME_DEFAULT withPassword:PASSWORD_DEFAULT];
+	[cfgvc release];
 }
 
 

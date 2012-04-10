@@ -68,6 +68,7 @@
 - (BOOL)isFirstLaunchUp;
 - (void)copyPdfFromResourceToFile;
 - (void)copyOtherfileFromResourceToFile;
+- (void)setDefaultUsernameAndPassword;
 //
 - (NSString*)getThumbnailFilenameFull:(int)pageNum;
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum;
