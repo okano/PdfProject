@@ -69,6 +69,9 @@
 	[appDelegate.paymentConductor getProductInfomation:cid];
 	*/
 	NSString* pid = [appDelegate.productIdList getProductIdentifier:cid];
+	if ((pid == nil) || ([pid compare:InvalidProductId] == NSOrderedSame)) {
+		NSLog(@"Invalid Product Id. cid=%d, pid=%@", cid, pid);
+	}
 	appDelegate.paymentConductor.parentVC = self;
 	[appDelegate.paymentConductor getProductInfomation:pid];
 	//priceLabel.text = @"(Now Loading...)";

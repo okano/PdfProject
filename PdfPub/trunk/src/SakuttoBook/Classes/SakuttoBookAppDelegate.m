@@ -37,6 +37,13 @@
 	//Setup Content List.
 	contentListDS = [[ContentListDS alloc] init];
 	
+	//Setup Content List on Server.
+	serverContentListDS = nil;
+	
+	//Setup productIdList.
+	productIdList = [[InAppPurchaseUtility alloc] init];
+	contentListDS.productIdListPointer = productIdList;
+	
 	//Copy PDF file in MainBundle resource to local file.
 	if ([self isFirstLaunchUp] == YES) {
 		[self copyPdfFromResourceToFile];
