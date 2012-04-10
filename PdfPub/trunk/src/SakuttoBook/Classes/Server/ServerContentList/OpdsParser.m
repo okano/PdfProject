@@ -162,9 +162,9 @@
 	NSDictionary* dict = [[ConfigViewController alloc] loadUsernameAndPasswordFromUserDefault];
 	NSString* username = [dict valueForKey:USERNAME];
 	NSString* password = [dict valueForKey:PASSWORD];
-	NSLog(@"username=%@", username);
-	NSLog(@"password=%@", password);
-	NSLog(@"host=%@", [elementUrl host]);
+	//NSLog(@"username=%@", username);
+	//NSLog(@"password=%@", password);
+	//NSLog(@"host=%@", [elementUrl host]);
 	if (username == nil || password == nil){
 		NSLog(@"username or password is nil.");
 		UIAlertView *alert = [[[UIAlertView alloc]
