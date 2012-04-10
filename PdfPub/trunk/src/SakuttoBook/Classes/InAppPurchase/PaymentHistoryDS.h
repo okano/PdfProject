@@ -18,9 +18,12 @@
     NSMutableArray* paymentHistory;
 	//
 	id productsRequestDelegate;
+	//
+	InAppPurchaseUtility* productIdListPointer;
 }
 @property (nonatomic, retain) NSMutableArray* paymentHistory;
 @property (nonatomic, retain) id productsRequestDelegate;
+@property (nonatomic, retain) InAppPurchaseUtility* productIdListPointer;
 
 //Save/Load with UserDefault.
 - (void)savePaymentHistory;
@@ -37,6 +40,7 @@
 
 //Misc.
 - (NSUInteger)count;
+- (NSString*)description;
 - (NSString*)descriptionAtIndex:(NSUInteger)index;
 @end
 

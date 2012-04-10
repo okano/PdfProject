@@ -44,12 +44,16 @@
 									 0.0f,
 									 self.view.frame.size.width,
 									 toolBarHeight);
-	UIToolbar* toolbar = [[UIToolbar alloc] initWithFrame:toolBarFrame];
+	toolbar = [[UIToolbar alloc] initWithFrame:toolBarFrame];
+	UIBarButtonItem *serverContentButton = [[UIBarButtonItem alloc] initWithTitle:@"Store"
+																			style:UIBarButtonItemStyleBordered
+																		   target:self
+																		   action:@selector(showServerContentListView)];
 	UIBarButtonItem *paymentHistoryButton = [[UIBarButtonItem alloc] initWithTitle:@"購入履歴"
 																	   style:UIBarButtonItemStyleBordered
 																	  target:self
 																	  action:@selector(showPaymentHistoryList)];
-	NSArray *items = [NSArray arrayWithObjects:paymentHistoryButton, nil];
+	NSArray *items = [NSArray arrayWithObjects:serverContentButton, paymentHistoryButton, nil];
 	[toolbar setItems:items];
 	[self.view addSubview:toolbar];
 	
@@ -113,6 +117,12 @@
 	[appDelegate hideContentListView];
 	[appDelegate showContentDetailView:cid];
 }
+- (void)showServerContentListView
+{
+	//LOG_CURRENT_METHOD;
+	[appDelegate hideContentListView];
+	[appDelegate showServerContentListView];
+}
 - (IBAction)showPaymentHistoryList
 {
 	//LOG_CURRENT_METHOD;
@@ -147,7 +157,8 @@
 	}
     
 	ContentId targetCid = [appDelegate.contentListDS contentIdAtIndex:indexPath.row];
-	NSString* targetPid = [appDelegate.contentListDS productIdFromContentId:targetCid];
+	//NSString* targetPid = [appDelegate.contentListDS productIdFromContentId:targetCid];
+	NSString* targetPid = [appDelegate.productIdList getProductIdentifier:targetCid];
 	if (targetPid == InvalidProductId) {
 		NSLog(@"Invalid productId. cid=%d", targetCid);
 		return nil;
@@ -158,7 +169,8 @@
 	cell.titleLabel.text = [appDelegate.contentListDS titleByContentId:targetCid];
 	cell.authorLabel.text = [appDelegate.contentListDS authorByContentId:targetCid];
 	//Check payment status.
-	if (([InAppPurchaseUtility isFreeContent:targetPid] == TRUE)
+//	if (([InAppPurchaseUtility isFreeContent:targetPid] == TRUE)
+	if (([appDelegate.productIdList isFreeContent:targetPid] == TRUE)
 		||
 		([appDelegate.paymentHistoryDS isEnabledContent:targetCid] == TRUE))
 	{
@@ -229,12 +241,14 @@
 
 	//Check payment status.
 	ContentId targetCid = [appDelegate.contentListDS contentIdAtIndex:indexPath.row];
-	NSString* targetPid = [appDelegate.contentListDS productIdFromContentId:targetCid];
+	//NSString* targetPid = [appDelegate.contentListDS productIdFromContentId:targetCid];
+	NSString* targetPid = [appDelegate.productIdList getProductIdentifier:targetCid];
 	//LOG_CURRENT_METHOD;
 	//NSLog(@"indexPath.row=%d, targetCid=%d, targetPid=%@", indexPath.row, targetCid, targetPid);
 	
 	BOOL isPayedContent = NO;
-	if ([InAppPurchaseUtility isFreeContent:targetPid] == TRUE) {
+	//if ([InAppPurchaseUtility isFreeContent:targetPid] == TRUE) {
+	if ([appDelegate.productIdList isFreeContent:targetPid] == TRUE) {
 		isPayedContent = YES;
 		
 		//Record free content payment record only first time read.

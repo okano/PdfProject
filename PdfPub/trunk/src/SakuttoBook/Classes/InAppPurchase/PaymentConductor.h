@@ -9,21 +9,25 @@
 #import <Foundation/Foundation.h>
 #import <StoreKit/StoreKit.h>
 #import "Utility.h"
+#import "ProtocolDefine.h"
 #import "InAppPurchaseDefine.h"
 #import "InAppPurchaseUtility.h"
 #import "PaymentHistoryDS.h"
 
 @interface PaymentConductor : NSObject
 <SKProductsRequestDelegate,SKPaymentTransactionObserver> {
-	id productsRequestDelegate;
+	UIViewController <VCWithInAppPurchaseProtocol> * parentVC;
 	PaymentHistoryDS* paymentHistoryDS;
 }
-@property (nonatomic, retain) id productsRequestDelegate;
+@property (nonatomic, retain) UIViewController* parentVC;
 @property (nonatomic, retain) PaymentHistoryDS* paymentHistoryDS;
 
 
 //Get product infomation from Store.
-- (void)getProductInfomation:(ContentId)cid;
+//- (void)getProductInfomation:(ContentId)cid;
+- (void)getProductInfomation:(NSString*)productId;
+
+- (void)buyContent:(NSString*)productId;
 
 //call from SKPaymentTransactionObserver related methods.
 - (void)completeTransaction:(SKPaymentTransaction*)transaction;

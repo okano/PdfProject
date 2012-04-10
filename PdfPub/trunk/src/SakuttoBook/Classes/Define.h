@@ -69,6 +69,10 @@
 #define THUMBNAIL_FILE_PREFIX		@"Thumbnail_p"
 #define THUMBNAIL_FILE_EXTENSION	@"png"
 
+// for Cover Image.
+#define COVER_FILE_PREFIX			@""	/* no prefix */
+#define COVER_FILE_EXTENSION		@"jpg"
+
 // for Link Define.
 #define LINK_DICT_KEY_URL	@"Url"
 #define LINK_DICT_KEY_RECT	@"Rect"
@@ -123,6 +127,21 @@
 // for Information view.
 #define DEFAULT_BOOK_SUPPORT_URL_PREFIX	@"http://www.google.co.jp/search?q="
 #define PROGRAM_SUPPORT_URL			@"http://www.incunabula.co.jp/book/Sakutto/"
+
+// for last assigned ContentId.
+#define LAST_CONTENT_ID		@"Assigned_Last_ContentId"
+#define FIRST_CONTENT_ID	1	/* 1-start */
+
+#define METADATA_PLIST_FILENAME	@"ContentMetadata.plist"
+
+//for const URL for OPDS.
+#define URL_OPDS			@"UrlBaseWithOpds"
+
+//
+#define USERNAME			@"UserName"
+#define PASSWORD			@"PassWord"
+#define USERNAME_DEFAULT	@"guest"
+#define PASSWORD_DEFAULT	@"guest"
 
 // license key.
 #define LICENSE_KEY @"99840053-0000-0000-0008-000000000000"

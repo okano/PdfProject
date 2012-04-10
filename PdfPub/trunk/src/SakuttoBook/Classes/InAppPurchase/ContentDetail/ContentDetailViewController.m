@@ -64,8 +64,13 @@
 	
 	
 	//Price.
+	/*
 	appDelegate.paymentConductor.productsRequestDelegate = self;
 	[appDelegate.paymentConductor getProductInfomation:cid];
+	*/
+	NSString* pid = [appDelegate.productIdList getProductIdentifier:cid];
+	appDelegate.paymentConductor.parentVC = self;
+	[appDelegate.paymentConductor getProductInfomation:pid];
 	//priceLabel.text = @"(Now Loading...)";
 	
 	//BuyButton
@@ -126,7 +131,8 @@
 	LOG_CURRENT_METHOD;
 	//
 	NSString* productID = transaction.payment.productIdentifier;
-	ContentId cid = [InAppPurchaseUtility getContentIdentifier:productID];
+	//ContentId cid = [InAppPurchaseUtility getContentIdentifier:productID];
+	ContentId cid = [appDelegate.productIdList getContentIdentifier:productID];
 	NSLog(@"pid=%@, cid=%d", productID, cid);
 	[appDelegate hideContentDetailView];
 	[appDelegate showContentPlayerView:cid];

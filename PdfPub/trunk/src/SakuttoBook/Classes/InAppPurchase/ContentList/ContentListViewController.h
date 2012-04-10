@@ -18,11 +18,13 @@
 
 @interface ContentListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
 	UITableView* myTableView;
+	UIToolbar* toolbar;
 	SakuttoBookAppDelegate* appDelegate;
 }
 
 - (void)showContentPlayer:(ContentId)cid;
 - (void)showContentDetailView:(ContentId)cid;
+- (void)showServerContentListView;
 - (IBAction)showPaymentHistoryList;
 
 //Accessor for table

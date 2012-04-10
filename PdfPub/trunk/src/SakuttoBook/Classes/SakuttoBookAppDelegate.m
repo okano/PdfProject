@@ -20,7 +20,9 @@
 //
 @synthesize paymentConductor;
 @synthesize contentListDS;
+@synthesize serverContentListDS;
 @synthesize paymentHistoryDS;
+@synthesize productIdList;
 
 #pragma mark -
 #pragma mark Application lifecycle
@@ -457,7 +459,6 @@
 
 #pragma mark - InAppPurchase
 @implementation SakuttoBookAppDelegate (InAppPurchase)
-#pragma mark -
 - (void)showContentListView {
 	[self.viewController showContentListView];
 }
@@ -475,5 +476,25 @@
 }
 - (void)hideContentDetailView {
 	[self.viewController hideContentDetailView];
+}
+@end
+
+
+#pragma mark - ServerContent
+@implementation SakuttoBookAppDelegate (ServerContent)
+- (void)showServerContentListView{
+	[self.viewController showServerContentListView];
+}
+- (void)hideServerContentListView{
+	[self.viewController hideServerContentListView];
+}
+- (void)showServerContentDetailView:(NSString*)uuid{
+	[self.viewController showServerContentDetailView:uuid];
+}
+- (void)hideServerContentDetailView{
+	[self.viewController hideServerContentListView];
+}
+- (void)showDownloadView:(NSString*)productId{
+	[self.viewController showDownloadView:productId];
 }
 @end

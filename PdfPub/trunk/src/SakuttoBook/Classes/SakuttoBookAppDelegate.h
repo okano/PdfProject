@@ -11,8 +11,12 @@
 #import "InAppPurchaseDefine.h"
 #import "PaymentConductor.h"
 #import "ContentListDS.h"
+#import "ServerContentListDS.h"
 #import "PaymentHistoryDS.h"
+#import "FileUtility.h"
 #import "ContentFileUtility.h"
+#import "ConfigViewController.h"
+#import "InAppPurchaseUtility.h"
 
 @class SakuttoBookViewController;
 
@@ -32,7 +36,11 @@
 	
 	// InAppPurchase data.
 	ContentListDS* contentListDS;
+	ServerContentListDS* serverContentListDS;
 	PaymentHistoryDS* paymentHistoryDS;
+	
+	// ProductIdList
+	InAppPurchaseUtility* productIdList;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -46,7 +54,10 @@
 @property (nonatomic, retain) PaymentConductor* paymentConductor;
 // InAppPurchase data.
 @property (nonatomic, retain) ContentListDS* contentListDS;
+@property (nonatomic, retain) ServerContentListDS* serverContentListDS;
 @property (nonatomic, retain) PaymentHistoryDS* paymentHistoryDS;
+// ProductIdList
+@property (nonatomic, retain) InAppPurchaseUtility* productIdList;
 
 
 /**
@@ -92,4 +103,12 @@
 - (void)hideContentPlayerView;
 - (void)showContentDetailView:(ContentId)cid;
 - (void)hideContentDetailView;
+@end
+
+@interface SakuttoBookAppDelegate (ServerContent)
+- (void)showServerContentListView;
+- (void)hideServerContentListView;
+- (void)showServerContentDetailView:(NSString*)uuid;
+- (void)hideServerContentDetailView;
+- (void)showDownloadView:(NSString*)productId;
 @end

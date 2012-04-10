@@ -12,6 +12,7 @@
 @implementation PaymentHistoryDS
 @synthesize paymentHistory;
 @synthesize productsRequestDelegate;
+@synthesize productIdListPointer;
 
 #pragma mark - initialize.
 - (id)init
@@ -147,10 +148,10 @@
 - (BOOL)isEnabledContent:(ContentId)cid
 {
 	//Check if Free Content.
-	NSString* pid = [InAppPurchaseUtility getProductIdentifier:cid];
+	NSString* pid = [productIdListPointer getProductIdentifier:cid];
 	//LOG_CURRENT_METHOD;
 	//NSLog(@"cid=%d, pid=%@", cid, pid);
-	if ([InAppPurchaseUtility isFreeContent:pid] == TRUE)
+	if ([productIdListPointer isFreeContent:pid] == TRUE)
 	{
 		return TRUE;
 	}
@@ -164,6 +165,7 @@
 	}
 	return FALSE;
 }
+
 - (void)buyContent:(NSString*)productId
 {
 	LOG_CURRENT_METHOD;
@@ -172,8 +174,13 @@
 	if (! [SKPaymentQueue canMakePayments]) {
 		NSLog(@"cannot make payments");
 		
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"cannot make payments."
-							  delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+		UIAlertView *alert = [[[UIAlertView alloc]
+							   initWithTitle:nil
+							   message:@"cannot make payments."
+							   delegate:nil
+							   cancelButtonTitle:nil
+							   otherButtonTitles:@"OK", nil]
+							  autorelease];
 		[alert show];
 		return;
 	}
@@ -182,10 +189,11 @@
 	SKPayment* payment = [SKPayment paymentWithProductIdentifier:productId];
 	[[SKPaymentQueue defaultQueue] addPayment:payment];
 }
+
 - (void)enableContent:(ContentId)cid
 {
 	//LOG_CURRENT_METHOD;
-	NSString* pid = [InAppPurchaseUtility getProductIdentifier:cid];
+	NSString* pid = [productIdListPointer getProductIdentifier:cid];
 
 	NSMutableDictionary* tmpDict = [[NSMutableDictionary alloc] init];
 	[tmpDict setValue:pid forKey:PURCHASE_PRODUCT_ID];
@@ -193,6 +201,7 @@
 	[tmpDict setValue:[NSDate dateWithTimeIntervalSinceNow:0.0f] forKey:PURCHASE_DAYTIME];
 	//NSLog(@"enable content. cid=%d, pid=%@, dict=%@", cid, pid, [tmpDict description]);
 	[paymentHistory addObject:tmpDict];
+	//NSLog(@"paymentHistory=%@", [paymentHistory description]);
 	//
 	[self savePaymentHistory];
 	;
@@ -206,7 +215,7 @@
 - (void)enableContentWithProductId:(NSString*)productId WithDict:(NSDictionary*)dict
 {
 	//LOG_CURRENT_METHOD;
-	ContentId cid = [InAppPurchaseUtility getContentIdentifier:productId];
+	ContentId cid = [productIdListPointer getContentIdentifier:productId];
 	
 	NSMutableDictionary* tmpDict = [[NSMutableDictionary alloc] initWithDictionary:dict];
 	[tmpDict setValue:productId forKey:PURCHASE_PRODUCT_ID];
@@ -232,7 +241,7 @@
 	}
 	
 	//Record it.
-	ContentId cid = [InAppPurchaseUtility	getContentIdentifier:productId];
+	ContentId cid = [productIdListPointer getContentIdentifier:productId];
 	NSMutableDictionary* tmpDict = [[NSMutableDictionary alloc] init];
 	[tmpDict setValue:productId forKey:PURCHASE_PRODUCT_ID];
 	[tmpDict setValue:[NSNumber numberWithInt:cid] forKey:PURCHASE_CONTENT_ID];
@@ -248,6 +257,15 @@
 - (NSUInteger)count
 {
 	return [paymentHistory count];
+}
+- (NSString*)description
+{
+	int maxCount = [paymentHistory count];
+	NSMutableString* resultStr = [[NSMutableString alloc] init];
+	for (int i = 0; i < maxCount; i = i + 1) {
+		[resultStr appendString:[self descriptionAtIndex:i]];
+	}
+	return resultStr;
 }
 - (NSString*)descriptionAtIndex:(NSUInteger)index
 {

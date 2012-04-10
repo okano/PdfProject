@@ -13,6 +13,8 @@
 @synthesize contentPlayerViewController;
 @synthesize contentListVC;
 @synthesize contentDetailVC;
+@synthesize serverContentListVC;
+@synthesize serverContentDetailVC;
 
 /*
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -144,4 +146,35 @@
 		[contentDetailVC.view removeFromSuperview];
 	}
 }
+@end
+
+#pragma mark - ServerContent
+@implementation SakuttoBookViewController (ServerContent)
+#pragma mark show/hide view.
+- (void)showServerContentListView{
+	//LOG_CURRENT_METHOD;
+	if (serverContentListVC == nil) {
+		serverContentListVC = [[ServerContentListVC alloc] init];
+		serverContentListVC.view.frame = self.view.frame;
+	}
+	[self.view addSubview:serverContentListVC.view];
+	[serverContentListVC reloadData];
+}
+- (void)hideServerContentListView{
+	//LOG_CURRENT_METHOD;
+	if (serverContentListVC != nil) {
+		[serverContentListVC.view removeFromSuperview]; 
+	}
+}
+- (void)showServerContentDetailView:(NSString*)uuid{
+	//LOG_CURRENT_METHOD;
+	if (serverContentDetailVC == nil) {
+		serverContentDetailVC = [[ServerContentDetailVC alloc] initWithNibName:@"ServerContentDetailView" bundle:[NSBundle mainBundle]];
+	}
+	[self.view addSubview:serverContentDetailVC.view];
+	[serverContentDetailVC setLabelsWithUuid:uuid];
+}
+
+- (void)hideServerContentDetailView{LOG_CURRENT_METHOD;}
+- (void)showDownloadView:(NSString*)productId{LOG_CURRENT_METHOD;}
 @end
