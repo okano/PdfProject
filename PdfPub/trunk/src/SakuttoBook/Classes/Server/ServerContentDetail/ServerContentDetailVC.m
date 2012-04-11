@@ -50,6 +50,12 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	[self enableReDownloadButton];	//for cancel overwrite confirm.
+	
+	//For debug.
+	[self hideDownloadWithoutPurchase];
+#if defined (DEBUG_FREE_PURCHASE) && DEBUG_FREE_PURCHASE == 1
+	[self showDownloadWithoutPurchase];
+#endif
 }
 
 - (void)setLabelsWithUuid:(NSString *)uuid
@@ -356,6 +362,21 @@
 	[downloaderVC doDownload];
 }
 
+#pragma mark - For Debug.
+- (IBAction)downloadWithoutPurchase:(id)sender
+{
+#if defined (DEBUG_FREE_PURCHASE) && DEBUG_FREE_PURCHASE == 1
+	[self downloadContent:sender];
+#endif
+}
+- (void)showDownloadWithoutPurchase
+{
+	downloadWithoutPurchaseButton.hidden = NO;
+}
+- (void)hideDownloadWithoutPurchase
+{
+	downloadWithoutPurchaseButton.hidden = YES;
+}
 
 #pragma mark - View lifecycle
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

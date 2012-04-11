@@ -30,6 +30,8 @@
 	//
 	IBOutlet UIButton* buyButton;
 	IBOutlet UIButton* reDownloadButton;
+	//For debug.
+	IBOutlet UIButton* downloadWithoutPurchaseButton;
 }
 @property (nonatomic, retain) NSString* targetUuid;
 @property (nonatomic, retain) NSURL* targetUrl;
@@ -56,6 +58,12 @@
 //Buy and Download.
 - (IBAction)buyContent:(id)sender;
 - (IBAction)downloadContent:(id)sender;
+
+//For debug.
+- (IBAction)downloadWithoutPurchase:(id)sender;
+- (void)showDownloadWithoutPurchase;
+- (void)hideDownloadWithoutPurchase;
+#define DEBUG_FREE_PURCHASE 0	/* 1:download without purchase. */
 
 //called from SKProductsRequestDelegate related methods.
 //- (void)productsRequest:(SKProductsRequest *)request
