@@ -53,10 +53,12 @@
 																			target:self
 																			action:@selector(showPaymentHistoryList)];
 	UIBarButtonItem *spacer1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+	/*
 	UIBarButtonItem *configButton = [[UIBarButtonItem alloc] initWithTitle:@"Config"
 																	 style:UIBarButtonItemStyleBordered
 																	target:self
 																	action:@selector(showConfigView)];
+	 */
 	UIBarButtonItem *spacer2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
 	spacer2.width = 40.0f;
 	UIBarButtonItem *reloadButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
@@ -65,12 +67,12 @@
 	activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
 	UIBarButtonItem *activityItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
 
-	NSArray *items = [NSArray arrayWithObjects:localContentButton, paymentHistoryButton, spacer1, activityItem,  configButton, spacer2, reloadButton, nil];
+	NSArray *items = [NSArray arrayWithObjects:localContentButton, paymentHistoryButton, spacer1, activityItem, spacer2, reloadButton, nil];
 	[toolbar setItems:items];
 	[localContentButton release]; localContentButton = nil;
 	[paymentHistoryButton release]; paymentHistoryButton = nil;
 	[spacer1 release]; spacer1 = nil;
-	[configButton release]; configButton = nil;
+	/* [configButton release]; configButton = nil; */
 	[spacer2 release]; spacer2 = nil;
 	[reloadButton release]; reloadButton = nil;
 	[activityItem release]; activityItem = nil;
