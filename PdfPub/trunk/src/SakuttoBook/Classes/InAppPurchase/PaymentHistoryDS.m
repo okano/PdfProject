@@ -242,11 +242,23 @@
 	
 	//Record it.
 	ContentId cid = [productIdListPointer getContentIdentifier:productId];
+	[self recordHistoryOnceWithContentId:cid
+							   ProductId:productId];
+}
+
+- (void)recordHistoryOnceWithContentId:(ContentId)contentId ProductId:(NSString*)productId
+{
+	[self recordHistoryOnceWithContentId:contentId
+							   ProductId:productId
+									date:[NSDate dateWithTimeIntervalSinceNow:0.0f]];
+}
+
+- (void)recordHistoryOnceWithContentId:(ContentId)contentId ProductId:(NSString*)productId date:(NSDate*)date
+{
 	NSMutableDictionary* tmpDict = [[NSMutableDictionary alloc] init];
 	[tmpDict setValue:productId forKey:PURCHASE_PRODUCT_ID];
-	[tmpDict setValue:[NSNumber numberWithInt:cid] forKey:PURCHASE_CONTENT_ID];
+	[tmpDict setValue:[NSNumber numberWithInt:contentId] forKey:PURCHASE_CONTENT_ID];
 	[tmpDict setValue:[NSDate dateWithTimeIntervalSinceNow:0.0f] forKey:PURCHASE_DAYTIME];
-	//NSLog(@"enable content. cid=%d, pid=%@, dict=%@", cid, productId, [tmpDict description]);
 	[paymentHistory addObject:tmpDict];
 	//
 	[self savePaymentHistory];

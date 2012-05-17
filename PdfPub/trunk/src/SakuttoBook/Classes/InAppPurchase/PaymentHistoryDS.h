@@ -35,6 +35,8 @@
 - (void)enableContentWithProductId:(NSString*)productId WithDict:(NSDictionary*)dict;
 //- (void)disableContent:(ContentId)cid;
 - (void)recordHistoryOnceWithProductId:(NSString*)productId;
+- (void)recordHistoryOnceWithContentId:(ContentId)contentId ProductId:(NSString*)productId;
+- (void)recordHistoryOnceWithContentId:(ContentId)contentId ProductId:(NSString*)productId date:(NSDate*)date;
 
 - (void)buyContent:(NSString*)productId;
 
