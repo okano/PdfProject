@@ -272,10 +272,16 @@
 		if ([self isMultiContents] == TRUE) {
 			//Multi Contents
 			if (cid <= [lines count]) {
+				//
+				//(1)内蔵のpdfDefine.csv内にあれば、それを使用する。
+				//   行番号＝コンテンツID
 				pdfFilename = [lines objectAtIndex:(cid - 1)];
 			} else {
-				NSLog(@"illigal ContentId. maxnumber=%d, passedContentId=%d. open pdf at index 0.", [lines count], cid);
-				pdfFilename = [lines objectAtIndex:0];
+				//
+				//(2)なければ、ダウンロードしたcsvファイル内のpdfDefine.csvを使用する。
+				//   フォルダ名＝コンテンツID。
+				//NSLog(@"ContentId not found in NAIZOU pdfDefine.csv. maxnumber=%d, passedContentId=%d.", [lines count], cid);
+				pdfFilename = [NSString stringWithFormat:@"%d.pdf", cid];
 			}
 		} else {
 			//Single Content.
@@ -294,15 +300,32 @@
 			}
 		}
 	}
-	NSString* pdfFilenameFormatted = [self formatStringWithAlphaNumeric:pdfFilename];
-	pdfURL = [[NSBundle mainBundle] URLForResource:pdfFilenameFormatted withExtension:nil];
-	[pdfURL retain];	//Owned by this class.
+	//NSString* pdfFilenameFormatted = [self formatStringWithAlphaNumeric:pdfFilename];
+	
+	
+	
+	//Open PDF file from (1)ContentBody Directory (2)mainBundle
+	NSString* pdfFilenameFull = [ContentFileUtility getContentBodyFilenamePdf:[NSString stringWithFormat:@"%d", cid]];
+	//(1)get from ContentBody Directory.
+	pdfURL = [NSURL fileURLWithPath:pdfFilenameFull];
+	//NSLog(@"pdfFilenameFull=%@",pdfFilenameFull);
+	//NSLog(@"pdfURL=%@", [pdfURL description]);
+	if (!pdfURL)
+	{
+		//(2)get from mainBundle
+		pdfURL = [[NSBundle mainBundle] URLForResource:pdfFilename withExtension:nil];
+	}
+	[pdfURL retain]; //Owned by this class.
+	
 	if (!pdfURL) {
 		NSLog(@"PDF file not exist. filename=%@", pdfFilename);
 		return FALSE;
 	}
 	//NSLog(@"pdfFilename=%@", pdfFilename);
 	//NSLog(@"pdfURL=%@", [pdfURL standardizedURL]);
+	
+	
+	
 	
 	//Open PDF file.
 	CGPDFDocumentRef pdfDocument;
