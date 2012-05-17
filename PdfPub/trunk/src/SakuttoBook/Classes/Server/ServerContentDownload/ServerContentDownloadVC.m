@@ -206,9 +206,8 @@
 
 	
 	//Copy metadata from server to local ContentListDS.
-	NSString* serverUuid = targetUuid;
 	NSLog(@"uuid at server = %@", targetUuid);
-	NSMutableDictionary* metaData2 = [NSMutableDictionary dictionaryWithDictionary:[appDelegate.serverContentListDS getMetadataByUuid:serverUuid]];
+	NSMutableDictionary* metaData2 = [NSMutableDictionary dictionaryWithDictionary:[appDelegate.serverContentListDS getMetadataByUuid:targetUuid]];
 	if (! metaData2) {
 		NSLog(@"cannot get metadata. UUID=%@", targetUuid);
 	}
