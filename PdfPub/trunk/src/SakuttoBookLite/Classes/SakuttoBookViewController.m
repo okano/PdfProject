@@ -133,6 +133,7 @@
 	//Setup WebView.
 	//generate when need.
 	webViewController = nil;
+	urlForWeb = [[NSMutableString alloc] init];
 	
 	//Setup Links.
 	linksInCurrentPage = [[NSMutableArray alloc] init];
