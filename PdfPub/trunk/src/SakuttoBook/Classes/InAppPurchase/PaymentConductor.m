@@ -204,5 +204,9 @@
 	[parentVC purchaseDidFailed:transaction.error];
 }
 
-
+#pragma mark -
+- (void)restoreCompletedTransactions
+{
+	LOG_CURRENT_METHOD;
+}
 @end

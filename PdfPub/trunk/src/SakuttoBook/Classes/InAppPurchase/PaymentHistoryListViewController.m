@@ -34,7 +34,15 @@
 																			 style:UIBarButtonItemStyleBordered
 																			target:self
 																			action:@selector(closeThisView)];
-	NSArray *items = [NSArray arrayWithObjects:paymentHistoryButton, nil];
+	UIBarButtonItem *flexibleSpaceButton = [[UIBarButtonItem alloc]
+						   initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+						   target:nil
+						   action:nil];
+	UIBarButtonItem *restoreButton = [[UIBarButtonItem alloc] initWithTitle:@"Restore"
+																	  style:UIBarButtonItemStyleBordered
+																	 target:self
+																	 action:@selector(restoreCompletedTransactions)];
+	NSArray *items = [NSArray arrayWithObjects:paymentHistoryButton, flexibleSpaceButton, restoreButton, nil];
 	[toolbar setItems:items];
 	[self.view addSubview:toolbar];
 	
@@ -108,6 +116,13 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
+}
+
+#pragma mark - Restore Completed Transactons.
+- (void)restoreCompletedTransactions
+{
+	PaymentConductor* paymentConductor = appDelegate.paymentConductor;
+	[paymentConductor restoreCompletedTransactions];
 }
 
 #pragma mark -
