@@ -30,7 +30,7 @@
 - (void)buyContent:(NSString*)productId;
 
 //Restore completed(purchased) transaction.
-- (void)restoreCompletedTransactions;
+- (void)myRestoreCompletedTransactions;
 
 //call from SKPaymentTransactionObserver related methods.
 - (void)completeTransaction:(SKPaymentTransaction*)transaction;

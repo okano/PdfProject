@@ -41,7 +41,7 @@
 	UIBarButtonItem *restoreButton = [[UIBarButtonItem alloc] initWithTitle:@"Restore"
 																	  style:UIBarButtonItemStyleBordered
 																	 target:self
-																	 action:@selector(restoreCompletedTransactions)];
+																	 action:@selector(showAlertForRestoreTransaction:)];
 	NSArray *items = [NSArray arrayWithObjects:paymentHistoryButton, flexibleSpaceButton, restoreButton, nil];
 	[toolbar setItems:items];
 	[self.view addSubview:toolbar];
@@ -119,11 +119,159 @@
 }
 
 #pragma mark - Restore Completed Transactons.
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	//LOG_CURRENT_METHOD;
+	//DebugLog(@"view tag=%d, index=%d", alertView.tag, buttonIndex);
+	if (alertView.tag == ALERTVIEW_TAG_RESTORE_TRANSACTION) {
+		//Restore transaction.
+		if (buttonIndex == 1) {
+			//Restore Transaction.
+			[self restoreTransaction];
+		}
+	} else if (alertView.tag == ALERTVIEW_TAG_RESTORE_TRANSACTION) {
+		//Do nothing.
+	}
+}
+
 - (void)restoreCompletedTransactions
 {
 	PaymentConductor* paymentConductor = appDelegate.paymentConductor;
-	[paymentConductor restoreCompletedTransactions];
+	[paymentConductor myRestoreCompletedTransactions];
 }
+
+
+
+
+
+#pragma mark - Request restore transaction. (async)
+- (IBAction)showAlertForRestoreTransaction:(id)sender
+{
+	LOG_CURRENT_METHOD;
+	NSString* message = [NSString stringWithFormat:@"他の端末の購入情報をこの端末でも使用する場合は、購入情報の復元が必要です。復元しますか？"];
+	UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"購入情報の復元"
+													message:message
+												   delegate:self
+										  cancelButtonTitle:@"Cancel"
+										  otherButtonTitles:@"復元", nil];
+	alert.tag = ALERTVIEW_TAG_RESTORE_TRANSACTION;
+	[alert show];
+}
+- (void)showAlertForDisableRestore
+{
+	UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@""
+													message:@"現在ネットワークに接続されていないため、購入情報を復元できません"
+												   delegate:self
+										  cancelButtonTitle:@"OK"
+										  otherButtonTitles:nil];
+	alert.tag = ALERTVIEW_TAG_RESTORE_TRANSACTION_DISABLE;
+	[alert show];
+}
+
+- (void)restoreTransaction
+{
+	LOG_CURRENT_METHOD;
+	//Check Network Reachability for connect purchase server in Apple.
+	/* [FIXME] */
+	/*
+	if ((status3G == NO) && (statusWifi == NO)) {
+		[self showAlertForDisableRestore];
+		return;
+	}
+	*/
+	
+	PaymentConductor* conductor = appDelegate.paymentConductor;
+	conductor.parentVC = self;
+	[conductor myRestoreCompletedTransactions];
+	
+	//Show ActivityIndicator.
+	//[self showActivityIndicator];
+}
+
+
+- (void)restoreDidSuccess:(SKPaymentTransaction*)transaction
+{
+	NSLog(@"restore success. transaction=%@", [transaction description]);
+	
+	//Pickup original purchase date.
+	NSDate* originalPurchaseDate = [NSDate dateWithTimeIntervalSinceNow:0.0f];
+	if (transaction.originalTransaction != nil) {
+		originalPurchaseDate = transaction.originalTransaction.transactionDate;
+		NSLog(@"originalPurchaseDate=%@", [originalPurchaseDate description]);
+	}
+
+	
+	//Add payment history record.
+	PaymentHistoryDS* paymentHistory = appDelegate.paymentHistoryDS;
+	SKPayment* payment = [[transaction originalTransaction] payment];
+	
+	NSString* originalProductId = [payment productIdentifier];
+	ContentId contentId = [appDelegate.contentListDS contentIdFromProductId:originalProductId];
+						   
+	[paymentHistory recordHistoryOnceWithContentId:contentId ProductId:originalProductId date:originalPurchaseDate];
+}
+- (void)restoreDidFailed:(SKPaymentTransaction*)transaction
+{
+	LOG_CURRENT_METHOD;
+}
+- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
+{
+	LOG_CURRENT_METHOD;
+	for (SKPaymentTransaction* transaction in [queue transactions])
+	{
+		NSLog(@"productIdentifier = %@", [[[transaction originalTransaction] payment] productIdentifier]);
+	}
+	
+	//Show alert.
+	UIAlertView *alert = [[[UIAlertView alloc]
+						   initWithTitle:@""
+						   message:@"購入情報の復元に成功しました。"
+						   delegate:nil
+						   cancelButtonTitle:nil
+						   otherButtonTitles:@"OK", nil]
+						  autorelease];
+	[alert show];
+	
+	//Hide ActivityIndicator.
+	//[self hideActivityIndicator];
+}
+- (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error
+{
+	LOG_CURRENT_METHOD;
+	NSLog(@"restoreCompletedTransactionsFailedWithError. error = %@", [error localizedDescription]);
+	for (SKPaymentTransaction* transaction in [queue transactions])
+	{
+		NSLog(@"productIdentifier = %@", [[[transaction originalTransaction] payment] productIdentifier]);
+	}
+	
+	
+	//Error.
+	NSLog(@"restore failed. error code=%d, error description=%@", error.code, [error description]);
+	
+	if (error.code != SKErrorPaymentCancelled)
+	{
+		//Show alert.
+		UIAlertView *alert = [[[UIAlertView alloc]
+							   initWithTitle:@""
+							   message:[NSString stringWithFormat:@"購入情報の復元に失敗しました。詳細：%@", [error localizedDescription]]
+							   delegate:nil
+							   cancelButtonTitle:nil
+							   otherButtonTitles:@"OK", nil]
+							  autorelease];
+		[alert show];
+	}
+	//Hide ActivityIndicator.
+	//[self hideActivityIndicator];
+}
+
+
+
+
+
+
+
 
 #pragma mark -
 - (void)closeThisView

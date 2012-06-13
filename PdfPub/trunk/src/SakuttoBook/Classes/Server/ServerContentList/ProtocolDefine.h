@@ -35,4 +35,11 @@
 - (void)productRequestDidFailed:(NSString*)invalidProductIdentifier;
 - (void)purchaseDidSuccess:(NSString*)productId;
 - (void)purchaseDidFailed:(NSError*)error;
+//Restore Transaction.
+@optional
+- (void)restoreTransaction;
+- (void)restoreDidSuccess:(SKPaymentTransaction*)transaction;
+- (void)restoreDidFailed:(SKPaymentTransaction*)transaction;
+- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue;
+- (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error;
 @end

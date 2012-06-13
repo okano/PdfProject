@@ -167,12 +167,76 @@
 	NSMutableDictionary* tmpDict = [[NSMutableDictionary alloc] init];
 	[tmpDict setValue:productId forKey:PURCHASE_PRODUCT_ID];
 	[tmpDict setValue:[NSNumber numberWithInt:contentId] forKey:PURCHASE_CONTENT_ID];
-	[tmpDict setValue:[NSDate dateWithTimeIntervalSinceNow:0.0f] forKey:PURCHASE_DAYTIME];
+	//[tmpDict setValue:[NSDate dateWithTimeIntervalSinceNow:0.0f] forKey:PURCHASE_DAYTIME];
+	[tmpDict setValue:[self date2str:date] forKey:PURCHASE_DAYTIME];
 	[paymentHistory addObject:tmpDict];
 	//
 	[self savePaymentHistory];
 }
 
+//Utility method.
+- (NSMutableDictionary*)transcation2StringDict:(SKPaymentTransaction*)transaction
+{
+	NSMutableDictionary* tmpDict = [[NSMutableDictionary alloc] init];
+	//transactionIdentifier
+	[tmpDict setValue:transaction.transactionIdentifier forKey:PURCHASE_TRANSACTION_DESCRIPTION_TRANSACTION_IDENTIFIER];
+	
+	
+	//transactionDate
+	NSString* transactionDateStr = [self date2str:transaction.transactionDate];
+	[tmpDict setValue:transactionDateStr forKey:PURCHASE_TRANSACTION_DESCRIPTION_TRANSACTION_DATE];
+	
+	
+	//transactionState
+	NSString* transactionStateStr;
+	switch (transaction.transactionState) {
+		case SKPaymentTransactionStatePurchasing:
+			transactionStateStr = TRANSACTION_STATE_STRING_PURCHASING;
+			break;
+		case SKPaymentTransactionStatePurchased:
+			transactionStateStr = TRANSACTION_STATE_STRING_PURCHASED;
+			break;
+		case SKPaymentTransactionStateFailed:
+			transactionStateStr = TRANSACTION_STATE_STRING_FAILED;
+			break;
+		case SKPaymentTransactionStateRestored:
+			transactionStateStr = TRANSACTION_STATE_STRING_RESTORED;
+			break;
+			
+		default:
+			break;
+	}
+	[tmpDict setValue:transactionStateStr forKey:PURCHASE_TRANSACTION_DESCRIPTION_TRANSACTION_STATE];
+	
+	
+	//originalTransaction
+	//The contents of this property are undefined EXCEPT when transactionState is set to SKPaymentTransactionStateRestored.
+	NSString* originalTransactionIdentifier;
+	if (transaction.transactionState == SKPaymentTransactionStateRestored) {
+		originalTransactionIdentifier = transaction.originalTransaction.transactionIdentifier;
+	} else {
+		originalTransactionIdentifier = @"";
+	}
+	[tmpDict setValue:originalTransactionIdentifier forKey:PURCHASE_TRANSACTION_DESCRIPTION_ORIGINAL_TRANSACTION_IDENTIFIER];
+	
+	
+	return tmpDict;
+}
+
+- (NSString*)date2str:(NSDate*)targetDate
+{
+	NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+	NSLocale* loc = [[NSLocale alloc] initWithLocaleIdentifier:@"ja_JP"];					//Locale.
+    [formatter setLocale:loc];
+    NSCalendar* cal = [[NSCalendar alloc] initWithCalendarIdentifier: NSJapaneseCalendar];	//Calender.
+	[formatter setCalendar: cal];
+	[formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss z"];	//[formatter setDateFormat:@"(GGyy年)YYYY-MM-dd(EEEE) HH:mm:ss"];
+	NSString* date_converted = [formatter stringFromDate:targetDate];
+	[loc release];
+	[formatter release];
+	
+	return date_converted;
+}
 
 #pragma mark - Misc.
 - (NSUInteger)count

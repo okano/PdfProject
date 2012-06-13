@@ -148,6 +148,7 @@
 			case SKPaymentTransactionStateRestored:
 				NSLog(@"SKPaymentTransactionStateRestored, transactionIdentifier=%@", [transaction transactionIdentifier]);
 				[self restoreTransaction:transaction];
+				[self completeTransaction:transaction];
 				break;
 			case SKPaymentTransactionStatePurchasing:
 				//NSLog(@"SKPaymentTransactionStatePurchasing, transactionIdentifier=%@", [transaction transactionIdentifier]);
@@ -159,11 +160,7 @@
 	};
 }
 
-- (void)paymentQueue:(SKPaymentQueue *)queue removedTransactions:(NSArray *)transactions{;}
 
-//Handling Restored Transactions
-- (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error{;}
-- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue{;}
 
 #pragma mark - handle purchase. (related SKPaymentTransactionObserver methods.)
 - (void)completeTransaction:(SKPaymentTransaction*)transaction
@@ -193,20 +190,62 @@
 	//Throw to parent.
 	[parentVC purchaseDidSuccess:productID];
 }
+#pragma mark - Handling Restored Transactions
+- (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error
+{
+	LOG_CURRENT_METHOD;
+	[parentVC paymentQueue:queue restoreCompletedTransactionsFailedWithError:error];
+}
+- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
+{
+	LOG_CURRENT_METHOD;
+	[parentVC paymentQueueRestoreCompletedTransactionsFinished:queue];
+}
 - (void)restoreTransaction:(SKPaymentTransaction*)transaction
 {
 	LOG_CURRENT_METHOD;
+	
+	//Add payment history.
+	[parentVC restoreDidSuccess:transaction];
 }
+
+
+
+
 - (void)failedTransaction:(SKPaymentTransaction*)transaction {
 	//Delete failed transaction in queue.
 	[[SKPaymentQueue defaultQueue] finishTransaction:transaction];
 	//
 	[parentVC purchaseDidFailed:transaction.error];
 }
-
-#pragma mark -
-- (void)restoreCompletedTransactions
+- (void)paymentQueue:(SKPaymentQueue *)queue removedTransactions:(NSArray *)transactions
 {
 	LOG_CURRENT_METHOD;
 }
+
+#pragma mark -
+- (void)myRestoreCompletedTransactions
+{
+	LOG_CURRENT_METHOD;
+	
+	//Check enable payment.
+	if (! [SKPaymentQueue canMakePayments]) {
+		NSLog(@"cannot restore transaction.");
+		
+		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil
+														 message:@"cannot restore transaction."
+														delegate:nil
+											   cancelButtonTitle:nil
+											   otherButtonTitles:@"OK", nil]
+							  autorelease];
+		[alert show];
+		return;
+	}
+	
+	//Do restore with SKPaymentQueue.
+	[[SKPaymentQueue defaultQueue] addTransactionObserver:self];
+	[[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
+}
+
+
 @end

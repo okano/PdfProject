@@ -18,7 +18,13 @@
 
 #pragma mark - Restore Completed Transactons.
 - (void)restoreCompletedTransactions;
+- (IBAction)showAlertForRestoreTransaction:(id)sender;
+- (void)showAlertForDisableRestore;
+
 #pragma mark -
 - (void)closeThisView;
 
 @end
+
+#define ALERTVIEW_TAG_RESTORE_TRANSACTION                      30
+#define ALERTVIEW_TAG_RESTORE_TRANSACTION_DISABLE      31
