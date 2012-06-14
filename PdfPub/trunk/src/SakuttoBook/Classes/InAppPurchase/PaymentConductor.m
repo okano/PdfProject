@@ -165,6 +165,8 @@
 #pragma mark - handle purchase. (related SKPaymentTransactionObserver methods.)
 - (void)completeTransaction:(SKPaymentTransaction*)transaction
 {
+	LOG_CURRENT_METHOD;
+	
 	//Record Transaction.
 	NSData* receipt = [transaction transactionReceipt];
 	NSMutableDictionary* dict = [NSPropertyListSerialization propertyListWithData:receipt
@@ -178,10 +180,14 @@
 	//NSLog(@"signature=%@", [dict valueForKey:@"signature"]);
 	//NSLog(@"signing-status=%@", [dict valueForKey:@"signing-status"]);
 	
-	//Enable contents.
-	//(Add Download(purchase) history.)
 	NSString* productID = transaction.payment.productIdentifier;
-	[paymentHistoryDS enableContentWithProductId:productID WithDict:dict];
+	
+	//Enable contents.
+	if (transaction.transactionState == SKPaymentTransactionStatePurchased)
+	{
+		//(Add Download(purchase) history.)
+		[paymentHistoryDS enableContentWithProductId:productID WithDict:dict];
+	}
 	
 	//Delete complete transaction in queue.
 	[[SKPaymentQueue defaultQueue] finishTransaction:transaction];

@@ -20,6 +20,7 @@
 - (void)restoreCompletedTransactions;
 - (IBAction)showAlertForRestoreTransaction:(id)sender;
 - (void)showAlertForDisableRestore;
+- (void)purchaseDidSuccess:(NSString*)productId;
 
 #pragma mark -
 - (void)closeThisView;

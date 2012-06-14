@@ -51,7 +51,13 @@
 			return [[tmpDict valueForKey:CONTENT_CID] intValue];
 		}
 	}
-	return InvalidContentId;
+	LOG_CURRENT_METHOD;
+	NSLog(@"no contentId found in ContentListDS. productId=%@", productId);
+	
+	//
+	ContentId targetContentId = [productIdListPointer getContentIdentifier:productId];
+	return targetContentId;
+	//return InvalidContentId;
 }
 - (ContentId)contentIdFromUuid:(NSString*)uuid
 {
@@ -256,6 +262,21 @@
 	return [contentList count];
 }
 
+- (void)mergeProductIdIntoContentList
+{
+	NSMutableDictionary* tmpDict;
+	for (int i = 0; i < [contentList count]; i = i + 1)
+	{
+		tmpDict = [contentList objectAtIndex:i];
+		ContentId cid = [[tmpDict objectForKey:CONTENT_CID] intValue];
+		NSString* pid = [productIdListPointer getProductIdentifier:cid];
+		if (pid != InvalidProductId) {
+			NSMutableDictionary* newRecord = [NSMutableDictionary dictionaryWithDictionary:tmpDict];
+			[newRecord setValue:pid forKey:CONTENT_STORE_PRODUCT_ID];
+			[contentList replaceObjectAtIndex:i withObject:newRecord];
+		}
+	}
+}
 #pragma mark - basic method.
 - (NSString*)description
 {

@@ -31,6 +31,7 @@
 - (void)setupData;
 - (int)loadFromPlist;
 - (int)setupDefaultData;
+- (void)mergeProductIdIntoContentList;
 //
 - (void)saveToPlist;
 - (NSString*)getPlistFilenameFull;

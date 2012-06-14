@@ -37,6 +37,9 @@
 - (void)recordHistoryOnceWithProductId:(NSString*)productId;
 - (void)recordHistoryOnceWithContentId:(ContentId)contentId ProductId:(NSString*)productId;
 - (void)recordHistoryOnceWithContentId:(ContentId)contentId ProductId:(NSString*)productId date:(NSDate*)date;
+- (BOOL)isExistSameRecordWithContentId:(ContentId)contentId ProductId:(NSString*)productId date:(NSDate*)date;
+
+//Utility method.
 - (NSString*)date2str:(NSDate*)targetDate;
 - (NSMutableDictionary*)transcation2StringDict:(SKPaymentTransaction*)transaction;
 

@@ -92,7 +92,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return 97.0;
+	//return 97.0;
+	return 122.0;
 }
 
 #pragma mark -
@@ -193,6 +194,7 @@
 
 - (void)restoreDidSuccess:(SKPaymentTransaction*)transaction
 {
+	LOG_CURRENT_METHOD;
 	NSLog(@"restore success. transaction=%@", [transaction description]);
 	
 	//Pickup original purchase date.
@@ -209,7 +211,8 @@
 	
 	NSString* originalProductId = [payment productIdentifier];
 	ContentId contentId = [appDelegate.contentListDS contentIdFromProductId:originalProductId];
-						   
+	NSLog(@"contentId=%d, originalProductId=%@, originalPurchaseDate=%@", contentId, originalProductId, [originalPurchaseDate description]);
+	
 	[paymentHistory recordHistoryOnceWithContentId:contentId ProductId:originalProductId date:originalPurchaseDate];
 }
 - (void)restoreDidFailed:(SKPaymentTransaction*)transaction
@@ -267,7 +270,14 @@
 }
 
 
-
+- (void)purchaseDidSuccess:(NSString*)productId
+{
+	LOG_CURRENT_METHOD;
+	NSLog(@"purchase success. , productId=%@", productId);
+	
+	//Refresh table data.
+	[myTableView reloadData];
+}
 
 
 

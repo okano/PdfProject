@@ -52,6 +52,8 @@
 		[productIdList loadProductIdListFromMainBundle];
 		if ([productIdList count] > 0) {
 			[productIdList saveProductIdList];
+			//
+			[contentListDS mergeProductIdIntoContentList];
 		}
 	}
 	

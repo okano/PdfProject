@@ -164,15 +164,49 @@
 
 - (void)recordHistoryOnceWithContentId:(ContentId)contentId ProductId:(NSString*)productId date:(NSDate*)date
 {
+	if ([self isExistSameRecordWithContentId:contentId ProductId:productId date:date] == YES) {
+		//Same record exists. do nothing.
+		return;
+	}
+	
 	NSMutableDictionary* tmpDict = [[NSMutableDictionary alloc] init];
 	[tmpDict setValue:productId forKey:PURCHASE_PRODUCT_ID];
 	[tmpDict setValue:[NSNumber numberWithInt:contentId] forKey:PURCHASE_CONTENT_ID];
 	//[tmpDict setValue:[NSDate dateWithTimeIntervalSinceNow:0.0f] forKey:PURCHASE_DAYTIME];
-	[tmpDict setValue:[self date2str:date] forKey:PURCHASE_DAYTIME];
+	[tmpDict setValue:date forKey:PURCHASE_DAYTIME];
 	[paymentHistory addObject:tmpDict];
 	//
 	[self savePaymentHistory];
 }
+
+- (BOOL)isExistSameRecordWithContentId:(ContentId)contentId ProductId:(NSString*)productId date:(NSDate*)date
+{
+	for (NSMutableDictionary *record in paymentHistory)
+	{
+		NSString* candidateProductId = [record objectForKey:PURCHASE_PRODUCT_ID];
+		NSNumber* candidateContentIdNumber = [record objectForKey:PURCHASE_CONTENT_ID];
+		ContentId candidateContentId = [candidateContentIdNumber intValue];
+		NSDate* candidatePurchaseDate = [record objectForKey:PURCHASE_DAYTIME];
+		NSString* candidatePurchaseDateStr = [self date2str:candidatePurchaseDate];
+		NSLog(@"candidateProductId=%@, candidateContentId=%d, candidatePurchaseDate=%@(str=%@)", candidateProductId, candidateContentId, [candidatePurchaseDate description], candidatePurchaseDateStr);
+		//NSLog(@"date class=%@, candidatePurchaseDate class=%@", [date class], [candidatePurchaseDate class]);
+		
+		//if (contentId == candidateContentId) { LOG_CURRENT_LINE; }
+		//if ([productId compare:candidateProductId] == NSOrderedSame) { LOG_CURRENT_LINE; }
+		//if ([date compare:candidatePurchaseDate] == NSOrderedSame) { LOG_CURRENT_LINE; }
+		
+		if (   (contentId == candidateContentId)
+			&& ([productId compare:candidateProductId] == NSOrderedSame)
+			&& ([date compare:candidatePurchaseDate] == NSOrderedSame))
+		{
+			//LOG_CURRENT_LINE;
+			NSLog(@"same record exist in paymentHistory.");
+			return YES;
+		}
+	}
+	return NO;
+}
+
 
 //Utility method.
 - (NSMutableDictionary*)transcation2StringDict:(SKPaymentTransaction*)transaction
@@ -238,6 +272,7 @@
 	return date_converted;
 }
 
+
 #pragma mark - Misc.
 - (NSUInteger)count
 {
@@ -263,7 +298,7 @@
 	//NSLog(@"tmpDict=%@", [tmpDict description]);
 	ContentId cid = [[tmpDict valueForKey:PURCHASE_CONTENT_ID] intValue];
 	NSString* pid = [tmpDict valueForKey:PURCHASE_PRODUCT_ID];
-	
+
 	ContentListDS* tmpList = [[ContentListDS alloc] init];
 	NSString* title = [tmpList titleByContentId:cid];
 	
