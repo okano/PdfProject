@@ -118,10 +118,21 @@
 	NSArray* fileList = [FileUtility fileList:tmpDirectory]; 
 	//LOG_CURRENT_METHOD;
 	//NSLog(@"path=%@, list=%@", tmpDirectory, [fileList description]);
+	
 	if ([fileList count] <= 0) {
+		//No file found in tmp directory.
 		return YES;
 	}
-	return NO;
+	
+	//Ignore stack-logs.* (debug file. ex:"stack-logs.5565.SakuttoBook.index","stack-logs.5565.SakuttoBook.tx2Lke.link")
+	for (NSString* filename in fileList) {
+		if ([filename hasPrefix:@"stack-logs"] == NO) {
+			//Some file found. it will be thumbnail file, downloaded file, ...
+			return NO;
+		}
+	}
+	//only debug file ("stack-logs.*" file) found.
+	return YES;
 }
 - (void)copyPdfFromResourceToFile
 {
