@@ -158,8 +158,15 @@
 			if (! image) {
 				LOG_CURRENT_METHOD;
 				LOG_CURRENT_LINE;
-				NSLog(@"file not found in mainBundle, filename=%@", filename);
-				continue;	//skip to next object.
+				NSLog(@"thumbnail file not found, imageNameFull=%@", imageNameFull);
+				//Open image from mainBundle.
+				image = [UIImage imageNamed:filename];
+				if (! image) {
+					LOG_CURRENT_METHOD;
+					LOG_CURRENT_LINE;
+					NSLog(@"thumbnail file not found in mainBundle, filename=%@", filename);
+					continue;	//skip to next object.
+				}
 			}
 		} else {
 			// Open image with pageNum.
