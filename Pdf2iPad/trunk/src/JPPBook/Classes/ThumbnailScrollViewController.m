@@ -151,7 +151,7 @@
 		NSString* filename = [tmpDict objectForKey:TOC_FILENAME];
 		UIImage* image = nil;
 		if (filename) {
-			// Open image with specified filename in tocDefine.csv.
+			// (1)Open image with specified filename in tocDefine.csv.
 			NSString* imageNameFull = [FileUtility getThumbnailFilenameFullWithFilename:filename WithContentId:currentContentId];
 			NSLog(@"thumbnail imageNameFull=%@", imageNameFull);
 			image = [UIImage imageWithContentsOfFile:imageNameFull];
@@ -159,7 +159,7 @@
 				LOG_CURRENT_METHOD;
 				LOG_CURRENT_LINE;
 				NSLog(@"thumbnail file not found, imageNameFull=%@", imageNameFull);
-				//Open image from mainBundle.
+				// (2)Open image from mainBundle.
 				image = [UIImage imageNamed:filename];
 				if (! image) {
 					LOG_CURRENT_METHOD;
