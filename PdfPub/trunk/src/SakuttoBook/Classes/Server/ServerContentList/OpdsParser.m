@@ -305,6 +305,13 @@
 							   stringByReplacingOccurrencesOfString:@"</name>" withString:@""];
 		//NSLog(@"author=%@", authorStr );
 		
+		//Description
+		NSArray* descElement = [singleElement elementsForName:@"content"];
+		NSString* descStrTagged = [[descElement objectAtIndex:0] description];
+		NSString* descStr = [[descStrTagged stringByReplacingOccurrencesOfString:@"<content type=\"xhtml\"><div xmlns=\"http://www.w3.org/1999/xhtml\"><p>" withString:@""]
+							 stringByReplacingOccurrencesOfString:@"</p></div></content>" withString:@""];
+		//NSLog(@"desc=%@", descStr);
+		
 		//UUID
 		NSArray* uuidElement = [singleElement elementsForName:@"id"];
 		NSString* uuidStrTagged = [[uuidElement objectAtIndex:0] description];
@@ -356,6 +363,7 @@
 		NSMutableDictionary* tmpDict = [[NSMutableDictionary alloc] init];
 		[tmpDict setValue:titleStr			forKey:CONTENT_TITLE];
 		[tmpDict setValue:authorStr			forKey:CONTENT_AUTHOR];
+		[tmpDict setValue:descStr			forKey:CONTENT_DESCRIPTION];
 		[tmpDict setValue:acquisitionLink	forKey:CONTENT_ACQUISITION_LINK];
 		[tmpDict setValue:thumbnailLink		forKey:CONTENT_THUMBNAIL_LINK];
 		[tmpDict setValue:coverLink			forKey:CONTENT_COVER_LINK];
