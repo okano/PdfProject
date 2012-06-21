@@ -166,7 +166,12 @@
 	
 	//Delete bookmark item from UserDefault.
 	NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
-	id obj = [settings valueForKey:BOOKMARK_ARRAY];
+	id obj =  nil;
+	if ([self isMultiContents]) {
+		obj = [settings valueForKey:BOOKMARK_MULTI_CONTENT];
+	} else {
+		obj = [settings valueForKey:BOOKMARK_ARRAY];
+	}
 	if (!obj) {		//no bookmark exists.
 		return;
 	}
@@ -320,6 +325,17 @@
  return (interfaceOrientation == UIInterfaceOrientationPortrait);
  }
  */
+
+
+- (BOOL)isMultiContents
+{
+#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+	return YES;	//True, multi contents.
+#else
+	return NO;	//False, single content.
+#endif	
+}
+
 
 #pragma mark -
 #pragma mark Memory management

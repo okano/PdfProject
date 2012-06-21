@@ -27,4 +27,7 @@
 - (IBAction)switchToEditModeOn:(id)sender;
 - (IBAction)switchToEditModeOff:(id)sender;
 
+
+- (BOOL)isMultiContents;
+
 @end
