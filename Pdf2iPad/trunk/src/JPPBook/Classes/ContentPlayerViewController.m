@@ -2728,7 +2728,8 @@
 - (void)showBookmarkModifyView {
 	[self hideMenuBar];
 	BookmarkModifyViewController* bmvc = [[BookmarkModifyViewController alloc] initWithNibName:@"BookmarkModifyView" bundle:[NSBundle mainBundle]];
-	[self presentModalViewController:bmvc animated:YES];
+	//[self presentModalViewController:bmvc animated:YES];
+	[self.view addSubview:bmvc.view];
 	
 	//Set pageNumber after view loaded.
 	[bmvc setPageNumberForPrint:currentPageNum];
