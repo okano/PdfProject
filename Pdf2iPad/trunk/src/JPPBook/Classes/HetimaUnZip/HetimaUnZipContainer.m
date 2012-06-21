@@ -300,7 +300,8 @@ typedef enum {
             }
         }
         //BOMArchiveHelper対策
-        if(strncmp(filename_inzip, MacOSXMetaDataPrefix, sizeof(MacOSXMetaDataPrefix))==0){
+        //if(strncmp(filename_inzip, MacOSXMetaDataPrefix, sizeof(MacOSXMetaDataPrefix))==0){
+		if(strncmp(filename_inzip, MacOSXMetaDataPrefix, strlen(MacOSXMetaDataPrefix))==0){
             ++isMacOSX;
             shouldAdd=NO;
         }
