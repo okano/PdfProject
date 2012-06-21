@@ -165,6 +165,10 @@
 	}
 	
 	//Delete bookmark item from UserDefault.
+	[appDelegate saveBookmark];
+
+	/*
+	//Delete bookmark item from UserDefault.
 	NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
 	id obj =  nil;
 	if ([self isMultiContents]) {
@@ -180,12 +184,30 @@
 		return;
 	}
 	NSMutableArray* bookmarkInUserDefault = [[NSMutableArray alloc] initWithArray:(NSArray*)obj];
-	if (indexPath.row < [bookmarkInUserDefault count]) {
-		[bookmarkInUserDefault removeObjectAtIndex:indexPath.row];
-		NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
-		[userDefault setObject:bookmarkInUserDefault forKey:BOOKMARK_ARRAY];
-		[userDefault synchronize];
+	if ([self isMultiContents]) {
+		//Multi content Mode.
+		LOG_CURRENT_LINE;
+		if (indexPath.row < [bookmarkInUserDefault count]) {
+			[bookmarkInUserDefault removeObjectAtIndex:indexPath.row];
+			NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
+			[userDefault setObject:bookmarkInUserDefault forKey:BOOKMARK_MULTI_CONTENT];
+			[userDefault synchronize];
+			
+		} else {
+			LOG_CURRENT_LINE;
+		}
+		
+	} else {
+		//Single content Mode.
+		if (indexPath.row < [bookmarkInUserDefault count]) {
+			[bookmarkInUserDefault removeObjectAtIndex:indexPath.row];
+			NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
+			[userDefault setObject:bookmarkInUserDefault forKey:BOOKMARK_ARRAY];
+			[userDefault synchronize];
+			
+		}
 	}
+	*/
 	
 	//Reload TableView.
 	NSArray* rowsForDelete = [NSArray arrayWithObject:indexPath];

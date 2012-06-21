@@ -2715,6 +2715,48 @@
 	[appDelegate.bookmarkDefine addObjectsFromArray:obj];
 	return YES;
 }
+- (void)saveBookmark
+{
+	Pdf2iPadAppDelegate* appDelegate = (Pdf2iPadAppDelegate*)[[UIApplication sharedApplication] delegate];
+	if (appDelegate.bookmarkDefine == nil) {
+		return;
+	}
+	
+	//Store bookmark infomation to UserDefault.
+	NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
+	if ([self isMultiContents] == YES) {
+		//Load from UserDefault.
+		NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
+		NSMutableArray* bookmarkForMultiContent = nil;
+		bookmarkForMultiContent = [[NSMutableArray alloc] initWithArray:[settings valueForKey:BOOKMARK_MULTI_CONTENT]];
+		//NSLog(@"all bookmark before save=%@", [bookmarkForMultiContent description]);
+		
+		//Remove before marge.
+		if (bookmarkForMultiContent != nil) {
+			for (NSDictionary* tmpDict in bookmarkForMultiContent) {
+				ContentId candidateCid = [[tmpDict valueForKey:CONTENT_CID] intValue];
+				if (candidateCid == currentContentId) {
+					[bookmarkForMultiContent removeObject:tmpDict];
+					break;
+				}
+			}
+		} else {
+			bookmarkForMultiContent = [[NSMutableArray alloc] init];
+		}
+		//Merge bookmark infomation with another ContentId.
+		NSMutableDictionary* bookmarkWithContentId = [[NSMutableDictionary alloc] init];
+		[bookmarkWithContentId setValue:[NSNumber numberWithInt:currentContentId ] forKey:CONTENT_CID];
+		[bookmarkWithContentId setObject:appDelegate.bookmarkDefine forKey:BOOKMARK_ARRAY];
+		[bookmarkForMultiContent addObject:bookmarkWithContentId];
+		//NSLog(@"all bookmark after marge=%@", [bookmarkForMultiContent description]);
+		//Add to UserDefault.
+		[userDefault setObject:bookmarkForMultiContent forKey:BOOKMARK_MULTI_CONTENT];
+	} else {
+		[userDefault setObject:appDelegate.bookmarkDefine forKey:BOOKMARK_ARRAY];
+	}
+	[userDefault synchronize];
+}
+
 - (void)showBookmarkView
 {
 	[self.view addSubview:bookmarkViewController.view];
