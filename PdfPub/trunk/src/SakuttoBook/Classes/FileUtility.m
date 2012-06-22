@@ -84,21 +84,43 @@
 	return targetFilenameFull;
 }
 
+
 #pragma mark - CSV file parser.
-//only from MainBundle.
+//only from MainBundle. because no ContentId.(single pdf mode)
+//
+//example: with tocDefine.csv
+//(A)tocDefine-ipad.csv / tocDefine-iphone.csv (add suffix "-iad" or "-iphone")
+//(B)tocDefine.csv (not suffix)
+//
 + (NSArray*)parseDefineCsv:(NSString*)filename
 {
 	//LOG_CURRENT_METHOD;
 	//NSLog(@"filename=%@", filename);
 	
-	//parse csv file.
-	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:filename ofType:@"csv"];
+	NSString* csvFilePath = nil;
+	
+	//Find file (A)
+	NSString* filenameWithDevice = nil;
+	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+		// iPad
+		filenameWithDevice = [filename stringByAppendingString:@"-ipad"];
+	} else {
+		// iPhone
+		filenameWithDevice = filename;
+	}
+	csvFilePath = [[NSBundle mainBundle] pathForResource:filenameWithDevice ofType:@"csv"];
+
+	//Find file (B)
 	if (csvFilePath == nil) {
-		//LOG_CURRENT_METHOD;
-		//NSLog(@"csvfile not found in mainBundle. filename=%@.%@", filename, @"csv");
-		return nil;
+		csvFilePath = [[NSBundle mainBundle] pathForResource:filename ofType:@"csv"];
+		if (csvFilePath == nil) {
+			//LOG_CURRENT_METHOD;
+			//NSLog(@"csvfile not found in mainBundle. filename=%@.%@", filename, @"csv");
+			return nil;
+		}
 	}
 	
+	//Parse csv file.
 	return [self parseDefineCsvWithFullFilename:csvFilePath];
 }
 
@@ -155,33 +177,85 @@
 	
 	
 	//Open CSV file from (1)ContentBody Directory (2)mainBundle
-	NSString* csvFilePath1 = [self getCsvFilenameInFolder:filename contentId:cid];
+	NSString* csvFilePath1 = [self getCsvFilenameInFolder:filename contentId:cid withDeviceSuffix:YES];
 	if ([self existsFile:csvFilePath1] == YES) {
-		//(1)get from ContentBody Directory.
+		//(1)get from ContentBody Directory. (A)with suffix.
 		return [self parseDefineCsvWithFullFilename:csvFilePath1];
 	} else {
-		//NSLog(@"csv file not found in ContentBody directory. file=%@", csvFilePath1);
+		csvFilePath1 = [self getCsvFilenameInFolder:filename contentId:cid withDeviceSuffix:NO];
+		if ([self existsFile:csvFilePath1] == YES) {
+			//(1)get from ContentBody Directory. (B)without suffix.
+			return [self parseDefineCsvWithFullFilename:csvFilePath1];
+		} else {
+			//NSLog(@"csv file not found in ContentBody directory. file=%@", csvFilePath1);
+		}
 	}
 	
 	//(2)get from mainBundle
 	//NSString* filenameWithCid = [NSString stringWithFormat:@"%@_%d", filename, cid];
-	NSString* filenameWithCid = [self getCsvFilenameInMainBundle:filename contentId:cid];
-	return [self parseDefineCsv:filenameWithCid];
+	NSString* filenameWithCid = [self getCsvFilenameInMainBundle:filename contentId:cid withDeviceSuffix:YES];
+	if ([self existsFile:filenameWithCid] == YES) {
+		return [self parseDefineCsv:filenameWithCid];
+	} else {
+		NSString* filenameWithCid = [self getCsvFilenameInMainBundle:filename contentId:cid withDeviceSuffix:NO];
+		return [self parseDefineCsv:filenameWithCid];
+	}
 }
 
 #pragma mark CSV filename utility.
-+ (NSString*)getCsvFilenameInFolder:(NSString*)filename contentId:(ContentId)cid
+//Ex: ~/tmp/contentBody/1/csv/tocDefine.csv        (without suffix.)
+//Ex: ~/tmp/contentBody/1/csv/tocDefine-iphone.csv (with suffix for iphone.)
+//Ex: ~/tmp/contentBody/1/csv/tocDefine-ipad.csv   (with suffix for ipad.)
++ (NSString*)getCsvFilenameInFolder:(NSString*)filename contentId:(ContentId)cid withDeviceSuffix:(BOOL)isAddSuffix;
 {
 	NSString* cidStr = [NSString stringWithFormat:@"%d", cid];
-	NSString* csvFilePath1 = [[[[ContentFileUtility getContentBodyDirectoryWithContentId:cidStr]
-								stringByAppendingPathComponent:@"csv"]
-							   stringByAppendingPathComponent:filename]
-							  stringByAppendingPathExtension:@"csv"];
+	NSString* csvFilePath1 = nil;
+	
+	if (isAddSuffix == TRUE) {
+		//(A)Add suffix "-iad" or "-iphone".
+		//example: with tocDefine.csv
+		//         ->tocDefine-ipad.csv / tocDefine-iphone.csv
+		NSString* suffix = nil;
+		if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+			// iPad
+			suffix = [filename stringByAppendingString:@"-ipad"];
+		} else {
+			// iPhone
+			suffix = [filename stringByAppendingString:@"-iphone"];
+		}
+
+		csvFilePath1 = [[[[ContentFileUtility getContentBodyDirectoryWithContentId:cidStr]
+						  stringByAppendingPathComponent:@"csv"]
+						 stringByAppendingPathComponent:filename]
+						stringByAppendingPathExtension:@"csv"];
+	} else {
+		//(B)Does not add suffix.
+		//example: with tocDefine.csv
+		//         ->tocDefine.csv
+		csvFilePath1 = [[[[ContentFileUtility getContentBodyDirectoryWithContentId:cidStr]
+						  stringByAppendingPathComponent:@"csv"]
+						 stringByAppendingPathComponent:filename]
+						stringByAppendingPathExtension:@"csv"];
+
+	}
 	return csvFilePath1;
 }
-+ (NSString*)getCsvFilenameInMainBundle:(NSString*)filename contentId:(ContentId)cid
++ (NSString*)getCsvFilenameInMainBundle:(NSString*)filename contentId:(ContentId)cid withDeviceSuffix:(BOOL)isAddSuffix;
 {
-	NSString* filenameWithCid = [NSString stringWithFormat:@"%@_%d", filename, cid];
+	NSString* filenameWithCid = nil;
+	if (isAddSuffix == YES) {
+		NSString* suffix = nil;
+		if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+			// iPad
+			suffix = [filename stringByAppendingString:@"-ipad"];
+		} else {
+			// iPhone
+			suffix = [filename stringByAppendingString:@"-iphone"];
+		}
+		filenameWithCid = [NSString stringWithFormat:@"%@%@_%d", filename, suffix, cid];
+	} else {
+		filenameWithCid = [NSString stringWithFormat:@"%@_%d", filename, cid];
+	}
 	return filenameWithCid;
 }
 

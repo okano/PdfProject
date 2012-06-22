@@ -197,9 +197,15 @@
 				 stringByAppendingPathComponent:@"movie"];
 		[FileUtility makeDir:toDir];
 		//Copy CSV file for movie define.
-		resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_MOVIE contentId:cid]
+		resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_MOVIE contentId:cid withDeviceSuffix:YES]
 						stringByAppendingPathExtension:@"csv"];
-		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_MOVIE contentId:cid];
+		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_MOVIE contentId:cid withDeviceSuffix:YES];
+		if ([FileUtility existsFile:resourceName] == NO) {
+			resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_MOVIE contentId:cid withDeviceSuffix:NO]
+							stringByAppendingPathExtension:@"csv"];
+			toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_MOVIE contentId:cid withDeviceSuffix:NO];
+		}
+		
 		[FileUtility res2file:resourceName fileNameFull:toFilenameFull];
 		//Copy movie file.
 		lines = [FileUtility parseDefineCsv:CSVFILE_MOVIE contentId:cid];
@@ -219,9 +225,14 @@
 		 * URL Link define.
 		 */
 		//Copy CSV file for URL Link define.
-		resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_URLLINK contentId:cid]
+		resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_URLLINK contentId:cid withDeviceSuffix:YES]
 						stringByAppendingPathExtension:@"csv"];
-		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_URLLINK contentId:cid];
+		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_URLLINK contentId:cid withDeviceSuffix:YES];
+		if ([FileUtility existsFile:resourceName] == NO) {
+			resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_URLLINK contentId:cid withDeviceSuffix:NO]
+							stringByAppendingPathExtension:@"csv"];
+			toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_URLLINK contentId:cid withDeviceSuffix:NO];
+		}
 		NSLog(@"resourceName=%@, toFilenameFull=%@", resourceName, toFilenameFull);
 		[FileUtility res2file:resourceName fileNameFull:toFilenameFull];
 		
@@ -230,9 +241,14 @@
 		 * Sound define.
 		 */
 		//Copy CSV file.
-		resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_SOUND contentId:cid]
+		resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_SOUND contentId:cid withDeviceSuffix:YES]
 						stringByAppendingPathExtension:@"csv"];
-		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_SOUND contentId:cid];
+		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_SOUND contentId:cid withDeviceSuffix:YES];
+		if ([FileUtility existsFile:resourceName] == NO) {
+			resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_SOUND contentId:cid withDeviceSuffix:NO]
+							stringByAppendingPathExtension:@"csv"];
+			toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_SOUND contentId:cid withDeviceSuffix:NO];
+		}
 		NSLog(@"resourceName=%@, toFilenameFull=%@", resourceName, toFilenameFull);
 		[FileUtility res2file:resourceName fileNameFull:toFilenameFull];
 		
@@ -258,9 +274,14 @@
 		 * PageJumpLink define.
 		 */
 		//Copy CSV file.
-		resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_PAGEJUMPLINK contentId:cid]
+		resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_PAGEJUMPLINK contentId:cid withDeviceSuffix:YES]
 						stringByAppendingPathExtension:@"csv"];
-		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_PAGEJUMPLINK contentId:cid];
+		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_PAGEJUMPLINK contentId:cid withDeviceSuffix:YES];
+		if ([FileUtility existsFile:resourceName] == NO) {
+			resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_PAGEJUMPLINK contentId:cid withDeviceSuffix:NO]
+							stringByAppendingPathExtension:@"csv"];
+			toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_PAGEJUMPLINK contentId:cid withDeviceSuffix:NO];
+		}
 		NSLog(@"resourceName=%@, toFilenameFull=%@", resourceName, toFilenameFull);
 		[FileUtility res2file:resourceName fileNameFull:toFilenameFull];
 		
@@ -269,9 +290,14 @@
 		 * InPageScrollView define.
 		 */
 		//Copy CSV file.
-		resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_INPAGE_SCROLLVIEW contentId:cid]
+		resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_INPAGE_SCROLLVIEW contentId:cid withDeviceSuffix:YES]
 						stringByAppendingPathExtension:@"csv"];
-		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_INPAGE_SCROLLVIEW contentId:cid];
+		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_INPAGE_SCROLLVIEW contentId:cid withDeviceSuffix:YES];
+		if ([FileUtility existsFile:resourceName] == NO) {
+			resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_INPAGE_SCROLLVIEW contentId:cid withDeviceSuffix:NO]
+							stringByAppendingPathExtension:@"csv"];
+			toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_INPAGE_SCROLLVIEW contentId:cid withDeviceSuffix:NO];
+		}
 		NSLog(@"resourceName=%@, toFilenameFull=%@", resourceName, toFilenameFull);
 		[FileUtility res2file:resourceName fileNameFull:toFilenameFull];
 		
@@ -299,9 +325,14 @@
 		 * InPagePdf define.
 		 */
 		//Copy CSV file.
-		resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_INPAGE_PDF contentId:cid]
+		resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_INPAGE_PDF contentId:cid withDeviceSuffix:YES]
 						stringByAppendingPathExtension:@"csv"];
-		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_INPAGE_PDF contentId:cid];
+		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_INPAGE_PDF contentId:cid withDeviceSuffix:YES];
+		if ([FileUtility existsFile:resourceName] == NO) {
+			resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_INPAGE_PDF contentId:cid withDeviceSuffix:NO]
+							stringByAppendingPathExtension:@"csv"];
+			toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_INPAGE_PDF contentId:cid withDeviceSuffix:NO];
+		}
 		NSLog(@"resourceName=%@, toFilenameFull=%@", resourceName, toFilenameFull);
 		[FileUtility res2file:resourceName fileNameFull:toFilenameFull];
 		
@@ -323,9 +354,14 @@
 		 * InPagePng define.
 		 */
 		//Copy CSV file.
-		resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_INPAGE_PNG contentId:cid]
+		resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_INPAGE_PNG contentId:cid withDeviceSuffix:YES]
 						stringByAppendingPathExtension:@"csv"];
-		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_INPAGE_PNG contentId:cid];
+		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_INPAGE_PNG contentId:cid withDeviceSuffix:YES];
+		if ([FileUtility existsFile:resourceName] == NO) {
+			resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_INPAGE_PNG contentId:cid withDeviceSuffix:NO]
+							stringByAppendingPathExtension:@"csv"];
+			toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_INPAGE_PNG contentId:cid withDeviceSuffix:NO];
+		}
 		NSLog(@"resourceName=%@, toFilenameFull=%@", resourceName, toFilenameFull);
 		[FileUtility res2file:resourceName fileNameFull:toFilenameFull];
 		
@@ -347,9 +383,14 @@
 		 * PopoverImage define.
 		 */
 		//Copy CSV file.
-		resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_POPOVER_IMAGE contentId:cid]
+		resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_POPOVER_IMAGE contentId:cid withDeviceSuffix:YES]
 						stringByAppendingPathExtension:@"csv"];
-		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_POPOVER_IMAGE contentId:cid];
+		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_POPOVER_IMAGE contentId:cid withDeviceSuffix:YES];
+		if ([FileUtility existsFile:resourceName] == NO) {
+			resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_POPOVER_IMAGE contentId:cid withDeviceSuffix:NO]
+							stringByAppendingPathExtension:@"csv"];
+			toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_POPOVER_IMAGE contentId:cid withDeviceSuffix:NO];
+		}
 		NSLog(@"resourceName=%@, toFilenameFull=%@", resourceName, toFilenameFull);
 		[FileUtility res2file:resourceName fileNameFull:toFilenameFull];
 		
@@ -370,9 +411,14 @@
 		 * TOC define.
 		 */
 		//Copy CSV file.
-		resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_TOC contentId:cid]
+		resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_TOC contentId:cid withDeviceSuffix:YES]
 						stringByAppendingPathExtension:@"csv"];
-		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_TOC contentId:cid];
+		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_TOC contentId:cid withDeviceSuffix:YES];
+		if ([FileUtility existsFile:resourceName] == NO) {
+			resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_TOC contentId:cid withDeviceSuffix:NO]
+							stringByAppendingPathExtension:@"csv"];
+			toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_TOC contentId:cid withDeviceSuffix:NO];
+		}
 		NSLog(@"resourceName=%@, toFilenameFull=%@", resourceName, toFilenameFull);
 		[FileUtility res2file:resourceName fileNameFull:toFilenameFull];
 		
@@ -381,9 +427,14 @@
 		 * PDF define.(csv)
 		 */
 		//Copy CSV file.
-		resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_PDFDEFINE contentId:cid]
+		resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_PDFDEFINE contentId:cid withDeviceSuffix:YES]
 						stringByAppendingPathExtension:@"csv"];
-		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_TOC contentId:cid];
+		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_TOC contentId:cid withDeviceSuffix:YES];
+		if ([FileUtility existsFile:resourceName] == NO) {
+			resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_PDFDEFINE contentId:cid withDeviceSuffix:NO]
+							stringByAppendingPathExtension:@"csv"];
+			toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_TOC contentId:cid withDeviceSuffix:NO];
+		}
 		NSLog(@"resourceName=%@, toFilenameFull=%@", resourceName, toFilenameFull);
 		[FileUtility res2file:resourceName fileNameFull:toFilenameFull];
 	}

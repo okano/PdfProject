@@ -32,8 +32,8 @@
 + (NSArray*)parseDefineCsv:(NSString*)filename contentId:(ContentId)cid;
 + (NSArray*)parseDefineCsvFromString:(NSString*)text;
 //CSV filename utility.
-+ (NSString*)getCsvFilenameInFolder:(NSString*)filename contentId:(ContentId)cid;
-+ (NSString*)getCsvFilenameInMainBundle:(NSString*)filename contentId:(ContentId)cid;
++ (NSString*)getCsvFilenameInFolder:(NSString*)filename contentId:(ContentId)cid withDeviceSuffix:(BOOL)isAddSuffix;
++ (NSString*)getCsvFilenameInMainBundle:(NSString*)filename contentId:(ContentId)cid withDeviceSuffix:(BOOL)isAddSuffix;;
 
 #pragma mark - like POSIX file uty.
 + (NSArray*)fileList:(NSString*)path;
