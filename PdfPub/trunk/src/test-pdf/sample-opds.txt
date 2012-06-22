@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<feed xmlns:dc="http://purl.org/dc/terms/" xmlns:opds="http://opds-spec.org/2010/catalog" xmlns="http://www.w3.org/2005/Atom">
+  <title>calibre ライブラリ</title>
+  <author>
+    <name>calibre</name>
+    <uri>http://calibre-ebook.com</uri>
+  </author>
+  <id>calibre-all:timestamp</id>
+  <updated>2012-05-17T03:04:05+00:00</updated>
+  <link href="/opds/search/{searchTerms}" type="application/atom+xml" rel="search" title="Search"/>
+  <link href="/opds" type="application/atom+xml;type=feed;profile=opds-catalog" rel="start"/>
+  <link href="/opds" type="application/atom+xml;type=feed;profile=opds-catalog" rel="up"/>
+  <link href="/opds/navcatalog/4f6e6577657374" type="application/atom+xml;type=feed;profile=opds-catalog" rel="first"/>
+  <link href="/opds/navcatalog/4f6e6577657374?offset=0" type="application/atom+xml;type=feed;profile=opds-catalog" rel="last"/>
+  <entry>
+    <title>ゴンになったニャン太</title>
+    <author>
+      <name>しらかわ　みつよし</name>
+    </author>
+    <id>urn:uuid:6cf3730c-7afb-441a-847f-d0bc84666b07</id>
+    <updated>2012-05-17T03:04:05+00:00</updated>
+    <link href="/get/cbz/6" type="application/x-cbz" rel="http://opds-spec.org/acquisition"/>
+    <link href="/get/cover/6" type="image/jpeg" rel="http://opds-spec.org/cover"/>
+    <link href="/get/thumb/6" type="image/jpeg" rel="http://opds-spec.org/thumbnail"/>
+  </entry>
+</feed>
