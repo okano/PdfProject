@@ -218,15 +218,16 @@
 		NSString* suffix = nil;
 		if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
 			// iPad
-			suffix = [filename stringByAppendingString:@"-ipad"];
+			suffix = @"-ipad";
 		} else {
 			// iPhone
-			suffix = [filename stringByAppendingString:@"-iphone"];
+			suffix = @"-iphone";
 		}
 
-		csvFilePath1 = [[[[ContentFileUtility getContentBodyDirectoryWithContentId:cidStr]
-						  stringByAppendingPathComponent:@"csv"]
-						 stringByAppendingPathComponent:filename]
+		csvFilePath1 = [[[[[ContentFileUtility getContentBodyDirectoryWithContentId:cidStr]
+						   stringByAppendingPathComponent:@"csv"]
+						  stringByAppendingPathComponent:filename]
+						 stringByAppendingString:suffix]
 						stringByAppendingPathExtension:@"csv"];
 	} else {
 		//(B)Does not add suffix.
@@ -247,10 +248,10 @@
 		NSString* suffix = nil;
 		if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
 			// iPad
-			suffix = [filename stringByAppendingString:@"-ipad"];
+			suffix = @"-ipad";
 		} else {
 			// iPhone
-			suffix = [filename stringByAppendingString:@"-iphone"];
+			suffix = @"-iphone";
 		}
 		filenameWithCid = [NSString stringWithFormat:@"%@%@_%d", filename, suffix, cid];
 	} else {
