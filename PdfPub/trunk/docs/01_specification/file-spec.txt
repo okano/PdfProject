@@ -1,7 +1,22 @@
 
+
+【CSVファイルについて】
 複数コンテンツ化したので、
 zipファイルを基準。
 mainBundleに含む（内蔵コンテンツ）も、初回起動時に~/tmp/や~/Document/にコピーして、
 そちらを使う。
 (mainBundleを使うのは、初回起動のコピー時のみ)
+・起動時にコピー
+・CID指定でコンテンツを開く時に、プレイヤーのViewDidLoadでCID指定で読み込む。
 
+
+~/Document/にコピーするファイルは、ファイル名はサフィックス付き。
+(zipに入れる時に、サフィックス付きで入る場合もあるので)
+
+
+
+CSVファイルを探す順番は、
+(1A)コンテンツフォルダ内、サフィックス付き。//Ex: ~/tmp/contentBody/1/csv/tocDefine-iphone.csv
+(1B)コンテンツフォルダ内、サフィックス無し。//Ex: ~/tmp/contentBody/1/csv/tocDefine.csv
+(2A)mainBundle内、サフィックス付き。//Ex: ~/tmp/contentBody/1/csv/tocDefine-iphone.csv
+(2B)mainBundle内、サフィックス無し。//Ex: ~/tmp/contentBody/1/csv/tocDefine.csv
