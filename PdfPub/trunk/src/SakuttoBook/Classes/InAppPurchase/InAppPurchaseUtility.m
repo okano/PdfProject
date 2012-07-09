@@ -178,6 +178,8 @@
 			return (ContentId)([candidateCid intValue]);
 		}
 	}
+	LOG_CURRENT_METHOD;
+	NSLog(@"not found contentId with pid=%@", pid);
 	return InvalidContentId;
 }
 
