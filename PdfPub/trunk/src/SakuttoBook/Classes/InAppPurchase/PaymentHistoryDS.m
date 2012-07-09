@@ -20,6 +20,7 @@
     self = [super init];
     if (self) {
 		paymentHistory = [[NSMutableArray alloc] init];
+		productIdListPointer = [[InAppPurchaseUtility alloc] init];
 		[self loadPaymentHistory];
     }
     return self;
