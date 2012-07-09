@@ -125,6 +125,9 @@
 {
 	//LOG_CURRENT_METHOD;
 	ContentId cid = [productIdListPointer getContentIdentifier:productId];
+	if (cid == InvalidContentId) {
+		NSLog(@"cid is InvalidContentId");
+	}
 	
 	NSMutableDictionary* tmpDict = [[NSMutableDictionary alloc] initWithDictionary:dict];
 	[tmpDict setValue:productId forKey:PURCHASE_PRODUCT_ID];
