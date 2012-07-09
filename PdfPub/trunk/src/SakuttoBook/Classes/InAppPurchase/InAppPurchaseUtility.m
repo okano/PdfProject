@@ -101,6 +101,9 @@
 	[productIdList removeAllObjects];
 	[productIdList addObjectsFromArray:tmpArray];
 	
+	//Store new list into UserDefault.
+	[self saveProductIdList];
+	
 	LOG_CURRENT_METHOD;
 	NSLog(@"tmpArray=%@", [tmpArray description]);
 	NSLog(@"productIdList=%@", [productIdList description]);
