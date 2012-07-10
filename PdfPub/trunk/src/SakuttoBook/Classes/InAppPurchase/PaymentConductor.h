@@ -11,7 +11,7 @@
 #import "Utility.h"
 #import "ProtocolDefine.h"
 #import "InAppPurchaseDefine.h"
-#import "InAppPurchaseUtility.h"
+#import "ProductIdList.h"
 #import "PaymentHistoryDS.h"
 
 @interface PaymentConductor : NSObject

@@ -9,16 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "Define.h"
 #import "InAppPurchaseDefine.h"
-#import "InAppPurchaseUtility.h"
+#import "ProductIdList.h"
 #import "FileUtility.h"
 
 @interface ContentListDS : NSObject {
     NSMutableArray* contentList;
-	InAppPurchaseUtility* productIdListPointer;
+	ProductIdList* productIdListPointer;
 }
 
 @property (nonatomic, retain) NSMutableArray* contentList;
-@property (nonatomic, retain) InAppPurchaseUtility* productIdListPointer;
+@property (nonatomic, retain) ProductIdList* productIdListPointer;
 
 - (uint)count;
 - (ContentId)contentIdAtIndex:(NSInteger)index;
