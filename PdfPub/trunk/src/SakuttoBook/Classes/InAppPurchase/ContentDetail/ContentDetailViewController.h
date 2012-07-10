@@ -22,14 +22,12 @@
 	IBOutlet UILabel* titleLabel;
 	IBOutlet UILabel* authorLabel;
 	IBOutlet UITextView* descriptionTextView;
-	IBOutlet UILabel* priceLabel;
 	IBOutlet UIButton* buyButton;
 }
 @property (nonatomic, retain) UIImageView* thumbnailImageView;
 @property (nonatomic, retain) UILabel* titleLabel;
 @property (nonatomic, retain) UILabel* authorLabel;
 @property (nonatomic, retain) UITextView* descriptionTextView;
-@property (nonatomic, retain) UILabel* priceLabel;
 @property (nonatomic, retain) UIButton* buyButton;
 
 - (void)setLabelsWithContentId:(ContentId)cid;

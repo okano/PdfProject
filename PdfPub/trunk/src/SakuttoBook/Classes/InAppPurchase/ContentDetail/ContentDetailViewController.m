@@ -11,7 +11,6 @@
 
 @implementation ContentDetailViewController
 @synthesize thumbnailImageView, titleLabel, authorLabel, descriptionTextView;
-@synthesize priceLabel;
 @synthesize buyButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -74,7 +73,6 @@
 	}
 	appDelegate.paymentConductor.parentVC = self;
 	[appDelegate.paymentConductor getProductInfomation:pid];
-	//priceLabel.text = @"(Now Loading...)";
 	
 	//BuyButton
 	buyButton.titleLabel.text = @"(Now Loading...)";
@@ -87,8 +85,8 @@
 {
 	LOG_CURRENT_METHOD;
 	if (responseParameters == nil) {
-		priceLabel.text = @"(cannot buy this product.)";
-		buyButton.hidden = YES;
+		buyButton.titleLabel.text = @"(cannot buy this product.)";
+		buyButton.enabled = NO;
 		return;
 	}
 	
@@ -111,7 +109,6 @@
 		[numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
 		[numberFormatter setLocale:resultProduct.priceLocale];
 		NSString *formattedString = [numberFormatter stringFromNumber:resultProduct.price];
-		priceLabel.text = [formattedString stringByAppendingString:@"-"];
 		
 		//Enable buy.
 		buyButton.hidden = NO;
@@ -136,18 +133,29 @@
 	[numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
 	[numberFormatter setLocale:product.priceLocale];
 	NSString *formattedString = [numberFormatter stringFromNumber:product.price];
-	priceLabel.text = [formattedString stringByAppendingString:@"-"];
+	buyButton.titleLabel.text = [formattedString stringByAppendingString:@"-"];
+	[buyButton setTitle:[formattedString stringByAppendingString:@"-"] forState:UIControlStateNormal];
+	
+	//Set targetProductId.
+	targetProductId = [NSString stringWithString:product.productIdentifier];
+	[targetProductId retain];
+
+	//Enable buy.
+	buyButton.hidden = NO;
+	buyButton.enabled = YES;
 }
 
 - (void)productRequestDidFailed:(NSString*)invalidProductIdentifier
 {
 	LOG_CURRENT_METHOD;
 	
-	priceLabel.text = @"error";
 	[buyButton setTitle:@"購入できません" forState:UIControlStateNormal];
 	[buyButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
 	//buyButton.enabled = NO;
 	
+	//Disble buy.
+	buyButton.hidden = NO;
+	buyButton.enabled = NO;
 };
 
 - (void)purchaseDidSuccess:(NSString*)productId
