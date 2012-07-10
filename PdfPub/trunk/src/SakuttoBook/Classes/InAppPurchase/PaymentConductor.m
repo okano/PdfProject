@@ -36,6 +36,7 @@
 	}
 	
 	//Make Payments.
+	LOG_CURRENT_METHOD;
 	NSLog(@"can make payments");
 	NSLog(@"productId=%@", productId);
 	NSSet* productIdList =[NSSet setWithObject:productId];
