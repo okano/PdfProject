@@ -106,7 +106,7 @@
 	}
 	
 	//Get productIdList.
-	[appDelegate.productIdList refreshProductIdListFromNetwork];
+	[[ProductIdList sharedManager] refreshProductIdListFromNetwork];
 }
 
 - (void)reloadFromNetwork;
@@ -127,7 +127,7 @@
 	}
 	
 	//Get productIdList before get opds.
-	[appDelegate.productIdList refreshProductIdListFromNetwork];
+	[[ProductIdList sharedManager] refreshProductIdListFromNetwork];
 	
 	//Reload OPDS from network.
 	[appDelegate.serverContentListDS removeAllObjects];

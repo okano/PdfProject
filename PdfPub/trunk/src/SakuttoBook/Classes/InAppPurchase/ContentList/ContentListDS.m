@@ -12,7 +12,7 @@
 @implementation ContentListDS
 
 @synthesize contentList;
-@synthesize productIdListPointer;
+//@synthesize productIdListPointer;
 
 - (id)init
 {
@@ -55,7 +55,7 @@
 	NSLog(@"no contentId found in ContentListDS. productId=%@", productId);
 	
 	//
-	ContentId targetContentId = [productIdListPointer getContentIdentifier:productId];
+	ContentId targetContentId = [[ProductIdList sharedManager] getContentIdentifier:productId];
 	return targetContentId;
 	//return InvalidContentId;
 }
@@ -197,7 +197,7 @@
 		NSMutableDictionary* tmpDict;
 		tmpDict = [[NSMutableDictionary alloc] init];
 		[tmpDict setValue:[NSNumber numberWithInteger:contentIdInt] forKey:CONTENT_CID];
-		[tmpDict setValue:[productIdListPointer getProductIdentifier:contentIdInt] forKey:CONTENT_STORE_PRODUCT_ID];
+		[tmpDict setValue:[[ProductIdList sharedManager] getProductIdentifier:contentIdInt] forKey:CONTENT_STORE_PRODUCT_ID];
 		[tmpDict setValue:[lines objectAtIndex:0] forKey:CONTENT_TITLE];
 		if (2 <= [lines count]) {
 			[tmpDict setValue:[lines objectAtIndex:1] forKey:CONTENT_AUTHOR];
@@ -269,7 +269,7 @@
 	{
 		tmpDict = [contentList objectAtIndex:i];
 		ContentId cid = [[tmpDict objectForKey:CONTENT_CID] intValue];
-		NSString* pid = [productIdListPointer getProductIdentifier:cid];
+		NSString* pid = [[ProductIdList sharedManager] getProductIdentifier:cid];
 		if (pid != InvalidProductId) {
 			NSMutableDictionary* newRecord = [NSMutableDictionary dictionaryWithDictionary:tmpDict];
 			[newRecord setValue:pid forKey:CONTENT_STORE_PRODUCT_ID];

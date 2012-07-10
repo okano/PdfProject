@@ -67,7 +67,7 @@
 	appDelegate.paymentConductor.productsRequestDelegate = self;
 	[appDelegate.paymentConductor getProductInfomation:cid];
 	*/
-	NSString* pid = [appDelegate.productIdList getProductIdentifier:cid];
+	NSString* pid = [[ProductIdList sharedManager] getProductIdentifier:cid];
 	if ((pid == nil) || ([pid compare:InvalidProductId] == NSOrderedSame)) {
 		NSLog(@"Invalid Product Id. cid=%d, pid=%@", cid, pid);
 	}
@@ -160,13 +160,13 @@
 
 - (void)purchaseDidSuccess:(NSString*)productId
 {
-	targetCid = [appDelegate.productIdList getContentIdentifier:productId];
+	targetCid = [[ProductIdList sharedManager] getContentIdentifier:productId];
 	NSLog(@"pid=%@, cid=%d", productId, targetCid);
 	//[self downloadContent:nil];
 	
 	
 	//
-	ContentId cid = [appDelegate.productIdList getContentIdentifier:productId];
+	ContentId cid = [[ProductIdList sharedManager] getContentIdentifier:productId];
 	NSLog(@"pid=%@, cid=%d", productId, cid);
 	[appDelegate hideContentDetailView];
 	[appDelegate showContentPlayerView:cid];
@@ -195,7 +195,7 @@
 	//
 	NSString* productID = transaction.payment.productIdentifier;
 	//ContentId cid = [InAppPurchaseUtility getContentIdentifier:productID];
-	ContentId cid = [appDelegate.productIdList getContentIdentifier:productID];
+	ContentId cid = [[ProductIdList sharedManager] getContentIdentifier:productID];
 	NSLog(@"pid=%@, cid=%d", productID, cid);
 	[appDelegate hideContentDetailView];
 	[appDelegate showContentPlayerView:cid];

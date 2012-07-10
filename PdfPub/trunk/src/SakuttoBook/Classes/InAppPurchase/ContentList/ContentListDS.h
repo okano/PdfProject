@@ -14,11 +14,11 @@
 
 @interface ContentListDS : NSObject {
     NSMutableArray* contentList;
-	ProductIdList* productIdListPointer;
+	//ProductIdList* productIdListPointer;
 }
 
 @property (nonatomic, retain) NSMutableArray* contentList;
-@property (nonatomic, retain) ProductIdList* productIdListPointer;
+//@property (nonatomic, retain) ProductIdList* productIdListPointer;
 
 - (uint)count;
 - (ContentId)contentIdAtIndex:(NSInteger)index;

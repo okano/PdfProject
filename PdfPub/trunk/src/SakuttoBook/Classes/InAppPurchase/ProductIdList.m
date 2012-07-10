@@ -10,16 +10,62 @@
 
 @implementation ProductIdList
 
+static ProductIdList *_instance = nil;
+
 #pragma mark - initialize.
 - (id)init
 {
     self = [super init];
-    if (self) {
-		productIdList = [[NSMutableArray alloc] init];
-		[self loadProductIdList];
-    }
-    return self;
+    if (!self) return nil;
+	
+	productIdList = [[NSMutableArray alloc] init];
+	[self loadProductIdList];
+	
+	return self;
 }
+
+
+#pragma mark - For Singleton.
++ (ProductIdList*)sharedManager {
+	@synchronized(self) {
+		if (_instance == nil) {
+			_instance = [[self alloc] init];
+		}
+	}
+	return _instance;
+}
+
++ (id)allocWithZone:(NSZone *)zone {
+	@synchronized(self) {
+		if (_instance == nil) {
+			_instance = [super allocWithZone:zone];
+			return _instance;
+		}
+	}
+	return nil;
+}
+
+- (id)copyWithZone:(NSZone*)zone {
+	return self;  // シングルトン状態を保持するため何もせず self を返す
+}
+
+- (id)retain {
+	return self;  // シングルトン状態を保持するため何もせず self を返す
+}
+
+- (unsigned)retainCount {
+	return UINT_MAX;  // 解放できないインスタンスを表すため unsigned int 値の最大値 UINT_MAX を返す
+}
+
+- (oneway void)release {
+	// シングルトン状態を保持するため何もしない
+}
+
+- (id)autorelease {
+	return self;  // シングルトン状態を保持するため何もせず self を返す
+}
+
+
 
 #pragma mark - save/load with file.
 
@@ -105,6 +151,7 @@
 	[self saveProductIdList];
 	
 	LOG_CURRENT_METHOD;
+	NSLog(@"url=%@", urlStr);
 	NSLog(@"tmpArray=%@", [tmpArray description]);
 	NSLog(@"productIdList=%@", [productIdList description]);
 }
@@ -299,7 +346,7 @@
 	[formatter setDateFormat:@"yyyy-MM-dd(E) HH:mm:ss"];
 	NSString *purchaseDaytime = [formatter stringFromDate:[tmpDict valueForKey:PURCHASE_DAYTIME]];
 	
-	return [NSString stringWithFormat:@" %@%c �w������:%@%c (ContentId=%@ ProductId=%@)",
+	return [NSString stringWithFormat:@" %@%c çwì¸ì˙éû:%@%c (ContentId=%@ ProductId=%@)",
 			title,
 			0x0d,
 			purchaseDaytime,

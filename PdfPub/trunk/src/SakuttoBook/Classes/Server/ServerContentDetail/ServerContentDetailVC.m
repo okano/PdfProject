@@ -124,11 +124,11 @@
 	
 	//Get Price.
 //	if (targetProductId == nil) {
-		targetProductId = [appDelegate.productIdList getProductIdentifier:targetCid];
+		targetProductId = [[ProductIdList sharedManager] getProductIdentifier:targetCid];
 		if ((targetProductId == nil) || ([targetProductId length] <= 0)) {
 			LOG_CURRENT_METHOD;
 			NSLog(@"cid=%d, but targetProductId is nil or 0-length.", targetCid);
-			NSLog(@"appDelegate.productIdList count=%d, %@", [appDelegate.productIdList count], [appDelegate.productIdList description]);
+			NSLog(@"productIdList count=%d, %@", [[ProductIdList sharedManager] count], [[ProductIdList sharedManager] description]);
 			
 			priceLabel.text = @"no productId found.";
 			return;
@@ -141,7 +141,7 @@
 //	}
 	
 	// Do not need productId for Apple-server if content is free.
-	if ([appDelegate.productIdList isFreeContentWithCid:targetCid] == TRUE) {
+	if ([[ProductIdList sharedManager] isFreeContentWithCid:targetCid] == TRUE) {
 		[priceLabel setText:@"無料コンテンツ"];
 		[self enableReDownloadButton];
 		[reDownloadButton setTitle:@"無料ダウンロード" forState:UIControlStateNormal];
@@ -294,7 +294,7 @@
 
 - (void)purchaseDidSuccess:(NSString *)productId
 {
-	targetCid = [appDelegate.productIdList getContentIdentifier:productId];
+	targetCid = [[ProductIdList sharedManager] getContentIdentifier:productId];
 	NSLog(@"pid=%@, cid=%d", productId, targetCid);
 	[self downloadContent:nil];
 }

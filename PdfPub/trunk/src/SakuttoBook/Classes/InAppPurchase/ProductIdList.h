@@ -17,6 +17,11 @@
 @interface ProductIdList : NSObject {
     NSMutableArray* productIdList;
 }
+
+//For Singleton.
+//http://blog.syuhari.jp/archives/2178
++ (ProductIdList*)sharedManager;
+
 //ProductIdList.
 - (void)loadProductIdList;
 - (void)saveProductIdList;

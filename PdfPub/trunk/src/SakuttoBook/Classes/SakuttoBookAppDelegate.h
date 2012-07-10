@@ -39,8 +39,8 @@
 	ServerContentListDS* serverContentListDS;
 	PaymentHistoryDS* paymentHistoryDS;
 	
-	// ProductIdList
-	ProductIdList* productIdList;
+	// ProductIdList -> use Singleton(sharedManager).
+	//ProductIdList* productIdList;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -57,7 +57,7 @@
 @property (nonatomic, retain) ServerContentListDS* serverContentListDS;
 @property (nonatomic, retain) PaymentHistoryDS* paymentHistoryDS;
 // ProductIdList
-@property (nonatomic, retain) ProductIdList* productIdList;
+//@property (nonatomic, retain) ProductIdList* productIdList;
 
 
 /**

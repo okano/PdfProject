@@ -19,11 +19,11 @@
 	//
 	id productsRequestDelegate;
 	//
-	ProductIdList* productIdListPointer;
+	//ProductIdList* productIdListPointer;
 }
 @property (nonatomic, retain) NSMutableArray* paymentHistory;
 @property (nonatomic, retain) id productsRequestDelegate;
-@property (nonatomic, retain) ProductIdList* productIdListPointer;
+//@property (nonatomic, retain) ProductIdList* productIdListPointer;
 
 //Save/Load with UserDefault.
 - (void)savePaymentHistory;
