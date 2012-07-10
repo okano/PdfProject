@@ -9,9 +9,25 @@ mainBundleに含む（内蔵コンテンツ）も、初回起動時に~/tmp/や~
 ・起動時にコピー
 ・CID指定でコンテンツを開く時に、プレイヤーのViewDidLoadでCID指定で読み込む。
 
-
+【ファイル名とコンテンツIDの関係】
 ~/Document/にコピーするファイルは、ファイル名はサフィックス付き。
 (zipに入れる時に、サフィックス付きで入る場合もあるので)
+
+★ファイル一覧
+【アプリ内で１つだけ持つ】
+・productIdDefine.csv	(サーバ配信時は必須)
+【コンテンツごとに持つ】
+・pdfDefine_1.csv	(必須)
+・bookDefine_1.csv	(必須)
+・tocDefine_1.csv	(必須)
+
+・movieDefine_1.csv
+・soundDefine_1.csv
+・inPageScrollViewDefine_1.csv
+・pageJumpLinkDefine_1.csv
+・popoverScrollImageDefine_1.csv
+
+
 
 
 
