@@ -2,3 +2,7 @@
 
 ~/tmp/
 ~/Document/
+
+●コンテンツの格納場所
+~/tmp/contentBody/{cid}/
+（mainBundleで内蔵するコンテンツも、初回起動時にここにコピーする。）
