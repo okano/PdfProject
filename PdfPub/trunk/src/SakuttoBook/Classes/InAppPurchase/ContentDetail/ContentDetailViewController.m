@@ -11,6 +11,7 @@
 
 @implementation ContentDetailViewController
 @synthesize thumbnailImageView, titleLabel, authorLabel, descriptionTextView;
+@synthesize priceLabel;
 @synthesize buyButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -73,6 +74,7 @@
 	}
 	appDelegate.paymentConductor.parentVC = self;
 	[appDelegate.paymentConductor getProductInfomation:pid];
+	priceLabel.text = @"(Now Loading...)";
 	
 	//BuyButton
 	buyButton.titleLabel.text = @"(Now Loading...)";
@@ -85,8 +87,9 @@
 {
 	LOG_CURRENT_METHOD;
 	if (responseParameters == nil) {
-		buyButton.titleLabel.text = @"(cannot buy this product.)";
+		priceLabel.text = @"(cannot buy this product.)";
 		buyButton.enabled = NO;
+		buyButton.hidden = YES;
 		return;
 	}
 	
@@ -109,6 +112,7 @@
 		[numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
 		[numberFormatter setLocale:resultProduct.priceLocale];
 		NSString *formattedString = [numberFormatter stringFromNumber:resultProduct.price];
+		priceLabel.text = [formattedString stringByAppendingString:@"-"];
 		
 		//Enable buy.
 		buyButton.hidden = NO;
@@ -133,12 +137,16 @@
 	[numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
 	[numberFormatter setLocale:product.priceLocale];
 	NSString *formattedString = [numberFormatter stringFromNumber:product.price];
-	buyButton.titleLabel.text = [formattedString stringByAppendingString:@"-"];
-	[buyButton setTitle:[formattedString stringByAppendingString:@"-"] forState:UIControlStateNormal];
+	priceLabel.text = [formattedString stringByAppendingString:@"-"];
+	//[buyButton setTitle:[formattedString stringByAppendingString:@"-"] forState:UIControlStateNormal];
 	
 	//Set targetProductId.
 	targetProductId = [NSString stringWithString:product.productIdentifier];
 	[targetProductId retain];
+
+	//Set text.
+	[buyButton setTitle:@"購入する" forState:UIControlStateNormal];
+	[buyButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
 
 	//Enable buy.
 	buyButton.hidden = NO;
@@ -148,7 +156,10 @@
 - (void)productRequestDidFailed:(NSString*)invalidProductIdentifier
 {
 	LOG_CURRENT_METHOD;
+	NSLog(@"%@", invalidProductIdentifier);
 	
+	//Set text.
+	priceLabel.text = @"no product information.";
 	[buyButton setTitle:@"購入できません" forState:UIControlStateNormal];
 	[buyButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
 	//buyButton.enabled = NO;
