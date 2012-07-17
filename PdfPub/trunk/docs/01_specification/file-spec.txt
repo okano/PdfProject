@@ -28,11 +28,25 @@ mainBundleに含む（内蔵コンテンツ）も、初回起動時に~/tmp/や~
 ・popoverScrollImageDefine_1.csv
 
 
+★iPhone/iPadで別ファイルのケース
+●内蔵の場合("_1"のように、コンテンツIDをつける。初回起動時に"_1"をはずして格納する)
+・pdfDefine_1.csv	(これは１つだけ)
+・bookDefine_iphone_1.csv	("_iphone"と"_1"をつける。iphoneは小文字)
+・bookDefine_ipad_1.csv  	("_ipad"と"_1"をつける。ipadは小文字)
+・tocDefine_iphone_1.csv
+・tocDefine_ipad_1.csv
+
+●サーバに置く場合(zip内に入れるファイル)
+・pdfDefine.csv	(これは１つだけ)
+・bookDefine_iphone.csv	("_iphone"をつける。iphoneは小文字)
+・bookDefine_ipad.csv  	("_ipad"をつける。ipadは小文字)
+・tocDefine_iphone.csv
+・tocDefine_ipad.csv
 
 
 
 CSVファイルを探す順番は、
-(1A)コンテンツフォルダ内、サフィックス付き。//Ex: ~/tmp/contentBody/1/csv/tocDefine-iphone.csv
+(1A)コンテンツフォルダ内、サフィックス付き。//Ex: ~/tmp/contentBody/1/csv/tocDefine_iphone.csv
 (1B)コンテンツフォルダ内、サフィックス無し。//Ex: ~/tmp/contentBody/1/csv/tocDefine.csv
-(2A)mainBundle内、サフィックス付き。//Ex: ~/tmp/contentBody/1/csv/tocDefine-iphone.csv
+(2A)mainBundle内、サフィックス付き。//Ex: ~/tmp/contentBody/1/csv/tocDefine_iphone.csv
 (2B)mainBundle内、サフィックス無し。//Ex: ~/tmp/contentBody/1/csv/tocDefine.csv
