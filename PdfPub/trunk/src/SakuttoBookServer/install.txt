@@ -1,0 +1,131 @@
+
+■システムアップデート
+# yum update
+
+■Rubyインストール ./configureに必要
+# yum install gcc
+
+■Rubyインストール
+# mkdir ~/tmp
+# cd ~/tmp
+# wget ftp://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p194.tar.gz
+# tar xzf ruby-1.9.3-p194.tar.gz
+# cd ruby-1.9.3-p194
+# ./configure
+# make
+# make test
+# make install
+# ruby -v
+
+■RubyGemsインストール
+# cd ~/tmp
+# wget http://rubyforge.org/frs/download.php/76073/rubygems-1.8.24.tgz
+# tar xvzf rubygems-1.8.24.tgz
+# cd rubygems-1.8.24
+# ruby setup.rb
+# gem -v
+
+■Railsインストール時、gemでエラーがでる場合
+# yum install zlib-devel
+# cd ~/tmp/ruby-1.9.3-p194/ext/zlib
+# ruby extconf.rb --with-zlib-include=/usr/include -with-zlib-lib=/usr/lib
+# make
+# make install
+
+■Railsインストール(3.2.6)
+# gem i rails --no-rdoc --no-ri
+# rails -v
+
+■MySQLインストール
+yum install mysql-server
+/etc/init.d/mysqld start
+chkconfig mysqld on
+
+service httpd start
+chkconfig httpd on
+
+パスワード設定(まだ設定していない)
+# mysqladmin -u root password 'パスワード'
+
+
+■ImageMagick, Rmagickのインストール
+# yum install ImageMagick ImageMagick-devel
+# yum erase ImageMagick ImageMagick-devel
+↑バージョンが古いのでやらなくていい？
+
+バージョンが古いのでソースからインストール
+# cd ~/tmp
+# wget ftp://ftp.u-aizu.ac.jp/pub/graphics/image/ImageMagick/imagemagick.org/ImageMagick-6.6.9-10.tar.gz
+# tar -zxvf ImageMagick-6.6.9-10.tar.gz
+# cd ImageMagick-6.6.9-10
+# ./configure
+# ./configure --enable-shared
+# make
+# make install
+
+フォントもインストール
+# wget http://www.mjmwired.net/resources/files/msttcorefonts-2.0-1.noarch.rpm
+# rpm -ivh msttcorefonts-2.0-1.noarch.rpm
+# ln -s /usr/share/fonts/msttcorefonts/ /usr/share/fonts/default/TrueType
+
+データベース作成
+# mysql
+# create database ｢app名]_development;
+# \q
+
+■Passengerインストール
+# gem install passenger
+# passenger-install-apache2-module
+
+Passengerインストールに必要なものをインストール
+# yum -y install gcc-c++ curl-devel openssl-devel zlib-devel httpd-devel apr-devel apr-util-devel
+# cd ~/tmp/ruby-1.9.3-p194/ext/openssl
+# ruby extconf.rb
+# make
+# make install
+
+再度
+# passenger-install-apache2-module
+
+設定ファイルを作成
+# vi /etc/httpd/conf.d/passenger.conf
+
+LoadModule passenger_module /usr/lib/ruby/gems/1.9.1/gems/passenger-3.0.5/ext/apache2/mod_passenger.so
+PassengerRoot /usr/lib/ruby/gems/1.9.1/gems/passenger-3.0.5
+PassengerRuby /usr/bin/ruby
+
+#RailsEnv development # developmentの時
+
+NameVirtualHost xxx.xxx.xxx.xxx
+
+<VirtualHost xxx.xxx.xxx.xxx>
+   ServerName  example.com
+   DocumentRoot /var/www/passenger/[アプリ名]/public
+
+   <Directory "/var/www/passenger/[アプリ名]/public">
+    Satisfy Any
+    Allow from any
+   </Directory>
+   PassengerEnabled on
+   RailsBaseURI /
+</VirtualHost>
+
+
+# mkdir /var/www/passenger
+/var/www/passenger/[アプリ名] にソースをコピー
+
+■productionモードでサーバ起動
+# cd /var/www/passenger/[アプリ名]
+# bundle install
+# rake db:create RAILS_ENV=production
+# rake db:migrate RAILS_ENV=production
+# rake assets:precompile
+# service httpd restart
+
+■rails c でエラーの場合(readline-develのインストール)
+# yum install readline-devel
+# cd ~/tmp/ruby-1.9.3-p194/ext/readline
+# ruby extconf.rb
+# make
+# make install
+

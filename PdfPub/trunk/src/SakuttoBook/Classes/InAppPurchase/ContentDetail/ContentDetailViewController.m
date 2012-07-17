@@ -68,13 +68,13 @@
 	appDelegate.paymentConductor.productsRequestDelegate = self;
 	[appDelegate.paymentConductor getProductInfomation:cid];
 	*/
-	NSString* pid = [appDelegate.productIdList getProductIdentifier:cid];
+	NSString* pid = [[ProductIdList sharedManager] getProductIdentifier:cid];
 	if ((pid == nil) || ([pid compare:InvalidProductId] == NSOrderedSame)) {
 		NSLog(@"Invalid Product Id. cid=%d, pid=%@", cid, pid);
 	}
 	appDelegate.paymentConductor.parentVC = self;
 	[appDelegate.paymentConductor getProductInfomation:pid];
-	//priceLabel.text = @"(Now Loading...)";
+	priceLabel.text = @"(Now Loading...)";
 	
 	//BuyButton
 	buyButton.titleLabel.text = @"(Now Loading...)";
@@ -88,6 +88,7 @@
 	LOG_CURRENT_METHOD;
 	if (responseParameters == nil) {
 		priceLabel.text = @"(cannot buy this product.)";
+		buyButton.enabled = NO;
 		buyButton.hidden = YES;
 		return;
 	}
@@ -137,28 +138,46 @@
 	[numberFormatter setLocale:product.priceLocale];
 	NSString *formattedString = [numberFormatter stringFromNumber:product.price];
 	priceLabel.text = [formattedString stringByAppendingString:@"-"];
+	//[buyButton setTitle:[formattedString stringByAppendingString:@"-"] forState:UIControlStateNormal];
+	
+	//Set targetProductId.
+	targetProductId = [NSString stringWithString:product.productIdentifier];
+	[targetProductId retain];
+
+	//Set text.
+	[buyButton setTitle:@"購入する" forState:UIControlStateNormal];
+	[buyButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+
+	//Enable buy.
+	buyButton.hidden = NO;
+	buyButton.enabled = YES;
 }
 
 - (void)productRequestDidFailed:(NSString*)invalidProductIdentifier
 {
 	LOG_CURRENT_METHOD;
+	NSLog(@"%@", invalidProductIdentifier);
 	
-	priceLabel.text = @"error";
+	//Set text.
+	priceLabel.text = @"no product information.";
 	[buyButton setTitle:@"購入できません" forState:UIControlStateNormal];
 	[buyButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
 	//buyButton.enabled = NO;
 	
+	//Disble buy.
+	buyButton.hidden = NO;
+	buyButton.enabled = NO;
 };
 
 - (void)purchaseDidSuccess:(NSString*)productId
 {
-	targetCid = [appDelegate.productIdList getContentIdentifier:productId];
+	targetCid = [[ProductIdList sharedManager] getContentIdentifier:productId];
 	NSLog(@"pid=%@, cid=%d", productId, targetCid);
 	//[self downloadContent:nil];
 	
 	
 	//
-	ContentId cid = [appDelegate.productIdList getContentIdentifier:productId];
+	ContentId cid = [[ProductIdList sharedManager] getContentIdentifier:productId];
 	NSLog(@"pid=%@, cid=%d", productId, cid);
 	[appDelegate hideContentDetailView];
 	[appDelegate showContentPlayerView:cid];
@@ -187,7 +206,7 @@
 	//
 	NSString* productID = transaction.payment.productIdentifier;
 	//ContentId cid = [InAppPurchaseUtility getContentIdentifier:productID];
-	ContentId cid = [appDelegate.productIdList getContentIdentifier:productID];
+	ContentId cid = [[ProductIdList sharedManager] getContentIdentifier:productID];
 	NSLog(@"pid=%@, cid=%d", productID, cid);
 	[appDelegate hideContentDetailView];
 	[appDelegate showContentPlayerView:cid];

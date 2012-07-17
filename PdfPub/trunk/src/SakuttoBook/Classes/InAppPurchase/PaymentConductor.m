@@ -36,9 +36,10 @@
 	}
 	
 	//Make Payments.
+	LOG_CURRENT_METHOD;
 	NSLog(@"can make payments");
 	NSLog(@"productId=%@", productId);
-	NSSet* productIdList =[NSSet setWithObject:productId];
+	NSSet* productIdListSet =[NSSet setWithObject:productId];
 	//NSString* fullProductId = [InAppPurchaseUtility productIdWithFullQualifier:productId];
 	//NSLog(@"fullProductId=%@", fullProductId);
 	//NSSet* productIdList =[NSSet setWithObject:fullProductId];
@@ -60,7 +61,7 @@
 	 */
 	
 	
-	SKProductsRequest* pRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:productIdList];
+	SKProductsRequest* pRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:productIdListSet];
 	pRequest.delegate = self;
 	[pRequest start];
 	 

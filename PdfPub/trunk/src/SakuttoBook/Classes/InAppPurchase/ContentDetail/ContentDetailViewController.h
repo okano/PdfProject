@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "InAppPurchaseDefine.h"
-#import "InAppPurchaseUtility.h"
+#import "ProductIdList.h"
 #import "SakuttoBookAppDelegate.h"
 
 @interface ContentDetailViewController : UIViewController <VCWithInAppPurchaseProtocol> {

@@ -34,7 +34,7 @@
 		293BB9F012B6217300DDA3E3 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 293BB9EF12B6217300DDA3E3 /* WebViewController.m */; };
 		293BB9F212B6218500DDA3E3 /* WebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 293BB9F112B6218500DDA3E3 /* WebView.xib */; };
 		29431E2212C5D29C00914DBD /* list_bullets.png in Resources */ = {isa = PBXBuildFile; fileRef = 29431E2112C5D29C00914DBD /* list_bullets.png */; };
-		2943E85713A662480034AC62 /* InAppPurchaseUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2943E85613A662480034AC62 /* InAppPurchaseUtility.m */; };
+		2943E85713A662480034AC62 /* ProductIdList.m in Sources */ = {isa = PBXBuildFile; fileRef = 2943E85613A662480034AC62 /* ProductIdList.m */; };
 		29452CA014E39B4300DD15ED /* ContentPlayerViewController+sound.m in Sources */ = {isa = PBXBuildFile; fileRef = 29452C9F14E39B4300DD15ED /* ContentPlayerViewController+sound.m */; };
 		29452CA314E39BFB00DD15ED /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29452CA214E39BFA00DD15ED /* AVFoundation.framework */; };
 		29452CA514E39C0500DD15ED /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29452CA414E39C0500DD15ED /* AudioToolbox.framework */; };
@@ -170,8 +170,8 @@
 		293BB9EF12B6217300DDA3E3 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		293BB9F112B6218500DDA3E3 /* WebView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebView.xib; sourceTree = "<group>"; };
 		29431E2112C5D29C00914DBD /* list_bullets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = list_bullets.png; path = Classes/list_bullets.png; sourceTree = "<group>"; };
-		2943E85513A662480034AC62 /* InAppPurchaseUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InAppPurchaseUtility.h; path = InAppPurchase/InAppPurchaseUtility.h; sourceTree = "<group>"; };
-		2943E85613A662480034AC62 /* InAppPurchaseUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InAppPurchaseUtility.m; path = InAppPurchase/InAppPurchaseUtility.m; sourceTree = "<group>"; };
+		2943E85513A662480034AC62 /* ProductIdList.h */ = {isa = PBXFileReference; fileEncoding = 4; name = ProductIdList.h; path = InAppPurchase/ProductIdList.h; sourceTree = "<group>"; };
+		2943E85613A662480034AC62 /* ProductIdList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductIdList.m; path = InAppPurchase/ProductIdList.m; sourceTree = "<group>"; };
 		29452C9F14E39B4300DD15ED /* ContentPlayerViewController+sound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ContentPlayerViewController+sound.m"; sourceTree = "<group>"; };
 		29452CA214E39BFA00DD15ED /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		29452CA414E39C0500DD15ED /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -484,8 +484,8 @@
 				29CB43431532DAF800A96D36 /* ContentListDS.h */,
 				29CB43441532DAF800A96D36 /* ContentListDS.m */,
 				29B16E02139874F800B4D958 /* InAppPurchaseDefine.h */,
-				2943E85513A662480034AC62 /* InAppPurchaseUtility.h */,
-				2943E85613A662480034AC62 /* InAppPurchaseUtility.m */,
+				2943E85513A662480034AC62 /* ProductIdList.h */,
+				2943E85613A662480034AC62 /* ProductIdList.m */,
 			);
 			name = InAppPurchase;
 			sourceTree = "<group>";
@@ -895,7 +895,7 @@
 				29B16E09139876E900B4D958 /* PaymentHistoryDS.m in Sources */,
 				2936659B13987BEF001028FE /* PaymentConductor.m in Sources */,
 				29BD260713A4A3AC0029E2B4 /* FileUtility.m in Sources */,
-				2943E85713A662480034AC62 /* InAppPurchaseUtility.m in Sources */,
+				2943E85713A662480034AC62 /* ProductIdList.m in Sources */,
 				2936624B13A894D60010A808 /* ContentListCellController.m in Sources */,
 				290731E913A89C0200AE5B35 /* ContentListCell.m in Sources */,
 				29F1489413A89E3700309126 /* PaymentHistoryListViewController.m in Sources */,

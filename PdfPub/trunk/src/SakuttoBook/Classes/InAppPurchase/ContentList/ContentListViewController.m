@@ -96,6 +96,12 @@
     [super viewDidDisappear:animated];
 }
 
+- (void)viewDidLayoutSubviews
+{
+	[super viewDidLayoutSubviews];
+	[self reloadData];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
@@ -158,7 +164,7 @@
     
 	ContentId targetCid = [appDelegate.contentListDS contentIdAtIndex:indexPath.row];
 	//NSString* targetPid = [appDelegate.contentListDS productIdFromContentId:targetCid];
-	NSString* targetPid = [appDelegate.productIdList getProductIdentifier:targetCid];
+	NSString* targetPid = [[ProductIdList sharedManager] getProductIdentifier:targetCid];
 	if (targetPid == InvalidProductId) {
 		NSLog(@"Invalid productId. cid=%d", targetCid);
 		return nil;
@@ -170,7 +176,7 @@
 	cell.authorLabel.text = [appDelegate.contentListDS authorByContentId:targetCid];
 	//Check payment status.
 //	if (([InAppPurchaseUtility isFreeContent:targetPid] == TRUE)
-	if (([appDelegate.productIdList isFreeContent:targetPid] == TRUE)
+	if (([[ProductIdList sharedManager] isFreeContent:targetPid] == TRUE)
 		||
 		([appDelegate.paymentHistoryDS isEnabledContent:targetCid] == TRUE))
 	{
@@ -242,13 +248,13 @@
 	//Check payment status.
 	ContentId targetCid = [appDelegate.contentListDS contentIdAtIndex:indexPath.row];
 	//NSString* targetPid = [appDelegate.contentListDS productIdFromContentId:targetCid];
-	NSString* targetPid = [appDelegate.productIdList getProductIdentifier:targetCid];
+	NSString* targetPid = [[ProductIdList sharedManager] getProductIdentifier:targetCid];
 	//LOG_CURRENT_METHOD;
 	//NSLog(@"indexPath.row=%d, targetCid=%d, targetPid=%@", indexPath.row, targetCid, targetPid);
 	
 	BOOL isPayedContent = NO;
 	//if ([InAppPurchaseUtility isFreeContent:targetPid] == TRUE) {
-	if ([appDelegate.productIdList isFreeContent:targetPid] == TRUE) {
+	if ([[ProductIdList sharedManager] isFreeContent:targetPid] == TRUE) {
 		isPayedContent = YES;
 		
 		//Record free content payment record only first time read.

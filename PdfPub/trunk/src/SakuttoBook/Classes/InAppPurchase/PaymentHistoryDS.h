@@ -10,7 +10,7 @@
 #import <StoreKit/StoreKit.h>
 #import "Define.h"
 #import "InAppPurchaseDefine.h"
-#import "InAppPurchaseUtility.h"
+#import "ProductIdList.h"
 
 #import "ContentListDS.h"	/* only use for get content title. */
 
@@ -19,11 +19,11 @@
 	//
 	id productsRequestDelegate;
 	//
-	InAppPurchaseUtility* productIdListPointer;
+	//ProductIdList* productIdListPointer;
 }
 @property (nonatomic, retain) NSMutableArray* paymentHistory;
 @property (nonatomic, retain) id productsRequestDelegate;
-@property (nonatomic, retain) InAppPurchaseUtility* productIdListPointer;
+//@property (nonatomic, retain) ProductIdList* productIdListPointer;
 
 //Save/Load with UserDefault.
 - (void)savePaymentHistory;

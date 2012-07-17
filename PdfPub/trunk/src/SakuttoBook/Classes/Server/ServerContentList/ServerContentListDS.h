@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ContentListDS.h"
 #import "InAppPurchaseDefine.h"
-#import "InAppPurchaseUtility.h"
+#import "ProductIdList.h"
 #import "FileUtility.h"
 #import "UrlDefine.h"
 #import "ConfigViewController.h"

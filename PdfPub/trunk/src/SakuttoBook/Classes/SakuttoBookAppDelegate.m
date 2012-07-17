@@ -22,7 +22,7 @@
 @synthesize contentListDS;
 @synthesize serverContentListDS;
 @synthesize paymentHistoryDS;
-@synthesize productIdList;
+//@synthesize productIdList;
 
 #pragma mark -
 #pragma mark Application lifecycle
@@ -41,17 +41,17 @@
 	serverContentListDS = nil;
 	
 	//Setup productIdList.
-	productIdList = [[InAppPurchaseUtility alloc] init];
-	contentListDS.productIdListPointer = productIdList;
+	//productIdList = [ProductIdList alloc] init];
+	//contentListDS.productIdListPointer = productIdList;
 	
 	//Copy PDF file in MainBundle resource to local file.
 	if ([self isFirstLaunchUp] == YES) {
 		[self copyPdfFromResourceToFile];
 		[self copyOtherfileFromResourceToFile];
 		[self setDefaultUsernameAndPassword];
-		[productIdList loadProductIdListFromMainBundle];
-		if ([productIdList count] > 0) {
-			[productIdList saveProductIdList];
+		[[ProductIdList sharedManager] loadProductIdListFromMainBundle];
+		if ([[ProductIdList sharedManager] count] > 0) {
+			[[ProductIdList sharedManager] saveProductIdList];
 			//
 			[contentListDS mergeProductIdIntoContentList];
 		}

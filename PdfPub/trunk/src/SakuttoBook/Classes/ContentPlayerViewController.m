@@ -2491,6 +2491,7 @@
 
 - (void)dealloc {
     [super dealloc];
+	/*
 	if (soundDelayTimer != nil) {
 		if ([soundDelayTimer isValid] == YES) {
 			[soundDelayTimer invalidate];
@@ -2498,6 +2499,7 @@
 		
 		//Do not release NSTimer! (managed in main loop, should onli Invalidated.)
 	}
+	*/
 }
 
 @end
