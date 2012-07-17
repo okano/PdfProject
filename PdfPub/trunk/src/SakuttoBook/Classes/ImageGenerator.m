@@ -17,7 +17,7 @@
 							minWidth:(CGFloat)minWidth
 {
 	//LOG_CURRENT_METHOD;
-	if ((pageNum < 0) || (! pdfURL) || (minWidth < 0)) {
+	if ((! pdfURL) || (minWidth < 0)) {
 		return;
 	}
 	
