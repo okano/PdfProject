@@ -46,7 +46,14 @@
 		 didFinishPickingImage:(UIImage *)selectedImage
 				   editingInfo:(NSDictionary*)editingInfo {  
     // Get selected image.
-	[self setupImage:selectedImage];
+	
+	
+	
+	
+	//[self setupImage:selectedImage];
+	
+	
+	
 	
 	//
 	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
