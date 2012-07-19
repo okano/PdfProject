@@ -41,8 +41,8 @@
 //Methods for switch ContentView/CosmeLessonView.
 - (void)showContentPlayerView;
 - (void)hideContentPlayerView;
-- (void)showCosmeLessonView;
-- (void)hideCosmeLessonView;
+- (void)showHairChangerView;
+- (void)hideHairChangerView;
 - (void)switchToContentPlayerView;
 - (void)switchToCosmeLessonView;
 

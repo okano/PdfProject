@@ -29,7 +29,7 @@
 
 - (void)viewDidLoad
 {
-	cosmeLessonVC = nil;
+	hairChangerVC = nil;
 	[self showContentPlayerView];
 }
 #pragma mark - ContentPlayer.
@@ -45,18 +45,18 @@
 	[contentPlayerViewController.view removeFromSuperview];
 }
 #pragma mark - CosmeLesson.
-- (IBAction)showCosmeLessonView
+- (IBAction)showHairChangerView
 {
 	
-	//if (cosmeLessonVC == nil) {
-		cosmeLessonVC = [[CosmeLessonViewController alloc] initWithNibName:@"CosmeLessonView" bundle:[NSBundle mainBundle]];
+	//if (hairChangerVC == nil) {
+		hairChangerVC = [[HairChangerViewController alloc] initWithNibName:@"HairChangerViewController" bundle:[NSBundle mainBundle]];
 	//};
-	[self.view addSubview:cosmeLessonVC.view];
+	[self.view addSubview:hairChangerVC.view];
 }
 
-- (void)hideCosmeLessonView
+- (void)hideHairChangerView
 {
-	[cosmeLessonVC.view removeFromSuperview];
+	[hairChangerVC.view removeFromSuperview];
 }
 
 #pragma mark -

@@ -81,6 +81,8 @@
 		29B3B7C812C57DE00014F866 /* MyPdfScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B3B7C712C57DE00014F866 /* MyPdfScrollView.m */; };
 		29B3B90C12C58C820014F866 /* ThumbnailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B3B90B12C58C820014F866 /* ThumbnailViewController.m */; };
 		29C944C613A34E9400AC18C6 /* icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 29C944C513A34E9400AC18C6 /* icon-72.png */; };
+		29D4C97515B81A38002CFBBE /* HairChangerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D4C97315B81A38002CFBBE /* HairChangerViewController.m */; };
+		29D4C97615B81A38002CFBBE /* HairChangerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29D4C97415B81A38002CFBBE /* HairChangerViewController.xib */; };
 		29E1089A12D46D4700FC5210 /* BookmarkModifyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29E1089912D46D4700FC5210 /* BookmarkModifyView.xib */; };
 		29E108A912D46ECF00FC5210 /* BookmarkModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E108A812D46ECF00FC5210 /* BookmarkModifyViewController.m */; };
 		29E6E1F113BDB51600B0DDAE /* CosmeLessonViewController+ImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E6E1F013BDB51600B0DDAE /* CosmeLessonViewController+ImagePicker.m */; };
@@ -281,6 +283,9 @@
 		29B3B90B12C58C820014F866 /* ThumbnailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumbnailViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29C944C513A34E9400AC18C6 /* icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72.png"; sourceTree = "<group>"; };
+		29D4C97215B81A38002CFBBE /* HairChangerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HairChangerViewController.h; sourceTree = "<group>"; };
+		29D4C97315B81A38002CFBBE /* HairChangerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HairChangerViewController.m; sourceTree = "<group>"; };
+		29D4C97415B81A38002CFBBE /* HairChangerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HairChangerViewController.xib; sourceTree = "<group>"; };
 		29E1089912D46D4700FC5210 /* BookmarkModifyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookmarkModifyView.xib; sourceTree = "<group>"; };
 		29E108A712D46ECF00FC5210 /* BookmarkModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkModifyViewController.h; sourceTree = "<group>"; };
 		29E108A812D46ECF00FC5210 /* BookmarkModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkModifyViewController.m; sourceTree = "<group>"; };
@@ -404,6 +409,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				29D4C97115B81A0C002CFBBE /* HairChanger */,
 				29A849B9139F1C8200508236 /* CosmeLesson01 */,
 				1D3623240D0F684500981E51 /* SakuttoBookAppDelegate.h */,
 				1D3623250D0F684500981E51 /* SakuttoBookAppDelegate.m */,
@@ -610,6 +616,16 @@
 				299448EB12B7370B00E7D108 /* MediaPlayer.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		29D4C97115B81A0C002CFBBE /* HairChanger */ = {
+			isa = PBXGroup;
+			children = (
+				29D4C97215B81A38002CFBBE /* HairChangerViewController.h */,
+				29D4C97315B81A38002CFBBE /* HairChangerViewController.m */,
+				29D4C97415B81A38002CFBBE /* HairChangerViewController.xib */,
+			);
+			path = HairChanger;
 			sourceTree = "<group>";
 		};
 		29F81219139F521F00A4F92F /* BaseMake */ = {
@@ -1039,6 +1055,7 @@
 				299791EE13AF96ED009B315B /* urlLinkDefine.csv in Resources */,
 				29AB5AED13F4D904006D26A1 /* human-32.png in Resources */,
 				29AB5AEF13F4D9C9006D26A1 /* zoom-32.png in Resources */,
+				29D4C97615B81A38002CFBBE /* HairChangerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1088,6 +1105,7 @@
 				29A849C9139F1CB600508236 /* CosmeLessonViewController+MarkerPen.m in Sources */,
 				29A849CD139F1CC100508236 /* MarkerPenView.m in Sources */,
 				29E6E1F113BDB51600B0DDAE /* CosmeLessonViewController+ImagePicker.m in Sources */,
+				29D4C97515B81A38002CFBBE /* HairChangerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

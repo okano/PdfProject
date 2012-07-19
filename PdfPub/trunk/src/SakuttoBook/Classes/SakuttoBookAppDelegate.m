@@ -82,23 +82,23 @@
 {
 	[self.viewController hideContentPlayerView];
 }
-- (void)showCosmeLessonView
+- (void)showHairChangerView
 {
-	[self.viewController showCosmeLessonView];
+	[self.viewController showHairChangerView];
 }
-- (void)hideCosmeLessonView
+- (void)hideHairChangerView
 {
-	[self.viewController hideCosmeLessonView];
+	[self.viewController hideHairChangerView];
 }
 - (void)switchToContentPlayerView
 {
-	[self hideCosmeLessonView];
+	[self hideHairChangerView];
 	[self showContentPlayerView];
 }
 - (void)switchToCosmeLessonView
 {
 	[self hideContentPlayerView];
-	[self showCosmeLessonView];
+	[self showHairChangerView];
 }
 /**
  * Functions in SakuttoBookViewController.

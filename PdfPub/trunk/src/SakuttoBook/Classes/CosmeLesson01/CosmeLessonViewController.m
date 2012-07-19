@@ -148,7 +148,7 @@
 - (IBAction)hideCosmeLessonView
 {
 	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
-	[appDelegate hideCosmeLessonView];
+	[appDelegate hideHairChangerView];
 }
 - (IBAction)switchToContentPlayerView
 {

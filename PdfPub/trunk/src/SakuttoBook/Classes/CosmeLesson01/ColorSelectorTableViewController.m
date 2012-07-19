@@ -125,10 +125,10 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 	
-	[parentViewController setLineColorAndWidthWithIndex:indexPath.row];
+//	[parentViewController setLineColorAndWidthWithIndex:indexPath.row];
 	//[parentViewController setupMarkerPenMenu];
 	
-	[parentViewController hideColorAndSizeSelector];
+//	[parentViewController hideColorAndSizeSelector];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
