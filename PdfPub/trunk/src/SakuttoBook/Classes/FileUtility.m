@@ -45,7 +45,7 @@
 		//parse each line.
 		NSArray* tmpCsvArray = [line componentsSeparatedByString:@","];
 		if ([tmpCsvArray count] <= 1) {
-			NSLog(@"no comma found in %@", targetFilename);
+			//NSLog(@"no comma found in %@", targetFilename);
 			pdfFilename = [tmpCsvArray objectAtIndex:1];
 		} else {
 			if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
@@ -188,8 +188,8 @@
 
 + (NSArray*)parseDefineCsv:(NSString*)filename contentId:(ContentId)cid 
 {
-	LOG_CURRENT_METHOD;
-	NSLog(@"filename=%@, cid=%d", filename, cid);
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"filename=%@, cid=%d", filename, cid);
 	
 	//Open CSV file from (1)ContentBody Directory (2)mainBundle
 	NSString* csvFilePath = nil;
@@ -209,13 +209,15 @@
 				filenameInMainBundle  = [self getCsvFilenameInMainBundle:filename contentId:cid withDeviceSuffix:NO];
 				csvFilePath = [[NSBundle mainBundle] pathForResource:filenameInMainBundle ofType:@""];
 				if ((csvFilePath == nil) || [self existsFile:csvFilePath] == NO) {
+					LOG_CURRENT_METHOD;
+					NSLog(@"csv name=%@, cid=%d", filename, cid);
 					NSLog(@"file not found in folder, in mainBundle.");
 					return nil;
 				}
 			}
 		}
 	}
-	NSLog(@"csvFilePath=%@", csvFilePath);
+	//NSLog(@"csvFilePath=%@", csvFilePath);
 	
 	return [self parseDefineCsvWithFullFilename:csvFilePath];
 }
