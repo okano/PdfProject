@@ -10,8 +10,17 @@
 #import "SakuttoBookAppDelegate.h"
 
 @interface HairChangerViewController : UIViewController <UIScrollViewDelegate> {
+	//Image Picker.
+	UIPopoverController* popoverController;
+	bool isShownImagePicker;
 }
 
 - (IBAction)switchToContentPlayerView;
 
+@end
+
+//
+//imagePicker
+@interface HairChangerViewController (ImagePicker) <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPopoverControllerDelegate>
+- (void)openImagePickerFromBarButtonItem:(UIBarButtonItem*)button;
 @end

@@ -83,6 +83,11 @@
 		29C944C613A34E9400AC18C6 /* icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 29C944C513A34E9400AC18C6 /* icon-72.png */; };
 		29D4C97515B81A38002CFBBE /* HairChangerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D4C97315B81A38002CFBBE /* HairChangerViewController.m */; };
 		29D4C97615B81A38002CFBBE /* HairChangerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29D4C97415B81A38002CFBBE /* HairChangerViewController.xib */; };
+		29D4C97815B81CFC002CFBBE /* HairChangerViewController+ImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D4C97715B81CFC002CFBBE /* HairChangerViewController+ImagePicker.m */; };
+		29D4C98215B81FA7002CFBBE /* change_bgimage.png in Resources */ = {isa = PBXBuildFile; fileRef = 29D4C97E15B81FA7002CFBBE /* change_bgimage.png */; };
+		29D4C98315B81FA7002CFBBE /* change_personimage.png in Resources */ = {isa = PBXBuildFile; fileRef = 29D4C97F15B81FA7002CFBBE /* change_personimage.png */; };
+		29D4C98415B81FA7002CFBBE /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 29D4C98015B81FA7002CFBBE /* home.png */; };
+		29D4C98515B81FA7002CFBBE /* save_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 29D4C98115B81FA7002CFBBE /* save_image.png */; };
 		29E1089A12D46D4700FC5210 /* BookmarkModifyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29E1089912D46D4700FC5210 /* BookmarkModifyView.xib */; };
 		29E108A912D46ECF00FC5210 /* BookmarkModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E108A812D46ECF00FC5210 /* BookmarkModifyViewController.m */; };
 		29E6E1F113BDB51600B0DDAE /* CosmeLessonViewController+ImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E6E1F013BDB51600B0DDAE /* CosmeLessonViewController+ImagePicker.m */; };
@@ -286,6 +291,11 @@
 		29D4C97215B81A38002CFBBE /* HairChangerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HairChangerViewController.h; sourceTree = "<group>"; };
 		29D4C97315B81A38002CFBBE /* HairChangerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HairChangerViewController.m; sourceTree = "<group>"; };
 		29D4C97415B81A38002CFBBE /* HairChangerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HairChangerViewController.xib; sourceTree = "<group>"; };
+		29D4C97715B81CFC002CFBBE /* HairChangerViewController+ImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HairChangerViewController+ImagePicker.m"; sourceTree = "<group>"; };
+		29D4C97E15B81FA7002CFBBE /* change_bgimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = change_bgimage.png; sourceTree = "<group>"; };
+		29D4C97F15B81FA7002CFBBE /* change_personimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = change_personimage.png; sourceTree = "<group>"; };
+		29D4C98015B81FA7002CFBBE /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
+		29D4C98115B81FA7002CFBBE /* save_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = save_image.png; sourceTree = "<group>"; };
 		29E1089912D46D4700FC5210 /* BookmarkModifyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookmarkModifyView.xib; sourceTree = "<group>"; };
 		29E108A712D46ECF00FC5210 /* BookmarkModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkModifyViewController.h; sourceTree = "<group>"; };
 		29E108A812D46ECF00FC5210 /* BookmarkModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkModifyViewController.m; sourceTree = "<group>"; };
@@ -556,6 +566,7 @@
 			isa = PBXGroup;
 			children = (
 				080E96DDFE201D6D7F000001 /* Classes */,
+				29D4C97D15B81FA7002CFBBE /* system-image */,
 				29311316138966AE003588A9 /* SKBEngine */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -623,10 +634,22 @@
 			children = (
 				29D4C97215B81A38002CFBBE /* HairChangerViewController.h */,
 				29D4C97315B81A38002CFBBE /* HairChangerViewController.m */,
+				29D4C97715B81CFC002CFBBE /* HairChangerViewController+ImagePicker.m */,
 				29D4C97415B81A38002CFBBE /* HairChangerViewController.xib */,
 			);
 			path = HairChanger;
 			sourceTree = "<group>";
+		};
+		29D4C97D15B81FA7002CFBBE /* system-image */ = {
+			isa = PBXGroup;
+			children = (
+				29D4C97E15B81FA7002CFBBE /* change_bgimage.png */,
+				29D4C97F15B81FA7002CFBBE /* change_personimage.png */,
+				29D4C98015B81FA7002CFBBE /* home.png */,
+				29D4C98115B81FA7002CFBBE /* save_image.png */,
+			);
+			path = "system-image";
+			sourceTree = SOURCE_ROOT;
 		};
 		29F81219139F521F00A4F92F /* BaseMake */ = {
 			isa = PBXGroup;
@@ -1056,6 +1079,10 @@
 				29AB5AED13F4D904006D26A1 /* human-32.png in Resources */,
 				29AB5AEF13F4D9C9006D26A1 /* zoom-32.png in Resources */,
 				29D4C97615B81A38002CFBBE /* HairChangerViewController.xib in Resources */,
+				29D4C98215B81FA7002CFBBE /* change_bgimage.png in Resources */,
+				29D4C98315B81FA7002CFBBE /* change_personimage.png in Resources */,
+				29D4C98415B81FA7002CFBBE /* home.png in Resources */,
+				29D4C98515B81FA7002CFBBE /* save_image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1106,6 +1133,7 @@
 				29A849CD139F1CC100508236 /* MarkerPenView.m in Sources */,
 				29E6E1F113BDB51600B0DDAE /* CosmeLessonViewController+ImagePicker.m in Sources */,
 				29D4C97515B81A38002CFBBE /* HairChangerViewController.m in Sources */,
+				29D4C97815B81CFC002CFBBE /* HairChangerViewController+ImagePicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
