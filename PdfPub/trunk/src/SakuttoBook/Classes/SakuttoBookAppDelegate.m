@@ -138,7 +138,8 @@
 }
 - (void)copyPdfFromResourceToFile
 {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
+	
 	//Create directory.
 	NSString* contentBodyDirectory = [ContentFileUtility getContentBodyDirectory];
 	[FileUtility makeDir:contentBodyDirectory];
