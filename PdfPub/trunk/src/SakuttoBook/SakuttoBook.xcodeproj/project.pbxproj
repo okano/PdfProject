@@ -29,6 +29,9 @@
 		2933410312D594AA00BFBC23 /* BookmarkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2933410212D594AA00BFBC23 /* BookmarkView.xib */; };
 		2935764212B5EA9C00F46754 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2935764112B5EA9C00F46754 /* MenuViewController.m */; };
 		2935764412B5EAAD00F46754 /* MenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2935764312B5EAAD00F46754 /* MenuView.xib */; };
+		2936214215B940BB008C75C7 /* pdfDefine_1.csv in Resources */ = {isa = PBXBuildFile; fileRef = 2936213F15B940BB008C75C7 /* pdfDefine_1.csv */; };
+		2936214315B940BB008C75C7 /* pdfDefine_2.csv in Resources */ = {isa = PBXBuildFile; fileRef = 2936214015B940BB008C75C7 /* pdfDefine_2.csv */; };
+		2936214415B940BB008C75C7 /* pdfDefine_3.csv in Resources */ = {isa = PBXBuildFile; fileRef = 2936214115B940BB008C75C7 /* pdfDefine_3.csv */; };
 		2936624B13A894D60010A808 /* ContentListCellController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2936624A13A894D60010A808 /* ContentListCellController.m */; };
 		2936659B13987BEF001028FE /* PaymentConductor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2936659A13987BEF001028FE /* PaymentConductor.m */; };
 		293BB9F012B6217300DDA3E3 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 293BB9EF12B6217300DDA3E3 /* WebViewController.m */; };
@@ -161,6 +164,9 @@
 		2935764012B5EA9C00F46754 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		2935764112B5EA9C00F46754 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		2935764312B5EAAD00F46754 /* MenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuView.xib; sourceTree = "<group>"; };
+		2936213F15B940BB008C75C7 /* pdfDefine_1.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pdfDefine_1.csv; path = csv/pdfDefine_1.csv; sourceTree = "<group>"; };
+		2936214015B940BB008C75C7 /* pdfDefine_2.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pdfDefine_2.csv; path = csv/pdfDefine_2.csv; sourceTree = "<group>"; };
+		2936214115B940BB008C75C7 /* pdfDefine_3.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pdfDefine_3.csv; path = csv/pdfDefine_3.csv; sourceTree = "<group>"; };
 		2936624913A894D60010A808 /* ContentListCellController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentListCellController.h; path = InAppPurchase/ContentList/ContentListCellController.h; sourceTree = "<group>"; };
 		2936624A13A894D60010A808 /* ContentListCellController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentListCellController.m; path = InAppPurchase/ContentList/ContentListCellController.m; sourceTree = "<group>"; };
 		2936659913987BEF001028FE /* PaymentConductor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaymentConductor.h; path = InAppPurchase/PaymentConductor.h; sourceTree = "<group>"; };
@@ -170,7 +176,7 @@
 		293BB9EF12B6217300DDA3E3 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		293BB9F112B6218500DDA3E3 /* WebView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebView.xib; sourceTree = "<group>"; };
 		29431E2112C5D29C00914DBD /* list_bullets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = list_bullets.png; path = Classes/list_bullets.png; sourceTree = "<group>"; };
-		2943E85513A662480034AC62 /* ProductIdList.h */ = {isa = PBXFileReference; fileEncoding = 4; name = ProductIdList.h; path = InAppPurchase/ProductIdList.h; sourceTree = "<group>"; };
+		2943E85513A662480034AC62 /* ProductIdList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductIdList.h; path = InAppPurchase/ProductIdList.h; sourceTree = "<group>"; };
 		2943E85613A662480034AC62 /* ProductIdList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductIdList.m; path = InAppPurchase/ProductIdList.m; sourceTree = "<group>"; };
 		29452C9F14E39B4300DD15ED /* ContentPlayerViewController+sound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ContentPlayerViewController+sound.m"; sourceTree = "<group>"; };
 		29452CA214E39BFA00DD15ED /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -725,6 +731,9 @@
 				29F4B93F13AB2A6800519DAA /* tocDefine_2.csv */,
 				29F4B94013AB2A6800519DAA /* tocDefine_3.csv */,
 				29014A9A12D6EC8700936BF0 /* pdfDefine.csv */,
+				2936213F15B940BB008C75C7 /* pdfDefine_1.csv */,
+				2936214015B940BB008C75C7 /* pdfDefine_2.csv */,
+				2936214115B940BB008C75C7 /* pdfDefine_3.csv */,
 				29A2A5461398B87300C8CB52 /* productIdList.csv */,
 			);
 			name = csv;
@@ -847,6 +856,9 @@
 				29E8A4311532AB0400468FE9 /* LICENSE in Resources */,
 				29E8A4321532AB0400468FE9 /* README in Resources */,
 				29E8A4331532AB0400468FE9 /* README_FOR_UNZIP_DIRECTORY in Resources */,
+				2936214215B940BB008C75C7 /* pdfDefine_1.csv in Resources */,
+				2936214315B940BB008C75C7 /* pdfDefine_2.csv in Resources */,
+				2936214415B940BB008C75C7 /* pdfDefine_3.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
