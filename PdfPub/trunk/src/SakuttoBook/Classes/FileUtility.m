@@ -195,17 +195,21 @@
 	NSString* csvFilePath = nil;
 	NSString* filenameInMainBundle = nil;
 	
-	//(1A)get from ContentBody Directory, with suffix.
+	//(1)get from ContentBody Directory, with suffix.
+	//   Ex: ~/tmp/contentBody/1/csv/tocDefine_iphone.csv
 	csvFilePath = [self getCsvFilenameInFolder:filename contentId:cid withDeviceSuffix:YES];
 	if ([self existsFile:csvFilePath] == NO) {
-		//(1B)get from ContentBody Directory, without suffix.
+		//(2)get from ContentBody Directory, without suffix.
+		//   Ex: ~/tmp/contentBody/1/csv/tocDefine.csv
 		csvFilePath = [self getCsvFilenameInFolder:filename contentId:cid withDeviceSuffix:NO];
 		if ([self existsFile:csvFilePath] == NO) {
-			//(2A)get from mainBundle, with suffix.
+			//(3)get from mainBundle, with suffix.
+			//   Ex: ~/SakuttoBook.app/tocDefine_iphone_1.csv
 			filenameInMainBundle = [self getCsvFilenameInMainBundle:filename contentId:cid withDeviceSuffix:YES];
 			csvFilePath = [[NSBundle mainBundle] pathForResource:filenameInMainBundle ofType:@""];
 			if ((csvFilePath == nil) || [self existsFile:csvFilePath] == NO) {
-				//(2B)get from mainBundle, without suffix.
+				//(4)get from mainBundle, without suffix.
+				//   Ex: ~/SakuttoBook.app/tocDefine_1.csv
 				filenameInMainBundle  = [self getCsvFilenameInMainBundle:filename contentId:cid withDeviceSuffix:NO];
 				csvFilePath = [[NSBundle mainBundle] pathForResource:filenameInMainBundle ofType:@""];
 				if ((csvFilePath == nil) || [self existsFile:csvFilePath] == NO) {
