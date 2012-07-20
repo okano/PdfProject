@@ -46,7 +46,7 @@
 		NSArray* tmpCsvArray = [line componentsSeparatedByString:@","];
 		if ([tmpCsvArray count] <= 1) {
 			//NSLog(@"no comma found in %@", targetFilename);
-			pdfFilename = [tmpCsvArray objectAtIndex:1];
+			pdfFilename = [tmpCsvArray objectAtIndex:0];
 		} else {
 			if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
 				// iPad
