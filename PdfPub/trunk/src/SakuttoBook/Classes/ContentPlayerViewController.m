@@ -257,6 +257,7 @@
 */
 - (BOOL)setupPdfBasicInfo:(ContentId)cid
 {
+	/*
 	//Setup PDF filename.(chached in this class)
 	//parse csv file.
 	NSString* targetFilename = @"pdfDefine";
@@ -301,6 +302,14 @@
 		}
 	}
 	//NSString* pdfFilenameFormatted = [self formatStringWithAlphaNumeric:pdfFilename];
+	*/
+	
+	
+	
+	//内蔵ファイルでもダウンロードしたファイルでも、~/tmp/contentBody/{cid}/pdf/ フォルダにコピーされるので、
+	//ファイル名は {cid}.pdf に固定となる。
+	NSString* pdfFilename = [NSString stringWithFormat:@"%d.pdf", cid];
+	
 	
 	
 	
