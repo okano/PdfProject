@@ -19,3 +19,7 @@ cp ${SRCDIR}/tocDefine_ipad_2.csv   ${DSTDIR}/csv/
 rm ${DSTDIR}/csv/movieDefine_2.csv
 cp ${SRCDIR}/movieDefine_iphone_2.csv ${DSTDIR}/csv/
 cp ${SRCDIR}/movieDefine_ipad_2.csv   ${DSTDIR}/csv/
+
+#Project File
+mv ${DSTDIR}/SakuttoBook.xcodeproj/project.pbxproj ${DSTDIR}/SakuttoBook.xcodeproj/project.pbxproj.bak
+cp ${SRCDIR}/project.pbxproj ${DSTDIR}/SakuttoBook.xcodeproj/project.pbxproj
