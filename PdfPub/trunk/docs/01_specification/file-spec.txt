@@ -46,7 +46,7 @@ mainBundleに含む（内蔵コンテンツ）も、初回起動時に~/tmp/や~
 
 
 CSVファイルを探す順番は、
-(1A)コンテンツフォルダ内、サフィックス付き。//Ex: ~/tmp/contentBody/1/csv/tocDefine_iphone.csv
-(1B)コンテンツフォルダ内、サフィックス無し。//Ex: ~/tmp/contentBody/1/csv/tocDefine.csv
-(2A)mainBundle内、サフィックス付き。//Ex: ~/tmp/contentBody/1/csv/tocDefine_iphone.csv
-(2B)mainBundle内、サフィックス無し。//Ex: ~/tmp/contentBody/1/csv/tocDefine.csv
+(1)コンテンツフォルダ内、サフィックス付き。//Ex: ~/tmp/contentBody/1/csv/tocDefine_iphone.csv
+(2)コンテンツフォルダ内、サフィックス無し。//Ex: ~/tmp/contentBody/1/csv/tocDefine.csv
+(3)mainBundle内、サフィックス付き。//Ex: ~/SakuttoBook.app/tocDefine_iphone_1.csv
+(4)mainBundle内、サフィックス無し。//Ex: ~/SakuttoBook.app/tocDefine_1.csv
