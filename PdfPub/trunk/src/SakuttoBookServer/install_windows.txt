@@ -1,0 +1,26 @@
+■バージョン
+Ruby 1.9.3-p194
+Rails 3.2.6
+
+■Ruby, Railsインストール
+http://rubyinstaller.org/downloads/
+Ruby Ruby 1.9.3-p194.exe をダウンロード インストール
+
+gem i rails
+
+■RMagick インストール
+Ruby1.9 に対応していないので以下を参考にインストール
+http://yasrails.blog33.fc2.com/blog-entry-14.html
+
+■起動
+>cd [epubのフォルダ]
+>bundle install  // gem インストール
+>rake db:create  // DB作成
+>rake db:migrate // テープル作成
+>rake db:seed    // ダミーデータ作成
+>rails s         // サーバ起動
+
+
+// DBリセット
+>db:migrate:reset // drop, create, migrate
+>rake db:seed     // ダミーデータ作成
