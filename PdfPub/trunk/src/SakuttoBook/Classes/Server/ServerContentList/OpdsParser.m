@@ -217,12 +217,14 @@
 		//NSLog(@"desc=%@", descStr);
 		
 		//UUID
+		//<id>urn:6cf3730c-7afb-441a-847f-d0bc84666b07</id>			<-Original server by Ruby On Rails. (incorrect format)
+		//<id>urn:uuid:6cf3730c-7afb-441a-847f-d0bc84666b07</id>	<-Calibre. (correct format)
 		NSArray* uuidElement = [singleElement elementsForName:@"id"];
 		NSString* uuidStrTagged = [[uuidElement objectAtIndex:0] description];
 		NSString* uuidStr = [[uuidStrTagged stringByReplacingOccurrencesOfString:@"<id>" withString:@""]
 							  stringByReplacingOccurrencesOfString:@"</id>" withString:@""];
 		NSArray* uuidTmp = [uuidStr componentsSeparatedByString:@":"];
-		uuidStr = [uuidTmp objectAtIndex:2];
+		uuidStr = [uuidTmp lastObject];
 		//NSLog(@"uuid=%@", uuidStr );
 		
 		//Links
