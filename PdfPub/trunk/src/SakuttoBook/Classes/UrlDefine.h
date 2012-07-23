@@ -14,6 +14,7 @@
 //Local server.
 #define URL_BASE_OPDS_DEFAULT2			@"http://localhost:8080"
 
+#define CREDENTIAL_REALM				@"Authorization Required"
 
 #define URL_SUFFIX_OPDS		@"/opds"
 //
