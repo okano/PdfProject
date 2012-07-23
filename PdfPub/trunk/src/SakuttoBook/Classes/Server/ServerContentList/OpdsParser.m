@@ -42,9 +42,10 @@
 		return nil;
 	}
 	
-	
-	//check XML exists.
 	NSError* error = nil;
+	
+#if 0==1
+	//check XML exists.
 	NSString* feed = [[NSString alloc] initWithContentsOfURL:rootUrl encoding:NSUTF8StringEncoding error:&error];
 	if (feed == nil) {
 		NSLog(@"no feed found.");
@@ -62,9 +63,16 @@
 		return nil;
 	}
 	//NSLog(@"feed=%@", feed);
+#endif
 	
-	//load XML to NSData.
-	NSData *_data = [NSData dataWithContentsOfURL:rootUrl];  
+	
+	//Set security infomation.
+	NSDictionary* dict = [[ConfigViewController alloc] loadUsernameAndPasswordFromUserDefault];
+	NSString* username = [dict valueForKey:USERNAME];
+	NSString* password = [dict valueForKey:PASSWORD];
+	
+	//Get XML data from network.
+	NSData *_data =[self getXmlFromUrl:rootUrl username:username password:password];
 	
 	//Prepare Parse.
     DDXMLDocument* doc = [[[DDXMLDocument alloc] initWithData:_data options:0 error:nil] autorelease];  
@@ -133,6 +141,8 @@
 	}
 	//NSLog(@"resultStr=%@", resultStr);
 	if (resultStr == nil) {
+		LOG_CURRENT_METHOD;
+		NSLog(@"no root file found.");
 		return nil;
 	}
 	
@@ -146,120 +156,13 @@
 	LOG_CURRENT_METHOD;
 	NSLog(@"elementUrl=%@", [elementUrl description]);
 	
-	//check XML exists.
-	/*
-	NSString* feed = [[NSString alloc] initWithContentsOfURL:elementUrl];
-	if (feed == nil) {
-		NSLog(@"no feed found.");
-		return nil;
-	}
-	//NSLog(@"feed=%@", feed);
-	*/
-	NSHTTPURLResponse* res = nil;
-	NSError* error = nil;
-	
 	//Set security infomation.
 	NSDictionary* dict = [[ConfigViewController alloc] loadUsernameAndPasswordFromUserDefault];
 	NSString* username = [dict valueForKey:USERNAME];
 	NSString* password = [dict valueForKey:PASSWORD];
-	//NSLog(@"username=%@", username);
-	//NSLog(@"password=%@", password);
-	//NSLog(@"host=%@", [elementUrl host]);
-	if (username == nil || password == nil){
-		NSLog(@"username or password is nil.");
-		UIAlertView *alert = [[[UIAlertView alloc]
-							   initWithTitle:nil
-							   message:@"username or password is nil."
-							   delegate:nil
-							   cancelButtonTitle:nil
-							   otherButtonTitles:@"OK", nil]
-							  autorelease];
-		[alert show];
-		
-		return nil;
-	}
 	
-	NSURLCredential* credential = [NSURLCredential credentialWithUser:username //@"AbCd"
-															 password:password //@"pass"
-														  persistence:NSURLCredentialPersistencePermanent];
-	
-	/*
-	NSURLCredential* credential = [NSURLCredential credentialWithUser:@"AbCd"
-															 password:@"pass"
-														  persistence:NSURLCredentialPersistencePermanent];
-	*/
-	NSLog(@"credential = %@", [credential description]);
-	NSURLProtectionSpace* protectionSpace = [[NSURLProtectionSpace alloc] initWithHost:[elementUrl host] //@"192.168.1.6" //@"192.168.1.8" //[elementUrl host] //@"localhost"
-																				  port:8080
-																			  protocol:NSURLProtectionSpaceHTTP //@"http"
-																				 realm:@"Authorization Required"
-																  authenticationMethod:NSURLAuthenticationMethodHTTPBasic];
-	NSLog(@"protectionSpace=%@, host=%@, port=%d", [protectionSpace description],
-		  [protectionSpace host], [protectionSpace port]);
-	NSLog(@"protocol=%@, realm=%@", [protectionSpace protocol], [protectionSpace realm]);
-	NSLog(@"receivesCredentialSecurely=%d(YES=%d,NO=%d)", [protectionSpace receivesCredentialSecurely], YES, NO);
-	NSLog(@"distinguishedNames=%@", [[protectionSpace distinguishedNames] description]);
-	[[NSURLCredentialStorage sharedCredentialStorage] setDefaultCredential:credential
-														forProtectionSpace:protectionSpace];
-	[protectionSpace release];
-	
-	NSLog(@"all credential=%@", [[[NSURLCredentialStorage sharedCredentialStorage] allCredentials] description]);
-	
-	
-	//Set timeout = 10s.
-	NSURLRequest* req = [[NSURLRequest alloc] initWithURL:elementUrl
-								cachePolicy:NSURLRequestUseProtocolCachePolicy
-												 timeoutInterval:10.0];
-	//
-	NSData* data = [NSURLConnection sendSynchronousRequest:req
-										 returningResponse:&res
-													 error:&error];
-	
-	if (!data || error)
-	{
-		NSLog(@"url=%@", [elementUrl description]);
-		NSLog(@"failed to get data. error=%@", [error localizedDescription]);
-		
-		NSString* errorMsg;
-		if ([[error domain] isEqualToString:@"NSURLErrorDomain"]) {
-			NSLog(@"error code=%d", [error code]);
-			switch ([error code]) {
-				case NSURLErrorCannotFindHost:
-					errorMsg = NSLocalizedString(@"Cannot find specified host. Retype URL.", nil);
-					break;
-				case NSURLErrorCannotConnectToHost:
-					errorMsg = NSLocalizedString(@"Cannot connect to specified host. Server may be down.", nil);
-					break;
-				case NSURLErrorNotConnectedToInternet:
-					errorMsg = NSLocalizedString(@"Cannot connect to the internet. Service may not be available.", nil);
-					break;
-				case NSURLErrorUserCancelledAuthentication:
-					errorMsg = [NSString stringWithFormat:@"Returned when an asynchronous request for authentication is cancelled by the user."];
-					break;
-				case NSURLErrorUserAuthenticationRequired:
-					errorMsg = [NSString stringWithFormat:@"Returned when authentication is required to access a resource."];
-					break;
-				default:
-					errorMsg = [error localizedDescription];
-					break;
-			}
-		} else {
-			errorMsg = [error localizedDescription];
-		}
-		
-		NSLog(@"error message=%@", errorMsg);
-		NSLog(@"error domain=%@", [error domain]);
-	}
-	
-	if (res) {
-		NSLog(@"stat = %d", [(NSHTTPURLResponse*)res statusCode]);
-	} else {
-		NSLog(@"res is null");
-	}
-	
-	
-	//load XML to NSData.
-	NSData *_data = [NSData dataWithContentsOfURL:elementUrl];  
+	//Get XML data from network.
+	NSData *_data =[self getXmlFromUrl:elementUrl username:username password:password];
 	
 	//Prepare Parse.
 	//NSError* error;
@@ -274,6 +177,7 @@
 	[rootElement addNamespace:[DDXMLNode namespaceWithName:@"foo" stringValue:@"http://www.w3.org/2005/Atom"]];
 	
 	//Get each entry.
+	NSError* error = nil;
 	NSArray* entries = [rootElement nodesForXPath:@"//foo:entry" error:&error];
 	//NSLog(@"entries=%@", [entries description]);
 	
@@ -375,6 +279,127 @@
 	//NSLog(@"linksUrlArray=%@", [linksUrlArray description]);
 	
 	return linksUrlArray;
+}
+
+#pragma mark - common method.
+//Needs port number for generate credential(NSURLProtectionSpace class).
+- (NSData*)getXmlFromUrl:(NSURL*)url username:(NSString*)username password:(NSString*)password;
+{
+	LOG_CURRENT_METHOD;
+	NSLog(@"url=%@, port=%d", [url description], [[url port] intValue]);
+	
+	//check XML exists.
+	/*
+	 NSString* feed = [[NSString alloc] initWithContentsOfURL:url];
+	 if (feed == nil) {
+	 NSLog(@"no feed found.");
+	 return nil;
+	 }
+	 //NSLog(@"feed=%@", feed);
+	 */
+	NSHTTPURLResponse* res = nil;
+	NSError* error = nil;
+	
+	//NSLog(@"username=%@", username);
+	//NSLog(@"password=%@", password);
+	//NSLog(@"host=%@", [url host]);
+	if (username == nil || password == nil){
+		NSLog(@"username or password is nil.");
+		UIAlertView *alert = [[[UIAlertView alloc]
+							   initWithTitle:nil
+							   message:@"username or password is nil."
+							   delegate:nil
+							   cancelButtonTitle:nil
+							   otherButtonTitles:@"OK", nil]
+							  autorelease];
+		[alert show];
+		
+		return nil;
+	}
+	
+	NSURLCredential* credential = [NSURLCredential credentialWithUser:username //@"AbCd"
+															 password:password //@"pass"
+														  persistence:NSURLCredentialPersistencePermanent];
+	
+	/*
+	 NSURLCredential* credential = [NSURLCredential credentialWithUser:@"AbCd"
+	 password:@"pass"
+	 persistence:NSURLCredentialPersistencePermanent];
+	 */
+	NSLog(@"credential = %@", [credential description]);
+	NSURLProtectionSpace* protectionSpace = [[NSURLProtectionSpace alloc] initWithHost:[url host] //@"192.168.1.6" //@"192.168.1.8" //[url host] //@"localhost"
+																				  port:[[url port] intValue]
+																			  protocol:NSURLProtectionSpaceHTTP //@"http"
+																				 realm:CREDENTIAL_REALM
+																  authenticationMethod:NSURLAuthenticationMethodHTTPBasic];
+	NSLog(@"protectionSpace=%@, host=%@, port=%d", [protectionSpace description],
+		  [protectionSpace host], [protectionSpace port]);
+	NSLog(@"protocol=%@, realm=%@", [protectionSpace protocol], [protectionSpace realm]);
+	NSLog(@"receivesCredentialSecurely=%d(YES=%d,NO=%d)", [protectionSpace receivesCredentialSecurely], YES, NO);
+	NSLog(@"distinguishedNames=%@", [[protectionSpace distinguishedNames] description]);
+	[[NSURLCredentialStorage sharedCredentialStorage] setDefaultCredential:credential
+														forProtectionSpace:protectionSpace];
+	[protectionSpace release];
+	
+	NSLog(@"all credential=%@", [[[NSURLCredentialStorage sharedCredentialStorage] allCredentials] description]);
+	
+	
+	//Set timeout = 10s.
+	NSURLRequest* req = [[NSURLRequest alloc] initWithURL:url
+											  cachePolicy:NSURLRequestUseProtocolCachePolicy
+										  timeoutInterval:10.0];
+	//
+	NSData* data = [NSURLConnection sendSynchronousRequest:req
+										 returningResponse:&res
+													 error:&error];
+	
+	if (!data || error)
+	{
+		NSLog(@"url=%@", [url description]);
+		NSLog(@"failed to get data. error=%@", [error localizedDescription]);
+		
+		NSString* errorMsg;
+		if ([[error domain] isEqualToString:@"NSURLErrorDomain"]) {
+			NSLog(@"error code=%d", [error code]);
+			switch ([error code]) {
+				case NSURLErrorCannotFindHost:
+					errorMsg = NSLocalizedString(@"Cannot find specified host. Retype URL.", nil);
+					break;
+				case NSURLErrorCannotConnectToHost:
+					errorMsg = NSLocalizedString(@"Cannot connect to specified host. Server may be down.", nil);
+					break;
+				case NSURLErrorNotConnectedToInternet:
+					errorMsg = NSLocalizedString(@"Cannot connect to the internet. Service may not be available.", nil);
+					break;
+				case NSURLErrorUserCancelledAuthentication:
+					errorMsg = [NSString stringWithFormat:@"Returned when an asynchronous request for authentication is cancelled by the user."];
+					break;
+				case NSURLErrorUserAuthenticationRequired:
+					errorMsg = [NSString stringWithFormat:@"Returned when authentication is required to access a resource."];
+					break;
+				default:
+					errorMsg = [error localizedDescription];
+					break;
+			}
+		} else {
+			errorMsg = [error localizedDescription];
+		}
+		
+		NSLog(@"error message=%@", errorMsg);
+		NSLog(@"error domain=%@", [error domain]);
+	}
+	
+	if (res) {
+		NSLog(@"stat = %d", [(NSHTTPURLResponse*)res statusCode]);
+	} else {
+		NSLog(@"res is null");
+	}
+	
+	
+	//load XML to NSData.
+	NSData *_data = [NSData dataWithContentsOfURL:url];  
+
+	return _data;
 }
 
 
