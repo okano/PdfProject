@@ -30,8 +30,8 @@ xml.feed('xmlns:dc' => "http://purl.org/dc/terms/", 'xmlns:opds' => "http://opds
         end
       end
       xml.link(href: content.file_url, type: content.file_url.end_with?('zip') ? 'application/zip' : 'application/x-cbz', rel: 'http://opds-spec.org/acquisition') if content.file?
-      xml.link(href: content.image_url, type: MIME::Types.type_for(content.image_url)[0], rel: 'http://opds-spec.org/cover')
-      xml.link(href: content.image_url(:thumb), type: MIME::Types.type_for(content.image_url)[0], rel: 'http://opds-spec.org/thumbnail') 
+      xml.link(href: content.image_url, type: MIME::Types.type_for(content.image_url)[0], rel: 'http://opds-spec.org/image/cover')
+      xml.link(href: content.image_url(:thumb), type: MIME::Types.type_for(content.image_url)[0], rel: 'http://opds-spec.org/image/thumbnail') 
     end
   end
 end
