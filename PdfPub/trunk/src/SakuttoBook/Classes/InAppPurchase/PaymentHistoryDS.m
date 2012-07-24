@@ -191,8 +191,8 @@
 		NSNumber* candidateContentIdNumber = [record objectForKey:PURCHASE_CONTENT_ID];
 		ContentId candidateContentId = [candidateContentIdNumber intValue];
 		NSDate* candidatePurchaseDate = [record objectForKey:PURCHASE_DAYTIME];
-		NSString* candidatePurchaseDateStr = [self date2str:candidatePurchaseDate];
-		NSLog(@"candidateProductId=%@, candidateContentId=%d, candidatePurchaseDate=%@(str=%@)", candidateProductId, candidateContentId, [candidatePurchaseDate description], candidatePurchaseDateStr);
+		//NSString* candidatePurchaseDateStr = [self date2str:candidatePurchaseDate];
+		//NSLog(@"candidateProductId=%@, candidateContentId=%d, candidatePurchaseDate=%@(str=%@)", candidateProductId, candidateContentId, [candidatePurchaseDate description], candidatePurchaseDateStr);
 		//NSLog(@"date class=%@, candidatePurchaseDate class=%@", [date class], [candidatePurchaseDate class]);
 		
 		//if (contentId == candidateContentId) { LOG_CURRENT_LINE; }
