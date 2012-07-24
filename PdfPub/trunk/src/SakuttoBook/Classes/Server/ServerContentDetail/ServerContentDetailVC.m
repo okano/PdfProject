@@ -62,7 +62,7 @@
 {
 	//LOG_CURRENT_METHOD;
 	//NSLog(@"cid=%d", cid);
-	NSLog(@"uuid=%@", uuid);
+	//NSLog(@"uuid=%@", uuid);
 	//inner var.
 	targetUuid = uuid;
 	
@@ -78,6 +78,25 @@
 	
 	//URL for download.
 	NSURL* u = [appDelegate.serverContentListDS acquisitionUrlByUuid:uuid];
+	if (u == nil) {
+		//not exist acquisition content.
+		LOG_CURRENT_METHOD;
+		NSLog(@"valid contents not found. uuid=%@", uuid);
+		priceLabel.text = @"no file found.";
+		[buyButton setTitle:@"購入できません" forState:UIControlStateNormal];
+		[self disableBuyButton];
+		[self hideReDownloadButton];
+		//Show alert.
+		UIAlertView *alert = [[[UIAlertView alloc]
+							   initWithTitle:@"format error"
+							   message:@"このコンテンツはダウンロードできません。有効なダウンロードリンクが見つかりません。"
+							   delegate:nil
+							   cancelButtonTitle:nil
+							   otherButtonTitles:@"OK", nil]
+							  autorelease];
+		[alert show];
+		return;
+	}
 	targetUrl = [[NSURL alloc] initWithString:[u description]];
 	NSLog(@"targetUrl class=%@", [targetUrl class]);
 	NSLog(@"targetUrl=%@", [targetUrl description]);
