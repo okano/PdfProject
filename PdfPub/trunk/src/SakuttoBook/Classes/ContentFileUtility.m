@@ -16,12 +16,16 @@
 /**
  *Content Detail.
  */
-+ (NSString*)getContentDetailDirectoryWithContentId:(NSString*)cId
++ (NSString*)getContentDetailDirectory
 {
 	NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString* documentsDirectory = [paths objectAtIndex:0];
-	NSString* dir = [[documentsDirectory
-					  stringByAppendingPathComponent:CONTENT_DETAIL_DIRECTORY]
+	NSString* dir = [[paths objectAtIndex:0]
+			stringByAppendingPathComponent:CONTENT_DETAIL_DIRECTORY];
+	return dir;
+}
++ (NSString*)getContentDetailDirectoryWithContentId:(NSString*)cId
+{
+	NSString* dir = [[self getContentDetailDirectory]
 					 stringByAppendingPathComponent:cId];
 	return dir;
 }

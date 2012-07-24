@@ -20,6 +20,7 @@
 }
 
 //Filename utility.
++ (NSString*)getContentDetailDirectory;
 + (NSString*)getContentDetailDirectoryWithContentId:(NSString*)cId;
 + (NSString*)getContentDetailFilename:(NSString*)cId;
 + (NSString*)getContentBodyDirectory;								//contentBody/
