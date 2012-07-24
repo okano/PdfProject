@@ -389,6 +389,11 @@
 							  autorelease];
 		alert.tag = ALERTVIEW_TAG_PDF_NOT_FOUND;
 		[alert show];
+		
+		//Delete content from contentList.
+		SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
+		[appDelegate.contentListDS removeMetadataWithContentId:[cidStr intValue]];
+		
 		return;
 	} else {
 		NSLog(@"copy-from pdf file found. filename=%@", fromPath);

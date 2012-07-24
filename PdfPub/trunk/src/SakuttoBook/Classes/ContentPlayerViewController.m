@@ -341,6 +341,19 @@
 	pdfDocument = CGPDFDocumentCreateWithURL((CFURLRef)pdfURL);
 	if (!pdfDocument) {
 		NSLog(@"PDF file cannot open. filename=%@", pdfFilename);
+		
+		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"error"
+														 message:@"このコンテンツにはPDFファイルが存在しません。"
+														delegate:nil
+											   cancelButtonTitle:nil
+											   otherButtonTitles:@"OK",nil]
+							  autorelease];
+		[alert show];
+		
+		SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
+		[appDelegate hideContentPlayerView];
+		[appDelegate showContentListView];
+
 		return FALSE;
 	}
 	
