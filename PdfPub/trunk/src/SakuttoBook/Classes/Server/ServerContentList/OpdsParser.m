@@ -251,22 +251,22 @@
 			NSRange range = [relAttribute rangeOfString : searchForMe];
 			if (range.location != NSNotFound) {
 				acquisitionLink = [NSString stringWithFormat:@"%@%@", baseUrlStr, hrefAttribute];
-				
+				continue;	//skip to next tag.
 			}
 			//Link for Thumbnail.
 			searchForMe = @"http://opds-spec.org/thumbnail";
 			range = [relAttribute rangeOfString : searchForMe];
 			if (range.location != NSNotFound) {
 				thumbnailLink = [NSString stringWithFormat:@"%@%@", baseUrlStr, hrefAttribute];
-				
+				continue;	//skip to next tag.
 			}
 			searchForMe = @"http://opds-spec.org/image/thumbnail";
 			range = [relAttribute rangeOfString : searchForMe];
 			if (range.location != NSNotFound) {
 				thumbnailLink = [NSString stringWithFormat:@"%@%@", baseUrlStr, hrefAttribute];
-				
+				continue;	//skip to next tag.
 			}
-			//Link for Cover.
+			//Link for Cover.(old format server)
 			searchForMe = @"http://opds-spec.org/cover";
 			range = [relAttribute rangeOfString : searchForMe];
 			if (range.location != NSNotFound) {
@@ -280,20 +280,15 @@
 				if ([coverId intValue] != 0) {
 					contentId = [coverId intValue];
 				}
+				continue;	//skip to next tag.
 			}
+			//Link for Cover.(new format server)
 			searchForMe = @"http://opds-spec.org/image/cover";
 			range = [relAttribute rangeOfString : searchForMe];
 			if (range.location != NSNotFound) {
 				//get cover.
 				coverLink = [NSString stringWithFormat:@"%@%@", baseUrlStr, hrefAttribute];
-				//get Cid.
-				//convert "http://localhost/path/to/1.jpg" -> "1.jpg" -> "1"
-				//
-				NSString* coverFilename = [hrefAttribute lastPathComponent];
-				NSString* coverId = [coverFilename stringByDeletingPathExtension];
-				if ([coverId intValue] != 0) {
-					contentId = [coverId intValue];
-				}
+				continue;	//skip to next tag.
 			}
 		}
 		
