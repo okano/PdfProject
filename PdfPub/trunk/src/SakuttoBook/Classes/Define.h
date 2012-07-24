@@ -134,6 +134,9 @@
 
 #define METADATA_PLIST_FILENAME	@"ContentMetadata.plist"
 
+// for judge simulator device is changed. (to reset configuration for debug.)
+#define LAST_LAUNCHED_DEVICE_ON_SIMULATOR	@"LastLaunchedDeviceOnSimulator"
+
 //for const URL for OPDS.
 #define URL_OPDS			@"UrlBaseWithOpds"
 
