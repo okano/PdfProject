@@ -30,6 +30,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
     // Override point for customization after application launch.
+	
+	//Clear all setting and content if change device on simulator.
+	if ([self isChangeDeviceOnSimulator] == YES) {
+		[self setLastLaunchedDeviceOnSimulator];
+		[self alertWithDeviceChangedOnSimulator];
+		[self deleteAllSettings];
+	}
+	
 	license = [[License alloc] init];
 	//Hides status bar.
 	[[UIApplication sharedApplication] setStatusBarHidden:YES];
@@ -114,6 +122,7 @@
  * Functions in SakuttoBookViewController.
  */
 #pragma mark -
+#pragma mark Setting at first launch.
 - (BOOL)isFirstLaunchUp
 {
 	NSString* tmpDirectory = [ContentFileUtility getContentTmpDirectory];
@@ -446,6 +455,110 @@
 	ConfigViewController* cfgvc = [[ConfigViewController alloc] initWithNibName:@"ConfigView" bundle:[NSBundle mainBundle]];
 	[cfgvc saveUsernameAndPasswordToUserDefault:USERNAME_DEFAULT withPassword:PASSWORD_DEFAULT];
 	[cfgvc release];
+}
+
+#pragma mark -
+#pragma mark Handle device change on simulator. (reset all setting for DEBUG.)
+- (BOOL)isChangeDeviceOnSimulator
+{
+#if ! TARGET_IPHONE_SIMULATOR
+	return NO;
+#endif
+	
+	NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
+	id obj = [settings valueForKey:LAST_LAUNCHED_DEVICE_ON_SIMULATOR];
+	if (!obj) {		//no exists.
+		[self setLastLaunchedDeviceOnSimulator];
+		return NO;
+	}
+	if (![obj isKindOfClass:[NSNumber class]]) {
+		NSLog(@"illigal device infomation on simulator. class=%@", [obj class]);
+		return NO;
+	}
+	
+	int currentDeviceKind;
+#if (__IPHONE_OS_VERSION_MAX_ALLOWED >= 30200)
+	// sdk upper 3.2
+	currentDeviceKind = UI_USER_INTERFACE_IDIOM();
+#else
+	// sdk under 3.2
+	currentDeviceKind = UIUserInterfaceIdiomPhone;
+#endif
+	
+	if (currentDeviceKind == [obj intValue]) {
+		return NO;
+	} else {
+		return YES;
+	}
+}
+- (void)setLastLaunchedDeviceOnSimulator
+{
+#if ! TARGET_IPHONE_SIMULATOR
+	return;
+#endif
+	
+	//Get current device kind.
+	int currentDeviceKind;
+#if (__IPHONE_OS_VERSION_MAX_ALLOWED >= 30200)
+	// sdk upper 3.2
+	currentDeviceKind = UI_USER_INTERFACE_IDIOM();
+#else
+	// sdk under 3.2
+	currentDeviceKind = UIUserInterfaceIdiomPhone;
+#endif
+	
+	//Set to UserDefault.
+	[[NSUserDefaults standardUserDefaults] setInteger:(NSInteger)currentDeviceKind
+											   forKey:LAST_LAUNCHED_DEVICE_ON_SIMULATOR];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+}
+- (void)alertWithDeviceChangedOnSimulator;
+{
+	UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"DEBUG"
+													 message:@"シミュレータ上で機種が変更されました。全ての設定をリセットしました。"
+													delegate:nil
+										   cancelButtonTitle:nil
+										   otherButtonTitles:@"OK",nil]
+						  autorelease];
+	[alert show];
+}
+- (void)deleteAllSettings
+{
+	//Reset UserDefault.
+	NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+	[[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];	
+	
+	
+	
+	//Remove/re-Create folder for tmp.
+	NSString* contentTmpDir = [ContentFileUtility getContentTmpDirectory];
+	[FileUtility removeFile:contentTmpDir];
+	[FileUtility makeDir:contentTmpDir];
+	
+	//Remove/re-Create folder for content detail.
+	NSString* contentDetailDir = [ContentFileUtility getContentDetailDirectory];
+	[FileUtility removeFile:contentDetailDir];
+	[FileUtility makeDir:contentDetailDir];
+	/*
+	NSArray* fileList = [FileUtility fileList:contentDetailDir];
+	for (NSString* filename in fileList) {
+		[FileUtility removeFile:filename];
+	}
+	*/
+	
+	/*
+	//Remove folder for contentBody.
+	NSString* contentBodyDirectory = [ContentFileUtility getContentBodyDirectory];
+	[FileUtility removeFile:contentBodyDirectory];
+	 
+	//Remove folder for contentCoverCache.
+	NSString* contentCoverCacheDirectory = [ContentFileUtility getCoverIconDirectory];
+	[FileUtility removeFile:contentCoverCacheDirectory];
+	
+	//Remove folder for download.
+	NSString* contentDownloadDirectory = [ContentFileUtility getContentDownloadDirectory];
+	[FileUtility removeFile:contentDownloadDirectory];
+	*/
 }
 
 

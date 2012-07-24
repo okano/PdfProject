@@ -69,6 +69,11 @@
 - (void)copyPdfFromResourceToFile;
 - (void)copyOtherfileFromResourceToFile;
 - (void)setDefaultUsernameAndPassword;
+//Check/handle with changing device kind on simulator.
+- (BOOL)isChangeDeviceOnSimulator;
+- (void)setLastLaunchedDeviceOnSimulator;
+- (void)alertWithDeviceChangedOnSimulator;
+- (void)deleteAllSettings;
 //
 - (NSString*)getThumbnailFilenameFull:(int)pageNum;
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum;
