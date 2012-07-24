@@ -129,3 +129,23 @@ NameVirtualHost xxx.xxx.xxx.xxx
 # make
 # make install
 
+
+
+●再インストール時の手順
+・/var/www/passenger/sbss にファイルを展開
+・sbss/config/database.yml で、データベースのパスワードを設定
+　production: の所の記述を編集する。
+・cd sbss （bundleコマンドはカレントディレクトリのみを対象としているため）
+・bundle install
+・rake _0.8.7_ assets:precompile
+・chmod 777 sbss/log
+・chmod 777 sbss/tmp
+・chmod 777 sbss/public/upload
+・ service httpd restart
+
+・データベースのスキーマ変更していた場合は、
+# rake db:create RAILS_ENV=production
+# rake db:migrate RAILS_ENV=production
+
+rake db:migrate:reset // DBリセット
+rake db:seed          // ダミーデータ作成
