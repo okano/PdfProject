@@ -1,0 +1,44 @@
+★サーバの個別設定個所
+
+●インストール先ディレクトリ
+/var/www/passenger/sbss/
+("production")
+
+
+●データベースの設定
+{インストール先ディレクトリ}/config/database.yml
+
+"production:"セクションを変更する。
+---
+production:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: epubs_production   #データベース名。"_production"が付くので注意。
+  pool: 5
+  username: root               #ユーザ名
+  password:                    #パスワード
+  host: localhost
+---
+
+
+●管理画面のユーザ名/パスワード
+{インストール先ディレクトリ}/app/controllers/admin/contents_controller.rb
+---
+  http_basic_authenticate_with :name => "admin", :password => "password"
+---
+★認証Realmは?
+現状は、"Application"固定。
+
+
+●ユーザ画面のユーザ名/パスワード
+{インストール先ディレクトリ}/app/controllers/contents_controller.rb
+---
+  http_basic_authenticate_with :name => "user", :password => "password"
+---
+★認証Realmは?
+現状は、"Application"固定。
+
+
+
+
