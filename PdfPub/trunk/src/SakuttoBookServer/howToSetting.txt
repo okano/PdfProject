@@ -2,7 +2,7 @@
 
 ●インストール先ディレクトリ
 /var/www/passenger/sbss/
-("production")
+("production"環境で構築してある)
 
 
 ●データベースの設定
@@ -22,23 +22,15 @@ production:
 ---
 
 
-●管理画面のユーザ名/パスワード
+●管理画面のユーザ名/パスワード/認証Realm
 {インストール先ディレクトリ}/app/controllers/admin/contents_controller.rb
 ---
-  http_basic_authenticate_with :name => "admin", :password => "password"
+  http_basic_authenticate_with :name => "admin", :password => "password", :realm => "Application"
 ---
-★認証Realmは?
-現状は、"Application"固定。
 
 
-●ユーザ画面のユーザ名/パスワード
+●ユーザ画面のユーザ名/パスワード/認証Realm
 {インストール先ディレクトリ}/app/controllers/contents_controller.rb
 ---
-  http_basic_authenticate_with :name => "user", :password => "password"
+  http_basic_authenticate_with :name => "user", :password => "password", :realm => "Application"
 ---
-★認証Realmは?
-現状は、"Application"固定。
-
-
-
-
