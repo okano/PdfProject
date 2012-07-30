@@ -27,6 +27,9 @@
 //Hide Infomation button on Menu bar.
 #define HIDE_INFOMATION_BUTTON 0	/* 0:show, 1:hide */
 
+//Hide Server button on Menu bar.
+#define HIDE_SERVER_BUTTON 0	/* 0:show, 1:hide */
+
 // Tap area. (0.00 - 1.00) (1.00 is "fit to screen")
 #define TAP_AREA_LEFT_X			0.00f
 #define TAP_AREA_LEFT_Y			0.15f
