@@ -196,11 +196,11 @@
 	NSString* filenameInMainBundle = nil;
 	
 	//(1)get from ContentBody Directory, with suffix.
-	//   Ex: ~/tmp/contentBody/1/csv/tocDefine_iphone.csv
+	//   Ex: ~/tmp/contentBody/1/csv/tocDefine_iphone_1.csv
 	csvFilePath = [self getCsvFilenameInFolder:filename contentId:cid withDeviceSuffix:YES];
 	if ([self existsFile:csvFilePath] == NO) {
 		//(2)get from ContentBody Directory, without suffix.
-		//   Ex: ~/tmp/contentBody/1/csv/tocDefine.csv
+		//   Ex: ~/tmp/contentBody/1/csv/tocDefine_1.csv
 		csvFilePath = [self getCsvFilenameInFolder:filename contentId:cid withDeviceSuffix:NO];
 		if ([self existsFile:csvFilePath] == NO) {
 			//(3)get from mainBundle, with suffix.
@@ -213,10 +213,24 @@
 				filenameInMainBundle  = [self getCsvFilenameInMainBundle:filename contentId:cid withDeviceSuffix:NO];
 				csvFilePath = [[NSBundle mainBundle] pathForResource:filenameInMainBundle ofType:@""];
 				if ((csvFilePath == nil) || [self existsFile:csvFilePath] == NO) {
-					LOG_CURRENT_METHOD;
-					NSLog(@"csv name=%@, cid=%d", filename, cid);
-					NSLog(@"file not found in folder, in mainBundle.");
-					return nil;
+					//(5)get from folder, without cid, without suffix.
+					//   Ex: ~/tmp/contentBody/csv/tocDefine.csv
+					//   (normally, this is never used)
+					csvFilePath = [[[[ContentFileUtility getContentBodyDirectory]
+									 stringByAppendingPathComponent:@"csv"]
+									stringByAppendingPathComponent:filename]
+								   stringByAppendingPathExtension:@"csv"];
+					if ([self existsFile:csvFilePath] == NO) {
+						//(6)get from mainBundle, without cid, without suffix.
+						//   Ex: ~/SakuttoBook.app/tocDefine.csv
+						csvFilePath	= [[NSBundle mainBundle] pathForResource:filename ofType:@"csv"];
+						if ((csvFilePath == nil) || [self existsFile:csvFilePath] == NO) {
+							LOG_CURRENT_METHOD;
+							NSLog(@"csv name=%@, cid=%d", filename, cid);
+							NSLog(@"file not found in folder, in mainBundle.");
+							return nil;
+						}
+					}
 				}
 			}
 		}
