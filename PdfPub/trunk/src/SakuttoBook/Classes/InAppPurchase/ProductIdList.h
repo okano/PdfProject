@@ -13,6 +13,7 @@
 #import "FileUtility.h"
 #import "UrlDefine.h"
 #import "ConfigViewController.h"
+#import "OpdsParser.h"
 
 @interface ProductIdList : NSObject {
     NSMutableArray* productIdList;

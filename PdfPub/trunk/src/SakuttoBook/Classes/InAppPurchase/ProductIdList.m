@@ -119,8 +119,31 @@ static ProductIdList *_instance = nil;
 	NSURL* url = [NSURL URLWithString:urlStr];
 	NSError* error = nil;
 	
+	//Set security infomation.
+	NSDictionary* dict = [[ConfigViewController alloc] loadUsernameAndPasswordFromUserDefault];
+	NSString* username = [dict valueForKey:USERNAME];
+	NSString* password = [dict valueForKey:PASSWORD];
+	
+	//Access enable check with HTTP responce 
+	OpdsParser* pidListParser = [[OpdsParser alloc] init];
+	NSData* pidListData = [pidListParser getXmlFromUrl:url
+											  username:username
+											  password:password];
+	NSLog(@"pidListData=%@", [pidListData description]);
+	if (pidListData == nil || [pidListData length] <= 0) {
+		LOG_CURRENT_METHOD;
+		NSLog(@"cannot refreshProductIdListFromNetwork. url=%@", [url description]);
+		return;
+	}
+	
+	
+	
 	NSString* csvStr = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
 	//NSString* csvStr = [[NSString alloc] initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
+	if (error) {
+		NSLog(@"error=%@", [error description]);
+		return;
+	}
 	if (csvStr == nil) {
 		NSLog(@"no productIdList.csv file found.");
 		NSLog(@"url=%@", url);
@@ -187,16 +210,25 @@ static ProductIdList *_instance = nil;
 	obj = [settings valueForKey:URL_OPDS];
 	if (!obj) {
 		urlBase = [ConfigViewController getUrlBaseWithOpds];
-		return [urlBase stringByAppendingPathComponent:PRODUCT_ID_LIST_FILENAME];
+		NSURL* url = [NSURL URLWithString:urlBase];
+		NSURL* urlWithFilename = [url URLByAppendingPathComponent:PRODUCT_ID_LIST_FILENAME];
+		return [urlWithFilename description];
+		//return [urlBase stringByAppendingPathComponent:PRODUCT_ID_LIST_FILENAME];
 	}
 	if (![obj isKindOfClass:[NSString class]]) {
 		NSLog(@"illigal username infomation. class=%@", [obj class]);
 		urlBase = [ConfigViewController getUrlBaseWithOpds];
-		return [urlBase stringByAppendingPathComponent:PRODUCT_ID_LIST_FILENAME];
+		NSURL* url = [NSURL URLWithString:urlBase];
+		NSURL* urlWithFilename = [url URLByAppendingPathComponent:PRODUCT_ID_LIST_FILENAME];
+		return [urlWithFilename description];
+		//return [urlBase stringByAppendingPathComponent:PRODUCT_ID_LIST_FILENAME];
+		//Should use URLByAppendingPathComponent instead of stringByAppendingPathComponent.(keep "http://example.com", not "http:/example.com"("//" -> "/")
 	}
 	
 	urlBase = [NSString stringWithString:obj];
-	return [urlBase stringByAppendingPathComponent:PRODUCT_ID_LIST_FILENAME];
+	NSURL* url = [NSURL URLWithString:urlBase];
+	NSURL* urlWithFilename = [url URLByAppendingPathComponent:PRODUCT_ID_LIST_FILENAME];
+	return [urlWithFilename description];
 }
 
 
