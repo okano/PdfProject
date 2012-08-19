@@ -95,6 +95,56 @@
 
 
 
+
+- (void)setupBackImage:(UIImage*)newImage
+{
+	UIImage* backImage = [newImage copy];
+	sceneImageView.image = backImage;
+	
+	/*
+	imageView.image = newImage;
+	imageView.frame = CGRectMake(0.0f, 0.0f, newImage.size.width, newImage.size.height);
+	
+	scrollView.contentSize = CGSizeMake(newImage.size.width, newImage.size.height);  
+	
+	scrollView.delegate = self;
+	
+	
+	//Setup scale.(fit screen)
+	//NSLog(@"self.view.frame=%@", NSStringFromCGRect(self.view.frame));
+	//NSLog(@"newImage.size=%@", NSStringFromCGSize(newImage.size));
+	CGFloat widthRatio = self.view.frame.size.width / newImage.size.width;
+	CGFloat heightRatio = self.view.frame.size.height / newImage.size.height;
+	//CGFloat ratio;
+	if (widthRatio < heightRatio) {
+		scrollView.minimumZoomScale = widthRatio;
+		scrollView.maximumZoomScale = heightRatio;
+		//ratio = widthRatio;
+	} else {
+		scrollView.minimumZoomScale = heightRatio;
+		scrollView.maximumZoomScale = widthRatio;
+		//ratio = heightRatio;
+	}
+	if (1.0 < scrollView.minimumZoomScale) {
+		scrollView.minimumZoomScale = 1.0f;
+	}
+	if (scrollView.maximumZoomScale < 1.0f) {
+		scrollView.maximumZoomScale = 1.0f;
+	}
+	//scrollView.minimumZoomScale = ratio;
+	//scrollView.maximumZoomScale = ratio * 1.5f;
+	
+	[scrollView setZoomScale:scrollView.minimumZoomScale];
+	*/
+	
+	
+	
+	
+}
+
+
+
+
 //Utility method.
 - (NSString*)getHairFilename:(int)hairNumber
 {

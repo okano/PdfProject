@@ -40,7 +40,8 @@
 	
 	
 	
-	//[self setupImage:selectedImage];
+	//
+	[self setupBackImage:selectedImage];
 	
 	
 	
