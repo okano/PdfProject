@@ -206,8 +206,12 @@ static ProductIdList *_instance = nil;
 {
 	//LOG_CURRENT_METHOD;
 	//NSLog(@"cid=%d", cid);
+	//NSLog(@"productIdList=%@", [productIdList description]);
 	for (NSString* singleLine in productIdList) {
 		NSArray* commaSeparated = [singleLine componentsSeparatedByString:@","];
+		if ([commaSeparated count] < 2) {
+			continue;
+		}
 		NSString* candidateCid = [commaSeparated objectAtIndex:0];
 		NSString* candidatePid = [commaSeparated objectAtIndex:1];
 		if ([candidateCid intValue] == cid) {
