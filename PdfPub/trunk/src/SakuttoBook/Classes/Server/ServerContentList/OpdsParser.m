@@ -416,6 +416,7 @@
 		
 		NSLog(@"error message=%@", errorMsg);
 		NSLog(@"error domain=%@", [error domain]);
+		return nil;
 	}
 	
 	if (res) {
