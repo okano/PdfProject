@@ -98,8 +98,15 @@
 
 - (void)setupBackImage:(UIImage*)newImage
 {
-	UIImage* backImage = [newImage copy];
-	sceneImageView.image = backImage;
+	//UIImage* backImage = [newImage copy];
+	//sceneImageView.image = backImage;
+
+	//currentScene = currentScene + 1;
+	//[self setupSceneView:currentScene];
+	
+	sceneImageView.image = newImage;
+	[newImage retain];
+	
 	
 	/*
 	imageView.image = newImage;
@@ -284,6 +291,57 @@
 
 
 #pragma mark -
+#pragma mark -
+//@see: http://kinsentansa.blogspot.com/2010/04/iphone2.html
+- (IBAction)saveImageToAlbum
+{
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"save start.");
+	
+	//Hide button.
+	buttonContainerView.hidden = YES;
+	
+	//Get image from screen.
+	CGRect rect = [[UIScreen mainScreen] bounds];  
+	UIGraphicsBeginImageContext(rect.size);
+	UIApplication *app = [UIApplication sharedApplication];  
+	
+	[app.keyWindow.layer renderInContext:UIGraphicsGetCurrentContext()];  
+	
+	UIImage *img = UIGraphicsGetImageFromCurrentImageContext();  
+	UIGraphicsEndImageContext();
+	
+	//Save to PhotoAlbum.
+	UIImageWriteToSavedPhotosAlbum(img,
+								   self,
+								   @selector(savingImageIsFinished:didFinishSavingWithError:contextInfo:), 
+								   nil);
+}
+
+
+
+// called when save finished.
+- (void) savingImageIsFinished:(UIImage *)_image
+	  didFinishSavingWithError:(NSError *)_error
+				   contextInfo:(void *)_contextInfo
+{
+	//Show button.
+	buttonContainerView.hidden = NO;
+	
+	//NSLog(@"save finished");
+	//NSString* message = @"The image are saved in album.";
+	NSString* message = @"画像をアルバムに保存しました";
+	UIAlertView *alert = [[UIAlertView alloc]
+						  initWithTitle:nil
+						  message:message
+						  delegate:nil
+						  cancelButtonTitle:nil
+						  otherButtonTitles:@"OK", nil
+						  ];
+	[alert show];
+}
+
+
 #pragma mark -
 - (IBAction)switchHairNext
 {

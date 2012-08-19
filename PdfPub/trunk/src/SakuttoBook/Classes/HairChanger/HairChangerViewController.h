@@ -50,6 +50,8 @@
 - (IBAction)switchToContentPlayerView;
 - (void)switchToHairChangerView;	//switch this view with new image.
 
+//
+- (IBAction)saveImageToAlbum;
 
 @end
 
