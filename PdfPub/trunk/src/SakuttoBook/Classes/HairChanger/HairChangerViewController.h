@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "SakuttoBookAppDelegate.h"
-#define MAX_POSE  6
+#define MAX_HAIR  6
 #define MAX_SCENE 11
 
 @interface HairChangerViewController : UIViewController <UIScrollViewDelegate> {
 	//Scene view.
 	IBOutlet UIImageView* sceneImageView;
 	//Person view.
-	IBOutlet UIImageView* personImageView;
-	IBOutlet UIView* personContainerView;
+	IBOutlet UIImageView* hairImageView;
+	IBOutlet UIView* hairContainerView;
 	//Button
 	IBOutlet UIView* buttonContainerView;
 	
@@ -26,7 +26,7 @@
 	
 	//current scene, pose.
 	int currentScene;	//0-start.
-	int currentPose;	//0-start.
+	int currentHairNumber;	//0-start.
 	
 	//Scale, position for hair.
 	CGPoint lastOrigin;	//for UIImageView.
@@ -54,5 +54,5 @@
 //
 //imagePicker
 @interface HairChangerViewController (ImagePicker) <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPopoverControllerDelegate>
-- (void)openImagePickerFromBarButtonItem:(UIBarButtonItem*)button;
+- (void)openImagePickerFromBarButtonItem;
 @end

@@ -19,7 +19,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-		currentPose = 0;
+		currentHairNumber = 0;
 		currentScene = 0;
     }
     return self;
@@ -30,7 +30,7 @@
     [super viewDidLoad];
 	buttonContainerView.backgroundColor = [UIColor clearColor];
 	//personImageView.backgroundColor = [UIColor blueColor];
-	personContainerView.backgroundColor = [UIColor clearColor];
+	hairContainerView.backgroundColor = [UIColor clearColor];
 	sceneImageView.backgroundColor = [UIColor yellowColor];
 }
 
@@ -47,8 +47,8 @@
 	//[self setupWithCharactorId:charactorId];
 	//Setup default scale.
 	lastScale = 2.0f;
-	CGAffineTransform transform = CGAffineTransformScale([personImageView transform], lastScale, lastScale);
-	personImageView.transform = transform;
+	CGAffineTransform transform = CGAffineTransformScale([hairImageView transform], lastScale, lastScale);
+	hairImageView.transform = transform;
 	
 }
 
@@ -69,11 +69,22 @@
 	if (foreSceneImage == nil) {
 		NSLog(@"file not found. filename=%@", foreSceneImageFilename);
 	}
-	personImageView.image = foreSceneImage;	
+	hairImageView.image = foreSceneImage;	
 	
 	//(for called directory.)
 	currentScene = sceneNumber;
 }
+
+- (void)setupWithHairNumber:(int)hairNumber
+{
+	NSString* foreSceneImageFilename = [self getHairFilename:hairNumber];
+	UIImage* foreSceneImage = [UIImage imageNamed:foreSceneImageFilename];
+	if (foreSceneImage == nil) {
+		NSLog(@"file not found. filename=%@", foreSceneImageFilename);
+	}
+	hairImageView.image = foreSceneImage;
+}
+
 
 
 //Utility method.
@@ -100,6 +111,33 @@
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+#pragma mark -
+- (IBAction)showImageSelector
+{
+	//show picture selector.
+	//LOG_CURRENT_METHOD;
+	[self openImagePickerFromBarButtonItem];
+}
+
+
+#pragma mark -
+#pragma mark -
+- (IBAction)switchHairNext
+{
+	currentHairNumber = currentHairNumber + 1;
+	if (MAX_HAIR <= currentHairNumber) {
+		currentHairNumber = 0;
+	}
+	[self switchHairAtIndex:currentHairNumber];
+}
+- (void)switchHairAtIndex:(int)index
+{
+	[self setupWithHairNumber:currentHairNumber];
+}
+
+
+
 
 #pragma mark - View change.
 - (IBAction)switchToContentPlayerView

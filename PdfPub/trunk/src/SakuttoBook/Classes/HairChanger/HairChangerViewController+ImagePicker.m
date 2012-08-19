@@ -11,7 +11,7 @@
 
 @implementation HairChangerViewController (ImagePicker)
 
-- (void)openImagePickerFromBarButtonItem:(UIBarButtonItem*)button
+- (void)openImagePickerFromBarButtonItem
 {
     [self dismissModalViewControllerAnimated:YES];
 	
@@ -23,19 +23,9 @@
 	picker.delegate = self;  
 	picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
 	
-	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-		//iPad('On iPad, UIImagePickerController must be presented via UIPopoverController')
-		popoverController =[[UIPopoverController alloc] initWithContentViewController:picker];
-		popoverController.delegate = self;
-
-		//[popoverController setPopoverContentSize:CGSizeMake(160,160) animated:YES];
-		[popoverController presentPopoverFromBarButtonItem:button
-								  permittedArrowDirections:UIPopoverArrowDirectionAny
-												  animated:YES];
-	} else {
-		//iPhone
-		[self presentModalViewController:picker animated:YES];  
-	}
+	//iPhone
+	[self presentModalViewController:picker animated:YES];  
+	
 	//Set flag.(ignore multi open with ImagePicker.)
 	isShownImagePicker = YES;
 	
