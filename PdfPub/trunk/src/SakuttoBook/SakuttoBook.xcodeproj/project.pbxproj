@@ -29,6 +29,12 @@
 		2912656912D46BEE00704565 /* list_thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2912656812D46BEE00704565 /* list_thumbnail.png */; };
 		291593141394B54700387697 /* ContentPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 291593131394B54700387697 /* ContentPlayerViewController.m */; };
 		291EDE0413124E2C00DBD3E5 /* ImageGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 291EDE0313124E2C00DBD3E5 /* ImageGenerator.m */; };
+		29203C9F15E10C2200290687 /* w06.png in Resources */ = {isa = PBXBuildFile; fileRef = 29203C9915E10C2200290687 /* w06.png */; };
+		29203CA015E10C2200290687 /* w07.png in Resources */ = {isa = PBXBuildFile; fileRef = 29203C9A15E10C2200290687 /* w07.png */; };
+		29203CA115E10C2200290687 /* w08.png in Resources */ = {isa = PBXBuildFile; fileRef = 29203C9B15E10C2200290687 /* w08.png */; };
+		29203CA215E10C2200290687 /* w09.png in Resources */ = {isa = PBXBuildFile; fileRef = 29203C9C15E10C2200290687 /* w09.png */; };
+		29203CA315E10C2200290687 /* w10.png in Resources */ = {isa = PBXBuildFile; fileRef = 29203C9D15E10C2200290687 /* w10.png */; };
+		29203CA415E10C2200290687 /* w11.png in Resources */ = {isa = PBXBuildFile; fileRef = 29203C9E15E10C2200290687 /* w11.png */; };
 		2925997C13A34DD30093B0FA /* icon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 2925997B13A34DD30093B0FA /* icon-57.png */; };
 		2933410312D594AA00BFBC23 /* BookmarkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2933410212D594AA00BFBC23 /* BookmarkView.xib */; };
 		2935764212B5EA9C00F46754 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2935764112B5EA9C00F46754 /* MenuViewController.m */; };
@@ -231,6 +237,12 @@
 		291593131394B54700387697 /* ContentPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentPlayerViewController.m; sourceTree = "<group>"; };
 		291EDE0213124E2C00DBD3E5 /* ImageGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGenerator.h; sourceTree = "<group>"; };
 		291EDE0313124E2C00DBD3E5 /* ImageGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGenerator.m; sourceTree = "<group>"; };
+		29203C9915E10C2200290687 /* w06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = w06.png; sourceTree = "<group>"; };
+		29203C9A15E10C2200290687 /* w07.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = w07.png; sourceTree = "<group>"; };
+		29203C9B15E10C2200290687 /* w08.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = w08.png; sourceTree = "<group>"; };
+		29203C9C15E10C2200290687 /* w09.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = w09.png; sourceTree = "<group>"; };
+		29203C9D15E10C2200290687 /* w10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = w10.png; sourceTree = "<group>"; };
+		29203C9E15E10C2200290687 /* w11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = w11.png; sourceTree = "<group>"; };
 		2925997B13A34DD30093B0FA /* icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-57.png"; sourceTree = "<group>"; };
 		2933410212D594AA00BFBC23 /* BookmarkView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookmarkView.xib; sourceTree = "<group>"; };
 		2935764012B5EA9C00F46754 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
@@ -706,6 +718,12 @@
 				29D4C99615B827F6002CFBBE /* w03.png */,
 				29D4C99715B827F6002CFBBE /* w04.png */,
 				29D4C99815B827F6002CFBBE /* w05.png */,
+				29203C9915E10C2200290687 /* w06.png */,
+				29203C9A15E10C2200290687 /* w07.png */,
+				29203C9B15E10C2200290687 /* w08.png */,
+				29203C9C15E10C2200290687 /* w09.png */,
+				29203C9D15E10C2200290687 /* w10.png */,
+				29203C9E15E10C2200290687 /* w11.png */,
 			);
 			name = "HairChanger-Hair";
 			path = "image/HairChanger-Hair";
@@ -1157,6 +1175,12 @@
 				29D4C9A715B827F6002CFBBE /* w03.png in Resources */,
 				29D4C9A815B827F6002CFBBE /* w04.png in Resources */,
 				29D4C9A915B827F6002CFBBE /* w05.png in Resources */,
+				29203C9F15E10C2200290687 /* w06.png in Resources */,
+				29203CA015E10C2200290687 /* w07.png in Resources */,
+				29203CA115E10C2200290687 /* w08.png in Resources */,
+				29203CA215E10C2200290687 /* w09.png in Resources */,
+				29203CA315E10C2200290687 /* w10.png in Resources */,
+				29203CA415E10C2200290687 /* w11.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
