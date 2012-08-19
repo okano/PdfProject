@@ -29,7 +29,7 @@
 {
     [super viewDidLoad];
 	buttonContainerView.backgroundColor = [UIColor clearColor];
-	//personImageView.backgroundColor = [UIColor blueColor];
+	//hairImageView.backgroundColor = [UIColor blueColor];
 	hairContainerView.backgroundColor = [UIColor clearColor];
 	sceneImageView.backgroundColor = [UIColor yellowColor];
 }
@@ -56,7 +56,6 @@
 {
 	//LOG_CURRENT_METHOD;
 	//NSLog(@"sceneNumber=%d", sceneNumber);
-	NSString* foreSceneImageFilename = [self getHairFilename:sceneNumber];
 	NSString* backSceneImageFilename = [self getSceneFilename:sceneNumber];
 	
 	UIImage* backSceneImage = [UIImage imageNamed:backSceneImageFilename];
@@ -65,14 +64,23 @@
 	}
 	sceneImageView.image = backSceneImage;
 	
-	UIImage* foreSceneImage = [UIImage imageNamed:foreSceneImageFilename];
-	if (foreSceneImage == nil) {
-		NSLog(@"file not found. filename=%@", foreSceneImageFilename);
-	}
-	hairImageView.image = foreSceneImage;	
+	
+	//Setup hair view.
+	[self setupWithHairNumber:currentHairNumber];
+	
 	
 	//(for called directory.)
 	currentScene = sceneNumber;
+	
+	//Setup Gesture.(pinch in/out)
+	
+	//Setup Gesture Recognizer.
+	hairImageView.userInteractionEnabled = YES;
+	hairImageView.multipleTouchEnabled = YES;
+	pinchRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
+	[hairContainerView addGestureRecognizer:pinchRecognizer];
+	panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+	[hairContainerView addGestureRecognizer:panRecognizer];
 }
 
 - (void)setupWithHairNumber:(int)hairNumber
@@ -111,6 +119,110 @@
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+
+#pragma mark - Handle Gesture.
+//scale big/small with image.
+//@see: http://paulsolt.com/2011/03/limiting-uipinchgesturerecognizer-zoom-levels/
+- (void)handlePinch:(UIPinchGestureRecognizer *)gestureRecognizer
+{
+	if([gestureRecognizer state] == UIGestureRecognizerStateBegan) {
+		// Reset the last scale, necessary if there are multiple objects with different scales
+		lastScale = [gestureRecognizer scale];
+	}
+	
+	if ([gestureRecognizer state] == UIGestureRecognizerStateBegan ||
+		[gestureRecognizer state] == UIGestureRecognizerStateChanged) {
+		
+		CGFloat currentScale = [[hairImageView.layer valueForKeyPath:@"transform.scale"] floatValue];
+		
+		// Constants to adjust the max/min values of zoom
+		const CGFloat kMaxScale = 1.50f;
+		const CGFloat kMinScale = 0.30f;
+		
+		CGFloat newScale = 1 -  (lastScale - [gestureRecognizer scale]); // new scale is in the range (0-1)
+		newScale = MIN(newScale, kMaxScale / currentScale);
+		newScale = MAX(newScale, kMinScale / currentScale);
+		CGAffineTransform transform = CGAffineTransformScale([hairImageView transform], newScale, newScale);
+		hairImageView.transform = transform;
+		
+		lastScale = [gestureRecognizer scale];  // Store the previous scale factor for the next pinch gesture call
+	}
+	
+	if ([gestureRecognizer state] == UIGestureRecognizerStateEnded) {
+		lastOrigin = hairImageView.frame.origin;
+		/*
+		 LOG_CURRENT_METHOD;
+		 NSLog(@"currentScale=%3.2f, lastScale=%3.2f, lastOrign = %@",
+		 [[hairImageView.layer valueForKeyPath:@"transform.scale"] floatValue],
+		 lastScale,
+		 NSStringFromCGPoint(lastOrigin));
+		 */
+	}
+}
+//move image.
+- (void)handlePan:(UIPanGestureRecognizer*)sender
+{
+	//LOG_CURRENT_METHOD;
+	
+	//Get position.
+	UIPanGestureRecognizer* pan = (UIPanGestureRecognizer*)sender;  
+	CGPoint location = [pan translationInView:self.view];
+	//NSLog(@"pan x=%f, y=%f", location.x, location.y);
+	
+	CGRect frame = CGRectMake(lastOrigin.x + location.x,
+							  lastOrigin.y + location.y,
+							  hairImageView.frame.size.width,
+							  hairImageView.frame.size.height);
+	hairImageView.frame = frame;
+	
+	switch (pan.state) {
+		case UIGestureRecognizerStateBegan:
+			lastOrigin = CGPointMake(hairImageView.frame.origin.x,
+									 hairImageView.frame.origin.y);
+			break;
+			
+		case UIGestureRecognizerStateEnded:
+			lastOrigin = CGPointMake(hairImageView.frame.origin.x,
+									 hairImageView.frame.origin.y);
+			//Check out of screen.
+			CGRect interSection = CGRectIntersection(hairContainerView.frame, hairImageView.frame);
+			if(CGRectIsNull(interSection)){
+				//NSLog(@"out of rect. hairContainerView=%@, hairImageView=%@",
+				//	  NSStringFromCGRect(hairContainerView.frame),
+				//	  NSStringFromCGRect(hairImageView.frame));
+				//NSLog(@"interSection=%@", NSStringFromCGRect(interSection));
+				CGFloat newX = hairImageView.frame.origin.x;
+				CGFloat newY = hairImageView.frame.origin.y;
+				CGFloat merginX = 40.0f;
+				CGFloat merginY = 40.0f;
+				if (hairImageView.frame.origin.x - hairContainerView.frame.origin.x < -320) {
+					newX = -320 + merginX;
+				}
+				if (320 < hairImageView.frame.origin.x - hairContainerView.frame.origin.x) {
+					newX = 320 - merginX;
+				}
+				if (hairImageView.frame.origin.y - hairContainerView.frame.origin.y < -480) {
+					newY = -480 + merginY;
+				}
+				if (480 < hairImageView.frame.origin.y - hairContainerView.frame.origin.y) {
+					newY = 480 - merginY;
+				}
+				hairImageView.frame = CGRectMake(newX, 
+												   newY, 
+												   hairImageView.frame.size.width,
+												   hairImageView.frame.size.height);
+				lastOrigin = CGPointMake(newX, newY);
+				//NSLog(@"new origin = %@", NSStringFromCGPoint(lastOrigin));
+			}
+			break;
+			
+		default:
+			break;
+	}
+}
+
+
 
 #pragma mark -
 - (IBAction)showImageSelector

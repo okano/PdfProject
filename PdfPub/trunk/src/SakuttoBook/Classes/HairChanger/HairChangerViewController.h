@@ -31,6 +31,10 @@
 	//Scale, position for hair.
 	CGPoint lastOrigin;	//for UIImageView.
 	CGFloat lastScale;
+	
+	//Gesture Recoginzer.
+	UIPinchGestureRecognizer* pinchRecognizer;	//scale big/small with image.
+	UIPanGestureRecognizer* panRecognizer;		//move image.
 }
 
 //Setup View.
