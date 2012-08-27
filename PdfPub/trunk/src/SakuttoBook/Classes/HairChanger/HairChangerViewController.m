@@ -20,7 +20,7 @@
     if (self) {
         // Custom initialization
 		currentHairNumber = 0;
-		currentScene = 0;
+		currentSceneNumber = 0;
     }
     return self;
 }
@@ -31,7 +31,24 @@
 	buttonContainerView.backgroundColor = [UIColor clearColor];
 	//hairImageView.backgroundColor = [UIColor blueColor];
 	hairContainerView.backgroundColor = [UIColor clearColor];
-	sceneImageView.backgroundColor = [UIColor yellowColor];
+	faceImageView.backgroundColor = [UIColor yellowColor];
+	
+	NSString* faceImageFilename = [self getSceneFilename:currentSceneNumber];
+	UIImage* faceImage = [UIImage imageNamed:faceImageFilename];
+	if (faceImage == nil) {
+		NSLog(@"file not found. filename=%@", faceImageFilename);
+	}
+	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
+	appDelegate.imageForLessonBook = faceImage;
+
+	
+	//Setup Gesture Recognizer.(pinch in/out)
+	hairImageView.userInteractionEnabled = YES;
+	hairImageView.multipleTouchEnabled = YES;
+	pinchRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
+	[hairContainerView addGestureRecognizer:pinchRecognizer];
+	panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+	[hairContainerView addGestureRecognizer:panRecognizer];
 }
 
 #pragma mark - setup View.
@@ -39,38 +56,22 @@
 {
 	//LOG_CURRENT_METHOD;
 	
-	[self setupSceneView:currentScene];
+	[self setupViewsWithDefault];
 }
 
-- (void)setupSceneView:(int)sceneNumber
+- (void)setupViewsWithDefault
 {
 	//LOG_CURRENT_METHOD;
-	//NSLog(@"sceneNumber=%d", sceneNumber);
-	NSString* backSceneImageFilename = [self getSceneFilename:sceneNumber];
 	
-	UIImage* backSceneImage = [UIImage imageNamed:backSceneImageFilename];
-	if (backSceneImage == nil) {
-		NSLog(@"file not found. filename=%@", backSceneImageFilename);
-	}
-	sceneImageView.image = backSceneImage;
+	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
+	faceImageView.image = appDelegate.imageForLessonBook;
+
 	
+
 	
 	//Setup hair view.
 	[self setupWithHairNumber:currentHairNumber];
 	
-	
-	//(for called directory.)
-	currentScene = sceneNumber;
-	
-	//Setup Gesture.(pinch in/out)
-	
-	//Setup Gesture Recognizer.
-	hairImageView.userInteractionEnabled = YES;
-	hairImageView.multipleTouchEnabled = YES;
-	pinchRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
-	[hairContainerView addGestureRecognizer:pinchRecognizer];
-	panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
-	[hairContainerView addGestureRecognizer:panRecognizer];
 }
 
 - (void)setupWithHairNumber:(int)hairNumber
@@ -84,7 +85,7 @@
 }
 
 
-
+#if 0==1
 
 - (void)setupBackImage:(UIImage*)newImage
 {
@@ -94,9 +95,14 @@
 	//currentScene = currentScene + 1;
 	//[self setupSceneView:currentScene];
 	
-	sceneImageView.image = newImage;
-	[newImage retain];
+	//faceImageView.image = newImage;
+	//[newImage retain];
 	
+	
+	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
+
+	faceImageView.image = appDelegate.imageForLessonBook;
+
 	
 	/*
 	imageView.image = newImage;
@@ -138,7 +144,7 @@
 	
 	
 }
-
+#endif
 
 
 
@@ -295,9 +301,12 @@
 }
 
 
-
 - (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+	if (buttonIndex == actionSheet.cancelButtonIndex) {
+		return;
+	}
+
 	switch (buttonIndex)
 	{
 		case 0:

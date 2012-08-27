@@ -38,13 +38,17 @@
     // Get selected image.
 	
 	
+	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
+	
+	appDelegate.imageForLessonBook = [UIImage imageWithCIImage:[selectedImage CIImage]];
+	
 	
 	
 	//
-	[self setupBackImage:selectedImage];
+	//[self setupBackImage:selectedImage];
 	
-	
-	
+	//testImageView.image = appDelegate.imageForLessonBook;
+	testImageView.image = selectedImage;	
 	
 	//
 	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
@@ -59,12 +63,12 @@
 	isShownImagePicker = NO;
 	
 	//Store new image to appDelegate.
-	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
-	appDelegate.imageForLessonBook = selectedImage;
+	//SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
+	//appDelegate.imageForLessonBook = selectedImage;
 	
 	//generate new HairChangerView with new image.
-	[self hideHairChangerView];
-	[self switchToHairChangerView];
+//	[self hideHairChangerView];
+//	[self switchToHairChangerView];
 }
 
 - (void) imagePickerControllerDidCancel:(UIImagePickerController*)picker {  

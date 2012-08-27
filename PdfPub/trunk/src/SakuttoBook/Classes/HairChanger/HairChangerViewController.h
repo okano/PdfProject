@@ -9,23 +9,27 @@
 #import <UIKit/UIKit.h>
 #import "SakuttoBookAppDelegate.h"
 #define MAX_HAIR  12
-#define MAX_SCENE 11
+#define MAX_SCENE 1
 
 @interface HairChangerViewController : UIViewController <UIScrollViewDelegate, UIActionSheetDelegate> {
 	//Scene view.
-	IBOutlet UIImageView* sceneImageView;
+	IBOutlet UIImageView* faceImageView;
 	//Person view.
 	IBOutlet UIImageView* hairImageView;
 	IBOutlet UIView* hairContainerView;
 	//Button
 	IBOutlet UIView* buttonContainerView;
+
+	
+	IBOutlet UIImageView* testImageView;
+
 	
 	//Image Picker.
 	UIPopoverController* popoverController;
 	bool isShownImagePicker;
 	
 	//current scene, pose.
-	int currentScene;	//0-start.
+	int currentSceneNumber;	//0-start.
 	int currentHairNumber;	//0-start.
 	
 	//Scale, position for hair.
