@@ -194,8 +194,8 @@
 		CGFloat currentScale = [[hairImageView.layer valueForKeyPath:@"transform.scale"] floatValue];
 		
 		// Constants to adjust the max/min values of zoom
-		const CGFloat kMaxScale = 1.50f;
-		const CGFloat kMinScale = 0.30f;
+		const CGFloat kMaxScale = 1.00f;
+		const CGFloat kMinScale = 0.60f;
 		
 		CGFloat newScale = 1 -  (lastScale - [gestureRecognizer scale]); // new scale is in the range (0-1)
 		newScale = MIN(newScale, kMaxScale / currentScale);
