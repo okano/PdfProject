@@ -31,8 +31,9 @@
 	buttonContainerView.backgroundColor = [UIColor clearColor];
 	//hairImageView.backgroundColor = [UIColor blueColor];
 	hairContainerView.backgroundColor = [UIColor clearColor];
-	faceImageView.backgroundColor = [UIColor yellowColor];
+	//faceImageView.backgroundColor = [UIColor yellowColor];
 	
+	/*
 	NSString* faceImageFilename = [self getSceneFilename:currentSceneNumber];
 	UIImage* faceImage = [UIImage imageNamed:faceImageFilename];
 	if (faceImage == nil) {
@@ -40,7 +41,7 @@
 	}
 	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
 	appDelegate.imageForLessonBook = faceImage;
-
+	 */
 	
 	//Setup Gesture Recognizer.(pinch in/out)
 	hairImageView.userInteractionEnabled = YES;
@@ -63,12 +64,6 @@
 {
 	//LOG_CURRENT_METHOD;
 	
-	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
-	faceImageView.image = appDelegate.imageForLessonBook;
-
-	
-
-	
 	//Setup hair view.
 	[self setupWithHairNumber:currentHairNumber];
 	
@@ -83,68 +78,6 @@
 	}
 	hairImageView.image = foreSceneImage;
 }
-
-
-#if 0==1
-
-- (void)setupBackImage:(UIImage*)newImage
-{
-	//UIImage* backImage = [newImage copy];
-	//sceneImageView.image = backImage;
-
-	//currentScene = currentScene + 1;
-	//[self setupSceneView:currentScene];
-	
-	//faceImageView.image = newImage;
-	//[newImage retain];
-	
-	
-	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
-
-	faceImageView.image = appDelegate.imageForLessonBook;
-
-	
-	/*
-	imageView.image = newImage;
-	imageView.frame = CGRectMake(0.0f, 0.0f, newImage.size.width, newImage.size.height);
-	
-	scrollView.contentSize = CGSizeMake(newImage.size.width, newImage.size.height);  
-	
-	scrollView.delegate = self;
-	
-	
-	//Setup scale.(fit screen)
-	//NSLog(@"self.view.frame=%@", NSStringFromCGRect(self.view.frame));
-	//NSLog(@"newImage.size=%@", NSStringFromCGSize(newImage.size));
-	CGFloat widthRatio = self.view.frame.size.width / newImage.size.width;
-	CGFloat heightRatio = self.view.frame.size.height / newImage.size.height;
-	//CGFloat ratio;
-	if (widthRatio < heightRatio) {
-		scrollView.minimumZoomScale = widthRatio;
-		scrollView.maximumZoomScale = heightRatio;
-		//ratio = widthRatio;
-	} else {
-		scrollView.minimumZoomScale = heightRatio;
-		scrollView.maximumZoomScale = widthRatio;
-		//ratio = heightRatio;
-	}
-	if (1.0 < scrollView.minimumZoomScale) {
-		scrollView.minimumZoomScale = 1.0f;
-	}
-	if (scrollView.maximumZoomScale < 1.0f) {
-		scrollView.maximumZoomScale = 1.0f;
-	}
-	//scrollView.minimumZoomScale = ratio;
-	//scrollView.maximumZoomScale = ratio * 1.5f;
-	
-	[scrollView setZoomScale:scrollView.minimumZoomScale];
-	*/
-	
-	
-	
-	
-}
-#endif
 
 
 

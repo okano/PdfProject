@@ -13,14 +13,14 @@
 
 @interface HairChangerViewController : UIViewController <UIScrollViewDelegate, UIActionSheetDelegate> {
 	//Scene view.
-	IBOutlet UIImageView* faceImageView;
+	//IBOutlet UIImageView* faceImageView;
 	//Person view.
 	IBOutlet UIImageView* hairImageView;
 	IBOutlet UIView* hairContainerView;
 	//Button
 	IBOutlet UIView* buttonContainerView;
 
-	
+	//Face view.
 	IBOutlet UIImageView* testImageView;
 
 	
