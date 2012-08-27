@@ -272,12 +272,48 @@
 
 
 #pragma mark -
-- (IBAction)showImageSelector
+- (IBAction)showImageSelectorSheet
 {
-	//show picture selector.
-	//LOG_CURRENT_METHOD;
-	[self openImagePickerFromBarButtonItem];
+	//Check Camera available.
+	if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+	{
+		//show picture selector directory.
+		[self openImagePickerWithType:UIImagePickerControllerSourceTypePhotoLibrary];
+	} else {
+		//show select sheet.
+		UIActionSheet*  sheet;
+		sheet = [[[UIActionSheet alloc] 
+				  initWithTitle:@"Select Soruce Type" 
+				  delegate:self 
+				  cancelButtonTitle:@"Cancel" 
+				  destructiveButtonTitle:nil 
+				  otherButtonTitles:@"カメラで撮影", @"アルバムから選択", nil]
+				 autorelease];
+		
+		[sheet showInView:self.view];
+	}
 }
+
+
+
+- (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	switch (buttonIndex)
+	{
+		case 0:
+			[self openImagePickerWithType:UIImagePickerControllerSourceTypeCamera];
+			break;
+			
+		case 1:
+		default:
+			[self openImagePickerWithType:UIImagePickerControllerSourceTypePhotoLibrary];
+			break;
+    }
+}
+
+
+
+
 
 
 #pragma mark -

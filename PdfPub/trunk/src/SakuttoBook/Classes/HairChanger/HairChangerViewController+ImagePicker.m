@@ -11,7 +11,7 @@
 
 @implementation HairChangerViewController (ImagePicker)
 
-- (void)openImagePickerFromBarButtonItem
+- (void)openImagePickerWithType:(NSUInteger)sourceType
 {
     [self dismissModalViewControllerAnimated:YES];
 	
@@ -21,7 +21,7 @@
 	
 	UIImagePickerController *picker = [[UIImagePickerController alloc] init];  
 	picker.delegate = self;  
-	picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+	picker.sourceType = sourceType;		//UIImagePickerControllerSourceTypePhotoLibrary;
 	
 	//iPhone
 	[self presentModalViewController:picker animated:YES];  

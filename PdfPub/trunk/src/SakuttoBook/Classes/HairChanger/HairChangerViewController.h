@@ -11,7 +11,7 @@
 #define MAX_HAIR  12
 #define MAX_SCENE 11
 
-@interface HairChangerViewController : UIViewController <UIScrollViewDelegate> {
+@interface HairChangerViewController : UIViewController <UIScrollViewDelegate, UIActionSheetDelegate> {
 	//Scene view.
 	IBOutlet UIImageView* sceneImageView;
 	//Person view.
@@ -60,5 +60,5 @@
 //
 //imagePicker
 @interface HairChangerViewController (ImagePicker) <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPopoverControllerDelegate>
-- (void)openImagePickerFromBarButtonItem;
+- (void)openImagePickerWithType:(NSUInteger)sourceType;
 @end
