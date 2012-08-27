@@ -36,7 +36,7 @@
 		 didFinishPickingImage:(UIImage *)selectedImage
 				   editingInfo:(NSDictionary*)editingInfo {  
     // Setup with selected image.
-	testImageView.image = selectedImage;	
+	faceImageView.image = selectedImage;	
 	
 	//Close picker view.
 	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
