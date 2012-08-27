@@ -71,13 +71,6 @@
 		29D4C98415B81FA7002CFBBE /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 29D4C98015B81FA7002CFBBE /* home.png */; };
 		29D4C98515B81FA7002CFBBE /* save_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 29D4C98115B81FA7002CFBBE /* save_image.png */; };
 		29D4C99915B827F6002CFBBE /* b00.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 29D4C98715B827F6002CFBBE /* b00.jpg */; };
-		29D4C99A15B827F6002CFBBE /* b01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 29D4C98815B827F6002CFBBE /* b01.jpg */; };
-		29D4C99B15B827F6002CFBBE /* b02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 29D4C98915B827F6002CFBBE /* b02.jpg */; };
-		29D4C99C15B827F6002CFBBE /* b03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 29D4C98A15B827F6002CFBBE /* b03.jpg */; };
-		29D4C99D15B827F6002CFBBE /* b04.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 29D4C98B15B827F6002CFBBE /* b04.jpg */; };
-		29D4C99E15B827F6002CFBBE /* b05.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 29D4C98C15B827F6002CFBBE /* b05.jpg */; };
-		29D4C99F15B827F6002CFBBE /* b06.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 29D4C98D15B827F6002CFBBE /* b06.jpg */; };
-		29D4C9A015B827F6002CFBBE /* b07.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 29D4C98E15B827F6002CFBBE /* b07.jpg */; };
 		29D4C9A415B827F6002CFBBE /* w00.png in Resources */ = {isa = PBXBuildFile; fileRef = 29D4C99315B827F6002CFBBE /* w00.png */; };
 		29D4C9A515B827F6002CFBBE /* w01.png in Resources */ = {isa = PBXBuildFile; fileRef = 29D4C99415B827F6002CFBBE /* w01.png */; };
 		29D4C9A615B827F6002CFBBE /* w02.png in Resources */ = {isa = PBXBuildFile; fileRef = 29D4C99515B827F6002CFBBE /* w02.png */; };
@@ -268,13 +261,6 @@
 		29D4C98015B81FA7002CFBBE /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		29D4C98115B81FA7002CFBBE /* save_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = save_image.png; sourceTree = "<group>"; };
 		29D4C98715B827F6002CFBBE /* b00.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = b00.jpg; sourceTree = "<group>"; };
-		29D4C98815B827F6002CFBBE /* b01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = b01.jpg; sourceTree = "<group>"; };
-		29D4C98915B827F6002CFBBE /* b02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = b02.jpg; sourceTree = "<group>"; };
-		29D4C98A15B827F6002CFBBE /* b03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = b03.jpg; sourceTree = "<group>"; };
-		29D4C98B15B827F6002CFBBE /* b04.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = b04.jpg; sourceTree = "<group>"; };
-		29D4C98C15B827F6002CFBBE /* b05.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = b05.jpg; sourceTree = "<group>"; };
-		29D4C98D15B827F6002CFBBE /* b06.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = b06.jpg; sourceTree = "<group>"; };
-		29D4C98E15B827F6002CFBBE /* b07.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = b07.jpg; sourceTree = "<group>"; };
 		29D4C99315B827F6002CFBBE /* w00.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = w00.png; sourceTree = "<group>"; };
 		29D4C99415B827F6002CFBBE /* w01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = w01.png; sourceTree = "<group>"; };
 		29D4C99515B827F6002CFBBE /* w02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = w02.png; sourceTree = "<group>"; };
@@ -602,13 +588,6 @@
 			isa = PBXGroup;
 			children = (
 				29D4C98715B827F6002CFBBE /* b00.jpg */,
-				29D4C98815B827F6002CFBBE /* b01.jpg */,
-				29D4C98915B827F6002CFBBE /* b02.jpg */,
-				29D4C98A15B827F6002CFBBE /* b03.jpg */,
-				29D4C98B15B827F6002CFBBE /* b04.jpg */,
-				29D4C98C15B827F6002CFBBE /* b05.jpg */,
-				29D4C98D15B827F6002CFBBE /* b06.jpg */,
-				29D4C98E15B827F6002CFBBE /* b07.jpg */,
 			);
 			name = "HairChanger-Background";
 			path = "image/HairChanger-Background";
@@ -1039,13 +1018,6 @@
 				29D4C98415B81FA7002CFBBE /* home.png in Resources */,
 				29D4C98515B81FA7002CFBBE /* save_image.png in Resources */,
 				29D4C99915B827F6002CFBBE /* b00.jpg in Resources */,
-				29D4C99A15B827F6002CFBBE /* b01.jpg in Resources */,
-				29D4C99B15B827F6002CFBBE /* b02.jpg in Resources */,
-				29D4C99C15B827F6002CFBBE /* b03.jpg in Resources */,
-				29D4C99D15B827F6002CFBBE /* b04.jpg in Resources */,
-				29D4C99E15B827F6002CFBBE /* b05.jpg in Resources */,
-				29D4C99F15B827F6002CFBBE /* b06.jpg in Resources */,
-				29D4C9A015B827F6002CFBBE /* b07.jpg in Resources */,
 				29D4C9A415B827F6002CFBBE /* w00.png in Resources */,
 				29D4C9A515B827F6002CFBBE /* w01.png in Resources */,
 				29D4C9A615B827F6002CFBBE /* w02.png in Resources */,
