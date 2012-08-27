@@ -20,7 +20,6 @@
     if (self) {
         // Custom initialization
 		currentHairNumber = 0;
-		currentSceneNumber = 0;
     }
     return self;
 }
@@ -31,17 +30,6 @@
 	buttonContainerView.backgroundColor = [UIColor clearColor];
 	//hairImageView.backgroundColor = [UIColor blueColor];
 	hairContainerView.backgroundColor = [UIColor clearColor];
-	//faceImageView.backgroundColor = [UIColor yellowColor];
-	
-	/*
-	NSString* faceImageFilename = [self getSceneFilename:currentSceneNumber];
-	UIImage* faceImage = [UIImage imageNamed:faceImageFilename];
-	if (faceImage == nil) {
-		NSLog(@"file not found. filename=%@", faceImageFilename);
-	}
-	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
-	appDelegate.imageForLessonBook = faceImage;
-	 */
 	
 	//Setup Gesture Recognizer.(pinch in/out)
 	hairImageView.userInteractionEnabled = YES;
@@ -56,17 +44,13 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	//LOG_CURRENT_METHOD;
-	
 	[self setupViewsWithDefault];
 }
 
 - (void)setupViewsWithDefault
 {
-	//LOG_CURRENT_METHOD;
-	
 	//Setup hair view.
 	[self setupWithHairNumber:currentHairNumber];
-	
 }
 
 - (void)setupWithHairNumber:(int)hairNumber
@@ -252,10 +236,6 @@
 			break;
     }
 }
-
-
-
-
 
 
 #pragma mark -

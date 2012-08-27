@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "License.h"
-#import "CosmeLessonViewController.h"
 
 @class SakuttoBookViewController;
 
@@ -22,9 +21,6 @@
 	// TOC infomation.
 	NSMutableArray* tocDefine;
 	NSMutableArray* bookmarkDefine;
-	
-	// Image for LessonBook.
-	UIImage* imageForLessonBook;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -34,8 +30,6 @@
 //for get value in TocViewController.
 @property (nonatomic, retain) NSMutableArray* tocDefine;
 @property (nonatomic, retain) NSMutableArray* bookmarkDefine;
-//for Lesson book.
-@property (nonatomic, retain) UIImage* imageForLessonBook;
 
 
 //Methods for switch ContentView/CosmeLessonView.

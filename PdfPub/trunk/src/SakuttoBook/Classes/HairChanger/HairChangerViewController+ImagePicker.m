@@ -35,22 +35,10 @@
 - (void) imagePickerController:(UIImagePickerController*)picker  
 		 didFinishPickingImage:(UIImage *)selectedImage
 				   editingInfo:(NSDictionary*)editingInfo {  
-    // Get selected image.
-	
-	
-	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
-	
-	appDelegate.imageForLessonBook = [UIImage imageWithCIImage:[selectedImage CIImage]];
-	
-	
-	
-	//
-	//[self setupBackImage:selectedImage];
-	
-	//testImageView.image = appDelegate.imageForLessonBook;
+    // Setup with selected image.
 	testImageView.image = selectedImage;	
 	
-	//
+	//Close picker view.
 	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
 		//iPad
 		[popoverController dismissPopoverAnimated:YES];
@@ -61,14 +49,6 @@
 	
 	//Set flag.(ignore multi open with ImagePicker.)
 	isShownImagePicker = NO;
-	
-	//Store new image to appDelegate.
-	//SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
-	//appDelegate.imageForLessonBook = selectedImage;
-	
-	//generate new HairChangerView with new image.
-//	[self hideHairChangerView];
-//	[self switchToHairChangerView];
 }
 
 - (void) imagePickerControllerDidCancel:(UIImagePickerController*)picker {  

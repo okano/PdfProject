@@ -12,24 +12,19 @@
 #define MAX_SCENE 1
 
 @interface HairChangerViewController : UIViewController <UIScrollViewDelegate, UIActionSheetDelegate> {
-	//Scene view.
-	//IBOutlet UIImageView* faceImageView;
+	//Face view.
+	IBOutlet UIImageView* testImageView;
 	//Person view.
 	IBOutlet UIImageView* hairImageView;
 	IBOutlet UIView* hairContainerView;
 	//Button
 	IBOutlet UIView* buttonContainerView;
-
-	//Face view.
-	IBOutlet UIImageView* testImageView;
-
 	
 	//Image Picker.
 	UIPopoverController* popoverController;
 	bool isShownImagePicker;
 	
 	//current scene, pose.
-	int currentSceneNumber;	//0-start.
 	int currentHairNumber;	//0-start.
 	
 	//Scale, position for hair.
@@ -41,8 +36,6 @@
 	UIPanGestureRecognizer* panRecognizer;		//move image.
 }
 
-//Setup View.
-- (void)setupBackImage:(UIImage*)newImage;
 //Utility method.
 - (NSString*)getHairFilename:(int)hairNumber;
 - (NSString*)getSceneFilename:(int)sceneNumber;

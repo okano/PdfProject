@@ -19,11 +19,6 @@
 		29014A9D12D6EC9100936BF0 /* tocDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29014A9C12D6EC9100936BF0 /* tocDefine.csv */; };
 		29014A9F12D6EC9C00936BF0 /* movieDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29014A9E12D6EC9C00936BF0 /* movieDefine.csv */; };
 		29014AA112D6ECA700936BF0 /* bookDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29014AA012D6ECA700936BF0 /* bookDefine.csv */; };
-		29089957139F204B00337595 /* smile32.png in Resources */ = {isa = PBXBuildFile; fileRef = 29089956139F204B00337595 /* smile32.png */; };
-		29089959139F253800337595 /* pencil32.png in Resources */ = {isa = PBXBuildFile; fileRef = 29089958139F253800337595 /* pencil32.png */; };
-		2908995B139F290000337595 /* IMG_6267.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 2908995A139F290000337595 /* IMG_6267.JPG */; };
-		2908995D139F2A1D00337595 /* recycle32.png in Resources */ = {isa = PBXBuildFile; fileRef = 2908995C139F2A1D00337595 /* recycle32.png */; };
-		2908995F139F2A9300337595 /* wand32.png in Resources */ = {isa = PBXBuildFile; fileRef = 2908995E139F2A9200337595 /* wand32.png */; };
 		290BA0B012B5E0D1009C01C8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 290BA0AF12B5E0D1009C01C8 /* QuartzCore.framework */; };
 		290F035512D594D300666C6A /* BookmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 290F035412D594D300666C6A /* BookmarkViewController.m */; };
 		2912656912D46BEE00704565 /* list_thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2912656812D46BEE00704565 /* list_thumbnail.png */; };
@@ -60,20 +55,11 @@
 		297DF1FB12C600320082C680 /* InfomationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 297DF1FA12C600320082C680 /* InfomationView.xib */; };
 		297DF1FF12C601AD0082C680 /* InfomationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297DF1FE12C601AD0082C680 /* InfomationViewController.m */; };
 		299448EC12B7370B00E7D108 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299448EB12B7370B00E7D108 /* MediaPlayer.framework */; };
-		299791EC13AF8936009B315B /* undo_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 299791EB13AF8936009B315B /* undo_selected.png */; };
 		299791EE13AF96ED009B315B /* urlLinkDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 299791ED13AF96ED009B315B /* urlLinkDefine.csv */; };
 		2999FA9512B7BDE5002ACB2B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2999FA9412B7BDE5002ACB2B /* icon.png */; };
 		2999FDC512D6A8D500D0F145 /* License.m in Sources */ = {isa = PBXBuildFile; fileRef = 2999FDC412D6A8D500D0F145 /* License.m */; };
 		29A1CB7A138616AA00326759 /* SKBE_MainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A1CB79138616AA00326759 /* SKBE_MainVC.m */; };
 		29A1CB7E138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A1CB7D138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m */; };
-		29A849BE139F1CAB00508236 /* ColorSelectorTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A849BB139F1CAB00508236 /* ColorSelectorTableViewController.m */; };
-		29A849BF139F1CAB00508236 /* ColorWidthInfoDS.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A849BD139F1CAB00508236 /* ColorWidthInfoDS.m */; };
-		29A849C7139F1CB600508236 /* CosmeLessonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29A849C2139F1CB600508236 /* CosmeLessonView.xib */; };
-		29A849C8139F1CB600508236 /* CosmeLessonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A849C4139F1CB600508236 /* CosmeLessonViewController.m */; };
-		29A849C9139F1CB600508236 /* CosmeLessonViewController+MarkerPen.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A849C5139F1CB600508236 /* CosmeLessonViewController+MarkerPen.m */; };
-		29A849CD139F1CC100508236 /* MarkerPenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A849CB139F1CC100508236 /* MarkerPenView.m */; };
-		29AB5AED13F4D904006D26A1 /* human-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 29AB5AEB13F4D904006D26A1 /* human-32.png */; };
-		29AB5AEF13F4D9C9006D26A1 /* zoom-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 29AB5AEE13F4D9C9006D26A1 /* zoom-32.png */; };
 		29B3B7C812C57DE00014F866 /* MyPdfScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B3B7C712C57DE00014F866 /* MyPdfScrollView.m */; };
 		29B3B90C12C58C820014F866 /* ThumbnailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B3B90B12C58C820014F866 /* ThumbnailViewController.m */; };
 		29C944C613A34E9400AC18C6 /* icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 29C944C513A34E9400AC18C6 /* icon-72.png */; };
@@ -100,7 +86,6 @@
 		29D4C9A915B827F6002CFBBE /* w05.png in Resources */ = {isa = PBXBuildFile; fileRef = 29D4C99815B827F6002CFBBE /* w05.png */; };
 		29E1089A12D46D4700FC5210 /* BookmarkModifyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29E1089912D46D4700FC5210 /* BookmarkModifyView.xib */; };
 		29E108A912D46ECF00FC5210 /* BookmarkModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E108A812D46ECF00FC5210 /* BookmarkModifyViewController.m */; };
-		29E6E1F113BDB51600B0DDAE /* CosmeLessonViewController+ImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E6E1F013BDB51600B0DDAE /* CosmeLessonViewController+ImagePicker.m */; };
 		29F003FA1353CC5500D0D74D /* pageJumpLinkDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29F003F91353CC5500D0D74D /* pageJumpLinkDefine.csv */; };
 		29F8128B139F521F00A4F92F /* basemake1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 29F8121A139F521F00A4F92F /* basemake1.jpg */; };
 		29F8128C139F521F00A4F92F /* basemake2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 29F8121B139F521F00A4F92F /* basemake2.jpg */; };
@@ -214,11 +199,6 @@
 		29014A9C12D6EC9100936BF0 /* tocDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tocDefine.csv; path = csv/tocDefine.csv; sourceTree = "<group>"; };
 		29014A9E12D6EC9C00936BF0 /* movieDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = movieDefine.csv; path = csv/movieDefine.csv; sourceTree = "<group>"; };
 		29014AA012D6ECA700936BF0 /* bookDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bookDefine.csv; path = csv/bookDefine.csv; sourceTree = "<group>"; };
-		29089956139F204B00337595 /* smile32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = smile32.png; path = CosmeLesson01/smile32.png; sourceTree = "<group>"; };
-		29089958139F253800337595 /* pencil32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pencil32.png; path = CosmeLesson01/pencil32.png; sourceTree = "<group>"; };
-		2908995A139F290000337595 /* IMG_6267.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = IMG_6267.JPG; path = CosmeLesson01/IMG_6267.JPG; sourceTree = "<group>"; };
-		2908995C139F2A1D00337595 /* recycle32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = recycle32.png; path = CosmeLesson01/recycle32.png; sourceTree = "<group>"; };
-		2908995E139F2A9200337595 /* wand32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wand32.png; path = CosmeLesson01/wand32.png; sourceTree = "<group>"; };
 		290BA0AF12B5E0D1009C01C8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		290F035312D594D300666C6A /* BookmarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkViewController.h; sourceTree = "<group>"; };
 		290F035412D594D300666C6A /* BookmarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkViewController.m; sourceTree = "<group>"; };
@@ -265,7 +245,6 @@
 		297DF1FD12C601AD0082C680 /* InfomationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfomationViewController.h; sourceTree = "<group>"; };
 		297DF1FE12C601AD0082C680 /* InfomationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfomationViewController.m; sourceTree = "<group>"; };
 		299448EB12B7370B00E7D108 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		299791EB13AF8936009B315B /* undo_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = undo_selected.png; path = CosmeLesson01/undo_selected.png; sourceTree = "<group>"; };
 		299791ED13AF96ED009B315B /* urlLinkDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = urlLinkDefine.csv; path = csv/urlLinkDefine.csv; sourceTree = "<group>"; };
 		2999FA9412B7BDE5002ACB2B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		2999FDC312D6A8D500D0F145 /* License.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = License.h; sourceTree = "<group>"; };
@@ -274,20 +253,6 @@
 		29A1CB79138616AA00326759 /* SKBE_MainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKBE_MainVC.m; path = SKBEngine/SKBEngine/SKBE_MainVC.m; sourceTree = "<group>"; };
 		29A1CB7C138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKBEngine_PopoverScrollImageViewController.h; path = SKBEngine/SKBEngine/SKBEngine_PopoverScrollImageViewController.h; sourceTree = "<group>"; };
 		29A1CB7D138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKBEngine_PopoverScrollImageViewController.m; path = SKBEngine/SKBEngine/SKBEngine_PopoverScrollImageViewController.m; sourceTree = "<group>"; };
-		29A849BA139F1CAB00508236 /* ColorSelectorTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ColorSelectorTableViewController.h; path = CosmeLesson01/ColorSelectorTableViewController.h; sourceTree = "<group>"; };
-		29A849BB139F1CAB00508236 /* ColorSelectorTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ColorSelectorTableViewController.m; path = CosmeLesson01/ColorSelectorTableViewController.m; sourceTree = "<group>"; };
-		29A849BC139F1CAB00508236 /* ColorWidthInfoDS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ColorWidthInfoDS.h; path = CosmeLesson01/ColorWidthInfoDS.h; sourceTree = "<group>"; };
-		29A849BD139F1CAB00508236 /* ColorWidthInfoDS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ColorWidthInfoDS.m; path = CosmeLesson01/ColorWidthInfoDS.m; sourceTree = "<group>"; };
-		29A849C2139F1CB600508236 /* CosmeLessonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CosmeLessonView.xib; path = CosmeLesson01/CosmeLessonView.xib; sourceTree = "<group>"; };
-		29A849C3139F1CB600508236 /* CosmeLessonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CosmeLessonViewController.h; path = CosmeLesson01/CosmeLessonViewController.h; sourceTree = "<group>"; };
-		29A849C4139F1CB600508236 /* CosmeLessonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CosmeLessonViewController.m; path = CosmeLesson01/CosmeLessonViewController.m; sourceTree = "<group>"; };
-		29A849C5139F1CB600508236 /* CosmeLessonViewController+MarkerPen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CosmeLessonViewController+MarkerPen.m"; path = "CosmeLesson01/CosmeLessonViewController+MarkerPen.m"; sourceTree = "<group>"; };
-		29A849CA139F1CC100508236 /* MarkerPenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MarkerPenView.h; path = CosmeLesson01/MarkerPenView.h; sourceTree = "<group>"; };
-		29A849CB139F1CC100508236 /* MarkerPenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MarkerPenView.m; path = CosmeLesson01/MarkerPenView.m; sourceTree = "<group>"; };
-		29A849CC139F1CC100508236 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utility.h; path = CosmeLesson01/Utility.h; sourceTree = "<group>"; };
-		29A849CE139F1CEB00508236 /* DefineCosmeLesson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DefineCosmeLesson.h; path = CosmeLesson01/DefineCosmeLesson.h; sourceTree = "<group>"; };
-		29AB5AEB13F4D904006D26A1 /* human-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "human-32.png"; path = "CosmeLesson01/human-32.png"; sourceTree = "<group>"; };
-		29AB5AEE13F4D9C9006D26A1 /* zoom-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zoom-32.png"; path = "CosmeLesson01/zoom-32.png"; sourceTree = "<group>"; };
 		29B3B7C612C57DE00014F866 /* MyPdfScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPdfScrollView.h; sourceTree = "<group>"; };
 		29B3B7C712C57DE00014F866 /* MyPdfScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPdfScrollView.m; sourceTree = "<group>"; };
 		29B3B90A12C58C820014F866 /* ThumbnailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumbnailViewController.h; sourceTree = "<group>"; };
@@ -319,7 +284,6 @@
 		29E1089912D46D4700FC5210 /* BookmarkModifyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookmarkModifyView.xib; sourceTree = "<group>"; };
 		29E108A712D46ECF00FC5210 /* BookmarkModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkModifyViewController.h; sourceTree = "<group>"; };
 		29E108A812D46ECF00FC5210 /* BookmarkModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkModifyViewController.m; sourceTree = "<group>"; };
-		29E6E1F013BDB51600B0DDAE /* CosmeLessonViewController+ImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CosmeLessonViewController+ImagePicker.m"; path = "CosmeLesson01/CosmeLessonViewController+ImagePicker.m"; sourceTree = "<group>"; };
 		29F003F91353CC5500D0D74D /* pageJumpLinkDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pageJumpLinkDefine.csv; path = csv/pageJumpLinkDefine.csv; sourceTree = "<group>"; };
 		29F8121A139F521F00A4F92F /* basemake1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = basemake1.jpg; sourceTree = "<group>"; };
 		29F8121B139F521F00A4F92F /* basemake2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = basemake2.jpg; sourceTree = "<group>"; };
@@ -440,7 +404,6 @@
 			isa = PBXGroup;
 			children = (
 				29D4C97115B81A0C002CFBBE /* HairChanger */,
-				29A849B9139F1C8200508236 /* CosmeLesson01 */,
 				1D3623240D0F684500981E51 /* SakuttoBookAppDelegate.h */,
 				1D3623250D0F684500981E51 /* SakuttoBookAppDelegate.m */,
 				28D7ACF60DDB3853001CB0EB /* SakuttoBookViewController.h */,
@@ -542,34 +505,6 @@
 				29203CB115E118E800290687 /* ura.mp4 */,
 			);
 			path = movie;
-			sourceTree = "<group>";
-		};
-		29A849B9139F1C8200508236 /* CosmeLesson01 */ = {
-			isa = PBXGroup;
-			children = (
-				29A849C3139F1CB600508236 /* CosmeLessonViewController.h */,
-				29A849C4139F1CB600508236 /* CosmeLessonViewController.m */,
-				29A849C5139F1CB600508236 /* CosmeLessonViewController+MarkerPen.m */,
-				29E6E1F013BDB51600B0DDAE /* CosmeLessonViewController+ImagePicker.m */,
-				29A849C2139F1CB600508236 /* CosmeLessonView.xib */,
-				29A849CA139F1CC100508236 /* MarkerPenView.h */,
-				29A849CB139F1CC100508236 /* MarkerPenView.m */,
-				29A849BA139F1CAB00508236 /* ColorSelectorTableViewController.h */,
-				29A849BB139F1CAB00508236 /* ColorSelectorTableViewController.m */,
-				29A849BC139F1CAB00508236 /* ColorWidthInfoDS.h */,
-				29A849BD139F1CAB00508236 /* ColorWidthInfoDS.m */,
-				29A849CE139F1CEB00508236 /* DefineCosmeLesson.h */,
-				29A849CC139F1CC100508236 /* Utility.h */,
-				2908995A139F290000337595 /* IMG_6267.JPG */,
-				29089956139F204B00337595 /* smile32.png */,
-				29089958139F253800337595 /* pencil32.png */,
-				299791EB13AF8936009B315B /* undo_selected.png */,
-				2908995C139F2A1D00337595 /* recycle32.png */,
-				2908995E139F2A9200337595 /* wand32.png */,
-				29AB5AEB13F4D904006D26A1 /* human-32.png */,
-				29AB5AEE13F4D9C9006D26A1 /* zoom-32.png */,
-			);
-			name = CosmeLesson01;
 			sourceTree = "<group>";
 		};
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
@@ -1000,12 +935,6 @@
 				294E1F1E131E2A5B00E49BAF /* popoverScrollImageDefine.csv in Resources */,
 				29F003FA1353CC5500D0D74D /* pageJumpLinkDefine.csv in Resources */,
 				2962C40C1394B9EC002E57F9 /* ContentPlayerView.xib in Resources */,
-				29A849C7139F1CB600508236 /* CosmeLessonView.xib in Resources */,
-				29089957139F204B00337595 /* smile32.png in Resources */,
-				29089959139F253800337595 /* pencil32.png in Resources */,
-				2908995B139F290000337595 /* IMG_6267.JPG in Resources */,
-				2908995D139F2A1D00337595 /* recycle32.png in Resources */,
-				2908995F139F2A9300337595 /* wand32.png in Resources */,
 				29F8128B139F521F00A4F92F /* basemake1.jpg in Resources */,
 				29F8128C139F521F00A4F92F /* basemake2.jpg in Resources */,
 				29F8128D139F521F00A4F92F /* basemake3.jpg in Resources */,
@@ -1103,10 +1032,7 @@
 				29F812E9139F521F00A4F92F /* gorgeous6-5.jpg in Resources */,
 				2925997C13A34DD30093B0FA /* icon-57.png in Resources */,
 				29C944C613A34E9400AC18C6 /* icon-72.png in Resources */,
-				299791EC13AF8936009B315B /* undo_selected.png in Resources */,
 				299791EE13AF96ED009B315B /* urlLinkDefine.csv in Resources */,
-				29AB5AED13F4D904006D26A1 /* human-32.png in Resources */,
-				29AB5AEF13F4D9C9006D26A1 /* zoom-32.png in Resources */,
 				29D4C97615B81A38002CFBBE /* HairChangerViewController.xib in Resources */,
 				29D4C98215B81FA7002CFBBE /* change_bgimage.png in Resources */,
 				29D4C98315B81FA7002CFBBE /* change_personimage.png in Resources */,
@@ -1184,12 +1110,6 @@
 				29A1CB7A138616AA00326759 /* SKBE_MainVC.m in Sources */,
 				29A1CB7E138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m in Sources */,
 				291593141394B54700387697 /* ContentPlayerViewController.m in Sources */,
-				29A849BE139F1CAB00508236 /* ColorSelectorTableViewController.m in Sources */,
-				29A849BF139F1CAB00508236 /* ColorWidthInfoDS.m in Sources */,
-				29A849C8139F1CB600508236 /* CosmeLessonViewController.m in Sources */,
-				29A849C9139F1CB600508236 /* CosmeLessonViewController+MarkerPen.m in Sources */,
-				29A849CD139F1CC100508236 /* MarkerPenView.m in Sources */,
-				29E6E1F113BDB51600B0DDAE /* CosmeLessonViewController+ImagePicker.m in Sources */,
 				29D4C97515B81A38002CFBBE /* HairChangerViewController.m in Sources */,
 				29D4C97815B81CFC002CFBBE /* HairChangerViewController+ImagePicker.m in Sources */,
 			);

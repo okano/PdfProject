@@ -16,7 +16,6 @@
 @synthesize license;
 @synthesize tocDefine;
 @synthesize bookmarkDefine;
-@synthesize imageForLessonBook;
 
 #pragma mark -
 #pragma mark Application lifecycle
