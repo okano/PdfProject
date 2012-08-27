@@ -43,6 +43,7 @@
 		2933410312D594AA00BFBC23 /* BookmarkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2933410212D594AA00BFBC23 /* BookmarkView.xib */; };
 		2935764212B5EA9C00F46754 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2935764112B5EA9C00F46754 /* MenuViewController.m */; };
 		2935764412B5EAAD00F46754 /* MenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2935764312B5EAAD00F46754 /* MenuView.xib */; };
+		2938ECC515EB4B4700BB9784 /* camera-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2938ECC415EB4B4700BB9784 /* camera-icon.png */; };
 		293BB9F012B6217300DDA3E3 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 293BB9EF12B6217300DDA3E3 /* WebViewController.m */; };
 		293BB9F212B6218500DDA3E3 /* WebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 293BB9F112B6218500DDA3E3 /* WebView.xib */; };
 		29431E2212C5D29C00914DBD /* list_bullets.png in Resources */ = {isa = PBXBuildFile; fileRef = 29431E2112C5D29C00914DBD /* list_bullets.png */; };
@@ -220,6 +221,7 @@
 		2935764012B5EA9C00F46754 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		2935764112B5EA9C00F46754 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		2935764312B5EAAD00F46754 /* MenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuView.xib; sourceTree = "<group>"; };
+		2938ECC415EB4B4700BB9784 /* camera-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-icon.png"; sourceTree = "<group>"; };
 		293988DD12B5E9DB008017BE /* Define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Define.h; sourceTree = "<group>"; };
 		293BB9EE12B6217300DDA3E3 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		293BB9EF12B6217300DDA3E3 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
@@ -576,6 +578,7 @@
 		29D4C97D15B81FA7002CFBBE /* system-image */ = {
 			isa = PBXGroup;
 			children = (
+				2938ECC415EB4B4700BB9784 /* camera-icon.png */,
 				29D4C97E15B81FA7002CFBBE /* change_bgimage.png */,
 				29D4C97F15B81FA7002CFBBE /* change_personimage.png */,
 				29D4C98015B81FA7002CFBBE /* home.png */,
@@ -1039,6 +1042,7 @@
 				29203CB515E118E800290687 /* style3.mp4 in Resources */,
 				29203CB615E118E800290687 /* style4.mp4 in Resources */,
 				29203CB715E118E800290687 /* ura.mp4 in Resources */,
+				2938ECC515EB4B4700BB9784 /* camera-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
