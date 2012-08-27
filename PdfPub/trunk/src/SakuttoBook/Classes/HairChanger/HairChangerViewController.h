@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "SakuttoBookAppDelegate.h"
 #define MAX_HAIR  12
-#define MAX_SCENE 1
 
 @interface HairChangerViewController : UIViewController <UIScrollViewDelegate, UIActionSheetDelegate> {
 	//Face view.
