@@ -38,7 +38,6 @@
 }
 
 //Setup View.
-- (void)reScalePersonImageView;
 - (void)setupBackImage:(UIImage*)newImage;
 //Utility method.
 - (NSString*)getHairFilename:(int)hairNumber;

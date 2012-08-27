@@ -42,16 +42,6 @@
 	[self setupSceneView:currentScene];
 }
 
-- (void)reScalePersonImageView
-{
-	//[self setupWithCharactorId:charactorId];
-	//Setup default scale.
-	lastScale = 2.0f;
-	CGAffineTransform transform = CGAffineTransformScale([hairImageView transform], lastScale, lastScale);
-	hairImageView.transform = transform;
-	
-}
-
 - (void)setupSceneView:(int)sceneNumber
 {
 	//LOG_CURRENT_METHOD;
