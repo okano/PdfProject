@@ -2170,6 +2170,19 @@
 - (void)showWebViewSelector:(NSString*)urlString
 {
 	//LOG_CURRENT_METHOD;
+	
+	//Open AppStore in safari without prompt.
+	//Because cannot open AppStore in UIWebView.
+	NSString* compareURL = @"http://itunes.apple.com/";
+	//NSString* compareURL = @"itms-apps://";
+	NSRange compareRange = NSMakeRange(0, [compareURL length]);
+	if ([urlString compare:compareURL options:NSCaseInsensitiveSearch range:compareRange] == NSOrderedSame)
+	{
+		NSURL *url = [NSURL URLWithString:urlString];
+		[[UIApplication sharedApplication] openURL:url];
+		return;
+	}
+	
 	//NSLog(@"urlString=%@", urlString);
 	[urlForWeb setString:urlString];
 	//NSLog(@"urlForWeb=%@", urlForWeb);
