@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/CALayer.h>	//for renderInContext: method in UIApplication class.
 #import "SakuttoBookAppDelegate.h"
 #define MAX_HAIR  12
 
