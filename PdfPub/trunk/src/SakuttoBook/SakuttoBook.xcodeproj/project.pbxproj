@@ -20,6 +20,7 @@
 		29014A9F12D6EC9C00936BF0 /* movieDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29014A9E12D6EC9C00936BF0 /* movieDefine.csv */; };
 		29014AA112D6ECA700936BF0 /* bookDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29014AA012D6ECA700936BF0 /* bookDefine.csv */; };
 		290BA0B012B5E0D1009C01C8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 290BA0AF12B5E0D1009C01C8 /* QuartzCore.framework */; };
+		290E2DD715EE0CCA0071FBB6 /* smile32.png in Resources */ = {isa = PBXBuildFile; fileRef = 290E2DD615EE0CCA0071FBB6 /* smile32.png */; };
 		290F035512D594D300666C6A /* BookmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 290F035412D594D300666C6A /* BookmarkViewController.m */; };
 		2912656912D46BEE00704565 /* list_thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2912656812D46BEE00704565 /* list_thumbnail.png */; };
 		291593141394B54700387697 /* ContentPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 291593131394B54700387697 /* ContentPlayerViewController.m */; };
@@ -190,6 +191,7 @@
 		29014A9E12D6EC9C00936BF0 /* movieDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = movieDefine.csv; path = csv/movieDefine.csv; sourceTree = "<group>"; };
 		29014AA012D6ECA700936BF0 /* bookDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bookDefine.csv; path = csv/bookDefine.csv; sourceTree = "<group>"; };
 		290BA0AF12B5E0D1009C01C8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		290E2DD615EE0CCA0071FBB6 /* smile32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = smile32.png; path = Classes/smile32.png; sourceTree = "<group>"; };
 		290F035312D594D300666C6A /* BookmarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkViewController.h; sourceTree = "<group>"; };
 		290F035412D594D300666C6A /* BookmarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkViewController.m; sourceTree = "<group>"; };
 		2912656812D46BEE00704565 /* list_thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = list_thumbnail.png; path = Classes/list_thumbnail.png; sourceTree = "<group>"; };
@@ -763,6 +765,7 @@
 				2933410212D594AA00BFBC23 /* BookmarkView.xib */,
 				29431E2112C5D29C00914DBD /* list_bullets.png */,
 				2912656812D46BEE00704565 /* list_thumbnail.png */,
+				290E2DD615EE0CCA0071FBB6 /* smile32.png */,
 				8D1107310486CEB800E47090 /* SakuttoBook-Info.plist */,
 			);
 			name = Resources;
@@ -1027,6 +1030,7 @@
 				292B30EE15EC7D85004E9C1D /* IMG_3498.JPG in Resources */,
 				292B30EF15EC7D85004E9C1D /* IMG_3506.JPG in Resources */,
 				292B30F015EC7D85004E9C1D /* IMG_3509.JPG in Resources */,
+				290E2DD715EE0CCA0071FBB6 /* smile32.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
