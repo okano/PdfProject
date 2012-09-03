@@ -12,6 +12,7 @@
 #import "URLDownload.h"
 #import "NSFileManager+Utility.h"
 #import "ContentFileUtility.h"
+#import "CoverUtility.h"
 #import "HetimaUnZip.h"
 
 @interface ServerContentDownloadVC : UIViewController <URLDownloadDeleagte, UIAlertViewDelegate, HetimaUnZipItemDelegate> {
