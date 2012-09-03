@@ -38,7 +38,7 @@
 #pragma mark - like POSIX file uty.
 + (NSArray*)fileList:(NSString*)path;
 + (BOOL)existsFile:(NSString*)fileNameFull;
-+ (void)makeDir:(NSString*)fileNameFull;
++ (BOOL)makeDir:(NSString*)fileNameFull;
 + (void)removeFile:(NSString*)fileNameFull;
 + (BOOL)res2file:(NSString*)res fileNameFull:(NSString*)filenameFull;	//Resource to File.
 

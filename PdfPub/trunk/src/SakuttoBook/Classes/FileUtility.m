@@ -316,12 +316,12 @@
 }
 
 //Generate Directory.
-+ (void)makeDir:(NSString*)fileNameFull {
++ (BOOL)makeDir:(NSString*)fileNameFull {
 	//NSLog(@"fileNameFull=%@", fileNameFull);
     if ([self existsFile:fileNameFull]) {
-		return;
+		return FALSE;
 	}
-	[[NSFileManager defaultManager] createDirectoryAtPath:fileNameFull
+	return [[NSFileManager defaultManager] createDirectoryAtPath:fileNameFull
 							  withIntermediateDirectories:YES
 											   attributes:nil 
 													error:nil];
