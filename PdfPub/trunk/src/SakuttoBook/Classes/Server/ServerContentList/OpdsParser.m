@@ -73,6 +73,11 @@
 	
 	//Get XML data from network.
 	NSData *_data =[self getXmlFromUrl:rootUrl username:username password:password];
+	if (_data == nil) {
+		LOG_CURRENT_METHOD;
+		NSLog(@"cannot get data. url=%@", rootUrl);
+		return nil;
+	}
 	
 	//Prepare Parse.
     DDXMLDocument* doc = [[[DDXMLDocument alloc] initWithData:_data options:0 error:nil] autorelease];  
@@ -410,6 +415,7 @@
 					errorMsg = [error localizedDescription];
 					break;
 			}
+			return nil;	//Return nothing.
 		} else {
 			errorMsg = [error localizedDescription];
 		}
