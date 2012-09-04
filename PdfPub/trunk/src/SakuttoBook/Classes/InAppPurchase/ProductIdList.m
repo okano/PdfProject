@@ -117,15 +117,26 @@ static ProductIdList *_instance = nil;
 {
 	NSString* urlStr = [self getProductIdListUrl];
 	NSURL* url = [NSURL URLWithString:urlStr];
-	NSError* error = nil;
+	//NSError* error = nil;
 	
-	NSString* csvStr = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
-	//NSString* csvStr = [[NSString alloc] initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
-	if (csvStr == nil) {
-		NSLog(@"no productIdList.csv file found.");
+	
+	
+	//Set security infomation.
+	NSDictionary* dict = [[ConfigViewController alloc] loadUsernameAndPasswordFromUserDefault];
+	NSString* username = [dict valueForKey:USERNAME];
+	NSString* password = [dict valueForKey:PASSWORD];
+	
+	//Get csv data from network with Authentification.
+	OpdsParser* csvGetter = [[OpdsParser alloc] init];
+	NSData *_data =[csvGetter getXmlFromUrl:url username:username password:password];
+	NSString* csvStr =  [[NSString alloc] initWithData:_data encoding: NSUTF8StringEncoding];
+	//NSString* csvStr = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
+	////NSString* csvStr = [[NSString alloc] initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
+	if (_data == nil || csvStr == nil) {
+		NSLog(@"Server error or no productIdList.csv file found.");
 		NSLog(@"url=%@", url);
 		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil
-														 message:@"no product id list found."
+														 message:@"Server error or no product id list found."
 														delegate:nil
 											   cancelButtonTitle:nil
 											   otherButtonTitles:@"OK", nil]
@@ -208,6 +219,11 @@ static ProductIdList *_instance = nil;
 	//NSLog(@"cid=%d", cid);
 	for (NSString* singleLine in productIdList) {
 		NSArray* commaSeparated = [singleLine componentsSeparatedByString:@","];
+		if ([commaSeparated count] < 2) {
+			LOG_CURRENT_METHOD;
+			NSLog(@"invalid format for productIdentifier. line=%@", singleLine);
+			return @"";
+		}
 		NSString* candidateCid = [commaSeparated objectAtIndex:0];
 		NSString* candidatePid = [commaSeparated objectAtIndex:1];
 		if ([candidateCid intValue] == cid) {
