@@ -13,6 +13,8 @@
 #import "InAppPurchaseDefine.h"
 #import "ProductIdList.h"
 #import "PaymentHistoryDS.h"
+//
+#import "VerificationController.h"
 
 @interface PaymentConductor : NSObject
 <SKProductsRequestDelegate,SKPaymentTransactionObserver> {

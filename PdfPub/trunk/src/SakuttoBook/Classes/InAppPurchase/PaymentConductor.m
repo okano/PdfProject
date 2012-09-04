@@ -136,11 +136,21 @@
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
 {
 	//LOG_CURRENT_METHOD;
+	VerificationController* vc;
+	vc = [VerificationController sharedInstance];
+	BOOL verificateResult = NO;
 	for (SKPaymentTransaction* transaction in transactions) {
 		switch (transaction.transactionState) {
 			case SKPaymentTransactionStatePurchased:
 				//NSLog(@"SKPaymentTransactionStatePurchased, transactionIdentifier=%@", [transaction transactionIdentifier]);
-				[self completeTransaction:transaction];
+				//Verificate Transaction.
+				verificateResult = [vc verifyPurchase:transaction];
+				if (verificateResult == NO) {
+					NSLog(@"purchased transaction does not verificate. description=%@", [transaction description]);
+					return;
+				} else {
+					[self completeTransaction:transaction];
+				}
 				break;
 			case SKPaymentTransactionStateFailed:
 				NSLog(@"SKPaymentTransactionStateFailed, transactionIdentifier=%@", [transaction transactionIdentifier]);
@@ -148,8 +158,15 @@
 				break;
 			case SKPaymentTransactionStateRestored:
 				NSLog(@"SKPaymentTransactionStateRestored, transactionIdentifier=%@", [transaction transactionIdentifier]);
-				[self restoreTransaction:transaction];
-				[self completeTransaction:transaction];
+				//Verificate Transaction.
+				verificateResult = [vc verifyPurchase:transaction];
+				if (verificateResult == NO) {
+					NSLog(@"restored transaction does not verificate. description=%@", [transaction description]);
+					return;
+				} else {
+					[self restoreTransaction:transaction];
+					[self completeTransaction:transaction];
+				}
 				break;
 			case SKPaymentTransactionStatePurchasing:
 				//NSLog(@"SKPaymentTransactionStatePurchasing, transactionIdentifier=%@", [transaction transactionIdentifier]);
