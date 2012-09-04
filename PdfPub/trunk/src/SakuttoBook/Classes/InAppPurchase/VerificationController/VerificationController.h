@@ -25,4 +25,9 @@ void * base64_decode(const char* s, size_t * data_len);
 // this class.  So ensure IAP feaures are unlocked from there.
 - (BOOL)verifyPurchase:(SKPaymentTransaction *)transaction;
 
+
+static int POS(char c);
+
 @end
+
+#import "Utility.h"
