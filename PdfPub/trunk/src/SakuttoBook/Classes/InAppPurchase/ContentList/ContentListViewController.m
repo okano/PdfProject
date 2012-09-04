@@ -173,15 +173,19 @@
 	ContentId targetCid = [appDelegate.contentListDS contentIdAtIndex:indexPath.row];
 	//NSString* targetPid = [appDelegate.contentListDS productIdFromContentId:targetCid];
 	NSString* targetPid = [[ProductIdList sharedManager] getProductIdentifier:targetCid];
-	if (targetPid == InvalidProductId) {
-		NSLog(@"Invalid productId. cid=%d", targetCid);
-		return nil;
-	}
-	//NSLog(@"indexPath.row=%d, cid=%d, pid=%@", indexPath.row, targetCid, targetPid);
 	
     // Configure the cell...
 	cell.titleLabel.text = [appDelegate.contentListDS titleByContentId:targetCid];
 	cell.authorLabel.text = [appDelegate.contentListDS authorByContentId:targetCid];
+	
+	if ((targetPid == InvalidProductId) || ([targetPid length] <= 0)) {
+		NSLog(@"Invalid productId. cid=%d", targetCid);
+		cell.isDownloadedLabel.text = @"";
+		return cell;
+	}
+	//NSLog(@"indexPath.row=%d, cid=%d, pid=%@", indexPath.row, targetCid, targetPid);
+	
+	
 	//Check payment status.
 //	if (([InAppPurchaseUtility isFreeContent:targetPid] == TRUE)
 	if (([[ProductIdList sharedManager] isFreeContent:targetPid] == TRUE)
