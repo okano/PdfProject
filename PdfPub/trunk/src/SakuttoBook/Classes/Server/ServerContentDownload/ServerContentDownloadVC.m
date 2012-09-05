@@ -197,10 +197,10 @@
 // ダウンロード完了
 - (void)downloadDidFinish:(URLDownload *)download {
 	LOG_CURRENT_METHOD;
-	NSLog(@"%@", download.filePath);
+	NSLog(@"downloaded file at %@", download.filePath);
 	[self releaseDownloader];
 	
-	NSError* error = nil;
+	//NSError* error = nil;
 
 	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
 
@@ -257,26 +257,15 @@
 	
 	
 	//Copy image cache for Cover.
-	//NSString* cacheFilenameFull = [CoverUtility getCoverCacheFilenameFull:uuid];
-	NSString* cacheFilenameFull = [[[[NSHomeDirectory() stringByAppendingPathComponent:@"Tmp"]
-									  stringByAppendingPathComponent:COVER_CACHE_DIR]
-									 stringByAppendingPathComponent:targetUuid]
-									stringByAppendingPathExtension:COVER_FILE_EXTENSION];
-	NSString* targetFilenameFull = [[[[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
-									   stringByAppendingPathComponent:DETAIL_DIR]
-									  stringByAppendingPathComponent:newContentIdStr]
-									 stringByAppendingPathComponent:newContentIdStr]
-									stringByAppendingPathExtension:COVER_FILE_EXTENSION];
-	//targetFilenameFull = [ContentFileUtility getCoverIconDirectory:newContentIdStr];
-	[FileUtility makeDir:[targetFilenameFull stringByDeletingLastPathComponent]];
-	NSLog(@"cacheFilenameFull=%@", cacheFilenameFull);
-	NSLog(@"targetFilenameFull=%@", targetFilenameFull);
-	[[NSFileManager defaultManager] moveItemAtPath:cacheFilenameFull
-											toPath:targetFilenameFull
-											 error:&error];
-	if (error != nil) {
-		NSLog(@"error with copy image cache for Cover. fromPath=%@, toPath=%@, result=%@, %@",
-			  cacheFilenameFull, targetFilenameFull, [error localizedDescription], [error localizedFailureReason]);
+	UIImage* thumbnailImage = [CoverUtility coverImageWithUuid:targetUuid];
+	NSString* toFilename = [CoverUtility getCoverLocalFilenameFull:[newContentIdStr intValue]];
+	NSLog(@"toFilename=%@", toFilename);
+	[FileUtility makeDir:[toFilename stringByDeletingLastPathComponent]];
+	
+	NSData *data = UIImageJPEGRepresentation(thumbnailImage, 1.0f);
+	if ( ! [data writeToFile:toFilename atomically:YES])
+	{
+		NSLog(@"thumbnail file copy error");
 	}
 
 
@@ -296,14 +285,19 @@
 	[FileUtility makeDir:dirStr];	
 	
 	//Copy file.
+	NSString* fromPathFullFormatted = [NSString stringWithCString:[[NSFileManager defaultManager] fileSystemRepresentationWithPath:filePath] encoding:NSUTF8StringEncoding];
+	
 	NSString* toPathFull = [[dirStr stringByAppendingPathComponent:contentIdStr]
 								   stringByAppendingPathExtension:@"pdf"];
-	[[NSFileManager defaultManager] moveItemAtPath:filePath
-											toPath:toPathFull		
+	NSString* toPathFullFormatted = [NSString stringWithCString:[[NSFileManager defaultManager] fileSystemRepresentationWithPath:toPathFull] encoding:NSUTF8StringEncoding];
+	[[NSFileManager defaultManager] moveItemAtPath:fromPathFullFormatted
+											toPath:toPathFullFormatted
 											 error:&error];
 	if (error != nil) {
 		NSLog(@"fail to move downloaded file. fromPath=%@, toPath=%@, result=%@, %@",
 			  filePath, toPathFull, [error localizedDescription], [error localizedFailureReason]);
+		NSLog(@"fromPathFullFormatted=%@", fromPathFullFormatted);
+		NSLog(@"toPathFullFormatted=%@", toPathFullFormatted);
 	}
 }
 
@@ -311,19 +305,29 @@
 {
 	//Rename filename from "*.cbz" to "*.zip".
 	NSError* error = nil;
-	NSString* newFilePath = [[filePath stringByDeletingPathExtension]
+	NSString* fromPathFullFormatted = [NSString stringWithCString:[[NSFileManager defaultManager] fileSystemRepresentationWithPath:filePath] encoding:NSUTF8StringEncoding];
+	NSString* newFilePath = [[fromPathFullFormatted stringByDeletingPathExtension]
 							 stringByAppendingPathExtension:@"zip"];
 	//Delete old destination.
 	[[NSFileManager defaultManager] removeItemAtPath:newFilePath error:&error];
 	//Rename
-	[[NSFileManager defaultManager] moveItemAtPath:filePath
+	[[NSFileManager defaultManager] moveItemAtPath:fromPathFullFormatted
 											toPath:newFilePath
 											 error:&error];
 	if (error != nil) {
-		NSLog(@"file rename failed. fromPath=%@, toPath=%@, result=%@, %@",
-			  filePath, newFilePath, [error localizedDescription], [error localizedFailureReason]);
-		if (error.code == 516) {
-			NSLog(@"code NSFileWriteFileExistsError = 516, Write error returned when NSFileManager class’s copy, move, and link methods report errors when the destination file already exists.");
+		if ([FileUtility existsFile:newFilePath] == YES) {
+			NSLog(@"file rename failed. but file exists at %@", newFilePath);
+		} else {
+			NSLog(@"file rename failed. fromPath=%@, toPath=%@, result=%@, %@",
+				  filePath, newFilePath, [error localizedDescription], [error localizedFailureReason]);
+			NSLog(@"fromPathFullFormatted=%@", fromPathFullFormatted);
+			NSLog(@"file exist check with filePath=%d", [FileUtility existsFile:filePath]);
+			NSLog(@"file exist check with newFilePath=%d", [FileUtility existsFile:newFilePath]);
+			NSLog(@"TRUE=%d, FALSE=%d", TRUE, FALSE);
+			
+			if (error.code == 516) {
+				NSLog(@"code NSFileWriteFileExistsError = 516, Write error returned when NSFileManager class’s copy, move, and link methods report errors when the destination file already exists.");
+			}
 		}
 	}
 	

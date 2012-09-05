@@ -127,12 +127,20 @@ static ProductIdList *_instance = nil;
 	NSString* password = [dict valueForKey:PASSWORD];
 	
 	//Get csv data from network with Authentification.
-	OpdsParser* csvGetter = [[OpdsParser alloc] init];
-	NSData *_data =[csvGetter getXmlFromUrl:url username:username password:password];
-	NSString* csvStr =  [[NSString alloc] initWithData:_data encoding: NSUTF8StringEncoding];
-	//NSString* csvStr = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
-	////NSString* csvStr = [[NSString alloc] initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
-	if (_data == nil || csvStr == nil) {
+	OpdsParser* pidListParser = [[OpdsParser alloc] init];
+	NSData* pidListData = [pidListParser getXmlFromUrl:url
+											  username:username
+											  password:password];
+	NSLog(@"pidListData=%@", [pidListData description]);
+	if (pidListData == nil || [pidListData length] <= 0) {
+		LOG_CURRENT_METHOD;
+		NSLog(@"cannot refreshProductIdListFromNetwork. url=%@", [url description]);
+		return;
+	}
+	
+	NSString* csvStr = [[NSString alloc] initWithData:pidListData encoding: NSUTF8StringEncoding];
+	if (csvStr == nil) {
+		LOG_CURRENT_METHOD;
 		NSLog(@"Server error or no productIdList.csv file found.");
 		NSLog(@"url=%@", url);
 		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil
@@ -198,16 +206,25 @@ static ProductIdList *_instance = nil;
 	obj = [settings valueForKey:URL_OPDS];
 	if (!obj) {
 		urlBase = [ConfigViewController getUrlBaseWithOpds];
-		return [urlBase stringByAppendingPathComponent:PRODUCT_ID_LIST_FILENAME];
+		NSURL* url = [NSURL URLWithString:urlBase];
+		NSURL* urlWithFilename = [url URLByAppendingPathComponent:PRODUCT_ID_LIST_FILENAME];
+		return [urlWithFilename description];
+		//return [urlBase stringByAppendingPathComponent:PRODUCT_ID_LIST_FILENAME];
 	}
 	if (![obj isKindOfClass:[NSString class]]) {
 		NSLog(@"illigal username infomation. class=%@", [obj class]);
 		urlBase = [ConfigViewController getUrlBaseWithOpds];
-		return [urlBase stringByAppendingPathComponent:PRODUCT_ID_LIST_FILENAME];
+		NSURL* url = [NSURL URLWithString:urlBase];
+		NSURL* urlWithFilename = [url URLByAppendingPathComponent:PRODUCT_ID_LIST_FILENAME];
+		return [urlWithFilename description];
+		//return [urlBase stringByAppendingPathComponent:PRODUCT_ID_LIST_FILENAME];
+		//Should use URLByAppendingPathComponent instead of stringByAppendingPathComponent.(keep "http://example.com", not "http:/example.com"("//" -> "/")
 	}
 	
 	urlBase = [NSString stringWithString:obj];
-	return [urlBase stringByAppendingPathComponent:PRODUCT_ID_LIST_FILENAME];
+	NSURL* url = [NSURL URLWithString:urlBase];
+	NSURL* urlWithFilename = [url URLByAppendingPathComponent:PRODUCT_ID_LIST_FILENAME];
+	return [urlWithFilename description];
 }
 
 
@@ -217,12 +234,13 @@ static ProductIdList *_instance = nil;
 {
 	//LOG_CURRENT_METHOD;
 	//NSLog(@"cid=%d", cid);
+	//NSLog(@"productIdList=%@", [productIdList description]);
 	for (NSString* singleLine in productIdList) {
 		NSArray* commaSeparated = [singleLine componentsSeparatedByString:@","];
 		if ([commaSeparated count] < 2) {
 			LOG_CURRENT_METHOD;
 			NSLog(@"invalid format for productIdentifier. line=%@", singleLine);
-			return @"";
+			continue;
 		}
 		NSString* candidateCid = [commaSeparated objectAtIndex:0];
 		NSString* candidatePid = [commaSeparated objectAtIndex:1];

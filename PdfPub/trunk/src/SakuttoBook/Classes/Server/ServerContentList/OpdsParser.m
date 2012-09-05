@@ -320,7 +320,12 @@
 - (NSData*)getXmlFromUrl:(NSURL*)url username:(NSString*)username password:(NSString*)password;
 {
 	LOG_CURRENT_METHOD;
-	NSLog(@"url=%@, port=%d", [url description], [[url port] intValue]);
+	NSNumber* targetPort = [url port];
+	if (targetPort == 0) {
+		targetPort = [NSNumber numberWithInt:HTTP_PORT_DEFAULT];
+	}
+	
+	NSLog(@"url=%@, port=%d", [url description], [targetPort intValue]);
 	
 	//check XML exists.
 	/*
@@ -362,7 +367,7 @@
 	 */
 	NSLog(@"credential = %@", [credential description]);
 	NSURLProtectionSpace* protectionSpace = [[NSURLProtectionSpace alloc] initWithHost:[url host] //@"192.168.1.6" //@"192.168.1.8" //[url host] //@"localhost"
-																				  port:[[url port] intValue]
+																				  port:[targetPort intValue]
 																			  protocol:NSURLProtectionSpaceHTTP //@"http"
 																				 realm:CREDENTIAL_REALM
 																  authenticationMethod:NSURLAuthenticationMethodHTTPBasic];
@@ -422,6 +427,7 @@
 		
 		NSLog(@"error message=%@", errorMsg);
 		NSLog(@"error domain=%@", [error domain]);
+		return nil;
 	}
 	
 	if (res) {

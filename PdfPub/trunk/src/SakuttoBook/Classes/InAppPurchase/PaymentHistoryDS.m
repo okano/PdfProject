@@ -199,13 +199,24 @@
 		//if ([productId compare:candidateProductId] == NSOrderedSame) { LOG_CURRENT_LINE; }
 		//if ([date compare:candidatePurchaseDate] == NSOrderedSame) { LOG_CURRENT_LINE; }
 		
-		if (   (contentId == candidateContentId)
-			&& ([productId compare:candidateProductId] == NSOrderedSame)
-			&& ([date compare:candidatePurchaseDate] == NSOrderedSame))
-		{
-			//LOG_CURRENT_LINE;
-			NSLog(@"same record exist in paymentHistory.");
-			return YES;
+		if (date == nil) {
+			if (   (contentId == candidateContentId)
+				&& ([productId compare:candidateProductId] == NSOrderedSame))	//compare Without date.
+			{
+				//LOG_CURRENT_LINE;
+				NSLog(@"same record exist in paymentHistory. cid=%d, pid=%@", contentId, productId);
+				return YES;
+			}
+		} else {
+			//specify with date.
+			if (   (contentId == candidateContentId)
+				&& ([productId compare:candidateProductId] == NSOrderedSame)
+				&& ([date compare:candidatePurchaseDate] == NSOrderedSame))		//compare with date.
+			{
+				//LOG_CURRENT_LINE;
+				NSLog(@"same record exist in paymentHistory.");
+				return YES;
+			}
 		}
 	}
 	return NO;

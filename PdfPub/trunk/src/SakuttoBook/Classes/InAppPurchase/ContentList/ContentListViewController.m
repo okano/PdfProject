@@ -270,7 +270,7 @@
 		isPayedContent = YES;
 		
 		//Record free content payment record only first time read.
-		[appDelegate.paymentHistoryDS recordHistoryOnceWithContentId:targetCid ProductId:targetPid];
+		[appDelegate.paymentHistoryDS recordHistoryOnceWithContentId:targetCid ProductId:targetPid date:nil];
 	}
 	if ([appDelegate.paymentHistoryDS isEnabledContent:targetCid] == TRUE) {
 		isPayedContent = YES;
