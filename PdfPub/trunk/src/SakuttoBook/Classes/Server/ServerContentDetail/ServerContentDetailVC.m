@@ -277,7 +277,7 @@
 	NSLog(@"product=%@",[product description]);
 	NSLog(@"product id = %@", [product productIdentifier]);
 	NSLog(@"class=%@", [product.productIdentifier class]);
-	targetProductId = [[NSString  alloc] initWithFormat:[product productIdentifier]];
+	targetProductId = [[NSString  alloc] initWithString:[product productIdentifier]];
 }
 - (void)productRequestDidFailed:(NSString *)invalidProductIdentifier
 {
