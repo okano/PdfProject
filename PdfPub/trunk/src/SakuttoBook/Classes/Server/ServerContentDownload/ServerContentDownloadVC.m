@@ -436,12 +436,12 @@
 	//LOG_CURRENT_METHOD;
 	//NSLog(@"length=%d", length);
 	downloadedContentLength += length;
-	downloadedContentLengthLabel.text = [NSString stringWithFormat:@"%10ld", downloadedContentLength];
+	downloadedContentLengthLabel.text = [NSString stringWithFormat:@"%10lld", downloadedContentLength];
 }
 
 - (void)download:(URLDownload *)download didReceiveResponse:(NSURLResponse *)response {
 	expectedContentLength = [response expectedContentLength];
-	expectedContentLengthLabel.text = [NSString stringWithFormat:@"%ld", expectedContentLength];
+	expectedContentLengthLabel.text = [NSString stringWithFormat:@"%lld", expectedContentLength];
 #if IS_DEBUG
 	NSLog(@"expected content length=%d", expectedContentLength);
 #endif
