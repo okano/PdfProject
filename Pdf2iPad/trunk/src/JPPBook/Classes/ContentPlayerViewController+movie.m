@@ -75,9 +75,6 @@
 
 - (void) renderMovieLinkAtIndex:(NSUInteger)index
 {
-#if ! TARGET_IPHONE_SIMULATOR
-	return;
-#endif
 	
 	for (NSMutableDictionary* movieInfo in movieDefine) {
 		int targetPageNum = [[movieInfo valueForKey:MD_PAGE_NUMBER] intValue];
@@ -92,10 +89,13 @@
 			NSString* filename = [movieInfo valueForKey:MD_MOVIE_FILENAME];
 			//NSLog(@"filename=%@", filename);
 			
+#if TARGET_IPHONE_SIMULATOR
 			UIColor* targetColor = [UIColor yellowColor];
 			[currentPdfScrollView addScalableColorView:targetColor
 												 alpha:0.2f
 									 withPdfBasedFrame:rect];
+#endif
+			
 			//play when open page with no touch.
 			NSNumber* delayTime = [movieInfo valueForKey:MD_DELAY_TIME];
 			if (delayTime != nil) {
