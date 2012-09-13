@@ -52,6 +52,9 @@
 	//productIdList = [ProductIdList alloc] init];
 	//contentListDS.productIdListPointer = productIdList;
 	
+	//Put version hash in Git for debug.
+	NSLog(@"version hash=%@", RELEASE_HASH);
+	
 	//Copy PDF file in MainBundle resource to local file.
 	if ([self isFirstLaunchUp] == YES) {
 		[self copyPdfFromResourceToFile];

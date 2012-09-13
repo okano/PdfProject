@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "License.h"
+#import "ReleaseHash.h"
 #import "InAppPurchaseDefine.h"
 #import "PaymentConductor.h"
 #import "ContentListDS.h"

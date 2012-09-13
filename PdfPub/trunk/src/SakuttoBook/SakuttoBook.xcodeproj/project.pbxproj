@@ -202,6 +202,7 @@
 		297DF1FA12C600320082C680 /* InfomationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfomationView.xib; sourceTree = "<group>"; };
 		297DF1FD12C601AD0082C680 /* InfomationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfomationViewController.h; sourceTree = "<group>"; };
 		297DF1FE12C601AD0082C680 /* InfomationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfomationViewController.m; sourceTree = "<group>"; };
+		2986552C1601C3FF00B86112 /* ReleaseHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReleaseHash.h; sourceTree = "<group>"; };
 		299448EB12B7370B00E7D108 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		2999FDC312D6A8D500D0F145 /* License.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = License.h; sourceTree = "<group>"; };
 		2999FDC412D6A8D500D0F145 /* License.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = License.m; sourceTree = "<group>"; };
@@ -386,6 +387,7 @@
 				297DF1FE12C601AD0082C680 /* InfomationViewController.m */,
 				2999FDC312D6A8D500D0F145 /* License.h */,
 				2999FDC412D6A8D500D0F145 /* License.m */,
+				2986552C1601C3FF00B86112 /* ReleaseHash.h */,
 				2963BE1D12B5C01E001041EB /* Utility.h */,
 				29E8A4131532AA8B00468FE9 /* ConfigViewController.h */,
 				29E8A4141532AA8C00468FE9 /* ConfigViewController.m */,
