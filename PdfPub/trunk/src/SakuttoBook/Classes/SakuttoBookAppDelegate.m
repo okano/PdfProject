@@ -130,8 +130,8 @@
 {
 	NSString* tmpDirectory = [ContentFileUtility getContentTmpDirectory];
 	NSArray* fileList = [FileUtility fileList:tmpDirectory]; 
-	//LOG_CURRENT_METHOD;
-	//NSLog(@"path=%@, list=%@", tmpDirectory, [fileList description]);
+	LOG_CURRENT_METHOD;
+	NSLog(@"path=%@, list=%@", tmpDirectory, [fileList description]);
 	
 	if ([fileList count] <= 0) {
 		//No file found in tmp directory.

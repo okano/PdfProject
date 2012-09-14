@@ -32,6 +32,8 @@
 + (NSString*)getContentBodyMovieDirectoryWithContentId:(NSString*)cId;	//contentBody/{cId}/movie/
 + (NSString*)getContentBodySoundDirectoryWithContentId:(NSString*)cId;	//contentBody/{cId}/sound/
 //
++ (NSString*)getDocumentDirectory;
+//
 + (NSString*)getContentTmpDirectory;
 + (NSString*)getContentTmpDirectoryWithContentId:(NSString*)cId;
 + (NSString*)getContentTmpDirectoryHasResourcesWithContentId:(NSString*)cId;

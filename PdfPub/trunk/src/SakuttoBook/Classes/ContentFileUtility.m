@@ -44,8 +44,9 @@
 {
 	//NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	//NSString* documentsDirectory = [paths objectAtIndex:0];
-	NSString* tmpDirectory = [self getContentTmpDirectory];
-	NSString* dir = [tmpDirectory
+
+	NSString* documentDirectory = [self getDocumentDirectory];
+	NSString* dir = [documentDirectory
 					 stringByAppendingPathComponent:CONTENT_BODY_DIRECTORY];
 	return dir;
 }
@@ -97,6 +98,15 @@
 			stringByAppendingPathComponent:@"sound"];
 }
 
+#pragma mark - Document Base Directory.
+/**
+ * ~/Document/ Directory.
+ */
++ (NSString*)getDocumentDirectory
+{
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	return [paths objectAtIndex:0];
+}
 
 #pragma mark - Temporary Directory.
 /**

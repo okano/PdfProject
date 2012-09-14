@@ -196,11 +196,11 @@
 	NSString* filenameInMainBundle = nil;
 	
 	//(1)get from ContentBody Directory, with suffix.
-	//   Ex: ~/tmp/contentBody/1/csv/tocDefine_iphone_1.csv
+	//   Ex: ~/Document/contentBody/1/csv/tocDefine_iphone_1.csv
 	csvFilePath = [self getCsvFilenameInFolder:filename contentId:cid withDeviceSuffix:YES];
 	if ([self existsFile:csvFilePath] == NO) {
 		//(2)get from ContentBody Directory, without suffix.
-		//   Ex: ~/tmp/contentBody/1/csv/tocDefine_1.csv
+		//   Ex: ~/Document/contentBody/1/csv/tocDefine_1.csv
 		csvFilePath = [self getCsvFilenameInFolder:filename contentId:cid withDeviceSuffix:NO];
 		if ([self existsFile:csvFilePath] == NO) {
 			//(3)get from mainBundle, with suffix.
@@ -214,7 +214,7 @@
 				csvFilePath = [[NSBundle mainBundle] pathForResource:filenameInMainBundle ofType:@""];
 				if ((csvFilePath == nil) || [self existsFile:csvFilePath] == NO) {
 					//(5)get from folder, without cid, without suffix.
-					//   Ex: ~/tmp/contentBody/csv/tocDefine.csv
+					//   Ex: ~/Document/contentBody/csv/tocDefine.csv
 					//   (normally, this is never used)
 					csvFilePath = [[[[ContentFileUtility getContentBodyDirectory]
 									 stringByAppendingPathComponent:@"csv"]
