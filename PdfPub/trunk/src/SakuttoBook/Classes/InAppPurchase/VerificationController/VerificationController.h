@@ -25,6 +25,9 @@ void * base64_decode(const char* s, size_t * data_len);
 // this class.  So ensure IAP feaures are unlocked from there.
 - (BOOL)verifyPurchase:(SKPaymentTransaction *)transaction;
 
+- (NSString *) base64StringFromData: (NSData *)data length: (int)length;
+- (NSData *)base64DataFromString: (NSString *)string;
+
 
 static int POS(char c);
 

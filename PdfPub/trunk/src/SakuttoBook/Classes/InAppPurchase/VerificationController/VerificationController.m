@@ -28,6 +28,12 @@ static VerificationController *singleton;
 
 - (NSDictionary *)dictionaryFromPlistData:(NSData *)data
 {
+	if ([data length] <= 0) {
+		LOG_CURRENT_METHOD;
+		NSLog(@"NSPropertyListSerialization parse error. data length = %d", [data length]);
+		return nil;
+	}
+	
     NSError *error;
     NSDictionary *dictionaryParsed = [NSPropertyListSerialization propertyListWithData:data
                                                                                options:NSPropertyListImmutable
@@ -37,6 +43,7 @@ static VerificationController *singleton;
     {
 		LOG_CURRENT_METHOD;
 		NSLog(@"NSPropertyListSerialization parse error.");
+		NSLog(@"data length=%d", [data length]);
         if (error)
         {
 			NSLog(@"error=%@", [error description]);
@@ -122,12 +129,20 @@ static VerificationController *singleton;
         // Transaction is not valid.
         return NO;
     }
+	
+	
+	NSLog(@"receipt length=%d", [transaction.transactionReceipt length]);
     
     // Pull the purchase-info out of the transaction receipt, decode it, and save it for later so
     // it can be cross checked with the verifyReceipt.
     NSDictionary *receiptDict       = [self dictionaryFromPlistData:transaction.transactionReceipt];
     NSString *transactionPurchaseInfo = [receiptDict objectForKey:@"purchase-info"];
-    NSString *decodedPurchaseInfo   = [self decodeBase64:transactionPurchaseInfo length:nil];
+	NSInteger purchaseInfoLength = [transactionPurchaseInfo length];
+	NSLog(@"base64 encoded string=%@", transactionPurchaseInfo);
+	
+    NSString *decodedPurchaseInfo   = [self decodeBase64:transactionPurchaseInfo length:&purchaseInfoLength];
+	NSLog(@"decodedPurchaseInfo=%@, length=%d", decodedPurchaseInfo, [decodedPurchaseInfo length]);
+	
     NSDictionary *purchaseInfoDict  = [self dictionaryFromPlistData:[decodedPurchaseInfo dataUsingEncoding:NSUTF8StringEncoding]];
     
     NSString *transactionId         = [purchaseInfoDict objectForKey:@"transaction-id"];
@@ -378,7 +393,7 @@ static VerificationController *singleton;
     if (isOk)
     {
         //Validation suceeded. Unlock content here.
-#warning Validation suceeded. Unlock content here.
+//#warning Validation suceeded. Unlock content here.
 
     }
 }
@@ -712,33 +727,203 @@ outLabel:
 }
 
 
+//http://stackoverflow.com/questions/392464/any-base64-library-on-iphone-sdk
+static char base64EncodingTable[64] = {
+	'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
+	'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f',
+	'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
+	'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '/'
+};
+//http://stackoverflow.com/questions/392464/any-base64-library-on-iphone-sdk
+- (NSString *) base64StringFromData: (NSData *)data length: (int)length {
+	unsigned long ixtext, lentext;
+	long ctremaining;
+	unsigned char input[3], output[4];
+	short i, charsonline = 0, ctcopy;
+	const unsigned char *raw;
+	NSMutableString *result;
+	
+	lentext = [data length];
+	if (lentext < 1)
+		return @"";
+	result = [NSMutableString stringWithCapacity: lentext];
+	raw = [data bytes];
+	ixtext = 0;
+	
+	while (true) {
+		ctremaining = lentext - ixtext;
+		if (ctremaining <= 0)
+			break;
+		for (i = 0; i < 3; i++) {
+			unsigned long ix = ixtext + i;
+			if (ix < lentext)
+				input[i] = raw[ix];
+			else
+				input[i] = 0;
+		}
+		output[0] = (input[0] & 0xFC) >> 2;
+		output[1] = ((input[0] & 0x03) << 4) | ((input[1] & 0xF0) >> 4);
+		output[2] = ((input[1] & 0x0F) << 2) | ((input[2] & 0xC0) >> 6);
+		output[3] = input[2] & 0x3F;
+		ctcopy = 4;
+		switch (ctremaining) {
+			case 1:
+				ctcopy = 2;
+				break;
+			case 2:
+				ctcopy = 3;
+				break;
+		}
+		
+		for (i = 0; i < ctcopy; i++)
+			[result appendString: [NSString stringWithFormat: @"%c", base64EncodingTable[output[i]]]];
+		
+		for (i = ctcopy; i < 4; i++)
+			[result appendString: @"="];
+		
+		ixtext += 3;
+		charsonline += 4;
+		
+		if ((length > 0) && (charsonline >= length))
+			charsonline = 0;
+	}
+	return result;
+}
+
+//http://stackoverflow.com/questions/392464/any-base64-library-on-iphone-sdk
 - (NSString *)decodeBase64:(NSString *)input length:(NSInteger *)length
 {
-//@see http://cocoadev.com/wiki/BaseSixtyFour
+	NSData* tmpData = [self base64DataFromString:input];
+	NSString *str= [[NSString alloc] initWithData:tmpData encoding: NSUTF8StringEncoding];
+	NSLog(@"str=%@",str);
 	
-	
-	NSString* alphabet = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-";
-	NSString* decoded = @"";
-	NSString* encoded = [input stringByPaddingToLength:(ceil([input length] / 4) * 4)
-										   withString:@"A"
-									  startingAtIndex:0];
-	
-	int i;
-	char a, b, c, d;
-	UInt32 z;
-	
-	for(i = 0; i < [encoded length]; i += 4) {
-		a = [alphabet rangeOfString:[encoded substringWithRange:NSMakeRange(i + 0, 1)]].location;
-		b = [alphabet rangeOfString:[encoded substringWithRange:NSMakeRange(i + 1, 1)]].location;
-		c = [alphabet rangeOfString:[encoded substringWithRange:NSMakeRange(i + 2, 1)]].location;
-		d = [alphabet rangeOfString:[encoded substringWithRange:NSMakeRange(i + 3, 1)]].location;
-		
-		z = ((UInt32)a << 26) + ((UInt32)b << 20) + ((UInt32)c << 14) + ((UInt32)d << 8);
-		decoded = [decoded stringByAppendingString:[NSString stringWithCString:(char*)&z encoding:NSUTF8StringEncoding]];
-	}
-	
-	return decoded;
+	//return decoded;
+	return str;
 }
+
+
+
+//http://stackoverflow.com/questions/392464/any-base64-library-on-iphone-sdk
+- (NSData *)base64DataFromString: (NSString *)string
+{
+    unsigned long ixtext, lentext;
+    unsigned char ch, inbuf[4], outbuf[3];
+    short i, ixinbuf;
+    Boolean flignore, flendtext = false;
+    const unsigned char *tempcstring;
+    NSMutableData *theData;
+	
+    if (string == nil)
+    {
+        return [NSData data];
+    }
+	
+    ixtext = 0;
+	
+    tempcstring = (const unsigned char *)[string UTF8String];
+	
+    lentext = [string length];
+	
+    theData = [NSMutableData dataWithCapacity: lentext];
+	
+    ixinbuf = 0;
+	
+    while (true)
+    {
+        if (ixtext >= lentext)
+        {
+            break;
+        }
+		
+        ch = tempcstring [ixtext++];
+		
+        flignore = false;
+		
+        if ((ch >= 'A') && (ch <= 'Z'))
+        {
+            ch = ch - 'A';
+        }
+        else if ((ch >= 'a') && (ch <= 'z'))
+        {
+            ch = ch - 'a' + 26;
+        }
+        else if ((ch >= '0') && (ch <= '9'))
+        {
+            ch = ch - '0' + 52;
+        }
+        else if (ch == '+')
+        {
+            ch = 62;
+        }
+        else if (ch == '=')
+        {
+            flendtext = true;
+        }
+        else if (ch == '/')
+        {
+            ch = 63;
+        }
+        else
+        {
+            flignore = true;
+        }
+		
+        if (!flignore)
+        {
+            short ctcharsinbuf = 3;
+            Boolean flbreak = false;
+			
+            if (flendtext)
+            {
+                if (ixinbuf == 0)
+                {
+                    break;
+                }
+				
+                if ((ixinbuf == 1) || (ixinbuf == 2))
+                {
+                    ctcharsinbuf = 1;
+                }
+                else
+                {
+                    ctcharsinbuf = 2;
+                }
+				
+                ixinbuf = 3;
+				
+                flbreak = true;
+            }
+			
+            inbuf [ixinbuf++] = ch;
+			
+            if (ixinbuf == 4)
+            {
+                ixinbuf = 0;
+				
+                outbuf[0] = (inbuf[0] << 2) | ((inbuf[1] & 0x30) >> 4);
+                outbuf[1] = ((inbuf[1] & 0x0F) << 4) | ((inbuf[2] & 0x3C) >> 2);
+                outbuf[2] = ((inbuf[2] & 0x03) << 6) | (inbuf[3] & 0x3F);
+				
+                for (i = 0; i < ctcharsinbuf; i++)
+                {
+                    [theData appendBytes: &outbuf[i] length: 1];
+                }
+            }
+			
+            if (flbreak)
+            {
+                break;
+            }
+        }
+    }
+	
+    return theData;
+}
+
+
+
+
+
 
 char* base64_encode(const void* buf, size_t size)
 {
@@ -788,7 +973,7 @@ void * base64_decode(const char* s, size_t * data_len)
     size_t len = strlen(s);
 	
     if (len % 4)
-        [NSException raise:@"Invalid input in base64_decode" format:@"%d is an invalid length for an input string for BASE64 decoding", len];
+        [NSException raise:@"Invalid input in base64_decode" format:@"%zd is an invalid length for an input string for BASE64 decoding", len];
 	
     unsigned char* data = (unsigned char*) malloc(len/4*3);
 	
