@@ -227,7 +227,11 @@
 	//NSLog(@"targetProductId=%@", targetProductId);
 	
 	buyButton.enabled = NO;		//Disable buy at twice.
-	[appDelegate.paymentHistoryDS buyContent:targetProductId];
+	//[appDelegate.paymentHistoryDS buyContent:targetProductId];
+	[appDelegate.paymentConductor buyContent:targetProductId];
+
+	
+	
 	return;
 }
 
