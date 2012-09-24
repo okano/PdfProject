@@ -153,12 +153,23 @@
 				}
 				break;
 			case SKPaymentTransactionStateFailed:
+				LOG_CURRENT_METHOD;
 				NSLog(@"SKPaymentTransactionStateFailed, transactionIdentifier=%@", [transaction transactionIdentifier]);
+				NSError* error = [transaction error];
+				NSLog(@"error=%@", [error description]);
+				
+				SKPayment* payment = [transaction payment];
+				NSLog(@"productIdentifier=%@,quantity=%d", payment.productIdentifier, payment.quantity);
+				
 				[self failedTransaction:transaction];
 				break;
 			case SKPaymentTransactionStateRestored:
 				NSLog(@"SKPaymentTransactionStateRestored, transactionIdentifier=%@", [transaction transactionIdentifier]);
+				
 				//Verificate Transaction.
+				//
+				//The contents of this property are undefined except when transactionState is set to SKPaymentTransactionStatePurchased.
+				//(receipt is undefined when 'SKPaymentTransactionStateRestored'.)
 				verificateResult = [vc verifyPurchase:transaction];
 				if (verificateResult == NO) {
 					NSLog(@"restored transaction does not verificate. description=%@", [transaction description]);
