@@ -1,0 +1,19 @@
+リリース前のチェック観点
+
+試験のポイント*通常版*ストアーボタンを隠した設定//Hide Server button on Menu bar.
+#define HIDE_SERVER_BUTTON 	1にする	/* 0:show, 1:hide */
+//Use Multi contents.
+#define IS_MULTI_CONTENTS	1のまま	/* 0:single content, 1:multi contents */
+
+*ストアーボタンを隠した設定で、シングルコンテンツ//Hide Server button on Menu bar.
+#define HIDE_SERVER_BUTTON	 1にする	/* 0:show, 1:hide */
+//Use Multi contents.
+#define IS_MULTI_CONTENTS	0にする	/* 0:single content, 1:multi contents */
+*ストアボタンはありで、シングルコンテンツ。->メニュー上にストアボタンが出ないので、意味が無い//Hide Server button on Menu bar.
+#define HIDE_SERVER_BUTTON	0のまま	/* 0:show, 1:hide */
+//Use Multi contents.
+#define IS_MULTI_CONTENTS	1にする	/* 0:single content, 1:multi contents */
+*無料と有料の混在
+*pidが、内蔵コンテンツとサーバ上のコンテンツで違う
+ (サーバ上のproductIdList.csvで上書きされる)サーバ関連
+*ポートが80以外
