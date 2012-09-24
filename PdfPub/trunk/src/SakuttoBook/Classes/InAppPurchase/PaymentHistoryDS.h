@@ -43,8 +43,6 @@
 - (NSString*)date2str:(NSDate*)targetDate;
 - (NSMutableDictionary*)transcation2StringDict:(SKPaymentTransaction*)transaction;
 
-- (void)buyContent:(NSString*)productId;
-
 //Misc.
 - (NSUInteger)count;
 - (NSString*)description;

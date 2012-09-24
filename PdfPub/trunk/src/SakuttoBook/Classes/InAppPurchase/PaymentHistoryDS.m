@@ -76,30 +76,6 @@
 	return FALSE;
 }
 
-- (void)buyContent:(NSString*)productId
-{
-	LOG_CURRENT_METHOD;
-	NSLog(@"productId=%@", productId);
-	//Check enable payment.
-	if (! [SKPaymentQueue canMakePayments]) {
-		NSLog(@"cannot make payments");
-		
-		UIAlertView *alert = [[[UIAlertView alloc]
-							   initWithTitle:nil
-							   message:@"cannot make payments."
-							   delegate:nil
-							   cancelButtonTitle:nil
-							   otherButtonTitles:@"OK", nil]
-							  autorelease];
-		[alert show];
-		return;
-	}
-	
-	//Process Payment.
-	SKPayment* payment = [SKPayment paymentWithProductIdentifier:productId];
-	[[SKPaymentQueue defaultQueue] addPayment:payment];
-}
-
 - (void)enableContent:(ContentId)cid
 {
 	//LOG_CURRENT_METHOD;
