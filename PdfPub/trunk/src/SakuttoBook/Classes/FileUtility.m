@@ -347,6 +347,24 @@
     return YES;
 }
 
+
+//Technical Q&A QA1719
+//https://developer.apple.com/library/ios/#qa/qa1719/_index.html
+//How do I prevent files from being backed up to iCloud and iTunes?
++ (BOOL)addSkipBackupAttributeToItemAtURL:(NSURL *)URL
+{
+    assert([[NSFileManager defaultManager] fileExistsAtPath: [URL path]]);
+	
+    NSError *error = nil;
+    BOOL success = [URL setResourceValue: [NSNumber numberWithBool: YES]
+                                  forKey: NSURLIsExcludedFromBackupKey error: &error];
+    if(!success){
+        NSLog(@"Error excluding %@ from backup %@", [URL lastPathComponent], error);
+    }
+    return success;
+}
+
+
 #pragma mark -
 + (NSString*)cleanString:(NSString*)str
 {
@@ -358,5 +376,7 @@
 																		   withString:@""];	/* delete LF. */
 	return tmpStrWithoutLF;
 }
+
+
 
 @end

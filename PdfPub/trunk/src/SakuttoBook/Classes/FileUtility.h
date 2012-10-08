@@ -42,6 +42,12 @@
 + (void)removeFile:(NSString*)fileNameFull;
 + (BOOL)res2file:(NSString*)res fileNameFull:(NSString*)filenameFull;	//Resource to File.
 
+//Technical Q&A QA1719
+//https://developer.apple.com/library/ios/#qa/qa1719/_index.html
+//How do I prevent files from being backed up to iCloud and iTunes?
++ (BOOL)addSkipBackupAttributeToItemAtURL:(NSURL *)URL;
+
+
 
 //String cleaner
 + (NSString*)cleanString:(NSString*)str;
