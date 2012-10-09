@@ -151,6 +151,10 @@
 					//NSLog(@"wrote thumbnail file to %@", filenameFull);
 				}
 				
+				//Set Ignore Backup.
+				NSURL* ignoreBackupUrl = [NSURL URLWithString:filenameFull];
+				[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
+				
 				//Re-open image with saved file.
 				image = [UIImage imageWithContentsOfFile:filenameFull];
 			}

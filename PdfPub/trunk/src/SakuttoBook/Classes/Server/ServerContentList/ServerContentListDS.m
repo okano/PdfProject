@@ -342,6 +342,10 @@
 			[tmpDict release]; tmpDict = nil;
 			return;
 		}
+		
+		//Set Ignore Backup.
+		NSURL* ignoreBackupUrl = [NSURL URLWithString:contentDetailDirectory];
+		[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
 	}
 	
 	
@@ -349,6 +353,10 @@
 	NSString* filename = [self getContentListFilename];
 	[tmpDict writeToFile:filename atomically:YES];
 	[tmpDict release]; tmpDict = nil;
+	
+	//Set Ignore Backup.
+	NSURL* ignoreBackupUrl = [NSURL URLWithString:filename];
+	[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
 }
 
 

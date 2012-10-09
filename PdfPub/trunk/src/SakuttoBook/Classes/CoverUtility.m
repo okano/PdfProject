@@ -39,6 +39,9 @@
 		if (data != nil) {
 			//save to local folder.
 			[data writeToFile:targetFilenameFull atomically:YES];
+			//Set Ignore Backup.
+			NSURL* ignoreBackupUrl = [NSURL URLWithString:targetFilenameFull];
+			[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
 			//Generate image.
 			UIImage* img = [[UIImage alloc] initWithData:data];
 			return img;
@@ -68,6 +71,9 @@
 		//Save to file.
 		NSLog(@"targetFilenameFull=%@", targetFilenameFull);
 		[data writeToFile:targetFilenameFull atomically:YES];
+		//Set Ignore Backup.
+		NSURL* ignoreBackupUrl = [NSURL URLWithString:targetFilenameFull];
+		[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
 		
 		//Generate image.
 		UIImage* img = [[UIImage alloc] initWithData:data];

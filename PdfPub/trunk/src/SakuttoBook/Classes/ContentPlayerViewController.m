@@ -306,7 +306,7 @@
 	
 	
 	
-	//内蔵ファイルでもダウンロードしたファイルでも、~/tmp/contentBody/{cid}/pdf/ フォルダにコピーされるので、
+	//内蔵ファイルでもダウンロードしたファイルでも、~/Documents/contentBody/{cid}/pdf/ フォルダにコピーされるので、
 	//ファイル名は {cid}.pdf に固定となる。
 	NSString* pdfFilename = [NSString stringWithFormat:@"%d.pdf", cid];
 	
@@ -560,6 +560,10 @@
 	} else {
 		//NSLog(@"wrote thumbnail file to %@", targetFilenameFull);
 	}
+	
+	//Set Ignore Backup.
+	NSURL* ignoreBackupUrl = [NSURL URLWithString:targetFilenameFull];
+	[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
 }
 
 //Remove image cache.

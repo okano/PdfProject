@@ -175,6 +175,10 @@
 		
 		//Copy.
 		[FileUtility res2file:resourceName fileNameFull:filenameFull];
+		
+		//Set Ignore Backup.
+		NSURL* ignoreBackupUrl = [NSURL URLWithString:filenameFull];
+		[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
 	}
 }
 
@@ -184,6 +188,7 @@
 	NSString* toFilenameFull;
 	NSString* toDir;
 	NSArray* lines;
+	NSURL* ignoreBackupUrl;
 	
 	/*
 	 * Copy CSV files, other resource files.
@@ -218,8 +223,11 @@
 							stringByAppendingPathExtension:@"csv"];
 			toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_MOVIE contentId:cid withDeviceSuffix:NO];
 		}
-		
 		[FileUtility res2file:resourceName fileNameFull:toFilenameFull];
+		//Set Ignore Backup.
+		ignoreBackupUrl = [NSURL URLWithString:toFilenameFull];
+		[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
+
 		//Copy movie file.
 		lines = [FileUtility parseDefineCsv:CSVFILE_MOVIE contentId:cid];
 		for (NSString* line in lines) {
@@ -229,8 +237,13 @@
 			}
 			NSString* tmpStr = [tmpCsvArray objectAtIndex:5];
 			NSString* filename = [FileUtility cleanString:tmpStr];
+			NSString* filenameFull = [toDir stringByAppendingPathComponent:filename];
 			[FileUtility res2file:filename
-					 fileNameFull:[toDir stringByAppendingPathComponent:filename]];
+					 fileNameFull:filenameFull];
+			//Set Ignore Backup.
+			ignoreBackupUrl = [NSURL URLWithString:filenameFull];
+			[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
+			
 		}
 		
 		
@@ -248,7 +261,10 @@
 		}
 		//NSLog(@"resourceName=%@, toFilenameFull=%@", resourceName, toFilenameFull);
 		[FileUtility res2file:resourceName fileNameFull:toFilenameFull];
-		
+		//Set Ignore Backup.
+		ignoreBackupUrl = [NSURL URLWithString:toFilenameFull];
+		[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
+
 		
 		/**
 		 * Sound define.
@@ -264,12 +280,19 @@
 		}
 		//NSLog(@"resourceName=%@, toFilenameFull=%@", resourceName, toFilenameFull);
 		[FileUtility res2file:resourceName fileNameFull:toFilenameFull];
-		
+		//Set Ignore Backup.
+		ignoreBackupUrl = [NSURL URLWithString:toFilenameFull];
+		[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
+
 		//Create Folder.
 		toDir = [[ContentFileUtility getContentBodyDirectoryWithContentId:cidStr]
 				 stringByAppendingPathComponent:@"sound"];
 		[FileUtility makeDir:toDir];
-		//Copy movie file.
+		//Set Ignore Backup.
+		ignoreBackupUrl = [NSURL URLWithString:toDir];
+		[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
+		
+		//Copy sound file.
 		lines = [FileUtility parseDefineCsv:CSVFILE_SOUND contentId:cid];
 		for (NSString* line in lines) {
 			NSArray* tmpCsvArray = [line componentsSeparatedByString:@","];
@@ -278,8 +301,12 @@
 			}
 			NSString* tmpStr = [tmpCsvArray objectAtIndex:1];
 			NSString* filename = [FileUtility cleanString:tmpStr];
+			NSString* filenameFull = [toDir stringByAppendingPathComponent:filename];
 			[FileUtility res2file:filename
-					 fileNameFull:[toDir stringByAppendingPathComponent:filename]];
+					 fileNameFull:filenameFull];
+			//Set Ignore Backup.
+			ignoreBackupUrl = [NSURL URLWithString:filenameFull];
+			[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
 		}
 		
 		
@@ -297,7 +324,10 @@
 		}
 		//NSLog(@"resourceName=%@, toFilenameFull=%@", resourceName, toFilenameFull);
 		[FileUtility res2file:resourceName fileNameFull:toFilenameFull];
-		
+		//Set Ignore Backup.
+		ignoreBackupUrl = [NSURL URLWithString:toFilenameFull];
+		[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
+
 		
 		/**
 		 * InPageScrollView define.
@@ -313,11 +343,17 @@
 		}
 		//NSLog(@"resourceName=%@, toFilenameFull=%@", resourceName, toFilenameFull);
 		[FileUtility res2file:resourceName fileNameFull:toFilenameFull];
+		//Set Ignore Backup.
+		ignoreBackupUrl = [NSURL URLWithString:toFilenameFull];
+		[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
 		
 		//Create Folder.
 		toDir = [[ContentFileUtility getContentBodyDirectoryWithContentId:cidStr]
 				 stringByAppendingPathComponent:@"image"];
 		[FileUtility makeDir:toDir];
+		//Set Ignore Backup.
+		ignoreBackupUrl = [NSURL URLWithString:toDir];
+		[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
 		//Copy image file.
 		lines = [FileUtility parseDefineCsv:CSVFILE_INPAGE_SCROLLVIEW contentId:cid];
 		for (NSString* line in lines) {
@@ -328,8 +364,12 @@
 			for (int i = 5; i < [tmpCsvArray count]; i = i + 1) {
 				NSString* tmpStr = [tmpCsvArray objectAtIndex:i];
 				NSString* filename = [FileUtility cleanString:tmpStr];
+				NSString* filenameFull = [toDir stringByAppendingPathComponent:filename];
 				[FileUtility res2file:filename
-						 fileNameFull:[toDir stringByAppendingPathComponent:filename]];
+						 fileNameFull:filenameFull];
+				//Set Ignore Backup.
+				ignoreBackupUrl = [NSURL URLWithString:filenameFull];
+				[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
 			}
 		}
 		
@@ -348,6 +388,9 @@
 		}
 		//NSLog(@"resourceName=%@, toFilenameFull=%@", resourceName, toFilenameFull);
 		[FileUtility res2file:resourceName fileNameFull:toFilenameFull];
+		//Set Ignore Backup.
+		ignoreBackupUrl = [NSURL URLWithString:toFilenameFull];
+		[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
 		
 		//Copy png file for inpage.
 		lines = [FileUtility parseDefineCsv:CSVFILE_INPAGE_PDF contentId:cid];
@@ -358,8 +401,12 @@
 			}
 			NSString* tmpStr = [tmpCsvArray objectAtIndex:5];
 			NSString* filename = [FileUtility cleanString:tmpStr];
+			NSString* filenameFull = [toDir stringByAppendingPathComponent:filename];
 			[FileUtility res2file:filename
-					 fileNameFull:[toDir stringByAppendingPathComponent:filename]];
+					 fileNameFull:toDir];
+			//Set Ignore Backup.
+			ignoreBackupUrl = [NSURL URLWithString:filenameFull];
+			[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
 		}
 		
 		
@@ -377,6 +424,9 @@
 		}
 		//NSLog(@"resourceName=%@, toFilenameFull=%@", resourceName, toFilenameFull);
 		[FileUtility res2file:resourceName fileNameFull:toFilenameFull];
+		//Set Ignore Backup.
+		ignoreBackupUrl = [NSURL URLWithString:toFilenameFull];
+		[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
 		
 		//Copy png file for inpage.
 		lines = [FileUtility parseDefineCsv:CSVFILE_INPAGE_PNG contentId:cid];
@@ -387,8 +437,12 @@
 			}
 			NSString* tmpStr = [tmpCsvArray objectAtIndex:5];
 			NSString* filename = [FileUtility cleanString:tmpStr];
+			NSString* filenameFull = [toDir stringByAppendingPathComponent:filename];
 			[FileUtility res2file:filename
-					 fileNameFull:[toDir stringByAppendingPathComponent:filename]];
+					 fileNameFull:filenameFull];
+			//Set Ignore Backup.
+			ignoreBackupUrl = [NSURL URLWithString:filenameFull];
+			[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
 		}
 		
 		
@@ -406,6 +460,9 @@
 		}
 		//NSLog(@"resourceName=%@, toFilenameFull=%@", resourceName, toFilenameFull);
 		[FileUtility res2file:resourceName fileNameFull:toFilenameFull];
+		//Set Ignore Backup.
+		ignoreBackupUrl = [NSURL URLWithString:toFilenameFull];
+		[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
 		
 		//Copy png file for inpage.
 		lines = [FileUtility parseDefineCsv:CSVFILE_POPOVER_IMAGE contentId:cid];
@@ -416,8 +473,12 @@
 			}
 			NSString* tmpStr = [tmpCsvArray objectAtIndex:5];
 			NSString* filename = [FileUtility cleanString:tmpStr];
+			NSString* filenameFull = [toDir stringByAppendingPathComponent:filename];
 			[FileUtility res2file:filename
-					 fileNameFull:[toDir stringByAppendingPathComponent:filename]];
+					 fileNameFull:filenameFull];
+			//Set Ignore Backup.
+			ignoreBackupUrl = [NSURL URLWithString:filenameFull];
+			[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
 		}
 		
 		/**
@@ -434,6 +495,9 @@
 		}
 		//NSLog(@"resourceName=%@, toFilenameFull=%@", resourceName, toFilenameFull);
 		[FileUtility res2file:resourceName fileNameFull:toFilenameFull];
+		//Set Ignore Backup.
+		ignoreBackupUrl = [NSURL URLWithString:toFilenameFull];
+		[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
 		
 		
 		/**
@@ -450,6 +514,10 @@
 		}
 		//NSLog(@"resourceName=%@, toFilenameFull=%@", resourceName, toFilenameFull);
 		[FileUtility res2file:resourceName fileNameFull:toFilenameFull];
+		
+		//Set Ignore Backup.
+		ignoreBackupUrl = [NSURL URLWithString:toFilenameFull];
+		[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
 	}
 }
 
@@ -542,6 +610,10 @@
 	NSString* contentDetailDir = [ContentFileUtility getContentDetailDirectory];
 	[FileUtility removeFile:contentDetailDir];
 	[FileUtility makeDir:contentDetailDir];
+	//Set Ignore Backup.
+	NSURL* ignoreBackupUrl = [NSURL URLWithString:contentDetailDir];
+	[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
+	
 	/*
 	NSArray* fileList = [FileUtility fileList:contentDetailDir];
 	for (NSString* filename in fileList) {

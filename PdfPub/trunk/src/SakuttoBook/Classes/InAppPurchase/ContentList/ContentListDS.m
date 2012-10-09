@@ -351,6 +351,10 @@
 		NSLog(@"save failed. file=%@", pFile);
 		[error release];
 	}
+	
+	//Set Ignore Backup.
+	NSURL* ignoreBackupUrl = [NSURL URLWithString:pFile];
+	[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
 }
 
 - (NSString*)getPlistFilenameFull

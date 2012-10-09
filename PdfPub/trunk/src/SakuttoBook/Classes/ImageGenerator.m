@@ -169,7 +169,10 @@
 	} else {
 		//NSLog(@"wrote page file to %@", targetFilenameFull);
 	}
-	
+	//Set Ignore Backup.
+	NSURL* ignoreBackupUrl = [NSURL URLWithString:targetFilenameFull];
+	[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
+
 	
 	if (! pdfImage) {
 		LOG_CURRENT_METHOD;

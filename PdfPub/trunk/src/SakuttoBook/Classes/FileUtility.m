@@ -83,6 +83,7 @@
 }
 
 #pragma mark - thumbnail.
+/*
 + (NSString*)getThumbnailFilenameFull:(int)pageNum {
 	NSString* filename = [NSString stringWithFormat:@"%@%d", THUMBNAIL_FILE_PREFIX, pageNum];
 	NSString* targetFilenameFull = [[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
@@ -90,6 +91,7 @@
 									stringByAppendingPathExtension:THUMBNAIL_FILE_EXTENSION];
 	return targetFilenameFull;
 }
+*/
 
 + (NSString*)getThumbnailFilenameFull:(int)pageNum WithContentId:(ContentId)cid {
 	NSString* filename = [NSString stringWithFormat:@"%@%d", THUMBNAIL_FILE_PREFIX, pageNum];
