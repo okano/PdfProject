@@ -184,8 +184,7 @@
 			
 			
 			//Set Ignore Backup.
-			NSURL* ignoreBackupUrl = [NSURL URLWithString:directoryToCreate];
-			[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
+			[FileUtility addSkipBackupAttributeToItemWithString:directoryToCreate];
 		}
 		
 		//Extract.

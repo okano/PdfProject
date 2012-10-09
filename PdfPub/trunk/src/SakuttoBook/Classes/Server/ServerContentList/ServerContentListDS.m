@@ -344,8 +344,7 @@
 		}
 		
 		//Set Ignore Backup.
-		NSURL* ignoreBackupUrl = [NSURL URLWithString:contentDetailDirectory];
-		[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
+		[FileUtility addSkipBackupAttributeToItemWithString:contentDetailDirectory];
 	}
 	
 	
@@ -355,8 +354,7 @@
 	[tmpDict release]; tmpDict = nil;
 	
 	//Set Ignore Backup.
-	NSURL* ignoreBackupUrl = [NSURL URLWithString:filename];
-	[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
+	[FileUtility addSkipBackupAttributeToItemWithString:filename];
 }
 
 

@@ -353,8 +353,7 @@
 	}
 	
 	//Set Ignore Backup.
-	NSURL* ignoreBackupUrl = [NSURL URLWithString:pFile];
-	[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
+	[FileUtility addSkipBackupAttributeToItemWithString:pFile];
 }
 
 - (NSString*)getPlistFilenameFull

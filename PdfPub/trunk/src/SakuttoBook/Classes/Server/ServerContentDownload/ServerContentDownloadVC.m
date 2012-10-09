@@ -85,8 +85,7 @@
 			}
 			
 			//Set Ignore Backup.
-			NSURL* ignoreBackupUrl = [NSURL URLWithString:contentDownloadDirectory];
-			[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
+			[FileUtility addSkipBackupAttributeToItemWithString:contentDownloadDirectory];
 		}
 		
 		//Prepare GUI and counter.
@@ -266,8 +265,7 @@
 	NSLog(@"toFilename=%@", toFilename);
 	[FileUtility makeDir:[toFilename stringByDeletingLastPathComponent]];
 	//Set Ignore Backup.
-	NSURL* ignoreBackupUrl = [NSURL URLWithString:[toFilename stringByDeletingLastPathComponent]];
-	[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
+	[FileUtility addSkipBackupAttributeToItemWithString:[toFilename stringByDeletingLastPathComponent]];
 
 	NSData *data = UIImageJPEGRepresentation(thumbnailImage, 1.0f);
 	if ( ! [data writeToFile:toFilename atomically:YES])
@@ -276,8 +274,7 @@
 	}
 	
 	//Set Ignore Backup.
-	NSURL* ignoreBackupUrl2 = [NSURL URLWithString:toFilename];
-	[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl2];
+	[FileUtility addSkipBackupAttributeToItemWithString:toFilename];
 
 	//Open ContentPlayer.
 	[appDelegate hideServerContentDetailView];
@@ -295,8 +292,7 @@
 	[FileUtility makeDir:dirStr];
 	
 	//Set Ignore Backup.
-	NSURL* ignoreBackupUrl = [NSURL URLWithString:dirStr];
-	[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
+	[FileUtility addSkipBackupAttributeToItemWithString:dirStr];
 	
 	//Copy file.
 	NSString* fromPathFullFormatted = [NSString stringWithCString:[[NSFileManager defaultManager] fileSystemRepresentationWithPath:filePath] encoding:NSUTF8StringEncoding];
@@ -315,8 +311,7 @@
 	}
 	
 	//Set Ignore Backup.
-	NSURL* ignoreBackupUrl2 = [NSURL URLWithString:toPathFullFormatted];
-	[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl2];
+	[FileUtility addSkipBackupAttributeToItemWithString:toPathFullFormatted];
 }
 
 - (void)handleDownloadedCbz:(NSString*)filePath contentIdStr:(NSString*)contentIdStr;
@@ -350,8 +345,7 @@
 	}
 	
 	//Set Ignore Backup.
-	NSURL* ignoreBackupUrl = [NSURL URLWithString:newFilePath];
-	[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
+	[FileUtility addSkipBackupAttributeToItemWithString:newFilePath];
 	
 	//Extract file.
 	[self handleDownloadedZip:newFilePath contentIdStr:contentIdStr];
@@ -385,8 +379,7 @@
 											 error:&error];
 	
 	//Set Ignore Backup with contentBodyDirectory.
-	NSURL* ignoreBackupUrl = [NSURL URLWithString:contentBodyDirectory];
-	[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
+	[FileUtility addSkipBackupAttributeToItemWithString:contentBodyDirectory];
 	
 	//Rename pdf file with "{cid}.pdf"
 	[self renamePdfWithCid:contentIdStr];
@@ -437,8 +430,7 @@
 	}
 	
 	//Set Ignore Backup.
-	NSURL* ignoreBackupUrl = [NSURL URLWithString:toPath];
-	[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
+	[FileUtility addSkipBackupAttributeToItemWithString:toPath];
 }
 
 

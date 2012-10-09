@@ -562,8 +562,7 @@
 	}
 	
 	//Set Ignore Backup.
-	NSURL* ignoreBackupUrl = [NSURL URLWithString:targetFilenameFull];
-	[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
+	[FileUtility addSkipBackupAttributeToItemWithString:targetFilenameFull];
 }
 
 //Remove image cache.

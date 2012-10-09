@@ -363,7 +363,11 @@
     }
     return success;
 }
-
++ (BOOL)addSkipBackupAttributeToItemWithString:(NSString *)filenameFull
+{
+	NSURL* ignoreBackupUrl = [NSURL fileURLWithPath:filenameFull];
+	return [self addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
+}
 
 #pragma mark -
 + (NSString*)cleanString:(NSString*)str

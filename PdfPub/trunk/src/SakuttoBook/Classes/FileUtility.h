@@ -46,6 +46,7 @@
 //https://developer.apple.com/library/ios/#qa/qa1719/_index.html
 //How do I prevent files from being backed up to iCloud and iTunes?
 + (BOOL)addSkipBackupAttributeToItemAtURL:(NSURL *)URL;
++ (BOOL)addSkipBackupAttributeToItemWithString:(NSString*)filenameFull;
 
 
 

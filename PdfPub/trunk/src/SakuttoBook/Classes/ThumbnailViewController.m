@@ -152,8 +152,7 @@
 				}
 				
 				//Set Ignore Backup.
-				NSURL* ignoreBackupUrl = [NSURL URLWithString:filenameFull];
-				[FileUtility addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
+				[FileUtility addSkipBackupAttributeToItemWithString:filenameFull];
 				
 				//Re-open image with saved file.
 				image = [UIImage imageWithContentsOfFile:filenameFull];
