@@ -3,17 +3,58 @@
 ~/tmp/
 ~/Document/
 
-●コンテンツの実体の格納場所（PDFファイルやmovieなど。zip解凍後のフォルダ群）
-~/tmp/contentBody/{cid}/
+●コンテンツの実体の格納場所（PDFファイルやmovieなど。zip解凍後のフォルダ群）(ContentBodyDirectory)
+~/Document/contentBody/{cid}/
 （mainBundleで内蔵するコンテンツも、初回起動時にここにコピーする。）
 
 ●コンテンツ概要、
-・著者名とか？？？XML形式で
+・著者名とか。XML形式で。getContentListDirectory. 
 ・サムネイル画像
-・表紙画像・・・下記のサムネイル画像の１ページ目？？
+・表紙画像・・・下記のサムネイル画像の１ページ目。ダウンロード完了時に生成。
 ContentDetail/
+
+●コンテンツ概要（内蔵orダウンロード済みコンテンツ）
+・CID, UUID, 作品名, 著者名, サムネイル画像, 概要, 
+・ダウンロードリンク、サムネイル画像リンク、表紙画像リンク
+(ContentListDSのsaveToPlistで保存)
+
 
 
 ●画像キャッシュ(PDFのページ単位で画像化して内部に持っておく)(PageFile)
-~/tmp/.....
+~/tmp/{cid}/{PAGE_FILE_PREFIX}{ページ番号}.{PAGE_FILE_EXTENSION}
+
 ●サムネイルファイル(画像目次用に、上記の画像キャッシュの縮小版を持っておく)
+~/Documents/{cid}/{THUMBNAIL_FILE_PREFIX}{ページ番号}.{THUMBNAIL_FILE_EXTENSION}
+
+
+●作業用ディレクトリ
+・ダウンロードディレクトリ
+~/tmp/{CONTENT_DONWLOAD_DIRECTORY}/
+・解凍用ディレクトリ
+~/tmp/{CONTENT_EXTRACT_DIRECTORY}/
+
+★UserDefaultに格納するもの
+・購入履歴(PURCHASE_HISTORY_ARRAY)
+・最後に割り当てたコンテンツID(LAST_CONTENT_ID)。1からスタート。
+
+・内蔵orダウンロード済みコンテンツのPID(PRODUCT_ID_LIST_ARRAY)
+
+・最後に起動したシミュレータの種類(デバッグに使用)(LAST_LAUNCHED_DEVICE_ON_SIMULATOR)
+
+・ブックマーク情報
+　・マルチコンテンツの場合
+　　BOOKMARK_MULTI_CONTENT={{CONTENT_CID,BOOKMARK_ARRAY}, {CONTENT_CID,BOOKMARK_ARRAY}, …}
+　・シングルコンテンツの場合
+　　BOOKMARK_ARRAY
+・最後に開いたページ
+　・マルチコンテンツの場合
+　　USERDEFAULT_LATEST_READ_PAGE_MULTICONTENT={{CONTENT_CID,USERDEFAULT_LATEST_READ_PAGE}, {CONTENT_CID,USERDEFAULT_LATEST_READ_PAGE}, …}
+　・シングルコンテンツの場合
+　　USERDEFAULT_LATEST_READ_PAGE
+
+・サーバログイン用のユーザ名(USERNAME)
+・サーバログイン用のパスワード(PASSWORD)
+
+★MainBundleにて内蔵するもの
+・PRODUCT_ID_LIST_FILENAME
+
