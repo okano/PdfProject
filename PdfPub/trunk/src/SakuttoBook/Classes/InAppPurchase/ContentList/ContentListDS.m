@@ -351,6 +351,9 @@
 		NSLog(@"save failed. file=%@", pFile);
 		[error release];
 	}
+	
+	//Set Ignore Backup.
+	[FileUtility addSkipBackupAttributeToItemWithString:pFile];
 }
 
 - (NSString*)getPlistFilenameFull

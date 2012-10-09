@@ -353,6 +353,10 @@
 //How do I prevent files from being backed up to iCloud and iTunes?
 + (BOOL)addSkipBackupAttributeToItemAtURL:(NSURL *)URL
 {
+	if ((URL==nil) || (![[NSFileManager defaultManager] fileExistsAtPath: [URL path]]) ) {
+		//NSLog(@"%@ not found. do not ignore backup.",[URL description]);
+		return NO;
+	}
     assert([[NSFileManager defaultManager] fileExistsAtPath: [URL path]]);
 	
     NSError *error = nil;
@@ -363,7 +367,11 @@
     }
     return success;
 }
-
++ (BOOL)addSkipBackupAttributeToItemWithString:(NSString *)filenameFull
+{
+	NSURL* ignoreBackupUrl = [NSURL fileURLWithPath:filenameFull];
+	return [self addSkipBackupAttributeToItemAtURL:ignoreBackupUrl];
+}
 
 #pragma mark -
 + (NSString*)cleanString:(NSString*)str

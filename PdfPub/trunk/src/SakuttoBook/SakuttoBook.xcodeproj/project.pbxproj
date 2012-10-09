@@ -978,7 +978,7 @@
 				GCC_PREFIX_HEADER = SakuttoBook_Prefix.pch;
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "SakuttoBook-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = SakuttoBook;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -994,7 +994,7 @@
 				GCC_PREFIX_HEADER = SakuttoBook_Prefix.pch;
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "SakuttoBook-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				"OTHER_CFLAGS[arch=armv6]" = (
 					"-mno-thumb",
 					"-DNS_BLOCK_ASSERTIONS=1",
@@ -1021,7 +1021,7 @@
 					"${SDKROOT}/usr/include/libxml2",
 					/usr/include/libxml2,
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-I/usr/include/libxml2";
 				OTHER_LDFLAGS = (
 					"-lxml2",
@@ -1048,6 +1048,7 @@
 					"${SDKROOT}/usr/include/libxml2",
 					/usr/include/libxml2,
 				);
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = (
 					"-DNS_BLOCK_ASSERTIONS=1",
 					"-I/usr/include/libxml2",

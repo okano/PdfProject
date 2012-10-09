@@ -182,6 +182,9 @@
 			//	NSLog(@"create directory success. target=%@", extractToFilename);
 			//}
 			
+			
+			//Set Ignore Backup.
+			[FileUtility addSkipBackupAttributeToItemWithString:directoryToCreate];
 		}
 		
 		//Extract.

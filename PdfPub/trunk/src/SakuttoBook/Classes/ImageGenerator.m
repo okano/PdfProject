@@ -169,7 +169,9 @@
 	} else {
 		//NSLog(@"wrote page file to %@", targetFilenameFull);
 	}
-	
+	//Set Ignore Backup.
+	[FileUtility addSkipBackupAttributeToItemWithString:targetFilenameFull];
+
 	
 	if (! pdfImage) {
 		LOG_CURRENT_METHOD;

@@ -342,6 +342,9 @@
 			[tmpDict release]; tmpDict = nil;
 			return;
 		}
+		
+		//Set Ignore Backup.
+		[FileUtility addSkipBackupAttributeToItemWithString:contentDetailDirectory];
 	}
 	
 	
@@ -349,6 +352,9 @@
 	NSString* filename = [self getContentListFilename];
 	[tmpDict writeToFile:filename atomically:YES];
 	[tmpDict release]; tmpDict = nil;
+	
+	//Set Ignore Backup.
+	[FileUtility addSkipBackupAttributeToItemWithString:filename];
 }
 
 

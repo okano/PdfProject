@@ -83,6 +83,9 @@
 				NSLog(@"content download directory cannot create. path=%@, err=%@", contentDownloadDirectory, [err localizedDescription]);
 				return;
 			}
+			
+			//Set Ignore Backup.
+			[FileUtility addSkipBackupAttributeToItemWithString:contentDownloadDirectory];
 		}
 		
 		//Prepare GUI and counter.
@@ -261,13 +264,17 @@
 	NSString* toFilename = [CoverUtility getCoverLocalFilenameFull:[newContentIdStr intValue]];
 	NSLog(@"toFilename=%@", toFilename);
 	[FileUtility makeDir:[toFilename stringByDeletingLastPathComponent]];
-	
+	//Set Ignore Backup.
+	[FileUtility addSkipBackupAttributeToItemWithString:[toFilename stringByDeletingLastPathComponent]];
+
 	NSData *data = UIImageJPEGRepresentation(thumbnailImage, 1.0f);
 	if ( ! [data writeToFile:toFilename atomically:YES])
 	{
 		NSLog(@"thumbnail file copy error");
 	}
-
+	
+	//Set Ignore Backup.
+	[FileUtility addSkipBackupAttributeToItemWithString:toFilename];
 
 	//Open ContentPlayer.
 	[appDelegate hideServerContentDetailView];
@@ -282,7 +289,10 @@
 
 	//Make directory for extract.
 	NSString* dirStr = [ContentFileUtility getContentBodyPdfDirectoryWithContentId:contentIdStr];
-	[FileUtility makeDir:dirStr];	
+	[FileUtility makeDir:dirStr];
+	
+	//Set Ignore Backup.
+	[FileUtility addSkipBackupAttributeToItemWithString:dirStr];
 	
 	//Copy file.
 	NSString* fromPathFullFormatted = [NSString stringWithCString:[[NSFileManager defaultManager] fileSystemRepresentationWithPath:filePath] encoding:NSUTF8StringEncoding];
@@ -299,6 +309,9 @@
 		NSLog(@"fromPathFullFormatted=%@", fromPathFullFormatted);
 		NSLog(@"toPathFullFormatted=%@", toPathFullFormatted);
 	}
+	
+	//Set Ignore Backup.
+	[FileUtility addSkipBackupAttributeToItemWithString:toPathFullFormatted];
 }
 
 - (void)handleDownloadedCbz:(NSString*)filePath contentIdStr:(NSString*)contentIdStr;
@@ -331,6 +344,9 @@
 		}
 	}
 	
+	//Set Ignore Backup.
+	[FileUtility addSkipBackupAttributeToItemWithString:newFilePath];
+	
 	//Extract file.
 	[self handleDownloadedZip:newFilePath contentIdStr:contentIdStr];
 }
@@ -354,12 +370,16 @@
 	}
 	
 	//Move downloaded file to ContentBodyDirectory.
-	[FileUtility makeDir:[ContentFileUtility getContentBodyDirectory]];
+	NSString* contentBodyDirectory = [ContentFileUtility getContentBodyDirectory];
+	[FileUtility makeDir:contentBodyDirectory];
 	NSString* contentDirectoryWithContentId = [[ContentFileUtility getContentBodyDirectory]
 											   stringByAppendingPathComponent:contentIdStr];
 	[[NSFileManager defaultManager] moveItemAtPath:[ContentFileUtility getContentExtractDirectory]
 											toPath:contentDirectoryWithContentId 
 											 error:&error];
+	
+	//Set Ignore Backup with contentBodyDirectory.
+	[FileUtility addSkipBackupAttributeToItemWithString:contentBodyDirectory];
 	
 	//Rename pdf file with "{cid}.pdf"
 	[self renamePdfWithCid:contentIdStr];
@@ -408,6 +428,9 @@
 	if (error != nil) {
 		NSLog(@"cannot rename pdf file. from=%@, to=%@", fromPath, toPath);
 	}
+	
+	//Set Ignore Backup.
+	[FileUtility addSkipBackupAttributeToItemWithString:toPath];
 }
 
 

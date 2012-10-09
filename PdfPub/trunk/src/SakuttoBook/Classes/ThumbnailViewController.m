@@ -151,6 +151,9 @@
 					//NSLog(@"wrote thumbnail file to %@", filenameFull);
 				}
 				
+				//Set Ignore Backup.
+				[FileUtility addSkipBackupAttributeToItemWithString:filenameFull];
+				
 				//Re-open image with saved file.
 				image = [UIImage imageWithContentsOfFile:filenameFull];
 			}
