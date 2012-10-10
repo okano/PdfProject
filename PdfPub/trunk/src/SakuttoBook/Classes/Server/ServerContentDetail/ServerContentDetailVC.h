@@ -56,7 +56,7 @@
 //Close this view.
 - (IBAction)showServerContentList:(id)sender;
 //Buy and Download.
-- (IBAction)buyContent:(id)sender;
+- (IBAction)pushedBuyButton:(id)sender;
 - (IBAction)downloadContent:(id)sender;
 
 //For debug.

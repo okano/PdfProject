@@ -344,7 +344,7 @@
 	[appDelegate showServerContentListView];
 }
 
-- (IBAction)buyContent:(id)sender
+- (IBAction)pushedBuyButton:(id)sender
 {
 	LOG_CURRENT_METHOD;
 	//NSLog(@"targetProductId class=%@", [targetProductId class]);

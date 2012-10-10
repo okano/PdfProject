@@ -34,7 +34,7 @@
 
 - (void)setLabelsWithContentId:(ContentId)cid;
 - (IBAction)showContentList:(id)sender;
-- (IBAction)buyContent:(id)sender;
+- (IBAction)pushedBuyButton:(id)sender;
 
 //called from SKProductsRequestDelegate related methods.
 - (void)productsRequest:(SKProductsRequest *)request
