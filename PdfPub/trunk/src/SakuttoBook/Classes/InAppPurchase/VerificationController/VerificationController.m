@@ -167,7 +167,7 @@ static VerificationController *singleton;
     // Check the authenticity of the receipt response/signature etc.
 
     BOOL result = checkReceiptSecurity(transactionPurchaseInfo, signature,
-                                       (__bridge CFDateRef)(purchaseDate));
+                                       ( CFDateRef)(purchaseDate));
     
     if (!result)
     {
@@ -472,8 +472,8 @@ static VerificationController *singleton;
     SecTrustResultType trust_result;
     if ((noErr == SecTrustEvaluate(trust, &trust_result)) && (trust_result == kSecTrustResultUnspecified))
     {
-        NSDictionary *trust_info = (__bridge_transfer NSDictionary *)SecTrustCopyInfo(trust);
-        id hasEV = [trust_info objectForKey:(__bridge NSString *)kSecTrustInfoExtendedValidationKey];
+        NSDictionary *trust_info = ( NSDictionary *)SecTrustCopyInfo(trust);
+        id hasEV = [trust_info objectForKey:( NSString *)kSecTrustInfoExtendedValidationKey];
         trusted =  [hasEV isKindOfClass:[NSValue class]] && [hasEV boolValue];
     }
     
@@ -656,16 +656,16 @@ BOOL checkReceiptSecurity(NSString *purchase_info_string, NSString *signature_st
      */
     
     certificate_data = [NSData dataWithBytes:signature_blob_ptr->certificate length:certificate_len];
-    require(leaf = SecCertificateCreateWithData(NULL, (__bridge CFDataRef) certificate_data), outLabel);
+    require(leaf = SecCertificateCreateWithData(NULL, ( CFDataRef) certificate_data), outLabel);
     
     certificate_data = [NSData dataWithBytes:iTS_intermediate_der length:iTS_intermediate_der_len];
-    require(intermediate = SecCertificateCreateWithData(NULL, (__bridge CFDataRef) certificate_data), outLabel);
+    require(intermediate = SecCertificateCreateWithData(NULL, ( CFDataRef) certificate_data), outLabel);
     
-    anchors = [NSArray arrayWithObject:(__bridge id)intermediate];
+    anchors = [NSArray arrayWithObject:( id)intermediate];
     require(anchors, outLabel);
     
     require_noerr(SecTrustCreateWithCertificates(leaf, policy, &trust), outLabel);
-    require_noerr(SecTrustSetAnchorCertificates(trust, (__bridge CFArrayRef) anchors), outLabel);
+    require_noerr(SecTrustSetAnchorCertificates(trust, ( CFArrayRef) anchors), outLabel);
     
     if (purchaseDate)
     {
