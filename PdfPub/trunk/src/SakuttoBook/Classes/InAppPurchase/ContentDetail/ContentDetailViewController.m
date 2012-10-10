@@ -73,7 +73,7 @@
 		NSLog(@"Invalid Product Id. cid=%d, pid=%@", cid, pid);
 	}
 	appDelegate.paymentConductor.parentVC = self;
-	[appDelegate.paymentConductor getProductInfomation:pid];
+	[appDelegate.paymentConductor getProductInfomation:pid withContinueBuy:NO];
 	priceLabel.text = @"(Now Loading...)";
 	
 	//BuyButton
@@ -227,11 +227,7 @@
 	//NSLog(@"targetProductId=%@", targetProductId);
 	
 	buyButton.enabled = NO;		//Disable buy at twice.
-	//[appDelegate.paymentHistoryDS buyContent:targetProductId];
 	[appDelegate.paymentConductor buyContent:targetProductId];
-
-	
-	
 	return;
 }
 

@@ -12,11 +12,21 @@
 @implementation PaymentConductor
 @synthesize parentVC;
 @synthesize paymentHistoryDS;
+@synthesize productInfomationCache;
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        productInfomationCache = [[NSMutableDictionary alloc] init];
+    }
+    return self;
+}
 
 #pragma mark - Get product infomation from Store, notify with Delegate.
 
 //- (void)getProductInfomation:(ContentId)cid
-- (void)getProductInfomation:(NSString*)productId
+- (void)getProductInfomation:(NSString*)productId withContinueBuy:(BOOL)buyFlag
 {
 	//Check if disabled payment.(like on simulator)
 	if (! [SKPaymentQueue canMakePayments]) {
@@ -33,6 +43,13 @@
 		NSLog(@"simulator not support SKProductsRequest.");
 		[parentVC productRequestDidFailed:nil];
 #endif
+	}
+	
+	//set flag for payment when get productInfomation.
+	if (buyFlag == YES) {
+		withContinuePayment = YES;
+	} else {
+		withContinuePayment = NO;
 	}
 	
 	//Make Payments.
@@ -92,6 +109,16 @@
 				  resultProduct.price,
 				  resultProduct.priceLocale
 				  );
+			[productInfomationCache setObject:resultProduct forKey:resultProduct.productIdentifier];
+			
+			//buy content if set flag.
+			if (withContinuePayment == YES) {
+				if ([resultProduct.productIdentifier compare:productIdToBuy] == NSOrderedSame) {
+					//Found it. process payment.
+					SKPayment* payment = [SKPayment paymentWithProduct:resultProduct];
+					[[SKPaymentQueue defaultQueue] addPayment:payment];
+				}
+			}
 		}
 		
 		[parentVC productRequestDidSuccess:[responseParameters.products objectAtIndex:0]];
@@ -126,8 +153,22 @@
 	//NSLog(@"fullProductId=%@", fullProductId);
 	//SKPayment* payment = [SKPayment paymentWithProductIdentifier:fullProductId];
 	
-	SKPayment* payment = [SKPayment paymentWithProductIdentifier:productId];
-	[[SKPaymentQueue defaultQueue] addPayment:payment];
+	
+	//Search product infomation from productInformationCache.
+	for (SKProduct* candidateProduct in productInfomationCache) {
+		if ([candidateProduct.productIdentifier compare:productId] == NSOrderedSame) {
+			//Found it. process payment.
+			SKPayment* payment = [SKPayment paymentWithProduct:candidateProduct];
+			[[SKPaymentQueue defaultQueue] addPayment:payment];
+			
+			return;
+		}
+	}
+	
+	//No product infomation found in cache.
+	//then request it from AppStore and buy it.
+	productIdToBuy = productId;
+	[self getProductInfomation:productId withContinueBuy:YES];
 }
 
 

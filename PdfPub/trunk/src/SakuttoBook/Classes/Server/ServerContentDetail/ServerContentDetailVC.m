@@ -166,7 +166,7 @@
 		[reDownloadButton setTitle:@"無料ダウンロード" forState:UIControlStateNormal];
 	} else {
 		appDelegate.paymentConductor.parentVC = self;
-		[appDelegate.paymentConductor getProductInfomation:targetProductId];
+		[appDelegate.paymentConductor getProductInfomation:targetProductId withContinueBuy:NO];
 	}
 
 

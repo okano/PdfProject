@@ -20,14 +20,17 @@
 <SKProductsRequestDelegate,SKPaymentTransactionObserver> {
 	UIViewController <VCWithInAppPurchaseProtocol> * parentVC;
 	PaymentHistoryDS* paymentHistoryDS;
+	NSMutableDictionary* productInfomationCache;
+	BOOL withContinuePayment;
+	NSString* productIdToBuy;
 }
 @property (nonatomic, retain) UIViewController* parentVC;
 @property (nonatomic, retain) PaymentHistoryDS* paymentHistoryDS;
-
+@property (nonatomic, retain) NSMutableDictionary* productInfomationCache;
 
 //Get product infomation from Store.
 //- (void)getProductInfomation:(ContentId)cid;
-- (void)getProductInfomation:(NSString*)productId;
+- (void)getProductInfomation:(NSString*)productId withContinueBuy:(BOOL)buyFlag;
 
 - (void)buyContent:(NSString*)productId;
 
