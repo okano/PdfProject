@@ -155,8 +155,11 @@
 	
 	
 	//Search product infomation from productInformationCache.
-	for (SKProduct* candidateProduct in productInfomationCache) {
-		if ([candidateProduct.productIdentifier compare:productId] == NSOrderedSame) {
+	NSEnumerator *enumerator = [productInfomationCache objectEnumerator];
+	for (SKProduct* candidateProduct in enumerator) {
+		NSString* candidateProductIdentifier = candidateProduct.productIdentifier;
+		NSLog(@"candidateProductIdentifier=%@", candidateProductIdentifier);
+		if ([candidateProductIdentifier compare:productId] == NSOrderedSame) {
 			//Found it. process payment.
 			SKPayment* payment = [SKPayment paymentWithProduct:candidateProduct];
 			[[SKPaymentQueue defaultQueue] addPayment:payment];
