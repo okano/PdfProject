@@ -298,6 +298,9 @@ static VerificationController *singleton;
     NSString *verifiedReceiptUniqueIdentifier       = [verifiedReceiptReceiptDictionary objectForKey:@"unique_identifier"];
     NSString *transactionIdFromVerifiedReceipt      = [verifiedReceiptReceiptDictionary objectForKey:@"transaction_id"];
     
+	NSLog(@"%@/%@", NSStringFromClass([self class]), NSStringFromSelector(_cmd));
+	NSLog(@"verifiedReceiptReceiptDictionary=%@", [verifiedReceiptReceiptDictionary description]);
+	
     // Get the transaction's receipt data from the transactionsReceiptStorageDictionary
     NSDictionary *purchaseInfoFromTransaction = [transactionsReceiptStorageDictionary objectForKey:transactionIdFromVerifiedReceipt];
     
