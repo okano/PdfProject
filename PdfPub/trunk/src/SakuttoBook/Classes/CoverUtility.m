@@ -68,7 +68,7 @@
 		NSString* targetFilenameFull = [self getCoverCacheFilenameFull:uuid];
 		[FileUtility makeDir:[targetFilenameFull stringByDeletingLastPathComponent]];
 		//Save to file.
-		NSLog(@"targetFilenameFull=%@", targetFilenameFull);
+		//NSLog(@"targetFilenameFull=%@", targetFilenameFull);
 		[data writeToFile:targetFilenameFull atomically:YES];
 		//Set Ignore Backup.
 		[FileUtility addSkipBackupAttributeToItemWithString:targetFilenameFull];

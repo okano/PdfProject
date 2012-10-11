@@ -131,7 +131,7 @@ static ProductIdList *_instance = nil;
 	NSData* pidListData = [pidListParser getXmlFromUrl:url
 											  username:username
 											  password:password];
-	NSLog(@"pidListData=%@", [pidListData description]);
+	//NSLog(@"pidListData=%@", [pidListData description]);
 	if (pidListData == nil || [pidListData length] <= 0) {
 		LOG_CURRENT_METHOD;
 		NSLog(@"cannot refreshProductIdListFromNetwork. url=%@", [url description]);
@@ -171,7 +171,7 @@ static ProductIdList *_instance = nil;
 	
 	LOG_CURRENT_METHOD;
 	NSLog(@"url=%@", urlStr);
-	NSLog(@"tmpArray=%@", [tmpArray description]);
+	//NSLog(@"tmpArray=%@", [tmpArray description]);
 	NSLog(@"productIdList=%@", [productIdList description]);
 }
 

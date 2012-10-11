@@ -221,7 +221,7 @@
 	//Check payment status.
 	cell.isDownloadedLabel.hidden = NO;
 	ContentId targetCid = [appDelegate.contentListDS contentIdFromUuid:uuid];
-	NSLog(@"targetCid=%d", targetCid);
+	//NSLog(@"targetCid=%d", targetCid);
 	if ((targetCid != UndefinedContentId)
 		&&
 		(targetCid != InvalidContentId)
