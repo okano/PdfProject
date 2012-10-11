@@ -7,17 +7,15 @@
  *
  */
 
-//Debug server.
-//#define URL_BASE_OPDS_DEFAULT1			@"http://www2058uf.sakura.ne.jp:8080"
-#define URL_BASE_OPDS_DEFAULT1		@"http://www5066ua.sakura.ne.jp"
-//JPPBook server.
-//#define URL_BASE_OPDS_DEFAULT1			@"http://ns.jpp.co.jp:8080"
-//Local server.
-#define URL_BASE_OPDS_DEFAULT2			@"http://localhost:8080"
+//Server.
+//#define URL_BASE_OPDS_DEFAULT1		@"http://www2058uf.sakura.ne.jp:8080"
+#define URL_BASE_OPDS_DEFAULT1		@"http://www5066ua.sakura.ne.jp"		/* Demo Server. */
 
 //#define CREDENTIAL_REALM				@"Authorization Required"
 #define CREDENTIAL_REALM				@"Application"
 
+
+//
 #define URL_SUFFIX_OPDS		@"/opds"
 //
 #define SUMMARY_DIR		@"contentList"

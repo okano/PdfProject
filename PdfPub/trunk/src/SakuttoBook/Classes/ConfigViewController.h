@@ -20,7 +20,6 @@
 - (IBAction)closeThisView:(id)sender;
 //
 - (IBAction)setDefaultUrl1:(id)sender;
-- (IBAction)setDefaultUrl2:(id)sender;
 //
 - (void)saveUrlToUserDefault:(NSString*)urlStr;
 + (NSString*)getUrlBaseWithOpds;

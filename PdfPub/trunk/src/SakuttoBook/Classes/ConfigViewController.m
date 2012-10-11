@@ -52,10 +52,6 @@
 {
 	textField.text = URL_BASE_OPDS_DEFAULT1;
 }
-- (IBAction)setDefaultUrl2:(id)sender
-{
-	textField.text = URL_BASE_OPDS_DEFAULT2;
-}
 
 #pragma mark -
 - (void)saveUrlToUserDefault:(NSString*)urlStr
