@@ -143,7 +143,7 @@
 	
 	//Get Price.
 //	if (targetProductId == nil) {
-		targetProductId = [[ProductIdList sharedManager] getProductIdentifier:targetCid];
+		targetProductId = [NSString stringWithString:[[ProductIdList sharedManager] getProductIdentifier:targetCid]];
 		if ((targetProductId == nil) || ([targetProductId length] <= 0)) {
 			LOG_CURRENT_METHOD;
 			NSLog(@"cid=%d, but targetProductId is nil or 0-length.", targetCid);
@@ -368,6 +368,9 @@
 	NSLog(@"targetUrl=%@", [targetUrl description]);
 	NSLog(@"targetUuid=%@", targetUuid);
 	
+	targetProductId = [NSString stringWithString:[[ProductIdList sharedManager] getProductIdentifier:targetCid]];
+	NSLog(@"targetProductId=%@", targetProductId);
+	
 	[self disableReDownloadButton];
 	
 	ServerContentDownloadVC* downloaderVC = [[ServerContentDownloadVC alloc] initWithNibName:@"ServerContentDownload"
@@ -379,6 +382,11 @@
 	LOG_CURRENT_LINE;
 	[self presentModalViewController:downloaderVC animated:YES];
 	[downloaderVC doDownload];
+	
+	if ([[ProductIdList sharedManager] isFreeContentWithCid:targetCid] == TRUE) {
+		//Write payment record for free content only first time read.
+		[appDelegate.paymentHistoryDS recordHistoryOnceWithContentId:targetCid ProductId:targetProductId];
+	}
 }
 
 #pragma mark - For Debug.
