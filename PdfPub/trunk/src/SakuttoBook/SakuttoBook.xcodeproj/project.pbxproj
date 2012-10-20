@@ -80,6 +80,7 @@
 		29BD260713A4A3AC0029E2B4 /* FileUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BD260613A4A3AC0029E2B4 /* FileUtility.m */; };
 		29CB433E1532D44E00A96D36 /* CoverUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 29CB433D1532D44E00A96D36 /* CoverUtility.m */; };
 		29CB43451532DAF800A96D36 /* ContentListDS.m in Sources */ = {isa = PBXBuildFile; fileRef = 29CB43441532DAF800A96D36 /* ContentListDS.m */; };
+		29D028C816328111004F7791 /* ContentPlayerViewController+mailSend.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D028C716328111004F7791 /* ContentPlayerViewController+mailSend.m */; };
 		29DB52D814EB51B0006920EF /* ContentFileUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 29DB52D714EB51B0006920EF /* ContentFileUtility.m */; };
 		29E1089A12D46D4700FC5210 /* BookmarkModifyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29E1089912D46D4700FC5210 /* BookmarkModifyView.xib */; };
 		29E108A912D46ECF00FC5210 /* BookmarkModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E108A812D46ECF00FC5210 /* BookmarkModifyViewController.m */; };
@@ -242,6 +243,7 @@
 		29CB433D1532D44E00A96D36 /* CoverUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverUtility.m; sourceTree = "<group>"; };
 		29CB43431532DAF800A96D36 /* ContentListDS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentListDS.h; path = InAppPurchase/ContentList/ContentListDS.h; sourceTree = "<group>"; };
 		29CB43441532DAF800A96D36 /* ContentListDS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentListDS.m; path = InAppPurchase/ContentList/ContentListDS.m; sourceTree = "<group>"; };
+		29D028C716328111004F7791 /* ContentPlayerViewController+mailSend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ContentPlayerViewController+mailSend.m"; sourceTree = "<group>"; };
 		29DB52D614EB51B0006920EF /* ContentFileUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentFileUtility.h; sourceTree = "<group>"; };
 		29DB52D714EB51B0006920EF /* ContentFileUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentFileUtility.m; sourceTree = "<group>"; };
 		29E1089912D46D4700FC5210 /* BookmarkModifyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookmarkModifyView.xib; sourceTree = "<group>"; };
@@ -367,6 +369,7 @@
 				291593121394B54700387697 /* ContentPlayerViewController.h */,
 				291593131394B54700387697 /* ContentPlayerViewController.m */,
 				29452C9F14E39B4300DD15ED /* ContentPlayerViewController+sound.m */,
+				29D028C716328111004F7791 /* ContentPlayerViewController+mailSend.m */,
 				291EDE0213124E2C00DBD3E5 /* ImageGenerator.h */,
 				291EDE0313124E2C00DBD3E5 /* ImageGenerator.m */,
 				29B3B7C612C57DE00014F866 /* MyPdfScrollView.h */,
@@ -960,6 +963,7 @@
 				29CB433E1532D44E00A96D36 /* CoverUtility.m in Sources */,
 				29CB43451532DAF800A96D36 /* ContentListDS.m in Sources */,
 				2927D8AC15DB576C00AD6F35 /* VerificationController.m in Sources */,
+				29D028C816328111004F7791 /* ContentPlayerViewController+mailSend.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

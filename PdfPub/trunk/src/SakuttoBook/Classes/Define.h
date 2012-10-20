@@ -88,6 +88,13 @@
 #define MD_AREA_WIDTH		@"Movie_Area_Width"
 #define MD_AREA_HEIGHT		@"Movie_Area_Height"
 
+// for Mail Send.
+#define MS_TO_ADDESSES		@"Mail_To_Addresses"
+#define MS_CC_ADDESSES		@"Mail_Cc_Addresses"
+#define MS_BCC_ADDESSES		@"Mail_Bcc_Addresses"
+#define MS_SUBJECT			@"Mail_Subject"
+#define MS_BODY				@"Mail_Body"
+
 // for Sound Define.
 #define SD_PAGE_NUMBER		@"Sound_PageNumber"
 #define SD_SOUND_FILENAME	@"Sound_Filename"

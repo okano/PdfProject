@@ -244,6 +244,27 @@
 		
 		
 		/**
+		 * Mail define.
+		 */
+		//Create Folder.
+		toDir = [[ContentFileUtility getContentBodyDirectoryWithContentId:cidStr]
+				 stringByAppendingPathComponent:@"mail"];
+		[FileUtility makeDir:toDir];
+		//Copy CSV file for mail define.
+		resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_MAIL contentId:cid withDeviceSuffix:YES]
+						stringByAppendingPathExtension:@"csv"];
+		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_MAIL contentId:cid withDeviceSuffix:YES];
+		if ([FileUtility existsFile:[[NSBundle mainBundle] pathForResource:resourceName ofType:@""]] == NO) {
+			resourceName = [[FileUtility getCsvFilenameInMainBundle:CSVFILE_MAIL contentId:cid withDeviceSuffix:NO]
+							stringByAppendingPathExtension:@"csv"];
+			toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_MAIL contentId:cid withDeviceSuffix:NO];
+		}
+		[FileUtility res2file:resourceName fileNameFull:toFilenameFull];
+		//Set Ignore Backup.
+		[FileUtility addSkipBackupAttributeToItemWithString:toFilenameFull];
+		
+		
+		/**
 		 * URL Link define.
 		 */
 		//Copy CSV file for URL Link define.

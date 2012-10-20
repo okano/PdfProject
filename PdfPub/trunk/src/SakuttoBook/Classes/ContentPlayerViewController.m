@@ -188,6 +188,10 @@
 	[self parseMovieDefine];
 	[self renderMovieLinkAtIndex:currentPageNum];
 	
+	// Setup for Mail send.
+	[self parseMailDefine];
+	[self renderMailLinkAtIndex:currentPageNum];
+	
 	// Setup for Sound play.
 	[self parseSoundOnPageDefine];
 	audioPlayer = nil;	//init when use.
@@ -752,6 +756,7 @@
 	//[self getPdfDictionaryWithPageNum:currentPageNum];
 	[self renderPageLinkAtIndex:currentPageNum];
 	[self renderMovieLinkAtIndex:currentPageNum];
+	[self renderMailLinkAtIndex:currentPageNum];
 	[self renderPageJumpLinkAtIndex:currentPageNum];
 	[self renderInPageScrollViewAtIndex:currentPageNum];
 	[self renderPopoverScrollImageLinkAtIndex:currentPageNum];
@@ -897,6 +902,7 @@
 	//
 	[self renderPageLinkAtIndex:currentPageNum];
 	[self renderMovieLinkAtIndex:currentPageNum];
+	[self renderMailLinkAtIndex:currentPageNum];
 	[self renderPageJumpLinkAtIndex:currentPageNum];
 	[self renderInPageScrollViewAtIndex:currentPageNum];
 	[self renderPopoverScrollImageLinkAtIndex:currentPageNum];
@@ -950,9 +956,10 @@
 	//Hide TOCView.
 	[self.tocViewController.view removeFromSuperview];
 	
-	//Draw link to URL, Movie.
+	//Draw link to URL, Movie, etc.
 	[self renderPageLinkAtIndex:currentPageNum];
 	[self renderMovieLinkAtIndex:currentPageNum];
+	[self renderMailLinkAtIndex:currentPageNum];
 	[self renderPageJumpLinkAtIndex:currentPageNum];
 	[self renderInPageScrollViewAtIndex:currentPageNum];
 	[self renderPopoverScrollImageLinkAtIndex:currentPageNum];
@@ -1088,6 +1095,40 @@
 				
 				//open with another view.
 				[self showMoviePlayer:filename];
+				
+				//no-continue.
+				return;
+			}
+		}
+	}
+	
+	// Compare with Mail Link in page.
+	for (NSMutableDictionary* mailInfo in mailDefine) {
+		int targetPageNum = [[mailInfo valueForKey:MD_PAGE_NUMBER] intValue];
+		if (targetPageNum == currentPageNum) {
+			CGRect rect;
+			rect.origin.x	= [[mailInfo valueForKey:MD_AREA_X] floatValue];
+			rect.origin.y	= [[mailInfo valueForKey:MD_AREA_Y] floatValue];
+			rect.size.width	= [[mailInfo valueForKey:MD_AREA_WIDTH] floatValue];
+			rect.size.height= [[mailInfo valueForKey:MD_AREA_HEIGHT] floatValue];
+			//NSLog(@"frame with movie info=%@", NSStringFromCGRect(rect));
+			//NSLog(@"touchedPoint=%@", NSStringFromCGPoint(touchedPoint));
+			//NSLog(@"touchedPointInOriginalPdf=%@", NSStringFromCGPoint(touchedPointInOriginalPdf));
+			
+			if (CGRectContainsPoint(rect, touchedPointInOriginalPdf)) {
+				//NSLog(@"mail link touched.");
+				
+				//open with another view.
+				NSString* subject = [[mailInfo valueForKey:MS_SUBJECT] string];
+				NSString* messageBody = [[mailInfo valueForKey:MS_BODY] string];
+				NSArray* toRecipient  = [[mailInfo valueForKey:MS_TO_ADDESSES]  array];
+				NSArray* ccRecipient  = [[mailInfo valueForKey:MS_CC_ADDESSES]  array];
+				NSArray* bccRecipient = [[mailInfo valueForKey:MS_BCC_ADDESSES] array];
+				[self showMailComposerWithSubject:subject
+									  toRecipient:toRecipient
+									  ccRecipient:ccRecipient
+									 bccRecipient:bccRecipient
+									  messageBody:messageBody];
 				
 				//no-continue.
 				return;
@@ -1865,7 +1906,7 @@
 
 #pragma mark -
 #pragma mark Treat popover scroll image view.
-//Parse Movie Define.
+//Parse Popover Scroll Image Define.
 - (void)parsePopoverScrollImageDefine
 {
 	popoverScrollImageDefine = [[NSMutableArray alloc] init];
@@ -1906,7 +1947,7 @@
 			continue;	//skip to next object. not add to define.
 		}
 		
-		//Add to movie define.
+		//Add to popover Scroll Image define.
 		[popoverScrollImageDefine addObject:tmpDict];
 	}
 }
@@ -1923,7 +1964,7 @@
 			linkRectInOriginalPdf.size.height= [[popoverScrollImageInfo valueForKey:MD_AREA_HEIGHT] floatValue];
 			//NSLog(@"linkRectInOriginalPdf for popoverScrollImageInfo=%@", NSStringFromCGRect(linkRectInOriginalPdf));
 			
-			//NSString* filename = [movieInfo valueForKey:MD_MOVIE_FILENAME];
+			//NSString* filename = [popoverScrollImageInfo valueForKey:MD_MOVIE_FILENAME];
 			
 			//Show PopoverScrollImage link area with half-opaque.
 			UIView* areaView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -1935,7 +1976,7 @@
 			[areaView setAlpha:0.0f];
 #endif
 			//LOG_CURRENT_METHOD;
-			//NSLog(@"render movie link. rect=%f, %f, %f, %f", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
+			//NSLog(@"render popoverScrollImage link. rect=%f, %f, %f, %f", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
 			//[currentPdfScrollView addSubview:areaView];
 			[currentPdfScrollView addScalableSubview:areaView withPdfBasedFrame:linkRectInOriginalPdf];
 		}
@@ -2389,6 +2430,7 @@
 	[currentPdfScrollView resetScrollView];
 	[self renderPageLinkAtIndex:currentPageNum];
 	[self renderMovieLinkAtIndex:currentPageNum];
+	[self renderMailLinkAtIndex:currentPageNum];
 	[self renderPageJumpLinkAtIndex:currentPageNum];
 	[self renderInPageScrollViewAtIndex:currentPageNum];
 }

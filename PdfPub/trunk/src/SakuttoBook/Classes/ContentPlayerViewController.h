@@ -88,6 +88,7 @@
 	//
 	NSMutableArray* linksInCurrentPage;
 	NSMutableArray* movieDefine;
+	NSMutableArray* mailDefine;
 	NSMutableArray* soundDefine;
 	NSMutableArray* pageJumpLinkDefine;
 	NSMutableArray* inPageScrollViewDefine;
@@ -197,6 +198,7 @@
 - (void)parseMovieDefine;	// Parse Movie define in CSV.
 - (void)renderMovieLinkAtIndex:(NSUInteger)index;
 - (void)showMoviePlayer:(NSString*)filename;
+// Treat Mail send. -> implement with Category.
 // Treat PageJumpLink.
 - (void)parsePageJumpLinkDefine;	// Parse PageJumpLink define in CSV.
 - (void)renderPageJumpLinkAtIndex:(NSUInteger)index;
@@ -244,9 +246,6 @@
 @end
 
 
-
-
-
 // Treat Sound.
 @interface ContentPlayerViewController (soundonpage)
 - (void)parseSoundOnPageDefine;
@@ -255,6 +254,19 @@
 - (void)playSoundWithUrl:(NSURL*)soundURL withDelay:(NSNumber*)delayTime;
 - (void)timerHandlerForPlaySound:(NSTimer*)timer;
 @end
+
+
+// Treat Mail send.
+@interface ContentPlayerViewController (mailSend)
+- (void)parseMailDefine;	// Parse Mail define in CSV.
+- (void)renderMailLinkAtIndex:(NSUInteger)index;
+- (void)showMailComposerWithSubject:(NSString*)subject
+						toRecipient:(NSArray*)toRecipient
+						ccRecipient:(NSArray*)ccRecipient
+					   bccRecipient:(NSArray*)vccRecipient
+						messageBody:(NSString*)messageBody;
+@end
+
 
 //#define EPUB_RESOURCES_DIRECTORY	@"content/resources"
 //#define CONTENT_DETAIL_DIRECTORY	@"contentDetail"

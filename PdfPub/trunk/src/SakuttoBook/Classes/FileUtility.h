@@ -60,6 +60,7 @@
 #define CSVFILE_URLLINK			@"urlLinkDefine"
 //
 #define CSVFILE_MOVIE			@"movieDefine"
+#define CSVFILE_MAIL			@"mailDefine"
 #define CSVFILE_SOUND			@"soundDefine"
 #define CSVFILE_PAGEJUMPLINK 	@"pageJumpLinkDefine"
 #define CSVFILE_INPAGE_SCROLLVIEW	@"inPageScrollViewDefine"
