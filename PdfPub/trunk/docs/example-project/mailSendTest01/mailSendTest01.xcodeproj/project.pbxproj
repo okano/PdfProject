@@ -19,6 +19,7 @@
 		295C98CE1632796600AD0ECA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 295C98CD1632796600AD0ECA /* ViewController.m */; };
 		295C98D11632796600AD0ECA /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 295C98CF1632796600AD0ECA /* ViewController_iPhone.xib */; };
 		295C98D41632796600AD0ECA /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 295C98D21632796600AD0ECA /* ViewController_iPad.xib */; };
+		29D028BD16327A21004F7791 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29D028BC16327A21004F7791 /* MessageUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		295C98CD1632796600AD0ECA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		295C98D01632796600AD0ECA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
 		295C98D31632796600AD0ECA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		29D028BC16327A21004F7791 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +51,7 @@
 				295C98B51632796600AD0ECA /* UIKit.framework in Frameworks */,
 				295C98B71632796600AD0ECA /* Foundation.framework in Frameworks */,
 				295C98B91632796600AD0ECA /* CoreGraphics.framework in Frameworks */,
+				29D028BD16327A21004F7791 /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +78,7 @@
 		295C98B31632796600AD0ECA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				29D028BC16327A21004F7791 /* MessageUI.framework */,
 				295C98B41632796600AD0ECA /* UIKit.framework */,
 				295C98B61632796600AD0ECA /* Foundation.framework */,
 				295C98B81632796600AD0ECA /* CoreGraphics.framework */,
@@ -269,6 +273,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "mailSendTest01/mailSendTest01-Prefix.pch";
 				INFOPLIST_FILE = "mailSendTest01/mailSendTest01-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -280,6 +285,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "mailSendTest01/mailSendTest01-Prefix.pch";
 				INFOPLIST_FILE = "mailSendTest01/mailSendTest01-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -304,6 +310,7 @@
 				295C98D91632796600AD0ECA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
