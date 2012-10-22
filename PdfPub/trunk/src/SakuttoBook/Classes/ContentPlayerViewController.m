@@ -1119,11 +1119,26 @@
 				//NSLog(@"mail link touched.");
 				
 				//open with another view.
-				NSString* subject = [[mailInfo valueForKey:MS_SUBJECT] string];
-				NSString* messageBody = [[mailInfo valueForKey:MS_BODY] string];
-				NSArray* toRecipient  = [[mailInfo valueForKey:MS_TO_ADDESSES]  array];
-				NSArray* ccRecipient  = [[mailInfo valueForKey:MS_CC_ADDESSES]  array];
-				NSArray* bccRecipient = [[mailInfo valueForKey:MS_BCC_ADDESSES] array];
+				NSString* subject = nil;
+				NSString* messageBody = nil;
+				NSArray* toRecipient  = nil;
+				NSArray* ccRecipient  = nil;
+				NSArray* bccRecipient = nil;
+				if ([mailInfo valueForKey:MS_SUBJECT] != nil) {
+					subject = [mailInfo valueForKey:MS_SUBJECT];
+				}
+				if ([mailInfo valueForKey:MS_BODY] != nil) {
+					messageBody = [mailInfo valueForKey:MS_BODY];
+				}
+				if ([mailInfo valueForKey:MS_TO_ADDESSES] != nil) {
+					toRecipient  = [mailInfo valueForKey:MS_TO_ADDESSES];
+				}
+				if ([mailInfo valueForKey:MS_CC_ADDESSES] != nil) {
+					ccRecipient  = [mailInfo valueForKey:MS_CC_ADDESSES];
+				}
+				if ([mailInfo valueForKey:MS_BCC_ADDESSES] != nil) {
+					bccRecipient = [mailInfo valueForKey:MS_BCC_ADDESSES];
+				}
 				[self showMailComposerWithSubject:subject
 									  toRecipient:toRecipient
 									  ccRecipient:ccRecipient

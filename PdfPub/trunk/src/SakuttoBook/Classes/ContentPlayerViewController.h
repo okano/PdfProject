@@ -263,7 +263,7 @@
 - (void)showMailComposerWithSubject:(NSString*)subject
 						toRecipient:(NSArray*)toRecipient
 						ccRecipient:(NSArray*)ccRecipient
-					   bccRecipient:(NSArray*)vccRecipient
+					   bccRecipient:(NSArray*)bccRecipient
 						messageBody:(NSString*)messageBody;
 @end
 

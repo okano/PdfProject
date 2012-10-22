@@ -42,31 +42,33 @@
 		[tmpDict setValue:[NSNumber numberWithInt:[[tmpCsvArray objectAtIndex:3] intValue]] forKey:MD_AREA_WIDTH];
 		[tmpDict setValue:[NSNumber numberWithInt:[[tmpCsvArray objectAtIndex:4] intValue]] forKey:MD_AREA_HEIGHT];
 		//To field.
-		NSString* tmpStr = [tmpCsvArray objectAtIndex:5];
-		NSString* tmpStrFormatted = [self formatStringWithAlphaNumeric:tmpStr];
-		[tmpDict setValue:tmpStrFormatted forKey:MS_TO_ADDESSES];
+		NSString* toAddressesStr = [tmpCsvArray objectAtIndex:5];
+		NSArray* toAddresses = [toAddressesStr componentsSeparatedByString:@" "];
+		if (1 <= [toAddresses count]) {
+			[tmpDict setValue:toAddresses forKey:MS_TO_ADDESSES];
+		}
 		//Subject field.
-		if ([tmpCsvArray count] < 7) {
+		if (7 <= [tmpCsvArray count]) {
 			NSString* subjectStr = [tmpCsvArray objectAtIndex:6];
 			[tmpDict setValue:subjectStr forKey:MS_SUBJECT];
 		}
 		//Body field.
-		if ([tmpCsvArray count] < 8) {
+		if (8 <= [tmpCsvArray count]) {
 			NSString* bodyStr = [tmpCsvArray objectAtIndex:7];
 			[tmpDict setValue:bodyStr forKey:MS_BODY];
 		}
 		//Cc field.
-		if ([tmpCsvArray count] < 9) {
+		if (9 <= [tmpCsvArray count]) {
 			NSString* ccAddressesStr = [tmpCsvArray objectAtIndex:8];
-			NSArray* ccAddresses = [ccAddressesStr componentsSeparatedByString:@","];
+			NSArray* ccAddresses = [ccAddressesStr componentsSeparatedByString:@" "];
 			if (1 <= [ccAddresses count]) {
 				[tmpDict setValue:ccAddresses forKey:MS_CC_ADDESSES];
 			}
 		}
 		//Bcc field.
-		if ([tmpCsvArray count] < 10) {
+		if (10 <= [tmpCsvArray count]) {
 			NSString* bccAddressesStr = [tmpCsvArray objectAtIndex:9];
-			NSArray* bccAddresses = [bccAddressesStr componentsSeparatedByString:@","];
+			NSArray* bccAddresses = [bccAddressesStr componentsSeparatedByString:@" "];
 			if (1 <= [bccAddresses count]) {
 				[tmpDict setValue:bccAddresses forKey:MS_BCC_ADDESSES];
 			}
@@ -112,7 +114,7 @@
 - (void)showMailComposerWithSubject:(NSString*)subject
 						toRecipient:(NSArray*)toRecipient
 						ccRecipient:(NSArray*)ccRecipient
-					   bccRecipient:(NSArray*)vccRecipient
+					   bccRecipient:(NSArray*)bccRecipient
 						messageBody:(NSString*)messageBody;
 {
 	;
