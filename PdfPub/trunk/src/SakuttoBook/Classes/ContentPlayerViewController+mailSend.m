@@ -97,7 +97,7 @@
 			UIView* areaView = [[UIView alloc] initWithFrame:CGRectZero];
 #if TARGET_IPHONE_SIMULATOR
 			//Only show on Simulator.
-			[areaView setBackgroundColor:[UIColor yellowColor]];
+			[areaView setBackgroundColor:[UIColor greenColor]];
 			[areaView setAlpha:0.2f];
 #else
 			[areaView setAlpha:0.0f];
