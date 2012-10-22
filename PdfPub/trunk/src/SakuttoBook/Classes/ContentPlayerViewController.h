@@ -11,6 +11,8 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <AudioToolbox/AudioServices.h>
 #import <AVFoundation/AVFoundation.h>
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
 #import "SKBE_MainVC.h"
 #import "Utility.h"
 #import "FileUtility.h"
@@ -257,7 +259,7 @@
 
 
 // Treat Mail send.
-@interface ContentPlayerViewController (mailSend)
+@interface ContentPlayerViewController (mailSend) <MFMailComposeViewControllerDelegate>
 - (void)parseMailDefine;	// Parse Mail define in CSV.
 - (void)renderMailLinkAtIndex:(NSUInteger)index;
 - (void)showMailComposerWithSubject:(NSString*)subject

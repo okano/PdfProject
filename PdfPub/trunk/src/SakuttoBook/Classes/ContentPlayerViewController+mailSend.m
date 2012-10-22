@@ -83,6 +83,7 @@
 		[mailDefine addObject:tmpDict];
 	}
 }
+
 - (void)renderMailLinkAtIndex:(NSUInteger)index
 {
 	for (NSMutableDictionary* mailInfo in mailDefine) {
@@ -111,13 +112,55 @@
 		}
 	}
 }
+
 - (void)showMailComposerWithSubject:(NSString*)subject
 						toRecipient:(NSArray*)toRecipient
 						ccRecipient:(NSArray*)ccRecipient
 					   bccRecipient:(NSArray*)bccRecipient
 						messageBody:(NSString*)messageBody;
 {
-	;
+	//Show mail compose view.
+	MFMailComposeViewController *controller = [[[MFMailComposeViewController alloc] init] autorelease];
+	[controller setSubject:subject];
+	[controller setToRecipients:toRecipient];
+	[controller setCcRecipients:ccRecipient];
+	[controller setBccRecipients:bccRecipient];
+	[controller setMessageBody:messageBody isHTML:NO];
+	controller.mailComposeDelegate = self;
+	[self presentModalViewController:controller animated:YES ];
+}
+
+
+#pragma mark - MFMailComposeViewControllerDelegate Protocol.
+- (void)mailComposeController:(MFMailComposeViewController*)controller
+		  didFinishWithResult:(MFMailComposeResult)result
+						error:(NSError*)error
+{
+	//Check error.
+	if(error != nil) {
+		NSLog(@"Mail send error. code=%d, error=%@", [error code], [error localizedDescription]);
+		[controller dismissModalViewControllerAnimated:YES];
+		return;
+	}
+	
+	switch(result) {
+		case MFMailComposeResultSent:
+			NSLog(@"mail sent." );
+			break;
+		case MFMailComposeResultSaved:
+			NSLog(@"mail saved.");
+			break;
+		case MFMailComposeResultCancelled:
+			NSLog(@"mail cancelled");
+			break;
+		case MFMailComposeResultFailed:
+			NSLog(@"mail failed");
+			break;
+		default:
+			NSLog(@"mail unknown result.");
+			break;
+	}
+	[controller dismissModalViewControllerAnimated:YES];
 }
 
 @end

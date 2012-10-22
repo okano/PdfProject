@@ -30,6 +30,7 @@
 		29208E4B1634ECFE007D778F /* mailDefine_2.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29208E471634ECFE007D778F /* mailDefine_2.csv */; };
 		29208E4C1634ECFE007D778F /* mailDefine_3.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29208E481634ECFE007D778F /* mailDefine_3.csv */; };
 		29208E4D1634ECFE007D778F /* mailDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29208E491634ECFE007D778F /* mailDefine.csv */; };
+		29208E541634F384007D778F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29208E531634F384007D778F /* MessageUI.framework */; };
 		2927D8AC15DB576C00AD6F35 /* VerificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2927D8AB15DB576C00AD6F35 /* VerificationController.m */; };
 		2927D8AE15DB57DD00AD6F35 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2927D8AD15DB57DD00AD6F35 /* Security.framework */; };
 		2933410312D594AA00BFBC23 /* BookmarkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2933410212D594AA00BFBC23 /* BookmarkView.xib */; };
@@ -172,6 +173,7 @@
 		29208E471634ECFE007D778F /* mailDefine_2.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mailDefine_2.csv; path = csv/mailDefine_2.csv; sourceTree = "<group>"; };
 		29208E481634ECFE007D778F /* mailDefine_3.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mailDefine_3.csv; path = csv/mailDefine_3.csv; sourceTree = "<group>"; };
 		29208E491634ECFE007D778F /* mailDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mailDefine.csv; path = csv/mailDefine.csv; sourceTree = "<group>"; };
+		29208E531634F384007D778F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		2927D8AA15DB576C00AD6F35 /* VerificationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerificationController.h; sourceTree = "<group>"; };
 		2927D8AB15DB576C00AD6F35 /* VerificationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationController.m; sourceTree = "<group>"; };
 		2927D8AD15DB57DD00AD6F35 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -355,6 +357,7 @@
 				29452CA514E39C0500DD15ED /* AudioToolbox.framework in Frameworks */,
 				299F35CC1533EBAE00FAD69F /* SystemConfiguration.framework in Frameworks */,
 				2927D8AE15DB57DD00AD6F35 /* Security.framework in Frameworks */,
+				29208E541634F384007D778F /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,6 +583,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				29208E531634F384007D778F /* MessageUI.framework */,
 				2927D8AD15DB57DD00AD6F35 /* Security.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
