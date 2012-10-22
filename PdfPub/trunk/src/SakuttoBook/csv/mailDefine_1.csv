@@ -1,2 +1,1 @@
 #pageNum,x,y,width,height,to_address,subject,body,cc_address,bcc_address
-1,10,10,100,100,to1@example.com to2@example.com,Test Subject,Body string,cc1@example.com cc2@example.com,bcc1@example.com bcc2@example.com
