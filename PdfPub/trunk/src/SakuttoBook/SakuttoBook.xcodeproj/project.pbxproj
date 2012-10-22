@@ -26,6 +26,10 @@
 		2912656912D46BEE00704565 /* list_thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2912656812D46BEE00704565 /* list_thumbnail.png */; };
 		291593141394B54700387697 /* ContentPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 291593131394B54700387697 /* ContentPlayerViewController.m */; };
 		291EDE0413124E2C00DBD3E5 /* ImageGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 291EDE0313124E2C00DBD3E5 /* ImageGenerator.m */; };
+		29208E4A1634ECFE007D778F /* mailDefine_1.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29208E461634ECFE007D778F /* mailDefine_1.csv */; };
+		29208E4B1634ECFE007D778F /* mailDefine_2.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29208E471634ECFE007D778F /* mailDefine_2.csv */; };
+		29208E4C1634ECFE007D778F /* mailDefine_3.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29208E481634ECFE007D778F /* mailDefine_3.csv */; };
+		29208E4D1634ECFE007D778F /* mailDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29208E491634ECFE007D778F /* mailDefine.csv */; };
 		2927D8AC15DB576C00AD6F35 /* VerificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2927D8AB15DB576C00AD6F35 /* VerificationController.m */; };
 		2927D8AE15DB57DD00AD6F35 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2927D8AD15DB57DD00AD6F35 /* Security.framework */; };
 		2933410312D594AA00BFBC23 /* BookmarkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2933410212D594AA00BFBC23 /* BookmarkView.xib */; };
@@ -164,6 +168,10 @@
 		291593131394B54700387697 /* ContentPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentPlayerViewController.m; sourceTree = "<group>"; };
 		291EDE0213124E2C00DBD3E5 /* ImageGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGenerator.h; sourceTree = "<group>"; };
 		291EDE0313124E2C00DBD3E5 /* ImageGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGenerator.m; sourceTree = "<group>"; };
+		29208E461634ECFE007D778F /* mailDefine_1.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mailDefine_1.csv; path = csv/mailDefine_1.csv; sourceTree = "<group>"; };
+		29208E471634ECFE007D778F /* mailDefine_2.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mailDefine_2.csv; path = csv/mailDefine_2.csv; sourceTree = "<group>"; };
+		29208E481634ECFE007D778F /* mailDefine_3.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mailDefine_3.csv; path = csv/mailDefine_3.csv; sourceTree = "<group>"; };
+		29208E491634ECFE007D778F /* mailDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mailDefine.csv; path = csv/mailDefine.csv; sourceTree = "<group>"; };
 		2927D8AA15DB576C00AD6F35 /* VerificationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerificationController.h; sourceTree = "<group>"; };
 		2927D8AB15DB576C00AD6F35 /* VerificationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationController.m; sourceTree = "<group>"; };
 		2927D8AD15DB57DD00AD6F35 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -743,6 +751,10 @@
 				29F4B93513AB2A6800519DAA /* movieDefine_1.csv */,
 				29F4B93613AB2A6800519DAA /* movieDefine_2.csv */,
 				29F4B93713AB2A6800519DAA /* movieDefine_3.csv */,
+				29208E491634ECFE007D778F /* mailDefine.csv */,
+				29208E461634ECFE007D778F /* mailDefine_1.csv */,
+				29208E471634ECFE007D778F /* mailDefine_2.csv */,
+				29208E481634ECFE007D778F /* mailDefine_3.csv */,
 				29F003F91353CC5500D0D74D /* pageJumpLinkDefine.csv */,
 				29F4B93813AB2A6800519DAA /* pageJumpLinkDefine_1.csv */,
 				29F4B93913AB2A6800519DAA /* pageJumpLinkDefine_2.csv */,
@@ -886,6 +898,10 @@
 				2936214315B940BB008C75C7 /* pdfDefine_2.csv in Resources */,
 				2936214415B940BB008C75C7 /* pdfDefine_3.csv in Resources */,
 				2949B3981615558E00BD3B14 /* Default-568h@2x.png in Resources */,
+				29208E4A1634ECFE007D778F /* mailDefine_1.csv in Resources */,
+				29208E4B1634ECFE007D778F /* mailDefine_2.csv in Resources */,
+				29208E4C1634ECFE007D778F /* mailDefine_3.csv in Resources */,
+				29208E4D1634ECFE007D778F /* mailDefine.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
