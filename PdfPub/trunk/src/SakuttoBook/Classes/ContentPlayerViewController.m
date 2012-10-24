@@ -2584,7 +2584,7 @@
 	*/
 	
 	//release audio player.
-	[audioPlayer dealloc];
+	[audioPlayer dealloc]; audioPlayer = nil;
 }
 
 @end
