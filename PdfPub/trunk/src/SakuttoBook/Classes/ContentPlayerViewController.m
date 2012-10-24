@@ -2582,6 +2582,9 @@
 		//Do not release NSTimer! (managed in main loop, should onli Invalidated.)
 	}
 	*/
+	
+	//release audio player.
+	[audioPlayer dealloc];
 }
 
 @end
