@@ -163,6 +163,14 @@
 	[audioPlayer play];
 }
 
+- (void)stopSound
+{
+	//LOG_CURRENT_METHOD;
+	if (audioPlayer != nil) {
+		[audioPlayer stop];
+	}
+}
+
 #pragma mark - AVAudioPlayerDelegate methods.
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {

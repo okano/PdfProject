@@ -17,7 +17,7 @@
 //@synthesize imageView1, imageView2, imageView3;
 //@synthesize image1, image2, image3;
 @synthesize currentContentId;
-@synthesize menuViewController, webViewController, tocViewController, thumbnailViewController, bookmarkViewController;
+@synthesize menuViewController, bottomToolBar, webViewController, tocViewController, thumbnailViewController, bookmarkViewController;
 @synthesize isShownMenuBar, isShownTocView, isShownThumbnailView, isShownBookmarkView;
 //@synthesize currentImageView;
 
@@ -174,6 +174,28 @@
 	menuViewController.view.frame = menuBarFrame;
 	[self.view addSubview:menuViewController.view];
 	[self hideMenuBar];
+	
+	//Setup Bottom menu bar.
+	//bottomMenuViewController = [[UIViewController alloc] init];
+	CGRect bottomMenuBarFrame = CGRectMake(menuBarFrame.origin.x,
+										   self.view.frame.size.height -  menuBarFrame.size.height,
+										   menuBarFrame.size.width,
+										   menuBarFrame.size.height);
+	bottomToolBar = [[UIToolbar alloc] initWithFrame:bottomMenuBarFrame];
+	UIBarButtonItem *flexibleSpaceButton = [[UIBarButtonItem alloc]
+						   initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+						   target:nil
+						   action:nil];
+	UIBarButtonItem *paymentHistoryButton = [[UIBarButtonItem alloc] initWithTitle:@"再生停止"
+																			 style:UIBarButtonItemStyleBordered
+																			target:self
+																			action:@selector(stopSound)];
+	
+	NSArray *items = nil;
+	items = [NSArray arrayWithObjects:flexibleSpaceButton, paymentHistoryButton, flexibleSpaceButton, nil];
+	[bottomToolBar setItems:items];
+	[self.view addSubview:bottomToolBar];
+
 	
 	//Setup WebView.
 	//generate when need.
@@ -1282,6 +1304,9 @@
 {
 	//[self toggleMenuBar];
 	//Do nothing for iPhone/iPod touch. User often touch bottom for page change.
+	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+		[self toggleMenuBar];
+	}
 }
 
 - (void)handleTapInScrollView:(UIGestureRecognizer*)sender
@@ -2303,6 +2328,9 @@
 	menuViewController.view.alpha = 1.0f;
 	[UIView commitAnimations];
 	
+	//show bottom menu.
+	[self showBottomMenu];
+	
 	isShownMenuBar = YES;
 }
 - (void)hideMenuBar
@@ -2310,6 +2338,9 @@
 	[UIView beginAnimations:@"menuBarHide" context:nil];
 	menuViewController.view.alpha = 0.0f;
 	[UIView commitAnimations];
+	
+	//hide bottom menu.
+	[self hideBottomMenu];
 	
 	isShownMenuBar = NO;
 }

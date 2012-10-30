@@ -100,6 +100,8 @@
 	
 	// Menu
 	MenuViewController* menuViewController;
+	UIToolbar* bottomToolBar;
+	
 	// WebView
 	WebViewController* webViewController;
 	NSMutableString* urlForWeb;
@@ -134,6 +136,7 @@
 //@property (nonatomic, retain) UIImage* image2;
 //@property (nonatomic, retain) UIImage* image3;
 @property (nonatomic, retain) MenuViewController* menuViewController;
+@property (nonatomic, retain) UIToolbar* bottomToolBar;
 @property (nonatomic, retain) WebViewController* webViewController;
 @property (nonatomic, retain) TocViewController* tocViewController;
 @property (nonatomic, retain) ThumbnailViewController* thumbnailViewController;
@@ -255,6 +258,7 @@
 - (void)playSoundWithUrl:(NSURL*)soundURL;
 - (void)playSoundWithUrl:(NSURL*)soundURL withDelay:(NSNumber*)delayTime;
 - (void)timerHandlerForPlaySound:(NSTimer*)timer;
+- (void)stopSound;
 @end
 
 
@@ -267,6 +271,12 @@
 						ccRecipient:(NSArray*)ccRecipient
 					   bccRecipient:(NSArray*)bccRecipient
 						messageBody:(NSString*)messageBody;
+@end
+
+// Treat bottom menu bar.
+@interface ContentPlayerViewController (bottomMenu)
+- (void)showBottomMenu;
+- (void)hideBottomMenu;
 @end
 
 

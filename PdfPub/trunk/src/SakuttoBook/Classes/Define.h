@@ -44,9 +44,9 @@
 #define TAP_AREA_TOP_WIDTH		1.00f
 #define TAP_AREA_TOP_HEIGHT		0.15f
 #define TAP_AREA_BOTTOM_X		0.00f
-#define TAP_AREA_BOTTOM_Y		0.00f
-#define TAP_AREA_BOTTOM_WIDTH	0.00f
-#define TAP_AREA_BOTTOM_HEIGHT	0.00f
+#define TAP_AREA_BOTTOM_Y		0.85f
+#define TAP_AREA_BOTTOM_WIDTH	1.00f
+#define TAP_AREA_BOTTOM_HEIGHT	0.15f
 
 // for cache image.
 #define CACHE_IMAGE_WIDTH_MIN		 320.0f
