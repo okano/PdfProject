@@ -2615,6 +2615,7 @@
 	*/
 	
 	//release audio player.
+	audioPlayer.delegate = nil;
 	[audioPlayer dealloc]; audioPlayer = nil;
 }
 
