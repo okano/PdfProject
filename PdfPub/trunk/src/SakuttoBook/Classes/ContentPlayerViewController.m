@@ -173,7 +173,6 @@
 	menuBarFrame.size.width = self.view.frame.size.width;//Fit size only width.
 	menuViewController.view.frame = menuBarFrame;
 	[self.view addSubview:menuViewController.view];
-	[self hideMenuBar];
 	
 	//Setup Bottom menu bar.
 	//bottomMenuViewController = [[UIViewController alloc] init];
@@ -196,6 +195,7 @@
 	[bottomToolBar setItems:items];
 	[self.view addSubview:bottomToolBar];
 
+	[self hideMenuBar];
 	
 	//Setup WebView.
 	//generate when need.
