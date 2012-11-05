@@ -2371,14 +2371,42 @@
 	//NSLog(@"urlString=%@", urlString);
 	[urlForWeb setString:urlString];
 	//NSLog(@"urlForWeb=%@", urlForWeb);
-    UIActionSheet *sheet =[[UIActionSheet alloc]
-                           initWithTitle:@"URLリンクを開く (リンクからAppStoreにアクセスする場合は、Safariを起動してください)"
-						   delegate:self
-						   cancelButtonTitle:@"Cancel"
-                           destructiveButtonTitle:nil
-                           otherButtonTitles:@"アプリ内のビューワで開く", @"Safariを起動して開く", nil];
+    UIActionSheet *sheet = nil;
 	
-    [sheet showInView:self.view];	//[sheet showInView:self.view.window];
+	//
+	//@see: http://iphone-app-developer.seesaa.net/article/292824365.html
+	//      4インチのiPhone5（1,136 x 640ピクセル）画面対応
+	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) { // iPad
+		// iPadのときの処理
+		//No "cancel" button.
+		sheet =[[UIActionSheet alloc]
+				initWithTitle:@"URLリンクを開く (リンクからAppStoreにアクセスする場合は、Safariを起動してください)"
+				delegate:self
+				cancelButtonTitle:nil
+				destructiveButtonTitle:nil
+				otherButtonTitles:@"アプリ内のビューワで開く", @"Safariを起動して開く", nil];
+		[sheet showInView:self.view];
+	} else { // iPhone
+		sheet =[[UIActionSheet alloc]
+				initWithTitle:@"URLリンクを開く (リンクからAppStoreにアクセスする場合は、Safariを起動してください)"
+				delegate:self
+				cancelButtonTitle:@"Cancel"
+				destructiveButtonTitle:nil
+				otherButtonTitles:@"アプリ内のビューワで開く", @"Safariを起動して開く", nil];
+		
+		CGRect frame = [[UIScreen mainScreen] applicationFrame];
+		NSLog(@"frame size height = %f", frame.size.height);
+		if (frame.size.height >= 568.0) { // iPhone 4inch (568 - 20 px)
+			// iPhone5 のときの処理
+			[sheet showInView:self.pdfScrollView1];
+			//[sheet showInView:self.view.window];
+			
+		} else { // iPhone 3.5inch
+			// iPhone5より前のモデル のときの処理
+			[sheet showInView:self.view];	//[sheet showInView:self.view.window];
+		}
+	}
+	
     [sheet release];
 }
 
