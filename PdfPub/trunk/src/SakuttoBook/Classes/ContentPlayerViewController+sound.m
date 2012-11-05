@@ -75,6 +75,17 @@
 	}
 }
 
+- (bool)isContainSountAtIndex:(NSUInteger)index
+{
+	for (NSMutableDictionary* soundInfo in soundDefine) {
+		int targetPageNum = [[soundInfo valueForKey:SD_PAGE_NUMBER] intValue];
+		if (targetPageNum == index) {
+			return YES;
+		}
+	}
+	return NO;
+}
+
 - (void)playSoundAtIndex:(NSUInteger)index
 {
 	//LOG_CURRENT_METHOD;

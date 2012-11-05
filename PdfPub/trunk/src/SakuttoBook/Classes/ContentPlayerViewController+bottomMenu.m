@@ -12,10 +12,13 @@
 - (void)showBottomMenu
 {
 	//LOG_CURRENT_METHOD;
-	[self.view bringSubviewToFront:bottomToolBar];
-	[UIView beginAnimations:@"bottomMenuBarShow" context:nil];
-	bottomToolBar.alpha = 1.0f;
-	[UIView commitAnimations];
+	if ([self isContainSountAtIndex:currentPageNum] == YES)
+	{
+		[self.view bringSubviewToFront:bottomToolBar];
+		[UIView beginAnimations:@"bottomMenuBarShow" context:nil];
+		bottomToolBar.alpha = 1.0f;
+		[UIView commitAnimations];
+	}
 }
 
 - (void)hideBottomMenu
