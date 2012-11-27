@@ -4,6 +4,10 @@
 
 ■Rubyインストール ./configureに必要
 # yum install gcc
+# yum install libyaml
+# yum install libyaml-devel
+# yum install zlib-devel
+# yum install readline-devel
 
 ■Rubyインストール
 # mkdir ~/tmp
@@ -41,6 +45,8 @@ yum install mysql-server
 /etc/init.d/mysqld start
 chkconfig mysqld on
 
+●Apache(httpd)インストール
+yum install httpd
 service httpd start
 chkconfig httpd on
 
@@ -55,44 +61,52 @@ chkconfig httpd on
 
 バージョンが古いのでソースからインストール
 # cd ~/tmp
-# wget ftp://ftp.u-aizu.ac.jp/pub/graphics/image/ImageMagick/imagemagick.org/ImageMagick-6.6.9-10.tar.gz
-# tar -zxvf ImageMagick-6.6.9-10.tar.gz
-# cd ImageMagick-6.6.9-10
+# wget ftp://ftp.u-aizu.ac.jp/pub/graphics/image/ImageMagick/imagemagick.org/ImageMagick-6.8.0-6.tar.gz
+# tar zxvf ImageMagick-6.8.0-6.tar.gz
+# cd ImageMagick-6.8.0-6
 # ./configure
 # ./configure --enable-shared
 # make
 # make install
 
-フォントもインストール
+フォントもインストール(不要か？)
+# cd ~/tmp
 # wget http://www.mjmwired.net/resources/files/msttcorefonts-2.0-1.noarch.rpm
 # rpm -ivh msttcorefonts-2.0-1.noarch.rpm
 # ln -s /usr/share/fonts/msttcorefonts/ /usr/share/fonts/default/TrueType
+　（または）
+# yum install ttmkfdir
+# wget http://www.cabextract.org.uk/cabextract-1.2-1.i386.rpm
+# rpm -U cabextract-1.2-1.i386.rpm
+# wget http://corefonts.sourceforge.net/msttcorefonts-2.0-1.spec
+# rpmbuild -bb msttcorefonts-2.0-1.spec   (ここでエラー)
+# cd /usr/src/redhat/RPMS/noarch
+# rpm -ivh msttcorefonts-2.0-1.noarch.rpm
+
 
 データベース作成
-# mysql
-# create database ｢app名]_development;
-# \q
+# mysql -u root -p
+mysql> create database ｢app名]_development;
+mysql> \q
+#
 
 ■Passengerインストール
 # gem install passenger
-# passenger-install-apache2-module
-
 Passengerインストールに必要なものをインストール
 # yum -y install gcc-c++ curl-devel openssl-devel zlib-devel httpd-devel apr-devel apr-util-devel
 # cd ~/tmp/ruby-1.9.3-p194/ext/openssl
 # ruby extconf.rb
 # make
 # make install
-
-再度
 # passenger-install-apache2-module
 
 設定ファイルを作成
+# find / -type f name mod_passenger.so
 # vi /etc/httpd/conf.d/passenger.conf
 
-LoadModule passenger_module /usr/lib/ruby/gems/1.9.1/gems/passenger-3.0.5/ext/apache2/mod_passenger.so
-PassengerRoot /usr/lib/ruby/gems/1.9.1/gems/passenger-3.0.5
-PassengerRuby /usr/bin/ruby
+LoadModule passenger_module /usr/local/lib/ruby/gems/1.9.1/gems/passenger-3.0.18/ext/apache2/mod_passenger.so
+PassengerRoot /usr/local/lib/ruby/gems/1.9.1/gems/passenger-3.0.18
+PassengerRuby /usr/local/bin/ruby
 
 #RailsEnv development # developmentの時
 
@@ -113,10 +127,31 @@ NameVirtualHost xxx.xxx.xxx.xxx
 
 # mkdir /var/www/passenger
 /var/www/passenger/[アプリ名] にソースをコピー
+# cd /var/www/passenger
+# unzip epubs-1112.zip
+# mv epubs-1112 epubs
+# cd epubs
+# ls
+Gamefile      Rakefile   config     db   lib  public  test  vendor
+README.rdoc   app        config.ru  doc  log  script  tmp
+# 
+
+●初回起動の準備
+# yum install mysql-server
+# find /usr/local -name MagickCOre.pc
+/usr/local/lib/pkgconfig/MagickCore.pc
+# export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+# env | grep PKG_CONFIG_PATH
+PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 
 ■productionモードでサーバ起動
 # cd /var/www/passenger/[アプリ名]
+# vi config/database.yml
+データベースのパスワードを記入。コロンの後ろは半角スペース１つ開ける。developerとtestとproductionの３セクションに分かれているので注意。
 # bundle install
+…
+Your bundle is complete! Use `bundle show [gemname]` to see where a bundled gem is installed.
+#
 # rake db:create RAILS_ENV=production
 # rake db:migrate RAILS_ENV=production
 # rake assets:precompile
