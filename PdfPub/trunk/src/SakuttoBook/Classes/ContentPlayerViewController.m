@@ -1500,10 +1500,16 @@
             return;
         }
 		
+		//(Optional; PDF 1.1) A URI dictionary containing document-level information for URI (uniform resource identifier) actions (see 12.6.4.7, "URI Actions").
+		//
+		//  /PageN/[n]/Dict/A/URI
+		//  /PageN/[n]/Dict/A/Rect
+		//  /PageN/Rotate
         CGPDFStringRef uriStringRef = nil;
         if(!CGPDFDictionaryGetString(aDict, "URI", &uriStringRef)) {
-			[pool release];
-            return;
+			NSLog(@"this is not URI object.");
+			//[pool release];
+            //return;
         }
 		
         CGPDFArrayRef rectArray = nil;
@@ -1598,7 +1604,12 @@
 		
 		//Add link infomation for touch.
         char *uriString = (char *)CGPDFStringGetBytePtr(uriStringRef);
-        NSString *uri = [NSString stringWithCString:uriString encoding:NSUTF8StringEncoding];
+		NSString* uri = nil;
+		if (uriString) {
+			uri = [NSString stringWithCString:uriString encoding:NSUTF8StringEncoding];
+		} else {
+			NSLog(@"no url found.");
+		}
 		NSURL *url = [NSURL URLWithString:uri];
 		//NSLog(@"URL=%@", url);
 		NSMutableDictionary* tmpDict = [[[NSMutableDictionary alloc] init] autorelease];
