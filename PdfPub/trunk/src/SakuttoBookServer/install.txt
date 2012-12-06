@@ -56,8 +56,13 @@ chkconfig httpd on
 
 ■ImageMagick, Rmagickのインストール
 # yum install ImageMagick ImageMagick-devel
+# which Magick-config
+/usr/local/bin/Magick-config
+# Magick-config --version
+6.8.0 Q16 
+
+↑rmagickが、ImageMagick6.3.5を必要としている。しかしyumのはバージョンが古い時は、ソースからコンパイルするので、一旦消す。
 # yum erase ImageMagick ImageMagick-devel
-↑バージョンが古いのでやらなくていい？
 
 バージョンが古いのでソースからインストール
 # cd ~/tmp
@@ -82,6 +87,21 @@ chkconfig httpd on
 # rpmbuild -bb msttcorefonts-2.0-1.spec   (ここでエラー)
 # cd /usr/src/redhat/RPMS/noarch
 # rpm -ivh msttcorefonts-2.0-1.noarch.rpm
+
+rmagickのインストール
+# find /usr/local -name MagickCore.pc
+/usr/local/lib/pkgconfig/MagickCore.pc
+# PKG_CONFIG_PATH=/usr/local/lib/pkgconfig gem install rmagick
+Building native extensions.  This could take a while...
+Successfully installed rmagick-2.13.1
+1 gem installed
+Installing ri documentation for rmagick-2.13.1...
+Installing RDoc documentation for rmagick-2.13.1...
+# 
+# gem list rmagick
+*** LOCAL GEMS ***
+rmagick (2.13.1)
+# 
 
 
 データベース作成
@@ -135,6 +155,15 @@ NameVirtualHost xxx.xxx.xxx.xxx
 Gamefile      Rakefile   config     db   lib  public  test  vendor
 README.rdoc   app        config.ru  doc  log  script  tmp
 # 
+
+●画像アップロード作業用ディレクトリの作成
+# mkdir /var/www/passenger/epubs/public/uploads/tmp
+# chmod 777 /var/www/passenger/epubs/public/uploads/tmp
+# mkdir /var/www/passenger/epubs/public/uploads/content/image
+# chmod 777 /var/www/passenger/epubs/public/uploads/content/image
+# mkdir /var/www/passenger/epubs/public/uploads/content/file
+# chmod 777 /var/www/passenger/epubs/public/uploads/content/file/
+
 
 ●初回起動の準備
 # yum install mysql-server
