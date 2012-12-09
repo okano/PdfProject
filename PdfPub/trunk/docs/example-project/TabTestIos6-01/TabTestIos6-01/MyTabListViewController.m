@@ -32,8 +32,8 @@
 		NSLog(@"original tabBarController.view.frame=%@", NSStringFromCGRect(tabBarController.view.frame));
 		
 		CGRect rect = self.view.frame;
-		float tabBarHeight = 49.0;
-		float statusBarHeight = 20.0;
+		//float tabBarHeight = 49.0;
+		//float statusBarHeight = 20.0;
 		//rect.size.height = rect.size.height - tabBarHeight - statusBarHeight;
 		//rect.size.height = rect.size.height - statusBarHeight;
 		[tabBarController.view setFrame:rect];
