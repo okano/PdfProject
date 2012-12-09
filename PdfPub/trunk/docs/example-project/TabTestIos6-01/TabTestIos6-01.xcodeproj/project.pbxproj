@@ -1,0 +1,331 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2916B7651674601A00B344DA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2916B7641674601A00B344DA /* UIKit.framework */; };
+		2916B7671674601A00B344DA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2916B7661674601A00B344DA /* Foundation.framework */; };
+		2916B7691674601A00B344DA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2916B7681674601A00B344DA /* CoreGraphics.framework */; };
+		2916B76F1674601A00B344DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2916B76D1674601A00B344DA /* InfoPlist.strings */; };
+		2916B7711674601A00B344DA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2916B7701674601A00B344DA /* main.m */; };
+		2916B7751674601A00B344DA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2916B7741674601A00B344DA /* AppDelegate.m */; };
+		2916B7771674601A00B344DA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2916B7761674601A00B344DA /* Default.png */; };
+		2916B7791674601A00B344DA /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2916B7781674601A00B344DA /* Default@2x.png */; };
+		2916B77B1674601B00B344DA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2916B77A1674601B00B344DA /* Default-568h@2x.png */; };
+		2916B77E1674601B00B344DA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2916B77D1674601B00B344DA /* ViewController.m */; };
+		2916B7811674601B00B344DA /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2916B77F1674601B00B344DA /* ViewController_iPhone.xib */; };
+		2916B7841674601B00B344DA /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2916B7821674601B00B344DA /* ViewController_iPad.xib */; };
+		2916B78D167460DD00B344DA /* MyTabListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2916B78B167460DD00B344DA /* MyTabListViewController.m */; };
+		2916B78E167460DD00B344DA /* MyTabListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2916B78C167460DD00B344DA /* MyTabListViewController.xib */; };
+		2916B7921674624700B344DA /* MyListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2916B7901674624700B344DA /* MyListVC.m */; };
+		2916B7931674624700B344DA /* MyListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2916B7911674624700B344DA /* MyListVC.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2916B7601674601A00B344DA /* TabTestIos6-01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TabTestIos6-01.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2916B7641674601A00B344DA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		2916B7661674601A00B344DA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		2916B7681674601A00B344DA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		2916B76C1674601A00B344DA /* TabTestIos6-01-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TabTestIos6-01-Info.plist"; sourceTree = "<group>"; };
+		2916B76E1674601A00B344DA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2916B7701674601A00B344DA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2916B7721674601A00B344DA /* TabTestIos6-01-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TabTestIos6-01-Prefix.pch"; sourceTree = "<group>"; };
+		2916B7731674601A00B344DA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		2916B7741674601A00B344DA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2916B7761674601A00B344DA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		2916B7781674601A00B344DA /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		2916B77A1674601B00B344DA /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		2916B77C1674601B00B344DA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		2916B77D1674601B00B344DA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		2916B7801674601B00B344DA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
+		2916B7831674601B00B344DA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		2916B78A167460DD00B344DA /* MyTabListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTabListViewController.h; sourceTree = "<group>"; };
+		2916B78B167460DD00B344DA /* MyTabListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTabListViewController.m; sourceTree = "<group>"; };
+		2916B78C167460DD00B344DA /* MyTabListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyTabListViewController.xib; sourceTree = "<group>"; };
+		2916B78F1674624700B344DA /* MyListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyListVC.h; sourceTree = "<group>"; };
+		2916B7901674624700B344DA /* MyListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyListVC.m; sourceTree = "<group>"; };
+		2916B7911674624700B344DA /* MyListVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyListVC.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2916B75D1674601A00B344DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2916B7651674601A00B344DA /* UIKit.framework in Frameworks */,
+				2916B7671674601A00B344DA /* Foundation.framework in Frameworks */,
+				2916B7691674601A00B344DA /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2916B7551674601A00B344DA = {
+			isa = PBXGroup;
+			children = (
+				2916B76A1674601A00B344DA /* TabTestIos6-01 */,
+				2916B7631674601A00B344DA /* Frameworks */,
+				2916B7611674601A00B344DA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2916B7611674601A00B344DA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2916B7601674601A00B344DA /* TabTestIos6-01.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2916B7631674601A00B344DA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2916B7641674601A00B344DA /* UIKit.framework */,
+				2916B7661674601A00B344DA /* Foundation.framework */,
+				2916B7681674601A00B344DA /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2916B76A1674601A00B344DA /* TabTestIos6-01 */ = {
+			isa = PBXGroup;
+			children = (
+				2916B7731674601A00B344DA /* AppDelegate.h */,
+				2916B7741674601A00B344DA /* AppDelegate.m */,
+				2916B77C1674601B00B344DA /* ViewController.h */,
+				2916B77D1674601B00B344DA /* ViewController.m */,
+				2916B77F1674601B00B344DA /* ViewController_iPhone.xib */,
+				2916B7821674601B00B344DA /* ViewController_iPad.xib */,
+				2916B78A167460DD00B344DA /* MyTabListViewController.h */,
+				2916B78B167460DD00B344DA /* MyTabListViewController.m */,
+				2916B78C167460DD00B344DA /* MyTabListViewController.xib */,
+				2916B78F1674624700B344DA /* MyListVC.h */,
+				2916B7901674624700B344DA /* MyListVC.m */,
+				2916B7911674624700B344DA /* MyListVC.xib */,
+				2916B76B1674601A00B344DA /* Supporting Files */,
+			);
+			path = "TabTestIos6-01";
+			sourceTree = "<group>";
+		};
+		2916B76B1674601A00B344DA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2916B76C1674601A00B344DA /* TabTestIos6-01-Info.plist */,
+				2916B76D1674601A00B344DA /* InfoPlist.strings */,
+				2916B7701674601A00B344DA /* main.m */,
+				2916B7721674601A00B344DA /* TabTestIos6-01-Prefix.pch */,
+				2916B7761674601A00B344DA /* Default.png */,
+				2916B7781674601A00B344DA /* Default@2x.png */,
+				2916B77A1674601B00B344DA /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2916B75F1674601A00B344DA /* TabTestIos6-01 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2916B7871674601B00B344DA /* Build configuration list for PBXNativeTarget "TabTestIos6-01" */;
+			buildPhases = (
+				2916B75C1674601A00B344DA /* Sources */,
+				2916B75D1674601A00B344DA /* Frameworks */,
+				2916B75E1674601A00B344DA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "TabTestIos6-01";
+			productName = "TabTestIos6-01";
+			productReference = 2916B7601674601A00B344DA /* TabTestIos6-01.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2916B7571674601A00B344DA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = okano;
+			};
+			buildConfigurationList = 2916B75A1674601A00B344DA /* Build configuration list for PBXProject "TabTestIos6-01" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 2916B7551674601A00B344DA;
+			productRefGroup = 2916B7611674601A00B344DA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2916B75F1674601A00B344DA /* TabTestIos6-01 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2916B75E1674601A00B344DA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2916B76F1674601A00B344DA /* InfoPlist.strings in Resources */,
+				2916B7771674601A00B344DA /* Default.png in Resources */,
+				2916B7791674601A00B344DA /* Default@2x.png in Resources */,
+				2916B77B1674601B00B344DA /* Default-568h@2x.png in Resources */,
+				2916B7811674601B00B344DA /* ViewController_iPhone.xib in Resources */,
+				2916B7841674601B00B344DA /* ViewController_iPad.xib in Resources */,
+				2916B78E167460DD00B344DA /* MyTabListViewController.xib in Resources */,
+				2916B7931674624700B344DA /* MyListVC.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2916B75C1674601A00B344DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2916B7711674601A00B344DA /* main.m in Sources */,
+				2916B7751674601A00B344DA /* AppDelegate.m in Sources */,
+				2916B77E1674601B00B344DA /* ViewController.m in Sources */,
+				2916B78D167460DD00B344DA /* MyTabListViewController.m in Sources */,
+				2916B7921674624700B344DA /* MyListVC.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		2916B76D1674601A00B344DA /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2916B76E1674601A00B344DA /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		2916B77F1674601B00B344DA /* ViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2916B7801674601B00B344DA /* en */,
+			);
+			name = ViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		2916B7821674601B00B344DA /* ViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2916B7831674601B00B344DA /* en */,
+			);
+			name = ViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2916B7851674601B00B344DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2916B7861674601B00B344DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2916B7881674601B00B344DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TabTestIos6-01/TabTestIos6-01-Prefix.pch";
+				INFOPLIST_FILE = "TabTestIos6-01/TabTestIos6-01-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		2916B7891674601B00B344DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TabTestIos6-01/TabTestIos6-01-Prefix.pch";
+				INFOPLIST_FILE = "TabTestIos6-01/TabTestIos6-01-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2916B75A1674601A00B344DA /* Build configuration list for PBXProject "TabTestIos6-01" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2916B7851674601B00B344DA /* Debug */,
+				2916B7861674601B00B344DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2916B7871674601B00B344DA /* Build configuration list for PBXNativeTarget "TabTestIos6-01" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2916B7881674601B00B344DA /* Debug */,
+				2916B7891674601B00B344DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2916B7571674601A00B344DA /* Project object */;
+}
