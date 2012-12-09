@@ -1,0 +1,53 @@
+[multiGenreブランチを、masterブランチに同期させる。masterブランチはいじらない]
+(rebaseするブランチに移動。)
+$ git checkout multiGenre
+Switched to branch 'multiGenre'
+$ git branch
+  master
+* multiGenre
+
+$ git log
+(rebase前のログを確認)
+
+(rebaseを行う。このままコピペでタイプすればオッケー)
+$ git rebase master
+First, rewinding head to replay your work on top of it...
+Applying: add class for Multi Genre.
+Applying: add ConfigVC2 for configure appearance without server.
+Using index info to reconstruct a base tree...
+<stdin>:310: trailing whitespace.
+	
+<stdin>:353: trailing whitespace.
+	
+warning: 2 lines add whitespace errors.
+Falling back to patching base and 3-way merge...
+Auto-merging PdfPub/trunk/src/SakuttoBook/SakuttoBook.xcodeproj/project.pbxproj
+(3方向マージされたが、Errorではないのでオッケー。)
+$
+$ git status
+# On branch multiGenre
+nothing to commit (working directory clean)
+(status を見ても、エラーになっていない)
+$ 
+$ git log
+(マージ後のログを確認)
+
+$ git branch --set-upstream multiGenre origin/multiGenre
+Branch multiGenre set up to track remote branch multiGenre from origin.
+(上流(サーバ側)のリポジトリを設定しなおす)
+
+$ git pull
+Merge made by the 'recursive' strategy.
+$ git pull
+Already up-to-date.
+(いったんサーバ側の変更をpullで取り込んでから、pushする)
+
+$ git push
+Counting objects: 44, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (18/18), done.
+Writing objects: 100% (22/22), 1.95 KiB, done.
+Total 22 (delta 13), reused 0 (delta 0)
+To git@github.com:okano/PdfProject.git
+   c784b1c..8764b10  multiGenre -> multiGenre
+$ 
