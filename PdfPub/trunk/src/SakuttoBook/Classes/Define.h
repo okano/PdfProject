@@ -24,6 +24,9 @@
 //Use Multi contents.
 #define IS_MULTI_CONTENTS	1	/* 0:single content, 1:multi contents */
 
+//Use Multi genre. (divide contentList with tab.)
+#define IS_MULTI_GENRE		1	/* 0:single genre, 1:multi genre */
+
 //Hide Infomation button on Menu bar.
 #define HIDE_INFOMATION_BUTTON 0	/* 0:show, 1:hide */
 

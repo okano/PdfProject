@@ -25,6 +25,7 @@
 		290F035512D594D300666C6A /* BookmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 290F035412D594D300666C6A /* BookmarkViewController.m */; };
 		2912656912D46BEE00704565 /* list_thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2912656812D46BEE00704565 /* list_thumbnail.png */; };
 		291593141394B54700387697 /* ContentPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 291593131394B54700387697 /* ContentPlayerViewController.m */; };
+		2916B79A167471D000B344DA /* ContentListGenreTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2916B799167471D000B344DA /* ContentListGenreTabController.m */; };
 		291EDE0413124E2C00DBD3E5 /* ImageGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 291EDE0313124E2C00DBD3E5 /* ImageGenerator.m */; };
 		29208E4A1634ECFE007D778F /* mailDefine_1.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29208E461634ECFE007D778F /* mailDefine_1.csv */; };
 		29208E4B1634ECFE007D778F /* mailDefine_2.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29208E471634ECFE007D778F /* mailDefine_2.csv */; };
@@ -168,6 +169,8 @@
 		2912656812D46BEE00704565 /* list_thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = list_thumbnail.png; path = Classes/list_thumbnail.png; sourceTree = "<group>"; };
 		291593121394B54700387697 /* ContentPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentPlayerViewController.h; sourceTree = "<group>"; };
 		291593131394B54700387697 /* ContentPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentPlayerViewController.m; sourceTree = "<group>"; };
+		2916B798167471D000B344DA /* ContentListGenreTabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentListGenreTabController.h; path = InAppPurchase/ContentList/ContentListGenreTabController.h; sourceTree = "<group>"; };
+		2916B799167471D000B344DA /* ContentListGenreTabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentListGenreTabController.m; path = InAppPurchase/ContentList/ContentListGenreTabController.m; sourceTree = "<group>"; };
 		291EDE0213124E2C00DBD3E5 /* ImageGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGenerator.h; sourceTree = "<group>"; };
 		291EDE0313124E2C00DBD3E5 /* ImageGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGenerator.m; sourceTree = "<group>"; };
 		29208E461634ECFE007D778F /* mailDefine_1.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mailDefine_1.csv; path = csv/mailDefine_1.csv; sourceTree = "<group>"; };
@@ -496,6 +499,8 @@
 			children = (
 				29B16DF5139873F300B4D958 /* ContentListViewController.h */,
 				29B16DF6139873F300B4D958 /* ContentListViewController.m */,
+				2916B798167471D000B344DA /* ContentListGenreTabController.h */,
+				2916B799167471D000B344DA /* ContentListGenreTabController.m */,
 				290731E513A89BF000AE5B35 /* ContentListCell.xib */,
 				290731E713A89C0200AE5B35 /* ContentListCell.h */,
 				290731E813A89C0200AE5B35 /* ContentListCell.m */,
@@ -988,6 +993,7 @@
 				2927D8AC15DB576C00AD6F35 /* VerificationController.m in Sources */,
 				29D028C816328111004F7791 /* ContentPlayerViewController+mailSend.m in Sources */,
 				29AFB90E1638067A00C0978C /* ContentPlayerViewController+bottomMenu.m in Sources */,
+				2916B79A167471D000B344DA /* ContentListGenreTabController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
