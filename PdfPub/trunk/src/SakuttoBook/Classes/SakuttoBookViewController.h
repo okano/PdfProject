@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SakuttoBookAppDelegate.h"
 #import "ContentPlayerViewController.h"
 #import "InAppPurchaseDefine.h"
 #import "ContentListViewController.h"
@@ -28,6 +29,8 @@
 	ContentListViewController* bookContentListVC;
 	ContentListViewController* videoContentListVC;
 	ContentListViewController* audioContentListVC;
+	
+	SakuttoBookAppDelegate* appDelegate;
 }
 @property (nonatomic, retain) ContentPlayerViewController* contentPlayerViewController;
 @property (nonatomic, retain) ContentListViewController* contentListVC;

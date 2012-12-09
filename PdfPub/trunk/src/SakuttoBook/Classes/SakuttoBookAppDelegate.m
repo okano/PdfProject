@@ -23,6 +23,7 @@
 @synthesize serverContentListDS;
 @synthesize paymentHistoryDS;
 //@synthesize productIdList;
+@synthesize configVC2;
 
 #pragma mark -
 #pragma mark Application lifecycle

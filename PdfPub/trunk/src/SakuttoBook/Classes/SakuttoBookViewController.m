@@ -127,12 +127,22 @@
 										   image:[UIImage imageNamed:@"folder20x20.png"]
 										   tag:3]];
 	}
+	appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
+	if (appDelegate.configVC2 == nil) {
+		appDelegate.configVC2 = [[ConfigVC2 alloc] initWithNibName:@"ConfigVC2" bundle:[NSBundle mainBundle]];
+		[appDelegate.configVC2 setTabBarItem:[[UITabBarItem alloc]
+											  initWithTitle:@"config"
+											  image:[UIImage imageNamed:@"folder20x20.png"]
+											  tag:4]];
+	}
+
 	if (contentListGenreTabController == nil) {
 		contentListGenreTabController = [[ContentListGenreTabController alloc] init];
 		contentListGenreTabController.viewControllers = [NSArray arrayWithObjects:
 														 bookContentListVC,
 														 videoContentListVC,
-														 audioContentListVC,
+														 //audioContentListVC,
+														 appDelegate.configVC2,
 														 nil];
 	}
 	[self.view addSubview:contentListGenreTabController.view];
