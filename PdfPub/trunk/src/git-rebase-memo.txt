@@ -1,4 +1,9 @@
 [multiGenreブランチを、masterブランチに同期させる。masterブランチはいじらない]
+
+$ git pull
+(先に両ブランチともpullしておく)
+
+
 (rebaseするブランチに移動。)
 $ git checkout multiGenre
 Switched to branch 'multiGenre'
@@ -37,11 +42,6 @@ $ git branch --set-upstream multiGenre origin/multiGenre
 Branch multiGenre set up to track remote branch multiGenre from origin.
 (上流(サーバ側)のリポジトリを設定しなおす)
 
-$ git pull
-Merge made by the 'recursive' strategy.
-$ git pull
-Already up-to-date.
-(いったんサーバ側の変更をpullで取り込んでから、pushする)
 
 $ git push
 Counting objects: 44, done.
@@ -52,6 +52,14 @@ Total 22 (delta 13), reused 0 (delta 0)
 To git@github.com:okano/PdfProject.git
    c784b1c..8764b10  multiGenre -> multiGenre
 $ 
+
+
+$ git pull
+Merge made by the 'recursive' strategy.
+$ git pull
+Already up-to-date.
+$ git push
+(pushでエラーになる場合のみ、いったんサーバ側の変更をpullで取り込んでから、pushする)
 
 
 
