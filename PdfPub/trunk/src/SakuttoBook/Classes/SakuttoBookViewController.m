@@ -15,6 +15,9 @@
 @synthesize contentDetailVC;
 @synthesize serverContentListVC;
 @synthesize serverContentDetailVC;
+//For multi Genre.
+@synthesize contentListGenreTabController;
+@synthesize bookContentListVC, videoContentListVC, audioContentListVC;
 
 /*
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -101,10 +104,45 @@
 #pragma mark - show/hide view.
 - (void)showContentListView
 {
+#if defined(IS_MULTI_GENRE) && IS_MULTI_GENRE != 0
+	//multi genre.
+	if (bookContentListVC == nil) {
+		bookContentListVC = [[ContentListViewController alloc] init];
+		[bookContentListVC setTabBarItem:[[UITabBarItem alloc]
+										  initWithTitle:@"book"
+										  image:[UIImage imageNamed:@"folder20x20.png"]
+										  tag:1]];
+	}
+	if (videoContentListVC == nil) {
+		videoContentListVC = [[ContentListViewController alloc] init];
+		[videoContentListVC setTabBarItem:[[UITabBarItem alloc]
+										   initWithTitle:@"video"
+										   image:[UIImage  imageNamed:@"folder20x20.png"]
+										   tag:2]];
+	}
+	if (audioContentListVC == nil) {
+		audioContentListVC = [[ContentListViewController alloc] init];
+		[audioContentListVC setTabBarItem:[[UITabBarItem alloc]
+										   initWithTitle:@"audio"
+										   image:[UIImage imageNamed:@"folder20x20.png"]
+										   tag:3]];
+	}
+	if (contentListGenreTabController == nil) {
+		contentListGenreTabController = [[ContentListGenreTabController alloc] init];
+		contentListGenreTabController.viewControllers = [NSArray arrayWithObjects:
+														 bookContentListVC,
+														 videoContentListVC,
+														 audioContentListVC,
+														 nil];
+	}
+	[self.view addSubview:contentListGenreTabController.view];
+#else
+	//single genre.
 	if (contentListVC == nil) {
 		contentListVC = [[ContentListViewController alloc] init];
 	}
 	[self.view addSubview:contentListVC.view];
+#endif
 	[contentListVC reloadData];
 }
 - (void)hideContentListView
