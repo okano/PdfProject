@@ -45,6 +45,7 @@
 - (NSMutableDictionary*)getMetadataByContentId:(ContentId)cid;
 - (NSMutableDictionary*)getMetadataByUuid:(NSString*)uuid;
 - (void)addMetadata:(NSDictionary*)metaDataDict;
+- (void)replaceMetadataAtIndex:(NSInteger)index withMetadata:(NSDictionary*)metaDataDict;
 
 //ContentId for download.
 - (ContentId)nextContentId;

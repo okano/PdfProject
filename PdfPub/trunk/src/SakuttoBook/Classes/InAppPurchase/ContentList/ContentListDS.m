@@ -273,7 +273,7 @@
 		if (pid != InvalidProductId) {
 			NSMutableDictionary* newRecord = [NSMutableDictionary dictionaryWithDictionary:tmpDict];
 			[newRecord setValue:pid forKey:CONTENT_STORE_PRODUCT_ID];
-			[contentList replaceObjectAtIndex:i withObject:newRecord];
+			[self replaceMetadataAtIndex:i withMetadata:newRecord];
 		}
 	}
 }
@@ -390,6 +390,10 @@
 - (void)addMetadata:(NSDictionary*)metaDataDict
 {
 	[contentList addObject:metaDataDict];
+}
+- (void)replaceMetadataAtIndex:(NSInteger)index withMetadata:(NSDictionary*)metaDataDict
+{
+	[contentList replaceObjectAtIndex:index withObject:metaDataDict];
 }
 
 
