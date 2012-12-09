@@ -17,6 +17,7 @@
 #import "FileUtility.h"
 #import "ContentFileUtility.h"
 #import "ConfigViewController.h"
+#import "ConfigVC2.h"
 #import "ProductIdList.h"
 
 @class SakuttoBookViewController;
@@ -42,6 +43,9 @@
 	
 	// ProductIdList -> use Singleton(sharedManager).
 	//ProductIdList* productIdList;
+	
+	// Config view.
+	ConfigVC2* configVC2;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -59,6 +63,8 @@
 @property (nonatomic, retain) PaymentHistoryDS* paymentHistoryDS;
 // ProductIdList
 //@property (nonatomic, retain) ProductIdList* productIdList;
+// Config view.
+@property (nonatomic, retain) ConfigVC2* configVC2;
 
 
 /**
