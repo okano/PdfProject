@@ -13,12 +13,14 @@
 
 @synthesize contentList;
 //@synthesize productIdListPointer;
+@synthesize contentIdDictWithGenre;
 
 - (id)init
 {
 	self = [super init];
 	if (self) {
 		contentList = [[NSMutableArray alloc] init];
+		contentIdDictWithGenre = [[NSMutableDictionary alloc] init];
 		
 		[self setupData];
 		//[self setupTestData];
@@ -390,6 +392,40 @@
 - (void)addMetadata:(NSDictionary*)metaDataDict
 {
 	[contentList addObject:metaDataDict];
+	
+	//Add cache.
+	NSNumber* targetCidNumber = [metaDataDict objectForKey:CONTENT_CID];
+	ContentId targetCid = [targetCidNumber unsignedIntegerValue];
+	NSString* genre = [metaDataDict objectForKey:CONTENT_GENRE];
+	NSString* subGenre = [metaDataDict objectForKey:CONTENT_SUBGENRE];
+	[self addContentIdArray:targetCid genre:genre subGenre:subGenre];
+}
+- (void)addContentIdArray:(ContentId)cid genre:(NSString *)genre subGenre:(NSString *)subGenre
+{
+	//Check argument.
+	if ((genre == nil) || ([genre length] <= 0)) {
+		genre = GENRE_NON_GENRE;
+	}
+	if ((subGenre == nil) || ([subGenre length] <= 0)) {
+		subGenre = GENRE_NON_SUBGENRE;
+	}
+	
+	//Get subGenre dict with genre.
+	NSMutableDictionary* subGenreDict = [contentIdDictWithGenre valueForKey:genre];
+	if (subGenreDict == nil) {
+		subGenreDict = [[NSMutableDictionary alloc] init];
+	}
+	//Get ContentIdArray with subGenre.
+	NSMutableArray* contentIdArray = [subGenreDict valueForKey:subGenre];
+	if (contentIdArray == nil) {
+		contentIdArray = [[NSMutableArray alloc] init];
+	}
+	
+	//Add contentId into array.
+	//(no check with same cid.)
+	[contentIdArray addObject:[NSNumber numberWithUnsignedInteger:cid]];
+	[subGenreDict setObject:contentIdArray forKey:subGenre];
+	[contentIdDictWithGenre setObject:subGenreDict forKey:genre];
 }
 - (void)replaceMetadataAtIndex:(NSInteger)index withMetadata:(NSDictionary*)metaDataDict
 {

@@ -11,6 +11,8 @@
 #define CONTENT_TITLE				@"Title"
 #define CONTENT_AUTHOR				@"Autohr"
 #define CONTENT_DESCRIPTION			@"Description"
+#define CONTENT_GENRE				@"Genre"
+#define CONTENT_SUBGENRE			@"SubGenre"
 #define CONTENT_ICONFILE_PREFIX		@"ContentIcon_"
 #define CONTENT_ICONFILE_EXTENSION	@"png"
 #define CONTENT_ACQUISITION_LINK	@"AcquisitionLink"
@@ -34,6 +36,8 @@ typedef	NSUInteger	ContentId;	/* 1-start. */
 #define PRODUCT_KIND_CONSUMABLE		1
 #define PRODUCT_KIND_NON_CONSUMABLE	2
 
+#define GENRE_NON_GENRE				@"NonGenre"
+#define GENRE_NON_SUBGENRE			@"NonSubGenre"
 
 
 #ifdef TARGET_IPHONE_SIMULATOR
