@@ -217,7 +217,7 @@
 			[tmpDict setValue:tmpStr forKey:CONTENT_DESCRIPTION];
 			[tmpStr release]; tmpStr = nil;
 		}
-		[contentList addObject:tmpDict];
+		[self addMetadata:tmpDict];
 		[tmpDict release]; tmpDict = nil;
 		
 		contentIdInt++;
@@ -256,7 +256,7 @@
 	//Add to contentList array.
 	int i;
 	for (i=0; i<[plist count]; i++) {
-		[contentList addObject:[plist objectAtIndex:i]];
+		[self addMetadata:[plist objectAtIndex:i]];
 	}
 	
 	return [contentList count];
@@ -273,7 +273,7 @@
 		if (pid != InvalidProductId) {
 			NSMutableDictionary* newRecord = [NSMutableDictionary dictionaryWithDictionary:tmpDict];
 			[newRecord setValue:pid forKey:CONTENT_STORE_PRODUCT_ID];
-			[contentList replaceObjectAtIndex:i withObject:newRecord];
+			[self replaceMetadataAtIndex:i withMetadata:newRecord];
 		}
 	}
 }
@@ -390,6 +390,10 @@
 - (void)addMetadata:(NSDictionary*)metaDataDict
 {
 	[contentList addObject:metaDataDict];
+}
+- (void)replaceMetadataAtIndex:(NSInteger)index withMetadata:(NSDictionary*)metaDataDict
+{
+	[contentList replaceObjectAtIndex:index withObject:metaDataDict];
 }
 
 
@@ -670,7 +674,7 @@
 	[tmpDict setValue:@"title1" forKey:CONTENT_TITLE];
 	[tmpDict setValue:@"author1" forKey:CONTENT_AUTHOR];
 	[tmpDict setValue:@"desc1" forKey:CONTENT_DESCRIPTION];
-	[contentList addObject:tmpDict];
+	[self addMetadata:tmpDict];
 	[tmpDict release]; tmpDict = nil;
 	
 	tmpDict = [[NSMutableDictionary alloc] init];
@@ -679,7 +683,7 @@
 	[tmpDict setValue:@"title2" forKey:CONTENT_TITLE];
 	[tmpDict setValue:@"author2" forKey:CONTENT_AUTHOR];
 	[tmpDict setValue:@"desc2" forKey:CONTENT_DESCRIPTION];
-	[contentList addObject:tmpDict];
+	[self addMetadata:tmpDict];
 	[tmpDict release]; tmpDict = nil;
 	
 	tmpDict = [[NSMutableDictionary alloc] init];
@@ -688,7 +692,7 @@
 	[tmpDict setValue:@"title3" forKey:CONTENT_TITLE];
 	[tmpDict setValue:@"author3" forKey:CONTENT_AUTHOR];
 	[tmpDict setValue:@"desc3" forKey:CONTENT_DESCRIPTION];
-	[contentList addObject:tmpDict];
+	[self addMetadata:tmpDict];
 	[tmpDict release]; tmpDict = nil;
 	
 	tmpDict = [[NSMutableDictionary alloc] init];
@@ -697,7 +701,7 @@
 	[tmpDict setValue:@"title4" forKey:CONTENT_TITLE];
 	[tmpDict setValue:@"author4" forKey:CONTENT_AUTHOR];
 	[tmpDict setValue:@"desc4" forKey:CONTENT_DESCRIPTION];
-	[contentList addObject:tmpDict];
+	[self addMetadata:tmpDict];
 	[tmpDict release]; tmpDict = nil;
 }
 @end
