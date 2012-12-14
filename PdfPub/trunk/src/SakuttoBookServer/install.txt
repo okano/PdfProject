@@ -60,11 +60,15 @@ chkconfig httpd on
 /usr/local/bin/Magick-config
 # Magick-config --version
 6.8.0 Q16 
+# convert -version
 
 ↑rmagickが、ImageMagick6.3.5を必要としている。しかしyumのはバージョンが古い時は、ソースからコンパイルするので、一旦消す。
 # yum erase ImageMagick ImageMagick-devel
 
 バージョンが古いのでソースからインストール
+バージョン指定で"6.6.9-10"の場合は、
+wget http://www.imagemagick.org/download/legacy/ImageMagick-6.6.9-10.tar.gz
+
 # cd ~/tmp
 # wget ftp://ftp.u-aizu.ac.jp/pub/graphics/image/ImageMagick/imagemagick.org/ImageMagick-6.8.0-6.tar.gz
 # tar zxvf ImageMagick-6.8.0-6.tar.gz
