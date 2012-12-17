@@ -319,12 +319,26 @@
 + (BOOL)makeDir:(NSString*)fileNameFull {
 	//NSLog(@"fileNameFull=%@", fileNameFull);
     if ([self existsFile:fileNameFull]) {
+		NSLog(@"directory already exists at %@", fileNameFull);
 		return FALSE;
 	}
-	return [[NSFileManager defaultManager] createDirectoryAtPath:fileNameFull
+	
+	NSError *error = nil;
+	[[NSFileManager defaultManager] createDirectoryAtPath:fileNameFull
 							  withIntermediateDirectories:YES
 											   attributes:nil 
-													error:nil];
+													error:&error];
+	if (error != nil) {
+		LOG_CURRENT_METHOD;
+		NSLog(@"makeDir error. localizedDescription=%@, localizedFailureReason=%@, code=%d",
+			  [error localizedDescription],
+			  [error localizedFailureReason], [error code]);
+		if ([error code] == NSFileWriteFileExistsError) {
+			NSLog(@"NSFileWriteFileExistsError. file or directory already exists.");
+		}
+		return NO;
+	}
+    return YES;
 }
 
 //Delete file/directory.
@@ -338,12 +352,32 @@
 //Resource to File.
 + (BOOL)res2file:(NSString*)res fileNameFull:(NSString*)filenameFull {
     NSString* from=[[NSBundle mainBundle] pathForResource:res ofType:@""];
-    NSString* to=filenameFull;
-	if (from == nil || to == nil) {
-		//resource or file not found.
+	if (from == nil) {
+		//resource file not found in mainBundle.
+		LOG_CURRENT_METHOD;
+		NSLog(@"copy from file not found in mainBundle. filenameFull=%@", filenameFull);
 		return NO;
 	}
-    [[NSFileManager defaultManager] copyItemAtPath:from toPath:to error:nil];
+    NSString* to=filenameFull;
+	if (to == nil) {
+		//passed nil string.(program error.)
+		LOG_CURRENT_METHOD;
+		NSLog(@"filenameFull is nil.");
+		return NO;
+	}
+	
+	NSError *error = nil;
+    [[NSFileManager defaultManager] copyItemAtPath:from toPath:to error:&error];
+	if (error != nil) {
+		LOG_CURRENT_METHOD;
+		NSLog(@"file copy error. localizedDescription=%@, localizedFailureReason=%@, code=%d",
+			  [error localizedDescription],
+			  [error localizedFailureReason], [error code]);
+		if ([error code] == NSFileWriteFileExistsError) {
+			NSLog(@"NSFileWriteFileExistsError. file already exists.");
+		}
+		return NO;
+	}
     return YES;
 }
 
