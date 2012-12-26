@@ -132,10 +132,11 @@
 	NSString* tmpDirectory = [ContentFileUtility getContentTmpDirectory];
 	NSArray* fileList = [FileUtility fileList:tmpDirectory]; 
 	LOG_CURRENT_METHOD;
-	NSLog(@"path=%@, list=%@", tmpDirectory, [fileList description]);
+	NSLog(@"tmp path=%@, fileList=%@", tmpDirectory, [fileList description]);
 	
 	if ([fileList count] <= 0) {
 		//No file found in tmp directory.
+		NSLog(@"this is first launchup.");
 		return YES;
 	}
 	
@@ -147,6 +148,7 @@
 		}
 	}
 	//only debug file ("stack-logs.*" file) found.
+	NSLog(@"this is first launchup.");
 	return YES;
 }
 - (void)copyPdfFromResourceToFile
@@ -172,10 +174,17 @@
 		//NSLog(@"resourceName=%@, filenameFull=%@", resourceName, filenameFull);
 		
 		//Make directory.
-		[FileUtility makeDir:[ContentFileUtility getContentBodyPdfDirectoryWithContentId:cidStr]];
+		if ( [FileUtility makeDir:[ContentFileUtility getContentBodyPdfDirectoryWithContentId:cidStr]] == NO) {
+			LOG_CURRENT_METHOD;
+			NSLog(@"cannot make directory for PDF. cidStr=%@", cidStr);
+		};
 		
 		//Copy.
-		[FileUtility res2file:resourceName fileNameFull:filenameFull];
+		if ( [FileUtility res2file:resourceName fileNameFull:filenameFull] == NO) {
+			LOG_CURRENT_METHOD;
+			NSLog(@"cannot copy PDF file from mainBundle. cidStr=%@, resourceName=%@, filenameFull=%@",
+				  cidStr, resourceName, filenameFull);
+		}
 		
 		//Set Ignore Backup.
 		[FileUtility addSkipBackupAttributeToItemWithString:filenameFull];

@@ -40,9 +40,9 @@
 	//Open define file.
 	NSString* filename;
 #if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
-	filename = [NSString stringWithFormat:@"bookDefine_%d", contentId];
+	filename = [ContentFileUtility getBookDefineFilename:contentId];
 #else
-	filename = @"bookDefine";
+	filename = [ContentFileUtility getBookDefineFilename];
 #endif
 	NSString* csvFilePath = [[NSBundle mainBundle] pathForResource:filename ofType:@"csv"];
 	NSError* error = nil;

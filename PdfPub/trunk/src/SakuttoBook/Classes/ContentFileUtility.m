@@ -175,6 +175,11 @@
 
 
 #pragma mark -
++ (NSString*)getBookDefineFilename
+{
+	return @"bookDefine";	//without ext ".csv".
+}
+
 + (NSString*)getBookDefineFilename:(ContentId)cid
 {
 	return [NSString stringWithFormat:@"bookDefine_%d", cid];	//without ext ".csv".
