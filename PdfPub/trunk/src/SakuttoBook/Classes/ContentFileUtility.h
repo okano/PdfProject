@@ -52,6 +52,7 @@
 + (UIImage*)getCoverImage:(NSString*)cId;
 
 //Other files.
++ (NSString*)getBookDefineFilename;
 + (NSString*)getBookDefineFilename:(ContentId)cid;
 
 
