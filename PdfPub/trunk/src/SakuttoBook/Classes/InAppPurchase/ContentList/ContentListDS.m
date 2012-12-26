@@ -210,7 +210,26 @@
 		if (4 <= [lines count]) {
 			//[tmpDict setValue:[lines objectAtIndex:3] forKey:CONTENT_SUPPORT_HP];
 		}
+#if defined(IS_MULTI_GENRE) && IS_MULTI_GENRE != 0
+		//multi genre.
+		int genreIndex = 4;
+		if (genreIndex <= [lines count]) {
+			NSString* genreStrTmp = [lines objectAtIndex:genreIndex];
+			
+			//parse genre. ex: "book-picture"  => "book", "picture"
+			NSMutableArray* genreArr = [[NSMutableArray alloc] initWithArray:[genreStrTmp componentsSeparatedByString:@"-"]];
+			if (2 <= [genreArr count]) {
+				[tmpDict setValue:[genreArr objectAtIndex:0] forKey:CONTENT_GENRE];
+				[tmpDict setValue:[genreArr objectAtIndex:1] forKey:CONTENT_SUBGENRE];
+			} else if (1 == [genreArr count]) {
+				[tmpDict setValue:[genreArr objectAtIndex:0] forKey:CONTENT_GENRE];
+			}
+		}
+		int contentDescriptionIndex = 6;
+#else
+		//single genre.
 		int contentDescriptionIndex = 5;
+#endif
 		if (contentDescriptionIndex <= [lines count]) {
 			NSMutableString* tmpStr = [[NSMutableString alloc] init];
 			for (int i = contentDescriptionIndex - 1; i < [lines count]; i++) {
