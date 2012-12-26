@@ -210,9 +210,10 @@
 		if (4 <= [lines count]) {
 			//[tmpDict setValue:[lines objectAtIndex:3] forKey:CONTENT_SUPPORT_HP];
 		}
-		if (5 <= [lines count]) {
+		int contentDescriptionIndex = 5;
+		if (contentDescriptionIndex <= [lines count]) {
 			NSMutableString* tmpStr = [[NSMutableString alloc] init];
-			for (int i = 4; i < [lines count]; i++) {
+			for (int i = contentDescriptionIndex - 1; i < [lines count]; i++) {
 				[tmpStr appendString:[lines objectAtIndex:i]];
 				[tmpStr appendString:@"\n"];
 			}
