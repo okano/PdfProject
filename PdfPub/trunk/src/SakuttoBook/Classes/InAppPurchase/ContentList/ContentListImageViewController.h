@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "SakuttoBookAppDelegate.h"	//for read "Define.h" (it cannot load directory...)
-//#import "ContentListViewController.h"
+#import "ContentListViewController.h"
 
-@interface ContentListImageViewController : UIViewController /* :ContentListViewController */
+@interface ContentListImageViewController : ContentListViewController
 {
 	IBOutlet UIToolbar* toolbar;
 	IBOutlet UIBarButtonItem *serverContentButton;
