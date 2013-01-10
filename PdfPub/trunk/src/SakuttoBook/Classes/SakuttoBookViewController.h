@@ -10,6 +10,7 @@
 #import "ContentPlayerViewController.h"
 #import "InAppPurchaseDefine.h"
 #import "ContentListViewController.h"
+#import "ContentListThumbnailViewController.h"
 #import "ContentDetailViewController.h"
 #import "ServerContentListVC.h"
 #import "ServerContentDetailVC.h"
@@ -17,6 +18,7 @@
 @interface SakuttoBookViewController : UIViewController {
 	ContentPlayerViewController* contentPlayerViewController;
 	ContentListViewController* contentListVC;
+	ContentListThumbnailViewController* contentListTVC;
 	ContentDetailViewController* contentDetailVC;
 	//Server Content.
 	ServerContentListVC* serverContentListVC;
@@ -24,6 +26,7 @@
 }
 @property (nonatomic, retain) ContentPlayerViewController* contentPlayerViewController;
 @property (nonatomic, retain) ContentListViewController* contentListVC;
+@property (nonatomic, retain) ContentListThumbnailViewController* contentListTVC;
 @property (nonatomic, retain) ContentDetailViewController* contentDetailVC;
 @property (nonatomic, retain) ServerContentListVC* serverContentListVC;
 @property (nonatomic, retain) ServerContentDetailVC* serverContentDetailVC;

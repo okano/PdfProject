@@ -12,6 +12,7 @@
 
 @synthesize contentPlayerViewController;
 @synthesize contentListVC;
+@synthesize contentListTVC;
 @synthesize contentDetailVC;
 @synthesize serverContentListVC;
 @synthesize serverContentDetailVC;
@@ -101,16 +102,30 @@
 #pragma mark - show/hide view.
 - (void)showContentListView
 {
+#if defined(IS_CONTENTLIST_WITH_IMAGE) && IS_CONTENTLIST_WITH_IMAGE != 0
+	//content list with image.
+	if (contentListTVC == nil) {
+		contentListTVC = [[ContentListThumbnailViewController alloc] initWithNibName:@"ContentListThumbnailViewController" bundle:[NSBundle mainBundle]];
+	}
+	[self.view addSubview:contentListTVC.view];
+	
+	contentListVC = nil;
+#else
+	//content list with table.
 	if (contentListVC == nil) {
 		contentListVC = [[ContentListViewController alloc] init];
 	}
 	[self.view addSubview:contentListVC.view];
 	[contentListVC reloadData];
+#endif
 }
 - (void)hideContentListView
 {
 	if (contentListVC != nil) {
 		[contentListVC.view removeFromSuperview]; 
+	}
+	if (contentListTVC != nil) {
+		[contentListTVC.view removeFromSuperview];
 	}
 }
 #pragma mark -
