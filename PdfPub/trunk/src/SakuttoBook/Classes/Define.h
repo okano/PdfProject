@@ -28,6 +28,9 @@
 //Use Multi genre. (divide contentList with tab.)
 #define IS_MULTI_GENRE		1	/* 0:single genre, 1:multi genre */
 
+//Use content list with Image.
+#define IS_CONTENTLIST_WITH_IMAGE	1	/* 0:list with table, 1:list with image */
+
 //Hide Infomation button on Menu bar.
 #define HIDE_INFOMATION_BUTTON 0	/* 0:show, 1:hide */
 

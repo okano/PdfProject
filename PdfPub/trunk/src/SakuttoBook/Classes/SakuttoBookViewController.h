@@ -12,13 +12,15 @@
 #import "InAppPurchaseDefine.h"
 #import "ContentListViewController.h"
 #import "ContentListGenreTabController.h"
+#import "ContentListImageViewController.h"
 #import "ContentDetailViewController.h"
 #import "ServerContentListVC.h"
 #import "ServerContentDetailVC.h"
 
 @interface SakuttoBookViewController : UIViewController {
 	ContentPlayerViewController* contentPlayerViewController;
-	ContentListViewController* contentListVC;
+	ContentListTableViewController* contentListVC;
+	ContentListImageViewController* contentListIVC;
 	ContentDetailViewController* contentDetailVC;
 	//Server Content.
 	ServerContentListVC* serverContentListVC;
@@ -26,22 +28,39 @@
 	
 	//For multi Genre.
 	ContentListGenreTabController* contentListGenreTabController;
-	ContentListViewController* bookContentListVC;
-	ContentListViewController* videoContentListVC;
-	ContentListViewController* audioContentListVC;
+#if defined(IS_CONTENTLIST_WITH_IMAGE) && IS_CONTENTLIST_WITH_IMAGE != 0
+	//content list with image.
+	ContentListImageViewController* bookContentListVC;
+	ContentListImageViewController* videoContentListVC;
+	ContentListImageViewController* audioContentListVC;
+#else
+	//content list with table.
+	ContentListTableViewController* bookContentListVC;
+	ContentListTableViewController* videoContentListVC;
+	ContentListTableViewController* audioContentListVC;
+#endif
 	
 	SakuttoBookAppDelegate* appDelegate;
 }
 @property (nonatomic, retain) ContentPlayerViewController* contentPlayerViewController;
-@property (nonatomic, retain) ContentListViewController* contentListVC;
+@property (nonatomic, retain) ContentListTableViewController* contentListVC;
+@property (nonatomic, retain) ContentListImageViewController* contentListIVC;
 @property (nonatomic, retain) ContentDetailViewController* contentDetailVC;
 @property (nonatomic, retain) ServerContentListVC* serverContentListVC;
 @property (nonatomic, retain) ServerContentDetailVC* serverContentDetailVC;
 //For multi Genre.
 @property (nonatomic, retain) ContentListGenreTabController* contentListGenreTabController;
-@property (nonatomic, retain) ContentListViewController* bookContentListVC;
-@property (nonatomic, retain) ContentListViewController* videoContentListVC;
-@property (nonatomic, retain) ContentListViewController* audioContentListVC;
+#if defined(IS_CONTENTLIST_WITH_IMAGE) && IS_CONTENTLIST_WITH_IMAGE != 0
+//content list with image.
+@property (nonatomic, retain) ContentListImageViewController* bookContentListVC;
+@property (nonatomic, retain) ContentListImageViewController* videoContentListVC;
+@property (nonatomic, retain) ContentListImageViewController* audioContentListVC;
+#else
+//content list with table.
+@property (nonatomic, retain) ContentListTableViewController* bookContentListVC;
+@property (nonatomic, retain) ContentListTableViewController* videoContentListVC;
+@property (nonatomic, retain) ContentListTableViewController* audioContentListVC;
+#endif
 
 - (void)showContentPlayerView;
 
