@@ -63,6 +63,7 @@
 		297AC25812B7870B00962CED /* TocView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 297AC25712B7870B00962CED /* TocView.xib */; };
 		297DF1FB12C600320082C680 /* InfomationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 297DF1FA12C600320082C680 /* InfomationView.xib */; };
 		297DF1FF12C601AD0082C680 /* InfomationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297DF1FE12C601AD0082C680 /* InfomationViewController.m */; };
+		297F4A9B169EC41D000D05E9 /* ContentListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B322DA169EB79800C047D9 /* ContentListTableViewController.m */; };
 		299448EC12B7370B00E7D108 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299448EB12B7370B00E7D108 /* MediaPlayer.framework */; };
 		2999FDC512D6A8D500D0F145 /* License.m in Sources */ = {isa = PBXBuildFile; fileRef = 2999FDC412D6A8D500D0F145 /* License.m */; };
 		299F35CC1533EBAE00FAD69F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299F35CB1533EBAE00FAD69F /* SystemConfiguration.framework */; };
@@ -78,7 +79,6 @@
 		29B16E09139876E900B4D958 /* PaymentHistoryDS.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B16E08139876E900B4D958 /* PaymentHistoryDS.m */; };
 		29B16E0B1398779600B4D958 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B16E0A1398779600B4D958 /* StoreKit.framework */; };
 		29B1795814BC8C94007024AD /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 29B1795714BC8C94007024AD /* Icon.png */; };
-		29B322DB169EB79800C047D9 /* ContentListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B322DA169EB79800C047D9 /* ContentListTableViewController.m */; };
 		29B3B7C812C57DE00014F866 /* MyPdfScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B3B7C712C57DE00014F866 /* MyPdfScrollView.m */; };
 		29B3B90C12C58C820014F866 /* ThumbnailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B3B90B12C58C820014F866 /* ThumbnailViewController.m */; };
 		29BD25FC13A4963A0029E2B4 /* document-1.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 29BD25F913A4963A0029E2B4 /* document-1.pdf */; };
@@ -951,6 +951,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				297F4A9B169EC41D000D05E9 /* ContentListTableViewController.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* SakuttoBookAppDelegate.m in Sources */,
 				28D7ACF80DDB3853001CB0EB /* SakuttoBookViewController.m in Sources */,

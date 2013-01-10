@@ -1,5 +1,5 @@
 //
-//  ContentListViewController.m
+//  ContentListTableViewController.m
 //  PurchaseTest04
 //
 //  Created by okano on 11/05/24.

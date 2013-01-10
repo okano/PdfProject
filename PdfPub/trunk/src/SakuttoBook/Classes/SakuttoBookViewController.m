@@ -104,7 +104,6 @@
 {
 #if defined(IS_CONTENTLIST_WITH_IMAGE) && IS_CONTENTLIST_WITH_IMAGE != 0
 	//content list with image.
-<<<<<<< HEAD
 	if (contentListIVC == nil) {
 		contentListIVC = [[ContentListImageViewController alloc] initWithNibName:@"ContentListImageViewController" bundle:[NSBundle mainBundle]];
 	}
