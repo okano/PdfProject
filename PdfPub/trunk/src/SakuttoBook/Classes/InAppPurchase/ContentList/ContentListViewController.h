@@ -17,8 +17,6 @@
 #import "PaymentHistoryListViewController.h"
 
 @interface ContentListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
-	UITableView* myTableView;
-	UIToolbar* toolbar;
 	SakuttoBookAppDelegate* appDelegate;
 }
 
@@ -26,8 +24,5 @@
 - (void)showContentDetailView:(ContentId)cid;
 - (void)showServerContentListView;
 - (IBAction)showPaymentHistoryList;
-
-//Accessor for table
-- (void)reloadData;
 
 @end

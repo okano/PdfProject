@@ -76,6 +76,7 @@
 		29B16E09139876E900B4D958 /* PaymentHistoryDS.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B16E08139876E900B4D958 /* PaymentHistoryDS.m */; };
 		29B16E0B1398779600B4D958 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B16E0A1398779600B4D958 /* StoreKit.framework */; };
 		29B1795814BC8C94007024AD /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 29B1795714BC8C94007024AD /* Icon.png */; };
+		29B322DB169EB79800C047D9 /* ContentListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B322DA169EB79800C047D9 /* ContentListTableViewController.m */; };
 		29B3B7C812C57DE00014F866 /* MyPdfScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B3B7C712C57DE00014F866 /* MyPdfScrollView.m */; };
 		29B3B90C12C58C820014F866 /* ThumbnailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B3B90B12C58C820014F866 /* ThumbnailViewController.m */; };
 		29BD25FC13A4963A0029E2B4 /* document-1.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 29BD25F913A4963A0029E2B4 /* document-1.pdf */; };
@@ -240,6 +241,8 @@
 		29B16E08139876E900B4D958 /* PaymentHistoryDS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PaymentHistoryDS.m; path = InAppPurchase/PaymentHistoryDS.m; sourceTree = "<group>"; };
 		29B16E0A1398779600B4D958 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		29B1795714BC8C94007024AD /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		29B322D9169EB79800C047D9 /* ContentListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentListTableViewController.h; path = InAppPurchase/ContentList/ContentListTableViewController.h; sourceTree = "<group>"; };
+		29B322DA169EB79800C047D9 /* ContentListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentListTableViewController.m; path = InAppPurchase/ContentList/ContentListTableViewController.m; sourceTree = "<group>"; };
 		29B3B7C612C57DE00014F866 /* MyPdfScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPdfScrollView.h; sourceTree = "<group>"; };
 		29B3B7C712C57DE00014F866 /* MyPdfScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPdfScrollView.m; sourceTree = "<group>"; };
 		29B3B90A12C58C820014F866 /* ThumbnailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumbnailViewController.h; sourceTree = "<group>"; };
@@ -498,6 +501,8 @@
 			children = (
 				29B16DF5139873F300B4D958 /* ContentListViewController.h */,
 				29B16DF6139873F300B4D958 /* ContentListViewController.m */,
+				29B322D9169EB79800C047D9 /* ContentListTableViewController.h */,
+				29B322DA169EB79800C047D9 /* ContentListTableViewController.m */,
 				290731E513A89BF000AE5B35 /* ContentListCell.xib */,
 				290731E713A89C0200AE5B35 /* ContentListCell.h */,
 				290731E813A89C0200AE5B35 /* ContentListCell.m */,
@@ -990,6 +995,7 @@
 				2927D8AC15DB576C00AD6F35 /* VerificationController.m in Sources */,
 				29D028C816328111004F7791 /* ContentPlayerViewController+mailSend.m in Sources */,
 				29AFB90E1638067A00C0978C /* ContentPlayerViewController+bottomMenu.m in Sources */,
+				29B322DB169EB79800C047D9 /* ContentListTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,13 +10,14 @@
 #import "ContentPlayerViewController.h"
 #import "InAppPurchaseDefine.h"
 #import "ContentListViewController.h"
+#import "ContentListTableViewController.h"
 #import "ContentDetailViewController.h"
 #import "ServerContentListVC.h"
 #import "ServerContentDetailVC.h"
 
 @interface SakuttoBookViewController : UIViewController {
 	ContentPlayerViewController* contentPlayerViewController;
-	ContentListViewController* contentListVC;
+	ContentListTableViewController* contentListVC;
 	ContentDetailViewController* contentDetailVC;
 	//Server Content.
 	ServerContentListVC* serverContentListVC;

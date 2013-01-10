@@ -101,11 +101,22 @@
 #pragma mark - show/hide view.
 - (void)showContentListView
 {
+#if defined(IS_CONTENTLIST_WITH_IMAGE) && IS_CONTENTLIST_WITH_IMAGE != 0
+	//content list with image.
+	if (contentListTVC == nil) {
+		contentListTVC = [[ContentListThumbnailViewController alloc] initWithNibName:@"ContentListThumbnailViewController" bundle:[NSBundle mainBundle]];
+	}
+	[self.view addSubview:contentListTVC.view];
+	
+	contentListVC = nil;
+#else
+	//content list with table.
 	if (contentListVC == nil) {
-		contentListVC = [[ContentListViewController alloc] init];
+		contentListVC = [[ContentListTableViewController alloc] init];
 	}
 	[self.view addSubview:contentListVC.view];
 	[contentListVC reloadData];
+#endif
 }
 - (void)hideContentListView
 {
