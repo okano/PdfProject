@@ -12,7 +12,7 @@
 
 @synthesize contentPlayerViewController;
 @synthesize contentListVC;
-@synthesize contentListTVC;
+@synthesize contentListIVC;
 @synthesize contentDetailVC;
 @synthesize serverContentListVC;
 @synthesize serverContentDetailVC;
@@ -104,10 +104,10 @@
 {
 #if defined(IS_CONTENTLIST_WITH_IMAGE) && IS_CONTENTLIST_WITH_IMAGE != 0
 	//content list with image.
-	if (contentListTVC == nil) {
-		contentListTVC = [[ContentListThumbnailViewController alloc] initWithNibName:@"ContentListThumbnailViewController" bundle:[NSBundle mainBundle]];
+	if (contentListIVC == nil) {
+		contentListIVC = [[ContentListImageViewController alloc] initWithNibName:@"ContentListImageViewController" bundle:[NSBundle mainBundle]];
 	}
-	[self.view addSubview:contentListTVC.view];
+	[self.view addSubview:contentListIVC.view];
 	
 	contentListVC = nil;
 #else
@@ -124,8 +124,8 @@
 	if (contentListVC != nil) {
 		[contentListVC.view removeFromSuperview]; 
 	}
-	if (contentListTVC != nil) {
-		[contentListTVC.view removeFromSuperview];
+	if (contentListIVC != nil) {
+		[contentListIVC.view removeFromSuperview];
 	}
 }
 #pragma mark -

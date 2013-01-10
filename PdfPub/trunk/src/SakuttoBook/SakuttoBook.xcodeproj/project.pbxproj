@@ -43,8 +43,8 @@
 		2936659B13987BEF001028FE /* PaymentConductor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2936659A13987BEF001028FE /* PaymentConductor.m */; };
 		293BB9F012B6217300DDA3E3 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 293BB9EF12B6217300DDA3E3 /* WebViewController.m */; };
 		293BB9F212B6218500DDA3E3 /* WebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 293BB9F112B6218500DDA3E3 /* WebView.xib */; };
-		293FC642169EAE1C002AF927 /* ContentListThumbnailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 293FC640169EAE1C002AF927 /* ContentListThumbnailViewController.m */; };
-		293FC643169EAE1C002AF927 /* ContentListThumbnailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 293FC641169EAE1C002AF927 /* ContentListThumbnailViewController.xib */; };
+		293FC642169EAE1C002AF927 /* ContentListImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 293FC640169EAE1C002AF927 /* ContentListImageViewController.m */; };
+		293FC643169EAE1C002AF927 /* ContentListImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 293FC641169EAE1C002AF927 /* ContentListImageViewController.xib */; };
 		29431E2212C5D29C00914DBD /* list_bullets.png in Resources */ = {isa = PBXBuildFile; fileRef = 29431E2112C5D29C00914DBD /* list_bullets.png */; };
 		2943E85713A662480034AC62 /* ProductIdList.m in Sources */ = {isa = PBXBuildFile; fileRef = 2943E85613A662480034AC62 /* ProductIdList.m */; };
 		29452CA014E39B4300DD15ED /* ContentPlayerViewController+sound.m in Sources */ = {isa = PBXBuildFile; fileRef = 29452C9F14E39B4300DD15ED /* ContentPlayerViewController+sound.m */; };
@@ -195,9 +195,9 @@
 		293BB9EE12B6217300DDA3E3 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		293BB9EF12B6217300DDA3E3 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		293BB9F112B6218500DDA3E3 /* WebView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebView.xib; sourceTree = "<group>"; };
-		293FC63F169EAE1C002AF927 /* ContentListThumbnailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentListThumbnailViewController.h; path = InAppPurchase/ContentList/ContentListThumbnailViewController.h; sourceTree = "<group>"; };
-		293FC640169EAE1C002AF927 /* ContentListThumbnailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentListThumbnailViewController.m; path = InAppPurchase/ContentList/ContentListThumbnailViewController.m; sourceTree = "<group>"; };
-		293FC641169EAE1C002AF927 /* ContentListThumbnailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ContentListThumbnailViewController.xib; path = InAppPurchase/ContentList/ContentListThumbnailViewController.xib; sourceTree = "<group>"; };
+		293FC63F169EAE1C002AF927 /* ContentListImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentListImageViewController.h; path = InAppPurchase/ContentList/ContentListImageViewController.h; sourceTree = "<group>"; };
+		293FC640169EAE1C002AF927 /* ContentListImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentListImageViewController.m; path = InAppPurchase/ContentList/ContentListImageViewController.m; sourceTree = "<group>"; };
+		293FC641169EAE1C002AF927 /* ContentListImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ContentListImageViewController.xib; path = InAppPurchase/ContentList/ContentListImageViewController.xib; sourceTree = "<group>"; };
 		29431E2112C5D29C00914DBD /* list_bullets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = list_bullets.png; path = Classes/list_bullets.png; sourceTree = "<group>"; };
 		2943E85513A662480034AC62 /* ProductIdList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductIdList.h; path = InAppPurchase/ProductIdList.h; sourceTree = "<group>"; };
 		2943E85613A662480034AC62 /* ProductIdList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductIdList.m; path = InAppPurchase/ProductIdList.m; sourceTree = "<group>"; };
@@ -508,9 +508,9 @@
 				290731E813A89C0200AE5B35 /* ContentListCell.m */,
 				2936624913A894D60010A808 /* ContentListCellController.h */,
 				2936624A13A894D60010A808 /* ContentListCellController.m */,
-				293FC63F169EAE1C002AF927 /* ContentListThumbnailViewController.h */,
-				293FC640169EAE1C002AF927 /* ContentListThumbnailViewController.m */,
-				293FC641169EAE1C002AF927 /* ContentListThumbnailViewController.xib */,
+				293FC63F169EAE1C002AF927 /* ContentListImageViewController.h */,
+				293FC640169EAE1C002AF927 /* ContentListImageViewController.m */,
+				293FC641169EAE1C002AF927 /* ContentListImageViewController.xib */,
 			);
 			name = LocalContentList;
 			sourceTree = "<group>";
@@ -919,7 +919,7 @@
 				29208E4B1634ECFE007D778F /* mailDefine_2.csv in Resources */,
 				29208E4C1634ECFE007D778F /* mailDefine_3.csv in Resources */,
 				29208E4D1634ECFE007D778F /* mailDefine.csv in Resources */,
-				293FC643169EAE1C002AF927 /* ContentListThumbnailViewController.xib in Resources */,
+				293FC643169EAE1C002AF927 /* ContentListImageViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -999,7 +999,7 @@
 				2927D8AC15DB576C00AD6F35 /* VerificationController.m in Sources */,
 				29D028C816328111004F7791 /* ContentPlayerViewController+mailSend.m in Sources */,
 				29AFB90E1638067A00C0978C /* ContentPlayerViewController+bottomMenu.m in Sources */,
-				293FC642169EAE1C002AF927 /* ContentListThumbnailViewController.m in Sources */,
+				293FC642169EAE1C002AF927 /* ContentListImageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

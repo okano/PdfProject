@@ -1,18 +1,18 @@
 //
-//  ContentListThumbnailViewController.m
+//  ContentListImageViewController.m
 //  SakuttoBook
 //
 //  Created by okano on 13/01/10.
 //
 //
 
-#import "ContentListThumbnailViewController.h"
+#import "ContentListImageViewController.h"
 
-@interface ContentListThumbnailViewController ()
+@interface ContentListImageViewController ()
 
 @end
 
-@implementation ContentListThumbnailViewController
+@implementation ContentListImageViewController
 
 
 #pragma mark - View lifecycle
