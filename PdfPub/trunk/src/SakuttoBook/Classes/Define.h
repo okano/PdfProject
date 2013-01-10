@@ -25,6 +25,9 @@
 //Use Multi contents.
 #define IS_MULTI_CONTENTS	1	/* 0:single content, 1:multi contents */
 
+//Use content list with Image.
+#define IS_CONTENTLIST_WITH_IMAGE	1	/* 0:list with table, 1:list with image */
+
 //Hide Infomation button on Menu bar.
 #define HIDE_INFOMATION_BUTTON 0	/* 0:show, 1:hide */
 
