@@ -86,7 +86,7 @@
 	[appDelegate hideContentListView];
 	[appDelegate showContentDetailView:cid];
 }
-- (void)showServerContentListView
+- (IBAction)showServerContentListView
 {
 	//LOG_CURRENT_METHOD;
 	[appDelegate hideContentListView];

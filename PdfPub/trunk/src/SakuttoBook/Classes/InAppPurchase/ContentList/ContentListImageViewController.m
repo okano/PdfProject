@@ -29,7 +29,19 @@
 {
 	[super viewDidLoad];
 	
-    // Do any additional setup after loading the view from its nib.
+#if defined(HIDE_SERVER_BUTTON) && HIDE_SERVER_BUTTON != 0
+	//Hide Server Button.
+#define STORE_BUTTON_TAG 300
+	serverContentButton.tag = STORE_BUTTON_TAG;
+	NSMutableArray *toolbarItems = [NSMutableArray arrayWithArray:[toolbar items]];
+	for (UIBarButtonItem* item in [toolbarItems reverseObjectEnumerator]) {
+		if (item.tag == STORE_BUTTON_TAG) {
+			[toolbarItems removeObject:item];
+		}
+	}
+	toolbar.items = toolbarItems;
+#endif
+
 }
 
 - (void)didReceiveMemoryWarning

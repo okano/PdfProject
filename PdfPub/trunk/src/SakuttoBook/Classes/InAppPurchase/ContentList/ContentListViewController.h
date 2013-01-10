@@ -22,7 +22,7 @@
 
 - (void)showContentPlayer:(ContentId)cid;
 - (void)showContentDetailView:(ContentId)cid;
-- (void)showServerContentListView;
+- (IBAction)showServerContentListView;
 - (IBAction)showPaymentHistoryList;
 
 @end
