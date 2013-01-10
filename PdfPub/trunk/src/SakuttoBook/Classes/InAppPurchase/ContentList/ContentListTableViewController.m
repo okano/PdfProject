@@ -215,6 +215,7 @@
 		isPayedContent = YES;
 		
 		//Record free content payment record only first time read.
+		//(TODO: Set date to first_launchup_daytime.)
 		[appDelegate.paymentHistoryDS recordHistoryOnceWithContentId:targetCid ProductId:targetPid date:nil];
 	}
 	if ([appDelegate.paymentHistoryDS isEnabledContent:targetCid] == TRUE) {
