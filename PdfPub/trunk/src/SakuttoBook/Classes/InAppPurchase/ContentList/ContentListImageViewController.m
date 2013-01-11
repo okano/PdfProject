@@ -29,6 +29,9 @@
 {
 	[super viewDidLoad];
 	
+	//Fit view size with screen. (iPhone-3.5inch/iPhone-4inch/iPad/iPad-Retina)
+	self.view.frame = [[UIScreen mainScreen] bounds];
+	
 #if defined(HIDE_SERVER_BUTTON) && HIDE_SERVER_BUTTON != 0
 	//Hide Server Button.
 #define STORE_BUTTON_TAG 300
