@@ -109,6 +109,7 @@
 		299FDFBA169FDA3E002E593E /* SORA031.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF9A169FDA3E002E593E /* SORA031.aif */; };
 		299FDFBB169FDA3E002E593E /* SORA032.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF9B169FDA3E002E593E /* SORA032.aif */; };
 		299FDFBD169FDC4E002E593E /* soundDefine_2.csv in Resources */ = {isa = PBXBuildFile; fileRef = 299FDFBC169FDC4E002E593E /* soundDefine_2.csv */; };
+		299FDFBF169FE3EA002E593E /* sweets.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 299FDFBE169FE3EA002E593E /* sweets.pdf */; };
 		29A1CB7A138616AA00326759 /* SKBE_MainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A1CB79138616AA00326759 /* SKBE_MainVC.m */; };
 		29A1CB7E138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A1CB7D138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m */; };
 		29A2A5471398B87300C8CB52 /* productIdList.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29A2A5461398B87300C8CB52 /* productIdList.csv */; };
@@ -314,6 +315,7 @@
 		299FDF9A169FDA3E002E593E /* SORA031.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = SORA031.aif; sourceTree = "<group>"; };
 		299FDF9B169FDA3E002E593E /* SORA032.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = SORA032.aif; sourceTree = "<group>"; };
 		299FDFBC169FDC4E002E593E /* soundDefine_2.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = soundDefine_2.csv; path = csv/soundDefine_2.csv; sourceTree = "<group>"; };
+		299FDFBE169FE3EA002E593E /* sweets.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = sweets.pdf; sourceTree = "<group>"; };
 		29A1CB78138616AA00326759 /* SKBE_MainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKBE_MainVC.h; path = SKBEngine/SKBEngine/SKBE_MainVC.h; sourceTree = "<group>"; };
 		29A1CB79138616AA00326759 /* SKBE_MainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKBE_MainVC.m; path = SKBEngine/SKBEngine/SKBE_MainVC.m; sourceTree = "<group>"; };
 		29A1CB7C138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKBEngine_PopoverScrollImageViewController.h; path = SKBEngine/SKBEngine/SKBEngine_PopoverScrollImageViewController.h; sourceTree = "<group>"; };
@@ -617,6 +619,7 @@
 				29BD25FB13A4963A0029E2B4 /* document-3.pdf */,
 				299FDF78169FD786002E593E /* bonkei-iphone.pdf */,
 				299FDF7A169FDA1F002E593E /* shasinshu.pdf */,
+				299FDFBE169FE3EA002E593E /* sweets.pdf */,
 			);
 			path = pdf;
 			sourceTree = "<group>";
@@ -1095,6 +1098,7 @@
 				299FDFBA169FDA3E002E593E /* SORA031.aif in Resources */,
 				299FDFBB169FDA3E002E593E /* SORA032.aif in Resources */,
 				299FDFBD169FDC4E002E593E /* soundDefine_2.csv in Resources */,
+				299FDFBF169FE3EA002E593E /* sweets.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
