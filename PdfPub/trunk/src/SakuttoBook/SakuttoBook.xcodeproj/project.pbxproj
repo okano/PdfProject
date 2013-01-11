@@ -70,6 +70,45 @@
 		299448EC12B7370B00E7D108 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299448EB12B7370B00E7D108 /* MediaPlayer.framework */; };
 		2999FDC512D6A8D500D0F145 /* License.m in Sources */ = {isa = PBXBuildFile; fileRef = 2999FDC412D6A8D500D0F145 /* License.m */; };
 		299F35CC1533EBAE00FAD69F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299F35CB1533EBAE00FAD69F /* SystemConfiguration.framework */; };
+		299FDF73169FD776002E593E /* taiyou.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF6F169FD776002E593E /* taiyou.aif */; };
+		299FDF74169FD776002E593E /* yoake1.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF70169FD776002E593E /* yoake1.aif */; };
+		299FDF75169FD776002E593E /* yoake2.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF71169FD776002E593E /* yoake2.aif */; };
+		299FDF76169FD776002E593E /* yoake3.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF72169FD776002E593E /* yoake3.aif */; };
+		299FDF79169FD786002E593E /* bonkei-iphone.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF78169FD786002E593E /* bonkei-iphone.pdf */; };
+		299FDF7B169FDA1F002E593E /* shasinshu.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF7A169FDA1F002E593E /* shasinshu.pdf */; };
+		299FDF9C169FDA3E002E593E /* SORA001.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF7C169FDA3E002E593E /* SORA001.aif */; };
+		299FDF9D169FDA3E002E593E /* SORA002.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF7D169FDA3E002E593E /* SORA002.aif */; };
+		299FDF9E169FDA3E002E593E /* SORA003.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF7E169FDA3E002E593E /* SORA003.aif */; };
+		299FDF9F169FDA3E002E593E /* SORA004.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF7F169FDA3E002E593E /* SORA004.aif */; };
+		299FDFA0169FDA3E002E593E /* SORA005.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF80169FDA3E002E593E /* SORA005.aif */; };
+		299FDFA1169FDA3E002E593E /* SORA006.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF81169FDA3E002E593E /* SORA006.aif */; };
+		299FDFA2169FDA3E002E593E /* SORA007.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF82169FDA3E002E593E /* SORA007.aif */; };
+		299FDFA3169FDA3E002E593E /* SORA008.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF83169FDA3E002E593E /* SORA008.aif */; };
+		299FDFA4169FDA3E002E593E /* SORA009.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF84169FDA3E002E593E /* SORA009.aif */; };
+		299FDFA5169FDA3E002E593E /* SORA010.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF85169FDA3E002E593E /* SORA010.aif */; };
+		299FDFA6169FDA3E002E593E /* SORA011.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF86169FDA3E002E593E /* SORA011.aif */; };
+		299FDFA7169FDA3E002E593E /* SORA012.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF87169FDA3E002E593E /* SORA012.aif */; };
+		299FDFA8169FDA3E002E593E /* SORA013.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF88169FDA3E002E593E /* SORA013.aif */; };
+		299FDFA9169FDA3E002E593E /* SORA014.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF89169FDA3E002E593E /* SORA014.aif */; };
+		299FDFAA169FDA3E002E593E /* SORA015.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF8A169FDA3E002E593E /* SORA015.aif */; };
+		299FDFAB169FDA3E002E593E /* SORA016.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF8B169FDA3E002E593E /* SORA016.aif */; };
+		299FDFAC169FDA3E002E593E /* SORA017.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF8C169FDA3E002E593E /* SORA017.aif */; };
+		299FDFAD169FDA3E002E593E /* SORA018.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF8D169FDA3E002E593E /* SORA018.aif */; };
+		299FDFAE169FDA3E002E593E /* SORA019.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF8E169FDA3E002E593E /* SORA019.aif */; };
+		299FDFAF169FDA3E002E593E /* SORA020.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF8F169FDA3E002E593E /* SORA020.aif */; };
+		299FDFB0169FDA3E002E593E /* SORA021.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF90169FDA3E002E593E /* SORA021.aif */; };
+		299FDFB1169FDA3E002E593E /* SORA022.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF91169FDA3E002E593E /* SORA022.aif */; };
+		299FDFB2169FDA3E002E593E /* SORA023.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF92169FDA3E002E593E /* SORA023.aif */; };
+		299FDFB3169FDA3E002E593E /* SORA024.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF93169FDA3E002E593E /* SORA024.aif */; };
+		299FDFB4169FDA3E002E593E /* SORA025.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF94169FDA3E002E593E /* SORA025.aif */; };
+		299FDFB5169FDA3E002E593E /* SORA026.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF95169FDA3E002E593E /* SORA026.aif */; };
+		299FDFB6169FDA3E002E593E /* SORA027.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF96169FDA3E002E593E /* SORA027.aif */; };
+		299FDFB7169FDA3E002E593E /* SORA028.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF97169FDA3E002E593E /* SORA028.aif */; };
+		299FDFB8169FDA3E002E593E /* SORA029.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF98169FDA3E002E593E /* SORA029.aif */; };
+		299FDFB9169FDA3E002E593E /* SORA030.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF99169FDA3E002E593E /* SORA030.aif */; };
+		299FDFBA169FDA3E002E593E /* SORA031.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF9A169FDA3E002E593E /* SORA031.aif */; };
+		299FDFBB169FDA3E002E593E /* SORA032.aif in Resources */ = {isa = PBXBuildFile; fileRef = 299FDF9B169FDA3E002E593E /* SORA032.aif */; };
+		299FDFBD169FDC4E002E593E /* soundDefine_2.csv in Resources */ = {isa = PBXBuildFile; fileRef = 299FDFBC169FDC4E002E593E /* soundDefine_2.csv */; };
 		29A1CB7A138616AA00326759 /* SKBE_MainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A1CB79138616AA00326759 /* SKBE_MainVC.m */; };
 		29A1CB7E138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A1CB7D138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m */; };
 		29A2A5471398B87300C8CB52 /* productIdList.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29A2A5461398B87300C8CB52 /* productIdList.csv */; };
@@ -236,6 +275,45 @@
 		2999FDC312D6A8D500D0F145 /* License.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = License.h; sourceTree = "<group>"; };
 		2999FDC412D6A8D500D0F145 /* License.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = License.m; sourceTree = "<group>"; };
 		299F35CB1533EBAE00FAD69F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		299FDF6F169FD776002E593E /* taiyou.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = taiyou.aif; sourceTree = "<group>"; };
+		299FDF70169FD776002E593E /* yoake1.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = yoake1.aif; sourceTree = "<group>"; };
+		299FDF71169FD776002E593E /* yoake2.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = yoake2.aif; sourceTree = "<group>"; };
+		299FDF72169FD776002E593E /* yoake3.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = yoake3.aif; sourceTree = "<group>"; };
+		299FDF78169FD786002E593E /* bonkei-iphone.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "bonkei-iphone.pdf"; sourceTree = "<group>"; };
+		299FDF7A169FDA1F002E593E /* shasinshu.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = shasinshu.pdf; sourceTree = "<group>"; };
+		299FDF7C169FDA3E002E593E /* SORA001.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = SORA001.aif; sourceTree = "<group>"; };
+		299FDF7D169FDA3E002E593E /* SORA002.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = SORA002.aif; sourceTree = "<group>"; };
+		299FDF7E169FDA3E002E593E /* SORA003.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = SORA003.aif; sourceTree = "<group>"; };
+		299FDF7F169FDA3E002E593E /* SORA004.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = SORA004.aif; sourceTree = "<group>"; };
+		299FDF80169FDA3E002E593E /* SORA005.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = SORA005.aif; sourceTree = "<group>"; };
+		299FDF81169FDA3E002E593E /* SORA006.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = SORA006.aif; sourceTree = "<group>"; };
+		299FDF82169FDA3E002E593E /* SORA007.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = SORA007.aif; sourceTree = "<group>"; };
+		299FDF83169FDA3E002E593E /* SORA008.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = SORA008.aif; sourceTree = "<group>"; };
+		299FDF84169FDA3E002E593E /* SORA009.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = SORA009.aif; sourceTree = "<group>"; };
+		299FDF85169FDA3E002E593E /* SORA010.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = SORA010.aif; sourceTree = "<group>"; };
+		299FDF86169FDA3E002E593E /* SORA011.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = SORA011.aif; sourceTree = "<group>"; };
+		299FDF87169FDA3E002E593E /* SORA012.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = SORA012.aif; sourceTree = "<group>"; };
+		299FDF88169FDA3E002E593E /* SORA013.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = SORA013.aif; sourceTree = "<group>"; };
+		299FDF89169FDA3E002E593E /* SORA014.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = SORA014.aif; sourceTree = "<group>"; };
+		299FDF8A169FDA3E002E593E /* SORA015.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = SORA015.aif; sourceTree = "<group>"; };
+		299FDF8B169FDA3E002E593E /* SORA016.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = SORA016.aif; sourceTree = "<group>"; };
+		299FDF8C169FDA3E002E593E /* SORA017.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = SORA017.aif; sourceTree = "<group>"; };
+		299FDF8D169FDA3E002E593E /* SORA018.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = SORA018.aif; sourceTree = "<group>"; };
+		299FDF8E169FDA3E002E593E /* SORA019.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = SORA019.aif; sourceTree = "<group>"; };
+		299FDF8F169FDA3E002E593E /* SORA020.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = SORA020.aif; sourceTree = "<group>"; };
+		299FDF90169FDA3E002E593E /* SORA021.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = SORA021.aif; sourceTree = "<group>"; };
+		299FDF91169FDA3E002E593E /* SORA022.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = SORA022.aif; sourceTree = "<group>"; };
+		299FDF92169FDA3E002E593E /* SORA023.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = SORA023.aif; sourceTree = "<group>"; };
+		299FDF93169FDA3E002E593E /* SORA024.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = SORA024.aif; sourceTree = "<group>"; };
+		299FDF94169FDA3E002E593E /* SORA025.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = SORA025.aif; sourceTree = "<group>"; };
+		299FDF95169FDA3E002E593E /* SORA026.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = SORA026.aif; sourceTree = "<group>"; };
+		299FDF96169FDA3E002E593E /* SORA027.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = SORA027.aif; sourceTree = "<group>"; };
+		299FDF97169FDA3E002E593E /* SORA028.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = SORA028.aif; sourceTree = "<group>"; };
+		299FDF98169FDA3E002E593E /* SORA029.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = SORA029.aif; sourceTree = "<group>"; };
+		299FDF99169FDA3E002E593E /* SORA030.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = SORA030.aif; sourceTree = "<group>"; };
+		299FDF9A169FDA3E002E593E /* SORA031.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = SORA031.aif; sourceTree = "<group>"; };
+		299FDF9B169FDA3E002E593E /* SORA032.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = SORA032.aif; sourceTree = "<group>"; };
+		299FDFBC169FDC4E002E593E /* soundDefine_2.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = soundDefine_2.csv; path = csv/soundDefine_2.csv; sourceTree = "<group>"; };
 		29A1CB78138616AA00326759 /* SKBE_MainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKBE_MainVC.h; path = SKBEngine/SKBEngine/SKBE_MainVC.h; sourceTree = "<group>"; };
 		29A1CB79138616AA00326759 /* SKBE_MainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKBE_MainVC.m; path = SKBEngine/SKBEngine/SKBE_MainVC.m; sourceTree = "<group>"; };
 		29A1CB7C138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKBEngine_PopoverScrollImageViewController.h; path = SKBEngine/SKBEngine/SKBEngine_PopoverScrollImageViewController.h; sourceTree = "<group>"; };
@@ -487,9 +565,45 @@
 		29452CA814E3A58700DD15ED /* sound */ = {
 			isa = PBXGroup;
 			children = (
+				299FDF6F169FD776002E593E /* taiyou.aif */,
+				299FDF70169FD776002E593E /* yoake1.aif */,
+				299FDF71169FD776002E593E /* yoake2.aif */,
+				299FDF72169FD776002E593E /* yoake3.aif */,
 				29452CA914E3A58700DD15ED /* p1.mp3 */,
 				29452CAA14E3A58700DD15ED /* p2.mp3 */,
 				29452CAB14E3A58700DD15ED /* p3.mp3 */,
+				299FDF7C169FDA3E002E593E /* SORA001.aif */,
+				299FDF7D169FDA3E002E593E /* SORA002.aif */,
+				299FDF7E169FDA3E002E593E /* SORA003.aif */,
+				299FDF7F169FDA3E002E593E /* SORA004.aif */,
+				299FDF80169FDA3E002E593E /* SORA005.aif */,
+				299FDF81169FDA3E002E593E /* SORA006.aif */,
+				299FDF82169FDA3E002E593E /* SORA007.aif */,
+				299FDF83169FDA3E002E593E /* SORA008.aif */,
+				299FDF84169FDA3E002E593E /* SORA009.aif */,
+				299FDF85169FDA3E002E593E /* SORA010.aif */,
+				299FDF86169FDA3E002E593E /* SORA011.aif */,
+				299FDF87169FDA3E002E593E /* SORA012.aif */,
+				299FDF88169FDA3E002E593E /* SORA013.aif */,
+				299FDF89169FDA3E002E593E /* SORA014.aif */,
+				299FDF8A169FDA3E002E593E /* SORA015.aif */,
+				299FDF8B169FDA3E002E593E /* SORA016.aif */,
+				299FDF8C169FDA3E002E593E /* SORA017.aif */,
+				299FDF8D169FDA3E002E593E /* SORA018.aif */,
+				299FDF8E169FDA3E002E593E /* SORA019.aif */,
+				299FDF8F169FDA3E002E593E /* SORA020.aif */,
+				299FDF90169FDA3E002E593E /* SORA021.aif */,
+				299FDF91169FDA3E002E593E /* SORA022.aif */,
+				299FDF92169FDA3E002E593E /* SORA023.aif */,
+				299FDF93169FDA3E002E593E /* SORA024.aif */,
+				299FDF94169FDA3E002E593E /* SORA025.aif */,
+				299FDF95169FDA3E002E593E /* SORA026.aif */,
+				299FDF96169FDA3E002E593E /* SORA027.aif */,
+				299FDF97169FDA3E002E593E /* SORA028.aif */,
+				299FDF98169FDA3E002E593E /* SORA029.aif */,
+				299FDF99169FDA3E002E593E /* SORA030.aif */,
+				299FDF9A169FDA3E002E593E /* SORA031.aif */,
+				299FDF9B169FDA3E002E593E /* SORA032.aif */,
 			);
 			path = sound;
 			sourceTree = "<group>";
@@ -501,6 +615,8 @@
 				29BD25F913A4963A0029E2B4 /* document-1.pdf */,
 				29BD25FA13A4963A0029E2B4 /* document-2.pdf */,
 				29BD25FB13A4963A0029E2B4 /* document-3.pdf */,
+				299FDF78169FD786002E593E /* bonkei-iphone.pdf */,
+				299FDF7A169FDA1F002E593E /* shasinshu.pdf */,
 			);
 			path = pdf;
 			sourceTree = "<group>";
@@ -799,6 +915,7 @@
 				29F4B93C13AB2A6800519DAA /* popoverScrollImageDefine_2.csv */,
 				29F4B93D13AB2A6800519DAA /* popoverScrollImageDefine_3.csv */,
 				29452CA614E3A12200DD15ED /* soundDefine_1.csv */,
+				299FDFBC169FDC4E002E593E /* soundDefine_2.csv */,
 				29014A9C12D6EC9100936BF0 /* tocDefine.csv */,
 				29F4B93E13AB2A6800519DAA /* tocDefine_1.csv */,
 				29F4B93F13AB2A6800519DAA /* tocDefine_2.csv */,
@@ -939,6 +1056,45 @@
 				29208E4D1634ECFE007D778F /* mailDefine.csv in Resources */,
 				2916B7A01674799F00B344DA /* ConfigVC2.xib in Resources */,
 				293FC643169EAE1C002AF927 /* ContentListImageViewController.xib in Resources */,
+				299FDF73169FD776002E593E /* taiyou.aif in Resources */,
+				299FDF74169FD776002E593E /* yoake1.aif in Resources */,
+				299FDF75169FD776002E593E /* yoake2.aif in Resources */,
+				299FDF76169FD776002E593E /* yoake3.aif in Resources */,
+				299FDF79169FD786002E593E /* bonkei-iphone.pdf in Resources */,
+				299FDF7B169FDA1F002E593E /* shasinshu.pdf in Resources */,
+				299FDF9C169FDA3E002E593E /* SORA001.aif in Resources */,
+				299FDF9D169FDA3E002E593E /* SORA002.aif in Resources */,
+				299FDF9E169FDA3E002E593E /* SORA003.aif in Resources */,
+				299FDF9F169FDA3E002E593E /* SORA004.aif in Resources */,
+				299FDFA0169FDA3E002E593E /* SORA005.aif in Resources */,
+				299FDFA1169FDA3E002E593E /* SORA006.aif in Resources */,
+				299FDFA2169FDA3E002E593E /* SORA007.aif in Resources */,
+				299FDFA3169FDA3E002E593E /* SORA008.aif in Resources */,
+				299FDFA4169FDA3E002E593E /* SORA009.aif in Resources */,
+				299FDFA5169FDA3E002E593E /* SORA010.aif in Resources */,
+				299FDFA6169FDA3E002E593E /* SORA011.aif in Resources */,
+				299FDFA7169FDA3E002E593E /* SORA012.aif in Resources */,
+				299FDFA8169FDA3E002E593E /* SORA013.aif in Resources */,
+				299FDFA9169FDA3E002E593E /* SORA014.aif in Resources */,
+				299FDFAA169FDA3E002E593E /* SORA015.aif in Resources */,
+				299FDFAB169FDA3E002E593E /* SORA016.aif in Resources */,
+				299FDFAC169FDA3E002E593E /* SORA017.aif in Resources */,
+				299FDFAD169FDA3E002E593E /* SORA018.aif in Resources */,
+				299FDFAE169FDA3E002E593E /* SORA019.aif in Resources */,
+				299FDFAF169FDA3E002E593E /* SORA020.aif in Resources */,
+				299FDFB0169FDA3E002E593E /* SORA021.aif in Resources */,
+				299FDFB1169FDA3E002E593E /* SORA022.aif in Resources */,
+				299FDFB2169FDA3E002E593E /* SORA023.aif in Resources */,
+				299FDFB3169FDA3E002E593E /* SORA024.aif in Resources */,
+				299FDFB4169FDA3E002E593E /* SORA025.aif in Resources */,
+				299FDFB5169FDA3E002E593E /* SORA026.aif in Resources */,
+				299FDFB6169FDA3E002E593E /* SORA027.aif in Resources */,
+				299FDFB7169FDA3E002E593E /* SORA028.aif in Resources */,
+				299FDFB8169FDA3E002E593E /* SORA029.aif in Resources */,
+				299FDFB9169FDA3E002E593E /* SORA030.aif in Resources */,
+				299FDFBA169FDA3E002E593E /* SORA031.aif in Resources */,
+				299FDFBB169FDA3E002E593E /* SORA032.aif in Resources */,
+				299FDFBD169FDC4E002E593E /* soundDefine_2.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
