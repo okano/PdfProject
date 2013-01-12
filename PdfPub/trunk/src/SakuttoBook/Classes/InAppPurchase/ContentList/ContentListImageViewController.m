@@ -67,6 +67,24 @@
 	currentOriginX += spacerX;
 	currentOriginY += spacerY;
 	
+	//Setup shelf image. (fit width)
+	UIImage* shelfImageOrg = [UIImage imageNamed:@"shelf.png"];
+	UIImage* shelfImage = nil;
+	CGFloat shelfImageWidthResized = self.view.frame.size.width;
+	CGFloat shelfImageHeightResized = shelfImageOrg.size.height;
+	UIGraphicsBeginImageContext(CGSizeMake(shelfImageWidthResized, shelfImageHeightResized));
+	[shelfImageOrg drawInRect:CGRectMake(0, 0, shelfImageWidthResized, shelfImageHeightResized)];
+	shelfImage = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	
+	//Show first shelf.
+	UIImageView* shelfImageView = [[UIImageView alloc] initWithImage:shelfImage];
+	CGRect shelfImageFrame;
+	shelfImageFrame = shelfImageView.frame;
+	shelfImageFrame.origin.y = 150;
+	shelfImageView.frame = shelfImageFrame;
+	[scrollView addSubview:shelfImageView];
+	
 	//
 	int maxCount = [appDelegate.contentListDS count];
 	for (int i = 0; i < maxCount; i = i + 1)
@@ -139,6 +157,14 @@
 			
 			rect.origin.x = currentOriginX;
 			rect.origin.y = currentOriginY;
+			
+			//Show shelf.
+			UIImageView* shelfImageView = [[UIImageView alloc] initWithImage:shelfImage];
+			CGRect shelfImageFrame;
+			shelfImageFrame = shelfImageView.frame;
+			shelfImageFrame.origin.y = currentOriginY + 150;
+			shelfImageView.frame = shelfImageFrame;
+			[scrollView addSubview:shelfImageView];
 		}
 		// Positioning to next position.
 		currentOriginX += rect.size.width;
