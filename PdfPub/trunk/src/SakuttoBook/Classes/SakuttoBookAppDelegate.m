@@ -558,13 +558,7 @@
 	}
 	
 	int currentDeviceKind;
-#if (__IPHONE_OS_VERSION_MAX_ALLOWED >= 30200)
-	// sdk upper 3.2
-	currentDeviceKind = UI_USER_INTERFACE_IDIOM();
-#else
-	// sdk under 3.2
-	currentDeviceKind = UIUserInterfaceIdiomPhone;
-#endif
+	currentDeviceKind = UI_USER_INTERFACE_IDIOM();	// sdk upper 3.2
 	
 	if (currentDeviceKind == [obj intValue]) {
 		return NO;
@@ -580,13 +574,7 @@
 	
 	//Get current device kind.
 	int currentDeviceKind;
-#if (__IPHONE_OS_VERSION_MAX_ALLOWED >= 30200)
-	// sdk upper 3.2
-	currentDeviceKind = UI_USER_INTERFACE_IDIOM();
-#else
-	// sdk under 3.2
-	currentDeviceKind = UIUserInterfaceIdiomPhone;
-#endif
+	currentDeviceKind = UI_USER_INTERFACE_IDIOM();	// sdk upper 3.2
 	
 	//Set to UserDefault.
 	[[NSUserDefaults standardUserDefaults] setInteger:(NSInteger)currentDeviceKind
