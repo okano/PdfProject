@@ -22,6 +22,9 @@
 		290731E613A89BF000AE5B35 /* ContentListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 290731E513A89BF000AE5B35 /* ContentListCell.xib */; };
 		290731E913A89C0200AE5B35 /* ContentListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 290731E813A89C0200AE5B35 /* ContentListCell.m */; };
 		290BA0B012B5E0D1009C01C8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 290BA0AF12B5E0D1009C01C8 /* QuartzCore.framework */; };
+		290CB2FE16A10D8C0065767C /* pdfDefine_4.csv in Resources */ = {isa = PBXBuildFile; fileRef = 290CB2FD16A10D8C0065767C /* pdfDefine_4.csv */; };
+		290CB30116A10D930065767C /* tocDefine_4.csv in Resources */ = {isa = PBXBuildFile; fileRef = 290CB30016A10D930065767C /* tocDefine_4.csv */; };
+		290CB30316A10DA20065767C /* bookDefine_4.csv in Resources */ = {isa = PBXBuildFile; fileRef = 290CB30216A10DA20065767C /* bookDefine_4.csv */; };
 		290F035512D594D300666C6A /* BookmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 290F035412D594D300666C6A /* BookmarkViewController.m */; };
 		2912656912D46BEE00704565 /* list_thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2912656812D46BEE00704565 /* list_thumbnail.png */; };
 		291593141394B54700387697 /* ContentPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 291593131394B54700387697 /* ContentPlayerViewController.m */; };
@@ -33,6 +36,9 @@
 		29208E4C1634ECFE007D778F /* mailDefine_3.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29208E481634ECFE007D778F /* mailDefine_3.csv */; };
 		29208E4D1634ECFE007D778F /* mailDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29208E491634ECFE007D778F /* mailDefine.csv */; };
 		29208E541634F384007D778F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29208E531634F384007D778F /* MessageUI.framework */; };
+		29253E6B16A10C4700789E1C /* ContentIcon_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 29253E6A16A10C4700789E1C /* ContentIcon_4.png */; };
+		29253E7516A10C8F00789E1C /* Gray-Rainbow_eBook_r100_iPad.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 29253E7316A10C8F00789E1C /* Gray-Rainbow_eBook_r100_iPad.pdf */; };
+		29253E7616A10C8F00789E1C /* Gray-Rainbow_eBook_r100_iPhone4.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 29253E7416A10C8F00789E1C /* Gray-Rainbow_eBook_r100_iPhone4.pdf */; };
 		2927D8AC15DB576C00AD6F35 /* VerificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2927D8AB15DB576C00AD6F35 /* VerificationController.m */; };
 		2927D8AE15DB57DD00AD6F35 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2927D8AD15DB57DD00AD6F35 /* Security.framework */; };
 		2933410312D594AA00BFBC23 /* BookmarkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2933410212D594AA00BFBC23 /* BookmarkView.xib */; };
@@ -209,6 +215,9 @@
 		290731E713A89C0200AE5B35 /* ContentListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentListCell.h; path = InAppPurchase/ContentList/ContentListCell.h; sourceTree = "<group>"; };
 		290731E813A89C0200AE5B35 /* ContentListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentListCell.m; path = InAppPurchase/ContentList/ContentListCell.m; sourceTree = "<group>"; };
 		290BA0AF12B5E0D1009C01C8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		290CB2FD16A10D8C0065767C /* pdfDefine_4.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pdfDefine_4.csv; path = csv/pdfDefine_4.csv; sourceTree = "<group>"; };
+		290CB30016A10D930065767C /* tocDefine_4.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tocDefine_4.csv; path = csv/tocDefine_4.csv; sourceTree = "<group>"; };
+		290CB30216A10DA20065767C /* bookDefine_4.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bookDefine_4.csv; path = csv/bookDefine_4.csv; sourceTree = "<group>"; };
 		290F035312D594D300666C6A /* BookmarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkViewController.h; sourceTree = "<group>"; };
 		290F035412D594D300666C6A /* BookmarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkViewController.m; sourceTree = "<group>"; };
 		2912656812D46BEE00704565 /* list_thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = list_thumbnail.png; path = Classes/list_thumbnail.png; sourceTree = "<group>"; };
@@ -226,6 +235,9 @@
 		29208E481634ECFE007D778F /* mailDefine_3.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mailDefine_3.csv; path = csv/mailDefine_3.csv; sourceTree = "<group>"; };
 		29208E491634ECFE007D778F /* mailDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mailDefine.csv; path = csv/mailDefine.csv; sourceTree = "<group>"; };
 		29208E531634F384007D778F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		29253E6A16A10C4700789E1C /* ContentIcon_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ContentIcon_4.png; sourceTree = "<group>"; };
+		29253E7316A10C8F00789E1C /* Gray-Rainbow_eBook_r100_iPad.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Gray-Rainbow_eBook_r100_iPad.pdf"; sourceTree = "<group>"; };
+		29253E7416A10C8F00789E1C /* Gray-Rainbow_eBook_r100_iPhone4.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Gray-Rainbow_eBook_r100_iPhone4.pdf"; sourceTree = "<group>"; };
 		2927D8AA15DB576C00AD6F35 /* VerificationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerificationController.h; sourceTree = "<group>"; };
 		2927D8AB15DB576C00AD6F35 /* VerificationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationController.m; sourceTree = "<group>"; };
 		2927D8AD15DB57DD00AD6F35 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -539,6 +551,7 @@
 				29F4B95013AB2AC200519DAA /* ContentIcon_1.png */,
 				29F4B95113AB2AC200519DAA /* ContentIcon_2.png */,
 				29F4B95213AB2AC200519DAA /* ContentIcon_3.png */,
+				29253E6A16A10C4700789E1C /* ContentIcon_4.png */,
 			);
 			path = image;
 			sourceTree = "<group>";
@@ -620,6 +633,8 @@
 				299FDF78169FD786002E593E /* bonkei-iphone.pdf */,
 				299FDF7A169FDA1F002E593E /* shasinshu.pdf */,
 				299FDFBE169FE3EA002E593E /* sweets.pdf */,
+				29253E7316A10C8F00789E1C /* Gray-Rainbow_eBook_r100_iPad.pdf */,
+				29253E7416A10C8F00789E1C /* Gray-Rainbow_eBook_r100_iPhone4.pdf */,
 			);
 			path = pdf;
 			sourceTree = "<group>";
@@ -927,6 +942,9 @@
 				2936213F15B940BB008C75C7 /* pdfDefine_1.csv */,
 				2936214015B940BB008C75C7 /* pdfDefine_2.csv */,
 				2936214115B940BB008C75C7 /* pdfDefine_3.csv */,
+				290CB30216A10DA20065767C /* bookDefine_4.csv */,
+				290CB2FD16A10D8C0065767C /* pdfDefine_4.csv */,
+				290CB30016A10D930065767C /* tocDefine_4.csv */,
 				29A2A5461398B87300C8CB52 /* productIdList.csv */,
 			);
 			name = csv;
@@ -1099,6 +1117,12 @@
 				299FDFBB169FDA3E002E593E /* SORA032.aif in Resources */,
 				299FDFBD169FDC4E002E593E /* soundDefine_2.csv in Resources */,
 				299FDFBF169FE3EA002E593E /* sweets.pdf in Resources */,
+				29253E6B16A10C4700789E1C /* ContentIcon_4.png in Resources */,
+				29253E7516A10C8F00789E1C /* Gray-Rainbow_eBook_r100_iPad.pdf in Resources */,
+				29253E7616A10C8F00789E1C /* Gray-Rainbow_eBook_r100_iPhone4.pdf in Resources */,
+				290CB2FE16A10D8C0065767C /* pdfDefine_4.csv in Resources */,
+				290CB30116A10D930065767C /* tocDefine_4.csv in Resources */,
+				290CB30316A10DA20065767C /* bookDefine_4.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
