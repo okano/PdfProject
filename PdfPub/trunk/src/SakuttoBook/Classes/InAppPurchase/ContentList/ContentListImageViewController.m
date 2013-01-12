@@ -179,6 +179,34 @@
 		[button addTarget:self action:@selector(buttonEvent:) forControlEvents:UIControlEventTouchUpInside];
 		[scrollView addSubview:button];
 		
+		//Check payment status and show.
+		NSString* targetPid = [[ProductIdList sharedManager] getProductIdentifier:targetCid];
+		if (([[ProductIdList sharedManager] isFreeContent:targetPid] == TRUE)
+			||
+			([appDelegate.paymentHistoryDS isEnabledContent:targetCid] == TRUE))
+		{
+			//Paid content.
+			//Do nothing.
+		} else {
+			//UnPaid content. Show unPaid mark.
+			UIImage* unPaidImageOrg = [UIImage imageNamed:@"unpaid.png"];
+			UIImage* unPaidImage = nil;
+			//(Resize unPaid mark image.)
+			newImageWidth = button.frame.size.width / 10;
+			UIGraphicsBeginImageContext(CGSizeMake(newImageWidth, newImageWidth));
+			[unPaidImageOrg drawInRect:CGRectMake(0, 0, newImageWidth, newImageWidth)];
+			unPaidImage = UIGraphicsGetImageFromCurrentImageContext();
+			UIGraphicsEndImageContext();
+			//(Set position.)
+			UIImageView* unPaidImageView = [[UIImageView alloc] initWithImage:unPaidImage];
+			CGRect unPaidImageViewFrame = CGRectMake(button.frame.origin.x + 2,
+													 button.frame.origin.y + 2,
+													 unPaidImage.size.width,
+													 unPaidImage.size.height);
+			unPaidImageView.frame = unPaidImageViewFrame;
+			[scrollView addSubview:unPaidImageView];
+		}
+		
 		// Set contentSize to scrollView.
 		scrollView.contentSize = CGSizeMake(maxWidth, currentOriginY + maxHeightInLine);
 	}
