@@ -26,22 +26,8 @@
 		targetCid = UndefinedContentId;
 		targetProductId = nil;
 		
-		//Change view size in iPad.
-		CGRect viewFrame = CGRectZero;
-#if (__IPHONE_OS_VERSION_MAX_ALLOWED >= 30200)
-		// sdk upper 3.2
-		if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-			// iPad
-			viewFrame = CGRectMake(0, 0, 768, 1024);
-		}
-		else {
-			// other
-			viewFrame = CGRectMake(0, 0, 320, 480);
-		}
-#else
-		// sdk under 3.2
-#endif
-		self.view.frame = viewFrame;
+		//Fit view size with screen. (iPhone-3.5inch/iPhone-4inch/iPad/iPad-Retina)
+		self.view.frame = [[UIScreen mainScreen] bounds];
 
     }
     return self;
