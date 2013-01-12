@@ -219,8 +219,27 @@
 	ContentId targetCid = button.tag;
 	NSLog(@"touch cover image. targetCid = %d", targetCid);
 	
-	[appDelegate hideContentListView];
-	[appDelegate showContentPlayerView:targetCid];
+	//[appDelegate hideContentListView];
+	
+	//Check payment status.
+	NSString* targetPid = [[ProductIdList sharedManager] getProductIdentifier:targetCid];
+	BOOL isPayedContent = NO;
+	if ([[ProductIdList sharedManager] isFreeContent:targetPid] == TRUE) {
+		isPayedContent = YES;
+		
+		//Record free content payment record only first time read.
+		//(TODO: Set date to first_launchup_daytime.)
+		[appDelegate.paymentHistoryDS recordHistoryOnceWithContentId:targetCid ProductId:targetPid date:nil];
+	}
+	if ([appDelegate.paymentHistoryDS isEnabledContent:targetCid] == TRUE) {
+		isPayedContent = YES;
+	}
+	
+	if (isPayedContent == YES) {
+		[self showContentPlayer:targetCid];
+	} else {
+		[self showContentDetailView:targetCid];
+	}
 }
 
 @end
