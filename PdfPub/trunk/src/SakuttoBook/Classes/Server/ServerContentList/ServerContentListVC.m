@@ -35,13 +35,9 @@
 	//Setup TableView, Toolbar..
     [super viewDidLoad];
 	
-	
-	
 	//Setup TableView.
 	myTableView.delegate = self;
 	myTableView.dataSource = self;
-	//Setup data.
-	[self setupData];
 	
 	//Setup Toolbar.
 	UIBarButtonItem *localContentButton = [[UIBarButtonItem alloc] initWithTitle:@"Books"
@@ -76,8 +72,11 @@
 	[spacer2 release]; spacer2 = nil;
 	[reloadButton release]; reloadButton = nil;
 	[activityItem release]; activityItem = nil;
-
-	[self reloadData];
+	
+	
+	//Setup data.
+	[self setupData];	//Load into inner var.
+	[self reloadData];	//Refresh UITableView.
 }
 
 #pragma mark - setup data.
