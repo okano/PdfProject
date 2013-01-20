@@ -202,9 +202,13 @@
 	webViewController = nil;
 	urlForWeb = [[NSMutableString alloc] init];
 	
-	//Setup Links.
+	//Setup Url Links.
 	linksInCurrentPage = [[NSMutableArray alloc] init];
 	[self renderPageLinkAtIndex:currentPageNum];
+	
+	// Setup for Url Links With CSV.
+	[self parseUrlLinkWithCsvDefine];
+	[self renderUrlLinkWithCsvAtIndex:currentPageNum];
 	
 	// Setup for Movie play.
 	[self parseMovieDefine];
@@ -777,6 +781,7 @@
 	//
 	//[self getPdfDictionaryWithPageNum:currentPageNum];
 	[self renderPageLinkAtIndex:currentPageNum];
+	[self renderUrlLinkWithCsvAtIndex:currentPageNum];
 	[self renderMovieLinkAtIndex:currentPageNum];
 	[self renderMailLinkAtIndex:currentPageNum];
 	[self renderPageJumpLinkAtIndex:currentPageNum];
@@ -923,6 +928,7 @@
 	//NSLog(@"(new)currentPdfScrollView subviews = %d", [currentPdfScrollView.subviews count]);
 	//
 	[self renderPageLinkAtIndex:currentPageNum];
+	[self renderUrlLinkWithCsvAtIndex:currentPageNum];
 	[self renderMovieLinkAtIndex:currentPageNum];
 	[self renderMailLinkAtIndex:currentPageNum];
 	[self renderPageJumpLinkAtIndex:currentPageNum];
@@ -980,6 +986,7 @@
 	
 	//Draw link to URL, Movie, etc.
 	[self renderPageLinkAtIndex:currentPageNum];
+	[self renderUrlLinkWithCsvAtIndex:currentPageNum];
 	[self renderMovieLinkAtIndex:currentPageNum];
 	[self renderMailLinkAtIndex:currentPageNum];
 	[self renderPageJumpLinkAtIndex:currentPageNum];
@@ -1098,6 +1105,30 @@
 		}
 	}
 	
+	// Compare with Url Define with CSV in page.
+	for (NSMutableDictionary* urlLinkInfo in urlDefineWithCsv) {
+		int targetPageNum = [[urlLinkInfo valueForKey:MD_PAGE_NUMBER] intValue];
+		if (targetPageNum == currentPageNum) {
+			CGRect rect;
+			rect.origin.x	= [[urlLinkInfo valueForKey:MD_AREA_X] floatValue];
+			rect.origin.y	= [[urlLinkInfo valueForKey:MD_AREA_Y] floatValue];
+			rect.size.width	= [[urlLinkInfo valueForKey:MD_AREA_WIDTH] floatValue];
+			rect.size.height= [[urlLinkInfo valueForKey:MD_AREA_HEIGHT] floatValue];
+			//NSLog(@"frame with popover Scroll Image Info info=%@", NSStringFromCGRect(rect));
+			//NSLog(@"touchedPoint=%@", NSStringFromCGPoint(touchedPoint));
+			//NSLog(@"touchedPointInOriginalPdf=%@", NSStringFromCGPoint(touchedPointInOriginalPdf));
+			
+			if (CGRectContainsPoint(rect, touchedPointInOriginalPdf)) {
+				NSString* urlStr = [urlLinkInfo valueForKey:ULWC_URL];
+				//open with anotherView/Safari(show selecter).
+				[self showWebViewSelector:urlStr];
+				
+				//no-continue.
+				return;
+			}
+		}
+	}
+
 	// Compare with Movie Link in page.
 	for (NSMutableDictionary* movieInfo in movieDefine) {
 		int targetPageNum = [[movieInfo valueForKey:MD_PAGE_NUMBER] intValue];
