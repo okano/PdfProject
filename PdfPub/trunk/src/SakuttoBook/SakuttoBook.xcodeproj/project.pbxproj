@@ -65,7 +65,7 @@
 		2949B3981615558E00BD3B14 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2949B3971615558E00BD3B14 /* Default-568h@2x.png */; };
 		294E1F1E131E2A5B00E49BAF /* popoverScrollImageDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 294E1F1D131E2A5B00E49BAF /* popoverScrollImageDefine.csv */; };
 		294E1FC1131E313800E49BAF /* PopoverScrollImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 294E1FC0131E313800E49BAF /* PopoverScrollImageViewController.m */; };
-		295C4A6D16A1135300A3C237 /* shelf.png in Resources */ = {isa = PBXBuildFile; fileRef = 295C4A6C16A1135300A3C237 /* shelf.png */; };
+		295C4A6D16A1135300A3C237 /* shelf_my.png in Resources */ = {isa = PBXBuildFile; fileRef = 295C4A6C16A1135300A3C237 /* shelf_my.png */; };
 		2962C40C1394B9EC002E57F9 /* ContentPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2962C40B1394B9EC002E57F9 /* ContentPlayerView.xib */; };
 		29787BE112C5FBDC00EC2681 /* document.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 29787BE012C5FBDC00EC2681 /* document.pdf */; };
 		297AC25612B786EB00962CED /* TocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297AC25512B786EB00962CED /* TocViewController.m */; };
@@ -73,8 +73,8 @@
 		297DF1FB12C600320082C680 /* InfomationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 297DF1FA12C600320082C680 /* InfomationView.xib */; };
 		297DF1FF12C601AD0082C680 /* InfomationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297DF1FE12C601AD0082C680 /* InfomationViewController.m */; };
 		297F4A9B169EC41D000D05E9 /* ContentListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B322DA169EB79800C047D9 /* ContentListTableViewController.m */; };
-		29911CC4169EDEAE00886A82 /* ContentListGenreTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2916B799167471D000B344DA /* ContentListGenreTabController.m */; };
 		2989D00616A153B00017BCBD /* unpaid.png in Resources */ = {isa = PBXBuildFile; fileRef = 2989D00516A153B00017BCBD /* unpaid.png */; };
+		29911CC4169EDEAE00886A82 /* ContentListGenreTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2916B799167471D000B344DA /* ContentListGenreTabController.m */; };
 		299448EC12B7370B00E7D108 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299448EB12B7370B00E7D108 /* MediaPlayer.framework */; };
 		2999FDC512D6A8D500D0F145 /* License.m in Sources */ = {isa = PBXBuildFile; fileRef = 2999FDC412D6A8D500D0F145 /* License.m */; };
 		299F35CC1533EBAE00FAD69F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299F35CB1533EBAE00FAD69F /* SystemConfiguration.framework */; };
@@ -279,7 +279,7 @@
 		294E1F1D131E2A5B00E49BAF /* popoverScrollImageDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = popoverScrollImageDefine.csv; path = csv/popoverScrollImageDefine.csv; sourceTree = "<group>"; };
 		294E1FBF131E313800E49BAF /* PopoverScrollImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverScrollImageViewController.h; sourceTree = "<group>"; };
 		294E1FC0131E313800E49BAF /* PopoverScrollImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverScrollImageViewController.m; sourceTree = "<group>"; };
-		295C4A6C16A1135300A3C237 /* shelf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shelf.png; path = Classes/shelf.png; sourceTree = "<group>"; };
+		295C4A6C16A1135300A3C237 /* shelf_my.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shelf_my.png; path = Classes/shelf_my.png; sourceTree = "<group>"; };
 		2962C40B1394B9EC002E57F9 /* ContentPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentPlayerView.xib; sourceTree = "<group>"; };
 		2963BE1D12B5C01E001041EB /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		29787BE012C5FBDC00EC2681 /* document.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = document.pdf; sourceTree = "<group>"; };
@@ -751,7 +751,7 @@
 				2933410212D594AA00BFBC23 /* BookmarkView.xib */,
 				29431E2112C5D29C00914DBD /* list_bullets.png */,
 				2912656812D46BEE00704565 /* list_thumbnail.png */,
-				295C4A6C16A1135300A3C237 /* shelf.png */,
+				295C4A6C16A1135300A3C237 /* shelf_my.png */,
 				2989D00516A153B00017BCBD /* unpaid.png */,
 				8D1107310486CEB800E47090 /* SakuttoBook-Info.plist */,
 			);
@@ -1138,7 +1138,7 @@
 				290CB2FE16A10D8C0065767C /* pdfDefine_4.csv in Resources */,
 				290CB30116A10D930065767C /* tocDefine_4.csv in Resources */,
 				290CB30316A10DA20065767C /* bookDefine_4.csv in Resources */,
-				295C4A6D16A1135300A3C237 /* shelf.png in Resources */,
+				295C4A6D16A1135300A3C237 /* shelf_my.png in Resources */,
 				2989D00616A153B00017BCBD /* unpaid.png in Resources */,
 				29A1E74C16AB9FA9003B19C1 /* urlLinkDefine_1.csv in Resources */,
 				29A1E74D16AB9FA9003B19C1 /* urlLinkDefine.csv in Resources */,

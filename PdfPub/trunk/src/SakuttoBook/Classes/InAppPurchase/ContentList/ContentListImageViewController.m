@@ -31,6 +31,7 @@
 	
 	//Fit view size with screen. (iPhone-3.5inch/iPhone-4inch/iPad/iPad-Retina)
 	self.view.frame = [[UIScreen mainScreen] bounds];
+	self.view.backgroundColor = [UIColor colorWithRed:0.1f green:0.1f blue:0.1f alpha:1.0];
 	
 #if defined(HIDE_SERVER_BUTTON) && HIDE_SERVER_BUTTON != 0
 	//Hide Server Button.
@@ -62,7 +63,7 @@
 	CGFloat currentOriginX = 0.0f, currentOriginY = 0.0f;
 	CGFloat maxHeightInLine;
 	//
-	CGFloat spacerX = 4.0f, spacerY = 4.0f;
+	CGFloat spacerX = 16.0f, spacerY = 10.0f;
 	
 	currentOriginX += spacerX;
 	currentOriginY += spacerY;
@@ -71,7 +72,7 @@
 	UIImage* shelfImageOrg = [UIImage imageNamed:@"shelf.png"];
 	UIImage* shelfImage = nil;
 	CGFloat shelfImageWidthResized = self.view.frame.size.width;
-	CGFloat shelfImageHeightResized = shelfImageOrg.size.height;
+	CGFloat shelfImageHeightResized = shelfImageOrg.size.height / 2;
 	UIGraphicsBeginImageContext(CGSizeMake(shelfImageWidthResized, shelfImageHeightResized));
 	[shelfImageOrg drawInRect:CGRectMake(0, 0, shelfImageWidthResized, shelfImageHeightResized)];
 	shelfImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -81,7 +82,7 @@
 	UIImageView* shelfImageView = [[UIImageView alloc] initWithImage:shelfImage];
 	CGRect shelfImageFrame;
 	shelfImageFrame = shelfImageView.frame;
-	shelfImageFrame.origin.y = 150;
+	shelfImageFrame.origin.y = 2;
 	shelfImageView.frame = shelfImageFrame;
 	[scrollView addSubview:shelfImageView];
 	
@@ -152,7 +153,7 @@
 			//feed line.
 			currentOriginX = 0.0f + spacerX;
 			currentOriginY += maxHeightInLine;
-			currentOriginY += spacerY;
+			currentOriginY += spacerY + spacerY + spacerY;
 			maxHeightInLine = image.size.height;
 			
 			rect.origin.x = currentOriginX;
@@ -162,7 +163,7 @@
 			UIImageView* shelfImageView = [[UIImageView alloc] initWithImage:shelfImage];
 			CGRect shelfImageFrame;
 			shelfImageFrame = shelfImageView.frame;
-			shelfImageFrame.origin.y = currentOriginY + 150;
+			shelfImageFrame.origin.y = currentOriginY - spacerY;
 			shelfImageView.frame = shelfImageFrame;
 			[scrollView addSubview:shelfImageView];
 		}
