@@ -9,7 +9,7 @@
 #define CONTENT_STORE_PRODUCT_ID	@"StoreProductId"
 #define CONTENT_UUID				@"Uuid"
 #define CONTENT_TITLE				@"Title"
-#define CONTENT_AUTHOR				@"Autohr"
+#define CONTENT_AUTHOR				@"Author"
 #define CONTENT_DESCRIPTION			@"Description"
 #define CONTENT_GENRE				@"Genre"
 #define CONTENT_SUBGENRE			@"SubGenre"
