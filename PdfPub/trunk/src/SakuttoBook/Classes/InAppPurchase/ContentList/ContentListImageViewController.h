@@ -19,6 +19,6 @@
 	IBOutlet UIScrollView* scrollView;
 }
 
-- (void)setupImages;
+- (void)setupImagesWithDataSource:(ContentListDS*)contentListDS shelfImageName:(NSString*)shelfImageName;
 
 @end

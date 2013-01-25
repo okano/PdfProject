@@ -45,7 +45,7 @@
 	toolbar.items = toolbarItems;
 #endif
 	
-	[self setupImages];
+	[self setupImagesWithDataSource:appDelegate.contentListDS shelfImageName:@"shelf.png"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,7 +55,8 @@
 }
 
 #pragma mark -
-- (void)setupImages
+
+- (void)setupImagesWithDataSource:(ContentListDS*)contentListDS shelfImageName:(NSString*)shelfImageName
 {
 	CGFloat maxWidth = self.view.frame.size.width;
 	
@@ -75,7 +76,7 @@
 	currentOriginY += spacerY;
 	
 	//Setup shelf image. (fit width)
-	UIImage* shelfImageOrg = [UIImage imageNamed:@"shelf.png"];
+	UIImage* shelfImageOrg = [UIImage imageNamed:shelfImageName];	//@"shelf.png"
 	UIImage* shelfImage = nil;
 	CGFloat shelfImageWidthResized = self.view.frame.size.width;
 	CGFloat shelfImageHeightResized = shelfImageOrg.size.height / 2;
@@ -93,10 +94,10 @@
 	[scrollView addSubview:shelfImageView];
 	
 	//
-	int maxCount = [appDelegate.contentListDS count];
+	int maxCount = [contentListDS count];
 	for (int i = 0; i < maxCount; i = i + 1)
 	{
-		ContentId targetCid = [appDelegate.contentListDS contentIdAtIndex:i];
+		ContentId targetCid = [contentListDS contentIdAtIndex:i];
 		NSLog(@"contentCid=%d", targetCid);
 		
 		//Get cover image.
@@ -104,11 +105,11 @@
 		UIImage* image = nil;
 		
 		//(Get from coverUrl.)
-		NSURL* coverImageUrl = [appDelegate.contentListDS coverUrlAtIndex:i];
+		NSURL* coverImageUrl = [contentListDS coverUrlAtIndex:i];
 		if (coverImageUrl == nil) {
 			NSLog(@"cannot get coverUrl. targetCid=%d", targetCid);
 			//(Get from thumbnailUrl.)
-			coverImageUrl = [appDelegate.contentListDS thumbnailUrlAtIndex:i];
+			coverImageUrl = [contentListDS thumbnailUrlAtIndex:i];
 			if (coverImageUrl == nil) {
 				NSLog(@"cannot get thumbnailUrl. targetCid=%d", targetCid);
 			}
@@ -121,7 +122,7 @@
 		if (imageOriginal == nil) {
 			NSLog(@"error: no cover image. cid=%d", targetCid);
 			//(Get from contentIcon.(included in project file) )
-			imageOriginal = [appDelegate.contentListDS contentIconAtIndex:i];
+			imageOriginal = [contentListDS contentIconAtIndex:i];
 			if (imageOriginal == nil) {
 				NSLog(@"cannot get cover image with contentIcon. targetCid=%d", targetCid);
 			}
