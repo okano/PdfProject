@@ -247,12 +247,32 @@
 	[targetTableVC didStartParseOpdsElement];
 	resultArray = [parser getOpdsElement:elementUrl];
 	if (resultArray != nil) {
-		//Arrange format into inner-var.
+#if defined(OVERWRITE_PRODUCTIDLIST_BY_SERVER) && OVERWRITE_PRODUCTIDLIST_BY_SERVER != 0
+		//Add all contents data into inner-var.
+		[contentList removeAllObjects];
 		[contentList addObjectsFromArray:resultArray];
+#else
+		//Add only specified contents in productIdList (in mainBundle.)
+		ProductIdList* productIdList = [ProductIdList sharedManager];
+		[productIdList loadProductIdListFromMainBundle];
+		for (NSDictionary* singleContentMetadata in resultArray)
+		{
+			NSString* targetCidStr = (NSString*)[singleContentMetadata  valueForKey:CONTENT_CID];
+			ContentId targetCid = (ContentId)[targetCidStr intValue];
+			
+			NSString* targetPid = [productIdList getProductIdentifier:targetCid];
+			if (0 < [targetPid length] && [targetPid compare:InvalidProductId] != NSOrderedSame)
+			{
+				[self removeMetadataWithContentId:targetCid];
+				[self addMetadata:singleContentMetadata];
+			}
+		}
+#endif
+		
 		//NSLog(@"contentList=%@", [contentList description]);
 		
 		//call parent.
-		[targetTableVC didFinishParseOpdsElement:resultArray];
+		[targetTableVC didFinishParseOpdsElement:contentList];
 	} else {
 		[targetTableVC didFailParseOpdsElement];
 	}

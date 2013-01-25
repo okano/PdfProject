@@ -72,6 +72,7 @@
 		2957329116A7DCFE00F05822 /* ContentIcon_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 2957329016A7DCFE00F05822 /* ContentIcon_5.png */; };
 		2957329516A7DD9500F05822 /* nowayout.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2957329416A7DD9500F05822 /* nowayout.pdf */; };
 		295C4A6D16A1135300A3C237 /* shelf.png in Resources */ = {isa = PBXBuildFile; fileRef = 295C4A6C16A1135300A3C237 /* shelf.png */; };
+		295C4A6D16A1135300A3C237 /* shelf_my.png in Resources */ = {isa = PBXBuildFile; fileRef = 295C4A6C16A1135300A3C237 /* shelf_my.png */; };
 		2962C40C1394B9EC002E57F9 /* ContentPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2962C40B1394B9EC002E57F9 /* ContentPlayerView.xib */; };
 		29787BE112C5FBDC00EC2681 /* document.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 29787BE012C5FBDC00EC2681 /* document.pdf */; };
 		297AC25612B786EB00962CED /* TocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297AC25512B786EB00962CED /* TocViewController.m */; };
@@ -126,6 +127,9 @@
 		299FDFBF169FE3EA002E593E /* sweets.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 299FDFBE169FE3EA002E593E /* sweets.pdf */; };
 		29A1CB7A138616AA00326759 /* SKBE_MainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A1CB79138616AA00326759 /* SKBE_MainVC.m */; };
 		29A1CB7E138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A1CB7D138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m */; };
+		29A1E74916AAE909003B19C1 /* ContentPlayerViewController+urlWithCsv.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A1E74816AAE909003B19C1 /* ContentPlayerViewController+urlWithCsv.m */; };
+		29A1E74C16AB9FA9003B19C1 /* urlLinkDefine_1.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29A1E74A16AB9FA9003B19C1 /* urlLinkDefine_1.csv */; };
+		29A1E74D16AB9FA9003B19C1 /* urlLinkDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29A1E74B16AB9FA9003B19C1 /* urlLinkDefine.csv */; };
 		29A2A5471398B87300C8CB52 /* productIdList.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29A2A5461398B87300C8CB52 /* productIdList.csv */; };
 		29A5B07B13A9B35100DA67AD /* bookDefine_3.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29A5B07A13A9B35100DA67AD /* bookDefine_3.csv */; };
 		29A9CAF016B255A300F68C60 /* nowayout-SD-QVGA.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 29A9CAEF16B255A300F68C60 /* nowayout-SD-QVGA.m4v */; };
@@ -290,6 +294,7 @@
 		2957329016A7DCFE00F05822 /* ContentIcon_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ContentIcon_5.png; sourceTree = "<group>"; };
 		2957329416A7DD9500F05822 /* nowayout.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = nowayout.pdf; sourceTree = "<group>"; };
 		295C4A6C16A1135300A3C237 /* shelf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shelf.png; path = Classes/shelf.png; sourceTree = "<group>"; };
+		295C4A6C16A1135300A3C237 /* shelf_my.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shelf_my.png; path = Classes/shelf_my.png; sourceTree = "<group>"; };
 		2962C40B1394B9EC002E57F9 /* ContentPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentPlayerView.xib; sourceTree = "<group>"; };
 		2963BE1D12B5C01E001041EB /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		29787BE012C5FBDC00EC2681 /* document.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = document.pdf; sourceTree = "<group>"; };
@@ -349,6 +354,9 @@
 		29A1CB79138616AA00326759 /* SKBE_MainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKBE_MainVC.m; path = SKBEngine/SKBEngine/SKBE_MainVC.m; sourceTree = "<group>"; };
 		29A1CB7C138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKBEngine_PopoverScrollImageViewController.h; path = SKBEngine/SKBEngine/SKBEngine_PopoverScrollImageViewController.h; sourceTree = "<group>"; };
 		29A1CB7D138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKBEngine_PopoverScrollImageViewController.m; path = SKBEngine/SKBEngine/SKBEngine_PopoverScrollImageViewController.m; sourceTree = "<group>"; };
+		29A1E74816AAE909003B19C1 /* ContentPlayerViewController+urlWithCsv.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ContentPlayerViewController+urlWithCsv.m"; sourceTree = "<group>"; };
+		29A1E74A16AB9FA9003B19C1 /* urlLinkDefine_1.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = urlLinkDefine_1.csv; path = csv/urlLinkDefine_1.csv; sourceTree = "<group>"; };
+		29A1E74B16AB9FA9003B19C1 /* urlLinkDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = urlLinkDefine.csv; path = csv/urlLinkDefine.csv; sourceTree = "<group>"; };
 		29A2A5461398B87300C8CB52 /* productIdList.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = productIdList.csv; path = csv/productIdList.csv; sourceTree = "<group>"; };
 		29A5B07A13A9B35100DA67AD /* bookDefine_3.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bookDefine_3.csv; path = csv/bookDefine_3.csv; sourceTree = "<group>"; };
 		29A9CAEF16B255A300F68C60 /* nowayout-SD-QVGA.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = "nowayout-SD-QVGA.m4v"; sourceTree = "<group>"; };
@@ -511,6 +519,7 @@
 				29452C9F14E39B4300DD15ED /* ContentPlayerViewController+sound.m */,
 				29D028C716328111004F7791 /* ContentPlayerViewController+mailSend.m */,
 				29AFB90D1638067A00C0978C /* ContentPlayerViewController+bottomMenu.m */,
+				29A1E74816AAE909003B19C1 /* ContentPlayerViewController+urlWithCsv.m */,
 				291EDE0213124E2C00DBD3E5 /* ImageGenerator.h */,
 				291EDE0313124E2C00DBD3E5 /* ImageGenerator.m */,
 				29B3B7C612C57DE00014F866 /* MyPdfScrollView.h */,
@@ -761,7 +770,7 @@
 				2933410212D594AA00BFBC23 /* BookmarkView.xib */,
 				29431E2112C5D29C00914DBD /* list_bullets.png */,
 				2912656812D46BEE00704565 /* list_thumbnail.png */,
-				295C4A6C16A1135300A3C237 /* shelf.png */,
+				295C4A6C16A1135300A3C237 /* shelf_my.png */,
 				2989D00516A153B00017BCBD /* unpaid.png */,
 				8D1107310486CEB800E47090 /* SakuttoBook-Info.plist */,
 			);
@@ -972,6 +981,8 @@
 				2957328A16A7DCB000F05822 /* pdfDefine_5.csv */,
 				2957328716A7DCAA00F05822 /* tocDefine_5.csv */,
 				2957328E16A7DCC100F05822 /* bookDefine_5.csv */,
+				29A1E74B16AB9FA9003B19C1 /* urlLinkDefine.csv */,
+				29A1E74A16AB9FA9003B19C1 /* urlLinkDefine_1.csv */,
 				29A2A5461398B87300C8CB52 /* productIdList.csv */,
 			);
 			name = csv;
@@ -1150,7 +1161,7 @@
 				290CB2FE16A10D8C0065767C /* pdfDefine_4.csv in Resources */,
 				290CB30116A10D930065767C /* tocDefine_4.csv in Resources */,
 				290CB30316A10DA20065767C /* bookDefine_4.csv in Resources */,
-				295C4A6D16A1135300A3C237 /* shelf.png in Resources */,
+				295C4A6D16A1135300A3C237 /* shelf_my.png in Resources */,
 				2989D00616A153B00017BCBD /* unpaid.png in Resources */,
 				2957328816A7DCAA00F05822 /* tocDefine_5.csv in Resources */,
 				2957328B16A7DCB000F05822 /* pdfDefine_5.csv in Resources */,
@@ -1159,6 +1170,8 @@
 				2957329116A7DCFE00F05822 /* ContentIcon_5.png in Resources */,
 				2957329516A7DD9500F05822 /* nowayout.pdf in Resources */,
 				29A9CAF016B255A300F68C60 /* nowayout-SD-QVGA.m4v in Resources */,
+				29A1E74C16AB9FA9003B19C1 /* urlLinkDefine_1.csv in Resources */,
+				29A1E74D16AB9FA9003B19C1 /* urlLinkDefine.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1242,6 +1255,7 @@
 				29AFB90E1638067A00C0978C /* ContentPlayerViewController+bottomMenu.m in Sources */,
 				2916B79F1674799F00B344DA /* ConfigVC2.m in Sources */,
 				293FC642169EAE1C002AF927 /* ContentListImageViewController.m in Sources */,
+				29A1E74916AAE909003B19C1 /* ContentPlayerViewController+urlWithCsv.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

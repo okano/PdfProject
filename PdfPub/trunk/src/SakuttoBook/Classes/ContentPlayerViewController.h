@@ -89,6 +89,7 @@
 	
 	//
 	NSMutableArray* linksInCurrentPage;
+	NSMutableArray* urlDefineWithCsv;
 	NSMutableArray* movieDefine;
 	NSMutableArray* mailDefine;
 	NSMutableArray* soundDefine;
@@ -278,6 +279,12 @@
 @interface ContentPlayerViewController (bottomMenu)
 - (void)showBottomMenu;
 - (void)hideBottomMenu;
+@end
+
+// Treat Url link specified in CSV file.
+@interface ContentPlayerViewController (urlWithCsv)
+- (void)parseUrlLinkWithCsvDefine;	// Parse Url Link define in CSV.
+- (void)renderUrlLinkWithCsvAtIndex:(NSUInteger)index;
 @end
 
 

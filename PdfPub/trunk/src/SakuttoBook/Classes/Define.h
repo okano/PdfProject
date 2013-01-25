@@ -37,6 +37,9 @@
 //Hide Server button on Menu bar.
 #define HIDE_SERVER_BUTTON 0	/* 0:show, 1:hide */
 
+//Overwrite productIdList.csv by server data.
+#define OVERWRITE_PRODUCTIDLIST_BY_SERVER	0	/* 0:save original data, 1:overwrite by server data */
+
 // Tap area. (0.00 - 1.00) (1.00 is "fit to screen")
 #define TAP_AREA_LEFT_X			0.00f
 #define TAP_AREA_LEFT_Y			0.15f

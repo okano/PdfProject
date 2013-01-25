@@ -74,6 +74,9 @@
 #define IPSD_AREA_HEIGHT	@"InPageScrollView_Area_Height"
 #define IPSD_FILENAMES		@"InPageScrollView_Filenames"	//multi file(s).
 
+// for Url Link with CSV.
+#define ULWC_URL			@"UrlLinkWithCsv_URL"
+
 // for TOC Define.
 #define TOC_PAGE			@"Toc_Page"
 #define TOC_LEVEL			@"Toc_Level"
