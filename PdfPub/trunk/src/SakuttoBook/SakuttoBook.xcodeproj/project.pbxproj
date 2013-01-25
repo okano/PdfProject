@@ -65,6 +65,12 @@
 		2949B3981615558E00BD3B14 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2949B3971615558E00BD3B14 /* Default-568h@2x.png */; };
 		294E1F1E131E2A5B00E49BAF /* popoverScrollImageDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 294E1F1D131E2A5B00E49BAF /* popoverScrollImageDefine.csv */; };
 		294E1FC1131E313800E49BAF /* PopoverScrollImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 294E1FC0131E313800E49BAF /* PopoverScrollImageViewController.m */; };
+		2957328816A7DCAA00F05822 /* tocDefine_5.csv in Resources */ = {isa = PBXBuildFile; fileRef = 2957328716A7DCAA00F05822 /* tocDefine_5.csv */; };
+		2957328B16A7DCB000F05822 /* pdfDefine_5.csv in Resources */ = {isa = PBXBuildFile; fileRef = 2957328A16A7DCB000F05822 /* pdfDefine_5.csv */; };
+		2957328D16A7DCB800F05822 /* movieDefine_5.csv in Resources */ = {isa = PBXBuildFile; fileRef = 2957328C16A7DCB800F05822 /* movieDefine_5.csv */; };
+		2957328F16A7DCC100F05822 /* bookDefine_5.csv in Resources */ = {isa = PBXBuildFile; fileRef = 2957328E16A7DCC100F05822 /* bookDefine_5.csv */; };
+		2957329116A7DCFE00F05822 /* ContentIcon_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 2957329016A7DCFE00F05822 /* ContentIcon_5.png */; };
+		2957329516A7DD9500F05822 /* nowayout.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2957329416A7DD9500F05822 /* nowayout.pdf */; };
 		295C4A6D16A1135300A3C237 /* shelf.png in Resources */ = {isa = PBXBuildFile; fileRef = 295C4A6C16A1135300A3C237 /* shelf.png */; };
 		2962C40C1394B9EC002E57F9 /* ContentPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2962C40B1394B9EC002E57F9 /* ContentPlayerView.xib */; };
 		29787BE112C5FBDC00EC2681 /* document.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 29787BE012C5FBDC00EC2681 /* document.pdf */; };
@@ -73,8 +79,8 @@
 		297DF1FB12C600320082C680 /* InfomationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 297DF1FA12C600320082C680 /* InfomationView.xib */; };
 		297DF1FF12C601AD0082C680 /* InfomationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297DF1FE12C601AD0082C680 /* InfomationViewController.m */; };
 		297F4A9B169EC41D000D05E9 /* ContentListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B322DA169EB79800C047D9 /* ContentListTableViewController.m */; };
-		29911CC4169EDEAE00886A82 /* ContentListGenreTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2916B799167471D000B344DA /* ContentListGenreTabController.m */; };
 		2989D00616A153B00017BCBD /* unpaid.png in Resources */ = {isa = PBXBuildFile; fileRef = 2989D00516A153B00017BCBD /* unpaid.png */; };
+		29911CC4169EDEAE00886A82 /* ContentListGenreTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2916B799167471D000B344DA /* ContentListGenreTabController.m */; };
 		299448EC12B7370B00E7D108 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299448EB12B7370B00E7D108 /* MediaPlayer.framework */; };
 		2999FDC512D6A8D500D0F145 /* License.m in Sources */ = {isa = PBXBuildFile; fileRef = 2999FDC412D6A8D500D0F145 /* License.m */; };
 		299F35CC1533EBAE00FAD69F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299F35CB1533EBAE00FAD69F /* SystemConfiguration.framework */; };
@@ -122,6 +128,7 @@
 		29A1CB7E138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A1CB7D138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m */; };
 		29A2A5471398B87300C8CB52 /* productIdList.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29A2A5461398B87300C8CB52 /* productIdList.csv */; };
 		29A5B07B13A9B35100DA67AD /* bookDefine_3.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29A5B07A13A9B35100DA67AD /* bookDefine_3.csv */; };
+		29A9CAF016B255A300F68C60 /* nowayout-SD-QVGA.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 29A9CAEF16B255A300F68C60 /* nowayout-SD-QVGA.m4v */; };
 		29ACC34613A3AE7A00585A09 /* inPageScrollViewDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29ACC34513A3AE7A00585A09 /* inPageScrollViewDefine.csv */; };
 		29AFB90E1638067A00C0978C /* ContentPlayerViewController+bottomMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 29AFB90D1638067A00C0978C /* ContentPlayerViewController+bottomMenu.m */; };
 		29B16DF7139873F300B4D958 /* ContentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B16DF6139873F300B4D958 /* ContentListViewController.m */; };
@@ -276,6 +283,12 @@
 		294E1F1D131E2A5B00E49BAF /* popoverScrollImageDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = popoverScrollImageDefine.csv; path = csv/popoverScrollImageDefine.csv; sourceTree = "<group>"; };
 		294E1FBF131E313800E49BAF /* PopoverScrollImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverScrollImageViewController.h; sourceTree = "<group>"; };
 		294E1FC0131E313800E49BAF /* PopoverScrollImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverScrollImageViewController.m; sourceTree = "<group>"; };
+		2957328716A7DCAA00F05822 /* tocDefine_5.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tocDefine_5.csv; path = csv/tocDefine_5.csv; sourceTree = "<group>"; };
+		2957328A16A7DCB000F05822 /* pdfDefine_5.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pdfDefine_5.csv; path = csv/pdfDefine_5.csv; sourceTree = "<group>"; };
+		2957328C16A7DCB800F05822 /* movieDefine_5.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = movieDefine_5.csv; path = csv/movieDefine_5.csv; sourceTree = "<group>"; };
+		2957328E16A7DCC100F05822 /* bookDefine_5.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bookDefine_5.csv; path = csv/bookDefine_5.csv; sourceTree = "<group>"; };
+		2957329016A7DCFE00F05822 /* ContentIcon_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ContentIcon_5.png; sourceTree = "<group>"; };
+		2957329416A7DD9500F05822 /* nowayout.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = nowayout.pdf; sourceTree = "<group>"; };
 		295C4A6C16A1135300A3C237 /* shelf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shelf.png; path = Classes/shelf.png; sourceTree = "<group>"; };
 		2962C40B1394B9EC002E57F9 /* ContentPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentPlayerView.xib; sourceTree = "<group>"; };
 		2963BE1D12B5C01E001041EB /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
@@ -338,6 +351,7 @@
 		29A1CB7D138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKBEngine_PopoverScrollImageViewController.m; path = SKBEngine/SKBEngine/SKBEngine_PopoverScrollImageViewController.m; sourceTree = "<group>"; };
 		29A2A5461398B87300C8CB52 /* productIdList.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = productIdList.csv; path = csv/productIdList.csv; sourceTree = "<group>"; };
 		29A5B07A13A9B35100DA67AD /* bookDefine_3.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bookDefine_3.csv; path = csv/bookDefine_3.csv; sourceTree = "<group>"; };
+		29A9CAEF16B255A300F68C60 /* nowayout-SD-QVGA.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = "nowayout-SD-QVGA.m4v"; sourceTree = "<group>"; };
 		29ACC34513A3AE7A00585A09 /* inPageScrollViewDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = inPageScrollViewDefine.csv; path = csv/inPageScrollViewDefine.csv; sourceTree = "<group>"; };
 		29AFB90D1638067A00C0978C /* ContentPlayerViewController+bottomMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ContentPlayerViewController+bottomMenu.m"; sourceTree = "<group>"; };
 		29B16DF5139873F300B4D958 /* ContentListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentListViewController.h; path = InAppPurchase/ContentList/ContentListViewController.h; sourceTree = "<group>"; };
@@ -556,6 +570,7 @@
 				29F4B95113AB2AC200519DAA /* ContentIcon_2.png */,
 				29F4B95213AB2AC200519DAA /* ContentIcon_3.png */,
 				29253E6A16A10C4700789E1C /* ContentIcon_4.png */,
+				2957329016A7DCFE00F05822 /* ContentIcon_5.png */,
 			);
 			path = image;
 			sourceTree = "<group>";
@@ -639,6 +654,7 @@
 				299FDFBE169FE3EA002E593E /* sweets.pdf */,
 				29253E7316A10C8F00789E1C /* Gray-Rainbow_eBook_r100_iPad.pdf */,
 				29253E7416A10C8F00789E1C /* Gray-Rainbow_eBook_r100_iPhone4.pdf */,
+				2957329416A7DD9500F05822 /* nowayout.pdf */,
 			);
 			path = pdf;
 			sourceTree = "<group>";
@@ -646,6 +662,7 @@
 		2994490212B737C600E7D108 /* movie */ = {
 			isa = PBXGroup;
 			children = (
+				29A9CAEF16B255A300F68C60 /* nowayout-SD-QVGA.m4v */,
 			);
 			path = movie;
 			sourceTree = "<group>";
@@ -951,6 +968,10 @@
 				290CB30216A10DA20065767C /* bookDefine_4.csv */,
 				290CB2FD16A10D8C0065767C /* pdfDefine_4.csv */,
 				290CB30016A10D930065767C /* tocDefine_4.csv */,
+				2957328C16A7DCB800F05822 /* movieDefine_5.csv */,
+				2957328A16A7DCB000F05822 /* pdfDefine_5.csv */,
+				2957328716A7DCAA00F05822 /* tocDefine_5.csv */,
+				2957328E16A7DCC100F05822 /* bookDefine_5.csv */,
 				29A2A5461398B87300C8CB52 /* productIdList.csv */,
 			);
 			name = csv;
@@ -1131,6 +1152,13 @@
 				290CB30316A10DA20065767C /* bookDefine_4.csv in Resources */,
 				295C4A6D16A1135300A3C237 /* shelf.png in Resources */,
 				2989D00616A153B00017BCBD /* unpaid.png in Resources */,
+				2957328816A7DCAA00F05822 /* tocDefine_5.csv in Resources */,
+				2957328B16A7DCB000F05822 /* pdfDefine_5.csv in Resources */,
+				2957328D16A7DCB800F05822 /* movieDefine_5.csv in Resources */,
+				2957328F16A7DCC100F05822 /* bookDefine_5.csv in Resources */,
+				2957329116A7DCFE00F05822 /* ContentIcon_5.png in Resources */,
+				2957329516A7DD9500F05822 /* nowayout.pdf in Resources */,
+				29A9CAF016B255A300F68C60 /* nowayout-SD-QVGA.m4v in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
