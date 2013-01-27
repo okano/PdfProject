@@ -250,7 +250,7 @@
 		}
 		
 		// Set contentSize to scrollView.
-		scrollView.contentSize = CGSizeMake(maxWidth, currentOriginY + maxHeightInLine);
+		scrollView.contentSize = CGSizeMake(maxWidth, currentOriginY + shelfImageHeight);
 	}
 	
 	//Add empty shelf for fill white space.
