@@ -12,7 +12,7 @@
 #import "ContentListViewController.h"
 #import "ContentListImageViewController.h"
 #import "ContentDetailViewController.h"
-#import "ServerContentListVC.h"
+#import "ServerContentListTableVC.h"
 #import "ServerContentDetailVC.h"
 
 @interface SakuttoBookViewController : UIViewController {

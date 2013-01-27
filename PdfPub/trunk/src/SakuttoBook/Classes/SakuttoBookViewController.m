@@ -169,7 +169,7 @@
 - (void)showServerContentListView{
 	//LOG_CURRENT_METHOD;
 	if (serverContentListVC == nil) {
-		serverContentListVC = [[ServerContentListVC alloc] init];
+		serverContentListVC = [[ServerContentListTableVC alloc] init];
 		serverContentListVC.view.frame = self.view.frame;
 	}
 	[self.view addSubview:serverContentListVC.view];
