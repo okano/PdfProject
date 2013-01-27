@@ -72,68 +72,36 @@
 	//On real device.
 	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 	{
-		// iPad
-		//Detect hardware type with iPad1,2 / new iPad.
-		//NSString* machineName = [FileUtility machineName];
-		//NSString* machineType = [[machineName componentsSeparatedByString:@","] objectAtIndex:0];
-		//if ([machineType compare:@"iPad1"] == NSOrderedSame
-		//	||
-		//	[machineType compare:@"iPad2"] == NSOrderedSame)
-		//{
-
+		//iPad
 		//iPad1,2 (1024x768 pixel)
 		buttonOffsetX = 60, buttonOffsetY = 24;
 		spacerX = 30.0f, spacerY = 30.0f;
 		shelfImageHeight = 240;
 		buttonImageWidth = 106.66667, buttonImageHeight = 160;	// (1/6 size)
 		
+		//double size if new iPad (2048x1536 pixel)
 		if (768 < self.view.frame.size.width)
 		{
-			//new iPad (2048x1536 pixel)
-			//twice size.
 			buttonOffsetX *= 2.0f, buttonOffsetY *= 2.0f;
 			spacerX *= 2.0f, spacerY *= 2.0f;
 			shelfImageHeight *= 2.0f;
 			buttonImageWidth *= 2.0f, buttonImageHeight *= 2.0f;
 		}
-		/*
-		if (self.view.frame.size.width <= 768)
-		{
-			//iPad1,2 (1024x768 pixel)
-			buttonOffsetX = 24, buttonOffsetY = 20;
-			spacerX = 20.0f, spacerY = 30.0f;
-			shelfImageHeight = 432/2;
-			buttonImageWidth = 128, buttonImageHeight = 192;
-		}
-		else
-		{
-			//new iPad (2048x1536 pixel)
-			//twice size.
-			buttonOffsetX = 60, buttonOffsetY = 24;
-			spacerX = 30.0f, spacerY = 30.0f;
-			shelfImageHeight = 240;
-			buttonImageWidth = 106.66667, buttonImageHeight = 160;	// (1/6 size)
-		}
-		*/
 	} else {
-		//Detect hardware type with iPhone(320x480)/iPhone Retina 3.5()/iPhone5(320x568).
-		//NSString* machineName = [FileUtility machineName];
-		//NSString* machineType = [[machineName componentsSeparatedByString:@","] objectAtIndex:0];
-		
 		//old iPhone(320x480)
-		if (self.view.frame.size.width <= 320)
+		buttonOffsetX = 30, buttonOffsetY = 10;
+		spacerX = 15.0f, spacerY = 15.0f;
+		shelfImageHeight = 180;
+		buttonImageWidth = 80, buttonImageHeight = 120;
+		
+		//double size if iPhone 3.5-inch(640x960 or 640x1136)...only care width.
+		//(never use this code because view width is fixed 320pixel in .xib)
+		if (320 < self.view.frame.size.width)
 		{
-			//Old iPhone(half size)
-			buttonOffsetX = 30, buttonOffsetY = 10;
-			spacerX = 15.0f, spacerY = 15.0f;
-			shelfImageHeight = 180;
-			buttonImageWidth = 80, buttonImageHeight = 120;
-		} else {
-			//iPhone 3.5-inch(640x960 or 640x1136)...only care width.
-			buttonOffsetX = 30, buttonOffsetY = 20;
-			spacerX = 30.0f, spacerY = 30.0f;
-			shelfImageHeight = 360;
-			buttonImageWidth = 160, buttonImageHeight = 240;
+			buttonOffsetX *= 2.0f, buttonOffsetY *= 2.0f;
+			spacerX *= 2.0f, spacerY *= 2.0f;
+			shelfImageHeight *= 2.0f;
+			buttonImageWidth *= 2.0f, buttonImageHeight *= 2.0f;
 		}
 	}
 	
@@ -195,23 +163,6 @@
 		}
 		
 		//Resize cover image for fit in scroll view.
-		NSUInteger imageInEachLine;
-		CGFloat newImageWidth, newImageHeight;
-		/*
-		if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-			// iPad
-			imageInEachLine = 5;
-			newImageWidth = ((self.view.frame.size.width - spacerX) / imageInEachLine) - spacerX;
-			newImageHeight = imageOriginal.size.height * (newImageWidth / imageOriginal.size.width);
-		} else {
-			// iPhone
-			imageInEachLine = 3;
-			newImageWidth = ((self.view.frame.size.width - spacerX) / imageInEachLine) - spacerX;
-			newImageHeight = imageOriginal.size.height * (newImageWidth / imageOriginal.size.width);
-		}
-		UIGraphicsBeginImageContext(CGSizeMake(newImageWidth, newImageHeight));
-		[imageOriginal drawInRect:CGRectMake(0, 0, newImageWidth, newImageHeight)];
-		 */
 		UIGraphicsBeginImageContext(CGSizeMake(buttonImageWidth, buttonImageHeight));
 		[imageOriginal drawInRect:CGRectMake(0, 0, buttonImageWidth, buttonImageHeight)];
 		image = UIGraphicsGetImageFromCurrentImageContext();
@@ -281,16 +232,17 @@
 			//UnPaid content. Show unPaid mark.
 			UIImage* unPaidImageOrg = [UIImage imageNamed:@"unpaid.png"];
 			UIImage* unPaidImage = nil;
+			CGFloat unPaidImageOffsetX = 2.0, unPaidImageOffsetY = 2.0;
 			//(Resize unPaid mark image.)
-			newImageWidth = button.frame.size.width / 10;
-			UIGraphicsBeginImageContext(CGSizeMake(newImageWidth, newImageWidth));
-			[unPaidImageOrg drawInRect:CGRectMake(0, 0, newImageWidth, newImageWidth)];
+			CGFloat unPaidImageWidth = button.frame.size.width / 10;
+			UIGraphicsBeginImageContext(CGSizeMake(unPaidImageWidth, unPaidImageWidth));
+			[unPaidImageOrg drawInRect:CGRectMake(0, 0, unPaidImageWidth, unPaidImageWidth)];
 			unPaidImage = UIGraphicsGetImageFromCurrentImageContext();
 			UIGraphicsEndImageContext();
 			//(Set position.)
 			UIImageView* unPaidImageView = [[UIImageView alloc] initWithImage:unPaidImage];
-			CGRect unPaidImageViewFrame = CGRectMake(button.frame.origin.x + 2,
-													 button.frame.origin.y + 2,
+			CGRect unPaidImageViewFrame = CGRectMake(button.frame.origin.x + unPaidImageOffsetX,
+													 button.frame.origin.y + unPaidImageOffsetY,
 													 unPaidImage.size.width,
 													 unPaidImage.size.height);
 			unPaidImageView.frame = unPaidImageViewFrame;
