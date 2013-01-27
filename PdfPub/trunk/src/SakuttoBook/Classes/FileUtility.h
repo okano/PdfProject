@@ -11,6 +11,7 @@
 #import "ContentFileUtility.h"
 #import "Define.h"
 #import "InAppPurchaseDefine.h"
+#import <sys/utsname.h>		//get the device model number using uname.
 
 @interface FileUtility : NSObject {
     
@@ -48,10 +49,11 @@
 + (BOOL)addSkipBackupAttributeToItemAtURL:(NSURL *)URL;
 + (BOOL)addSkipBackupAttributeToItemWithString:(NSString*)filenameFull;
 
-
-
 //String cleaner
 + (NSString*)cleanString:(NSString*)str;
+
+//get the device model number using uname from sys/utsname.h
++ (NSString*)machineName;
 @end
 
 //
