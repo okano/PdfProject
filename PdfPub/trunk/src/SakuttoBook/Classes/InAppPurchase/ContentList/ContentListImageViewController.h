@@ -10,6 +10,7 @@
 #import "SakuttoBookAppDelegate.h"	//for read "Define.h" (it cannot load directory...)
 #import "ContentListViewController.h"
 #import "CoverUtility.h"
+#import "FileUtility.h"				//for get device kind with iPad1&2 / new iPad.
 
 @interface ContentListImageViewController : ContentListViewController
 {

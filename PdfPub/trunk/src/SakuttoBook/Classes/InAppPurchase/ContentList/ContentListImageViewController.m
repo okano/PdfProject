@@ -59,27 +59,89 @@
 - (void)setupImagesWithDataSource:(ContentListDS*)contentListDS shelfImageName:(NSString*)shelfImageName
 {
 	CGFloat maxWidth = self.view.frame.size.width;
+	NSLog(@"self.view.frame=%@", NSStringFromCGRect(self.view.frame));
 	
 	CGFloat currentOriginX = 0.0f, currentOriginY = 0.0f;
 	CGFloat maxHeightInLine;
 	//
+	CGFloat buttonOffsetX, buttonOffsetY;
 	CGFloat spacerX, spacerY;
-	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+	CGFloat shelfImageHeight;	//shelfImageWidth = self.view.frame.size.width;
+	CGFloat buttonImageWidth, buttonImageHeight;
+	
+	//On real device.
+	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+	{
 		// iPad
-		spacerX = 25.0f, spacerY = 20.0f;
-	} else {
-		// iPhone
-		spacerX = 4.0f, spacerY = 4.0f;
-	}
+		//Detect hardware type with iPad1,2 / new iPad.
+		//NSString* machineName = [FileUtility machineName];
+		//NSString* machineType = [[machineName componentsSeparatedByString:@","] objectAtIndex:0];
+		//if ([machineType compare:@"iPad1"] == NSOrderedSame
+		//	||
+		//	[machineType compare:@"iPad2"] == NSOrderedSame)
+		//{
 
-	currentOriginX += spacerX;
-	currentOriginY += spacerY;
+		//iPad1,2 (1024x768 pixel)
+		buttonOffsetX = 60, buttonOffsetY = 24;
+		spacerX = 30.0f, spacerY = 30.0f;
+		shelfImageHeight = 240;
+		buttonImageWidth = 106.66667, buttonImageHeight = 160;	// (1/6 size)
+		
+		if (768 < self.view.frame.size.width)
+		{
+			//new iPad (2048x1536 pixel)
+			//twice size.
+			buttonOffsetX *= 2.0f, buttonOffsetY *= 2.0f;
+			spacerX *= 2.0f, spacerY *= 2.0f;
+			shelfImageHeight *= 2.0f;
+			buttonImageWidth *= 2.0f, buttonImageHeight *= 2.0f;
+		}
+		/*
+		if (self.view.frame.size.width <= 768)
+		{
+			//iPad1,2 (1024x768 pixel)
+			buttonOffsetX = 24, buttonOffsetY = 20;
+			spacerX = 20.0f, spacerY = 30.0f;
+			shelfImageHeight = 432/2;
+			buttonImageWidth = 128, buttonImageHeight = 192;
+		}
+		else
+		{
+			//new iPad (2048x1536 pixel)
+			//twice size.
+			buttonOffsetX = 60, buttonOffsetY = 24;
+			spacerX = 30.0f, spacerY = 30.0f;
+			shelfImageHeight = 240;
+			buttonImageWidth = 106.66667, buttonImageHeight = 160;	// (1/6 size)
+		}
+		*/
+	} else {
+		//Detect hardware type with iPhone(320x480)/iPhone Retina 3.5()/iPhone5(320x568).
+		//NSString* machineName = [FileUtility machineName];
+		//NSString* machineType = [[machineName componentsSeparatedByString:@","] objectAtIndex:0];
+		
+		//old iPhone(320x480)
+		if (self.view.frame.size.width <= 320)
+		{
+			//Old iPhone(half size)
+			buttonOffsetX = 30, buttonOffsetY = 10;
+			spacerX = 15.0f, spacerY = 15.0f;
+			shelfImageHeight = 180;
+			buttonImageWidth = 80, buttonImageHeight = 120;
+		} else {
+			//iPhone 3.5-inch(640x960 or 640x1136)...only care width.
+			buttonOffsetX = 30, buttonOffsetY = 20;
+			spacerX = 30.0f, spacerY = 30.0f;
+			shelfImageHeight = 360;
+			buttonImageWidth = 160, buttonImageHeight = 240;
+		}
+	}
 	
 	//Setup shelf image. (fit width)
 	UIImage* shelfImageOrg = [UIImage imageNamed:shelfImageName];	//@"shelf.png"
 	UIImage* shelfImage = nil;
 	CGFloat shelfImageWidthResized = self.view.frame.size.width;
-	CGFloat shelfImageHeightResized = shelfImageOrg.size.height / 2;
+	CGFloat shelfImageHeightResized = shelfImageHeight;		//shelfImageOrg.size.height / 2;
 	UIGraphicsBeginImageContext(CGSizeMake(shelfImageWidthResized, shelfImageHeightResized));
 	[shelfImageOrg drawInRect:CGRectMake(0, 0, shelfImageWidthResized, shelfImageHeightResized)];
 	shelfImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -89,9 +151,13 @@
 	UIImageView* shelfImageView = [[UIImageView alloc] initWithImage:shelfImage];
 	CGRect shelfImageFrame;
 	shelfImageFrame = shelfImageView.frame;
-	shelfImageFrame.origin.y = 2;
+	//shelfImageFrame.origin.y = 0;
 	shelfImageView.frame = shelfImageFrame;
 	[scrollView addSubview:shelfImageView];
+	
+	
+	currentOriginX += buttonOffsetX;
+	//currentOriginY += spacerY;
 	
 	//
 	int maxCount = [contentListDS count];
@@ -131,6 +197,7 @@
 		//Resize cover image for fit in scroll view.
 		NSUInteger imageInEachLine;
 		CGFloat newImageWidth, newImageHeight;
+		/*
 		if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
 			// iPad
 			imageInEachLine = 5;
@@ -144,6 +211,9 @@
 		}
 		UIGraphicsBeginImageContext(CGSizeMake(newImageWidth, newImageHeight));
 		[imageOriginal drawInRect:CGRectMake(0, 0, newImageWidth, newImageHeight)];
+		 */
+		UIGraphicsBeginImageContext(CGSizeMake(buttonImageWidth, buttonImageHeight));
+		[imageOriginal drawInRect:CGRectMake(0, 0, buttonImageWidth, buttonImageHeight)];
 		image = UIGraphicsGetImageFromCurrentImageContext();
 		UIGraphicsEndImageContext();
 
@@ -157,42 +227,44 @@
 		}
 		
 		// Locate.
-		CGRect rect = CGRectZero;
-		rect.origin.x = currentOriginX;
-		rect.origin.y = currentOriginY;
-		rect.size = image.size;
-		if (maxHeightInLine < rect.size.height) {
-			maxHeightInLine = rect.size.height;
+		CGRect buttonRect = CGRectZero;
+		buttonRect.origin.x = currentOriginX;
+		buttonRect.origin.y = currentOriginY + buttonOffsetY;
+		buttonRect.size = image.size;
+		if (maxHeightInLine < buttonRect.size.height) {
+			maxHeightInLine = buttonRect.size.height;
 		}
 		
-		// Check locate. feed line.
+		// Check locate. feed line if overflow X.
 		if (maxWidth < currentOriginX + image.size.width) {
 			//feed line.
-			currentOriginX = 0.0f + spacerX;
-			currentOriginY += maxHeightInLine;
-			currentOriginY += spacerY + spacerY + spacerY;
+			currentOriginX = 0.0f + buttonOffsetX;
+			currentOriginY += shelfImageHeightResized;
 			maxHeightInLine = image.size.height;
 			
-			rect.origin.x = currentOriginX;
-			rect.origin.y = currentOriginY;
+			buttonRect.origin.x = currentOriginX;
+			buttonRect.origin.y = currentOriginY + buttonOffsetY;
 			
 			//Show shelf.
 			UIImageView* shelfImageView = [[UIImageView alloc] initWithImage:shelfImage];
 			CGRect shelfImageFrame;
 			shelfImageFrame = shelfImageView.frame;
-			shelfImageFrame.origin.y = currentOriginY - spacerY;
+			shelfImageFrame.origin.x = 0.0f;
+			shelfImageFrame.origin.y = currentOriginY;	// - spacerY;
 			shelfImageView.frame = shelfImageFrame;
 			[scrollView addSubview:shelfImageView];
+			
 		}
+		
 		// Positioning to next position.
-		currentOriginX += rect.size.width;
-		currentOriginX += spacerX;
+		currentOriginX += buttonRect.size.width + spacerX;
 		//NSLog(@"pageNum=%d, rect for button=%@", pageNum, NSStringFromCGRect(rect));
+		
 		
 		// Add to subview.
 		UIButton* button = [[UIButton alloc] init];
 		[button setImage:image forState:UIControlStateNormal];
-		button.frame = rect;
+		button.frame = buttonRect;
 		button.tag = targetCid;
 		[button addTarget:self action:@selector(buttonEvent:) forControlEvents:UIControlEventTouchUpInside];
 		[scrollView addSubview:button];
@@ -227,6 +299,25 @@
 		
 		// Set contentSize to scrollView.
 		scrollView.contentSize = CGSizeMake(maxWidth, currentOriginY + maxHeightInLine);
+	}
+	
+	//Add empty shelf for fill white space.
+	while (currentOriginY + shelfImageHeight < self.view.frame.size.height)
+	{
+		//Feed next column.
+		currentOriginY += shelfImageHeight;
+		
+		//Show empty shelf.
+		UIImageView* shelfImageView = [[UIImageView alloc] initWithImage:shelfImage];
+		CGRect shelfImageFrame;
+		shelfImageFrame = shelfImageView.frame;
+		shelfImageFrame.origin.x = 0.0f;
+		shelfImageFrame.origin.y = currentOriginY;	// - spacerY;
+		shelfImageView.frame = shelfImageFrame;
+		[scrollView addSubview:shelfImageView];
+		
+		// Set contentSize to scrollView.
+		scrollView.contentSize = CGSizeMake(maxWidth, currentOriginY);
 	}
 }
 
