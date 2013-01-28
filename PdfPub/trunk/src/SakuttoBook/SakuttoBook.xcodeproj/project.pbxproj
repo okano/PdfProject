@@ -1170,6 +1170,7 @@
 				2957329116A7DCFE00F05822 /* ContentIcon_5.png in Resources */,
 				2957329516A7DD9500F05822 /* nowayout.pdf in Resources */,
 				29A9CAF016B255A300F68C60 /* nowayout-SD-QVGA.m4v in Resources */,
+				293FC643169EAE1C002AF927 /* ContentListImageViewController.xib in Resources */,
 				29A1E74C16AB9FA9003B19C1 /* urlLinkDefine_1.csv in Resources */,
 				29A1E74D16AB9FA9003B19C1 /* urlLinkDefine.csv in Resources */,
 			);

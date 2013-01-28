@@ -28,11 +28,37 @@
     return self;
 }
 
+
+#pragma mark - Get Count of array.
 - (uint)count
 {
 	return [contentList count];
 }
+- (uint)countWithGenre:(NSString*)genre
+{
+	NSDictionary* ids = [self contentIdsWithGenre:genre];
+	return [ids count];
+}
 
+- (uint)countWithGenre:(NSString*)genre subGenre:(NSString*)subGenre
+{
+	NSArray* contentsInSubGenre = [self contentIdsWithGenre:genre subGenre:subGenre];
+	return [contentsInSubGenre count];
+}
+
+#pragma mark - Get Genre.
+- (NSArray*)allGenre
+{
+	return [contentIdDictWithGenre allKeys];
+}
+
+- (NSArray*)allSubGenreWithGenre:(NSString*)genre
+{
+	NSDictionary* contentsInGenre = [contentIdDictWithGenre valueForKey:genre];
+	return [contentsInGenre allKeys];
+}
+
+#pragma mark - Get ID.
 - (ContentId)contentIdAtIndex:(int)index
 {
 	if ([contentList count] < index || index < 0) {
@@ -44,6 +70,36 @@
 	return [[tmpDict valueForKey:CONTENT_CID] intValue];
 	//return @"testContentId";
 }
+- (NSDictionary*)contentIdsWithGenre:(NSString*)genre
+{
+	NSDictionary* contentsInGenre = [contentIdDictWithGenre valueForKey:genre];
+	if (contentsInGenre == nil) {
+		return 0;
+	}
+	
+	NSMutableDictionary* ids = [[NSMutableDictionary alloc] init];
+	for (NSDictionary* contentsInSubGenre in contentsInGenre) {
+		for (NSNumber* cid in contentsInSubGenre) {
+			[ids setObject:@"cid" forKey:cid];
+		}
+	}
+	return ids;
+}
+- (NSArray*)contentIdsWithGenre:(NSString*)genre subGenre:(NSString*)subGenre
+{
+	NSDictionary* contentsInGenre = [contentIdDictWithGenre valueForKey:genre];
+	NSArray* contentsInSubGenre = [contentsInGenre valueForKey:subGenre];
+	return contentsInSubGenre;
+}
+- (ContentId)contentIdWithGenre:(NSString*)genre subGenre:(NSString*)subGenre index:(NSInteger)index
+{
+	NSArray* contentsInSubGenre = [self contentIdsWithGenre:genre subGenre:subGenre];
+	if ([contentsInSubGenre count] <= index) {
+		return InvalidContentId;
+	}
+	return (ContentId)[contentsInSubGenre objectAtIndex:index];
+}
+
 - (ContentId)contentIdFromProductId:(NSString*)productId
 {
 	NSDictionary* tmpDict;
@@ -109,6 +165,7 @@
 */
 
 
+#pragma mark - Get UUID.
 - (NSString*)uuidAtIndex:(NSInteger)index
 {
 	if ([contentList count] < index || index < 0) {

@@ -63,14 +63,13 @@
 
 //Get ID.
 - (ContentId)contentIdAtIndex:(NSInteger)index;
-- (ContentId)contentIdAtIndex:(NSInteger)index genre:(NSString*)genre;
-- (ContentId)contentIdAtIndex:(NSInteger)index genre:(NSString*)genre subGenre:(NSString*)subGenre;
+- (NSDictionary*)contentIdsWithGenre:(NSString*)genre;
+- (NSArray*)contentIdsWithGenre:(NSString*)genre subGenre:(NSString*)subGenre;
+- (ContentId)contentIdWithGenre:(NSString*)genre subGenre:(NSString*)subGenre index:(NSInteger)index;
 - (ContentId)contentIdFromProductId:(NSString*)productId;
 - (ContentId)contentIdFromUuid:(NSString*)uuid;
 //- (NSString*)productIdFromContentId:(ContentId)cid;
 - (NSString*)uuidAtIndex:(NSInteger)index;
-- (NSString*)uuidAtIndex:(NSInteger)index genre:(NSString*)genre;
-- (NSString*)uuidAtIndex:(NSInteger)index genre:(NSString*)genre  subGenre:(NSString*)subGenre;
 - (NSString*)uuidFromContentId:(ContentId)cid;
 
 - (void)setupData;
@@ -94,7 +93,6 @@
 - (void)addContentIdArray:(ContentId)cid genre:(NSString*)genre subGenre:(NSString*)subGenre;
 //Replace.
 - (void)replaceMetadataAtIndex:(NSInteger)index withMetadata:(NSDictionary*)metaDataDict;
-- (void)replaceContentIdArrayWithGenreAtIndex:(NSUInteger)index withMetadata:(NSDictionary*)metaDataDict;
 
 //ContentId for download.
 - (ContentId)nextContentId;
