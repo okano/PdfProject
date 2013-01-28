@@ -14,7 +14,8 @@
 #import "ContentListGenreTabController.h"
 #import "ContentListImageViewController.h"
 #import "ContentDetailViewController.h"
-#import "ServerContentListVC.h"
+#import "ServerContentListTableVC.h"
+#import "ServerContentListImageVC.h"
 #import "ServerContentDetailVC.h"
 
 @interface SakuttoBookViewController : UIViewController {
@@ -23,7 +24,8 @@
 	ContentListImageViewController* contentListIVC;
 	ContentDetailViewController* contentDetailVC;
 	//Server Content.
-	ServerContentListVC* serverContentListVC;
+	ServerContentListTableVC* serverContentListVC;
+	ServerContentListImageVC* serverContentListIVC;
 	ServerContentDetailVC* serverContentDetailVC;
 	
 	//For multi Genre.
@@ -46,7 +48,8 @@
 @property (nonatomic, retain) ContentListTableViewController* contentListVC;
 @property (nonatomic, retain) ContentListImageViewController* contentListIVC;
 @property (nonatomic, retain) ContentDetailViewController* contentDetailVC;
-@property (nonatomic, retain) ServerContentListVC* serverContentListVC;
+@property (nonatomic, retain) ServerContentListTableVC* serverContentListVC;
+@property (nonatomic, retain) ServerContentListImageVC* serverContentListIVC;
 @property (nonatomic, retain) ServerContentDetailVC* serverContentDetailVC;
 //For multi Genre.
 @property (nonatomic, retain) ContentListGenreTabController* contentListGenreTabController;
