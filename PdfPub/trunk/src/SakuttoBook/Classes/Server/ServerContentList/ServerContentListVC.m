@@ -35,13 +35,9 @@
 	//Setup TableView, Toolbar..
     [super viewDidLoad];
 	
-	
-	
 	//Setup TableView.
 	myTableView.delegate = self;
 	myTableView.dataSource = self;
-	//Setup data.
-	[self setupData];
 	
 	//Setup Toolbar.
 	UIBarButtonItem *localContentButton = [[UIBarButtonItem alloc] initWithTitle:@"Books"
@@ -76,8 +72,11 @@
 	[spacer2 release]; spacer2 = nil;
 	[reloadButton release]; reloadButton = nil;
 	[activityItem release]; activityItem = nil;
-
-	[self reloadData];
+	
+	
+	//Setup data.
+	[self setupData];	//Load into inner var.
+	[self reloadData];	//Refresh UITableView.
 }
 
 #pragma mark - setup data.
@@ -105,8 +104,10 @@
 		return;
 	}
 	
-	//Get productIdList.
+#if defined(OVERWRITE_PRODUCTIDLIST_BY_SERVER) && OVERWRITE_PRODUCTIDLIST_BY_SERVER != 0
+	//Get productIdList from server.
 	[[ProductIdList sharedManager] refreshProductIdListFromNetwork];
+#endif
 }
 
 - (void)reloadFromNetwork;
@@ -130,7 +131,7 @@
 	[[ProductIdList sharedManager] refreshProductIdListFromNetwork];
 	
 	//Reload OPDS from network.
-	[appDelegate.serverContentListDS removeAllObjects];
+	//[appDelegate.serverContentListDS removeAllObjects];
 	[appDelegate.serverContentListDS loadContentListFromNetworkByOpds];
 }
 

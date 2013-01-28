@@ -350,7 +350,8 @@
 - (void)removeMetadataWithContentId:(ContentId)cid
 {
 	LOG_CURRENT_METHOD;
-	NSLog(@"old contentList=%@", [contentList description]);
+	NSLog(@"old contentList count=%d", [contentList count]);
+	//NSLog(@"old contentList=%@", [contentList description]);
 	
 	for (NSDictionary* tmpDict in [contentList reverseObjectEnumerator]){
 		id object = [tmpDict valueForKey:CONTENT_CID];
@@ -362,7 +363,8 @@
 		}
 	}
 	
-	NSLog(@"new contentList=%@", [contentList description]);
+	NSLog(@"new contentList count=%d", [contentList count]);
+	//NSLog(@"new contentList=%@", [contentList description]);
 }
 
 - (void)removeMetadataWithUuid:(NSString*)uuid
