@@ -56,6 +56,8 @@
 		29452CAE14E3A58700DD15ED /* p3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 29452CAB14E3A58700DD15ED /* p3.mp3 */; };
 		2949B3981615558E00BD3B14 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2949B3971615558E00BD3B14 /* Default-568h@2x.png */; };
 		294B3D3E16B578D30095E56F /* ServerContentListTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 294B3D3D16B578D30095E56F /* ServerContentListTableVC.m */; };
+		294B3D4316B583810095E56F /* ServerContentListImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 294B3D4116B583810095E56F /* ServerContentListImageVC.m */; };
+		294B3D4416B583810095E56F /* ServerContentListImageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 294B3D4216B583810095E56F /* ServerContentListImageVC.xib */; };
 		294E1F1E131E2A5B00E49BAF /* popoverScrollImageDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 294E1F1D131E2A5B00E49BAF /* popoverScrollImageDefine.csv */; };
 		294E1FC1131E313800E49BAF /* PopoverScrollImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 294E1FC0131E313800E49BAF /* PopoverScrollImageViewController.m */; };
 		294FC9C316B24CA900F9688E /* ContentIcon_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 294FC9B216B24CA900F9688E /* ContentIcon_4.png */; };
@@ -284,6 +286,9 @@
 		2949B3971615558E00BD3B14 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		294B3D3C16B578D30095E56F /* ServerContentListTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerContentListTableVC.h; sourceTree = "<group>"; };
 		294B3D3D16B578D30095E56F /* ServerContentListTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerContentListTableVC.m; sourceTree = "<group>"; };
+		294B3D4016B583800095E56F /* ServerContentListImageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerContentListImageVC.h; sourceTree = "<group>"; };
+		294B3D4116B583810095E56F /* ServerContentListImageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerContentListImageVC.m; sourceTree = "<group>"; };
+		294B3D4216B583810095E56F /* ServerContentListImageVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServerContentListImageVC.xib; sourceTree = "<group>"; };
 		294E1F1D131E2A5B00E49BAF /* popoverScrollImageDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = popoverScrollImageDefine.csv; path = csv/popoverScrollImageDefine.csv; sourceTree = "<group>"; };
 		294E1FBF131E313800E49BAF /* PopoverScrollImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverScrollImageViewController.h; sourceTree = "<group>"; };
 		294E1FC0131E313800E49BAF /* PopoverScrollImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverScrollImageViewController.m; sourceTree = "<group>"; };
@@ -831,6 +836,9 @@
 				29E8A4011532A8FD00468FE9 /* ServerContentListVC.m */,
 				294B3D3C16B578D30095E56F /* ServerContentListTableVC.h */,
 				294B3D3D16B578D30095E56F /* ServerContentListTableVC.m */,
+				294B3D4016B583800095E56F /* ServerContentListImageVC.h */,
+				294B3D4116B583810095E56F /* ServerContentListImageVC.m */,
+				294B3D4216B583810095E56F /* ServerContentListImageVC.xib */,
 			);
 			name = ServerContentList;
 			path = Server/ServerContentList;
@@ -1210,6 +1218,7 @@
 				294FCA3816B24D4A00F9688E /* tocDefine_18.csv in Resources */,
 				294FCA3916B24D4A00F9688E /* tocDefine_19.csv in Resources */,
 				294FCA3A16B24D4A00F9688E /* tocDefine_20.csv in Resources */,
+				294B3D4416B583810095E56F /* ServerContentListImageVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1292,6 +1301,7 @@
 				29AFB90E1638067A00C0978C /* ContentPlayerViewController+bottomMenu.m in Sources */,
 				293FC642169EAE1C002AF927 /* ContentListImageViewController.m in Sources */,
 				294B3D3E16B578D30095E56F /* ServerContentListTableVC.m in Sources */,
+				294B3D4316B583810095E56F /* ServerContentListImageVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
