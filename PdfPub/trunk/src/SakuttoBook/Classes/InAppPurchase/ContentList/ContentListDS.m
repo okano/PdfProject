@@ -269,9 +269,9 @@
 		}
 #if defined(IS_MULTI_GENRE) && IS_MULTI_GENRE != 0
 		//multi genre.
-		int genreIndex = 4;
+		int genreIndex = 5;
 		if (genreIndex <= [lines count]) {
-			NSString* genreStrTmp = [lines objectAtIndex:genreIndex];
+			NSString* genreStrTmp = [lines objectAtIndex:genreIndex - 1];
 			
 			//parse genre. ex: "book-picture"  => "book", "picture"
 			NSMutableArray* genreArr = [[NSMutableArray alloc] initWithArray:[genreStrTmp componentsSeparatedByString:@"-"]];
