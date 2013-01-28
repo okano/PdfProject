@@ -1,1 +1,1 @@
-branch divide test.
+branch divide test with master branch.
