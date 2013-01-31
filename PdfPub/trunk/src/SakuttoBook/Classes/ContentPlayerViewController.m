@@ -18,7 +18,7 @@
 //@synthesize image1, image2, image3;
 @synthesize currentContentId;
 @synthesize menuViewController, bottomToolBar, webViewController, tocViewController, thumbnailViewController, bookmarkViewController;
-@synthesize isShownMenuBar, isShownTocView, isShownThumbnailView, isShownBookmarkView;
+@synthesize isShownMenuBar, isShownTocView, isShownPageSmallView, isShownBookmarkView;
 //@synthesize currentImageView;
 
 /*
@@ -232,7 +232,7 @@
 	
 	// Setup Thumbnail Image Toc View.
 	thumbnailViewController = [[ThumbnailViewController alloc] init];
-	isShownThumbnailView = FALSE;
+	isShownPageSmallView = FALSE;
 	
 	// Setup Bookmark View.
 	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -446,22 +446,22 @@
 	return [FileUtility getPageFilenameFull:pageNum WithContentId:cid];
 }
 
-- (NSString*)getThumbnailFilenameFull:(int)pageNum {
+- (NSString*)getPageSmallFilenameFull:(int)pageNum {
 	if ([self isMultiContents] == TRUE) {
-		return [FileUtility getThumbnailFilenameFull:pageNum WithContentId:currentContentId];
+		return [FileUtility getPageSmallFilenameFull:pageNum WithContentId:currentContentId];
 	} else {
-		return [FileUtility getThumbnailFilenameFull:pageNum];
+		return [FileUtility getPageSmallFilenameFull:pageNum];
 	}
 	/*
-	NSString* filename = [NSString stringWithFormat:@"%@%d", THUMBNAIL_FILE_PREFIX, pageNum];
+	NSString* filename = [NSString stringWithFormat:@"%@%d", PAGE_FILE_SMALL_PREFIX, pageNum];
 	NSString* targetFilenameFull = [[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 									 stringByAppendingPathComponent:filename]
-									stringByAppendingPathExtension:THUMBNAIL_FILE_EXTENSION];
+									stringByAppendingPathExtension:PAGE_FILE_SMALL_EXTENSION];
 	return targetFilenameFull;
 	*/
 }
-- (NSString*)getThumbnailFilenameFull:(int)pageNum WithContentId:(ContentId)cid{
-	return [FileUtility getThumbnailFilenameFull:pageNum WithContentId:cid];
+- (NSString*)getPageSmallFilenameFull:(int)pageNum WithContentId:(ContentId)cid{
+	return [FileUtility getPageSmallFilenameFull:pageNum WithContentId:cid];
 }
 
 #pragma mark -
@@ -540,7 +540,7 @@
 
 
 
-- (void)generateThumbnailImageFromImage:(UIImage*)baseImage width:(CGFloat)newWidth pageNumForSave:(NSUInteger)pageNum
+- (void)generatePageSmallImageFromImage:(UIImage*)baseImage width:(CGFloat)newWidth pageNumForSave:(NSUInteger)pageNum
 {
 	//LOG_CURRENT_METHOD;
 	
@@ -548,7 +548,7 @@
 	CGFloat scale = baseImage.size.width / newWidth;
 	CGSize newSize = CGSizeMake(baseImage.size.width / scale,
 								baseImage.size.height / scale);
-	//NSLog(@"newSize for thumbnail=%f,%f", newSize.width, newSize.height);
+	//NSLog(@"newSize for page small=%f,%f", newSize.width, newSize.height);
 	
 	//Prepare new image.
 	UIImage* resizedImage;
@@ -564,17 +564,17 @@
 	
 	//Save to file.
 	NSData *data = UIImagePNGRepresentation(resizedImage);
-	NSString* targetFilenameFull = [self getThumbnailFilenameFull:pageNum];
+	NSString* targetFilenameFull = [self getPageSmallFilenameFull:pageNum];
 	[FileUtility makeDir:targetFilenameFull];
 	NSError* error = nil;
 	[data writeToFile:targetFilenameFull options:NSDataWritingAtomic error:&error];
 	if (error) {
 		LOG_CURRENT_METHOD;
-		NSLog(@"thumbnail file write error. path=%@", targetFilenameFull);
+		NSLog(@"page small cache file write error. path=%@", targetFilenameFull);
 		NSLog(@"error=%@, error code=%d", [error localizedDescription], [error code]);
 		
 	} else {
-		//NSLog(@"wrote thumbnail file to %@", targetFilenameFull);
+		//NSLog(@"wrote page small cache file to %@", targetFilenameFull);
 	}
 	
 	//Set Ignore Backup.
@@ -591,7 +591,7 @@
 	for (i = 1; i < maxPageNum; i = i + 1) {
 		targetFilenameFull = [self getPageFilenameFull:i];
 		[fileManager removeItemAtPath:targetFilenameFull error:&error];
-		targetFilenameFull = [self getThumbnailFilenameFull:i];
+		targetFilenameFull = [self getPageSmallFilenameFull:i];
 		[fileManager removeItemAtPath:targetFilenameFull error:&error];
 	}
 }
@@ -1052,8 +1052,8 @@
 		[self hideTocView];
 		return;
 	}
-	if (isShownThumbnailView) {
-		[self hideThumbnailView];
+	if (isShownPageSmallView) {
+		[self hidePageSmallView];
 		return;
 	}
 	if (isShownBookmarkView) {
@@ -2131,7 +2131,7 @@
 }
 
 #pragma mark Treat ThumbnailView(ImageTOC).
-- (void)showThumbnailView {
+- (void)showPageSmallView {
 	[self hideMenuBar];
 	
 	//Setup with tocDefine.
@@ -2142,12 +2142,12 @@
 	[self.view.superview addSubview:thumbnailViewController.view];
 	
 	//Set flag.
-	isShownThumbnailView = TRUE;
+	isShownPageSmallView = TRUE;
 }
-- (void)hideThumbnailView {
+- (void)hidePageSmallView {
 	//Hide by removeSuperView.
 	[thumbnailViewController.view removeFromSuperview];
-	isShownThumbnailView = FALSE;
+	isShownPageSmallView = FALSE;
 }
 
 #pragma mark Treat Bookmark.

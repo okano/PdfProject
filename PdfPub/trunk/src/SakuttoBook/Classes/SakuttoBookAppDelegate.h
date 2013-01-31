@@ -76,7 +76,7 @@
 - (void)alertWithDeviceChangedOnSimulator;
 - (void)deleteAllSettings;
 //
-- (NSString*)getThumbnailFilenameFull:(int)pageNum;
+- (NSString*)getPageSmallFilenameFull:(int)pageNum;
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum;
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum WithContentId:(ContentId)cid;
 //
@@ -93,9 +93,9 @@
 - (void)hideBookmarkView;
 - (void)showBookmarkModifyView;
 - (void)addBookmarkWithCurrentPageWithName:(NSString*)bookmarkName;
-- (void)showThumbnailView;
-- (void)hideThumbnailView;
-- (bool)isShownThumbnailView;
+- (void)showPageSmallView;
+- (void)hidePageSmallView;
+- (bool)isShownPageSmallView;
 - (NSMutableArray*)getTocDefine;
 - (void)showWebView:(NSString*)urlString;
 - (void)showInfoView;

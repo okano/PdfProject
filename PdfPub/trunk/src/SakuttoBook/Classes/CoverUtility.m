@@ -24,7 +24,7 @@
 		return nil;
 	}
 	
-	NSString* targetFilenameFull = [FileUtility getThumbnailFilenameFull:1 WithContentId:cid];
+	NSString* targetFilenameFull = [FileUtility getPageSmallFilenameFull:1 WithContentId:cid];
 	NSFileManager *fileManager = [NSFileManager defaultManager];
 	if ([fileManager fileExistsAtPath:targetFilenameFull]) {
 		UIImage* image = [UIImage imageWithContentsOfFile:targetFilenameFull];

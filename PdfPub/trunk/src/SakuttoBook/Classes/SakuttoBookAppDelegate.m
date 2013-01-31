@@ -142,7 +142,7 @@
 	//Ignore stack-logs.* (debug file. ex:"stack-logs.5565.SakuttoBook.index","stack-logs.5565.SakuttoBook.tx2Lke.link")
 	for (NSString* filename in fileList) {
 		if ([filename hasPrefix:@"stack-logs"] == NO) {
-			//Some file found. it will be thumbnail file, downloaded file, ...
+			//Some file found. it will be page cache file, downloaded file, ...
 			return NO;
 		}
 	}
@@ -614,8 +614,8 @@
 
 #pragma mark -
 #pragma mark Functions in SakuttoBookViewController.
-- (NSString*)getThumbnailFilenameFull:(int)pageNum {
-	return [viewController.contentPlayerViewController getThumbnailFilenameFull:pageNum];
+- (NSString*)getPageSmallFilenameFull:(int)pageNum {
+	return [viewController.contentPlayerViewController getPageSmallFilenameFull:pageNum];
 }
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum {
 	return [viewController.contentPlayerViewController getPdfPageImageWithPageNum:pageNum];
@@ -659,14 +659,14 @@
 - (void)addBookmarkWithCurrentPageWithName:(NSString*)bookmarkName {
 	[viewController.contentPlayerViewController addBookmarkWithCurrentPageWithName:bookmarkName];
 }
-- (void)showThumbnailView {
-	[viewController.contentPlayerViewController showThumbnailView];
+- (void)showPageSmallView {
+	[viewController.contentPlayerViewController showPageSmallView];
 }
-- (void)hideThumbnailView {
-	[viewController.contentPlayerViewController hideThumbnailView];
+- (void)hidePageSmallView {
+	[viewController.contentPlayerViewController hidePageSmallView];
 }
-- (bool)isShownThumbnailView {
-	return viewController.contentPlayerViewController.isShownThumbnailView;
+- (bool)isShownPageSmallView {
+	return viewController.contentPlayerViewController.isShownPageSmallView;
 }
 - (NSMutableArray*)getTocDefine {
 	return tocDefine;

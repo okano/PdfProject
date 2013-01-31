@@ -24,8 +24,8 @@
 //Each page cache.
 + (NSString*)getPageFilenameFull:(int)pageNum;
 + (NSString*)getPageFilenameFull:(int)pageNum WithContentId:(ContentId)cid;
-+ (NSString*)getThumbnailFilenameFull:(int)pageNum;
-+ (NSString*)getThumbnailFilenameFull:(int)pageNum WithContentId:(ContentId)cid;
++ (NSString*)getPageSmallFilenameFull:(int)pageNum;
++ (NSString*)getPageSmallFilenameFull:(int)pageNum WithContentId:(ContentId)cid;
 
 //CSV file parser.
 + (NSArray*)parseDefineCsv:(NSString*)filename;

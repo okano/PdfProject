@@ -57,7 +57,7 @@
 {
 	//LOG_CURRENT_METHOD;
 	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
-	[appDelegate showThumbnailView];
+	[appDelegate showPageSmallView];
 }
 
 #pragma mark -

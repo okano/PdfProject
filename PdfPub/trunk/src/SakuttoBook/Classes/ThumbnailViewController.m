@@ -65,7 +65,7 @@
 - (IBAction)closeThisView:(id)sender
 {
 	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
-	[appDelegate hideThumbnailView];
+	[appDelegate hidePageSmallView];
 	//[self.view removeFromSuperview];
 }
 
@@ -107,7 +107,7 @@
 			image = [UIImage imageNamed:filename];
 		} else {
 			// Open image from thumbnail file.
-			NSString* filenameFull = [appDelegate getThumbnailFilenameFull:pageNum];
+			NSString* filenameFull = [appDelegate getPageSmallFilenameFull:pageNum];
 			image = [UIImage imageWithContentsOfFile:filenameFull];
 			if (! image) {
 				//Generate thumbnail file from PDF.
@@ -221,7 +221,7 @@
 	//NSLog(@"touch thumbnail. page = %d", pageNum);
 	
 	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
-	[appDelegate hideThumbnailView];
+	[appDelegate hidePageSmallView];
 	[appDelegate switchToPage:pageNum];
 }
 
