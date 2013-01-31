@@ -56,7 +56,16 @@
 		appDelegate.serverContentListDS = [[ServerContentListDS alloc] init];
 		appDelegate.serverContentListDS.targetTableVC = nil;
 	}
-	[appDelegate.serverContentListDS loadContentList:32];
+
+	[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+	dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+		// Do something...
+		[appDelegate.serverContentListDS loadContentList:32];
+		
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[MBProgressHUD hideHUDForView:self.view animated:YES];
+		});
+	});
 	
 	//Get productIdList.
 	[[ProductIdList sharedManager] refreshProductIdListFromNetwork];
@@ -76,12 +85,20 @@
 #pragma mark - setup data.
 - (IBAction)reloadFromNetwork:(id)sender
 {
-	//Get productIdList before get opds.
-	[[ProductIdList sharedManager] refreshProductIdListFromNetwork];
-	
-	//Reload OPDS from network.
-	[appDelegate.serverContentListDS removeAllObjects];
-	[appDelegate.serverContentListDS loadContentListFromNetworkByOpds];
+	[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+	dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+		// Do something...
+		//Get productIdList before get opds.
+		[[ProductIdList sharedManager] refreshProductIdListFromNetwork];
+		
+		//Reload OPDS from network.
+		[appDelegate.serverContentListDS removeAllObjects];
+		[appDelegate.serverContentListDS loadContentListFromNetworkByOpds];
+
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[MBProgressHUD hideHUDForView:self.view animated:YES];
+		});
+	});
 }
 
 #pragma mark - show other view.

@@ -10,6 +10,7 @@
 //#import "ServerContentListVC.h"
 #import "ContentListImageViewController.h"
 #import "Reachability.h"
+#import "MBProgressHUD.h"
 
 @interface ServerContentListImageVC : ContentListImageViewController {
 	//IBOutlet UIBarButtonItem *localContentButton;
