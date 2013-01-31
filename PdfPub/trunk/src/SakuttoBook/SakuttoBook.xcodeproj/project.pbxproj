@@ -52,7 +52,6 @@
 		293BB9F012B6217300DDA3E3 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 293BB9EF12B6217300DDA3E3 /* WebViewController.m */; };
 		293BB9F212B6218500DDA3E3 /* WebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 293BB9F112B6218500DDA3E3 /* WebView.xib */; };
 		293FC642169EAE1C002AF927 /* ContentListImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 293FC640169EAE1C002AF927 /* ContentListImageViewController.m */; };
-		293FC643169EAE1C002AF927 /* ContentListImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 293FC641169EAE1C002AF927 /* ContentListImageViewController.xib */; };
 		29431E2212C5D29C00914DBD /* list_bullets.png in Resources */ = {isa = PBXBuildFile; fileRef = 29431E2112C5D29C00914DBD /* list_bullets.png */; };
 		2943E85713A662480034AC62 /* ProductIdList.m in Sources */ = {isa = PBXBuildFile; fileRef = 2943E85613A662480034AC62 /* ProductIdList.m */; };
 		29452CA014E39B4300DD15ED /* ContentPlayerViewController+sound.m in Sources */ = {isa = PBXBuildFile; fileRef = 29452C9F14E39B4300DD15ED /* ContentPlayerViewController+sound.m */; };
@@ -65,7 +64,6 @@
 		2949B3981615558E00BD3B14 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2949B3971615558E00BD3B14 /* Default-568h@2x.png */; };
 		294B3D3E16B578D30095E56F /* ServerContentListTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 294B3D3D16B578D30095E56F /* ServerContentListTableVC.m */; };
 		294B3D4316B583810095E56F /* ServerContentListImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 294B3D4116B583810095E56F /* ServerContentListImageVC.m */; };
-		294B3D4416B583810095E56F /* ServerContentListImageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 294B3D4216B583810095E56F /* ServerContentListImageVC.xib */; };
 		294E1F1E131E2A5B00E49BAF /* popoverScrollImageDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 294E1F1D131E2A5B00E49BAF /* popoverScrollImageDefine.csv */; };
 		294E1FC1131E313800E49BAF /* PopoverScrollImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 294E1FC0131E313800E49BAF /* PopoverScrollImageViewController.m */; };
 		2957328816A7DCAA00F05822 /* tocDefine_5.csv in Resources */ = {isa = PBXBuildFile; fileRef = 2957328716A7DCAA00F05822 /* tocDefine_5.csv */; };
@@ -74,9 +72,9 @@
 		2957328F16A7DCC100F05822 /* bookDefine_5.csv in Resources */ = {isa = PBXBuildFile; fileRef = 2957328E16A7DCC100F05822 /* bookDefine_5.csv */; };
 		2957329116A7DCFE00F05822 /* ContentIcon_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 2957329016A7DCFE00F05822 /* ContentIcon_5.png */; };
 		2957329516A7DD9500F05822 /* nowayout.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2957329416A7DD9500F05822 /* nowayout.pdf */; };
-		295C4A6D16A1135300A3C237 /* shelf.png in Resources */ = {isa = PBXBuildFile; fileRef = 295C4A6C16A1135300A3C237 /* shelf.png */; };
 		295C4A6D16A1135300A3C237 /* shelf_my.png in Resources */ = {isa = PBXBuildFile; fileRef = 295C4A6C16A1135300A3C237 /* shelf_my.png */; };
 		2962C40C1394B9EC002E57F9 /* ContentPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2962C40B1394B9EC002E57F9 /* ContentPlayerView.xib */; };
+		296507F916B91DBE005015CD /* ServerContentListImageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 294B3D4216B583810095E56F /* ServerContentListImageVC.xib */; };
 		29787BE112C5FBDC00EC2681 /* document.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 29787BE012C5FBDC00EC2681 /* document.pdf */; };
 		297AC25612B786EB00962CED /* TocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297AC25512B786EB00962CED /* TocViewController.m */; };
 		297AC25812B7870B00962CED /* TocView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 297AC25712B7870B00962CED /* TocView.xib */; };
@@ -301,7 +299,6 @@
 		2957328E16A7DCC100F05822 /* bookDefine_5.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bookDefine_5.csv; path = csv/bookDefine_5.csv; sourceTree = "<group>"; };
 		2957329016A7DCFE00F05822 /* ContentIcon_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ContentIcon_5.png; sourceTree = "<group>"; };
 		2957329416A7DD9500F05822 /* nowayout.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = nowayout.pdf; sourceTree = "<group>"; };
-		295C4A6C16A1135300A3C237 /* shelf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shelf.png; path = Classes/shelf.png; sourceTree = "<group>"; };
 		295C4A6C16A1135300A3C237 /* shelf_my.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shelf_my.png; path = Classes/shelf_my.png; sourceTree = "<group>"; };
 		2962C40B1394B9EC002E57F9 /* ContentPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentPlayerView.xib; sourceTree = "<group>"; };
 		2963BE1D12B5C01E001041EB /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
@@ -997,57 +994,6 @@
 				29A1E74B16AB9FA9003B19C1 /* urlLinkDefine.csv */,
 				29A1E74A16AB9FA9003B19C1 /* urlLinkDefine_1.csv */,
 				29A2A5461398B87300C8CB52 /* productIdList.csv */,
-				294FC9F516B24D1400F9688E /* bookDefine_4.csv */,
-				294FC9D516B24CEE00F9688E /* bookDefine_5.csv */,
-				294FC9D616B24CEE00F9688E /* bookDefine_6.csv */,
-				294FC9D716B24CEE00F9688E /* bookDefine_7.csv */,
-				294FC9D816B24CEE00F9688E /* bookDefine_8.csv */,
-				294FC9D916B24CEE00F9688E /* bookDefine_9.csv */,
-				294FC9DA16B24CEE00F9688E /* bookDefine_10.csv */,
-				294FC9DB16B24CEE00F9688E /* bookDefine_11.csv */,
-				294FC9DC16B24CEE00F9688E /* bookDefine_12.csv */,
-				294FC9DD16B24CEE00F9688E /* bookDefine_13.csv */,
-				294FC9DE16B24CEE00F9688E /* bookDefine_14.csv */,
-				294FC9DF16B24CEE00F9688E /* bookDefine_15.csv */,
-				294FC9E016B24CEE00F9688E /* bookDefine_16.csv */,
-				294FC9E116B24CEE00F9688E /* bookDefine_17.csv */,
-				294FC9E216B24CEE00F9688E /* bookDefine_18.csv */,
-				294FC9E316B24CEE00F9688E /* bookDefine_19.csv */,
-				294FC9E416B24CEE00F9688E /* bookDefine_20.csv */,
-				294FC9F716B24D3400F9688E /* pdfDefine_4.csv */,
-				294FC9F816B24D3400F9688E /* pdfDefine_5.csv */,
-				294FC9F916B24D3400F9688E /* pdfDefine_6.csv */,
-				294FC9FA16B24D3400F9688E /* pdfDefine_7.csv */,
-				294FC9FB16B24D3400F9688E /* pdfDefine_8.csv */,
-				294FC9FC16B24D3400F9688E /* pdfDefine_9.csv */,
-				294FC9FD16B24D3400F9688E /* pdfDefine_10.csv */,
-				294FC9FE16B24D3400F9688E /* pdfDefine_11.csv */,
-				294FC9FF16B24D3400F9688E /* pdfDefine_12.csv */,
-				294FCA0016B24D3400F9688E /* pdfDefine_13.csv */,
-				294FCA0116B24D3400F9688E /* pdfDefine_14.csv */,
-				294FCA0216B24D3400F9688E /* pdfDefine_15.csv */,
-				294FCA0316B24D3400F9688E /* pdfDefine_16.csv */,
-				294FCA0416B24D3400F9688E /* pdfDefine_17.csv */,
-				294FCA0516B24D3400F9688E /* pdfDefine_18.csv */,
-				294FCA0616B24D3400F9688E /* pdfDefine_19.csv */,
-				294FCA0716B24D3400F9688E /* pdfDefine_20.csv */,
-				294FCA1916B24D4A00F9688E /* tocDefine_4.csv */,
-				294FCA1A16B24D4A00F9688E /* tocDefine_5.csv */,
-				294FCA1B16B24D4A00F9688E /* tocDefine_6.csv */,
-				294FCA1C16B24D4A00F9688E /* tocDefine_7.csv */,
-				294FCA1D16B24D4A00F9688E /* tocDefine_8.csv */,
-				294FCA1E16B24D4A00F9688E /* tocDefine_9.csv */,
-				294FCA1F16B24D4A00F9688E /* tocDefine_10.csv */,
-				294FCA2016B24D4A00F9688E /* tocDefine_11.csv */,
-				294FCA2116B24D4A00F9688E /* tocDefine_12.csv */,
-				294FCA2216B24D4A00F9688E /* tocDefine_13.csv */,
-				294FCA2316B24D4A00F9688E /* tocDefine_14.csv */,
-				294FCA2416B24D4A00F9688E /* tocDefine_15.csv */,
-				294FCA2516B24D4A00F9688E /* tocDefine_16.csv */,
-				294FCA2616B24D4A00F9688E /* tocDefine_17.csv */,
-				294FCA2716B24D4A00F9688E /* tocDefine_18.csv */,
-				294FCA2816B24D4A00F9688E /* tocDefine_19.csv */,
-				294FCA2916B24D4A00F9688E /* tocDefine_20.csv */,
 			);
 			name = csv;
 			sourceTree = "<group>";
@@ -1178,7 +1124,6 @@
 				29208E4C1634ECFE007D778F /* mailDefine_3.csv in Resources */,
 				29208E4D1634ECFE007D778F /* mailDefine.csv in Resources */,
 				2916B7A01674799F00B344DA /* ConfigVC2.xib in Resources */,
-				293FC643169EAE1C002AF927 /* ContentListImageViewController.xib in Resources */,
 				299FDF73169FD776002E593E /* taiyou.aif in Resources */,
 				299FDF74169FD776002E593E /* yoake1.aif in Resources */,
 				299FDF75169FD776002E593E /* yoake2.aif in Resources */,
@@ -1234,9 +1179,9 @@
 				2957329116A7DCFE00F05822 /* ContentIcon_5.png in Resources */,
 				2957329516A7DD9500F05822 /* nowayout.pdf in Resources */,
 				29A9CAF016B255A300F68C60 /* nowayout-SD-QVGA.m4v in Resources */,
-				293FC643169EAE1C002AF927 /* ContentListImageViewController.xib in Resources */,
 				29A1E74C16AB9FA9003B19C1 /* urlLinkDefine_1.csv in Resources */,
 				29A1E74D16AB9FA9003B19C1 /* urlLinkDefine.csv in Resources */,
+				296507F916B91DBE005015CD /* ServerContentListImageVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
