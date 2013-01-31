@@ -112,10 +112,10 @@
 	}
 	
 	
-	//Thumbnail.
+	//Cover Image.
 	//cell.imageView.image = [appDelegate.serverContentListDS contentIconByContentId:targetCid];
-	UIImage* thumbnailImage = [CoverUtility coverImageWithUuid:uuid];
-	cell.imageView.image = thumbnailImage;
+	UIImage* coverImage = [CoverUtility coverImageWithUuid:uuid];
+	cell.imageView.image = coverImage;
 
 	
 	NSLog(@"title=%@", cell.titleLabel.text);

@@ -144,19 +144,6 @@
 
 
 #pragma mark - Cover image Directory.
-/**
- *Thumbnail Directory.
- */
-/*
-+ (NSString*)getThumbnailIconFilenameWithContentId:(NSString*)cId
-{
-	NSString* dir = [self getContentDetailDirectoryWithContentId:cId];
-	NSString* filename = [[dir stringByAppendingPathComponent:cId]
-						  stringByAppendingPathExtension:@"jpg"];
-	return filename;
-}
-*/
-
 + (NSString*)getCoverIconDirectory{
 	return [NSHomeDirectory() stringByAppendingPathComponent:CONTENT_TMP_DIRECTORY];
 }

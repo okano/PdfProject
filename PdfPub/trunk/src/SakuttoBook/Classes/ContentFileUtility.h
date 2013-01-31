@@ -41,8 +41,6 @@
 + (NSString*)getContentDownloadDirectory;
 + (NSString*)getContentExtractDirectory;
 
-//thumbnail image.
-//+ (NSString*)getThumbnailIconFilenameWithContentId:(NSString*)cId;
 //preview image.
 //+ (NSString*)getPreviewImage1FilenameWithContentId:(NSString*)cId;
 

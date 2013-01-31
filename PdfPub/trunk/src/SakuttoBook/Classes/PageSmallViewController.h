@@ -1,5 +1,5 @@
 //
-//  ThumbnailViewController.h
+//  PageSmallViewController.h
 //  SakuttoBook
 //
 //  Created by okano on 10/12/25.
@@ -12,7 +12,7 @@
 #import "Define.h"
 #import "FileUtility.h"
 
-@interface ThumbnailViewController : UIViewController {
+@interface PageSmallViewController : UIViewController {
 	UIToolbar* toolBar;
 	UIScrollView* scrollView;
 }

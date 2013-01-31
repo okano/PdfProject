@@ -1,15 +1,15 @@
-    //
-//  ThumbnailViewController.m
+//
+//  PageSmallViewController.m
 //  SakuttoBook
 //
 //  Created by okano on 10/12/25.
 //  Copyright 2010,2011 Katsuhiko Okano All rights reserved.
 //
 
-#import "ThumbnailViewController.h"
+#import "PageSmallViewController.h"
 
 
-@implementation ThumbnailViewController
+@implementation PageSmallViewController
 @synthesize toolBar;
 @synthesize scrollView;
 
@@ -106,18 +106,18 @@
 			// Open image from mainBundle.
 			image = [UIImage imageNamed:filename];
 		} else {
-			// Open image from thumbnail file.
+			// Open image from page small file.
 			NSString* filenameFull = [appDelegate getPageSmallFilenameFull:pageNum];
 			image = [UIImage imageWithContentsOfFile:filenameFull];
 			if (! image) {
-				//Generate thumbnail file from PDF.
-				CGFloat newWidth = 100.0f;
+				//Generate page small file from PDF.
+				CGFloat newWidth = CACHE_IMAGE_SMALL_WIDTH;		//100.0f;
 				
 				//Get original image.
 				SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
 				UIImage* tmpImage = [[appDelegate getPdfPageImageWithPageNum:pageNum] autorelease];
 				if (tmpImage == nil) {
-					NSLog(@"cannot generate thumbnail image. pageNum=%d", pageNum);
+					NSLog(@"cannot generate page small image. pageNum=%d", pageNum);
 					continue;	//skip to next image.
 				}
 				
@@ -144,11 +144,11 @@
 				NSError* error = nil;
 				[data writeToFile:filenameFull options:NSDataWritingAtomic error:&error];
 				if (error) {
-					NSLog(@"thumbnail file write error. path=%@", filenameFull);
+					NSLog(@"page small file write error. path=%@", filenameFull);
 					NSLog(@"error=%@, error code=%d", [error localizedDescription], [error code]);
 					continue; //skip to next file.
 				} else {
-					//NSLog(@"wrote thumbnail file to %@", filenameFull);
+					//NSLog(@"wrote page small file to %@", filenameFull);
 				}
 				
 				//Set Ignore Backup.
@@ -218,7 +218,7 @@
 	//LOG_CURRENT_METHOD;
 	//UIButton* button = (UIButton*)sender;
 	NSUInteger pageNum = button.tag;
-	//NSLog(@"touch thumbnail. page = %d", pageNum);
+	//NSLog(@"touch page small. page = %d", pageNum);
 	
 	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
 	[appDelegate hidePageSmallView];

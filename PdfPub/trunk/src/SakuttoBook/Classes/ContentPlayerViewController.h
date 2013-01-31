@@ -24,7 +24,7 @@
 #import "TocViewController.h"
 #import "BookmarkViewController.h"
 #import "BookmarkModifyViewController.h"
-#import "ThumbnailViewController.h"
+#import "PageSmallViewController.h"
 
 @class TiledPDFView;
 //#import "PDFScrollView.h"
@@ -106,9 +106,9 @@
 	// WebView
 	WebViewController* webViewController;
 	NSMutableString* urlForWeb;
-	// TocView, ThumbnailView.
+	// TocView, PageSmallView.
 	TocViewController* tocViewController;
-	ThumbnailViewController* thumbnailViewController;
+	PageSmallViewController* pageSmallViewController;
 	// BookmarkView
 	BookmarkViewController* bookmarkViewController;
 	bool isShownMenuBar;
@@ -140,7 +140,7 @@
 @property (nonatomic, retain) UIToolbar* bottomToolBar;
 @property (nonatomic, retain) WebViewController* webViewController;
 @property (nonatomic, retain) TocViewController* tocViewController;
-@property (nonatomic, retain) ThumbnailViewController* thumbnailViewController;
+@property (nonatomic, retain) PageSmallViewController* pageSmallViewController;
 @property (nonatomic, retain) BookmarkViewController* bookmarkViewController;
 //
 @property (nonatomic) bool isShownMenuBar;
@@ -174,7 +174,7 @@
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum;
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum WithContentId:(ContentId)cid;
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum WithTargetFilenameFull:(NSString*)filename;
-- (void)generatePageSmallImageFromImage:(UIImage*)baseImage width:(CGFloat)newWidth pageNumForSave:(NSUInteger)pageNum;
+//- (void)generatePageSmallImageFromImage:(UIImage*)baseImage width:(CGFloat)newWidth pageNumForSave:(NSUInteger)pageNum;
 - (void)removeAllImageCache;
 //
 - (void)drawPageWithNumber:(int)newPagenum;

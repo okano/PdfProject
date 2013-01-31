@@ -17,7 +17,7 @@
 //@synthesize imageView1, imageView2, imageView3;
 //@synthesize image1, image2, image3;
 @synthesize currentContentId;
-@synthesize menuViewController, bottomToolBar, webViewController, tocViewController, thumbnailViewController, bookmarkViewController;
+@synthesize menuViewController, bottomToolBar, webViewController, tocViewController, pageSmallViewController, bookmarkViewController;
 @synthesize isShownMenuBar, isShownTocView, isShownPageSmallView, isShownBookmarkView;
 //@synthesize currentImageView;
 
@@ -131,9 +131,8 @@
 	}
 	
 	
-	//Generate Thumbnail image.
+	//Generate Page Samll image.
 	//generate when need.(for launch speed up.)
-	//[self generateThumbnailImage:100.0f];
 	
 	//Remove all image cache when debug.
 #ifdef TARGET_IPHONE_SIMULATOR
@@ -230,8 +229,8 @@
 	tocViewController.view.frame = tocViewFrame;
 	isShownTocView = FALSE;
 	
-	// Setup Thumbnail Image Toc View.
-	thumbnailViewController = [[ThumbnailViewController alloc] init];
+	// Setup Page Small Image Toc View.
+	pageSmallViewController = [[PageSmallViewController alloc] init];
 	isShownPageSmallView = FALSE;
 	
 	// Setup Bookmark View.
@@ -520,8 +519,8 @@
 		
 		UIImage* pdfImage = [[UIImage alloc] initWithContentsOfFile:targetFilenameFull];
 		if (pdfImage) {
-			//Thumbnail image is generated ondemand.
-			//[self generateThumbnailImageFromImage:pdfImage width:THUMBNAIL_WIDTH pageNumForSave:pageNum];
+			//Page Small image is generated ondemand.
+			//[self generatePageSmallImageFromImage:pdfImage width:CACHE_IMAGE_SMALL_WIDTH pageNumForSave:pageNum];
 			
 			return pdfImage;
 		} else {
@@ -539,7 +538,7 @@
 
 
 
-
+/*
 - (void)generatePageSmallImageFromImage:(UIImage*)baseImage width:(CGFloat)newWidth pageNumForSave:(NSUInteger)pageNum
 {
 	//LOG_CURRENT_METHOD;
@@ -580,6 +579,7 @@
 	//Set Ignore Backup.
 	[FileUtility addSkipBackupAttributeToItemWithString:targetFilenameFull];
 }
+*/
 
 //Remove image cache.
 - (void)removeAllImageCache
@@ -1047,7 +1047,7 @@
 	//NSLog(@"touched point in Original PDF = %@", NSStringFromCGPoint(touchedPointInOriginalPdf));	
 	
 	
-	// Check if TocView, ThumbnailView, BookmarkVew shown, then hide it.
+	// Check if TocView, PageSmallView, BookmarkVew shown, then hide it.
 	if (isShownTocView) {
 		[self hideTocView];
 		return;
@@ -2130,23 +2130,23 @@
 	[tocViewController.view removeFromSuperview];
 }
 
-#pragma mark Treat ThumbnailView(ImageTOC).
+#pragma mark Treat PageSmallView(ImageTOC).
 - (void)showPageSmallView {
 	[self hideMenuBar];
 	
 	//Setup with tocDefine.
-	[thumbnailViewController setupImages];
+	[pageSmallViewController setupImages];
 	
 	//Show by addSubview.
 	//Add to superview. think with toolbar.
-	[self.view.superview addSubview:thumbnailViewController.view];
+	[self.view.superview addSubview:pageSmallViewController.view];
 	
 	//Set flag.
 	isShownPageSmallView = TRUE;
 }
 - (void)hidePageSmallView {
 	//Hide by removeSuperView.
-	[thumbnailViewController.view removeFromSuperview];
+	[pageSmallViewController.view removeFromSuperview];
 	isShownPageSmallView = FALSE;
 }
 
