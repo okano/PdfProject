@@ -15,6 +15,7 @@
 @synthesize contentListIVC;
 @synthesize contentDetailVC;
 @synthesize serverContentListVC;
+@synthesize serverContentListIVC;
 @synthesize serverContentDetailVC;
 
 /*
@@ -167,13 +168,24 @@
 @implementation SakuttoBookViewController (ServerContent)
 #pragma mark show/hide view.
 - (void)showServerContentListView{
+#if defined(IS_CONTENTLIST_WITH_IMAGE) && IS_CONTENTLIST_WITH_IMAGE != 0
+	//content list in server with image.
+	if (serverContentListIVC == nil) {
+		serverContentListIVC = [[ServerContentListImageVC alloc] initWithNibName:@"ServerContentListImageVC" bundle:[NSBundle mainBundle]];
+	}
+	[self.view addSubview:serverContentListIVC.view];
+	
+	serverContentListVC = nil;
+#else
+	//content list in server with table.
 	//LOG_CURRENT_METHOD;
 	if (serverContentListVC == nil) {
-		serverContentListVC = [[ServerContentListVC alloc] init];
+		serverContentListVC = [[ServerContentListTableVC alloc] init];
 		serverContentListVC.view.frame = self.view.frame;
 	}
 	[self.view addSubview:serverContentListVC.view];
 	[serverContentListVC reloadData];
+#endif
 }
 - (void)hideServerContentListView{
 	//LOG_CURRENT_METHOD;
