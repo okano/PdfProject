@@ -678,19 +678,53 @@
 							  THUMBNAIL_FILE_PREFIX,
 							  cid,
 							  THUMBNAIL_FILE_EXTENSION2];
-		UIImage* image = [UIImage imageNamed:filename];
+		image = [UIImage imageNamed:filename];
 		if (! image) {
-			//(2a)Open image from local file with first extension.
-			filename = [self getThumbnailLocalFilenameFull:cid
-											 withExtention:THUMBNAIL_FILE_EXTENSION];
-			image = [UIImage imageWithContentsOfFile:filename];
+			//(1c)Load from MainBundle with second extension.
+			NSString* filename = [NSString stringWithFormat:@"%@%d.%@",
+								  THUMBNAIL_FILE_PREFIX,
+								  cid,
+								  THUMBNAIL_FILE_EXTENSION3];
+			image = [UIImage imageNamed:filename];
 			if (! image) {
-				//(2b)Open image from local file with second extension.
+				//(2a)Open image from local file with first extension.
 				filename = [self getThumbnailLocalFilenameFull:cid
 												 withExtention:THUMBNAIL_FILE_EXTENSION];
 				image = [UIImage imageWithContentsOfFile:filename];
 				if (! image) {
-					return nil;
+					//(2b)Open image from local file with second extension.
+					filename = [self getThumbnailLocalFilenameFull:cid
+													 withExtention:THUMBNAIL_FILE_EXTENSION2];
+					image = [UIImage imageWithContentsOfFile:filename];
+					if (! image) {
+						//(2c)Open image from local file with second extension.
+						filename = [self getThumbnailLocalFilenameFull:cid
+														 withExtention:THUMBNAIL_FILE_EXTENSION3];
+						image = [UIImage imageWithContentsOfFile:filename];
+						if (! image) {
+							//(3)Download from network.
+							NSURL* url = [self thumbnailUrlByContentId:cid atThumbnailIndex:index];
+							if (!url) {
+								return nil;	//No file, No URL found.
+							}
+							LOG_CURRENT_LINE;
+							NSData* data = [NSData dataWithContentsOfURL:url];
+							LOG_CURRENT_LINE;
+							if (! data) {
+								//No file found.
+								return nil;
+							} else {
+								//save to local folder.
+								NSString* thumbnailFileExtension = [url pathExtension];
+								NSString* targetFilenameFull = [self getThumbnailLocalFilenameFull:cid withExtention:thumbnailFileExtension];
+								[data writeToFile:targetFilenameFull atomically:YES];
+								//Set Ignore Backup.
+								[FileUtility addSkipBackupAttributeToItemWithString:targetFilenameFull];
+								//Generate image.
+								image = [[UIImage alloc] initWithData:data];
+							}
+						}
+					}
 				}
 			}
 		}
@@ -787,15 +821,13 @@
 {
 	NSDictionary* tmpDict;
 	tmpDict = [contentList objectAtIndex:index];
-	
-	NSString* urlStr = [tmpDict valueForKey:CONTENT_THUMBNAIL_LINK];
-	return [NSURL URLWithString:urlStr];
+	return [tmpDict valueForKey:CONTENT_THUMBNAILS_LINK];
 }
 - (NSURL*)thumbnailUrlAtIndex:(NSInteger)index atThumbnailIndex:(NSInteger)thumbnailIndex
 {
 	NSMutableArray* tmpArray = [self thumbnailUrlsAtIndex:index];
 	if ((tmpArray != nil) && ([tmpArray count] < thumbnailIndex)) {
-		return [tmpArray objectAtIndex:thumbnailIndex];
+		return [NSURL URLWithString:[tmpArray objectAtIndex:thumbnailIndex]];
 	}
 	return nil;
 }
@@ -805,8 +837,7 @@
 	NSDictionary* tmpDict;
 	for (tmpDict in contentList){
 		if ([[tmpDict valueForKey:CONTENT_CID] intValue] == cid) {
-			NSString* urlStr = [tmpDict valueForKey:CONTENT_THUMBNAIL_LINK];
-			return [NSURL URLWithString:urlStr];
+			return [tmpDict valueForKey:CONTENT_THUMBNAILS_LINK];
 		}
 	}
 	return nil;
@@ -814,28 +845,29 @@
 - (NSURL*)thumbnailUrlByContentId:(ContentId)cid atThumbnailIndex:(NSInteger)thumbnailIndex
 {
 	NSMutableArray* tmpArray = [self thumbnailUrlsByContentId:cid];
-	if ((tmpArray != nil) && ([tmpArray count] < thumbnailIndex)) {
-		return [tmpArray objectAtIndex:thumbnailIndex];
+	if ((tmpArray != nil) && (thumbnailIndex < [tmpArray count])) {
+		return [NSURL URLWithString:[tmpArray objectAtIndex:thumbnailIndex]];
 	}
 	return nil;
 }
 
 - (NSMutableArray*)thumbnailUrlsByUuid:(NSString*)uuid
 {
+	NSMutableArray* resultArray = [[NSMutableArray alloc] init];
 	NSDictionary* tmpDict;
 	for (tmpDict in contentList){
 		if ([[tmpDict valueForKey:CONTENT_UUID] compare:uuid options:NSCaseInsensitiveSearch] == NSOrderedSame) {
 			NSString* urlStr = [tmpDict valueForKey:CONTENT_THUMBNAIL_LINK];
-			return [NSURL URLWithString:urlStr];
+			[resultArray addObject:[NSURL URLWithString:urlStr]];
 		}
 	}
-	return nil;
+	return resultArray;
 }
 - (NSURL*)thumbnailUrlByUuid:(NSString*)uuid atThumbnailIndex:(NSInteger)thumbnailIndex
 {
 	NSMutableArray* tmpArray = [self thumbnailUrlsByUuid:uuid];
 	if ((tmpArray != nil) && ([tmpArray count] < thumbnailIndex)) {
-		return [tmpArray objectAtIndex:thumbnailIndex];
+		return [NSURL URLWithString:[tmpArray objectAtIndex:thumbnailIndex]];
 	}
 	return nil;
 }

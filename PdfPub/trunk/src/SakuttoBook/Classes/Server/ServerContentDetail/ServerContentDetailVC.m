@@ -156,11 +156,12 @@
 	}
 	
 	//Thumbnail images. "http://opds-spec.org/thumbnail/{1..4}"
-	NSMutableArray* thumbnailUrlLinks = [appDelegate.serverContentListDS thumbnailUrlsByContentId:targetCid];
-	if (thumbnailUrlLinks != nil) {
+	//NSMutableArray* thumbnailUrlLinks = [appDelegate.serverContentListDS thumbnailUrlsByContentId:targetCid];
+	NSMutableArray* thumbnailImages = [appDelegate.serverContentListDS thumbnailImagesByContentId:targetCid];
+	if (thumbnailImages != nil) {
 		LOG_CURRENT_LINE;
-		for (NSString* thumbnailLink in thumbnailUrlLinks) {
-			NSLog(@"thumbnail link=%@", thumbnailLink);
+		for (UIImage* thumbnailImage in thumbnailImages) {
+			NSLog(@"thumbnailImage size=%@", NSStringFromCGSize([thumbnailImage size]));
 		}
 	}
 }

@@ -33,6 +33,7 @@
 #define THUMBNAIL_FILE_PREFIX		@"thumb_"
 #define THUMBNAIL_FILE_EXTENSION	@"png"
 #define THUMBNAIL_FILE_EXTENSION2	@"jpg"
+#define THUMBNAIL_FILE_EXTENSION3	@"gif"
 
 // for Cover Image.
 #define COVER_FILE_PREFIX			@""	/* no prefix */
