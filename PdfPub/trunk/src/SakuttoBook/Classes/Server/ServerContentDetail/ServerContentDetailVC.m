@@ -12,7 +12,7 @@
 @implementation ServerContentDetailVC
 @synthesize targetUuid;
 @synthesize targetUrl;
-@synthesize thumbnailImageView, titleLabel, authorLabel, descriptionTextView;
+@synthesize thumbnailImageView, thumbnailScrollView, titleLabel, authorLabel, descriptionTextView;
 @synthesize priceLabel;
 @synthesize buyButton, reDownloadButton;
 
@@ -154,9 +154,15 @@
 		appDelegate.paymentConductor.parentVC = self;
 		[appDelegate.paymentConductor getProductInfomation:targetProductId withContinueBuy:NO];
 	}
-
-
-
+	
+	//Thumbnail images. "http://opds-spec.org/thumbnail/{1..4}"
+	NSMutableArray* thumbnailUrlLinks = [appDelegate.serverContentListDS thumbnailUrlsByContentId:targetCid];
+	if (thumbnailUrlLinks != nil) {
+		LOG_CURRENT_LINE;
+		for (NSString* thumbnailLink in thumbnailUrlLinks) {
+			NSLog(@"thumbnail link=%@", thumbnailLink);
+		}
+	}
 }
 
 

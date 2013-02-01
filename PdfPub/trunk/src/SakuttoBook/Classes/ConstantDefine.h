@@ -29,6 +29,11 @@
 #define PAGE_FILE_SMALL_PREFIX		@"Page_Small_p"
 #define PAGE_FILE_SMALL_EXTENSION	@"png"
 
+// for Thumnail Image.
+#define THUMBNAIL_FILE_PREFIX		@"thumb_"
+#define THUMBNAIL_FILE_EXTENSION	@"png"
+#define THUMBNAIL_FILE_EXTENSION2	@"jpg"
+
 // for Cover Image.
 #define COVER_FILE_PREFIX			@""	/* no prefix */
 #define COVER_FILE_EXTENSION		@"jpg"

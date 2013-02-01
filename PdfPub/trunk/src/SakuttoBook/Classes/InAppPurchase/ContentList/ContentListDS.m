@@ -635,6 +635,90 @@
 
 //- (NSURL*)contentIconUrlByUuid:(NSString*)uuid
 //@see - (NSURL*)thumbnailUrlByUuid:(NSString*)uuid;
+#pragma mark Thumbnail Image
+- (NSMutableArray*)thumbnailImagesByContentId:(ContentId)cid
+{
+	NSMutableArray* tmpArray = [[NSMutableArray alloc] init];
+	int i = 0;
+	while (0==0)
+	{
+		UIImage* image  = [self thumbnailImagesByContentId:cid atIndex:i];
+		if (image != nil) {
+			[tmpArray addObject:image];
+			i++;
+		} else {
+			break;
+		}
+	}
+	return tmpArray;
+}
+- (NSMutableArray*)thumbnailImagesByUuid:(NSString*)uuid
+{
+	NSDictionary* tmpDict;
+	for (tmpDict in contentList){
+		if ([[tmpDict valueForKey:CONTENT_UUID] compare:uuid options:NSCaseInsensitiveSearch] == NSOrderedSame) {
+			ContentId targetCid = [[tmpDict objectForKey:CONTENT_CID] intValue];
+			return [self thumbnailImagesByContentId:targetCid];
+		}
+	}
+	return nil;
+}
+
+- (UIImage*)thumbnailImagesByContentId:(ContentId)cid atIndex:(NSInteger)index
+{
+	//(1a)Load from MainBundle with first extension.
+	NSString* filename = [NSString stringWithFormat:@"%@%d.%@",
+						  THUMBNAIL_FILE_PREFIX,
+						  cid,
+						  THUMBNAIL_FILE_EXTENSION];
+	UIImage* image = [UIImage imageNamed:filename];
+	if (! image) {
+		//(1b)Load from MainBundle with second extension.
+		NSString* filename = [NSString stringWithFormat:@"%@%d.%@",
+							  THUMBNAIL_FILE_PREFIX,
+							  cid,
+							  THUMBNAIL_FILE_EXTENSION2];
+		UIImage* image = [UIImage imageNamed:filename];
+		if (! image) {
+			//(2a)Open image from local file with first extension.
+			filename = [self getThumbnailLocalFilenameFull:cid
+											 withExtention:THUMBNAIL_FILE_EXTENSION];
+			image = [UIImage imageWithContentsOfFile:filename];
+			if (! image) {
+				//(2b)Open image from local file with second extension.
+				filename = [self getThumbnailLocalFilenameFull:cid
+												 withExtention:THUMBNAIL_FILE_EXTENSION];
+				image = [UIImage imageWithContentsOfFile:filename];
+				if (! image) {
+					return nil;
+				}
+			}
+		}
+	}
+	return image;
+}
+- (UIImage*)thumbnailImagesByUuid:(NSString*)uuid atIndex:(NSInteger)index
+{
+	NSDictionary* tmpDict;
+	for (tmpDict in contentList){
+		if ([[tmpDict valueForKey:CONTENT_UUID] compare:uuid options:NSCaseInsensitiveSearch] == NSOrderedSame) {
+			ContentId targetCid = [[tmpDict objectForKey:CONTENT_CID] intValue];
+			return [self thumbnailImagesByContentId:targetCid atIndex:index];
+		}
+	}
+	return nil;
+}
+
+- (NSString*)getThumbnailLocalFilenameFull:(ContentId)cid withExtention:(NSString*)extension
+{
+	NSString* filename = [NSString stringWithFormat:@"%@%d", THUMBNAIL_FILE_PREFIX, cid];
+	NSString* targetFilenameFull = [[[[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
+									   stringByAppendingPathComponent:DETAIL_DIR]
+									  stringByAppendingPathComponent:[NSString stringWithFormat:@"%d",cid]]
+									 stringByAppendingPathComponent:filename]
+									stringByAppendingPathExtension:extension];
+	return targetFilenameFull;
+}
 
 #pragma mark Description
 - (NSString*)descriptionAtIndex:(NSInteger)index
@@ -666,6 +750,7 @@
 }
 
 #pragma mark Links.
+#pragma mark (acquisitionUrl)
 - (NSURL*)acquisitionUrlAtIndex:(NSInteger)index
 {
 	NSDictionary* tmpDict;
@@ -697,7 +782,8 @@
 	return nil;
 }
 
-- (NSURL*)thumbnailUrlAtIndex:(NSInteger)index
+#pragma mark (thumbnailUrls)
+- (NSMutableArray*)thumbnailUrlsAtIndex:(NSInteger)index
 {
 	NSDictionary* tmpDict;
 	tmpDict = [contentList objectAtIndex:index];
@@ -705,7 +791,16 @@
 	NSString* urlStr = [tmpDict valueForKey:CONTENT_THUMBNAIL_LINK];
 	return [NSURL URLWithString:urlStr];
 }
-- (NSURL*)thumbnailUrlByContentId:(ContentId)cid
+- (NSURL*)thumbnailUrlAtIndex:(NSInteger)index atThumbnailIndex:(NSInteger)thumbnailIndex
+{
+	NSMutableArray* tmpArray = [self thumbnailUrlsAtIndex:index];
+	if ((tmpArray != nil) && ([tmpArray count] < thumbnailIndex)) {
+		return [tmpArray objectAtIndex:thumbnailIndex];
+	}
+	return nil;
+}
+
+- (NSMutableArray*)thumbnailUrlsByContentId:(ContentId)cid
 {
 	NSDictionary* tmpDict;
 	for (tmpDict in contentList){
@@ -716,7 +811,16 @@
 	}
 	return nil;
 }
-- (NSURL*)thumbnailUrlByUuid:(NSString*)uuid
+- (NSURL*)thumbnailUrlByContentId:(ContentId)cid atThumbnailIndex:(NSInteger)thumbnailIndex
+{
+	NSMutableArray* tmpArray = [self thumbnailUrlsByContentId:cid];
+	if ((tmpArray != nil) && ([tmpArray count] < thumbnailIndex)) {
+		return [tmpArray objectAtIndex:thumbnailIndex];
+	}
+	return nil;
+}
+
+- (NSMutableArray*)thumbnailUrlsByUuid:(NSString*)uuid
 {
 	NSDictionary* tmpDict;
 	for (tmpDict in contentList){
@@ -727,7 +831,15 @@
 	}
 	return nil;
 }
-
+- (NSURL*)thumbnailUrlByUuid:(NSString*)uuid atThumbnailIndex:(NSInteger)thumbnailIndex
+{
+	NSMutableArray* tmpArray = [self thumbnailUrlsByUuid:uuid];
+	if ((tmpArray != nil) && ([tmpArray count] < thumbnailIndex)) {
+		return [tmpArray objectAtIndex:thumbnailIndex];
+	}
+	return nil;
+}
+#pragma mark .
 - (NSURL*)coverUrlAtIndex:(NSInteger)index
 {
 	NSDictionary* tmpDict;

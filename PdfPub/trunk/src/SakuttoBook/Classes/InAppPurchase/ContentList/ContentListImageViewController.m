@@ -143,7 +143,7 @@
 		if (coverImageUrl == nil) {
 			NSLog(@"cannot get coverUrl. targetCid=%d", targetCid);
 			//(Get from thumbnailUrl.)
-			coverImageUrl = [contentListDS thumbnailUrlAtIndex:i];
+			coverImageUrl = [contentListDS thumbnailUrlByContentId:targetCid atThumbnailIndex:0];
 			if (coverImageUrl == nil) {
 				NSLog(@"cannot get thumbnailUrl. targetCid=%d", targetCid);
 			}

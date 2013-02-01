@@ -34,7 +34,7 @@
 	{
 		//download.
 		SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
-		NSURL* url = [appDelegate.serverContentListDS thumbnailUrlByContentId:cid];
+		NSURL* url = [appDelegate.serverContentListDS coverUrlByContentId:cid];	//get first thumbnail image.
 		NSData* data = [NSData dataWithContentsOfURL:url];
 		if (data != nil) {
 			//save to local folder.
@@ -61,7 +61,7 @@
 {
 	//download.
 	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
-	NSURL* url = [appDelegate.serverContentListDS thumbnailUrlByUuid:uuid];
+	NSURL* url = [appDelegate.serverContentListDS coverUrlByUuid:uuid];
 	NSData* data = [NSData dataWithContentsOfURL:url];
 	if (data != nil) {
 		//Generate directory for save.

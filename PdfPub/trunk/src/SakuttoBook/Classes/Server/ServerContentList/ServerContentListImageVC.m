@@ -57,10 +57,13 @@
 		appDelegate.serverContentListDS.targetTableVC = nil;
 	}
 
-	[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+	[MBProgressHUD showHUDAddedTo:scrollView animated:YES];
 	dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
 		// Do something...
 		[appDelegate.serverContentListDS loadContentList:32];
+		
+		//Show cover image after data load.
+		[self setupImagesWithDataSource:appDelegate.serverContentListDS shelfImageName:@"shelf.png"];
 		
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -85,7 +88,7 @@
 #pragma mark - setup data.
 - (IBAction)reloadFromNetwork:(id)sender
 {
-	[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+	[MBProgressHUD showHUDAddedTo:scrollView animated:YES];
 	dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
 		// Do something...
 		//Get productIdList before get opds.
@@ -94,7 +97,11 @@
 		//Reload OPDS from network.
 		[appDelegate.serverContentListDS removeAllObjects];
 		[appDelegate.serverContentListDS loadContentListFromNetworkByOpds];
-
+		
+		//Show cover image.
+		NSLog(@"serverContentListDS count=%d", [appDelegate.serverContentListDS count]);
+		[self setupImagesWithDataSource:appDelegate.serverContentListDS shelfImageName:@"shelf.png"];
+		
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[MBProgressHUD hideHUDForView:self.view animated:YES];
 		});

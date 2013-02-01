@@ -192,6 +192,7 @@
 	//Parse.
 	NSString* acquisitionLink = nil;
 	NSString* thumbnailLink = nil;
+	NSMutableArray* thumbnailLinks = [[NSMutableArray alloc] init];
 	NSString* coverLink = nil;
 	NSUInteger contentId;
 	NSMutableArray* linksUrlArray = [[NSMutableArray alloc] init];
@@ -244,6 +245,7 @@
 		
 		//Links
 		NSArray* links = [singleElement elementsForName:@"link"];
+		[thumbnailLinks removeAllObjects];
 		//NSLog(@"links=%@", [links description]);
 		for (id e in links){
 			NSString* relAttribute = [[e attributeForName:@"rel"] stringValue];
@@ -259,6 +261,12 @@
 				continue;	//skip to next tag.
 			}
 			//Link for Thumbnail.
+			searchForMe = @"http://opds-spec.org/thumbnail/";		// "thumbnail/{1..4}"
+			range = [relAttribute rangeOfString : searchForMe];
+			if (range.location != NSNotFound) {
+				[thumbnailLinks addObject:[NSString stringWithFormat:@"%@%@", baseUrlStr, hrefAttribute]];
+				continue;	//skip to next tag.
+			}
 			searchForMe = @"http://opds-spec.org/thumbnail";
 			range = [relAttribute rangeOfString : searchForMe];
 			if (range.location != NSNotFound) {
@@ -304,6 +312,7 @@
 		[tmpDict setValue:descStr			forKey:CONTENT_DESCRIPTION];
 		[tmpDict setValue:acquisitionLink	forKey:CONTENT_ACQUISITION_LINK];
 		[tmpDict setValue:thumbnailLink		forKey:CONTENT_THUMBNAIL_LINK];
+		[tmpDict setValue:thumbnailLinks	forKey:CONTENT_THUMBNAILS_LINK];
 		[tmpDict setValue:coverLink			forKey:CONTENT_COVER_LINK];
 		[tmpDict setValue:[NSNumber numberWithInteger:contentId] forKey:CONTENT_CID];
 		[tmpDict setValue:uuidStr			forKey:CONTENT_UUID];
