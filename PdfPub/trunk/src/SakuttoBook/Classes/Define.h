@@ -63,8 +63,8 @@
 //
 #define USERNAME			@"UserName"
 #define PASSWORD			@"PassWord"
-#define USERNAME_DEFAULT	@"guest"
-#define PASSWORD_DEFAULT	@"guest"
+#define USERNAME_DEFAULT	@"user"
+#define PASSWORD_DEFAULT	@"password"
 #define HTTP_PORT_DEFAULT	80
 
 // license key.
