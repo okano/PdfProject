@@ -113,6 +113,7 @@
 		29BD260413A499B50029E2B4 /* bookDefine_2.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29BD260113A499B50029E2B4 /* bookDefine_2.csv */; };
 		29BD260713A4A3AC0029E2B4 /* FileUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BD260613A4A3AC0029E2B4 /* FileUtility.m */; };
 		29C2271716BA56550004B9E4 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C2271616BA56550004B9E4 /* MBProgressHUD.m */; };
+		29C7401116BE935E00059E56 /* detailLine.png in Resources */ = {isa = PBXBuildFile; fileRef = 29C7401016BE935E00059E56 /* detailLine.png */; };
 		29CB433E1532D44E00A96D36 /* CoverUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 29CB433D1532D44E00A96D36 /* CoverUtility.m */; };
 		29CB43451532DAF800A96D36 /* ContentListDS.m in Sources */ = {isa = PBXBuildFile; fileRef = 29CB43441532DAF800A96D36 /* ContentListDS.m */; };
 		29D028C816328111004F7791 /* ContentPlayerViewController+mailSend.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D028C716328111004F7791 /* ContentPlayerViewController+mailSend.m */; };
@@ -315,6 +316,7 @@
 		29BD260613A4A3AC0029E2B4 /* FileUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUtility.m; sourceTree = "<group>"; };
 		29C2271516BA56550004B9E4 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		29C2271616BA56550004B9E4 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		29C7401016BE935E00059E56 /* detailLine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = detailLine.png; sourceTree = "<group>"; };
 		29CB433C1532D44E00A96D36 /* CoverUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoverUtility.h; sourceTree = "<group>"; };
 		29CB433D1532D44E00A96D36 /* CoverUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverUtility.m; sourceTree = "<group>"; };
 		29CB43431532DAF800A96D36 /* ContentListDS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentListDS.h; path = InAppPurchase/ContentList/ContentListDS.h; sourceTree = "<group>"; };
@@ -694,6 +696,7 @@
 				29E8A3E91532A8FD00468FE9 /* ServerContentDetailVC.h */,
 				29E8A3EA1532A8FD00468FE9 /* ServerContentDetailVC.m */,
 				29E8A3EB1532A8FD00468FE9 /* ServerContentDetailView.xib */,
+				29C7401016BE935E00059E56 /* detailLine.png */,
 			);
 			name = ServerContentDetail;
 			path = Server/ServerContentDetail;
@@ -1039,6 +1042,7 @@
 				294FCA2D16B24D4A00F9688E /* tocDefine_7.csv in Resources */,
 				294B3D4416B583810095E56F /* ServerContentListImageVC.xib in Resources */,
 				297CE33E16BE6D74001C7BDE /* coverDummy.png in Resources */,
+				29C7401116BE935E00059E56 /* detailLine.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
