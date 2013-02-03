@@ -23,7 +23,7 @@
 	myTableView.dataSource = self;
 	
 	//Setup data.
-	[self setupData];
+	//[self setupData];
 	//Setup data.
 	if (appDelegate.serverContentListDS == nil) {
 		appDelegate.serverContentListDS = [[ServerContentListDS alloc] init];

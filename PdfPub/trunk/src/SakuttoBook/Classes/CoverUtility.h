@@ -19,6 +19,7 @@
 + (UIImage*)coverImageWithUuid:(NSString*)uuid;
 //
 + (NSString*)getCoverLocalFilenameFull:(ContentId)cid;
++ (NSString*)getCoverCacheFilenameFullWithContentId:(ContentId)cid;
 + (NSString*)getCoverCacheFilenameFull:(NSString*)uuid;
 
 @end

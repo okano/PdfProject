@@ -81,6 +81,7 @@
 		29787BE112C5FBDC00EC2681 /* document.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 29787BE012C5FBDC00EC2681 /* document.pdf */; };
 		297AC25612B786EB00962CED /* TocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297AC25512B786EB00962CED /* TocViewController.m */; };
 		297AC25812B7870B00962CED /* TocView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 297AC25712B7870B00962CED /* TocView.xib */; };
+		297CE33E16BE6D74001C7BDE /* coverDummy.png in Resources */ = {isa = PBXBuildFile; fileRef = 297CE33D16BE6D74001C7BDE /* coverDummy.png */; };
 		297DF1FB12C600320082C680 /* InfomationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 297DF1FA12C600320082C680 /* InfomationView.xib */; };
 		297DF1FF12C601AD0082C680 /* InfomationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297DF1FE12C601AD0082C680 /* InfomationViewController.m */; };
 		297F4A9B169EC41D000D05E9 /* ContentListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B322DA169EB79800C047D9 /* ContentListTableViewController.m */; };
@@ -267,6 +268,7 @@
 		297AC25412B786EB00962CED /* TocViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TocViewController.h; sourceTree = "<group>"; };
 		297AC25512B786EB00962CED /* TocViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TocViewController.m; sourceTree = "<group>"; };
 		297AC25712B7870B00962CED /* TocView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TocView.xib; sourceTree = "<group>"; };
+		297CE33D16BE6D74001C7BDE /* coverDummy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coverDummy.png; sourceTree = "<group>"; };
 		297DF1FA12C600320082C680 /* InfomationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfomationView.xib; sourceTree = "<group>"; };
 		297DF1FD12C601AD0082C680 /* InfomationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfomationViewController.h; sourceTree = "<group>"; };
 		297DF1FE12C601AD0082C680 /* InfomationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfomationViewController.m; sourceTree = "<group>"; };
@@ -499,6 +501,7 @@
 		2921370D12C604B800FC071D /* image */ = {
 			isa = PBXGroup;
 			children = (
+				297CE33D16BE6D74001C7BDE /* coverDummy.png */,
 				29F4B95013AB2AC200519DAA /* ContentIcon_1.png */,
 				29F4B95113AB2AC200519DAA /* ContentIcon_2.png */,
 				29F4B95213AB2AC200519DAA /* ContentIcon_3.png */,
@@ -1035,6 +1038,7 @@
 				294FCA2C16B24D4A00F9688E /* tocDefine_6.csv in Resources */,
 				294FCA2D16B24D4A00F9688E /* tocDefine_7.csv in Resources */,
 				294B3D4416B583810095E56F /* ServerContentListImageVC.xib in Resources */,
+				297CE33E16BE6D74001C7BDE /* coverDummy.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

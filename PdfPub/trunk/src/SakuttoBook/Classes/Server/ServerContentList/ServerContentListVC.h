@@ -30,13 +30,17 @@
 	BOOL internetActive;
 }
 
+//Setup network reachability.
+- (void)setupNetworkReachability;
 
 //Setup data.
 - (void)setupData;
 - (void)reloadFromNetwork;
+- (IBAction)reloadFromNetwork:(id)sender;
 
 //Switch view.
 - (void)showContentList;
+- (IBAction)showContentList:(id)sender;
 //- (void)showServerContentDetailView:(ContentId)cid;
 - (void)showServerContentDetailView:(NSString*)uuid;
 - (void)showConfigView;

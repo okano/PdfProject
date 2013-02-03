@@ -36,7 +36,7 @@
 #define THUMBNAIL_FILE_EXTENSION3	@"gif"
 
 // for Cover Image.
-#define COVER_FILE_PREFIX			@""	/* no prefix */
+#define COVER_FILE_PREFIX			@"Cover_"
 #define COVER_FILE_EXTENSION		@"jpg"
 
 // for Link Define.

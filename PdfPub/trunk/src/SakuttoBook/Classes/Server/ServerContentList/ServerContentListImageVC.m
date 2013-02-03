@@ -13,48 +13,35 @@
 @end
 
 @implementation ServerContentListImageVC
-
+/*
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-		//Setup network reachability.
-		[[NSNotificationCenter defaultCenter] addObserver:self
-												 selector:@selector(reachabilityChanged:)
-													 name:kReachabilityChangedNotification
-												   object:nil];
-		status3G = YES;
-		statusWifi = YES;
-		internetActive = YES;
-		internetReachable = [[Reachability reachabilityForInternetConnection] retain];
-		[self updateInterfaceWithReachability:internetReachable];
-		
-		wifiReachable = [[Reachability reachabilityForLocalWiFi] retain];
-		[self updateInterfaceWithReachability:wifiReachable];
-		
-		NSLog(@"internetEnable=%d, YES=%d, NO=%d", internetActive, YES, NO);
 	}
     return self;
 }
- 
+*/
+
 - (void)viewDidLoad
 {
-    //[super viewDidLoad];
+	myTableView = nil;	/* no table view. */
+    [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 	
 	//Fit view size with screen. (iPhone-3.5inch/iPhone-4inch/iPad/iPad-Retina)
 	self.view.frame = [[UIScreen mainScreen] bounds];
 	
-	appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
-	if (appDelegate == nil) {
-		NSLog(@"appDelegate is nil");
-	}
+	//appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
+	//if (appDelegate == nil) {
+	//	NSLog(@"appDelegate is nil");
+	//}
 	
 	//Setup data.
 	if (appDelegate.serverContentListDS == nil) {
 		appDelegate.serverContentListDS = [[ServerContentListDS alloc] init];
-		appDelegate.serverContentListDS.targetTableVC = nil;
+		appDelegate.serverContentListDS.targetTableVC = self;	/* for do didFinishParseOpdsElement method. */
 	}
 
 	[MBProgressHUD showHUDAddedTo:scrollView animated:YES];
@@ -85,43 +72,12 @@
 }
 */
 
-#pragma mark - setup data.
-- (IBAction)reloadFromNetwork:(id)sender
+#pragma mark - MyTableViewVCProtocol (Accessor for table)
+//didStartParseOpdsElement
+//- (void)didFailParseOpdsElement{}
+- (void)didFinishParseOpdsElement:(NSMutableArray*)resultArray
 {
-	[MBProgressHUD showHUDAddedTo:scrollView animated:YES];
-	dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-		// Do something...
-		//Get productIdList before get opds.
-		[[ProductIdList sharedManager] refreshProductIdListFromNetwork];
-		
-		//Reload OPDS from network.
-		[appDelegate.serverContentListDS removeAllObjects];
-		[appDelegate.serverContentListDS loadContentListFromNetworkByOpds];
-		
-		//Show cover image.
-		NSLog(@"serverContentListDS count=%d", [appDelegate.serverContentListDS count]);
-		[self setupImagesWithDataSource:appDelegate.serverContentListDS shelfImageName:@"shelf.png"];
-		
-		dispatch_async(dispatch_get_main_queue(), ^{
-			[MBProgressHUD hideHUDForView:self.view animated:YES];
-		});
-	});
-}
-
-#pragma mark - show other view.
-- (IBAction)showContentList:(id)sender
-{
-	//LOG_CURRENT_METHOD;
-	//NSLog(@"cid=%d", cid);
-	[appDelegate hideServerContentListView];
-	[appDelegate showContentListView];
-}
-- (void)showServerContentDetailView:(NSString*)uuid
-{
-	//LOG_CURRENT_METHOD;
-	//NSLog(@"cid=%d", cid);
-	[appDelegate hideServerContentListView];
-	[appDelegate showServerContentDetailView:uuid];
+	[self setupImagesWithDataSource:appDelegate.serverContentListDS shelfImageName:@"shelf.png"];
 }
 
 #pragma mark - handle push with cover image.
@@ -134,59 +90,6 @@
 	//Show detail view.
 	NSString* targetUuid = [appDelegate.serverContentListDS uuidFromContentId:targetCid];
 	[self showServerContentDetailView:targetUuid];
-}
-
-
-
-#pragma mark - Network reachability.
-- (void)updateInterfaceWithReachability:(Reachability*)curReach
-{
-	//LOG_CURRENT_METHOD;
-	NetworkStatus status = [curReach currentReachabilityStatus];
-	
-	if (curReach == hostReachable) {
-		if (status == NotReachable) {
-			NSLog(@"host failed");
-			internetActive = NO;
-		} else {
-			NSLog(@"host success");
-			internetActive = YES;
-		}
-	}
-	
-	if (curReach == internetReachable) {
-		if (status == NotReachable) {
-			NSLog(@"3G failed.");
-			status3G = NO;
-		} else {
-			NSLog(@"3G success.");
-			status3G = YES;
-		}
-	}
-	
-	if (curReach == wifiReachable) {
-		if (status == NotReachable) {
-			NSLog(@"Wi-Fi failed");
-			statusWifi = NO;
-		} else {
-			NSLog(@"Wi-Fi success");
-			statusWifi = YES;
-		}
-	}
-	
-	if ((status3G == NO) && (statusWifi == NO)) {
-		internetActive = NO;
-	} else {
-		internetActive = YES;
-	}
-}
-
-- (void)reachabilityChanged:(NSNotification*)note
-{
-	//LOG_CURRENT_METHOD;
-	Reachability* curReach = [note object];
-	NSParameterAssert([curReach isKindOfClass:[Reachability class]]);
-	[self updateInterfaceWithReachability:curReach];
 }
 
 @end

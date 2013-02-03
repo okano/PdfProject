@@ -17,9 +17,8 @@
 	IBOutlet UIToolbar* toolbar;
 	IBOutlet UIBarButtonItem *serverContentButton;
 	IBOutlet UIBarButtonItem *paymentHistoryButton;
-	IBOutlet UIScrollView* scrollView;
 }
 
-- (void)setupImagesWithDataSource:(ContentListDS*)contentListDS shelfImageName:(NSString*)shelfImageName;
+//- (void)setupImagesWithDataSource:(ContentListDS*)contentListDS shelfImageName:(NSString*)shelfImageName;
 
 @end
