@@ -58,7 +58,7 @@
 	[[ProductIdList sharedManager] refreshProductIdListFromNetwork];
 	
 	//Show cover image.
-	[self setupImagesWithDataSource:appDelegate.serverContentListDS shelfImageName:@"shelf.png"];
+	[self setupImagesWithDataSource:appDelegate.serverContentListDS shelfImageName:@"shelf_my.png"];
 }
 
 /*
@@ -74,7 +74,7 @@
 //- (void)didFailParseOpdsElement{}
 - (void)didFinishParseOpdsElement:(NSMutableArray*)resultArray
 {
-	[self setupImagesWithDataSource:appDelegate.serverContentListDS shelfImageName:@"shelf.png"];
+	[self setupImagesWithDataSource:appDelegate.serverContentListDS shelfImageName:@"shelf_my.png"];
 }
 
 #pragma mark - handle push with cover image.

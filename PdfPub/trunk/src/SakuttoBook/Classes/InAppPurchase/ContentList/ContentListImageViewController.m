@@ -46,7 +46,7 @@
 	toolbar.items = toolbarItems;
 #endif
 	
-	[self setupImagesWithDataSource:appDelegate.contentListDS shelfImageName:@"shelf.png"];
+	[self setupImagesWithDataSource:appDelegate.contentListDS shelfImageName:@"shelf_my.png"];
 }
 
 - (void)didReceiveMemoryWarning
