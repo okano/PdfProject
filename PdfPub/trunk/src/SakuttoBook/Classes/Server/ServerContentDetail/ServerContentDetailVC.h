@@ -21,6 +21,7 @@
 	NSURL* targetUrl;
 	
 	//UserInterface.
+	IBOutlet UIScrollView* scrollView;
     IBOutlet UIImageView* thumbnailImageView;
 	IBOutlet UIScrollView* thumbnailScrollView;
 	UIImage* image;

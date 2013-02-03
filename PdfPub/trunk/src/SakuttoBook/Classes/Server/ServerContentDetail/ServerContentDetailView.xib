@@ -160,7 +160,7 @@
 							</object>
 							<object class="IBUIScrollView" id="260484884">
 								<reference key="NSNextResponder" ref="451257259"/>
-								<int key="NSvFlags">268</int>
+								<int key="NSvFlags">288</int>
 								<object class="NSMutableArray" key="NSSubviews">
 									<bool key="EncodedWithXMLCoder">YES</bool>
 									<object class="IBUIImageView" id="558061184">
@@ -177,7 +177,7 @@
 										<int key="NSvFlags">292</int>
 										<string key="NSFrame">{{92, 4}, {64, 96}}</string>
 										<reference key="NSSuperview" ref="260484884"/>
-										<reference key="NSNextKeyView" ref="963774085"/>
+										<reference key="NSNextKeyView" ref="479304380"/>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 									</object>
@@ -186,7 +186,7 @@
 										<int key="NSvFlags">292</int>
 										<string key="NSFrame">{{164, 4}, {64, 96}}</string>
 										<reference key="NSSuperview" ref="260484884"/>
-										<reference key="NSNextKeyView" ref="223386993"/>
+										<reference key="NSNextKeyView" ref="963774085"/>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 									</object>
@@ -195,12 +195,12 @@
 										<int key="NSvFlags">292</int>
 										<string key="NSFrame">{{236, 4}, {64, 96}}</string>
 										<reference key="NSSuperview" ref="260484884"/>
-										<reference key="NSNextKeyView" ref="479304380"/>
+										<reference key="NSNextKeyView" ref="223386993"/>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 									</object>
 								</object>
-								<string key="NSFrame">{{0, 314}, {320, 103}}</string>
+								<string key="NSFrame">{{0, 337}, {320, 103}}</string>
 								<reference key="NSSuperview" ref="451257259"/>
 								<reference key="NSNextKeyView" ref="558061184"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -268,7 +268,6 @@
 								<int key="NSvFlags">290</int>
 								<string key="NSFrame">{{20, 293}, {280, 37}}</string>
 								<reference key="NSSuperview" ref="451257259"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -438,6 +437,14 @@
 						<reference key="destination" ref="260484884"/>
 					</object>
 					<int key="connectionID">43</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">scrollView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="451257259"/>
+					</object>
+					<int key="connectionID">44</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -675,7 +682,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">43</int>
+			<int key="maxID">44</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
