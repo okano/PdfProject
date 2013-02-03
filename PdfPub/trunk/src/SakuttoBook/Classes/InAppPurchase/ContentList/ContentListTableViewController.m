@@ -30,49 +30,54 @@
 {
     [super viewDidLoad];
 	
-	//Setup TableView.
-	myTableView = [[UITableView alloc] initWithFrame:self.view.frame];
-	myTableView.delegate = self;
-	myTableView.dataSource = self;
-	[self.view addSubview:myTableView];
-	
-	//Setup Toolbar.
-	CGFloat toolBarHeight = 44.0f;
-	CGRect toolBarFrame = CGRectMake(0.0f,
-									 0.0f,
-									 self.view.frame.size.width,
-									 toolBarHeight);
-	toolbar = [[UIToolbar alloc] initWithFrame:toolBarFrame];
-	UIBarButtonItem *paymentHistoryButton = [[UIBarButtonItem alloc] initWithTitle:@"購入履歴"
-																	   style:UIBarButtonItemStyleBordered
-																	  target:self
-																	  action:@selector(showPaymentHistoryList)];
-
-	NSArray *items = nil;
+	//NSLog(@"class=%@", [self class]);
+	//Setup TableView.(only if use table.)
+	//(do nothing if (server)ContentListImageView.)
+	if ([self isMemberOfClass:[ContentListTableViewController class]]) {	/* not use "isKindOfClass". */
+		
+		myTableView = [[UITableView alloc] initWithFrame:self.view.frame];
+		myTableView.delegate = self;
+		myTableView.dataSource = self;
+		[self.view addSubview:myTableView];
+		
+		//Setup Toolbar.
+		CGFloat toolBarHeight = 44.0f;
+		CGRect toolBarFrame = CGRectMake(0.0f,
+										 0.0f,
+										 self.view.frame.size.width,
+										 toolBarHeight);
+		toolbar = [[UIToolbar alloc] initWithFrame:toolBarFrame];
+		UIBarButtonItem *paymentHistoryButton = [[UIBarButtonItem alloc] initWithTitle:@"購入履歴"
+																				 style:UIBarButtonItemStyleBordered
+																				target:self
+																				action:@selector(showPaymentHistoryList)];
+		
+		NSArray *items = nil;
 #if defined(HIDE_SERVER_BUTTON) && HIDE_SERVER_BUTTON != 0
-	//Hide Server Button.
-	items = [NSArray arrayWithObjects:paymentHistoryButton, nil];
+		//Hide Server Button.
+		items = [NSArray arrayWithObjects:paymentHistoryButton, nil];
 #else
-	//Not hide Server Button.
-	UIBarButtonItem *serverContentButton = [[UIBarButtonItem alloc] initWithTitle:@"Store"
-																			style:UIBarButtonItemStyleBordered
-																		   target:self
-																		   action:@selector(showServerContentListView)];
-	items = [NSArray arrayWithObjects:serverContentButton, paymentHistoryButton, nil];
+		//Not hide Server Button.
+		UIBarButtonItem *serverContentButton = [[UIBarButtonItem alloc] initWithTitle:@"Store"
+																				style:UIBarButtonItemStyleBordered
+																			   target:self
+																			   action:@selector(showServerContentListView)];
+		items = [NSArray arrayWithObjects:serverContentButton, paymentHistoryButton, nil];
 #endif
-	[toolbar setItems:items];
-	[self.view addSubview:toolbar];
-	
-	//Setup TableView size.
-	CGRect tableViewframe = myTableView.frame;
-	CGRect newTableViewframe = CGRectMake(tableViewframe.origin.x,
-										  tableViewframe.origin.y + toolBarHeight,
-										  tableViewframe.size.width, tableViewframe.size.height - toolBarHeight);
-	//LOG_CURRENT_METHOD;
-	//NSLog(@"tableViewframe=%@", NSStringFromCGRect(tableViewframe));
-	//NSLog(@"newTableViewframe=%@", NSStringFromCGRect(newTableViewframe));
-	
-	myTableView.frame = newTableViewframe;
+		[toolbar setItems:items];
+		[self.view addSubview:toolbar];
+		
+		//Setup TableView size.
+		CGRect tableViewframe = myTableView.frame;
+		CGRect newTableViewframe = CGRectMake(tableViewframe.origin.x,
+											  tableViewframe.origin.y + toolBarHeight,
+											  tableViewframe.size.width, tableViewframe.size.height - toolBarHeight);
+		//LOG_CURRENT_METHOD;
+		//NSLog(@"tableViewframe=%@", NSStringFromCGRect(tableViewframe));
+		//NSLog(@"newTableViewframe=%@", NSStringFromCGRect(newTableViewframe));
+		
+		myTableView.frame = newTableViewframe;
+	}
 }
 
 - (void)viewDidUnload

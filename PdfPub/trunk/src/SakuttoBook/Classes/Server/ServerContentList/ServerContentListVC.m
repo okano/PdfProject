@@ -16,21 +16,7 @@
 - (void)viewDidLoad
 {
 	//Setup network reachability.
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(reachabilityChanged:)
-												 name:kReachabilityChangedNotification
-											   object:nil];
-	status3G = YES;
-	statusWifi = YES;
-	internetActive = YES;
-	internetReachable = [[Reachability reachabilityForInternetConnection] retain];
-	[self updateInterfaceWithReachability:internetReachable];
-	
-	wifiReachable = [[Reachability reachabilityForLocalWiFi] retain];
-	[self updateInterfaceWithReachability:wifiReachable];
-	
-	NSLog(@"internetEnable=%d, YES=%d, NO=%d", internetActive, YES, NO);
-	
+	[self setupNetworkReachability];
 	
 	//Setup View.
     [super viewDidLoad];
@@ -70,6 +56,24 @@
 	[reloadButton release]; reloadButton = nil;
 	[activityItem release]; activityItem = nil;
 }
+//Setup network reachability.
+- (void)setupNetworkReachability
+{
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(reachabilityChanged:)
+												 name:kReachabilityChangedNotification
+											   object:nil];
+	status3G = YES;
+	statusWifi = YES;
+	internetActive = YES;
+	internetReachable = [[Reachability reachabilityForInternetConnection] retain];
+	[self updateInterfaceWithReachability:internetReachable];
+	
+	wifiReachable = [[Reachability reachabilityForLocalWiFi] retain];
+	[self updateInterfaceWithReachability:wifiReachable];
+	
+	NSLog(@"internetEnable=%d, YES=%d, NO=%d", internetActive, YES, NO);
+}
 
 #pragma mark - setup data.
 - (void)setupData
@@ -102,7 +106,7 @@
 #endif
 }
 
-- (void)reloadFromNetwork;
+- (void)reloadFromNetwork
 {
 	//Check network enable before connect.
 	if (internetActive == NO)
@@ -126,6 +130,7 @@
 	//[appDelegate.serverContentListDS removeAllObjects];
 	[appDelegate.serverContentListDS loadContentListFromNetworkByOpds];
 }
+- (IBAction)reloadFromNetwork:(id)sender { [self reloadFromNetwork]; }
 
 #pragma mark - show other view.
 - (void)showContentList
@@ -135,6 +140,8 @@
 	[appDelegate hideServerContentListView];
 	[appDelegate showContentListView];
 }
+- (IBAction)showContentList:(id)sender { [self showContentList]; }
+
 - (void)showServerContentDetailView:(NSString*)uuid
 {
 	//LOG_CURRENT_METHOD;

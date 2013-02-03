@@ -82,21 +82,21 @@
 	return targetFilenameFull;
 }
 
-#pragma mark - thumbnail.
-+ (NSString*)getThumbnailFilenameFull:(int)pageNum {
-	NSString* filename = [NSString stringWithFormat:@"%@%d", THUMBNAIL_FILE_PREFIX, pageNum];
+#pragma mark - Page Cache Mini.
++ (NSString*)getPageSmallFilenameFull:(int)pageNum {
+	NSString* filename = [NSString stringWithFormat:@"%@%d", PAGE_FILE_SMALL_PREFIX, pageNum];
 	NSString* targetFilenameFull = [[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 									 stringByAppendingPathComponent:filename]
-									stringByAppendingPathExtension:THUMBNAIL_FILE_EXTENSION];
+									stringByAppendingPathExtension:PAGE_FILE_SMALL_EXTENSION];
 	return targetFilenameFull;
 }
 
-+ (NSString*)getThumbnailFilenameFull:(int)pageNum WithContentId:(ContentId)cid {
-	NSString* filename = [NSString stringWithFormat:@"%@%d", THUMBNAIL_FILE_PREFIX, pageNum];
++ (NSString*)getPageSmallFilenameFull:(int)pageNum WithContentId:(ContentId)cid {
+	NSString* filename = [NSString stringWithFormat:@"%@%d", PAGE_FILE_SMALL_PREFIX, pageNum];
 	NSString* targetFilenameFull = [[[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 									  stringByAppendingPathComponent:[NSString stringWithFormat:@"%d",cid]]
 									 stringByAppendingPathComponent:filename]
-									stringByAppendingPathExtension:THUMBNAIL_FILE_EXTENSION];
+									stringByAppendingPathExtension:PAGE_FILE_SMALL_EXTENSION];
 	return targetFilenameFull;
 }
 
@@ -195,6 +195,10 @@
 	NSString* csvFilePath = nil;
 	NSString* filenameInMainBundle = nil;
 	
+#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+	//
+	//Multi contents. try with cid.
+	//
 	//(1)get from ContentBody Directory, with suffix.
 	//   Ex: ~/Document/contentBody/1/csv/tocDefine_iphone_1.csv
 	csvFilePath = [self getCsvFilenameInFolder:filename contentId:cid withDeviceSuffix:YES];
@@ -213,28 +217,39 @@
 				filenameInMainBundle  = [self getCsvFilenameInMainBundle:filename contentId:cid withDeviceSuffix:NO];
 				csvFilePath = [[NSBundle mainBundle] pathForResource:filenameInMainBundle ofType:@""];
 				if ((csvFilePath == nil) || [self existsFile:csvFilePath] == NO) {
-					//(5)get from folder, without cid, without suffix.
-					//   Ex: ~/Document/contentBody/csv/tocDefine.csv
-					//   (normally, this is never used)
-					csvFilePath = [[[[ContentFileUtility getContentBodyDirectory]
-									 stringByAppendingPathComponent:@"csv"]
-									stringByAppendingPathComponent:filename]
-								   stringByAppendingPathExtension:@"csv"];
-					if ([self existsFile:csvFilePath] == NO) {
-						//(6)get from mainBundle, without cid, without suffix.
-						//   Ex: ~/SakuttoBook.app/tocDefine.csv
-						csvFilePath	= [[NSBundle mainBundle] pathForResource:filename ofType:@"csv"];
-						if ((csvFilePath == nil) || [self existsFile:csvFilePath] == NO) {
-							LOG_CURRENT_METHOD;
-							NSLog(@"csv name=%@, cid=%d", filename, cid);
-							NSLog(@"file not found in folder, in mainBundle.");
-							return nil;
-						}
-					}
+					//No file found.
+					//NSLog(@"csv name=%@, cid=%d", filename, cid);
+					//NSLog(@"file not found in folder, in mainBundle.");
+					return nil;
 				}
 			}
+					
 		}
 	}
+#else
+	//
+	//Single content. try without cid.
+	//
+	//(5)get from folder, without cid, without suffix.
+	//   Ex: ~/Document/contentBody/csv/tocDefine.csv
+	//   (normally, this is never used)
+	csvFilePath = [[[[ContentFileUtility getContentBodyDirectory]
+					 stringByAppendingPathComponent:@"csv"]
+					stringByAppendingPathComponent:filename]
+				   stringByAppendingPathExtension:@"csv"];
+	if ([self existsFile:csvFilePath] == NO) {
+		//(6)get from mainBundle, without cid, without suffix.
+		//   Ex: ~/SakuttoBook.app/tocDefine.csv
+		csvFilePath	= [[NSBundle mainBundle] pathForResource:filename ofType:@"csv"];
+		if ((csvFilePath == nil) || [self existsFile:csvFilePath] == NO) {
+			//No file found.
+			//LOG_CURRENT_METHOD;
+			//NSLog(@"csv name=%@", filename);
+			//NSLog(@"file not found in folder, in mainBundle.");
+			return nil;
+		}
+	}
+#endif
 	//NSLog(@"csvFilePath=%@", csvFilePath);
 	
 	return [self parseDefineCsvWithFullFilename:csvFilePath];

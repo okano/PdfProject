@@ -24,32 +24,93 @@
 		return nil;
 	}
 	
-	NSString* targetFilenameFull = [FileUtility getThumbnailFilenameFull:1 WithContentId:cid];
+	NSString* targetFilenameFull = [self getCoverLocalFilenameFull:cid];
+	//(1)get from cache folder.
+	targetFilenameFull = [self getCoverCacheFilenameFullWithContentId:cid];
 	NSFileManager *fileManager = [NSFileManager defaultManager];
 	if ([fileManager fileExistsAtPath:targetFilenameFull]) {
 		UIImage* image = [UIImage imageWithContentsOfFile:targetFilenameFull];
 		return image;
 	}
-	else
+	
+	//(1b)get from local folder... not use.
+	//			NSString* coverFilenameInLocal = [tmpContentListDS getCoverLocalFilenameFull:targetCid];
+
+	
+	//(2)download from url.
+	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
+	NSURL* url = [appDelegate.serverContentListDS coverUrlByContentId:cid];
+	if (url != nil)
 	{
-		//download.
-		SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
-		NSURL* url = [appDelegate.serverContentListDS thumbnailUrlByContentId:cid];
 		NSData* data = [NSData dataWithContentsOfURL:url];
 		if (data != nil) {
 			//save to local folder.
-			[data writeToFile:targetFilenameFull atomically:YES];
+			targetFilenameFull = [CoverUtility getCoverCacheFilenameFullWithContentId:cid];
+			[FileUtility makeDir:[targetFilenameFull stringByDeletingLastPathComponent]];
+			
+			//Conver image format.
+			if ([[[[url description] pathExtension] lowercaseString] compare:[COVER_FILE_EXTENSION lowercaseString]] == NSOrderedSame)
+			{
+				[data writeToFile:targetFilenameFull atomically:YES];
+				
+			} else {
+				UIImage* tmpImg = [[UIImage alloc] initWithData:data];
+				if ([[COVER_FILE_EXTENSION lowercaseString] compare:@"jpg"] == NSOrderedSame)
+				{
+					NSData* jpgData = UIImageJPEGRepresentation(tmpImg, 1.0);
+					[jpgData writeToFile:targetFilenameFull atomically:YES];
+				} else if ([[COVER_FILE_EXTENSION lowercaseString] compare:@"png"] == NSOrderedSame)
+				{
+					NSData* pngData = UIImagePNGRepresentation(tmpImg);
+					[pngData writeToFile:targetFilenameFull atomically:YES];
+				}
+				
+			}
+			
+			LOG_CURRENT_LINE;
+			NSLog(@"cover image saved. filename=%@", targetFilenameFull);
 			//Set Ignore Backup.
 			[FileUtility addSkipBackupAttributeToItemWithString:targetFilenameFull];
 			//Generate image.
 			UIImage* img = [[UIImage alloc] initWithData:data];
 			return img;
 		} else {
-			NSLog(@"thumbnail image not found. url=%@", [url description]);
+			NSLog(@"cover image not found. url=%@", [url description]);
+			
+			//(Get from thumbnailUrl.)
+			NSURL* coverImageUrl = [appDelegate.serverContentListDS thumbnailUrlByContentId:cid];
+			if (coverImageUrl == nil) {
+				NSLog(@"cannot get thumbnailUrl. targetCid=%d", cid);
+			}
+			
+			return nil;
 		}
-		return nil;
 	}
+	else {
+		//(3)Get from local content icon.
+		UIImage* img = [appDelegate.contentListDS contentIconByContentId:cid];
+		if (img != nil) {
+			LOG_CURRENT_LINE;
+			NSLog(@"img with contentIconByContentId. size=%@", NSStringFromCGSize(img.size));
+			return img;
+		} else {
+			//(4)Get from page small file.
+			targetFilenameFull = [FileUtility getPageSmallFilenameFull:1 WithContentId:cid];
+			if ([fileManager fileExistsAtPath:targetFilenameFull]) {
+				UIImage* image = [UIImage imageWithContentsOfFile:targetFilenameFull];
+				return image;
+			}
+			else {
+				//(5)Get from thumbnailUrl.
+				//coverImageUrl = [tmpContentListDS thumbnailUrlAtIndex:i];
+
+			}
+		}
+	}
+	return nil;
+	
 }
+
 + (NSString*)getCoverFilenameFull:(ContentId)cid
 {
 	return @"";
@@ -87,6 +148,17 @@
 	NSString* filename = [NSString stringWithFormat:@"%@%d", COVER_FILE_PREFIX, cid];
 	NSString* targetFilenameFull = [[[[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 									   stringByAppendingPathComponent:DETAIL_DIR]
+									  stringByAppendingPathComponent:[NSString stringWithFormat:@"%d",cid]]
+									 stringByAppendingPathComponent:filename]
+									stringByAppendingPathExtension:COVER_FILE_EXTENSION];
+	return targetFilenameFull;
+}
+
++ (NSString*)getCoverCacheFilenameFullWithContentId:(ContentId)cid
+{
+	NSString* filename = [NSString stringWithFormat:@"%@%d", COVER_FILE_PREFIX, cid];
+	NSString* targetFilenameFull = [[[[[NSHomeDirectory() stringByAppendingPathComponent:@"Tmp"]
+									   stringByAppendingPathComponent:COVER_CACHE_DIR]
 									  stringByAppendingPathComponent:[NSString stringWithFormat:@"%d",cid]]
 									 stringByAppendingPathComponent:filename]
 									stringByAppendingPathExtension:COVER_FILE_EXTENSION];

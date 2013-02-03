@@ -24,7 +24,7 @@
 #import "TocViewController.h"
 #import "BookmarkViewController.h"
 #import "BookmarkModifyViewController.h"
-#import "ThumbnailViewController.h"
+#import "PageSmallViewController.h"
 
 @class TiledPDFView;
 //#import "PDFScrollView.h"
@@ -106,14 +106,14 @@
 	// WebView
 	WebViewController* webViewController;
 	NSMutableString* urlForWeb;
-	// TocView, ThumbnailView.
+	// TocView, PageSmallView.
 	TocViewController* tocViewController;
-	ThumbnailViewController* thumbnailViewController;
+	PageSmallViewController* pageSmallViewController;
 	// BookmarkView
 	BookmarkViewController* bookmarkViewController;
 	bool isShownMenuBar;
 	bool isShownTocView;
-	bool isShownThumbnailView;
+	bool isShownPageSmallView;
 	bool isShownBookmarkView;
 	//bool isTocWithBookmarkMode;
 	
@@ -140,12 +140,12 @@
 @property (nonatomic, retain) UIToolbar* bottomToolBar;
 @property (nonatomic, retain) WebViewController* webViewController;
 @property (nonatomic, retain) TocViewController* tocViewController;
-@property (nonatomic, retain) ThumbnailViewController* thumbnailViewController;
+@property (nonatomic, retain) PageSmallViewController* pageSmallViewController;
 @property (nonatomic, retain) BookmarkViewController* bookmarkViewController;
 //
 @property (nonatomic) bool isShownMenuBar;
 @property (nonatomic) bool isShownTocView;
-@property (nonatomic) bool isShownThumbnailView;
+@property (nonatomic) bool isShownPageSmallView;
 @property (nonatomic) bool isShownBookmarkView;
 //@property (nonatomic) bool isTocWithBookmarkMode;
 
@@ -168,13 +168,13 @@
 // Draw PDF.
 - (NSString*)getPageFilenameFull:(int)pageNum;
 - (NSString*)getPageFilenameFull:(int)pageNum WithContentId:(ContentId)cid;
-- (NSString*)getThumbnailFilenameFull:(int)pageNum;
-- (NSString*)getThumbnailFilenameFull:(int)pageNum WithContentId:(ContentId)cid;
+- (NSString*)getPageSmallFilenameFull:(int)pageNum;
+- (NSString*)getPageSmallFilenameFull:(int)pageNum WithContentId:(ContentId)cid;
 //
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum;
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum WithContentId:(ContentId)cid;
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum WithTargetFilenameFull:(NSString*)filename;
-- (void)generateThumbnailImageFromImage:(UIImage*)baseImage width:(CGFloat)newWidth pageNumForSave:(NSUInteger)pageNum;
+//- (void)generatePageSmallImageFromImage:(UIImage*)baseImage width:(CGFloat)newWidth pageNumForSave:(NSUInteger)pageNum;
 - (void)removeAllImageCache;
 //
 - (void)drawPageWithNumber:(int)newPagenum;
@@ -219,8 +219,8 @@
 - (void)parseTocDefine;			// Parse Table Of Contents define in CSV.
 - (void)showTocView;
 - (void)hideTocView;
-- (void)showThumbnailView;
-- (void)hideThumbnailView;
+- (void)showPageSmallView;
+- (void)hidePageSmallView;
 // Treat Bookmark.
 - (BOOL)loadBookmark;	// get Bookmark infomation from UserDefault.
 - (void)saveBookmark;

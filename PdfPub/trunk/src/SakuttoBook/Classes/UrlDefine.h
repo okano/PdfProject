@@ -22,7 +22,7 @@
 #define SUMMARY_DIR		@"contentList"
 #define DETAIL_DIR		@"contentDetail"
 #define BODY_DIR		@"contentBody"
-#define THUMBNAIL_DIR	@"contentThumbnail"
+//#define THUMBNAIL_CACHE_DIR	@"contentThumbnailCache"
 #define COVER_CACHE_DIR	@"contentCoverCache"
 //
 #define CONTENT_LIST_NEWEST @"contentListNewest.xml"

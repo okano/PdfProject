@@ -260,17 +260,17 @@
 	
 	
 	//Copy image cache for Cover.
-	UIImage* thumbnailImage = [CoverUtility coverImageWithUuid:targetUuid];
+	UIImage* coverImage = [CoverUtility coverImageWithUuid:targetUuid];
 	NSString* toFilename = [CoverUtility getCoverLocalFilenameFull:[newContentIdStr intValue]];
 	NSLog(@"toFilename=%@", toFilename);
 	[FileUtility makeDir:[toFilename stringByDeletingLastPathComponent]];
 	//Set Ignore Backup.
 	[FileUtility addSkipBackupAttributeToItemWithString:[toFilename stringByDeletingLastPathComponent]];
 
-	NSData *data = UIImageJPEGRepresentation(thumbnailImage, 1.0f);
+	NSData *data = UIImageJPEGRepresentation(coverImage, 1.0f);
 	if ( ! [data writeToFile:toFilename atomically:YES])
 	{
-		NSLog(@"thumbnail file copy error");
+		NSLog(@"cover image file copy error");
 	}
 	
 	//Set Ignore Backup.
