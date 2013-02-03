@@ -100,7 +100,7 @@
 }
 
 #pragma mark - Setup Images.
-- (void)setupImagesWithDataSource:(ContentListDS*)contentListDS shelfImageName:(NSString*)shelfImageName
+- (void)setupImagesWithDataSource:(ContentListDS*)tmpContentListDS shelfImageName:(NSString*)shelfImageName
 {
 	CGFloat maxWidth = self.view.frame.size.width;
 	NSLog(@"self.view.frame=%@", NSStringFromCGRect(self.view.frame));
@@ -172,38 +172,22 @@
 	//currentOriginY += spacerY;
 	
 	//
-	int maxCount = [contentListDS count];
+	int maxCount = [tmpContentListDS count];
 	for (int i = 0; i < maxCount; i = i + 1)
 	{
-		ContentId targetCid = [contentListDS contentIdAtIndex:i];
+		ContentId targetCid = [tmpContentListDS contentIdAtIndex:i];
 		NSLog(@"contentCid=%d", targetCid);
 		
 		//Get cover image.
 		UIImage* imageOriginal = nil;
 		UIImage* image = nil;
 		
-		//(Get from coverUrl.)
-		NSURL* coverImageUrl = [contentListDS coverUrlAtIndex:i];
-		if (coverImageUrl == nil) {
-			NSLog(@"cannot get coverUrl. targetCid=%d", targetCid);
-			//(Get from thumbnailUrl.)
-			coverImageUrl = [contentListDS thumbnailUrlAtIndex:i];
-			if (coverImageUrl == nil) {
-				NSLog(@"cannot get thumbnailUrl. targetCid=%d", targetCid);
-			}
-		}
-		NSData *coverImageData = [NSData dataWithContentsOfURL:coverImageUrl];
-		if (coverImageData == nil) {
-			NSLog(@"coverImageData is nil. targetCid=%d", targetCid);
-		}
-		imageOriginal = [[UIImage alloc]  initWithData:coverImageData];
-		if (imageOriginal == nil) {
-			NSLog(@"error: no cover image. cid=%d", targetCid);
-			//(Get from contentIcon.(included in project file) )
-			imageOriginal = [contentListDS contentIconAtIndex:i];
-			if (imageOriginal == nil) {
-				NSLog(@"cannot get cover image with contentIcon. targetCid=%d", targetCid);
-			}
+		imageOriginal = [CoverUtility coverImageWithContentId:targetCid];
+		if (!imageOriginal)
+		{
+			NSLog(@"no cover image found in local file. targetCid=%d", targetCid);
+			//get dummy image.
+			imageOriginal = [UIImage imageNamed:@"CoverDummy.png"];
 		}
 		
 		//Resize cover image for fit in scroll view.

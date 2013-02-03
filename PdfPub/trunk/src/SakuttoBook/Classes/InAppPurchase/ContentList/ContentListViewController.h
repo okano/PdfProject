@@ -15,6 +15,7 @@
 @class SakuttoBookViewController;
 #import "ContentListCellController.h"
 #import "PaymentHistoryListViewController.h"
+#import "CoverUtility.h"
 
 @interface ContentListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
 	SakuttoBookAppDelegate* appDelegate;

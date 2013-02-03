@@ -41,7 +41,7 @@
 	//Setup data.
 	if (appDelegate.serverContentListDS == nil) {
 		appDelegate.serverContentListDS = [[ServerContentListDS alloc] init];
-		appDelegate.serverContentListDS.targetTableVC = nil;
+		appDelegate.serverContentListDS.targetTableVC = self;	/* for do didFinishParseOpdsElement method. */
 	}
 
 	[MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -68,6 +68,14 @@
     // Dispose of any resources that can be recreated.
 }
 */
+
+#pragma mark - MyTableViewVCProtocol (Accessor for table)
+//didStartParseOpdsElement
+//- (void)didFailParseOpdsElement{}
+- (void)didFinishParseOpdsElement:(NSMutableArray*)resultArray
+{
+	[self setupImagesWithDataSource:appDelegate.serverContentListDS shelfImageName:@"shelf.png"];
+}
 
 #pragma mark - handle push with cover image.
 -(void)buttonEvent:(UIButton*)button
