@@ -16,7 +16,8 @@
 #define CONTENT_ICONFILE_PREFIX		@"ContentIcon_"
 #define CONTENT_ICONFILE_EXTENSION	@"png"
 #define CONTENT_ACQUISITION_LINK	@"AcquisitionLink"
-#define CONTENT_THUMBNAIL_LINK		@"ThumbnailLink"
+#define CONTENT_THUMBNAIL_LINK				@"ThumbnailLink"
+#define CONTENT_THUMBNAILS_LINK				@"ThumbnailInServerLink"	//new on server program at 2012-12-19.( "http://opds-spec.org/thumbnail/{1..4}" )
 #define CONTENT_COVER_LINK			@"CoverLink"
 
 #define HISTORY_CID					@"ContentId"

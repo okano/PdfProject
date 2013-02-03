@@ -44,21 +44,27 @@
 		appDelegate.serverContentListDS.targetTableVC = self;	/* for do didFinishParseOpdsElement method. */
 	}
 
-	[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+	//Show empty self before load.
+	[self setupImagesWithDataSource:nil shelfImageName:@"shelf.png"];
+	
+	[MBProgressHUD showHUDAddedTo:scrollView animated:YES];
 	dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
 		// Do something...
 		[appDelegate.serverContentListDS loadContentList:32];
+		
+		//Show cover image after data load.
+		[self setupImagesWithDataSource:appDelegate.serverContentListDS shelfImageName:@"shelf.png"];
+		
+		//Get productIdList.
+		[[ProductIdList sharedManager] refreshProductIdListFromNetwork];
+		
+		//Show cover image with product id list.
+		[self setupImagesWithDataSource:appDelegate.serverContentListDS shelfImageName:@"shelf.png"];
 		
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[MBProgressHUD hideHUDForView:self.view animated:YES];
 		});
 	});
-	
-	//Get productIdList.
-	[[ProductIdList sharedManager] refreshProductIdListFromNetwork];
-	
-	//Show cover image.
-	[self setupImagesWithDataSource:appDelegate.serverContentListDS shelfImageName:@"shelf_my.png"];
 }
 
 /*

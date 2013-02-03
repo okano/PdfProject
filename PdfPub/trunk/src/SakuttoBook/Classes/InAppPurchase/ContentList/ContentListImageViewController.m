@@ -55,6 +55,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark -
 -(void)buttonEvent:(UIButton*)button
 {
 	//LOG_CURRENT_METHOD;

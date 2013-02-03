@@ -78,7 +78,7 @@
 			NSLog(@"cover image not found. url=%@", [url description]);
 			
 			//(Get from thumbnailUrl.)
-			NSURL* coverImageUrl = [appDelegate.serverContentListDS thumbnailUrlByContentId:cid];
+			NSURL* coverImageUrl = [appDelegate.serverContentListDS thumbnailUrlByContentId:cid atThumbnailIndex:0];
 			if (coverImageUrl == nil) {
 				NSLog(@"cannot get thumbnailUrl. targetCid=%d", cid);
 			}
@@ -122,7 +122,7 @@
 {
 	//download.
 	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
-	NSURL* url = [appDelegate.serverContentListDS thumbnailUrlByUuid:uuid];
+	NSURL* url = [appDelegate.serverContentListDS coverUrlByUuid:uuid];
 	NSData* data = [NSData dataWithContentsOfURL:url];
 	if (data != nil) {
 		//Generate directory for save.

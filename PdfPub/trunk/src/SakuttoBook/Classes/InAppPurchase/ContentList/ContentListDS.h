@@ -107,20 +107,28 @@
 - (NSString*)descriptionAtIndex:(NSInteger)index;
 - (NSString*)descriptionByContentId:(ContentId)cid;
 - (NSString*)descriptionByUuid:(NSString*)uuid;
-//
+//Cover Image.
 - (UIImage*)contentIconAtIndex:(NSInteger)index;
 - (UIImage*)contentIconByContentId:(ContentId)cid;
 - (UIImage*)contentIconByUuid:(NSString*)uuid;
 - (UIImage*)contentIconDummyWithIndex:(NSInteger)index;
 - (NSString*)getCoverLocalFilenameFull:(ContentId)cid;
-
-//
+//Thumbnail Images for single content.
+- (NSMutableArray*)thumbnailImagesByContentId:(ContentId)cid;
+- (NSMutableArray*)thumbnailImagesByUuid:(NSString*)uuid;
+- (UIImage*)thumbnailImagesByContentId:(ContentId)cid atIndex:(NSInteger)index;
+- (UIImage*)thumbnailImagesByUuid:(NSString*)uuid atIndex:(NSInteger)index;
+- (NSString*)getThumbnailLocalFilenameFull:(ContentId)cid withExtention:(NSString*)extension;
+//URL Links.
 - (NSURL*)acquisitionUrlAtIndex:(NSInteger)index;
 - (NSURL*)acquisitionUrlByContentId:(ContentId)cid;
 - (NSURL*)acquisitionUrlByUuid:(NSString*)uuid;
-- (NSURL*)thumbnailUrlAtIndex:(NSInteger)index;
-- (NSURL*)thumbnailUrlByContentId:(ContentId)cid;
-- (NSURL*)thumbnailUrlByUuid:(NSString*)uuid;
+- (NSMutableArray*)thumbnailUrlsAtIndex:(NSInteger)index;
+- (NSURL*)thumbnailUrlAtIndex:(NSInteger)index atThumbnailIndex:(NSInteger)thumbnailIndex;
+- (NSMutableArray*)thumbnailUrlsByContentId:(ContentId)cid;
+- (NSURL*)thumbnailUrlByContentId:(ContentId)cid atThumbnailIndex:(NSInteger)thumbnailIndex;
+- (NSMutableArray*)thumbnailUrlsByUuid:(NSString*)uuid;
+- (NSURL*)thumbnailUrlByUuid:(NSString*)uuid atThumbnailIndex:(NSInteger)thumbnailIndex;
 - (NSURL*)coverUrlAtIndex:(NSInteger)index;
 - (NSURL*)coverUrlByContentId:(ContentId)cid;
 - (NSURL*)coverUrlByUuid:(NSString*)uuid;
