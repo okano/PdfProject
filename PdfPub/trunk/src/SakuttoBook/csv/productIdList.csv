@@ -1,4 +1,4 @@
 #Content-ID(1-start), Product-ID(String with iTunesConnect), Purchase-type(0=FREE 1=Consumable(shoumou-gata) 2=Non-Consumable(hi-shoumou-gata))
 1,product101,0
 2,product102,1
-3,product103,2
+3,product103,0

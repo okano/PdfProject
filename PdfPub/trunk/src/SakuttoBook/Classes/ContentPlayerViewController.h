@@ -62,6 +62,7 @@
 	
 	//for pdf handle.
 	NSURL* pdfURL;
+	bool isVerticalWriting;
 	
 	//
 	ContentId currentContentId;
@@ -127,6 +128,7 @@
 @property (nonatomic, retain) MyPdfScrollView* pdfScrollView3;
 //
 @property (nonatomic, retain) NSURL* pdfURL;
+@property (nonatomic) bool isVerticalWriting;
 
 @property (nonatomic) ContentId currentContentId;
 
@@ -160,7 +162,7 @@
 - (ContentId)getCurrentContentIdFromUserDefault;
 - (BOOL)setupPdfBasicInfo:(ContentId)cid;
 // Handle PDF infomation.
-- (BOOL)isVerticalWriting;
+/* - (BOOL)isVerticalWriting; */
 - (BOOL)isTransitionWithCurl;
 - (BOOL)isMultiContents;
 //- (void)getPdfDictionaryWithPageNum:(NSUInteger)pageNum;

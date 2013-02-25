@@ -8,7 +8,7 @@
  */
 #import "ConstantDefine.h"
 
-//Vertical/Horizon mode in pdf.
+//Vertical/Horizon mode in default. (is overwrited by pdfDefine.csv)
 #define IS_VERTICAL_PDF 1		/* 0:yokogaki, 1:tategaki*/
 
 //Page Transition with Slide/Curl.
