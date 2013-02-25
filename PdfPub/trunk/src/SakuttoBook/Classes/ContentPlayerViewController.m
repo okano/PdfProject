@@ -13,7 +13,7 @@
 
 
 @synthesize pdfScrollView1, pdfScrollView2, pdfScrollView3;
-@synthesize pdfURL;
+@synthesize pdfURL, isVerticalWriting;
 //@synthesize imageView1, imageView2, imageView3;
 //@synthesize image1, image2, image3;
 @synthesize currentContentId;
@@ -396,10 +396,61 @@
 		CGPDFDocumentRelease(pdfDocument);
 	}
 	
+	
+	//parse pdfDefine.csv for determine vertical/horizontal MEKURI direction.
+	//(note: pdf filename is determin in first launchup.)
+	bool isVerticalWritingInDefault;
+#if defined(IS_VERTICAL_PDF) && IS_VERTICAL_PDF != 0
+	isVerticalWritingInDefault = TRUE;	//tategaki.
+#else
+	isVerticalWritingInDefault = FALSE;	//yokogaki.
+#endif
+	
+	NSString* targetFilename = @"pdfDefine";
+	NSArray* lines;
+	if ([self isMultiContents] == TRUE) {
+		lines = [FileUtility parseDefineCsv:targetFilename contentId:currentContentId];
+	} else {
+		lines = [FileUtility parseDefineCsv:targetFilename];
+	}
+	
+	
+	//parse each line.
+	//
+	//page-progression-direction:rtl	//yokogaki
+	//or
+	//page-progression-direction:ltr	//tategaki
+	//
+	isVerticalWriting = isVerticalWritingInDefault;
+	NSCharacterSet* skippedCharacters = [NSCharacterSet characterSetWithCharactersInString:@":,=;"];
+	if (2 <= [lines count]) {
+		for (int i = 1; i < [lines count]; i++)
+		{
+			NSString* lineOrg = [lines objectAtIndex:i];
+			NSString* line = [lineOrg stringByReplacingOccurrencesOfString:@" " withString:@""];
+			NSArray* tmpCsvArray = [line componentsSeparatedByCharactersInSet:skippedCharacters];
+			NSString* keyStr = [tmpCsvArray objectAtIndex:0];
+			if ([[keyStr lowercaseString] compare:PAGE_PROGRESSION_DIRECTION] == NSOrderedSame)
+			{
+				NSString* valueStrOrg = [tmpCsvArray objectAtIndex:1];
+				NSString* valueStr = [valueStrOrg stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+				if ([[valueStr lowercaseString] compare:PAGE_PROGRESSION_DIRECTION_LTR] == NSOrderedSame)
+				{
+					isVerticalWriting = YES;	//overwrite with csv.
+				} else if ([[valueStr lowercaseString] compare:PAGE_PROGRESSION_DIRECTION_RTL] == NSOrderedSame)
+				{
+					isVerticalWriting = NO;		//overwrite with csv.
+				}
+			}
+		}
+	}
+	
+	
 	return TRUE;
 }
 
 #pragma mark handle PDF infomation.
+/*
 //IS_VERTICAL_PDF: 0=horizon(yokogaki), 1=vertical(tategaki).
 - (BOOL)isVerticalWriting
 {
@@ -409,6 +460,7 @@
 	return NO;	//yokogaki.
 #endif
 }
+*/
 
 - (BOOL)isTransitionWithCurl
 {
