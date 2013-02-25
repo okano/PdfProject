@@ -185,12 +185,6 @@
 		cid = 1;
 	}
 	
-	//(when loading now, read csv file)
-	if ([contentList count] < cid) {
-		//return [InAppPurchaseUtility getProductIdentifier:cid];
-		return @"";
-	}
-	
 	for (NSDictionary* tmpDict in contentList) {
 		ContentId candidateCid = [[tmpDict valueForKey:CONTENT_CID] intValue];
 		//NSLog(@"candidate cid=%d", candidateCid);
