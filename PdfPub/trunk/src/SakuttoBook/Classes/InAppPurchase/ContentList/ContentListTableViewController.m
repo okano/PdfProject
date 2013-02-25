@@ -128,7 +128,7 @@
 	cell.titleLabel.text = [appDelegate.contentListDS titleByContentId:targetCid];
 	cell.authorLabel.text = [appDelegate.contentListDS authorByContentId:targetCid];
 	
-	if ((targetPid == InvalidProductId) || ([targetPid length] <= 0)) {
+	if (([targetPid isEqual: InvalidProductId]) || ([targetPid length] <= 0)) {
 		NSLog(@"Invalid productId. cid=%d", targetCid);
 		cell.isDownloadedLabel.text = @"";
 		return cell;
