@@ -12,7 +12,7 @@
 @implementation ServerContentDetailVC
 @synthesize targetUuid;
 @synthesize targetUrl;
-@synthesize thumbnailImageView, titleLabel, authorLabel, descriptionTextView;
+@synthesize thumbnailImageView, thumbnailScrollView, titleLabel, authorLabel, descriptionTextView;
 @synthesize priceLabel;
 @synthesize buyButton, reDownloadButton;
 
@@ -26,22 +26,8 @@
 		targetCid = UndefinedContentId;
 		targetProductId = nil;
 		
-		//Change view size in iPad.
-		CGRect viewFrame = CGRectZero;
-#if (__IPHONE_OS_VERSION_MAX_ALLOWED >= 30200)
-		// sdk upper 3.2
-		if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-			// iPad
-			viewFrame = CGRectMake(0, 0, 768, 1024);
-		}
-		else {
-			// other
-			viewFrame = CGRectMake(0, 0, 320, 480);
-		}
-#else
-		// sdk under 3.2
-#endif
-		self.view.frame = viewFrame;
+		//Fit view size with screen. (iPhone-3.5inch/iPhone-4inch/iPad/iPad-Retina)
+		self.view.frame = [[UIScreen mainScreen] bounds];
 
     }
     return self;
@@ -66,6 +52,8 @@
 	//inner var.
 	targetUuid = uuid;
 	
+	CGSize totalContentSize;
+	CGFloat totalHeight = scrollView.frame.size.height + 44;
 	
 	//Thumbnail.
 	UIImage* thumbnailImage = [CoverUtility coverImageWithUuid:uuid];
@@ -168,9 +156,58 @@
 		appDelegate.paymentConductor.parentVC = self;
 		[appDelegate.paymentConductor getProductInfomation:targetProductId withContinueBuy:NO];
 	}
-
-
-
+	
+	
+	totalHeight = 400;
+	
+	//Thumbnail images. "http://opds-spec.org/thumbnail/{1..4}"
+	//NSMutableArray* thumbnailUrlLinks = [appDelegate.serverContentListDS thumbnailUrlsByContentId:targetCid];
+	NSMutableArray* thumbnailImages = [appDelegate.serverContentListDS thumbnailImagesByContentId:targetCid];
+	if (thumbnailImages != nil) {
+		LOG_CURRENT_LINE;
+		CGFloat maxHeight = 0;
+		CGFloat curPosX = 0, offsetX = 10, merginX = 10;
+		
+		curPosX = offsetX;
+		for (UIImage* thumbnailImage in thumbnailImages) {
+			NSLog(@"thumbnailImage size=%@", NSStringFromCGSize([thumbnailImage size]));
+			
+			//positioning image.
+			UIImageView* tiView = [[UIImageView alloc] initWithImage:thumbnailImage];
+			CGRect rect = tiView.frame;
+			rect.origin.x = curPosX;
+			tiView.frame = rect;
+			[thumbnailScrollView addSubview:tiView];
+			
+			//Fit thumbnailScrollView height with image..
+			if (maxHeight < thumbnailImage.size.height) {
+				maxHeight = thumbnailImage.size.height;
+				
+				//Resize scrollView height.
+				CGRect thumbnailScrollViewFrame = thumbnailScrollView.frame;
+				thumbnailScrollViewFrame.size.height = thumbnailImage.size.height;
+				thumbnailScrollView.frame = thumbnailScrollViewFrame;
+			}
+			
+			curPosX += thumbnailImage.size.width + merginX;
+			
+			CGSize contentSize = CGSizeMake(curPosX, maxHeight);
+			[thumbnailScrollView setContentSize:contentSize];
+		}
+		//Resize total scrollView.
+		totalHeight += thumbnailScrollView.frame.size.height;
+		totalContentSize = scrollView.contentSize;
+		totalContentSize.height = totalHeight;
+		if (totalContentSize.width < self.view.frame.size.width) {
+			totalContentSize.width = self.view.frame.size.width;
+		}
+		[scrollView setContentSize:totalContentSize];
+		[scrollView scrollsToTop];
+	}
+	
+	totalContentSize = scrollView.contentSize;
+	totalContentSize = CGSizeMake(self.view.frame.size.width, 2310);
+	[scrollView setContentSize:totalContentSize];
 }
 
 

@@ -82,21 +82,21 @@
 	return targetFilenameFull;
 }
 
-#pragma mark - thumbnail.
-+ (NSString*)getThumbnailFilenameFull:(int)pageNum {
-	NSString* filename = [NSString stringWithFormat:@"%@%d", THUMBNAIL_FILE_PREFIX, pageNum];
+#pragma mark - Page Cache Mini.
++ (NSString*)getPageSmallFilenameFull:(int)pageNum {
+	NSString* filename = [NSString stringWithFormat:@"%@%d", PAGE_FILE_SMALL_PREFIX, pageNum];
 	NSString* targetFilenameFull = [[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 									 stringByAppendingPathComponent:filename]
-									stringByAppendingPathExtension:THUMBNAIL_FILE_EXTENSION];
+									stringByAppendingPathExtension:PAGE_FILE_SMALL_EXTENSION];
 	return targetFilenameFull;
 }
 
-+ (NSString*)getThumbnailFilenameFull:(int)pageNum WithContentId:(ContentId)cid {
-	NSString* filename = [NSString stringWithFormat:@"%@%d", THUMBNAIL_FILE_PREFIX, pageNum];
++ (NSString*)getPageSmallFilenameFull:(int)pageNum WithContentId:(ContentId)cid {
+	NSString* filename = [NSString stringWithFormat:@"%@%d", PAGE_FILE_SMALL_PREFIX, pageNum];
 	NSString* targetFilenameFull = [[[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 									  stringByAppendingPathComponent:[NSString stringWithFormat:@"%d",cid]]
 									 stringByAppendingPathComponent:filename]
-									stringByAppendingPathExtension:THUMBNAIL_FILE_EXTENSION];
+									stringByAppendingPathExtension:PAGE_FILE_SMALL_EXTENSION];
 	return targetFilenameFull;
 }
 
@@ -195,6 +195,10 @@
 	NSString* csvFilePath = nil;
 	NSString* filenameInMainBundle = nil;
 	
+#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+	//
+	//Multi contents. try with cid.
+	//
 	//(1)get from ContentBody Directory, with suffix.
 	//   Ex: ~/Document/contentBody/1/csv/tocDefine_iphone_1.csv
 	csvFilePath = [self getCsvFilenameInFolder:filename contentId:cid withDeviceSuffix:YES];
@@ -213,28 +217,39 @@
 				filenameInMainBundle  = [self getCsvFilenameInMainBundle:filename contentId:cid withDeviceSuffix:NO];
 				csvFilePath = [[NSBundle mainBundle] pathForResource:filenameInMainBundle ofType:@""];
 				if ((csvFilePath == nil) || [self existsFile:csvFilePath] == NO) {
-					//(5)get from folder, without cid, without suffix.
-					//   Ex: ~/Document/contentBody/csv/tocDefine.csv
-					//   (normally, this is never used)
-					csvFilePath = [[[[ContentFileUtility getContentBodyDirectory]
-									 stringByAppendingPathComponent:@"csv"]
-									stringByAppendingPathComponent:filename]
-								   stringByAppendingPathExtension:@"csv"];
-					if ([self existsFile:csvFilePath] == NO) {
-						//(6)get from mainBundle, without cid, without suffix.
-						//   Ex: ~/SakuttoBook.app/tocDefine.csv
-						csvFilePath	= [[NSBundle mainBundle] pathForResource:filename ofType:@"csv"];
-						if ((csvFilePath == nil) || [self existsFile:csvFilePath] == NO) {
-							LOG_CURRENT_METHOD;
-							NSLog(@"csv name=%@, cid=%d", filename, cid);
-							NSLog(@"file not found in folder, in mainBundle.");
-							return nil;
-						}
-					}
+					//No file found.
+					//NSLog(@"csv name=%@, cid=%d", filename, cid);
+					//NSLog(@"file not found in folder, in mainBundle.");
+					return nil;
 				}
 			}
+					
 		}
 	}
+#else
+	//
+	//Single content. try without cid.
+	//
+	//(5)get from folder, without cid, without suffix.
+	//   Ex: ~/Document/contentBody/csv/tocDefine.csv
+	//   (normally, this is never used)
+	csvFilePath = [[[[ContentFileUtility getContentBodyDirectory]
+					 stringByAppendingPathComponent:@"csv"]
+					stringByAppendingPathComponent:filename]
+				   stringByAppendingPathExtension:@"csv"];
+	if ([self existsFile:csvFilePath] == NO) {
+		//(6)get from mainBundle, without cid, without suffix.
+		//   Ex: ~/SakuttoBook.app/tocDefine.csv
+		csvFilePath	= [[NSBundle mainBundle] pathForResource:filename ofType:@"csv"];
+		if ((csvFilePath == nil) || [self existsFile:csvFilePath] == NO) {
+			//No file found.
+			//LOG_CURRENT_METHOD;
+			//NSLog(@"csv name=%@", filename);
+			//NSLog(@"file not found in folder, in mainBundle.");
+			return nil;
+		}
+	}
+#endif
 	//NSLog(@"csvFilePath=%@", csvFilePath);
 	
 	return [self parseDefineCsvWithFullFilename:csvFilePath];
@@ -319,12 +334,26 @@
 + (BOOL)makeDir:(NSString*)fileNameFull {
 	//NSLog(@"fileNameFull=%@", fileNameFull);
     if ([self existsFile:fileNameFull]) {
+		NSLog(@"directory already exists at %@", fileNameFull);
 		return FALSE;
 	}
-	return [[NSFileManager defaultManager] createDirectoryAtPath:fileNameFull
+	
+	NSError *error = nil;
+	[[NSFileManager defaultManager] createDirectoryAtPath:fileNameFull
 							  withIntermediateDirectories:YES
 											   attributes:nil 
-													error:nil];
+													error:&error];
+	if (error != nil) {
+		LOG_CURRENT_METHOD;
+		NSLog(@"makeDir error. localizedDescription=%@, localizedFailureReason=%@, code=%d",
+			  [error localizedDescription],
+			  [error localizedFailureReason], [error code]);
+		if ([error code] == NSFileWriteFileExistsError) {
+			NSLog(@"NSFileWriteFileExistsError. file or directory already exists.");
+		}
+		return NO;
+	}
+    return YES;
 }
 
 //Delete file/directory.
@@ -338,12 +367,32 @@
 //Resource to File.
 + (BOOL)res2file:(NSString*)res fileNameFull:(NSString*)filenameFull {
     NSString* from=[[NSBundle mainBundle] pathForResource:res ofType:@""];
-    NSString* to=filenameFull;
-	if (from == nil || to == nil) {
-		//resource or file not found.
+	if (from == nil) {
+		//resource file not found in mainBundle.
+		LOG_CURRENT_METHOD;
+		NSLog(@"copy from file not found in mainBundle. filenameFull=%@", filenameFull);
 		return NO;
 	}
-    [[NSFileManager defaultManager] copyItemAtPath:from toPath:to error:nil];
+    NSString* to=filenameFull;
+	if (to == nil) {
+		//passed nil string.(program error.)
+		LOG_CURRENT_METHOD;
+		NSLog(@"filenameFull is nil.");
+		return NO;
+	}
+	
+	NSError *error = nil;
+    [[NSFileManager defaultManager] copyItemAtPath:from toPath:to error:&error];
+	if (error != nil) {
+		LOG_CURRENT_METHOD;
+		NSLog(@"file copy error. localizedDescription=%@, localizedFailureReason=%@, code=%d",
+			  [error localizedDescription],
+			  [error localizedFailureReason], [error code]);
+		if ([error code] == NSFileWriteFileExistsError) {
+			NSLog(@"NSFileWriteFileExistsError. file already exists.");
+		}
+		return NO;
+	}
     return YES;
 }
 
@@ -385,6 +434,34 @@
 	return tmpStrWithoutLF;
 }
 
-
+#pragma mark - get the device model number using uname from sys/utsname.h
+//get the device model number using uname from sys/utsname.h
+//@see: http://stackoverflow.com/questions/11197509/ios-iphone-get-device-model-and-make
+/**
+ * @"i386"      on the simulator
+ * @"iPod1,1"   on iPod Touch
+ * @"iPod2,1"   on iPod Touch Second Generation
+ * @"iPod3,1"   on iPod Touch Third Generation
+ * @"iPod4,1"   on iPod Touch Fourth Generation
+ * @"iPhone1,1" on iPhone
+ * @"iPhone1,2" on iPhone 3G
+ * @"iPhone2,1" on iPhone 3GS
+ * @"iPad1,1"   on iPad
+ * @"iPad2,1"   on iPad 2
+ * @"iPad3,1"   on 3rd Generation iPad
+ * @"iPhone3,1" on iPhone 4
+ * @"iPhone4,1" on iPhone 4S
+ * @"iPhone5,1" on iPhone 5
+ * @"iPad3,4" on 4th Generation iPad
+ * @"iPad2,5" on iPad Mini
+ */
++ (NSString*)machineName
+{
+    struct utsname systemInfo;
+    uname(&systemInfo);
+	
+    return [NSString stringWithCString:systemInfo.machine
+                              encoding:NSUTF8StringEncoding];
+}
 
 @end

@@ -11,6 +11,8 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <AudioToolbox/AudioServices.h>
 #import <AVFoundation/AVFoundation.h>
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
 #import "SKBE_MainVC.h"
 #import "Utility.h"
 #import "FileUtility.h"
@@ -22,7 +24,7 @@
 #import "TocViewController.h"
 #import "BookmarkViewController.h"
 #import "BookmarkModifyViewController.h"
-#import "ThumbnailViewController.h"
+#import "PageSmallViewController.h"
 
 @class TiledPDFView;
 //#import "PDFScrollView.h"
@@ -87,7 +89,9 @@
 	
 	//
 	NSMutableArray* linksInCurrentPage;
+	NSMutableArray* urlDefineWithCsv;
 	NSMutableArray* movieDefine;
+	NSMutableArray* mailDefine;
 	NSMutableArray* soundDefine;
 	NSMutableArray* pageJumpLinkDefine;
 	NSMutableArray* inPageScrollViewDefine;
@@ -97,17 +101,19 @@
 	
 	// Menu
 	MenuViewController* menuViewController;
+	UIToolbar* bottomToolBar;
+	
 	// WebView
 	WebViewController* webViewController;
 	NSMutableString* urlForWeb;
-	// TocView, ThumbnailView.
+	// TocView, PageSmallView.
 	TocViewController* tocViewController;
-	ThumbnailViewController* thumbnailViewController;
+	PageSmallViewController* pageSmallViewController;
 	// BookmarkView
 	BookmarkViewController* bookmarkViewController;
 	bool isShownMenuBar;
 	bool isShownTocView;
-	bool isShownThumbnailView;
+	bool isShownPageSmallView;
 	bool isShownBookmarkView;
 	//bool isTocWithBookmarkMode;
 	
@@ -131,14 +137,15 @@
 //@property (nonatomic, retain) UIImage* image2;
 //@property (nonatomic, retain) UIImage* image3;
 @property (nonatomic, retain) MenuViewController* menuViewController;
+@property (nonatomic, retain) UIToolbar* bottomToolBar;
 @property (nonatomic, retain) WebViewController* webViewController;
 @property (nonatomic, retain) TocViewController* tocViewController;
-@property (nonatomic, retain) ThumbnailViewController* thumbnailViewController;
+@property (nonatomic, retain) PageSmallViewController* pageSmallViewController;
 @property (nonatomic, retain) BookmarkViewController* bookmarkViewController;
 //
 @property (nonatomic) bool isShownMenuBar;
 @property (nonatomic) bool isShownTocView;
-@property (nonatomic) bool isShownThumbnailView;
+@property (nonatomic) bool isShownPageSmallView;
 @property (nonatomic) bool isShownBookmarkView;
 //@property (nonatomic) bool isTocWithBookmarkMode;
 
@@ -161,13 +168,13 @@
 // Draw PDF.
 - (NSString*)getPageFilenameFull:(int)pageNum;
 - (NSString*)getPageFilenameFull:(int)pageNum WithContentId:(ContentId)cid;
-- (NSString*)getThumbnailFilenameFull:(int)pageNum;
-- (NSString*)getThumbnailFilenameFull:(int)pageNum WithContentId:(ContentId)cid;
+- (NSString*)getPageSmallFilenameFull:(int)pageNum;
+- (NSString*)getPageSmallFilenameFull:(int)pageNum WithContentId:(ContentId)cid;
 //
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum;
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum WithContentId:(ContentId)cid;
 - (UIImage*)getPdfPageImageWithPageNum:(NSUInteger)pageNum WithTargetFilenameFull:(NSString*)filename;
-- (void)generateThumbnailImageFromImage:(UIImage*)baseImage width:(CGFloat)newWidth pageNumForSave:(NSUInteger)pageNum;
+//- (void)generatePageSmallImageFromImage:(UIImage*)baseImage width:(CGFloat)newWidth pageNumForSave:(NSUInteger)pageNum;
 - (void)removeAllImageCache;
 //
 - (void)drawPageWithNumber:(int)newPagenum;
@@ -197,6 +204,7 @@
 - (void)parseMovieDefine;	// Parse Movie define in CSV.
 - (void)renderMovieLinkAtIndex:(NSUInteger)index;
 - (void)showMoviePlayer:(NSString*)filename;
+// Treat Mail send. -> implement with Category.
 // Treat PageJumpLink.
 - (void)parsePageJumpLinkDefine;	// Parse PageJumpLink define in CSV.
 - (void)renderPageJumpLinkAtIndex:(NSUInteger)index;
@@ -211,8 +219,8 @@
 - (void)parseTocDefine;			// Parse Table Of Contents define in CSV.
 - (void)showTocView;
 - (void)hideTocView;
-- (void)showThumbnailView;
-- (void)hideThumbnailView;
+- (void)showPageSmallView;
+- (void)hidePageSmallView;
 // Treat Bookmark.
 - (BOOL)loadBookmark;	// get Bookmark infomation from UserDefault.
 - (void)saveBookmark;
@@ -244,17 +252,41 @@
 @end
 
 
-
-
-
 // Treat Sound.
 @interface ContentPlayerViewController (soundonpage)
 - (void)parseSoundOnPageDefine;
+- (bool)isContainSountAtIndex:(NSUInteger)index;
 - (void)playSoundAtIndex:(NSUInteger)index;
 - (void)playSoundWithUrl:(NSURL*)soundURL;
 - (void)playSoundWithUrl:(NSURL*)soundURL withDelay:(NSNumber*)delayTime;
 - (void)timerHandlerForPlaySound:(NSTimer*)timer;
+- (void)stopSound;
 @end
+
+
+// Treat Mail send.
+@interface ContentPlayerViewController (mailSend) <MFMailComposeViewControllerDelegate>
+- (void)parseMailDefine;	// Parse Mail define in CSV.
+- (void)renderMailLinkAtIndex:(NSUInteger)index;
+- (void)showMailComposerWithSubject:(NSString*)subject
+						toRecipient:(NSArray*)toRecipient
+						ccRecipient:(NSArray*)ccRecipient
+					   bccRecipient:(NSArray*)bccRecipient
+						messageBody:(NSString*)messageBody;
+@end
+
+// Treat bottom menu bar.
+@interface ContentPlayerViewController (bottomMenu)
+- (void)showBottomMenu;
+- (void)hideBottomMenu;
+@end
+
+// Treat Url link specified in CSV file.
+@interface ContentPlayerViewController (urlWithCsv)
+- (void)parseUrlLinkWithCsvDefine;	// Parse Url Link define in CSV.
+- (void)renderUrlLinkWithCsvAtIndex:(NSUInteger)index;
+@end
+
 
 //#define EPUB_RESOURCES_DIRECTORY	@"content/resources"
 //#define CONTENT_DETAIL_DIRECTORY	@"contentDetail"

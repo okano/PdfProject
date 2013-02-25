@@ -17,8 +17,8 @@
 //@synthesize imageView1, imageView2, imageView3;
 //@synthesize image1, image2, image3;
 @synthesize currentContentId;
-@synthesize menuViewController, webViewController, tocViewController, thumbnailViewController, bookmarkViewController;
-@synthesize isShownMenuBar, isShownTocView, isShownThumbnailView, isShownBookmarkView;
+@synthesize menuViewController, bottomToolBar, webViewController, tocViewController, pageSmallViewController, bookmarkViewController;
+@synthesize isShownMenuBar, isShownTocView, isShownPageSmallView, isShownBookmarkView;
 //@synthesize currentImageView;
 
 /*
@@ -63,22 +63,8 @@
 	//imageView3 = [[UIImageView alloc] init];
 	//currentScrollView = [[UIScrollView alloc] init];
 	
-	//Setup frame of this view.
-	CGRect viewFrame = CGRectZero;
-#if (__IPHONE_OS_VERSION_MAX_ALLOWED >= 30200)
-	// sdk upper 3.2
-	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-		// iPad
-		viewFrame = CGRectMake(0, 0, 768, 1024);
-	}
-	else {
-		// other
-		viewFrame = CGRectMake(0, 0, 320, 480);
-	}
-#else
-	// sdk under 3.2
-#endif
-	self.view.frame = viewFrame;
+	//Fit view size with screen. (iPhone-3.5inch/iPhone-4inch/iPad/iPad-Retina)
+	self.view.frame = [[UIScreen mainScreen] bounds];
 	
 	
 	//Setup subviews.
@@ -145,9 +131,8 @@
 	}
 	
 	
-	//Generate Thumbnail image.
+	//Generate Page Samll image.
 	//generate when need.(for launch speed up.)
-	//[self generateThumbnailImage:100.0f];
 	
 	//Remove all image cache when debug.
 #ifdef TARGET_IPHONE_SIMULATOR
@@ -173,6 +158,28 @@
 	menuBarFrame.size.width = self.view.frame.size.width;//Fit size only width.
 	menuViewController.view.frame = menuBarFrame;
 	[self.view addSubview:menuViewController.view];
+	
+	//Setup Bottom menu bar.
+	//bottomMenuViewController = [[UIViewController alloc] init];
+	CGRect bottomMenuBarFrame = CGRectMake(menuBarFrame.origin.x,
+										   self.view.frame.size.height -  menuBarFrame.size.height,
+										   menuBarFrame.size.width,
+										   menuBarFrame.size.height);
+	bottomToolBar = [[UIToolbar alloc] initWithFrame:bottomMenuBarFrame];
+	UIBarButtonItem *flexibleSpaceButton = [[UIBarButtonItem alloc]
+						   initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+						   target:nil
+						   action:nil];
+	UIBarButtonItem *paymentHistoryButton = [[UIBarButtonItem alloc] initWithTitle:@"再生停止"
+																			 style:UIBarButtonItemStyleBordered
+																			target:self
+																			action:@selector(stopSound)];
+	
+	NSArray *items = nil;
+	items = [NSArray arrayWithObjects:flexibleSpaceButton, paymentHistoryButton, flexibleSpaceButton, nil];
+	[bottomToolBar setItems:items];
+	[self.view addSubview:bottomToolBar];
+
 	[self hideMenuBar];
 	
 	//Setup WebView.
@@ -180,13 +187,21 @@
 	webViewController = nil;
 	urlForWeb = [[NSMutableString alloc] init];
 	
-	//Setup Links.
+	//Setup Url Links.
 	linksInCurrentPage = [[NSMutableArray alloc] init];
 	[self renderPageLinkAtIndex:currentPageNum];
+	
+	// Setup for Url Links With CSV.
+	[self parseUrlLinkWithCsvDefine];
+	[self renderUrlLinkWithCsvAtIndex:currentPageNum];
 	
 	// Setup for Movie play.
 	[self parseMovieDefine];
 	[self renderMovieLinkAtIndex:currentPageNum];
+	
+	// Setup for Mail send.
+	[self parseMailDefine];
+	[self renderMailLinkAtIndex:currentPageNum];
 	
 	// Setup for Sound play.
 	[self parseSoundOnPageDefine];
@@ -214,9 +229,9 @@
 	tocViewController.view.frame = tocViewFrame;
 	isShownTocView = FALSE;
 	
-	// Setup Thumbnail Image Toc View.
-	thumbnailViewController = [[ThumbnailViewController alloc] init];
-	isShownThumbnailView = FALSE;
+	// Setup Page Small Image Toc View.
+	pageSmallViewController = [[PageSmallViewController alloc] init];
+	isShownPageSmallView = FALSE;
 	
 	// Setup Bookmark View.
 	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -430,22 +445,22 @@
 	return [FileUtility getPageFilenameFull:pageNum WithContentId:cid];
 }
 
-- (NSString*)getThumbnailFilenameFull:(int)pageNum {
+- (NSString*)getPageSmallFilenameFull:(int)pageNum {
 	if ([self isMultiContents] == TRUE) {
-		return [FileUtility getThumbnailFilenameFull:pageNum WithContentId:currentContentId];
+		return [FileUtility getPageSmallFilenameFull:pageNum WithContentId:currentContentId];
 	} else {
-		return [FileUtility getThumbnailFilenameFull:pageNum];
+		return [FileUtility getPageSmallFilenameFull:pageNum];
 	}
 	/*
-	NSString* filename = [NSString stringWithFormat:@"%@%d", THUMBNAIL_FILE_PREFIX, pageNum];
+	NSString* filename = [NSString stringWithFormat:@"%@%d", PAGE_FILE_SMALL_PREFIX, pageNum];
 	NSString* targetFilenameFull = [[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 									 stringByAppendingPathComponent:filename]
-									stringByAppendingPathExtension:THUMBNAIL_FILE_EXTENSION];
+									stringByAppendingPathExtension:PAGE_FILE_SMALL_EXTENSION];
 	return targetFilenameFull;
 	*/
 }
-- (NSString*)getThumbnailFilenameFull:(int)pageNum WithContentId:(ContentId)cid{
-	return [FileUtility getThumbnailFilenameFull:pageNum WithContentId:cid];
+- (NSString*)getPageSmallFilenameFull:(int)pageNum WithContentId:(ContentId)cid{
+	return [FileUtility getPageSmallFilenameFull:pageNum WithContentId:cid];
 }
 
 #pragma mark -
@@ -504,8 +519,8 @@
 		
 		UIImage* pdfImage = [[UIImage alloc] initWithContentsOfFile:targetFilenameFull];
 		if (pdfImage) {
-			//Thumbnail image is generated ondemand.
-			//[self generateThumbnailImageFromImage:pdfImage width:THUMBNAIL_WIDTH pageNumForSave:pageNum];
+			//Page Small image is generated ondemand.
+			//[self generatePageSmallImageFromImage:pdfImage width:CACHE_IMAGE_SMALL_WIDTH pageNumForSave:pageNum];
 			
 			return pdfImage;
 		} else {
@@ -523,8 +538,8 @@
 
 
 
-
-- (void)generateThumbnailImageFromImage:(UIImage*)baseImage width:(CGFloat)newWidth pageNumForSave:(NSUInteger)pageNum
+/*
+- (void)generatePageSmallImageFromImage:(UIImage*)baseImage width:(CGFloat)newWidth pageNumForSave:(NSUInteger)pageNum
 {
 	//LOG_CURRENT_METHOD;
 	
@@ -532,7 +547,7 @@
 	CGFloat scale = baseImage.size.width / newWidth;
 	CGSize newSize = CGSizeMake(baseImage.size.width / scale,
 								baseImage.size.height / scale);
-	//NSLog(@"newSize for thumbnail=%f,%f", newSize.width, newSize.height);
+	//NSLog(@"newSize for page small=%f,%f", newSize.width, newSize.height);
 	
 	//Prepare new image.
 	UIImage* resizedImage;
@@ -548,22 +563,23 @@
 	
 	//Save to file.
 	NSData *data = UIImagePNGRepresentation(resizedImage);
-	NSString* targetFilenameFull = [self getThumbnailFilenameFull:pageNum];
+	NSString* targetFilenameFull = [self getPageSmallFilenameFull:pageNum];
 	[FileUtility makeDir:targetFilenameFull];
 	NSError* error = nil;
 	[data writeToFile:targetFilenameFull options:NSDataWritingAtomic error:&error];
 	if (error) {
 		LOG_CURRENT_METHOD;
-		NSLog(@"thumbnail file write error. path=%@", targetFilenameFull);
+		NSLog(@"page small cache file write error. path=%@", targetFilenameFull);
 		NSLog(@"error=%@, error code=%d", [error localizedDescription], [error code]);
 		
 	} else {
-		//NSLog(@"wrote thumbnail file to %@", targetFilenameFull);
+		//NSLog(@"wrote page small cache file to %@", targetFilenameFull);
 	}
 	
 	//Set Ignore Backup.
 	[FileUtility addSkipBackupAttributeToItemWithString:targetFilenameFull];
 }
+*/
 
 //Remove image cache.
 - (void)removeAllImageCache
@@ -575,7 +591,7 @@
 	for (i = 1; i < maxPageNum; i = i + 1) {
 		targetFilenameFull = [self getPageFilenameFull:i];
 		[fileManager removeItemAtPath:targetFilenameFull error:&error];
-		targetFilenameFull = [self getThumbnailFilenameFull:i];
+		targetFilenameFull = [self getPageSmallFilenameFull:i];
 		[fileManager removeItemAtPath:targetFilenameFull error:&error];
 	}
 }
@@ -751,7 +767,9 @@
 	//
 	//[self getPdfDictionaryWithPageNum:currentPageNum];
 	[self renderPageLinkAtIndex:currentPageNum];
+	[self renderUrlLinkWithCsvAtIndex:currentPageNum];
 	[self renderMovieLinkAtIndex:currentPageNum];
+	[self renderMailLinkAtIndex:currentPageNum];
 	[self renderPageJumpLinkAtIndex:currentPageNum];
 	[self renderInPageScrollViewAtIndex:currentPageNum];
 	[self renderPopoverScrollImageLinkAtIndex:currentPageNum];
@@ -896,7 +914,9 @@
 	//NSLog(@"(new)currentPdfScrollView subviews = %d", [currentPdfScrollView.subviews count]);
 	//
 	[self renderPageLinkAtIndex:currentPageNum];
+	[self renderUrlLinkWithCsvAtIndex:currentPageNum];
 	[self renderMovieLinkAtIndex:currentPageNum];
+	[self renderMailLinkAtIndex:currentPageNum];
 	[self renderPageJumpLinkAtIndex:currentPageNum];
 	[self renderInPageScrollViewAtIndex:currentPageNum];
 	[self renderPopoverScrollImageLinkAtIndex:currentPageNum];
@@ -950,9 +970,11 @@
 	//Hide TOCView.
 	[self.tocViewController.view removeFromSuperview];
 	
-	//Draw link to URL, Movie.
+	//Draw link to URL, Movie, etc.
 	[self renderPageLinkAtIndex:currentPageNum];
+	[self renderUrlLinkWithCsvAtIndex:currentPageNum];
 	[self renderMovieLinkAtIndex:currentPageNum];
+	[self renderMailLinkAtIndex:currentPageNum];
 	[self renderPageJumpLinkAtIndex:currentPageNum];
 	[self renderInPageScrollViewAtIndex:currentPageNum];
 	[self renderPopoverScrollImageLinkAtIndex:currentPageNum];
@@ -1025,13 +1047,13 @@
 	//NSLog(@"touched point in Original PDF = %@", NSStringFromCGPoint(touchedPointInOriginalPdf));	
 	
 	
-	// Check if TocView, ThumbnailView, BookmarkVew shown, then hide it.
+	// Check if TocView, PageSmallView, BookmarkVew shown, then hide it.
 	if (isShownTocView) {
 		[self hideTocView];
 		return;
 	}
-	if (isShownThumbnailView) {
-		[self hideThumbnailView];
+	if (isShownPageSmallView) {
+		[self hidePageSmallView];
 		return;
 	}
 	if (isShownBookmarkView) {
@@ -1069,6 +1091,30 @@
 		}
 	}
 	
+	// Compare with Url Define with CSV in page.
+	for (NSMutableDictionary* urlLinkInfo in urlDefineWithCsv) {
+		int targetPageNum = [[urlLinkInfo valueForKey:MD_PAGE_NUMBER] intValue];
+		if (targetPageNum == currentPageNum) {
+			CGRect rect;
+			rect.origin.x	= [[urlLinkInfo valueForKey:MD_AREA_X] floatValue];
+			rect.origin.y	= [[urlLinkInfo valueForKey:MD_AREA_Y] floatValue];
+			rect.size.width	= [[urlLinkInfo valueForKey:MD_AREA_WIDTH] floatValue];
+			rect.size.height= [[urlLinkInfo valueForKey:MD_AREA_HEIGHT] floatValue];
+			//NSLog(@"frame with popover Scroll Image Info info=%@", NSStringFromCGRect(rect));
+			//NSLog(@"touchedPoint=%@", NSStringFromCGPoint(touchedPoint));
+			//NSLog(@"touchedPointInOriginalPdf=%@", NSStringFromCGPoint(touchedPointInOriginalPdf));
+			
+			if (CGRectContainsPoint(rect, touchedPointInOriginalPdf)) {
+				NSString* urlStr = [urlLinkInfo valueForKey:ULWC_URL];
+				//open with anotherView/Safari(show selecter).
+				[self showWebViewSelector:urlStr];
+				
+				//no-continue.
+				return;
+			}
+		}
+	}
+
 	// Compare with Movie Link in page.
 	for (NSMutableDictionary* movieInfo in movieDefine) {
 		int targetPageNum = [[movieInfo valueForKey:MD_PAGE_NUMBER] intValue];
@@ -1088,6 +1134,55 @@
 				
 				//open with another view.
 				[self showMoviePlayer:filename];
+				
+				//no-continue.
+				return;
+			}
+		}
+	}
+	
+	// Compare with Mail Link in page.
+	for (NSMutableDictionary* mailInfo in mailDefine) {
+		int targetPageNum = [[mailInfo valueForKey:MD_PAGE_NUMBER] intValue];
+		if (targetPageNum == currentPageNum) {
+			CGRect rect;
+			rect.origin.x	= [[mailInfo valueForKey:MD_AREA_X] floatValue];
+			rect.origin.y	= [[mailInfo valueForKey:MD_AREA_Y] floatValue];
+			rect.size.width	= [[mailInfo valueForKey:MD_AREA_WIDTH] floatValue];
+			rect.size.height= [[mailInfo valueForKey:MD_AREA_HEIGHT] floatValue];
+			//NSLog(@"frame with movie info=%@", NSStringFromCGRect(rect));
+			//NSLog(@"touchedPoint=%@", NSStringFromCGPoint(touchedPoint));
+			//NSLog(@"touchedPointInOriginalPdf=%@", NSStringFromCGPoint(touchedPointInOriginalPdf));
+			
+			if (CGRectContainsPoint(rect, touchedPointInOriginalPdf)) {
+				//NSLog(@"mail link touched.");
+				
+				//open with another view.
+				NSString* subject = nil;
+				NSString* messageBody = nil;
+				NSArray* toRecipient  = nil;
+				NSArray* ccRecipient  = nil;
+				NSArray* bccRecipient = nil;
+				if ([mailInfo valueForKey:MS_SUBJECT] != nil) {
+					subject = [mailInfo valueForKey:MS_SUBJECT];
+				}
+				if ([mailInfo valueForKey:MS_BODY] != nil) {
+					messageBody = [mailInfo valueForKey:MS_BODY];
+				}
+				if ([mailInfo valueForKey:MS_TO_ADDESSES] != nil) {
+					toRecipient  = [mailInfo valueForKey:MS_TO_ADDESSES];
+				}
+				if ([mailInfo valueForKey:MS_CC_ADDESSES] != nil) {
+					ccRecipient  = [mailInfo valueForKey:MS_CC_ADDESSES];
+				}
+				if ([mailInfo valueForKey:MS_BCC_ADDESSES] != nil) {
+					bccRecipient = [mailInfo valueForKey:MS_BCC_ADDESSES];
+				}
+				[self showMailComposerWithSubject:subject
+									  toRecipient:toRecipient
+									  ccRecipient:ccRecipient
+									 bccRecipient:bccRecipient
+									  messageBody:messageBody];
 				
 				//no-continue.
 				return;
@@ -1226,6 +1321,9 @@
 {
 	//[self toggleMenuBar];
 	//Do nothing for iPhone/iPod touch. User often touch bottom for page change.
+	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+		[self toggleMenuBar];
+	}
 }
 
 - (void)handleTapInScrollView:(UIGestureRecognizer*)sender
@@ -1865,7 +1963,7 @@
 
 #pragma mark -
 #pragma mark Treat popover scroll image view.
-//Parse Movie Define.
+//Parse Popover Scroll Image Define.
 - (void)parsePopoverScrollImageDefine
 {
 	popoverScrollImageDefine = [[NSMutableArray alloc] init];
@@ -1906,7 +2004,7 @@
 			continue;	//skip to next object. not add to define.
 		}
 		
-		//Add to movie define.
+		//Add to popover Scroll Image define.
 		[popoverScrollImageDefine addObject:tmpDict];
 	}
 }
@@ -1923,7 +2021,7 @@
 			linkRectInOriginalPdf.size.height= [[popoverScrollImageInfo valueForKey:MD_AREA_HEIGHT] floatValue];
 			//NSLog(@"linkRectInOriginalPdf for popoverScrollImageInfo=%@", NSStringFromCGRect(linkRectInOriginalPdf));
 			
-			//NSString* filename = [movieInfo valueForKey:MD_MOVIE_FILENAME];
+			//NSString* filename = [popoverScrollImageInfo valueForKey:MD_MOVIE_FILENAME];
 			
 			//Show PopoverScrollImage link area with half-opaque.
 			UIView* areaView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -1935,7 +2033,7 @@
 			[areaView setAlpha:0.0f];
 #endif
 			//LOG_CURRENT_METHOD;
-			//NSLog(@"render movie link. rect=%f, %f, %f, %f", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
+			//NSLog(@"render popoverScrollImage link. rect=%f, %f, %f, %f", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
 			//[currentPdfScrollView addSubview:areaView];
 			[currentPdfScrollView addScalableSubview:areaView withPdfBasedFrame:linkRectInOriginalPdf];
 		}
@@ -2032,24 +2130,24 @@
 	[tocViewController.view removeFromSuperview];
 }
 
-#pragma mark Treat ThumbnailView(ImageTOC).
-- (void)showThumbnailView {
+#pragma mark Treat PageSmallView(ImageTOC).
+- (void)showPageSmallView {
 	[self hideMenuBar];
 	
 	//Setup with tocDefine.
-	[thumbnailViewController setupImages];
+	[pageSmallViewController setupImages];
 	
 	//Show by addSubview.
 	//Add to superview. think with toolbar.
-	[self.view.superview addSubview:thumbnailViewController.view];
+	[self.view.superview addSubview:pageSmallViewController.view];
 	
 	//Set flag.
-	isShownThumbnailView = TRUE;
+	isShownPageSmallView = TRUE;
 }
-- (void)hideThumbnailView {
+- (void)hidePageSmallView {
 	//Hide by removeSuperView.
-	[thumbnailViewController.view removeFromSuperview];
-	isShownThumbnailView = FALSE;
+	[pageSmallViewController.view removeFromSuperview];
+	isShownPageSmallView = FALSE;
 }
 
 #pragma mark Treat Bookmark.
@@ -2247,6 +2345,9 @@
 	menuViewController.view.alpha = 1.0f;
 	[UIView commitAnimations];
 	
+	//show bottom menu.
+	[self showBottomMenu];
+	
 	isShownMenuBar = YES;
 }
 - (void)hideMenuBar
@@ -2254,6 +2355,9 @@
 	[UIView beginAnimations:@"menuBarHide" context:nil];
 	menuViewController.view.alpha = 0.0f;
 	[UIView commitAnimations];
+	
+	//hide bottom menu.
+	[self hideBottomMenu];
 	
 	isShownMenuBar = NO;
 }
@@ -2284,14 +2388,42 @@
 	//NSLog(@"urlString=%@", urlString);
 	[urlForWeb setString:urlString];
 	//NSLog(@"urlForWeb=%@", urlForWeb);
-    UIActionSheet *sheet =[[UIActionSheet alloc]
-                           initWithTitle:@"URLリンクを開く (リンクからAppStoreにアクセスする場合は、Safariを起動してください)"
-						   delegate:self
-						   cancelButtonTitle:@"Cancel"
-                           destructiveButtonTitle:nil
-                           otherButtonTitles:@"アプリ内のビューワで開く", @"Safariを起動して開く", nil];
+    UIActionSheet *sheet = nil;
 	
-    [sheet showInView:self.view];	//[sheet showInView:self.view.window];
+	//
+	//@see: http://iphone-app-developer.seesaa.net/article/292824365.html
+	//      4インチのiPhone5（1,136 x 640ピクセル）画面対応
+	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) { // iPad
+		// iPadのときの処理
+		//No "cancel" button.
+		sheet =[[UIActionSheet alloc]
+				initWithTitle:@"URLリンクを開く (リンクからAppStoreにアクセスする場合は、Safariを起動してください)"
+				delegate:self
+				cancelButtonTitle:nil
+				destructiveButtonTitle:nil
+				otherButtonTitles:@"アプリ内のビューワで開く", @"Safariを起動して開く", nil];
+		[sheet showInView:self.view];
+	} else { // iPhone
+		sheet =[[UIActionSheet alloc]
+				initWithTitle:@"URLリンクを開く (リンクからAppStoreにアクセスする場合は、Safariを起動してください)"
+				delegate:self
+				cancelButtonTitle:@"Cancel"
+				destructiveButtonTitle:nil
+				otherButtonTitles:@"アプリ内のビューワで開く", @"Safariを起動して開く", nil];
+		
+		CGRect frame = [[UIScreen mainScreen] applicationFrame];
+		NSLog(@"frame size height = %f", frame.size.height);
+		if (frame.size.height >= 568.0) { // iPhone 4inch (568 - 20 px)
+			// iPhone5 のときの処理
+			[sheet showInView:self.pdfScrollView1];
+			//[sheet showInView:self.view.window];
+			
+		} else { // iPhone 3.5inch
+			// iPhone5より前のモデル のときの処理
+			[sheet showInView:self.view];	//[sheet showInView:self.view.window];
+		}
+	}
+	
     [sheet release];
 }
 
@@ -2389,6 +2521,7 @@
 	[currentPdfScrollView resetScrollView];
 	[self renderPageLinkAtIndex:currentPageNum];
 	[self renderMovieLinkAtIndex:currentPageNum];
+	[self renderMailLinkAtIndex:currentPageNum];
 	[self renderPageJumpLinkAtIndex:currentPageNum];
 	[self renderInPageScrollViewAtIndex:currentPageNum];
 }
@@ -2525,6 +2658,10 @@
 		//Do not release NSTimer! (managed in main loop, should onli Invalidated.)
 	}
 	*/
+	
+	//release audio player.
+	audioPlayer.delegate = nil;
+	[audioPlayer dealloc]; audioPlayer = nil;
 }
 
 @end

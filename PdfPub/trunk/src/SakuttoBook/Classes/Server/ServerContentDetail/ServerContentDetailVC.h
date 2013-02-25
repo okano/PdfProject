@@ -21,7 +21,9 @@
 	NSURL* targetUrl;
 	
 	//UserInterface.
+	IBOutlet UIScrollView* scrollView;
     IBOutlet UIImageView* thumbnailImageView;
+	IBOutlet UIScrollView* thumbnailScrollView;
 	UIImage* image;
 	IBOutlet UILabel* titleLabel;
 	IBOutlet UILabel* authorLabel;
@@ -36,6 +38,7 @@
 @property (nonatomic, retain) NSString* targetUuid;
 @property (nonatomic, retain) NSURL* targetUrl;
 @property (nonatomic, retain) UIImageView* thumbnailImageView;
+@property (nonatomic, retain) UIScrollView* thumbnailScrollView;
 @property (nonatomic, retain) UILabel* titleLabel;
 @property (nonatomic, retain) UILabel* authorLabel;
 @property (nonatomic, retain) UITextView* descriptionTextView;

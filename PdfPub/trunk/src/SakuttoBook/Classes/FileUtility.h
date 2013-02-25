@@ -11,6 +11,7 @@
 #import "ContentFileUtility.h"
 #import "Define.h"
 #import "InAppPurchaseDefine.h"
+#import <sys/utsname.h>		//get the device model number using uname.
 
 @interface FileUtility : NSObject {
     
@@ -23,8 +24,8 @@
 //Each page cache.
 + (NSString*)getPageFilenameFull:(int)pageNum;
 + (NSString*)getPageFilenameFull:(int)pageNum WithContentId:(ContentId)cid;
-+ (NSString*)getThumbnailFilenameFull:(int)pageNum;
-+ (NSString*)getThumbnailFilenameFull:(int)pageNum WithContentId:(ContentId)cid;
++ (NSString*)getPageSmallFilenameFull:(int)pageNum;
++ (NSString*)getPageSmallFilenameFull:(int)pageNum WithContentId:(ContentId)cid;
 
 //CSV file parser.
 + (NSArray*)parseDefineCsv:(NSString*)filename;
@@ -48,10 +49,11 @@
 + (BOOL)addSkipBackupAttributeToItemAtURL:(NSURL *)URL;
 + (BOOL)addSkipBackupAttributeToItemWithString:(NSString*)filenameFull;
 
-
-
 //String cleaner
 + (NSString*)cleanString:(NSString*)str;
+
+//get the device model number using uname from sys/utsname.h
++ (NSString*)machineName;
 @end
 
 //
@@ -60,6 +62,7 @@
 #define CSVFILE_URLLINK			@"urlLinkDefine"
 //
 #define CSVFILE_MOVIE			@"movieDefine"
+#define CSVFILE_MAIL			@"mailDefine"
 #define CSVFILE_SOUND			@"soundDefine"
 #define CSVFILE_PAGEJUMPLINK 	@"pageJumpLinkDefine"
 #define CSVFILE_INPAGE_SCROLLVIEW	@"inPageScrollViewDefine"

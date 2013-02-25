@@ -75,6 +75,17 @@
 	}
 }
 
+- (bool)isContainSountAtIndex:(NSUInteger)index
+{
+	for (NSMutableDictionary* soundInfo in soundDefine) {
+		int targetPageNum = [[soundInfo valueForKey:SD_PAGE_NUMBER] intValue];
+		if (targetPageNum == index) {
+			return YES;
+		}
+	}
+	return NO;
+}
+
 - (void)playSoundAtIndex:(NSUInteger)index
 {
 	//LOG_CURRENT_METHOD;
@@ -161,6 +172,14 @@
 	audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundURL error:NULL];
 	audioPlayer.delegate = self;
 	[audioPlayer play];
+}
+
+- (void)stopSound
+{
+	//LOG_CURRENT_METHOD;
+	if (audioPlayer != nil) {
+		[audioPlayer stop];
+	}
 }
 
 #pragma mark - AVAudioPlayerDelegate methods.

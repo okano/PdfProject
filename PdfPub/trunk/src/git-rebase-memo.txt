@@ -1,0 +1,206 @@
+git-rebaseではなく、git-mergeを使って取り込んだほうが良さそう。
+
+
+[multiGenreブランチを、masterブランチに同期させる。masterブランチはいじらない]
+
+$ git pull
+(先に両ブランチともpullしておく)
+
+
+(rebaseするブランチに移動。)
+$ git checkout multiGenre
+Switched to branch 'multiGenre'
+$ git branch
+  master
+* multiGenre
+
+$ git log
+(rebase前のログを確認)
+
+(rebaseを行う。このままコピペでタイプすればオッケー)
+$ git rebase master
+First, rewinding head to replay your work on top of it...
+Applying: add class for Multi Genre.
+Applying: add ConfigVC2 for configure appearance without server.
+Using index info to reconstruct a base tree...
+<stdin>:310: trailing whitespace.
+	
+<stdin>:353: trailing whitespace.
+	
+warning: 2 lines add whitespace errors.
+Falling back to patching base and 3-way merge...
+Auto-merging PdfPub/trunk/src/SakuttoBook/SakuttoBook.xcodeproj/project.pbxproj
+(3方向マージされたが、Errorではないのでオッケー。)
+(★CONFLICTでエラーの場合は、後述)
+$
+$ git status
+# On branch multiGenre
+nothing to commit (working directory clean)
+(status を見ても、エラーになっていない)
+$ 
+$ git log
+(マージ後のログを確認)
+
+$ git branch --set-upstream multiGenre origin/multiGenre
+Branch multiGenre set up to track remote branch multiGenre from origin.
+(上流(サーバ側)のリポジトリを設定しなおす)
+
+
+$ git push
+Counting objects: 44, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (18/18), done.
+Writing objects: 100% (22/22), 1.95 KiB, done.
+Total 22 (delta 13), reused 0 (delta 0)
+To git@github.com:okano/PdfProject.git
+   c784b1c..8764b10  multiGenre -> multiGenre
+$ 
+
+
+$ git pull
+Merge made by the 'recursive' strategy.
+$ git pull
+Already up-to-date.
+$ git push
+(pushでエラーになる場合のみ、いったんサーバ側の変更をpullで取り込んでから、pushする)
+
+
+
+
+★CONFLICTでマージに失敗した時は、
+CONFLICT (content): Merge conflict in PdfPub/trunk/src/SakuttoBook/Classes/SakuttoBookViewController.h
+のように、競合(CONFLICT)で表示される。
+$ git status
+# Not currently on any branch.
+# Unmerged paths:
+#   (use "git reset HEAD <file>..." to unstage)
+#   (use "git add/rm <file>..." as appropriate to mark resolution)
+#
+#	both modified:      SakuttoBook/Classes/SakuttoBookViewController.h
+#	both modified:      SakuttoBook/Classes/SakuttoBookViewController.m
+#	both modified:      SakuttoBook/SakuttoBook.xcodeproj/project.pbxproj
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+$ 
+$
+$ git branch
+* (no branch)
+  master
+  multiGenre
+$
+(どのブランチにも属していない状態)
+
+viなどで編集して、手動で解消させる。
+Xcodeでビルドエラーにならないかも確認する。
+
+(そのままでは続行できない)
+$ git rebase --continue
+PdfPub/trunk/src/SakuttoBook/Classes/SakuttoBookViewController.h: needs merge
+PdfPub/trunk/src/SakuttoBook/Classes/SakuttoBookViewController.m: needs merge
+PdfPub/trunk/src/SakuttoBook/SakuttoBook.xcodeproj/project.pbxproj: needs merge
+You must edit all merge conflicts and then
+mark them as resolved using git add
+$ 
+$ git status
+# Not currently on any branch.
+# Unmerged paths:
+#   (use "git reset HEAD <file>..." to unstage)
+#   (use "git add/rm <file>..." as appropriate to mark resolution)
+#
+#	both modified:      SakuttoBook/Classes/SakuttoBookViewController.h
+#	both modified:      SakuttoBook/Classes/SakuttoBookViewController.m
+#	both modified:      SakuttoBook/SakuttoBook.xcodeproj/project.pbxproj
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+$ 
+
+
+
+
+
+$ git log
+(ログは、masterのログの後に、パッチのようにmultiGenreブランチを当てるので、
+masterブランチのログは日付が後でも前の方に出てくるので注意！)
+
+
+(git add して、競合解消を教える)
+$ git add SakuttoBook/Classes/SakuttoBookViewController.h
+$ git add SakuttoBook/Classes/SakuttoBookViewController.m
+$ git add SakuttoBook/SakuttoBook.xcodeproj/project.pbxproj
+$ 
+
+
+$ git rebase master
+
+It seems that there is already a rebase-apply directory, and
+I wonder if you are in the middle of another rebase.  If that is the
+case, please try
+	git rebase (--continue | --abort | --skip)
+If that is not the case, please
+	rm -fr /Users/okano/iPhone-mySample/PdfProject-Git9/PdfProject/.git/rebase-apply
+and run me again.  I am stopping in case you still have something
+valuable there.
+$ 
+
+
+
+
+
+$ git rebase --continue
+Applying: add class for Multi Genre.
+No changes - did you forget to use 'git add'?
+If there is nothing left to stage, chances are that something else
+already introduced the same changes; you might want to skip this patch.
+
+When you have resolved this problem run "git rebase --continue".
+If you would prefer to skip this patch, instead run "git rebase --skip".
+To check out the original branch and stop rebasing run "git rebase --abort".
+
+$ 
+
+
+(multiGenreブランチには変更がない(masterを上書きすればいい)状態になったので、commitせずに続行)
+$ git rebase --skip
+Applying: add ConfigVC2 for configure appearance without server.
+Using index info to reconstruct a base tree...
+<stdin>:310: trailing whitespace.
+	
+<stdin>:353: trailing whitespace.
+	
+warning: 2 lines add whitespace errors.
+Falling back to patching base and 3-way merge...
+No changes -- Patch already applied.
+$ 
+$ git branch
+  master
+* multiGenre
+$ 
+
+
+
+
+$ 
+$ git status
+# On branch multiGenre
+# Your branch and 'origin/multiGenre' have diverged,
+# and have 3 and 5 different commits each, respectively.
+#
+nothing to commit (working directory clean)
+$ 
+$ 
+
+(一旦pullしておく)
+$ git pull
+Merge made by the 'recursive' strategy.
+$ git pull
+Already up-to-date.
+$ 
+$ git push
+Counting objects: 37, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (14/14), done.
+Writing objects: 100% (17/17), 1.56 KiB, done.
+Total 17 (delta 9), reused 0 (delta 0)
+To git@github.com:okano/PdfProject.git
+   8764b10..8fdc87f  multiGenre -> multiGenre
+$ 

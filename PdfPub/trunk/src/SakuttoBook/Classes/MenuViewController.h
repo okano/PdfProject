@@ -27,7 +27,7 @@
 - (void)hideTocView;
 - (IBAction)showBookmarkView:(id)sender;
 - (void)hideBookmarkView;
-- (IBAction)showThumbnailView:(id)sender;
+- (IBAction)showPageSmallView:(id)sender;
 - (IBAction)closeThisView:(id)sender;
 - (IBAction)showInfoView:(id)sender;
 - (IBAction)showBookmarkModifyView:(id)sender;

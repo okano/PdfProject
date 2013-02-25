@@ -31,50 +31,6 @@
     [super viewDidLoad];
 
 	appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
-	
-	//Setup TableView.
-	myTableView = [[UITableView alloc] initWithFrame:self.view.frame];
-	myTableView.delegate = self;
-	myTableView.dataSource = self;
-	[self.view addSubview:myTableView];
-	
-	//Setup Toolbar.
-	CGFloat toolBarHeight = 44.0f;
-	CGRect toolBarFrame = CGRectMake(0.0f,
-									 0.0f,
-									 self.view.frame.size.width,
-									 toolBarHeight);
-	toolbar = [[UIToolbar alloc] initWithFrame:toolBarFrame];
-	UIBarButtonItem *paymentHistoryButton = [[UIBarButtonItem alloc] initWithTitle:@"購入履歴"
-																	   style:UIBarButtonItemStyleBordered
-																	  target:self
-																	  action:@selector(showPaymentHistoryList)];
-
-	NSArray *items = nil;
-#if defined(HIDE_SERVER_BUTTON) && HIDE_SERVER_BUTTON != 0
-	//Hide Server Button.
-	items = [NSArray arrayWithObjects:paymentHistoryButton, nil];
-#else
-	//Not hide Server Button.
-	UIBarButtonItem *serverContentButton = [[UIBarButtonItem alloc] initWithTitle:@"Store"
-																			style:UIBarButtonItemStyleBordered
-																		   target:self
-																		   action:@selector(showServerContentListView)];
-	items = [NSArray arrayWithObjects:serverContentButton, paymentHistoryButton, nil];
-#endif
-	[toolbar setItems:items];
-	[self.view addSubview:toolbar];
-	
-	//Setup TableView size.
-	CGRect tableViewframe = myTableView.frame;
-	CGRect newTableViewframe = CGRectMake(tableViewframe.origin.x,
-										  tableViewframe.origin.y + toolBarHeight,
-										  tableViewframe.size.width, tableViewframe.size.height - toolBarHeight);
-	//LOG_CURRENT_METHOD;
-	//NSLog(@"tableViewframe=%@", NSStringFromCGRect(tableViewframe));
-	//NSLog(@"newTableViewframe=%@", NSStringFromCGRect(newTableViewframe));
-	
-	myTableView.frame = newTableViewframe;
 }
 
 - (void)viewDidUnload
@@ -107,7 +63,6 @@
 - (void)viewDidLayoutSubviews
 {
 	[super viewDidLayoutSubviews];
-	[self reloadData];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -131,7 +86,7 @@
 	[appDelegate hideContentListView];
 	[appDelegate showContentDetailView:cid];
 }
-- (void)showServerContentListView
+- (IBAction)showServerContentListView
 {
 	//LOG_CURRENT_METHOD;
 	[appDelegate hideContentListView];
@@ -144,148 +99,206 @@
 	[self.view addSubview:paymentHistoryListVC.view];
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+#pragma mark - Setup Images.
+- (void)setupImagesWithDataSource:(ContentListDS*)tmpContentListDS shelfImageName:(NSString*)shelfImageName
 {
-    // Return the number of sections.
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    // Return the number of rows in the section.	
-    //return 5;
-	return [appDelegate.contentListDS count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+	CGFloat maxWidth = self.view.frame.size.width;
+	NSLog(@"self.view.frame=%@", NSStringFromCGRect(self.view.frame));
 	
-	static NSString *identifier = @"ContentListCell";
-	ContentListCell *cell = (ContentListCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
-	if (cell == nil) {
-		ContentListCellController *cellController = [[ContentListCellController alloc] initWithNibName:identifier bundle:nil];
-		cell = (ContentListCell*)cellController.view;
-		[cellController release];
-	}
-    
-	ContentId targetCid = [appDelegate.contentListDS contentIdAtIndex:indexPath.row];
-	//NSString* targetPid = [appDelegate.contentListDS productIdFromContentId:targetCid];
-	NSString* targetPid = [[ProductIdList sharedManager] getProductIdentifier:targetCid];
+	CGFloat currentOriginX = 0.0f, currentOriginY = 0.0f;
+	CGFloat maxHeightInLine;
+	//
+	CGFloat buttonOffsetX, buttonOffsetY;
+	CGFloat spacerX, spacerY;
+	CGFloat shelfImageHeight;	//shelfImageWidth = self.view.frame.size.width;
+	CGFloat buttonImageWidth, buttonImageHeight;
 	
-    // Configure the cell...
-	cell.titleLabel.text = [appDelegate.contentListDS titleByContentId:targetCid];
-	cell.authorLabel.text = [appDelegate.contentListDS authorByContentId:targetCid];
-	
-	if ((targetPid == InvalidProductId) || ([targetPid length] <= 0)) {
-		NSLog(@"Invalid productId. cid=%d", targetCid);
-		cell.isDownloadedLabel.text = @"";
-		return cell;
-	}
-	//NSLog(@"indexPath.row=%d, cid=%d, pid=%@", indexPath.row, targetCid, targetPid);
-	
-	
-	//Check payment status.
-//	if (([InAppPurchaseUtility isFreeContent:targetPid] == TRUE)
-	if (([[ProductIdList sharedManager] isFreeContent:targetPid] == TRUE)
-		||
-		([appDelegate.paymentHistoryDS isEnabledContent:targetCid] == TRUE))
+	//On real device.
+	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 	{
-		cell.isDownloadedLabel.text = @"購入済";
-		cell.isDownloadedLabel.textColor = [UIColor blueColor];
-		cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-	} else {
-		cell.isDownloadedLabel.text = @"未購入";
-		cell.isDownloadedLabel.textColor = [UIColor orangeColor];
-		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	}
-	cell.imageView.image = [appDelegate.contentListDS contentIconByContentId:targetCid];
-	
-	
-    return cell;
-}
-
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	return 97.0;
-}
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-
-	//Check payment status.
-	ContentId targetCid = [appDelegate.contentListDS contentIdAtIndex:indexPath.row];
-	//NSString* targetPid = [appDelegate.contentListDS productIdFromContentId:targetCid];
-	NSString* targetPid = [[ProductIdList sharedManager] getProductIdentifier:targetCid];
-	//LOG_CURRENT_METHOD;
-	//NSLog(@"indexPath.row=%d, targetCid=%d, targetPid=%@", indexPath.row, targetCid, targetPid);
-	
-	BOOL isPayedContent = NO;
-	//if ([InAppPurchaseUtility isFreeContent:targetPid] == TRUE) {
-	if ([[ProductIdList sharedManager] isFreeContent:targetPid] == TRUE) {
-		isPayedContent = YES;
+		//iPad
+		//iPad1,2 (1024x768 pixel)
+		buttonOffsetX = 60, buttonOffsetY = 24;
+		spacerX = 30.0f, spacerY = 30.0f;
+		shelfImageHeight = 240;
+		buttonImageWidth = 106.66667, buttonImageHeight = 160;	// (1/6 size)
 		
-		//Record free content payment record only first time read.
-		[appDelegate.paymentHistoryDS recordHistoryOnceWithContentId:targetCid ProductId:targetPid date:nil];
-	}
-	if ([appDelegate.paymentHistoryDS isEnabledContent:targetCid] == TRUE) {
-		isPayedContent = YES;
+		//double size if new iPad (2048x1536 pixel)
+		if (768 < self.view.frame.size.width)
+		{
+			buttonOffsetX *= 2.0f, buttonOffsetY *= 2.0f;
+			spacerX *= 2.0f, spacerY *= 2.0f;
+			shelfImageHeight *= 2.0f;
+			buttonImageWidth *= 2.0f, buttonImageHeight *= 2.0f;
+		}
+	} else {
+		//old iPhone(320x480)
+		buttonOffsetX = 30, buttonOffsetY = 10;
+		spacerX = 15.0f, spacerY = 15.0f;
+		shelfImageHeight = 180;
+		buttonImageWidth = 80, buttonImageHeight = 120;
+		
+		//double size if iPhone 3.5-inch(640x960 or 640x1136)...only care width.
+		//(never use this code because view width is fixed 320pixel in .xib)
+		if (320 < self.view.frame.size.width)
+		{
+			buttonOffsetX *= 2.0f, buttonOffsetY *= 2.0f;
+			spacerX *= 2.0f, spacerY *= 2.0f;
+			shelfImageHeight *= 2.0f;
+			buttonImageWidth *= 2.0f, buttonImageHeight *= 2.0f;
+		}
 	}
 	
-	if (isPayedContent == YES) {
-		[self showContentPlayer:targetCid];
-	} else {
-		[self showContentDetailView:targetCid];
+	//Setup shelf image. (fit width)
+	UIImage* shelfImageOrg = [UIImage imageNamed:shelfImageName];	//@"shelf.png"
+	UIImage* shelfImage = nil;
+	CGFloat shelfImageWidthResized = self.view.frame.size.width;
+	CGFloat shelfImageHeightResized = shelfImageHeight;		//shelfImageOrg.size.height / 2;
+	UIGraphicsBeginImageContext(CGSizeMake(shelfImageWidthResized, shelfImageHeightResized));
+	[shelfImageOrg drawInRect:CGRectMake(0, 0, shelfImageWidthResized, shelfImageHeightResized)];
+	shelfImage = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	
+	//Show first shelf.
+	UIImageView* shelfImageView = [[UIImageView alloc] initWithImage:shelfImage];
+	CGRect shelfImageFrame;
+	shelfImageFrame = shelfImageView.frame;
+	//shelfImageFrame.origin.y = 0;
+	shelfImageView.frame = shelfImageFrame;
+	[scrollView addSubview:shelfImageView];
+	
+	
+	currentOriginX += buttonOffsetX;
+	//currentOriginY += spacerY;
+	
+	//
+	int maxCount = [tmpContentListDS count];
+	for (int i = 0; i < maxCount; i = i + 1)
+	{
+		ContentId targetCid = [tmpContentListDS contentIdAtIndex:i];
+		NSLog(@"contentCid=%d", targetCid);
+		
+		//Get cover image.
+		UIImage* imageOriginal = nil;
+		UIImage* image = nil;
+		
+		imageOriginal = [CoverUtility coverImageWithContentId:targetCid];
+		if (!imageOriginal)
+		{
+			NSLog(@"no cover image found in local file. targetCid=%d", targetCid);
+			//get dummy image.
+			imageOriginal = [UIImage imageNamed:@"CoverDummy.png"];
+		}
+		
+		//Resize cover image for fit in scroll view.
+		UIGraphicsBeginImageContext(CGSizeMake(buttonImageWidth, buttonImageHeight));
+		[imageOriginal drawInRect:CGRectMake(0, 0, buttonImageWidth, buttonImageHeight)];
+		image = UIGraphicsGetImageFromCurrentImageContext();
+		UIGraphicsEndImageContext();
+		
+		
+		// Check width.
+		if (maxWidth < image.size.width) {
+			LOG_CURRENT_METHOD;
+			LOG_CURRENT_LINE;
+			NSLog(@"image is too huge width. width=%f", image.size.width);
+			continue;	//skip to next object.
+		}
+		
+		// Locate.
+		CGRect buttonRect = CGRectZero;
+		buttonRect.origin.x = currentOriginX;
+		buttonRect.origin.y = currentOriginY + buttonOffsetY;
+		buttonRect.size = image.size;
+		if (maxHeightInLine < buttonRect.size.height) {
+			maxHeightInLine = buttonRect.size.height;
+		}
+		
+		// Check locate. feed line if overflow X.
+		if (maxWidth < currentOriginX + image.size.width) {
+			//feed line.
+			currentOriginX = 0.0f + buttonOffsetX;
+			currentOriginY += shelfImageHeightResized;
+			maxHeightInLine = image.size.height;
+			
+			buttonRect.origin.x = currentOriginX;
+			buttonRect.origin.y = currentOriginY + buttonOffsetY;
+			
+			//Show shelf.
+			UIImageView* shelfImageView = [[UIImageView alloc] initWithImage:shelfImage];
+			CGRect shelfImageFrame;
+			shelfImageFrame = shelfImageView.frame;
+			shelfImageFrame.origin.x = 0.0f;
+			shelfImageFrame.origin.y = currentOriginY;	// - spacerY;
+			shelfImageView.frame = shelfImageFrame;
+			[scrollView addSubview:shelfImageView];
+			
+		}
+		
+		// Positioning to next position.
+		currentOriginX += buttonRect.size.width + spacerX;
+		//NSLog(@"pageNum=%d, rect for button=%@", pageNum, NSStringFromCGRect(rect));
+		
+		
+		// Add to subview.
+		UIButton* button = [[UIButton alloc] init];
+		[button setImage:image forState:UIControlStateNormal];
+		button.frame = buttonRect;
+		button.tag = targetCid;
+		[button addTarget:self action:@selector(buttonEvent:) forControlEvents:UIControlEventTouchUpInside];
+		[scrollView addSubview:button];
+		
+		//Check payment status and show.
+		NSString* targetPid = [[ProductIdList sharedManager] getProductIdentifier:targetCid];
+		if (([[ProductIdList sharedManager] isFreeContent:targetPid] == TRUE)
+			||
+			([appDelegate.paymentHistoryDS isEnabledContent:targetCid] == TRUE))
+		{
+			//Paid content.
+			//Do nothing.
+		} else {
+			//UnPaid content. Show unPaid mark.
+			UIImage* unPaidImageOrg = [UIImage imageNamed:@"unpaid.png"];
+			UIImage* unPaidImage = nil;
+			CGFloat unPaidImageOffsetX = 2.0, unPaidImageOffsetY = 2.0;
+			//(Resize unPaid mark image.)
+			CGFloat unPaidImageWidth = button.frame.size.width / 10;
+			UIGraphicsBeginImageContext(CGSizeMake(unPaidImageWidth, unPaidImageWidth));
+			[unPaidImageOrg drawInRect:CGRectMake(0, 0, unPaidImageWidth, unPaidImageWidth)];
+			unPaidImage = UIGraphicsGetImageFromCurrentImageContext();
+			UIGraphicsEndImageContext();
+			//(Set position.)
+			UIImageView* unPaidImageView = [[UIImageView alloc] initWithImage:unPaidImage];
+			CGRect unPaidImageViewFrame = CGRectMake(button.frame.origin.x + unPaidImageOffsetX,
+													 button.frame.origin.y + unPaidImageOffsetY,
+													 unPaidImage.size.width,
+													 unPaidImage.size.height);
+			unPaidImageView.frame = unPaidImageViewFrame;
+			[scrollView addSubview:unPaidImageView];
+		}
+		
+		// Set contentSize to scrollView.
+		scrollView.contentSize = CGSizeMake(maxWidth, currentOriginY + shelfImageHeight);
+	}
+	
+	//Add empty shelf for fill white space.
+	while (currentOriginY + shelfImageHeight < self.view.frame.size.height)
+	{
+		//Feed next column.
+		currentOriginY += shelfImageHeight;
+		
+		//Show empty shelf.
+		UIImageView* shelfImageView = [[UIImageView alloc] initWithImage:shelfImage];
+		CGRect shelfImageFrame;
+		shelfImageFrame = shelfImageView.frame;
+		shelfImageFrame.origin.x = 0.0f;
+		shelfImageFrame.origin.y = currentOriginY;	// - spacerY;
+		shelfImageView.frame = shelfImageFrame;
+		[scrollView addSubview:shelfImageView];
+		
+		// Set contentSize to scrollView.
+		scrollView.contentSize = CGSizeMake(maxWidth, currentOriginY);
 	}
 }
 
-#pragma mark - Accessor for table
-- (void)reloadData
-{
-	[myTableView reloadData];
-}
 @end

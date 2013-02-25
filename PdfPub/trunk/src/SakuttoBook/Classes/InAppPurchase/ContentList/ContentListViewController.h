@@ -15,19 +15,20 @@
 @class SakuttoBookViewController;
 #import "ContentListCellController.h"
 #import "PaymentHistoryListViewController.h"
+#import "CoverUtility.h"
 
 @interface ContentListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
-	UITableView* myTableView;
-	UIToolbar* toolbar;
 	SakuttoBookAppDelegate* appDelegate;
+	//
+	IBOutlet UIScrollView* scrollView;
 }
 
 - (void)showContentPlayer:(ContentId)cid;
 - (void)showContentDetailView:(ContentId)cid;
-- (void)showServerContentListView;
+- (IBAction)showServerContentListView;
 - (IBAction)showPaymentHistoryList;
 
-//Accessor for table
-- (void)reloadData;
+//Setup Images.
+- (void)setupImagesWithDataSource:(ContentListDS*)contentListDS shelfImageName:(NSString*)shelfImageName;
 
 @end

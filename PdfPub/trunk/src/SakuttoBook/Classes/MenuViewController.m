@@ -53,11 +53,11 @@
 
 #pragma mark -
 #pragma mark ImageTocView.
-- (IBAction)showThumbnailView:(id)sender
+- (IBAction)showPageSmallView:(id)sender
 {
 	//LOG_CURRENT_METHOD;
 	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
-	[appDelegate showThumbnailView];
+	[appDelegate showPageSmallView];
 }
 
 #pragma mark -

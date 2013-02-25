@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "SakuttoBookAppDelegate.h"
-#import "ContentListViewController.h"
+#import "ContentListTableViewController.h"
 #import "ProtocolDefine.h"
 #import "CoverUtility.h"
 #import "ConfigViewController.h"
 #import "Reachability.h"
 
-@interface ServerContentListVC : ContentListViewController <MyTableViewVCProtocol> {
+@interface ServerContentListVC : ContentListTableViewController <MyTableViewVCProtocol> {
 	//UITableView* myTableView;
 	//UIToolbar* toolbar;
 	//Pdf2iPadAppDelegate* appDelegate;
@@ -30,13 +30,17 @@
 	BOOL internetActive;
 }
 
+//Setup network reachability.
+- (void)setupNetworkReachability;
 
 //Setup data.
 - (void)setupData;
 - (void)reloadFromNetwork;
+- (IBAction)reloadFromNetwork:(id)sender;
 
 //Switch view.
 - (void)showContentList;
+- (IBAction)showContentList:(id)sender;
 //- (void)showServerContentDetailView:(ContentId)cid;
 - (void)showServerContentDetailView:(NSString*)uuid;
 - (void)showConfigView;

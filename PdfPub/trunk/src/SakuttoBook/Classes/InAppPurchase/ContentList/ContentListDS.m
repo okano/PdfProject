@@ -13,12 +13,14 @@
 
 @synthesize contentList;
 //@synthesize productIdListPointer;
+@synthesize contentIdDictWithGenre;
 
 - (id)init
 {
 	self = [super init];
 	if (self) {
 		contentList = [[NSMutableArray alloc] init];
+		contentIdDictWithGenre = [[NSMutableDictionary alloc] init];
 		
 		[self setupData];
 		//[self setupTestData];
@@ -26,11 +28,37 @@
     return self;
 }
 
+
+#pragma mark - Get Count of array.
 - (uint)count
 {
 	return [contentList count];
 }
+- (uint)countWithGenre:(NSString*)genre
+{
+	NSDictionary* ids = [self contentIdsWithGenre:genre];
+	return [ids count];
+}
 
+- (uint)countWithGenre:(NSString*)genre subGenre:(NSString*)subGenre
+{
+	NSArray* contentsInSubGenre = [self contentIdsWithGenre:genre subGenre:subGenre];
+	return [contentsInSubGenre count];
+}
+
+#pragma mark - Get Genre.
+- (NSArray*)allGenre
+{
+	return [contentIdDictWithGenre allKeys];
+}
+
+- (NSArray*)allSubGenreWithGenre:(NSString*)genre
+{
+	NSDictionary* contentsInGenre = [contentIdDictWithGenre valueForKey:genre];
+	return [contentsInGenre allKeys];
+}
+
+#pragma mark - Get ID.
 - (ContentId)contentIdAtIndex:(int)index
 {
 	if ([contentList count] < index || index < 0) {
@@ -42,6 +70,36 @@
 	return [[tmpDict valueForKey:CONTENT_CID] intValue];
 	//return @"testContentId";
 }
+- (NSDictionary*)contentIdsWithGenre:(NSString*)genre
+{
+	NSDictionary* contentsInGenre = [contentIdDictWithGenre valueForKey:genre];
+	if (contentsInGenre == nil) {
+		return 0;
+	}
+	
+	NSMutableDictionary* ids = [[NSMutableDictionary alloc] init];
+	for (NSDictionary* contentsInSubGenre in contentsInGenre) {
+		for (NSNumber* cid in contentsInSubGenre) {
+			[ids setObject:@"cid" forKey:cid];
+		}
+	}
+	return ids;
+}
+- (NSArray*)contentIdsWithGenre:(NSString*)genre subGenre:(NSString*)subGenre
+{
+	NSDictionary* contentsInGenre = [contentIdDictWithGenre valueForKey:genre];
+	NSArray* contentsInSubGenre = [contentsInGenre valueForKey:subGenre];
+	return contentsInSubGenre;
+}
+- (ContentId)contentIdWithGenre:(NSString*)genre subGenre:(NSString*)subGenre index:(NSInteger)index
+{
+	NSArray* contentsInSubGenre = [self contentIdsWithGenre:genre subGenre:subGenre];
+	if ([contentsInSubGenre count] <= index) {
+		return InvalidContentId;
+	}
+	return (ContentId)[contentsInSubGenre objectAtIndex:index];
+}
+
 - (ContentId)contentIdFromProductId:(NSString*)productId
 {
 	NSDictionary* tmpDict;
@@ -107,6 +165,7 @@
 */
 
 
+#pragma mark - Get UUID.
 - (NSString*)uuidAtIndex:(NSInteger)index
 {
 	if ([contentList count] < index || index < 0) {
@@ -124,12 +183,6 @@
 	if (cid <= 0) {
 		NSLog(@"ContentId is 1-start! (given %d)", cid);
 		cid = 1;
-	}
-	
-	//(when loading now, read csv file)
-	if ([contentList count] < cid) {
-		//return [InAppPurchaseUtility getProductIdentifier:cid];
-		return @"";
 	}
 	
 	for (NSDictionary* tmpDict in contentList) {
@@ -209,16 +262,17 @@
 		if (4 <= [lines count]) {
 			//[tmpDict setValue:[lines objectAtIndex:3] forKey:CONTENT_SUPPORT_HP];
 		}
-		if (5 <= [lines count]) {
+		int contentDescriptionIndex = 5;
+		if (contentDescriptionIndex <= [lines count]) {
 			NSMutableString* tmpStr = [[NSMutableString alloc] init];
-			for (int i = 4; i < [lines count]; i++) {
+			for (int i = contentDescriptionIndex - 1; i < [lines count]; i++) {
 				[tmpStr appendString:[lines objectAtIndex:i]];
 				[tmpStr appendString:@"\n"];
 			}
 			[tmpDict setValue:tmpStr forKey:CONTENT_DESCRIPTION];
 			[tmpStr release]; tmpStr = nil;
 		}
-		[contentList addObject:tmpDict];
+		[self addMetadata:tmpDict];
 		[tmpDict release]; tmpDict = nil;
 		
 		contentIdInt++;
@@ -300,7 +354,7 @@
 	//Add to contentList array.
 	int i;
 	for (i=0; i<[plist count]; i++) {
-		[contentList addObject:[plist objectAtIndex:i]];
+		[self addMetadata:[plist objectAtIndex:i]];
 	}
 	
 	return [contentList count];
@@ -314,10 +368,10 @@
 		tmpDict = [contentList objectAtIndex:i];
 		ContentId cid = [[tmpDict objectForKey:CONTENT_CID] intValue];
 		NSString* pid = [[ProductIdList sharedManager] getProductIdentifier:cid];
-		if (pid != InvalidProductId) {
+		if (![pid isEqual: InvalidProductId]) {
 			NSMutableDictionary* newRecord = [NSMutableDictionary dictionaryWithDictionary:tmpDict];
 			[newRecord setValue:pid forKey:CONTENT_STORE_PRODUCT_ID];
-			[contentList replaceObjectAtIndex:i withObject:newRecord];
+			[self replaceMetadataAtIndex:i withMetadata:newRecord];
 		}
 	}
 }
@@ -334,7 +388,8 @@
 - (void)removeMetadataWithContentId:(ContentId)cid
 {
 	LOG_CURRENT_METHOD;
-	NSLog(@"old contentList=%@", [contentList description]);
+	NSLog(@"old contentList count=%d", [contentList count]);
+	//NSLog(@"old contentList=%@", [contentList description]);
 	
 	for (NSDictionary* tmpDict in [contentList reverseObjectEnumerator]){
 		id object = [tmpDict valueForKey:CONTENT_CID];
@@ -346,7 +401,8 @@
 		}
 	}
 	
-	NSLog(@"new contentList=%@", [contentList description]);
+	NSLog(@"new contentList count=%d", [contentList count]);
+	//NSLog(@"new contentList=%@", [contentList description]);
 }
 
 - (void)removeMetadataWithUuid:(NSString*)uuid
@@ -434,6 +490,44 @@
 - (void)addMetadata:(NSDictionary*)metaDataDict
 {
 	[contentList addObject:metaDataDict];
+	
+	//Add cache.
+	NSNumber* targetCidNumber = [metaDataDict objectForKey:CONTENT_CID];
+	ContentId targetCid = [targetCidNumber unsignedIntegerValue];
+	NSString* genre = [metaDataDict objectForKey:CONTENT_GENRE];
+	NSString* subGenre = [metaDataDict objectForKey:CONTENT_SUBGENRE];
+	[self addContentIdArray:targetCid genre:genre subGenre:subGenre];
+}
+- (void)addContentIdArray:(ContentId)cid genre:(NSString *)genre subGenre:(NSString *)subGenre
+{
+	//Check argument.
+	if ((genre == nil) || ([genre length] <= 0)) {
+		genre = GENRE_NON_GENRE;
+	}
+	if ((subGenre == nil) || ([subGenre length] <= 0)) {
+		subGenre = GENRE_NON_SUBGENRE;
+	}
+	
+	//Get subGenre dict with genre.
+	NSMutableDictionary* subGenreDict = [contentIdDictWithGenre valueForKey:genre];
+	if (subGenreDict == nil) {
+		subGenreDict = [[NSMutableDictionary alloc] init];
+	}
+	//Get ContentIdArray with subGenre.
+	NSMutableArray* contentIdArray = [subGenreDict valueForKey:subGenre];
+	if (contentIdArray == nil) {
+		contentIdArray = [[NSMutableArray alloc] init];
+	}
+	
+	//Add contentId into array.
+	//(no check with same cid.)
+	[contentIdArray addObject:[NSNumber numberWithUnsignedInteger:cid]];
+	[subGenreDict setObject:contentIdArray forKey:subGenre];
+	[contentIdDictWithGenre setObject:subGenreDict forKey:genre];
+}
+- (void)replaceMetadataAtIndex:(NSInteger)index withMetadata:(NSDictionary*)metaDataDict
+{
+	[contentList replaceObjectAtIndex:index withObject:metaDataDict];
 }
 
 
@@ -579,6 +673,124 @@
 
 //- (NSURL*)contentIconUrlByUuid:(NSString*)uuid
 //@see - (NSURL*)thumbnailUrlByUuid:(NSString*)uuid;
+#pragma mark Thumbnail Image
+- (NSMutableArray*)thumbnailImagesByContentId:(ContentId)cid
+{
+	NSMutableArray* tmpArray = [[NSMutableArray alloc] init];
+	int i = 0;
+	while (0==0)
+	{
+		UIImage* image  = [self thumbnailImagesByContentId:cid atIndex:i];
+		if (image != nil) {
+			[tmpArray addObject:image];
+			i++;
+		} else {
+			break;
+		}
+	}
+	return tmpArray;
+}
+- (NSMutableArray*)thumbnailImagesByUuid:(NSString*)uuid
+{
+	NSDictionary* tmpDict;
+	for (tmpDict in contentList){
+		if ([[tmpDict valueForKey:CONTENT_UUID] compare:uuid options:NSCaseInsensitiveSearch] == NSOrderedSame) {
+			ContentId targetCid = [[tmpDict objectForKey:CONTENT_CID] intValue];
+			return [self thumbnailImagesByContentId:targetCid];
+		}
+	}
+	return nil;
+}
+
+- (UIImage*)thumbnailImagesByContentId:(ContentId)cid atIndex:(NSInteger)index
+{
+	//(1a)Load from MainBundle with first extension.
+	NSString* filename = [NSString stringWithFormat:@"%@%d.%@",
+						  THUMBNAIL_FILE_PREFIX,
+						  cid,
+						  THUMBNAIL_FILE_EXTENSION];
+	UIImage* image = [UIImage imageNamed:filename];
+	if (! image) {
+		//(1b)Load from MainBundle with second extension.
+		NSString* filename = [NSString stringWithFormat:@"%@%d.%@",
+							  THUMBNAIL_FILE_PREFIX,
+							  cid,
+							  THUMBNAIL_FILE_EXTENSION2];
+		image = [UIImage imageNamed:filename];
+		if (! image) {
+			//(1c)Load from MainBundle with second extension.
+			NSString* filename = [NSString stringWithFormat:@"%@%d.%@",
+								  THUMBNAIL_FILE_PREFIX,
+								  cid,
+								  THUMBNAIL_FILE_EXTENSION3];
+			image = [UIImage imageNamed:filename];
+			if (! image) {
+				//(2a)Open image from local file with first extension.
+				filename = [self getThumbnailLocalFilenameFull:cid
+												 withExtention:THUMBNAIL_FILE_EXTENSION];
+				image = [UIImage imageWithContentsOfFile:filename];
+				if (! image) {
+					//(2b)Open image from local file with second extension.
+					filename = [self getThumbnailLocalFilenameFull:cid
+													 withExtention:THUMBNAIL_FILE_EXTENSION2];
+					image = [UIImage imageWithContentsOfFile:filename];
+					if (! image) {
+						//(2c)Open image from local file with second extension.
+						filename = [self getThumbnailLocalFilenameFull:cid
+														 withExtention:THUMBNAIL_FILE_EXTENSION3];
+						image = [UIImage imageWithContentsOfFile:filename];
+						if (! image) {
+							//(3)Download from network.
+							NSURL* url = [self thumbnailUrlByContentId:cid atThumbnailIndex:index];
+							if (!url) {
+								return nil;	//No file, No URL found.
+							}
+							LOG_CURRENT_LINE;
+							NSData* data = [NSData dataWithContentsOfURL:url];
+							LOG_CURRENT_LINE;
+							if (! data) {
+								//No file found.
+								return nil;
+							} else {
+								//save to local folder.
+								NSString* thumbnailFileExtension = [url pathExtension];
+								NSString* targetFilenameFull = [self getThumbnailLocalFilenameFull:cid withExtention:thumbnailFileExtension];
+								[data writeToFile:targetFilenameFull atomically:YES];
+								//Set Ignore Backup.
+								[FileUtility addSkipBackupAttributeToItemWithString:targetFilenameFull];
+								//Generate image.
+								image = [[UIImage alloc] initWithData:data];
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	return image;
+}
+- (UIImage*)thumbnailImagesByUuid:(NSString*)uuid atIndex:(NSInteger)index
+{
+	NSDictionary* tmpDict;
+	for (tmpDict in contentList){
+		if ([[tmpDict valueForKey:CONTENT_UUID] compare:uuid options:NSCaseInsensitiveSearch] == NSOrderedSame) {
+			ContentId targetCid = [[tmpDict objectForKey:CONTENT_CID] intValue];
+			return [self thumbnailImagesByContentId:targetCid atIndex:index];
+		}
+	}
+	return nil;
+}
+
+- (NSString*)getThumbnailLocalFilenameFull:(ContentId)cid withExtention:(NSString*)extension
+{
+	NSString* filename = [NSString stringWithFormat:@"%@%d", THUMBNAIL_FILE_PREFIX, cid];
+	NSString* targetFilenameFull = [[[[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
+									   stringByAppendingPathComponent:DETAIL_DIR]
+									  stringByAppendingPathComponent:[NSString stringWithFormat:@"%d",cid]]
+									 stringByAppendingPathComponent:filename]
+									stringByAppendingPathExtension:extension];
+	return targetFilenameFull;
+}
 
 #pragma mark Description
 - (NSString*)descriptionAtIndex:(NSInteger)index
@@ -610,6 +822,7 @@
 }
 
 #pragma mark Links.
+#pragma mark (acquisitionUrl)
 - (NSURL*)acquisitionUrlAtIndex:(NSInteger)index
 {
 	NSDictionary* tmpDict;
@@ -641,37 +854,62 @@
 	return nil;
 }
 
-- (NSURL*)thumbnailUrlAtIndex:(NSInteger)index
+#pragma mark (thumbnailUrls)
+- (NSMutableArray*)thumbnailUrlsAtIndex:(NSInteger)index
 {
 	NSDictionary* tmpDict;
 	tmpDict = [contentList objectAtIndex:index];
-	
-	NSString* urlStr = [tmpDict valueForKey:CONTENT_THUMBNAIL_LINK];
-	return [NSURL URLWithString:urlStr];
+	return [tmpDict valueForKey:CONTENT_THUMBNAILS_LINK];
 }
-- (NSURL*)thumbnailUrlByContentId:(ContentId)cid
+- (NSURL*)thumbnailUrlAtIndex:(NSInteger)index atThumbnailIndex:(NSInteger)thumbnailIndex
 {
-	NSDictionary* tmpDict;
-	for (tmpDict in contentList){
-		if ([[tmpDict valueForKey:CONTENT_CID] intValue] == cid) {
-			NSString* urlStr = [tmpDict valueForKey:CONTENT_THUMBNAIL_LINK];
-			return [NSURL URLWithString:urlStr];
-		}
-	}
-	return nil;
-}
-- (NSURL*)thumbnailUrlByUuid:(NSString*)uuid
-{
-	NSDictionary* tmpDict;
-	for (tmpDict in contentList){
-		if ([[tmpDict valueForKey:CONTENT_UUID] compare:uuid options:NSCaseInsensitiveSearch] == NSOrderedSame) {
-			NSString* urlStr = [tmpDict valueForKey:CONTENT_THUMBNAIL_LINK];
-			return [NSURL URLWithString:urlStr];
-		}
+	NSMutableArray* tmpArray = [self thumbnailUrlsAtIndex:index];
+	if ((tmpArray != nil) && ([tmpArray count] < thumbnailIndex)) {
+		return [NSURL URLWithString:[tmpArray objectAtIndex:thumbnailIndex]];
 	}
 	return nil;
 }
 
+- (NSMutableArray*)thumbnailUrlsByContentId:(ContentId)cid
+{
+	NSDictionary* tmpDict;
+	for (tmpDict in contentList){
+		if ([[tmpDict valueForKey:CONTENT_CID] intValue] == cid) {
+			return [tmpDict valueForKey:CONTENT_THUMBNAILS_LINK];
+		}
+	}
+	return nil;
+}
+- (NSURL*)thumbnailUrlByContentId:(ContentId)cid atThumbnailIndex:(NSInteger)thumbnailIndex
+{
+	NSMutableArray* tmpArray = [self thumbnailUrlsByContentId:cid];
+	if ((tmpArray != nil) && (thumbnailIndex < [tmpArray count])) {
+		return [NSURL URLWithString:[tmpArray objectAtIndex:thumbnailIndex]];
+	}
+	return nil;
+}
+
+- (NSMutableArray*)thumbnailUrlsByUuid:(NSString*)uuid
+{
+	NSMutableArray* resultArray = [[NSMutableArray alloc] init];
+	NSDictionary* tmpDict;
+	for (tmpDict in contentList){
+		if ([[tmpDict valueForKey:CONTENT_UUID] compare:uuid options:NSCaseInsensitiveSearch] == NSOrderedSame) {
+			NSString* urlStr = [tmpDict valueForKey:CONTENT_THUMBNAIL_LINK];
+			[resultArray addObject:[NSURL URLWithString:urlStr]];
+		}
+	}
+	return resultArray;
+}
+- (NSURL*)thumbnailUrlByUuid:(NSString*)uuid atThumbnailIndex:(NSInteger)thumbnailIndex
+{
+	NSMutableArray* tmpArray = [self thumbnailUrlsByUuid:uuid];
+	if ((tmpArray != nil) && ([tmpArray count] < thumbnailIndex)) {
+		return [NSURL URLWithString:[tmpArray objectAtIndex:thumbnailIndex]];
+	}
+	return nil;
+}
+#pragma mark .
 - (NSURL*)coverUrlAtIndex:(NSInteger)index
 {
 	NSDictionary* tmpDict;
@@ -714,7 +952,7 @@
 	[tmpDict setValue:@"title1" forKey:CONTENT_TITLE];
 	[tmpDict setValue:@"author1" forKey:CONTENT_AUTHOR];
 	[tmpDict setValue:@"desc1" forKey:CONTENT_DESCRIPTION];
-	[contentList addObject:tmpDict];
+	[self addMetadata:tmpDict];
 	[tmpDict release]; tmpDict = nil;
 	
 	tmpDict = [[NSMutableDictionary alloc] init];
@@ -723,7 +961,7 @@
 	[tmpDict setValue:@"title2" forKey:CONTENT_TITLE];
 	[tmpDict setValue:@"author2" forKey:CONTENT_AUTHOR];
 	[tmpDict setValue:@"desc2" forKey:CONTENT_DESCRIPTION];
-	[contentList addObject:tmpDict];
+	[self addMetadata:tmpDict];
 	[tmpDict release]; tmpDict = nil;
 	
 	tmpDict = [[NSMutableDictionary alloc] init];
@@ -732,7 +970,7 @@
 	[tmpDict setValue:@"title3" forKey:CONTENT_TITLE];
 	[tmpDict setValue:@"author3" forKey:CONTENT_AUTHOR];
 	[tmpDict setValue:@"desc3" forKey:CONTENT_DESCRIPTION];
-	[contentList addObject:tmpDict];
+	[self addMetadata:tmpDict];
 	[tmpDict release]; tmpDict = nil;
 	
 	tmpDict = [[NSMutableDictionary alloc] init];
@@ -741,7 +979,7 @@
 	[tmpDict setValue:@"title4" forKey:CONTENT_TITLE];
 	[tmpDict setValue:@"author4" forKey:CONTENT_AUTHOR];
 	[tmpDict setValue:@"desc4" forKey:CONTENT_DESCRIPTION];
-	[contentList addObject:tmpDict];
+	[self addMetadata:tmpDict];
 	[tmpDict release]; tmpDict = nil;
 }
 @end

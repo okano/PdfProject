@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SakuttoBookAppDelegate.h"
+#import "ContentFileUtility.h"
 
 @interface InfomationViewController : UIViewController {
 	//ContentId.
