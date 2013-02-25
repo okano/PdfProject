@@ -177,6 +177,7 @@
 {
 	//Load Metadata from CSV. (when plist not found or First Launch.)
 #if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+	//Multi contents.
 	
 	//Foreach contentId.
 	int contentIdInt = 1;	//1-Start.
@@ -223,7 +224,50 @@
 		contentIdInt++;
 	}//end-while.
 #else
-	[self setupTestData];
+	//Single content.
+	
+	//[self setupTestData];
+	
+	//Open define file.
+	NSString* csvFilename = @"bookDefine";
+	if ( ! [[NSBundle mainBundle] pathForResource:csvFilename ofType:@"csv"] ) {
+		return 0;
+	}
+	//NSLog(@"bookDefine csvFilename=%@", csvFilename);
+	//NSLog(@"bookDefine csvFilePath=%@", csvFilePath);
+	NSArray* lines = [FileUtility parseDefineCsv:csvFilename];
+	if ([lines count] <= 0) {
+		return 0;
+	}
+	
+	//set book infomation to inner var.
+	int contentIdIntOne = 1;	//1-Fix.
+	
+	NSMutableDictionary* tmpDict;
+	tmpDict = [[NSMutableDictionary alloc] init];
+	[tmpDict setValue:[NSNumber numberWithInteger:contentIdIntOne] forKey:CONTENT_CID];
+	[tmpDict setValue:[[ProductIdList sharedManager] getProductIdentifier:contentIdIntOne] forKey:CONTENT_STORE_PRODUCT_ID];
+	[tmpDict setValue:[lines objectAtIndex:0] forKey:CONTENT_TITLE];
+	if (2 <= [lines count]) {
+		[tmpDict setValue:[lines objectAtIndex:1] forKey:CONTENT_AUTHOR];
+	}
+	if (3 <= [lines count]) {
+		//[tmpDict setValue:[lines objectAtIndex:2] forKey:CONTENT_COPYRIGHT];
+	}
+	if (4 <= [lines count]) {
+		//[tmpDict setValue:[lines objectAtIndex:3] forKey:CONTENT_SUPPORT_HP];
+	}
+	if (5 <= [lines count]) {
+		NSMutableString* tmpStr = [[NSMutableString alloc] init];
+		for (int i = 4; i < [lines count]; i++) {
+			[tmpStr appendString:[lines objectAtIndex:i]];
+			[tmpStr appendString:@"\n"];
+		}
+		[tmpDict setValue:tmpStr forKey:CONTENT_DESCRIPTION];
+		[tmpStr release]; tmpStr = nil;
+	}
+	[contentList addObject:tmpDict];
+	[tmpDict release]; tmpDict = nil;
 #endif
 	
 	return [contentList count];
