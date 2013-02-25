@@ -324,7 +324,7 @@
 		tmpDict = [contentList objectAtIndex:i];
 		ContentId cid = [[tmpDict objectForKey:CONTENT_CID] intValue];
 		NSString* pid = [[ProductIdList sharedManager] getProductIdentifier:cid];
-		if (pid != InvalidProductId) {
+		if (![pid isEqual: InvalidProductId]) {
 			NSMutableDictionary* newRecord = [NSMutableDictionary dictionaryWithDictionary:tmpDict];
 			[newRecord setValue:pid forKey:CONTENT_STORE_PRODUCT_ID];
 			[self replaceMetadataAtIndex:i withMetadata:newRecord];
