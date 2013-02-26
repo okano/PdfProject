@@ -52,6 +52,7 @@
 	//inner var.
 	targetUuid = uuid;
 	
+	CGSize totalContentSize;
 	CGFloat totalHeight = scrollView.frame.size.height + 44;
 	
 	//Thumbnail.
@@ -195,7 +196,7 @@
 		}
 		//Resize total scrollView.
 		totalHeight += thumbnailScrollView.frame.size.height;
-		CGSize totalContentSize = scrollView.contentSize;
+		totalContentSize = scrollView.contentSize;
 		totalContentSize.height = totalHeight;
 		if (totalContentSize.width < self.view.frame.size.width) {
 			totalContentSize.width = self.view.frame.size.width;
@@ -203,6 +204,10 @@
 		[scrollView setContentSize:totalContentSize];
 		[scrollView scrollsToTop];
 	}
+	
+	totalContentSize = scrollView.contentSize;
+	totalContentSize = CGSizeMake(self.view.frame.size.width, 2310);
+	[scrollView setContentSize:totalContentSize];
 }
 
 
