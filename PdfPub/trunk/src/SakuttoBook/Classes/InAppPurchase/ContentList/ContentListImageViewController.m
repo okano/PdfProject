@@ -46,6 +46,12 @@
 	toolbar.items = toolbarItems;
 #endif
 	
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+	//
 	[self setupImagesWithDataSource:appDelegate.contentListDS shelfImageName:@"shelf_my.png"];
 }
 

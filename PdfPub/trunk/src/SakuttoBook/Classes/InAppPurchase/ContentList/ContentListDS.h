@@ -116,9 +116,10 @@
 //Thumbnail Images for single content.
 - (NSMutableArray*)thumbnailImagesByContentId:(ContentId)cid;
 - (NSMutableArray*)thumbnailImagesByUuid:(NSString*)uuid;
-- (UIImage*)thumbnailImagesByContentId:(ContentId)cid atIndex:(NSInteger)index;
-- (UIImage*)thumbnailImagesByUuid:(NSString*)uuid atIndex:(NSInteger)index;
+- (UIImage*)thumbnailImageByContentId:(ContentId)cid atIndex:(NSInteger)index;
+- (UIImage*)thumbnailImageByUuid:(NSString*)uuid atIndex:(NSInteger)index;
 - (NSString*)getThumbnailLocalFilenameFull:(ContentId)cid withExtention:(NSString*)extension;
+- (NSString*)getThumbnailLocalFilenameFull:(ContentId)cid atIndex:(NSInteger)index withExtention:(NSString*)extension;
 //URL Links.
 - (NSURL*)acquisitionUrlAtIndex:(NSInteger)index;
 - (NSURL*)acquisitionUrlByContentId:(ContentId)cid;

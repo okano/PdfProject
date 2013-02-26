@@ -192,7 +192,7 @@
 	//Parse.
 	NSString* acquisitionLink = nil;
 	NSString* thumbnailLink = nil;
-	NSMutableArray* thumbnailLinks = [[NSMutableArray alloc] init];
+	NSMutableArray* thumbnailLinks = nil;
 	NSString* coverLink = nil;
 	NSUInteger contentId;
 	NSMutableArray* linksUrlArray = [[NSMutableArray alloc] init];
@@ -245,7 +245,7 @@
 		
 		//Links
 		NSArray* links = [singleElement elementsForName:@"link"];
-		[thumbnailLinks removeAllObjects];
+		thumbnailLinks = [[NSMutableArray alloc] init];
 		//NSLog(@"links=%@", [links description]);
 		for (id e in links){
 			NSString* relAttribute = [[e attributeForName:@"rel"] stringValue];
@@ -425,6 +425,8 @@
 				case NSURLErrorUserAuthenticationRequired:
 					errorMsg = [NSString stringWithFormat:@"Returned when authentication is required to access a resource."];
 					break;
+				case NSURLErrorTimedOut:
+					errorMsg = [error localizedDescription];
 				default:
 					errorMsg = [error localizedDescription];
 					break;

@@ -90,7 +90,7 @@
 		
 		//Prepare GUI and counter.
 		downloadedContentLength = 0;
-		//myProgressBar.progress = 0;
+		myProgressBar.progress = 0;
 		//progressLabel.text = NSLocalizedString(@"Downloading...", nil);
 		
 		
@@ -455,16 +455,33 @@
 
 // ダウンロード進行中に呼ばれる
 - (void)download:(URLDownload *)download didReceiveDataOfLength:(NSUInteger)length {
-	// プログレスバーの表示でもやる
 	//LOG_CURRENT_METHOD;
 	//NSLog(@"length=%d", length);
 	downloadedContentLength += length;
-	downloadedContentLengthLabel.text = [NSString stringWithFormat:@"%10lld", downloadedContentLength];
+	//downloadedContentLengthLabel.text = [NSString stringWithFormat:@"%10lld", downloadedContentLength];
+	
+	//show with comma.
+	NSNumber *number = [NSNumber numberWithInt:downloadedContentLength];
+	NSNumberFormatter *formatter = [[[NSNumberFormatter alloc] init] autorelease];
+	[formatter setPositiveFormat:@",###"];
+	downloadedContentLengthLabel.text = [formatter stringForObjectValue:number];
+
+	//update progressBar.
+	myProgressBar.progress = (float)((float)downloadedContentLength / (float)expectedContentLength);
+	//NSLog(@"downloadedContentLength=%d,expectedContentLength=%lld,progress=%f",
+	//	  downloadedContentLength, expectedContentLength, myProgressBar.progress);
 }
 
 - (void)download:(URLDownload *)download didReceiveResponse:(NSURLResponse *)response {
 	expectedContentLength = [response expectedContentLength];
-	expectedContentLengthLabel.text = [NSString stringWithFormat:@"%lld", expectedContentLength];
+	//expectedContentLengthLabel.text = [NSString stringWithFormat:@"%lld", expectedContentLength];
+	
+	//show with comma.
+	NSNumber *number = [NSNumber numberWithInt:expectedContentLength];
+	NSNumberFormatter *formatter = [[[NSNumberFormatter alloc] init] autorelease];
+	[formatter setPositiveFormat:@",###"];
+	expectedContentLengthLabel.text = [formatter stringForObjectValue:number];
+
 #if IS_DEBUG
 	NSLog(@"expected content length=%d", expectedContentLength);
 #endif
