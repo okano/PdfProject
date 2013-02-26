@@ -686,6 +686,8 @@
 			[tmpArray addObject:image];
 			i++;
 			if (maxThumbnailCount < i) {
+				LOG_CURRENT_LINE;
+				NSLog(@"thumbnail count overflow. cid=%d, i=%d.   interrupted.", cid, i);
 				break;
 			}
 		} else {
