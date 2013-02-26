@@ -175,7 +175,7 @@
 	LOG_CURRENT_METHOD;
 	UIAlertView *alert = [[[UIAlertView alloc]
 						   initWithTitle:nil
-						   message:@"コンテンツ情報の読み込みに失敗しました。"
+						   message:@"コンテンツ一覧URLの取得に失敗しました。"
 						   delegate:nil
 						   cancelButtonTitle:nil
 						   otherButtonTitles:@"OK", nil]
@@ -192,6 +192,14 @@
 - (void)didFailParseOpdsElement
 {
 	LOG_CURRENT_METHOD;
+	UIAlertView *alert = [[[UIAlertView alloc]
+						   initWithTitle:nil
+						   message:@"コンテンツ一覧情報の解析に失敗しました。"
+						   delegate:nil
+						   cancelButtonTitle:nil
+						   otherButtonTitles:@"OK", nil]
+						  autorelease];
+	[alert show];
 	[self performSelector:@selector(stopIndicator) withObject:nil];
 }
 #pragma mark - MyTableViewVCProtocol(@optional) (Accessor for table)
