@@ -58,3 +58,10 @@ ContentDetail/
 ★MainBundleにて内蔵するもの
 ・PRODUCT_ID_LIST_FILENAME
 
+
+
+
+---
+★シングル版は、
+・csvファイルは、"-1"なし。
+・格納先ディレクトリは、"1"に固定。

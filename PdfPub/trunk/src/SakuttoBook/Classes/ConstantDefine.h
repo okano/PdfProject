@@ -18,6 +18,11 @@
 #define PAGE_ANIMATION_DURATION_NEXT	0.2f
 #define PAGE_ANIMATION_DURATION_PREV	0.2f
 
+#define PAGE_PROGRESSION_DIRECTION	@"page-progression-direction"
+#define PAGE_PROGRESSION_DIRECTION_RTL	@"rtl"	/* 左から右（横組、 左綴じ）。通常、横書きの本の場合に指定（left-to-right）*/
+#define PAGE_PROGRESSION_DIRECTION_LTR	@"ltr"	/*
+rtl：右から左（縦組、右綴じ）。通常、縦書きの本の場合に指定（right-to-left） */
+
 // for Pan Gesture.
 #define PAN_DISTANCE_MINIMUM	100.0f
 

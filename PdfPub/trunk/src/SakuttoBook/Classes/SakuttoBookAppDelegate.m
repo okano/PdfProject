@@ -163,7 +163,13 @@
 	int maxCount = [contentListDS count];
 	for (int i = 0; i < maxCount; i = i + 1) {
 		ContentId cid = [contentListDS contentIdAtIndex:i];
+#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+		//Multi contents.
 		NSString* resourceName = [FileUtility getPdfFilename:cid];
+#else
+		//Single content.
+		NSString* resourceName = [FileUtility getPdfFilename];
+#endif
 		/*
 		 NSString* newFilename = [NSString stringWithFormat:@"%d.%@", cid, @"pdf"];
 		 NSString* filenameFull = [[ContentFileUtility getContentBodyDirectory]
