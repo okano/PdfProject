@@ -173,16 +173,14 @@
 }
 - (void)didFailParseOpdsRoot{
 	LOG_CURRENT_METHOD;
-	/*
 	UIAlertView *alert = [[[UIAlertView alloc]
 						   initWithTitle:nil
-						   message:@"fail parse OPDS Root."
+						   message:@"コンテンツ情報の読み込みに失敗しました。"
 						   delegate:nil
 						   cancelButtonTitle:nil
 						   otherButtonTitles:@"OK", nil]
 						  autorelease];
 	[alert show];
-	*/
 	[self performSelector:@selector(stopIndicator) withObject:nil];
 }
 - (void)didFinishParseOpdsElement:(NSMutableArray*)resultArray{

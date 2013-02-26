@@ -425,6 +425,8 @@
 				case NSURLErrorUserAuthenticationRequired:
 					errorMsg = [NSString stringWithFormat:@"Returned when authentication is required to access a resource."];
 					break;
+				case NSURLErrorTimedOut:
+					errorMsg = [error localizedDescription];
 				default:
 					errorMsg = [error localizedDescription];
 					break;
