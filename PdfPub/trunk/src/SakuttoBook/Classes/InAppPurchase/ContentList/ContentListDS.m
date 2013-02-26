@@ -678,12 +678,16 @@
 {
 	NSMutableArray* tmpArray = [[NSMutableArray alloc] init];
 	int i = 0;
+	int maxThumbnailCount = 17;	//prime number(SOSUU) for debug easily.
 	while (0==0)
 	{
-		UIImage* image  = [self thumbnailImagesByContentId:cid atIndex:i];
+		UIImage* image  = [self thumbnailImageByContentId:cid atIndex:i];
 		if (image != nil) {
 			[tmpArray addObject:image];
 			i++;
+			if (maxThumbnailCount < i) {
+				break;
+			}
 		} else {
 			break;
 		}
@@ -702,41 +706,47 @@
 	return nil;
 }
 
-- (UIImage*)thumbnailImagesByContentId:(ContentId)cid atIndex:(NSInteger)index
+- (UIImage*)thumbnailImageByContentId:(ContentId)cid atIndex:(NSInteger)index
 {
 	//(1a)Load from MainBundle with first extension.
-	NSString* filename = [NSString stringWithFormat:@"%@%d.%@",
+	NSString* filename = [NSString stringWithFormat:@"%@%d_%d.%@",
 						  THUMBNAIL_FILE_PREFIX,
 						  cid,
+						  index,
 						  THUMBNAIL_FILE_EXTENSION];
 	UIImage* image = [UIImage imageNamed:filename];
 	if (! image) {
 		//(1b)Load from MainBundle with second extension.
-		NSString* filename = [NSString stringWithFormat:@"%@%d.%@",
+		NSString* filename = [NSString stringWithFormat:@"%@%d_%d.%@",
 							  THUMBNAIL_FILE_PREFIX,
 							  cid,
+							  index,
 							  THUMBNAIL_FILE_EXTENSION2];
 		image = [UIImage imageNamed:filename];
 		if (! image) {
 			//(1c)Load from MainBundle with second extension.
-			NSString* filename = [NSString stringWithFormat:@"%@%d.%@",
+			NSString* filename = [NSString stringWithFormat:@"%@%d_%d.%@",
 								  THUMBNAIL_FILE_PREFIX,
 								  cid,
+								  index,
 								  THUMBNAIL_FILE_EXTENSION3];
 			image = [UIImage imageNamed:filename];
 			if (! image) {
 				//(2a)Open image from local file with first extension.
 				filename = [self getThumbnailLocalFilenameFull:cid
+													   atIndex:index
 												 withExtention:THUMBNAIL_FILE_EXTENSION];
 				image = [UIImage imageWithContentsOfFile:filename];
 				if (! image) {
 					//(2b)Open image from local file with second extension.
 					filename = [self getThumbnailLocalFilenameFull:cid
+														   atIndex:index
 													 withExtention:THUMBNAIL_FILE_EXTENSION2];
 					image = [UIImage imageWithContentsOfFile:filename];
 					if (! image) {
 						//(2c)Open image from local file with second extension.
 						filename = [self getThumbnailLocalFilenameFull:cid
+															   atIndex:index
 														 withExtention:THUMBNAIL_FILE_EXTENSION3];
 						image = [UIImage imageWithContentsOfFile:filename];
 						if (! image) {
@@ -754,7 +764,9 @@
 							} else {
 								//save to local folder.
 								NSString* thumbnailFileExtension = [url pathExtension];
-								NSString* targetFilenameFull = [self getThumbnailLocalFilenameFull:cid withExtention:thumbnailFileExtension];
+								NSString* targetFilenameFull = [self getThumbnailLocalFilenameFull:cid
+																						   atIndex:index
+																					 withExtention:thumbnailFileExtension];
 								[data writeToFile:targetFilenameFull atomically:YES];
 								//Set Ignore Backup.
 								[FileUtility addSkipBackupAttributeToItemWithString:targetFilenameFull];
@@ -769,13 +781,13 @@
 	}
 	return image;
 }
-- (UIImage*)thumbnailImagesByUuid:(NSString*)uuid atIndex:(NSInteger)index
+- (UIImage*)thumbnailImageByUuid:(NSString*)uuid atIndex:(NSInteger)index
 {
 	NSDictionary* tmpDict;
 	for (tmpDict in contentList){
 		if ([[tmpDict valueForKey:CONTENT_UUID] compare:uuid options:NSCaseInsensitiveSearch] == NSOrderedSame) {
 			ContentId targetCid = [[tmpDict objectForKey:CONTENT_CID] intValue];
-			return [self thumbnailImagesByContentId:targetCid atIndex:index];
+			return [self thumbnailImageByContentId:targetCid atIndex:index];
 		}
 	}
 	return nil;
@@ -784,6 +796,17 @@
 - (NSString*)getThumbnailLocalFilenameFull:(ContentId)cid withExtention:(NSString*)extension
 {
 	NSString* filename = [NSString stringWithFormat:@"%@%d", THUMBNAIL_FILE_PREFIX, cid];
+	NSString* targetFilenameFull = [[[[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
+									   stringByAppendingPathComponent:DETAIL_DIR]
+									  stringByAppendingPathComponent:[NSString stringWithFormat:@"%d",cid]]
+									 stringByAppendingPathComponent:filename]
+									stringByAppendingPathExtension:extension];
+	return targetFilenameFull;
+}
+
+- (NSString*)getThumbnailLocalFilenameFull:(ContentId)cid atIndex:(NSInteger)index withExtention:(NSString*)extension
+{
+	NSString* filename = [NSString stringWithFormat:@"%@%d_%d", THUMBNAIL_FILE_PREFIX, cid, index];
 	NSString* targetFilenameFull = [[[[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 									   stringByAppendingPathComponent:DETAIL_DIR]
 									  stringByAppendingPathComponent:[NSString stringWithFormat:@"%d",cid]]
