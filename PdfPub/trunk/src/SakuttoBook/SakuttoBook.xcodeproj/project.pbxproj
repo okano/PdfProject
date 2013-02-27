@@ -25,6 +25,7 @@
 		290F035512D594D300666C6A /* BookmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 290F035412D594D300666C6A /* BookmarkViewController.m */; };
 		2912656912D46BEE00704565 /* list_thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2912656812D46BEE00704565 /* list_thumbnail.png */; };
 		291593141394B54700387697 /* ContentPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 291593131394B54700387697 /* ContentPlayerViewController.m */; };
+		291A797516DDED8700DB713B /* ServerContentDetailView-ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 291A797416DDED8700DB713B /* ServerContentDetailView-ipad.xib */; };
 		291EDE0413124E2C00DBD3E5 /* ImageGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 291EDE0313124E2C00DBD3E5 /* ImageGenerator.m */; };
 		29208E4A1634ECFE007D778F /* mailDefine_1.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29208E461634ECFE007D778F /* mailDefine_1.csv */; };
 		29208E4B1634ECFE007D778F /* mailDefine_2.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29208E471634ECFE007D778F /* mailDefine_2.csv */; };
@@ -198,6 +199,7 @@
 		2912656812D46BEE00704565 /* list_thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = list_thumbnail.png; path = Classes/list_thumbnail.png; sourceTree = "<group>"; };
 		291593121394B54700387697 /* ContentPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentPlayerViewController.h; sourceTree = "<group>"; };
 		291593131394B54700387697 /* ContentPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentPlayerViewController.m; sourceTree = "<group>"; };
+		291A797416DDED8700DB713B /* ServerContentDetailView-ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ServerContentDetailView-ipad.xib"; sourceTree = "<group>"; };
 		291EDE0213124E2C00DBD3E5 /* ImageGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGenerator.h; sourceTree = "<group>"; };
 		291EDE0313124E2C00DBD3E5 /* ImageGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGenerator.m; sourceTree = "<group>"; };
 		29208E461634ECFE007D778F /* mailDefine_1.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mailDefine_1.csv; path = csv/mailDefine_1.csv; sourceTree = "<group>"; };
@@ -696,6 +698,7 @@
 				29E8A3E91532A8FD00468FE9 /* ServerContentDetailVC.h */,
 				29E8A3EA1532A8FD00468FE9 /* ServerContentDetailVC.m */,
 				29E8A3EB1532A8FD00468FE9 /* ServerContentDetailView.xib */,
+				291A797416DDED8700DB713B /* ServerContentDetailView-ipad.xib */,
 				29C7401016BE935E00059E56 /* detailLine.png */,
 			);
 			name = ServerContentDetail;
@@ -1043,6 +1046,7 @@
 				294B3D4416B583810095E56F /* ServerContentListImageVC.xib in Resources */,
 				297CE33E16BE6D74001C7BDE /* coverDummy.png in Resources */,
 				29C7401116BE935E00059E56 /* detailLine.png in Resources */,
+				291A797516DDED8700DB713B /* ServerContentDetailView-ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

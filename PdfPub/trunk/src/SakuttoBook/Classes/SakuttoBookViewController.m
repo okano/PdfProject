@@ -196,7 +196,13 @@
 - (void)showServerContentDetailView:(NSString*)uuid{
 	//LOG_CURRENT_METHOD;
 	if (serverContentDetailVC == nil) {
-		serverContentDetailVC = [[ServerContentDetailVC alloc] initWithNibName:@"ServerContentDetailView" bundle:[NSBundle mainBundle]];
+		if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+			serverContentDetailVC = [[ServerContentDetailVC alloc] initWithNibName:@"ServerContentDetailView"
+																			bundle:[NSBundle mainBundle]];
+		} else {
+			serverContentDetailVC = [[ServerContentDetailVC alloc] initWithNibName:@"ServerContentDetailView-ipad"
+																			bundle:[NSBundle mainBundle]];
+		}
 	}
 	[self.view addSubview:serverContentDetailVC.view];
 	[serverContentDetailVC setLabelsWithUuid:uuid];
