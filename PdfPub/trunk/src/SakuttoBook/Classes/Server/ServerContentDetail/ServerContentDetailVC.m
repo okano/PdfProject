@@ -206,7 +206,13 @@
 	}
 	
 	totalContentSize = scrollView.contentSize;
-	totalContentSize = CGSizeMake(self.view.frame.size.width, 2310);
+	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+		//iPhone
+		totalContentSize = CGSizeMake(self.view.frame.size.width, 2310);
+	} else {
+		//iPad
+		totalContentSize = CGSizeMake(self.view.frame.size.width, 3600);
+	}
 	[scrollView setContentSize:totalContentSize];
 }
 
