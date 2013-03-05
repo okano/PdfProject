@@ -56,7 +56,11 @@
 - (void)askOverwrite;
 - (void)doDownload;
 - (void)releaseDownloader;
-//
+
+//Back to ServerContentList.
+- (IBAction)pushedBackButton:(id)sender;
+
+//Handle Download.
 - (void)handleDownloadedPdf:(NSString*)filePath contentIdStr:(NSString*)contentIdStr;
 - (void)handleDownloadedCbz:(NSString*)filePath contentIdStr:(NSString*)contentIdStr;
 - (void)handleDownloadedZip:(NSString*)filePath contentIdStr:(NSString*)contentIdStr;

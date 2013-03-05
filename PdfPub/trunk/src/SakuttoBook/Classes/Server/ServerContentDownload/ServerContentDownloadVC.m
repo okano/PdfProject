@@ -442,6 +442,11 @@
 	alert.tag = ALERTVIEW_TAG_DOWNLOAD_CANCELED;
 	[alert show];
 	[self releaseDownloader];
+	
+	//Show contentListView.
+	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
+	[appDelegate hideServerContentDetailView];
+	[appDelegate showServerContentListView];
 }
 
 // ダウンロードに失敗した際に呼ばれる
@@ -500,8 +505,16 @@
 	[downloaderLock unlock];
 }
 
-#pragma mark -
+#pragma mark - Treat Back button.
+- (IBAction)pushedBackButton:(id)sender
+{
+	[downloader cancel];
+	[self download:downloader didCancelBecauseOf:nil];
+	
+	
+}
 
+#pragma mark -
 - (void)dealloc
 {
     [super dealloc];
