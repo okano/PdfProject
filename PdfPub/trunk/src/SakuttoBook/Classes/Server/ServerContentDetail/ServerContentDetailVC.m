@@ -169,8 +169,17 @@
 		CGFloat curPosX = 0, offsetX = 10, merginX = 10;
 		
 		curPosX = offsetX;
-		for (UIImage* thumbnailImage in thumbnailImages) {
+		for (UIImage* thumbnailImageOrg in thumbnailImages) {
 			NSLog(@"thumbnailImage size=%@", NSStringFromCGSize([thumbnailImage size]));
+			
+			//Resige image.
+			CGFloat thumbnailImageHeightResized = thumbnailImageView.frame.size.height;
+			CGFloat resizeRetio = thumbnailImageView.frame.size.height / thumbnailImageOrg.size.height;
+			CGFloat thumbnailImageWidthResized = thumbnailImageOrg.size.width * resizeRetio;
+			UIGraphicsBeginImageContext(CGSizeMake(thumbnailImageWidthResized, thumbnailImageHeightResized));
+			[thumbnailImageOrg drawInRect:CGRectMake(0, 0, thumbnailImageWidthResized, thumbnailImageHeightResized)];
+			UIImage* thumbnailImage = UIGraphicsGetImageFromCurrentImageContext();
+			UIGraphicsEndImageContext();
 			
 			//positioning image.
 			UIImageView* tiView = [[UIImageView alloc] initWithImage:thumbnailImage];

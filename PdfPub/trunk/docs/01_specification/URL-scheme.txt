@@ -1,0 +1,9 @@
+●URLスキームへの対応（案）
+・ブラウザなどで、URLをタッチすると、アプリを起動して開くことができる。
+・info.plistで指定するので、define.hとかでは変更できない。
+・アプリごとに切り替える必要あり。（同じのがあると、どれで開くか選択？。httpやpdfと同様。）
+
+例：
+skb://contentList
+skb://contentDetail/1
+skb://contentOpen/1
