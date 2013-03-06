@@ -3,9 +3,74 @@ Bundle Seed ID (App ID Prefix)		:Use Team ID
 Bundle Identifier (App ID Suffix)	:jp.epubs.mediacubestore
 Configure App ID			:FR8S9EBC3R.jp.epubs.mediacubestore
 					(In-App Purchase:Enabled)
-
+---
 Default Language	:Japanese
 App Name		:イーパブス出版ストア
 SKU Number		:epubsjp_store
 Bundle ID		:mediacubestore - jp.epubs.mediacubestore
+---
+Availability Date	:03/Mar, 31, 2013
+Price Tier		:Free
+Discount for Educational Institutions:YES
+Custom B2B App		:NO
+---
+[Version Information]
+Version Number			:1.0
+Copyright			:(c )ePubs.jp publishing
+Primary Category		:Entertainment
+Secondary Category (Optional)	:Lifestyle
 
+[Rating]
+Cartoon or Fantasy Violence			:Frequent		
+Realistic Violence				:Mild
+Sexual Content or Nudity			:Frequent
+Profanity or Crude Humor			:Mild
+Alcohol, Tobacco, or Drug Use or References	:Frequent	
+Mature/Suggestive Themes			:Mild
+Simulated Gambling				:Mild
+Horror/Fear Themes				:Frequent
+Prolonged Graphic or Sadistic Realistic Violence:None*		
+Graphic Sexual Content and Nudity		:None*
+=>17+ Rating.
+
+[Metadata]
+Description
+
+
+Keywords
+SakuttoBook,リッチ,コンテンツ,対話型,インタラクティブ,朗読,音声,CG,五感,体験,ブックマーク,ユーザーエクスペリエンス
+
+Support URL
+http://publishing.epubs.jp
+
+
+Marketing URL (Optional)
+Privacy Policy URL (Optional)
+
+[Contact Information]
+First Name 	:Katsuhiko
+Last Name 	:Okano
+Email Address 	:okano@epubs.jp
+Phone Number 	:+81-3-5829-9984
+
+Review Notes (Optional)
+
+
+このアプリでは、
+プログラム上で、
+画像の重ね合わせ、ユーザとの対話、 iPad用コンテンツとiPhone用コンテンツの自動切り替え、
+多彩なページめくり、タイミングを指定した音声再生、
+などの複雑な
+エフェクトを行っている。
+
+
+そのため、iBookstoreでは配布できない複雑な表現が可能である。
+このアプリは、In-App Purchase機能を使用している。
+
+
+
+[Demo Account Information (Optional)]
+なし
+
+[EULA]
+(デフォルト)
