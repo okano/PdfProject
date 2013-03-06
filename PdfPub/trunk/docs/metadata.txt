@@ -1,0 +1,11 @@
+Create App ID				: mediacubestore
+Bundle Seed ID (App ID Prefix)		:Use Team ID
+Bundle Identifier (App ID Suffix)	:jp.epubs.mediacubestore
+Configure App ID			:FR8S9EBC3R.jp.epubs.mediacubestore
+					(In-App Purchase:Enabled)
+
+Default Language	:Japanese
+App Name		:イーパブス出版ストア
+SKU Number		:epubsjp_store
+Bundle ID		:mediacubestore - jp.epubs.mediacubestore
+
