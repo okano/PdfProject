@@ -1785,15 +1785,25 @@
 	//LOG_CURRENT_METHOD;
 	//NSLog(@"filename=%@", filename);
 	
-	NSString* path = [[NSBundle mainBundle] pathForResource:filename ofType:nil];
-	if (!path) {
-		NSLog(@"illigal filename. filename=%@, bundle_resourceURL=%@", filename, [[NSBundle mainBundle] resourceURL]);
-		NSLog(@"f = %@ %@", [filename stringByDeletingPathExtension], [filename pathExtension]);
-		return;
+	//Play movie. file from local file.
+	NSString* cidStr = [NSString stringWithFormat:@"%d", currentContentId];
+	NSString *moviePath = [[ContentFileUtility getContentBodyMovieDirectoryWithContentId:cidStr]
+						   stringByAppendingPathComponent:filename];
+	if (! moviePath) {
+		//LOG_CURRENT_METHOD;
+		NSLog(@"no movie file found. filename=%@, moviePath=%@", filename, moviePath);
+		
+		//Play movie. file from Main Bundle.
+		moviePath = [[NSBundle mainBundle] pathForResource:filename ofType:nil];
+		if (!moviePath) {
+			NSLog(@"illigal filename. filename=%@, bundle_resourceURL=%@", filename, [[NSBundle mainBundle] resourceURL]);
+			NSLog(@"f = %@ %@", [filename stringByDeletingPathExtension], [filename pathExtension]);
+			return;
+		}
 	}
 	NSURL* url;
 	
-	if ((url = [NSURL fileURLWithPath:path]) != nil) {
+	if ((url = [NSURL fileURLWithPath:moviePath]) != nil) {
 		MPMoviePlayerViewController* mpview;
 		if ((mpview = [[MPMoviePlayerViewController alloc] initWithContentURL:url]) != nil) {
 			[self presentMoviePlayerViewControllerAnimated:mpview];
