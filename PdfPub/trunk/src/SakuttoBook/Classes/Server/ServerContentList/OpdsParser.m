@@ -191,6 +191,7 @@
 	
 	//Parse.
 	NSString* acquisitionLink = nil;
+	NSString* sampleLink = nil;
 	NSString* thumbnailLink = nil;
 	NSMutableArray* thumbnailLinks = nil;
 	NSString* coverLink = nil;
@@ -253,13 +254,28 @@
 			//NSLog(@"relAttribute=%@", relAttribute);
 			//NSLog(@"hrefAttribute=%@", hrefAttribute);
 			
-			//Link for Acquisition.
-			NSString* searchForMe = @"http://opds-spec.org/acquisition";
+			//Link for Acquisition.(buy)
+			NSString* searchForMe = @"http://opds-spec.org/acquisition/buy";
 			NSRange range = [relAttribute rangeOfString : searchForMe];
 			if (range.location != NSNotFound) {
 				acquisitionLink = [NSString stringWithFormat:@"%@%@", baseUrlStr, hrefAttribute];
 				continue;	//skip to next tag.
 			}
+			//Link for Sample Acquisition.(preview)
+			searchForMe = @"http://opds-spec.org/acquisition/sample";
+			range = [relAttribute rangeOfString : searchForMe];
+			if (range.location != NSNotFound) {
+				sampleLink = [NSString stringWithFormat:@"%@%@", baseUrlStr, hrefAttribute];
+				continue;	//skip to next tag.
+			}
+			//Link for Acquisition.(old style)
+			searchForMe = @"http://opds-spec.org/acquisition";
+			range = [relAttribute rangeOfString : searchForMe];
+			if (range.location != NSNotFound) {
+				acquisitionLink = [NSString stringWithFormat:@"%@%@", baseUrlStr, hrefAttribute];
+				continue;	//skip to next tag.
+			}
+			
 			//Link for Thumbnail.
 			searchForMe = @"http://opds-spec.org/thumbnail/";		// "thumbnail/{1..4}"
 			range = [relAttribute rangeOfString : searchForMe];
@@ -279,6 +295,7 @@
 				thumbnailLink = [NSString stringWithFormat:@"%@%@", baseUrlStr, hrefAttribute];
 				continue;	//skip to next tag.
 			}
+			
 			//Link for Cover.(old format server)
 			searchForMe = @"http://opds-spec.org/cover";
 			range = [relAttribute rangeOfString : searchForMe];
@@ -310,6 +327,7 @@
 		[tmpDict setValue:titleStr			forKey:CONTENT_TITLE];
 		[tmpDict setValue:authorStr			forKey:CONTENT_AUTHOR];
 		[tmpDict setValue:descStr			forKey:CONTENT_DESCRIPTION];
+		[tmpDict setValue:sampleLink		forKey:CONTENT_SAMPLE_LINK];
 		[tmpDict setValue:acquisitionLink	forKey:CONTENT_ACQUISITION_LINK];
 		[tmpDict setValue:thumbnailLink		forKey:CONTENT_THUMBNAIL_LINK];
 		[tmpDict setValue:thumbnailLinks	forKey:CONTENT_THUMBNAILS_LINK];
