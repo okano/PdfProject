@@ -122,8 +122,10 @@
 		return;
 	}
 	
+#if defined(OVERWRITE_PRODUCTIDLIST_BY_SERVER) && OVERWRITE_PRODUCTIDLIST_BY_SERVER != 0
 	//Get productIdList before get opds.
 	[[ProductIdList sharedManager] refreshProductIdListFromNetwork];
+#endif
 	
 	//Reload OPDS from network.
 	//[appDelegate.serverContentListDS removeAllObjects];
