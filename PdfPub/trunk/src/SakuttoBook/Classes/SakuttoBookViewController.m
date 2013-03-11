@@ -17,9 +17,6 @@
 @synthesize serverContentListVC;
 @synthesize serverContentListIVC;
 @synthesize serverContentDetailVC;
-//For multi Genre.
-@synthesize contentListGenreTabController;
-@synthesize bookContentListVC, videoContentListVC, audioContentListVC;
 
 /*
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -106,72 +103,6 @@
 #pragma mark - show/hide view.
 - (void)showContentListView
 {
-#if defined(IS_MULTI_GENRE) && IS_MULTI_GENRE != 0
-	//
-	//multi genre.
-	//
-	if (bookContentListVC == nil) {
-#if defined(IS_CONTENTLIST_WITH_IMAGE) && IS_CONTENTLIST_WITH_IMAGE != 0
-		//content list with image.
-		bookContentListVC = [[ContentListImageViewController alloc] initWithNibName:@"ContentListImageViewController" bundle:[NSBundle mainBundle]];
-#else
-		//content list with table.
-		bookContentListVC = [[ContentListTableViewController alloc] init];
-#endif
-		[bookContentListVC setTabBarItem:[[UITabBarItem alloc]
-										  initWithTitle:@"book"
-										  image:[UIImage imageNamed:@"folder20x20.png"]
-										  tag:1]];
-	}
-	if (videoContentListVC == nil) {
-#if defined(IS_CONTENTLIST_WITH_IMAGE) && IS_CONTENTLIST_WITH_IMAGE != 0
-		//content list with image.
-		videoContentListVC = [[ContentListImageViewController alloc] initWithNibName:@"ContentListImageViewController" bundle:[NSBundle mainBundle]];
-#else
-		//content list with table.
-		videoContentListVC = [[ContentListTableViewController alloc] init];
-#endif
-		[videoContentListVC setTabBarItem:[[UITabBarItem alloc]
-										   initWithTitle:@"video"
-										   image:[UIImage  imageNamed:@"folder20x20.png"]
-										   tag:2]];
-	}
-	if (audioContentListVC == nil) {
-#if defined(IS_CONTENTLIST_WITH_IMAGE) && IS_CONTENTLIST_WITH_IMAGE != 0
-		//content list with image.
-		audioContentListVC = [[ContentListImageViewController alloc] initWithNibName:@"ContentListImageViewController" bundle:[NSBundle mainBundle]];
-#else
-		//content list with table.
-		audioContentListVC = [[ContentListTableViewController alloc] init];
-#endif
-		[audioContentListVC setTabBarItem:[[UITabBarItem alloc]
-										   initWithTitle:@"audio"
-										   image:[UIImage imageNamed:@"folder20x20.png"]
-										   tag:3]];
-	}
-	appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
-	if (appDelegate.configVC2 == nil) {
-		appDelegate.configVC2 = [[ConfigVC2 alloc] initWithNibName:@"ConfigVC2" bundle:[NSBundle mainBundle]];
-		[appDelegate.configVC2 setTabBarItem:[[UITabBarItem alloc]
-											  initWithTitle:@"config"
-											  image:[UIImage imageNamed:@"folder20x20.png"]
-											  tag:4]];
-	}
-
-	if (contentListGenreTabController == nil) {
-		contentListGenreTabController = [[ContentListGenreTabController alloc] init];
-		contentListGenreTabController.viewControllers = [NSArray arrayWithObjects:
-														 bookContentListVC,
-														 videoContentListVC,
-														 //audioContentListVC,
-														 appDelegate.configVC2,
-														 nil];
-	}
-	[self.view addSubview:contentListGenreTabController.view];
-#else
-	//
-	//single genre.
-	//
 #if defined(IS_CONTENTLIST_WITH_IMAGE) && IS_CONTENTLIST_WITH_IMAGE != 0
 	//content list with image.
 	if (contentListIVC == nil) {
@@ -190,7 +121,6 @@
 	
 	contentListIVC = nil;
 #endif	/* IS_CONTENTLIST_WITH_IMAGE */
-#endif	/* IS_MULTI_GENRE */
 }
 - (void)hideContentListView
 {

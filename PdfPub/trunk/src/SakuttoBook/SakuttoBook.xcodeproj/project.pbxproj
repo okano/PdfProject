@@ -55,7 +55,6 @@
 		297DF1FF12C601AD0082C680 /* InfomationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297DF1FE12C601AD0082C680 /* InfomationViewController.m */; };
 		297F4A9B169EC41D000D05E9 /* ContentListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B322DA169EB79800C047D9 /* ContentListTableViewController.m */; };
 		2989D00616A153B00017BCBD /* unpaid.png in Resources */ = {isa = PBXBuildFile; fileRef = 2989D00516A153B00017BCBD /* unpaid.png */; };
-		29911CC4169EDEAE00886A82 /* ContentListGenreTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2916B799167471D000B344DA /* ContentListGenreTabController.m */; };
 		299448EC12B7370B00E7D108 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299448EB12B7370B00E7D108 /* MediaPlayer.framework */; };
 		2999FDC512D6A8D500D0F145 /* License.m in Sources */ = {isa = PBXBuildFile; fileRef = 2999FDC412D6A8D500D0F145 /* License.m */; };
 		299F35CC1533EBAE00FAD69F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299F35CB1533EBAE00FAD69F /* SystemConfiguration.framework */; };
@@ -141,8 +140,6 @@
 		2912656812D46BEE00704565 /* list_thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = list_thumbnail.png; path = Classes/list_thumbnail.png; sourceTree = "<group>"; };
 		291593121394B54700387697 /* ContentPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentPlayerViewController.h; sourceTree = "<group>"; };
 		291593131394B54700387697 /* ContentPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentPlayerViewController.m; sourceTree = "<group>"; };
-		2916B798167471D000B344DA /* ContentListGenreTabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentListGenreTabController.h; path = InAppPurchase/ContentList/ContentListGenreTabController.h; sourceTree = "<group>"; };
-		2916B799167471D000B344DA /* ContentListGenreTabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentListGenreTabController.m; path = InAppPurchase/ContentList/ContentListGenreTabController.m; sourceTree = "<group>"; };
 		2916B79C1674799F00B344DA /* ConfigVC2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigVC2.h; sourceTree = "<group>"; };
 		2916B79D1674799F00B344DA /* ConfigVC2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigVC2.m; sourceTree = "<group>"; };
 		2916B79E1674799F00B344DA /* ConfigVC2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigVC2.xib; sourceTree = "<group>"; };
@@ -455,8 +452,6 @@
 			children = (
 				29B16DF5139873F300B4D958 /* ContentListViewController.h */,
 				29B16DF6139873F300B4D958 /* ContentListViewController.m */,
-				2916B798167471D000B344DA /* ContentListGenreTabController.h */,
-				2916B799167471D000B344DA /* ContentListGenreTabController.m */,
 				29B322D9169EB79800C047D9 /* ContentListTableViewController.h */,
 				29B322DA169EB79800C047D9 /* ContentListTableViewController.m */,
 				290731E513A89BF000AE5B35 /* ContentListCell.xib */,
@@ -859,7 +854,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				29911CC4169EDEAE00886A82 /* ContentListGenreTabController.m in Sources */,
 				297F4A9B169EC41D000D05E9 /* ContentListTableViewController.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* SakuttoBookAppDelegate.m in Sources */,
