@@ -277,6 +277,7 @@
 	[FileUtility addSkipBackupAttributeToItemWithString:toFilename];
 
 	//Open ContentPlayer.
+	[self dismissModalViewControllerAnimated:YES];
 	[appDelegate hideServerContentDetailView];
 	[appDelegate showContentPlayerView:newContentId];
 	

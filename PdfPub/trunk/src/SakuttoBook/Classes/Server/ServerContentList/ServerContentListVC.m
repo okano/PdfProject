@@ -130,6 +130,7 @@
 	
 	//Reload OPDS from network.
 	//[appDelegate.serverContentListDS removeAllObjects];
+	appDelegate.serverContentListDS.targetTableVC = self;
 	[appDelegate.serverContentListDS loadContentListFromNetworkByOpds];
 }
 - (IBAction)reloadFromNetwork:(id)sender { [self reloadFromNetwork]; }
