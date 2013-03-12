@@ -683,6 +683,9 @@
 - (void)showInfoView {
 	[viewController.contentPlayerViewController showInfoView];
 }
+- (void)enterMarkerMode {
+	[viewController.contentPlayerViewController enterMarkerMode];
+}
 #pragma mark -
 - (ContentId)getCurrentContentIdInContentPlayer
 {

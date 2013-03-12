@@ -60,6 +60,13 @@
 #define CACHE_IMAGE_WIDTH_MAX		1536.0f
 #define CACHE_IMAGE_SMALL_WIDTH				 100.0f
 
+// for Marker Pen.
+#define MARKERPEN_LINE_COLOR_R		0.85f
+#define MARKERPEN_LINE_COLOR_G		0.85f
+#define MARKERPEN_LINE_COLOR_B		0.2f
+#define MARKERPEN_LINE_COLOR_A		0.85f
+#define MARKERPEN_LINE_WIDTH		2.0f
+
 //
 #define USERNAME			@"UserName"
 #define PASSWORD			@"PassWord"

@@ -34,6 +34,14 @@ rtl：右から左（縦組、右綴じ）。通常、縦書きの本の場合�
 #define PAGE_FILE_SMALL_PREFIX		@"Page_Small_p"
 #define PAGE_FILE_SMALL_EXTENSION	@"png"
 
+// for Marker Pen.
+#define MARKERPEN_ARRAY             @"MarkerPen_Array"  /* Top of data */
+#define MARKERPEN_PAGE_NUMBER       @"MarkerPen_PageNumber"
+#define MARKERPEN_POINT_ARRAY        @"MarkerPen_Line_Array" /* array of CGPointValue. */
+#define MARKERPEN_LINE_POSITION_X	@"x"
+#define MARKERPEN_LINE_POSITION_Y	@"y"
+#define MARKERPEN_COMMENT           @"MarkerPen_Comment"
+
 // for Thumnail Image.
 #define THUMBNAIL_FILE_PREFIX		@"thumb_"
 #define THUMBNAIL_FILE_EXTENSION	@"png"
