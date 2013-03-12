@@ -17,6 +17,7 @@
 #import "Utility.h"
 #import "FileUtility.h"
 #import "Define.h"
+#import "MarkerPenView.h"
 #import "MenuViewController.h"
 #import "WebViewController.h"
 #import "PopoverScrollImageViewController.h"
@@ -39,12 +40,16 @@
 	IBOutlet MyPdfScrollView* pdfScrollView2;
 	IBOutlet MyPdfScrollView* pdfScrollView3;
 	
+	//Marker pen.
+	MarkerPenView* markerPenView2;
+
 	//IBOutlet UIImageView* imageView1;
 	//IBOutlet UIImageView* imageView2;
 	//IBOutlet UIImageView* imageView3;
 	//UIImage* image1;
 	//UIImage* image2;
 	//UIImage* image3;
+	
 	// Pointer for view.
 	MyPdfScrollView* prevPdfScrollView;
 	MyPdfScrollView* currentPdfScrollView;
@@ -87,6 +92,13 @@
 	CGPoint panStartPoint;
 	CGPoint panEndPoint;
 	id panTargetView;
+	
+	// MarkerPen.
+    NSMutableArray* markerPenArray;
+	NSMutableArray* pointsForSingleLine;
+	bool isMarkerPenMode;
+	CGPoint prevTouchPointForMakerPen;
+    UIToolbar* menuBarForMakerPen;
 	
 	//
 	NSMutableArray* linksInCurrentPage;
@@ -131,6 +143,8 @@
 @property (nonatomic) bool isVerticalWriting;
 
 @property (nonatomic) ContentId currentContentId;
+
+@property (nonatomic) bool isMarkerPenMode;
 
 //@property (nonatomic, retain) UIImageView* imageView1;
 //@property (nonatomic, retain) UIImageView* imageView2;
@@ -287,6 +301,28 @@
 @interface ContentPlayerViewController (urlWithCsv)
 - (void)parseUrlLinkWithCsvDefine;	// Parse Url Link define in CSV.
 - (void)renderUrlLinkWithCsvAtIndex:(NSUInteger)index;
+@end
+
+// Treat Url link specified in CSV file.
+@interface ContentPlayerViewController (markerPen)
+// Handle Pan(draw maker pen)
+- (void)enterMarkerMode;
+- (void)setupMarkerPenView;
+- (void)setupMarkerPenMenu;
+- (void)exitMarkerMode;
+- (void)handlePan2:(UIPanGestureRecognizer*)gestureRecognizer;
+- (void)showMenuBarForMarker;
+- (void)hideMenuBarForMarker;
+//
+- (void)saveMarkerPenToUserDefault;
+- (void)loadMarkerPenFromUserDefault;
+//
+- (void)renderMarkerPenFromUserDefaultAtPage:(NSUInteger)pageNum;
+- (void)prepareDeleteMarkerPenWithCurrentPage;
+- (void)deleteMarkerPenAtPage:(NSUInteger)pageNum;
+- (void)clearMarkerPenView;
+//Delete single line.
+- (IBAction)deleteLastLine:(id)sender;
 @end
 
 

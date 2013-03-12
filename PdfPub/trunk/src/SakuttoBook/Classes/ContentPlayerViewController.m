@@ -20,6 +20,7 @@
 @synthesize menuViewController, bottomToolBar, webViewController, tocViewController, pageSmallViewController, bookmarkViewController;
 @synthesize isShownMenuBar, isShownTocView, isShownPageSmallView, isShownBookmarkView;
 //@synthesize currentImageView;
+@synthesize isMarkerPenMode;
 
 /*
  // The designated initializer. Override to perform setup that is required before the view is loaded.
@@ -105,14 +106,20 @@
 	[pdfScrollView2 addGestureRecognizer:swipeRecognizer2left];
 	[pdfScrollView3 addGestureRecognizer:swipeRecognizer3left];
 	
-	/*
-	 panRecognizer1 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
-	 panRecognizer2 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
-	 panRecognizer3 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
-	 [pdfScrolView1 addGestureRecognizer:panRecognizer1];
-	 [pdfScrolView2 addGestureRecognizer:panRecognizer2];
-	 [pdfScrolView3 addGestureRecognizer:panRecognizer3];
-	 */
+	//Gesture for MarkerPen.
+	panRecognizer1 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan2:)];
+	panRecognizer2 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan2:)];
+	panRecognizer3 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan2:)];
+	[pdfScrollView1 addGestureRecognizer:panRecognizer1];
+	[pdfScrollView2 addGestureRecognizer:panRecognizer2];
+	[pdfScrollView3 addGestureRecognizer:panRecognizer3];
+	
+	//Setup Maker Pen.
+	menuBarForMakerPen = nil;
+	[self loadMarkerPenFromUserDefault];
+	[self setupMarkerPenView];
+	[self setupMarkerPenMenu];
+	[self exitMarkerMode];
 	
 	//Set current content id.
 	//currentContentId = [self getCurrentContentIdFromUserDefault];
@@ -826,6 +833,11 @@
 	[self renderInPageScrollViewAtIndex:currentPageNum];
 	[self renderPopoverScrollImageLinkAtIndex:currentPageNum];
 	[self playSoundAtIndex:currentPageNum];	//play sound for new page.
+	//Marker Pen
+	[self setupMarkerPenMenu];
+	//[self setupMarkerPenViewAtPage:currentPageNum];
+	[self renderMarkerPenFromUserDefaultAtPage:currentPageNum];
+	[self.view bringSubviewToFront:markerPenView2];
 	
 	/*
 	 NSLog(@"prev-subviews=%d, curr-subview=%d, next-subview=%d",
@@ -973,7 +985,12 @@
 	[self renderInPageScrollViewAtIndex:currentPageNum];
 	[self renderPopoverScrollImageLinkAtIndex:currentPageNum];
 	[self playSoundAtIndex:currentPageNum];	//play sound for new page.
-
+	//Marker Pen
+	[self setupMarkerPenMenu];
+	//[self setupMarkerPenViewAtPage:currentPageNum];
+	[self renderMarkerPenFromUserDefaultAtPage:currentPageNum];
+	[self.view bringSubviewToFront:markerPenView2];
+	
 	//Save LastReadPage.
 	[self setLatestReadPage:currentPageNum];
 }
@@ -1031,7 +1048,12 @@
 	[self renderInPageScrollViewAtIndex:currentPageNum];
 	[self renderPopoverScrollImageLinkAtIndex:currentPageNum];
 	[self playSoundAtIndex:currentPageNum];	//play sound for new page.
-
+	//Marker Pen
+	[self setupMarkerPenMenu];
+	//[self setupMarkerPenViewAtPage:currentPageNum];
+	[self renderMarkerPenFromUserDefaultAtPage:currentPageNum];
+	[self.view bringSubviewToFront:markerPenView2];
+	
 	// Set animation
 	CATransition* animation1 = [CATransition animation];
 	[animation1 setDelegate:self];
@@ -1110,6 +1132,10 @@
 	}
 	if (isShownBookmarkView) {
 		[self hideBookmarkView];
+	}
+	if (isMarkerPenMode == YES) {
+		// do nothing in MarkerMode.
+		return;
 	}
 	
 	// Compare with URL Link in page.
@@ -1388,6 +1414,11 @@
 #if defined(ENABLED_TRANSITION) && ENABLED_TRANSITION == 0
 	return;
 #endif
+	
+	//do nothing if in marker pen mode.
+	if (isMarkerPenMode == YES) {
+		return;
+	}
 	
 	//Switch to next/prev page.
 	if (gestureRecognizer.direction == UISwipeGestureRecognizerDirectionRight) {
@@ -2586,6 +2617,11 @@
 	[self renderMailLinkAtIndex:currentPageNum];
 	[self renderPageJumpLinkAtIndex:currentPageNum];
 	[self renderInPageScrollViewAtIndex:currentPageNum];
+	//Marker Pen
+	[self setupMarkerPenMenu];
+	//[self setupMarkerPenViewAtPage:currentPageNum];
+	[self renderMarkerPenFromUserDefaultAtPage:currentPageNum];
+	[self.view bringSubviewToFront:markerPenView2];
 }
 
 - (bool)isChangeOrientationKind:(UIInterfaceOrientation)oldOrientation newOrientation:(UIInterfaceOrientation)newOrientation {

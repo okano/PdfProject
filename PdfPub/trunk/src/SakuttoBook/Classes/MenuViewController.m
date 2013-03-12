@@ -112,6 +112,12 @@
 	[appDelegate showContentListView];
 }
 
+//MARK: Marker mode.
+- (IBAction)enterMarkerMode:(id)sender
+{
+	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
+	[appDelegate enterMarkerMode];
+}
 
 #pragma mark -
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.

@@ -89,6 +89,12 @@
 		2989D00616A153B00017BCBD /* unpaid.png in Resources */ = {isa = PBXBuildFile; fileRef = 2989D00516A153B00017BCBD /* unpaid.png */; };
 		299448EC12B7370B00E7D108 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299448EB12B7370B00E7D108 /* MediaPlayer.framework */; };
 		2999FDC512D6A8D500D0F145 /* License.m in Sources */ = {isa = PBXBuildFile; fileRef = 2999FDC412D6A8D500D0F145 /* License.m */; };
+		299A7B3216EF1FA600153C7F /* ContentPlayerViewController+markerPen.m in Sources */ = {isa = PBXBuildFile; fileRef = 299A7B3116EF1FA600153C7F /* ContentPlayerViewController+markerPen.m */; };
+		299A7B3516EF203600153C7F /* MarkerPenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 299A7B3416EF203600153C7F /* MarkerPenView.m */; };
+		299A7B3716EF259C00153C7F /* icon_pen.png in Resources */ = {isa = PBXBuildFile; fileRef = 299A7B3616EF259C00153C7F /* icon_pen.png */; };
+		299A7B3916EF287900153C7F /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 299A7B3816EF287900153C7F /* Icon.png */; };
+		299A7B3B16EF288800153C7F /* icon_undo.png in Resources */ = {isa = PBXBuildFile; fileRef = 299A7B3A16EF288800153C7F /* icon_undo.png */; };
+		299A7B3D16EF388400153C7F /* icon_recycle.png in Resources */ = {isa = PBXBuildFile; fileRef = 299A7B3C16EF388400153C7F /* icon_recycle.png */; };
 		299F35CC1533EBAE00FAD69F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299F35CB1533EBAE00FAD69F /* SystemConfiguration.framework */; };
 		29A1CB7A138616AA00326759 /* SKBE_MainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A1CB79138616AA00326759 /* SKBE_MainVC.m */; };
 		29A1CB7E138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A1CB7D138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m */; };
@@ -280,6 +286,13 @@
 		299448EB12B7370B00E7D108 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		2999FDC312D6A8D500D0F145 /* License.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = License.h; sourceTree = "<group>"; };
 		2999FDC412D6A8D500D0F145 /* License.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = License.m; sourceTree = "<group>"; };
+		299A7B3116EF1FA600153C7F /* ContentPlayerViewController+markerPen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ContentPlayerViewController+markerPen.m"; sourceTree = "<group>"; };
+		299A7B3316EF203600153C7F /* MarkerPenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkerPenView.h; sourceTree = "<group>"; };
+		299A7B3416EF203600153C7F /* MarkerPenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkerPenView.m; sourceTree = "<group>"; };
+		299A7B3616EF259C00153C7F /* icon_pen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_pen.png; sourceTree = "<group>"; };
+		299A7B3816EF287900153C7F /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		299A7B3A16EF288800153C7F /* icon_undo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_undo.png; sourceTree = "<group>"; };
+		299A7B3C16EF388400153C7F /* icon_recycle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_recycle.png; sourceTree = "<group>"; };
 		299F35CB1533EBAE00FAD69F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		29A1CB78138616AA00326759 /* SKBE_MainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKBE_MainVC.h; path = SKBEngine/SKBEngine/SKBE_MainVC.h; sourceTree = "<group>"; };
 		29A1CB79138616AA00326759 /* SKBE_MainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKBE_MainVC.m; path = SKBEngine/SKBEngine/SKBE_MainVC.m; sourceTree = "<group>"; };
@@ -453,10 +466,13 @@
 				29D028C716328111004F7791 /* ContentPlayerViewController+mailSend.m */,
 				29AFB90D1638067A00C0978C /* ContentPlayerViewController+bottomMenu.m */,
 				29A1E74816AAE909003B19C1 /* ContentPlayerViewController+urlWithCsv.m */,
+				299A7B3116EF1FA600153C7F /* ContentPlayerViewController+markerPen.m */,
 				291EDE0213124E2C00DBD3E5 /* ImageGenerator.h */,
 				291EDE0313124E2C00DBD3E5 /* ImageGenerator.m */,
 				29B3B7C612C57DE00014F866 /* MyPdfScrollView.h */,
 				29B3B7C712C57DE00014F866 /* MyPdfScrollView.m */,
+				299A7B3316EF203600153C7F /* MarkerPenView.h */,
+				299A7B3416EF203600153C7F /* MarkerPenView.m */,
 				2935764012B5EA9C00F46754 /* MenuViewController.h */,
 				2935764112B5EA9C00F46754 /* MenuViewController.m */,
 				293BB9EE12B6217300DDA3E3 /* WebViewController.h */,
@@ -647,6 +663,10 @@
 				2921370D12C604B800FC071D /* image */,
 				29B1795714BC8C94007024AD /* Icon.png */,
 				29F3391D1398894E0005CF10 /* folder20x20.png */,
+				299A7B3616EF259C00153C7F /* icon_pen.png */,
+				299A7B3C16EF388400153C7F /* icon_recycle.png */,
+				299A7B3A16EF288800153C7F /* icon_undo.png */,
+				299A7B3816EF287900153C7F /* Icon.png */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				2899E5210DE3E06400AC0155 /* SakuttoBookViewController.xib */,
 				2962C40B1394B9EC002E57F9 /* ContentPlayerView.xib */,
@@ -1047,6 +1067,10 @@
 				297CE33E16BE6D74001C7BDE /* coverDummy.png in Resources */,
 				29C7401116BE935E00059E56 /* detailLine.png in Resources */,
 				291A797516DDED8700DB713B /* ServerContentDetailView-ipad.xib in Resources */,
+				299A7B3716EF259C00153C7F /* icon_pen.png in Resources */,
+				299A7B3916EF287900153C7F /* Icon.png in Resources */,
+				299A7B3B16EF288800153C7F /* icon_undo.png in Resources */,
+				299A7B3D16EF388400153C7F /* icon_recycle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1132,6 +1156,8 @@
 				294B3D3E16B578D30095E56F /* ServerContentListTableVC.m in Sources */,
 				294B3D4316B583810095E56F /* ServerContentListImageVC.m in Sources */,
 				29C2271716BA56550004B9E4 /* MBProgressHUD.m in Sources */,
+				299A7B3216EF1FA600153C7F /* ContentPlayerViewController+markerPen.m in Sources */,
+				299A7B3516EF203600153C7F /* MarkerPenView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
