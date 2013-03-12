@@ -2516,13 +2516,19 @@
 			[sheet showInView:self.view];	//[sheet showInView:self.view.window];
 		}
 	}
-	
+	sheet.tag = ACTIONSHEET_TAG_SHOW_WEBVIEW_SELECTOR;
     [sheet release];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
 	//LOG_CURRENT_METHOD;
+	
+	//check action sheet kind.
+	if (actionSheet.tag != ACTIONSHEET_TAG_SHOW_WEBVIEW_SELECTOR) {
+		return;
+	}
+	
 	if (! urlForWeb) {
 		LOG_CURRENT_LINE;
 		NSLog(@"no URL set");

@@ -395,17 +395,24 @@
 			  destructiveButtonTitle: nil
 			  otherButtonTitles:NSLocalizedString(@"削除する", nil), NSLocalizedString(@"キャンセル", nil), nil]
 			 autorelease];
+	sheet.tag = ACTIONSHEET_TAG_PREPARE_DELETE_MARKERPEN;
 	[sheet showInView: self.view];
 }
 
-- (void)actionSheet:(UIActionSheet *)sheet didDismissWithButtonIndex:(NSInteger)index
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)index
 {
 	//NSLog(@"action sheet: index=%d", index);
-    if( index == [sheet cancelButtonIndex])
+	
+	//check action sheet kind.
+	if (actionSheet.tag != ACTIONSHEET_TAG_PREPARE_DELETE_MARKERPEN) {
+		return;
+	}
+
+    if( index == [actionSheet cancelButtonIndex])
     {
         // Do Nothing
     }
-    else if( index == [sheet destructiveButtonIndex] )
+    else if( index == [actionSheet destructiveButtonIndex] )
     {
         // Do Nothing
     }
