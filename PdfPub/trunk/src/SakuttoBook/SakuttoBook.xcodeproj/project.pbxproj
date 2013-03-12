@@ -92,7 +92,6 @@
 		299A7B3216EF1FA600153C7F /* ContentPlayerViewController+markerPen.m in Sources */ = {isa = PBXBuildFile; fileRef = 299A7B3116EF1FA600153C7F /* ContentPlayerViewController+markerPen.m */; };
 		299A7B3516EF203600153C7F /* MarkerPenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 299A7B3416EF203600153C7F /* MarkerPenView.m */; };
 		299A7B3716EF259C00153C7F /* icon_pen.png in Resources */ = {isa = PBXBuildFile; fileRef = 299A7B3616EF259C00153C7F /* icon_pen.png */; };
-		299A7B3916EF287900153C7F /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 299A7B3816EF287900153C7F /* Icon.png */; };
 		299A7B3B16EF288800153C7F /* icon_undo.png in Resources */ = {isa = PBXBuildFile; fileRef = 299A7B3A16EF288800153C7F /* icon_undo.png */; };
 		299A7B3D16EF388400153C7F /* icon_recycle.png in Resources */ = {isa = PBXBuildFile; fileRef = 299A7B3C16EF388400153C7F /* icon_recycle.png */; };
 		299F35CC1533EBAE00FAD69F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299F35CB1533EBAE00FAD69F /* SystemConfiguration.framework */; };
@@ -290,7 +289,6 @@
 		299A7B3316EF203600153C7F /* MarkerPenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkerPenView.h; sourceTree = "<group>"; };
 		299A7B3416EF203600153C7F /* MarkerPenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkerPenView.m; sourceTree = "<group>"; };
 		299A7B3616EF259C00153C7F /* icon_pen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_pen.png; sourceTree = "<group>"; };
-		299A7B3816EF287900153C7F /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		299A7B3A16EF288800153C7F /* icon_undo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_undo.png; sourceTree = "<group>"; };
 		299A7B3C16EF388400153C7F /* icon_recycle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_recycle.png; sourceTree = "<group>"; };
 		299F35CB1533EBAE00FAD69F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -666,7 +664,6 @@
 				299A7B3616EF259C00153C7F /* icon_pen.png */,
 				299A7B3C16EF388400153C7F /* icon_recycle.png */,
 				299A7B3A16EF288800153C7F /* icon_undo.png */,
-				299A7B3816EF287900153C7F /* Icon.png */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				2899E5210DE3E06400AC0155 /* SakuttoBookViewController.xib */,
 				2962C40B1394B9EC002E57F9 /* ContentPlayerView.xib */,
@@ -1068,7 +1065,6 @@
 				29C7401116BE935E00059E56 /* detailLine.png in Resources */,
 				291A797516DDED8700DB713B /* ServerContentDetailView-ipad.xib in Resources */,
 				299A7B3716EF259C00153C7F /* icon_pen.png in Resources */,
-				299A7B3916EF287900153C7F /* Icon.png in Resources */,
 				299A7B3B16EF288800153C7F /* icon_undo.png in Resources */,
 				299A7B3D16EF388400153C7F /* icon_recycle.png in Resources */,
 			);
