@@ -194,8 +194,8 @@ static ProductIdList *_instance = nil;
 	[productIdList removeAllObjects];
 	[productIdList addObjectsFromArray:tmpArray];
 	
-	LOG_CURRENT_METHOD;
-	NSLog(@"productIdList=%@", [productIdList description]);
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"productIdList=%@", [productIdList description]);
 }
 
 - (NSString*)getProductIdListUrl

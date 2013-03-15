@@ -369,8 +369,8 @@
     NSString* from=[[NSBundle mainBundle] pathForResource:res ofType:@""];
 	if (from == nil) {
 		//resource file not found in mainBundle.
-		LOG_CURRENT_METHOD;
-		NSLog(@"copy from file not found in mainBundle. filenameFull=%@", filenameFull);
+		//LOG_CURRENT_METHOD;
+		//NSLog(@"copy from file not found in mainBundle. filenameFull=%@", filenameFull);
 		return NO;
 	}
     NSString* to=filenameFull;

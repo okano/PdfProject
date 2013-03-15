@@ -130,8 +130,8 @@
 {
 	NSString* tmpDirectory = [ContentFileUtility getContentTmpDirectory];
 	NSArray* fileList = [FileUtility fileList:tmpDirectory]; 
-	LOG_CURRENT_METHOD;
-	NSLog(@"tmp path=%@, fileList=%@", tmpDirectory, [fileList description]);
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"tmp path=%@, fileList=%@", tmpDirectory, [fileList description]);
 	
 	if ([fileList count] <= 0) {
 		//No file found in tmp directory.
@@ -202,6 +202,7 @@
 	NSString* toFilenameFull;
 	NSString* toDir;
 	NSArray* lines;
+	BOOL copyResult;
 	
 	/*
 	 * Copy CSV files, other resource files.
@@ -492,7 +493,10 @@
 			toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_TOC contentId:cid withDeviceSuffix:NO];
 		}
 		//NSLog(@"resourceName=%@, toFilenameFull=%@", resourceName, toFilenameFull);
-		[FileUtility res2file:resourceName fileNameFull:toFilenameFull];
+		copyResult = [FileUtility res2file:resourceName fileNameFull:toFilenameFull];
+		if (copyResult != YES) {
+			NSLog(@"cannot copy TOC define csv file. cid=%d", cid);
+		}
 		//Set Ignore Backup.
 		[FileUtility addSkipBackupAttributeToItemWithString:toFilenameFull];
 		
@@ -508,8 +512,10 @@
 			toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_TOC contentId:cid withDeviceSuffix:NO];
 		}
 		//NSLog(@"resourceName=%@, toFilenameFull=%@", resourceName, toFilenameFull);
-		[FileUtility res2file:resourceName fileNameFull:toFilenameFull];
-		
+		copyResult = [FileUtility res2file:resourceName fileNameFull:toFilenameFull];
+		if (copyResult != YES) {
+			NSLog(@"cannot copy TOC define csv file. cid=%d", cid);
+		}
 		//Set Ignore Backup.
 		[FileUtility addSkipBackupAttributeToItemWithString:toFilenameFull];
 	}
