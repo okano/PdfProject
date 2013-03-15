@@ -372,9 +372,11 @@
 							  autorelease];
 		[alert show];
 		
-		SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
-		[appDelegate hideContentPlayerView];
-		[appDelegate showContentListView];
+		//does not close(release) this view before method terminate.
+		
+		//SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
+		//[appDelegate hideContentPlayerView];
+		//[appDelegate showContentListView];
 
 		return FALSE;
 	}
