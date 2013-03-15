@@ -34,6 +34,9 @@
 //Hide Server button on Menu bar.
 #define HIDE_SERVER_BUTTON 0	/* 0:show, 1:hide */
 
+//Hide Restore button in Payment History View.
+#define HIDE_RESTORE_BUTTON 0	/* 0:show, 1:hide */
+
 //Overwrite productIdList.csv by server data.
 #define OVERWRITE_PRODUCTIDLIST_BY_SERVER	0	/* 0:save original data, 1:overwrite by server data */
 

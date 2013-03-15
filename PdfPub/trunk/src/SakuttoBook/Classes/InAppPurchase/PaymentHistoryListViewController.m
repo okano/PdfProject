@@ -38,11 +38,16 @@
 						   initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
 						   target:nil
 						   action:nil];
+#if defined(HIDE_RESTORE_BUTTON) && HIDE_RESTORE_BUTTON != 0
+	//Hide Restore Button.
+	NSArray *items = [NSArray arrayWithObjects:paymentHistoryButton, flexibleSpaceButton, nil];
+#else
 	UIBarButtonItem *restoreButton = [[UIBarButtonItem alloc] initWithTitle:@"Restore"
 																	  style:UIBarButtonItemStyleBordered
 																	 target:self
 																	 action:@selector(showAlertForRestoreTransaction:)];
 	NSArray *items = [NSArray arrayWithObjects:paymentHistoryButton, flexibleSpaceButton, restoreButton, nil];
+#endif
 	[toolbar setItems:items];
 	[self.view addSubview:toolbar];
 	
