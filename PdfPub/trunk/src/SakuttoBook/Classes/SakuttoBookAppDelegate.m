@@ -506,15 +506,15 @@
 		 */
 		//Copy CSV file.
 		resourceName = [FileUtility getCsvFilenameInMainBundle:CSVFILE_PDFDEFINE contentId:cid withDeviceSuffix:YES];
-		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_TOC contentId:cid withDeviceSuffix:YES];
+		toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_PDFDEFINE contentId:cid withDeviceSuffix:YES];
 		if ([FileUtility existsFile:[[NSBundle mainBundle] pathForResource:resourceName ofType:@""]] == NO) {
 			resourceName = [FileUtility getCsvFilenameInMainBundle:CSVFILE_PDFDEFINE contentId:cid withDeviceSuffix:NO];
-			toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_TOC contentId:cid withDeviceSuffix:NO];
+			toFilenameFull = [FileUtility getCsvFilenameInFolder:CSVFILE_PDFDEFINE contentId:cid withDeviceSuffix:NO];
 		}
 		//NSLog(@"resourceName=%@, toFilenameFull=%@", resourceName, toFilenameFull);
 		copyResult = [FileUtility res2file:resourceName fileNameFull:toFilenameFull];
 		if (copyResult != YES) {
-			NSLog(@"cannot copy TOC define csv file. cid=%d", cid);
+			NSLog(@"cannot copy PDF define csv file. cid=%d", cid);
 		}
 		//Set Ignore Backup.
 		[FileUtility addSkipBackupAttributeToItemWithString:toFilenameFull];
