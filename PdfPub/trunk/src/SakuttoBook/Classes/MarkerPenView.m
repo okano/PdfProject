@@ -162,7 +162,7 @@
         }
         
         //Set line color and width.
-        CGContextSetRGBStrokeColor(context, MARKERPEN_LINE_COLOR_R, MARKERPEN_LINE_COLOR_G, MARKERPEN_LINE_COLOR_B, MARKERPEN_LINE_COLOR_A);
+        CGContextSetRGBStrokeColor(context, MARKERPEN_LINE_COLOR_R, MARKERPEN_LINE_COLOR_G, MARKERPEN_LINE_COLOR_B, MARKERPEN_LINE_COLOR_ALPHA);
 		CGContextSetLineWidth(context, MARKERPEN_LINE_WIDTH);
 
 		//NSLog(@"pageNum=%d", [[lineInfo objectForKey:MARKERPEN_PAGE_NUMBER] intValue]);
