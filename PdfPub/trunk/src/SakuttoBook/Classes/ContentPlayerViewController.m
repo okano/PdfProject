@@ -1164,7 +1164,8 @@
 			//open with Safari.
 			//[self showWebWithSafari:urlStr];
 			//open with anotherView/Safari(show selecter).
-			[self showWebViewSelector:urlStr];
+			//[self showWebViewSelector:urlStr];
+			[self showWebView:urlStr];
 			
 			//no-continue.
 			return;
@@ -1187,7 +1188,7 @@
 			if (CGRectContainsPoint(rect, touchedPointInOriginalPdf)) {
 				NSString* urlStr = [urlLinkInfo valueForKey:ULWC_URL];
 				//open with anotherView/Safari(show selecter).
-				[self showWebViewSelector:urlStr];
+				[self showWebView:urlStr];
 				
 				//no-continue.
 				return;
@@ -2477,6 +2478,18 @@
 
 #pragma mark -
 #pragma mark Show Web view.
+/* 0:ask everytime, 1:open in this application, 2:open with Safari(close this application) */
+- (void)showWebView:(NSString*)urlString
+{
+#if defined(OPEN_URL_WITH) && OPEN_URL_WITH == 1
+	[self showWebViewInThisApp:urlString];
+#elif defined(OPEN_URL_WITH) && OPEN_URL_WITH == 2
+	[self showWebWithSafari:urlString];
+#else
+	[self showWebViewSelector:urlString];
+#endif
+}
+
 - (void)showWebViewSelector:(NSString*)urlString
 {
 	//LOG_CURRENT_METHOD;

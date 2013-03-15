@@ -40,6 +40,9 @@
 //Overwrite productIdList.csv by server data.
 #define OVERWRITE_PRODUCTIDLIST_BY_SERVER	0	/* 0:save original data, 1:overwrite by server data */
 
+//Setting how to open URL link.
+#define OPEN_URL_WITH	0	/* 0:ask everytime, 1:open in this application, 2:open with Safari(close this application) */
+
 // Tap area. (0.00 - 1.00) (1.00 is "fit to screen")
 #define TAP_AREA_LEFT_X			0.00f
 #define TAP_AREA_LEFT_Y			0.15f

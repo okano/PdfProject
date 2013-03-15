@@ -251,6 +251,7 @@
 - (void)hideMenuBar;
 // Show other view.
 - (IBAction)showInfoView;
+- (void)showWebView:(NSString*)urlString;
 - (void)showWebViewSelector:(NSString*)urlString;
 - (void)showWebViewInThisApp:(NSString*)urlString;
 - (void)showWebWithSafari:(NSString*)urlString;
