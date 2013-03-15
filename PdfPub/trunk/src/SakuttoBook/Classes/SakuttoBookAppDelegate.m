@@ -187,7 +187,7 @@
 		//Copy.
 		if ( [FileUtility res2file:resourceName fileNameFull:filenameFull] == NO) {
 			LOG_CURRENT_METHOD;
-			NSLog(@"cannot copy PDF file from mainBundle. cidStr=%@, resourceName=%@, filenameFull=%@",
+			NSLog(@"cannot copy PDF file from mainBundle. cidStr=%@, from_resourceName=%@, copy_to_filenameFull=%@",
 				  cidStr, resourceName, filenameFull);
 		}
 		

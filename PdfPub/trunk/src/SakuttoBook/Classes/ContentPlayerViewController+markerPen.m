@@ -322,7 +322,7 @@
 	
 	id obj = [settings valueForKey:MARKERPEN_ARRAY];
 	if (!obj) {		//no markerpen exists.
-        NSLog(@"no markerpen infomation in UserDefault.");
+        //NSLog(@"no markerpen infomation in UserDefault.");
 		return;
 	}
 	if (![obj isKindOfClass:[NSArray class]]) {
