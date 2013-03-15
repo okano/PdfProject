@@ -21,10 +21,11 @@
 	
 	NSString* pdfFilename;
 	if ([lines count] < 1) {
+		LOG_CURRENT_METHOD;
 		NSLog(@"no PDF file specified in %@.%@", targetFilename, @"csv");
 		pdfFilename = [NSString stringWithFormat:TEST_PDF_FILENAME];
 	} else {
-		pdfFilename = [lines objectAtIndex:0];
+		pdfFilename = [self getPdfFilenameWithSingleString:[lines objectAtIndex:0]];
 	}
 	return pdfFilename;
 }
@@ -36,28 +37,43 @@
 	
 	NSString* pdfFilename;
 	if ([lines count] < 1) {
+		LOG_CURRENT_METHOD;
 		NSLog(@"no PDF file specified for cid=%d", cId);
 		NSLog(@"内蔵コンテンツ%dのためのPDF定義ファイルが見つかりません。", cId);
 		pdfFilename = [NSString stringWithFormat:TEST_PDF_FILENAME];
 	} else {
 		NSString* line = [lines objectAtIndex:0];
-		
-		//parse each line.
-		NSArray* tmpCsvArray = [line componentsSeparatedByString:@","];
-		if ([tmpCsvArray count] <= 1) {
-			//NSLog(@"no comma found in %@", targetFilename);
-			pdfFilename = [tmpCsvArray objectAtIndex:0];
+		pdfFilename = [self getPdfFilenameWithSingleString:line];
+	}
+	return pdfFilename;
+}
+//Ex: document-iphone.pdf,document-ipad.pdf,document-iphone5.pdf
++ (NSString*)getPdfFilenameWithSingleString:(NSString*)line
+{
+	//parse each line.
+	NSArray* tmpCsvArray = [line componentsSeparatedByString:@","];
+	if ([tmpCsvArray count] <= 1) {
+		//NSLog(@"no comma found in %@", targetFilename);
+		return [tmpCsvArray objectAtIndex:0];
+	} else {
+		if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+			// iPad
+			return [tmpCsvArray objectAtIndex:1];
 		} else {
-			if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-				// iPad
-				pdfFilename = [tmpCsvArray objectAtIndex:1];
+			// iPhone
+			if ([self is_4inch] == NO) {
+				// iPhone(3.5-inch)
+				return [tmpCsvArray objectAtIndex:0];
 			} else {
-				// iPhone
-				pdfFilename = [tmpCsvArray objectAtIndex:0];
+				// iPhone(4-inch)
+				if (3 <= [tmpCsvArray count]) {
+					return [tmpCsvArray objectAtIndex:2];
+				} else {
+					return [tmpCsvArray objectAtIndex:0];
+				}
 			}
 		}
 	}
-	return pdfFilename;
 }
 
 #pragma mark - page image cache.
@@ -105,7 +121,7 @@
 //only from MainBundle. because no ContentId.(single pdf mode)
 //
 //example: with tocDefine.csv
-//(A)tocDefine-ipad.csv / tocDefine-iphone.csv (add suffix "-iad" or "-iphone")
+//(A)tocDefine-ipad.csv / tocDefine-iphone.csv (add suffix "-ipad" or "-iphone")
 //(B)tocDefine.csv (not suffix)
 //
 + (NSArray*)parseDefineCsv:(NSString*)filename
@@ -115,18 +131,28 @@
 	
 	NSString* csvFilePath = nil;
 	
-	//Find file (A)
+	//Find file (A-1)filename with suffix.
 	NSString* filenameWithDevice = nil;
 	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
 		// iPad
 		filenameWithDevice = [filename stringByAppendingString:@"-ipad"];
 	} else {
 		// iPhone
-		filenameWithDevice = filename;
+		if ([self is_4inch] == YES) {
+			filenameWithDevice = [filename stringByAppendingString:@"-iphone"];
+		} else {
+			//(A-1)iPhone5
+			filenameWithDevice = [filename stringByAppendingString:@"-iphone5"];
+			csvFilePath = [[NSBundle mainBundle] pathForResource:filenameWithDevice ofType:@"csv"];
+			if (csvFilePath == nil) {
+				//(A-2)use iPhone(3.5-inch) file for iPhone5.
+				filenameWithDevice = [filename stringByAppendingString:@"-iphone"];
+			}
+		}
 	}
 	csvFilePath = [[NSBundle mainBundle] pathForResource:filenameWithDevice ofType:@"csv"];
 
-	//Find file (B)
+	//Find file (B)filename without suffix.
 	if (csvFilePath == nil) {
 		csvFilePath = [[NSBundle mainBundle] pathForResource:filename ofType:@"csv"];
 		if (csvFilePath == nil) {
@@ -240,8 +266,8 @@
 	if ([self existsFile:csvFilePath] == NO) {
 		//(6)get from mainBundle, without cid, without suffix.
 		//   Ex: ~/SakuttoBook.app/tocDefine.csv
-		csvFilePath	= [[NSBundle mainBundle] pathForResource:filename ofType:@"csv"];
-		if ((csvFilePath == nil) || [self existsFile:csvFilePath] == NO) {
+		filenameInMainBundle	= [[NSBundle mainBundle] pathForResource:filename ofType:@"csv"];
+		if ((filenameInMainBundle == nil) || [self existsFile:filenameInMainBundle] == NO) {
 			//No file found.
 			//LOG_CURRENT_METHOD;
 			//NSLog(@"csv name=%@", filename);
@@ -259,13 +285,14 @@
 //Ex: ~/tmp/contentBody/1/csv/tocDefine.csv        (without suffix.)
 //Ex: ~/tmp/contentBody/1/csv/tocDefine-iphone.csv (with suffix for iphone.)
 //Ex: ~/tmp/contentBody/1/csv/tocDefine-ipad.csv   (with suffix for ipad.)
+//Ex: ~/tmp/contentBody/1/csv/tocDefine-iphone5.csv (with suffix for iphone5.)
 + (NSString*)getCsvFilenameInFolder:(NSString*)filename contentId:(ContentId)cid withDeviceSuffix:(BOOL)isAddSuffix;
 {
 	NSString* cidStr = [NSString stringWithFormat:@"%d", cid];
 	NSString* csvFilePath1 = nil;
 	
 	if (isAddSuffix == TRUE) {
-		//(A)Add suffix "-iad" or "-iphone".
+		//(A)Add suffix "-ipad" or "-iphone".
 		//example: with tocDefine.csv
 		//         ->tocDefine-ipad.csv / tocDefine-iphone.csv
 		NSString* suffix = nil;
@@ -274,7 +301,11 @@
 			suffix = @"_ipad";
 		} else {
 			// iPhone
-			suffix = @"_iphone";
+			if ([self is_4inch] == YES) {
+				suffix = @"_iphone5";
+			} else {
+				suffix = @"_iphone";
+			}
 		}
 
 		csvFilePath1 = [[[[[ContentFileUtility getContentBodyDirectoryWithContentId:cidStr]
@@ -304,7 +335,11 @@
 			suffix = @"_ipad";
 		} else {
 			// iPhone
-			suffix = @"_iphone";
+			if ([self is_4inch] == YES) {
+				suffix = @"_iphone5";
+			} else {
+				suffix = @"_iphone";
+			}
 		}
 		filenameWithCid = [[NSString stringWithFormat:@"%@%@_%d", filename, suffix, cid]
 						   stringByAppendingPathExtension:@"csv"];
@@ -334,7 +369,7 @@
 + (BOOL)makeDir:(NSString*)fileNameFull {
 	//NSLog(@"fileNameFull=%@", fileNameFull);
     if ([self existsFile:fileNameFull]) {
-		NSLog(@"directory already exists at %@", fileNameFull);
+		//NSLog(@"directory already exists at %@", fileNameFull);
 		return FALSE;
 	}
 	
@@ -389,7 +424,7 @@
 			  [error localizedDescription],
 			  [error localizedFailureReason], [error code]);
 		if ([error code] == NSFileWriteFileExistsError) {
-			NSLog(@"NSFileWriteFileExistsError. file already exists.");
+			NSLog(@"(NSFileWriteFileExistsError. file already exists.)");
 		}
 		return NO;
 	}
@@ -462,6 +497,16 @@
 	
     return [NSString stringWithCString:systemInfo.machine
                               encoding:NSUTF8StringEncoding];
+}
+
++(BOOL)is_4inch
+{
+	CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+	if ((screenSize.width == 320.0f) && (screenSize.height == 568.0f)) {
+		return YES;	//4-inch.
+	} else {
+		return NO;	//3.5-inch or iPad.
+	}
 }
 
 @end
