@@ -388,13 +388,25 @@
 {
 	//Show ActionSheet
 	UIActionSheet *sheet;
-	sheet = [[[UIActionSheet alloc]
-			  initWithTitle:@"ページ内のマーカーを削除しますか？"
-			  delegate: self
-			  cancelButtonTitle: NSLocalizedString(@"Cancel", nil)
-			  destructiveButtonTitle: nil
-			  otherButtonTitles:NSLocalizedString(@"削除する", nil), NSLocalizedString(@"キャンセル", nil), nil]
-			 autorelease];
+	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+		// iPad
+		// No "cancel" button.
+		sheet =[[UIActionSheet alloc]
+				initWithTitle:@"ページ内のマーカーを削除しますか？"
+				delegate:self
+				cancelButtonTitle:nil
+				destructiveButtonTitle:nil
+				otherButtonTitles:NSLocalizedString(@"削除する", nil), NSLocalizedString(@"キャンセル", nil), nil];
+	} else {
+		// iPhone
+		sheet = [[[UIActionSheet alloc]
+				  initWithTitle:@"ページ内のマーカーを削除しますか？"
+				  delegate: self
+				  cancelButtonTitle: NSLocalizedString(@"Cancel", nil)
+				  destructiveButtonTitle: nil
+				  otherButtonTitles:NSLocalizedString(@"削除する", nil), nil]
+				 autorelease];
+	}
 	sheet.tag = ACTIONSHEET_TAG_PREPARE_DELETE_MARKERPEN;
 	[sheet showInView: self.view];
 }
