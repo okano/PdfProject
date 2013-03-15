@@ -252,7 +252,7 @@
 // Show other view.
 - (IBAction)showInfoView;
 - (void)showWebViewSelector:(NSString*)urlString;
-- (void)showWebView:(NSString*)urlString;
+- (void)showWebViewInThisApp:(NSString*)urlString;
 - (void)showWebWithSafari:(NSString*)urlString;
 
 // Utility for Handle Rotate.

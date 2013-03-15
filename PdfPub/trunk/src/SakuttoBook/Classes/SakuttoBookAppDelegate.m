@@ -684,7 +684,7 @@
 	return tocDefine;
 }
 - (void)showWebView:(NSString*)urlString {
-	[viewController.contentPlayerViewController showWebView:urlString];
+	[viewController.contentPlayerViewController showWebViewInThisApp:urlString];
 }
 - (void)showInfoView {
 	[viewController.contentPlayerViewController showInfoView];

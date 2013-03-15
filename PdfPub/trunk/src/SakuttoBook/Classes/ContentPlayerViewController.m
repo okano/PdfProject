@@ -2539,7 +2539,7 @@
 	//NSLog(@"urlForWeb=%@", urlForWeb);
 	
 	if (buttonIndex == 0) {
-		[self showWebView:urlForWeb];
+		[self showWebViewInThisApp:urlForWeb];
 	} else if (buttonIndex == 1) {
 		[self showWebWithSafari:urlForWeb];
 	}
@@ -2550,7 +2550,7 @@
 	return;
 }
 
-- (void)showWebView:(NSString*)urlString
+- (void)showWebViewInThisApp:(NSString*)urlString
 {
 	//LOG_CURRENT_METHOD;
 	//NSLog(@"urlString = %@", urlString);
