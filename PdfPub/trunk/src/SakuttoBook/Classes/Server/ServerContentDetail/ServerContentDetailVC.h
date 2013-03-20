@@ -12,12 +12,15 @@
 #import "SakuttoBookAppDelegate.h"
 #import "ServerContentDownloadVC.h"
 #import "CoverUtility.h"
+#import <MediaPlayer/MediaPlayer.h>
+#import "FileUtility.h"
 
 @interface ServerContentDetailVC : UIViewController <VCWithInAppPurchaseProtocol> {
 	SakuttoBookAppDelegate* appDelegate;
 	ContentId targetCid;
 	NSString* targetProductId;
 	NSString* taregetUuid;
+	NSURL* previewUrl;
 	NSURL* targetUrl;
 	
 	//UserInterface.
@@ -29,6 +32,8 @@
 	IBOutlet UILabel* authorLabel;
 	IBOutlet UITextView* descriptionTextView;
 	IBOutlet UILabel* priceLabel;
+	//
+	IBOutlet UIButton* previewButton;
 	//
 	IBOutlet UIButton* buyButton;
 	IBOutlet UIButton* reDownloadButton;
@@ -43,6 +48,7 @@
 @property (nonatomic, retain) UILabel* authorLabel;
 @property (nonatomic, retain) UITextView* descriptionTextView;
 @property (nonatomic, retain) UILabel* priceLabel;
+@property (nonatomic, retain) UIButton* previewButton;
 
 @property (nonatomic, retain) UIButton* buyButton;
 @property (nonatomic, retain) UIButton* reDownloadButton;
@@ -55,6 +61,12 @@
 - (void)enableReDownloadButton;
 - (void)disableReDownloadButton;
 - (void)hideReDownloadButton;
+
+//Preview sample.
+- (void)showPreviewButton;
+- (void)hidePreviewButton;
+- (IBAction)pushedPreviewButton:(id)sender;
+- (void)showMoviePlayer:(NSURL*)url;
 
 //Close this view.
 - (IBAction)showServerContentList:(id)sender;
