@@ -66,7 +66,7 @@
 	descriptionTextView.text = [appDelegate.serverContentListDS descriptionByUuid:uuid];
 	
 	//URL for preview.
-	previewUrl = [[NSURL alloc] initWithString:[[appDelegate.serverContentListDS previewUrlByUuid:uuid] description]];
+	previewUrl = [[appDelegate.serverContentListDS previewUrlByUuid:uuid] copy];
 	if (previewUrl == nil) {
 		[self hidePreviewButton];
 	} else {
