@@ -333,7 +333,7 @@
 //return: count of metadata. or 0(init fail)
 - (int)loadFromPlist
 {
-	LOG_CURRENT_METHOD;
+	//LOG_CURRENT_METHOD;
 	// generate file name.
 	NSString* pFile = [self getPlistFilenameFull];
 	
