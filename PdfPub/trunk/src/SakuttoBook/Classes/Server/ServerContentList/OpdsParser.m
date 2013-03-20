@@ -247,6 +247,7 @@
 		//Links
 		NSArray* links = [singleElement elementsForName:@"link"];
 		thumbnailLinks = [[NSMutableArray alloc] init];
+		sampleLink = nil;
 		//NSLog(@"links=%@", [links description]);
 		for (id e in links){
 			NSString* relAttribute = [[e attributeForName:@"rel"] stringValue];
