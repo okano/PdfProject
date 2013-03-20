@@ -169,6 +169,11 @@
 	
 	totalHeight = 400;
 	
+	//erase old thumbnail view.
+	for (UIView* v in thumbnailScrollView.subviews) {
+		[v removeFromSuperview];
+	}
+	
 	//Thumbnail images. "http://opds-spec.org/thumbnail/{1..4}"
 	//NSMutableArray* thumbnailUrlLinks = [appDelegate.serverContentListDS thumbnailUrlsByContentId:targetCid];
 	NSMutableArray* thumbnailImages = [appDelegate.serverContentListDS thumbnailImagesByContentId:targetCid];
