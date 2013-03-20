@@ -278,7 +278,18 @@
 	if (previewUrl != nil) {
 		LOG_CURRENT_LINE;
 		NSLog(@"previewUrl=%@", [previewUrl description]);
-		[self showMoviePlayer:previewUrl];
+		
+		NSString* ext = [previewUrl pathExtension];
+		if (([ext caseInsensitiveCompare:@"mov"] == NSOrderedSame)
+			|| ([ext caseInsensitiveCompare:@"mp4"] == NSOrderedSame)
+			|| ([ext caseInsensitiveCompare:@"m4v"] == NSOrderedSame)
+			|| ([ext caseInsensitiveCompare:@"mpv"] == NSOrderedSame)
+			|| ([ext caseInsensitiveCompare:@"mpg"] == NSOrderedSame)
+			|| ([ext caseInsensitiveCompare:@"3gp"] == NSOrderedSame)
+			)
+		{
+			[self showMoviePlayer:previewUrl];
+		}
 	}
 }
 - (void)showMoviePlayer:(NSURL*)url
@@ -286,7 +297,7 @@
 	NSLog(@"url class=%@", [url class]);
 	NSLog(@"url=%@", [url description]);
 	if (url != nil) {
-		
+		/*
 		//Download preview file from URL.
 		NSString* targetCidStr = [[NSNumber numberWithInt:targetCid] stringValue];
 		NSLog(@"targetCid=%d(%@)", targetCid, targetCidStr);
@@ -317,6 +328,9 @@
 		MPMoviePlayerViewController* mpview;
 		NSURL* urlTmp = [[NSURL alloc] initFileURLWithPath:localFilename];
 		if ((mpview = [[MPMoviePlayerViewController alloc] initWithContentURL:urlTmp]) != nil) {
+		*/
+		MPMoviePlayerViewController* mpview;
+		if ((mpview = [[MPMoviePlayerViewController alloc] initWithContentURL:previewUrl]) != nil) {
 			[self presentMoviePlayerViewControllerAnimated:mpview];
 			//[mpview.moviePlayer setControlStyle:MPMovieControlStyleDefault];
 			[mpview.moviePlayer setMovieSourceType:MPMovieSourceTypeFile];	//play from localfile.
