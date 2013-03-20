@@ -281,7 +281,9 @@
 			searchForMe = @"http://opds-spec.org/thumbnail/";		// "thumbnail/{1..4}"
 			range = [relAttribute rangeOfString : searchForMe];
 			if (range.location != NSNotFound) {
-				[thumbnailLinks addObject:[NSString stringWithFormat:@"%@%@", baseUrlStr, hrefAttribute]];
+				if ([hrefAttribute caseInsensitiveCompare:@"/assets/content/thumb_default.gif"] != NSOrderedSame) {
+					[thumbnailLinks addObject:[NSString stringWithFormat:@"%@%@", baseUrlStr, hrefAttribute]];
+				}
 				continue;	//skip to next tag.
 			}
 			searchForMe = @"http://opds-spec.org/thumbnail";
