@@ -55,6 +55,7 @@
 
 //get the device model number using uname from sys/utsname.h
 + (NSString*)machineName;
++(BOOL)is_4inch;
 @end
 
 //
