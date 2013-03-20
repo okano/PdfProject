@@ -663,7 +663,6 @@
 								<string key="NSFrame">{{0, 1769}, {768, 280}}</string>
 								<reference key="NSSuperview" ref="64112991"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIMultipleTouchEnabled">YES</bool>
@@ -791,6 +790,14 @@
 					<int key="connectionID">164</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">previewButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="425570777"/>
+					</object>
+					<int key="connectionID">174</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">pushedBuyButton:</string>
 						<reference key="source" ref="275201014"/>
@@ -843,6 +850,15 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">168</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">pushedPreviewButton:</string>
+						<reference key="source" ref="425570777"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">173</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -1149,7 +1165,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">172</int>
+			<int key="maxID">174</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1216,6 +1232,7 @@
 						<string key="downloadContent:">id</string>
 						<string key="downloadWithoutPurchase:">id</string>
 						<string key="pushedBuyButton:">id</string>
+						<string key="pushedPreviewButton:">id</string>
 						<string key="showServerContentList:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
@@ -1231,6 +1248,10 @@
 							<string key="name">pushedBuyButton:</string>
 							<string key="candidateClassName">id</string>
 						</object>
+						<object class="IBActionInfo" key="pushedPreviewButton:">
+							<string key="name">pushedPreviewButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="showServerContentList:">
 							<string key="name">showServerContentList:</string>
 							<string key="candidateClassName">id</string>
@@ -1241,6 +1262,7 @@
 						<string key="buyButton">UIButton</string>
 						<string key="descriptionTextView">UITextView</string>
 						<string key="downloadWithoutPurchaseButton">UIButton</string>
+						<string key="previewButton">UIButton</string>
 						<string key="priceLabel">UILabel</string>
 						<string key="reDownloadButton">UIButton</string>
 						<string key="scrollView">UIScrollView</string>
@@ -1263,6 +1285,10 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="downloadWithoutPurchaseButton">
 							<string key="name">downloadWithoutPurchaseButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="previewButton">
+							<string key="name">previewButton</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="priceLabel">

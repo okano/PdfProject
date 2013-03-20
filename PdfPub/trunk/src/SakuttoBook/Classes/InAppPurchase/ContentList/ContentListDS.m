@@ -879,6 +879,38 @@
 	return nil;
 }
 
+#pragma mark (previewUrl)
+- (NSURL*)previewUrlAtIndex:(NSInteger)index
+{
+	NSDictionary* tmpDict;
+	tmpDict = [contentList objectAtIndex:index];
+	
+	NSString* urlStr = [tmpDict valueForKey:CONTENT_SAMPLE_LINK];
+	return [NSURL URLWithString:urlStr];
+}
+- (NSURL*)previewUrlByContentId:(ContentId)cid
+{
+	NSDictionary* tmpDict;
+	for (tmpDict in contentList){
+		if ([[tmpDict valueForKey:CONTENT_CID] intValue] == cid) {
+			NSString* urlStr = [tmpDict valueForKey:CONTENT_SAMPLE_LINK];
+			return [NSURL URLWithString:urlStr];
+		}
+	}
+	return nil;
+}
+- (NSURL*)previewUrlByUuid:(NSString*)uuid
+{
+	NSDictionary* tmpDict;
+	for (tmpDict in contentList){
+		if ([[tmpDict valueForKey:CONTENT_UUID] compare:uuid options:NSCaseInsensitiveSearch] == NSOrderedSame) {
+			NSString* urlStr = [tmpDict valueForKey:CONTENT_SAMPLE_LINK];
+			return [NSURL URLWithString:urlStr];
+		}
+	}
+	return nil;
+}
+
 #pragma mark (thumbnailUrls)
 - (NSMutableArray*)thumbnailUrlsAtIndex:(NSInteger)index
 {

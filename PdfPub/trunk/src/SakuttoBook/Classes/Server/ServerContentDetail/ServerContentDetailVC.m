@@ -14,6 +14,7 @@
 @synthesize targetUrl;
 @synthesize thumbnailImageView, thumbnailScrollView, titleLabel, authorLabel, descriptionTextView;
 @synthesize priceLabel;
+@synthesize previewButton;
 @synthesize buyButton, reDownloadButton;
 
 #pragma mark -
@@ -63,6 +64,14 @@
 	titleLabel.text = [appDelegate.serverContentListDS titleByUuid:uuid];
 	authorLabel.text = [appDelegate.serverContentListDS authorByUuid:uuid];
 	descriptionTextView.text = [appDelegate.serverContentListDS descriptionByUuid:uuid];
+	
+	//URL for preview.
+	previewUrl = [[appDelegate.serverContentListDS previewUrlByUuid:uuid] copy];
+	if (previewUrl == nil) {
+		[self hidePreviewButton];
+	} else {
+		[self showPreviewButton];
+	}
 	
 	//URL for download.
 	NSURL* u = [appDelegate.serverContentListDS acquisitionUrlByUuid:uuid];
@@ -252,6 +261,84 @@
 }
 - (void)hideReDownloadButton {
 	reDownloadButton.hidden = YES;
+}
+
+
+#pragma mark - preview.
+- (void)showPreviewButton
+{
+	previewButton.hidden = NO;
+}
+- (void)hidePreviewButton
+{
+	previewButton.hidden = YES;
+}
+- (IBAction)pushedPreviewButton:(id)sender
+{
+	if (previewUrl != nil) {
+		LOG_CURRENT_LINE;
+		NSLog(@"previewUrl=%@", [previewUrl description]);
+		
+		NSString* ext = [previewUrl pathExtension];
+		if (([ext caseInsensitiveCompare:@"mov"] == NSOrderedSame)
+			|| ([ext caseInsensitiveCompare:@"mp4"] == NSOrderedSame)
+			|| ([ext caseInsensitiveCompare:@"m4v"] == NSOrderedSame)
+			|| ([ext caseInsensitiveCompare:@"mpv"] == NSOrderedSame)
+			|| ([ext caseInsensitiveCompare:@"mpg"] == NSOrderedSame)
+			|| ([ext caseInsensitiveCompare:@"3gp"] == NSOrderedSame)
+			)
+		{
+			[self showMoviePlayer:previewUrl];
+		}
+	}
+}
+- (void)showMoviePlayer:(NSURL*)url
+{
+	NSLog(@"url class=%@", [url class]);
+	NSLog(@"url=%@", [url description]);
+	if (url != nil) {
+		/*
+		//Download preview file from URL.
+		NSString* targetCidStr = [[NSNumber numberWithInt:targetCid] stringValue];
+		NSLog(@"targetCid=%d(%@)", targetCid, targetCidStr);
+		NSString* tmpDir = [ContentFileUtility getContentTmpDirectoryWithContentId:targetCidStr];
+		NSString* filename = [url lastPathComponent];
+		NSString* localFilename = [tmpDir stringByAppendingPathComponent:filename];
+		NSLog(@"localFilename=%@", localFilename);
+		
+		NSData *previewFileData = [NSData dataWithContentsOfURL:url];
+
+		
+		//NSData* previewFileData = [[NSData alloc] initWithContentsOfURL:url];
+		NSLog(@"data length=%d", [previewFileData length]);
+		if (previewFileData == nil) {
+			LOG_CURRENT_LINE;
+		}
+		
+		[FileUtility makeDir:tmpDir];
+		NSError* error = nil;
+		[previewFileData writeToFile:localFilename
+				  options:NSDataWritingFileProtectionComplete error:&error];
+		if (error != nil)
+		{
+			NSLog(@"file write error. code=%d, desc=%@", [error code], [error localizedDescription]);
+		}
+		
+		
+		MPMoviePlayerViewController* mpview;
+		NSURL* urlTmp = [[NSURL alloc] initFileURLWithPath:localFilename];
+		if ((mpview = [[MPMoviePlayerViewController alloc] initWithContentURL:urlTmp]) != nil) {
+		*/
+		MPMoviePlayerViewController* mpview;
+		if ((mpview = [[MPMoviePlayerViewController alloc] initWithContentURL:previewUrl]) != nil) {
+			[self presentMoviePlayerViewControllerAnimated:mpview];
+			//[mpview.moviePlayer setControlStyle:MPMovieControlStyleDefault];
+			[mpview.moviePlayer setMovieSourceType:MPMovieSourceTypeFile];	//play from localfile.
+			[mpview.moviePlayer prepareToPlay];
+			[mpview.moviePlayer play];
+			[mpview release];
+		}
+	}
 }
 
 
