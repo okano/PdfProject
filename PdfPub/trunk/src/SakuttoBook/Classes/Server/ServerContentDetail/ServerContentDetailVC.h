@@ -30,13 +30,18 @@
 	UIImage* image;
 	IBOutlet UILabel* titleLabel;
 	IBOutlet UILabel* authorLabel;
-	IBOutlet UITextView* descriptionTextView;
+	IBOutlet UILabel* descriptionLabel;
 	IBOutlet UILabel* priceLabel;
 	//
 	IBOutlet UIButton* previewButton;
 	//
 	IBOutlet UIButton* buyButton;
 	IBOutlet UIButton* reDownloadButton;
+	//Related Contents.
+	IBOutlet UIImageView* relatedContentDelimiter;
+	IBOutlet UILabel* relatedContentHeader;
+	IBOutlet UILabel* relatedContentLabel;
+	
 	//For debug.
 	IBOutlet UIButton* downloadWithoutPurchaseButton;
 }
@@ -46,12 +51,16 @@
 @property (nonatomic, retain) UIScrollView* thumbnailScrollView;
 @property (nonatomic, retain) UILabel* titleLabel;
 @property (nonatomic, retain) UILabel* authorLabel;
-@property (nonatomic, retain) UITextView* descriptionTextView;
+@property (nonatomic, retain) UILabel* descriptionlabel;
 @property (nonatomic, retain) UILabel* priceLabel;
 @property (nonatomic, retain) UIButton* previewButton;
 
 @property (nonatomic, retain) UIButton* buyButton;
 @property (nonatomic, retain) UIButton* reDownloadButton;
+//
+@property (nonatomic, retain)  UIImageView* relatedContentDelimiter;
+@property (nonatomic, retain)  UILabel* relatedContentHeader;
+@property (nonatomic, retain)  UILabel* relatedContentLabel;
 
 //- (void)setLabelsWithContentId:(ContentId)cid;
 - (void)setLabelsWithUuid:(NSString*)uuid;

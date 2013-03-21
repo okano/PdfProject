@@ -12,10 +12,11 @@
 @implementation ServerContentDetailVC
 @synthesize targetUuid;
 @synthesize targetUrl;
-@synthesize thumbnailImageView, thumbnailScrollView, titleLabel, authorLabel, descriptionTextView;
+@synthesize thumbnailImageView, thumbnailScrollView, titleLabel, authorLabel, descriptionlabel;
 @synthesize priceLabel;
 @synthesize previewButton;
 @synthesize buyButton, reDownloadButton;
+@synthesize relatedContentDelimiter, relatedContentHeader, relatedContentLabel;
 
 #pragma mark -
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -63,7 +64,7 @@
 	//Title, Author, Description.
 	titleLabel.text = [appDelegate.serverContentListDS titleByUuid:uuid];
 	authorLabel.text = [appDelegate.serverContentListDS authorByUuid:uuid];
-	descriptionTextView.text = [appDelegate.serverContentListDS descriptionByUuid:uuid];
+	descriptionLabel.text = [appDelegate.serverContentListDS descriptionByUuid:uuid];
 	
 	//URL for preview.
 	previewUrl = [[appDelegate.serverContentListDS previewUrlByUuid:uuid] copy];
@@ -237,6 +238,69 @@
 		totalContentSize = CGSizeMake(self.view.frame.size.width, 3600);
 	}
 	[scrollView setContentSize:totalContentSize];
+	
+	
+	//
+	//NSLog(@"totalHeight=%f", totalHeight);
+	
+	//Description.
+	/*
+	NSLog(@"descriptionTextView.contentSize=%@",NSStringFromCGSize(descriptionTextView.contentSize));
+	CGSize descriptionTextSize = [descriptionTextView.text sizeWithFont:descriptionTextView.font
+							constrainedToSize:descriptionTextView.frame.size
+								lineBreakMode:UILineBreakModeWordWrap];
+	NSLog(@"descriptionTextView.frame=%@, descriptionTextSize=%@",
+		  NSStringFromCGRect(descriptionTextView.frame),
+		  NSStringFromCGSize(descriptionTextSize));
+	CGRect f = descriptionTextView.frame;
+	f.size.height = descriptionTextSize.height;
+	f.size.width  = descriptionTextSize.width;
+	//descriptionTextView.frame = f;
+	descriptionTextView.contentSize = descriptionTextSize;
+	NSLog(@"descriptionTextView.contentSize=%@",NSStringFromCGSize(descriptionTextView.contentSize));
+	NSLog(@"font=%@", [descriptionTextView.font description]);
+	[descriptionTextView setUserInteractionEnabled:YES];
+	*/
+	
+	
+	CGRect f2 = descriptionLabel.frame;
+	f2.size = CGSizeMake(descriptionLabel.frame.size.width, 0);
+	descriptionLabel.frame = f2;
+	[descriptionLabel sizeToFit];
+	totalHeight = descriptionLabel.frame.origin.y + descriptionLabel.frame.size.height;
+	
+	//Related contents, delimiter.
+	totalHeight += 20;
+	CGRect f3 = relatedContentDelimiter.frame;
+	f3.origin.y = totalHeight;
+	relatedContentDelimiter.frame = f3;
+	
+	//Related contents, header.
+	totalHeight += 20;
+	CGRect f4 = relatedContentHeader.frame;
+	f4.origin.y = totalHeight;
+	relatedContentHeader.frame = f4;
+	
+	//Related contents, text.
+	//１行だけのサイズを取得して追加
+	CGSize s = [relatedContentHeader.text sizeWithFont:relatedContentHeader.font
+												 forWidth:relatedContentHeader.frame.size.width
+											lineBreakMode:UILineBreakModeWordWrap];
+	totalHeight += 10 + s.height + 10;
+	CGRect f5 = relatedContentLabel.frame;
+	f5.origin.y = totalHeight;
+	relatedContentLabel.frame = f5;
+	
+	//total scrollView(container) contentSize.
+	//１行だけのサイズを取得して追加
+	CGSize s2 = [relatedContentLabel.text sizeWithFont:relatedContentLabel.font
+											  forWidth:relatedContentLabel.frame.size.width
+										 lineBreakMode:UILineBreakModeWordWrap];
+	totalHeight += s2.height + 20;
+	CGSize totalSizeTmp = scrollView.contentSize;
+	totalSizeTmp.height = totalHeight;
+	scrollView.contentSize = totalSizeTmp;
+
 }
 
 
