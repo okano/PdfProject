@@ -60,7 +60,7 @@
 		if (3 <= [tmpCsvArray count]) {
 			NSString* tmpStrForDelayTime = [tmpCsvArray objectAtIndex:2];
 			NSNumber* delayTimeNumber = [NSNumber numberWithFloat:[tmpStrForDelayTime floatValue]];
-			NSLog(@"delay time for sound=%@(%f)", tmpStrForDelayTime, [delayTimeNumber floatValue]);
+			//NSLog(@"delay time for sound=%@(%f)", tmpStrForDelayTime, [delayTimeNumber floatValue]);
 			[tmpDict setValue:delayTimeNumber forKey:SD_DELAY_TIME];
 		}
 		
@@ -191,7 +191,7 @@
 		int targetPageNum = [[soundInfo valueForKey:SD_PAGE_NUMBER] intValue];
 		if (targetPageNum == currentPageNum) {
 			terminateMessage = [soundInfo valueForKey:SD_TERMINATE_MESSAGE];
-			NSLog(@"currentPageNum=%d, filename=%@", currentPageNum, terminateMessage);
+			//NSLog(@"currentPageNum=%d, filename=%@", currentPageNum, terminateMessage);
 		}
 	}
 	

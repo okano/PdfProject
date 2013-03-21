@@ -12,9 +12,11 @@
 @implementation ServerContentDetailVC
 @synthesize targetUuid;
 @synthesize targetUrl;
-@synthesize thumbnailImageView, thumbnailScrollView, titleLabel, authorLabel, descriptionTextView;
+@synthesize thumbnailImageView, thumbnailScrollView, titleLabel, authorLabel, descriptionlabel;
 @synthesize priceLabel;
+@synthesize previewButton;
 @synthesize buyButton, reDownloadButton;
+@synthesize relatedContentDelimiter, relatedContentHeader, relatedContentLabel;
 
 #pragma mark -
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -62,7 +64,15 @@
 	//Title, Author, Description.
 	titleLabel.text = [appDelegate.serverContentListDS titleByUuid:uuid];
 	authorLabel.text = [appDelegate.serverContentListDS authorByUuid:uuid];
-	descriptionTextView.text = [appDelegate.serverContentListDS descriptionByUuid:uuid];
+	descriptionLabel.text = [appDelegate.serverContentListDS descriptionByUuid:uuid];
+	
+	//URL for preview.
+	previewUrl = [[appDelegate.serverContentListDS previewUrlByUuid:uuid] copy];
+	if (previewUrl == nil) {
+		[self hidePreviewButton];
+	} else {
+		[self showPreviewButton];
+	}
 	
 	//URL for download.
 	NSURL* u = [appDelegate.serverContentListDS acquisitionUrlByUuid:uuid];
@@ -160,6 +170,11 @@
 	
 	totalHeight = 400;
 	
+	//erase old thumbnail view.
+	for (UIView* v in thumbnailScrollView.subviews) {
+		[v removeFromSuperview];
+	}
+	
 	//Thumbnail images. "http://opds-spec.org/thumbnail/{1..4}"
 	//NSMutableArray* thumbnailUrlLinks = [appDelegate.serverContentListDS thumbnailUrlsByContentId:targetCid];
 	NSMutableArray* thumbnailImages = [appDelegate.serverContentListDS thumbnailImagesByContentId:targetCid];
@@ -223,6 +238,69 @@
 		totalContentSize = CGSizeMake(self.view.frame.size.width, 3600);
 	}
 	[scrollView setContentSize:totalContentSize];
+	
+	
+	//
+	//NSLog(@"totalHeight=%f", totalHeight);
+	
+	//Description.
+	/*
+	NSLog(@"descriptionTextView.contentSize=%@",NSStringFromCGSize(descriptionTextView.contentSize));
+	CGSize descriptionTextSize = [descriptionTextView.text sizeWithFont:descriptionTextView.font
+							constrainedToSize:descriptionTextView.frame.size
+								lineBreakMode:UILineBreakModeWordWrap];
+	NSLog(@"descriptionTextView.frame=%@, descriptionTextSize=%@",
+		  NSStringFromCGRect(descriptionTextView.frame),
+		  NSStringFromCGSize(descriptionTextSize));
+	CGRect f = descriptionTextView.frame;
+	f.size.height = descriptionTextSize.height;
+	f.size.width  = descriptionTextSize.width;
+	//descriptionTextView.frame = f;
+	descriptionTextView.contentSize = descriptionTextSize;
+	NSLog(@"descriptionTextView.contentSize=%@",NSStringFromCGSize(descriptionTextView.contentSize));
+	NSLog(@"font=%@", [descriptionTextView.font description]);
+	[descriptionTextView setUserInteractionEnabled:YES];
+	*/
+	
+	
+	CGRect f2 = descriptionLabel.frame;
+	f2.size = CGSizeMake(descriptionLabel.frame.size.width, 0);
+	descriptionLabel.frame = f2;
+	[descriptionLabel sizeToFit];
+	totalHeight = descriptionLabel.frame.origin.y + descriptionLabel.frame.size.height;
+	
+	//Related contents, delimiter.
+	totalHeight += 20;
+	CGRect f3 = relatedContentDelimiter.frame;
+	f3.origin.y = totalHeight;
+	relatedContentDelimiter.frame = f3;
+	
+	//Related contents, header.
+	totalHeight += 20;
+	CGRect f4 = relatedContentHeader.frame;
+	f4.origin.y = totalHeight;
+	relatedContentHeader.frame = f4;
+	
+	//Related contents, text.
+	//１行だけのサイズを取得して追加
+	CGSize s = [relatedContentHeader.text sizeWithFont:relatedContentHeader.font
+												 forWidth:relatedContentHeader.frame.size.width
+											lineBreakMode:UILineBreakModeWordWrap];
+	totalHeight += 10 + s.height + 10;
+	CGRect f5 = relatedContentLabel.frame;
+	f5.origin.y = totalHeight;
+	relatedContentLabel.frame = f5;
+	
+	//total scrollView(container) contentSize.
+	//１行だけのサイズを取得して追加
+	CGSize s2 = [relatedContentLabel.text sizeWithFont:relatedContentLabel.font
+											  forWidth:relatedContentLabel.frame.size.width
+										 lineBreakMode:UILineBreakModeWordWrap];
+	totalHeight += s2.height + 20;
+	CGSize totalSizeTmp = scrollView.contentSize;
+	totalSizeTmp.height = totalHeight;
+	scrollView.contentSize = totalSizeTmp;
+
 }
 
 
@@ -252,6 +330,84 @@
 }
 - (void)hideReDownloadButton {
 	reDownloadButton.hidden = YES;
+}
+
+
+#pragma mark - preview.
+- (void)showPreviewButton
+{
+	previewButton.hidden = NO;
+}
+- (void)hidePreviewButton
+{
+	previewButton.hidden = YES;
+}
+- (IBAction)pushedPreviewButton:(id)sender
+{
+	if (previewUrl != nil) {
+		LOG_CURRENT_LINE;
+		NSLog(@"previewUrl=%@", [previewUrl description]);
+		
+		NSString* ext = [previewUrl pathExtension];
+		if (([ext caseInsensitiveCompare:@"mov"] == NSOrderedSame)
+			|| ([ext caseInsensitiveCompare:@"mp4"] == NSOrderedSame)
+			|| ([ext caseInsensitiveCompare:@"m4v"] == NSOrderedSame)
+			|| ([ext caseInsensitiveCompare:@"mpv"] == NSOrderedSame)
+			|| ([ext caseInsensitiveCompare:@"mpg"] == NSOrderedSame)
+			|| ([ext caseInsensitiveCompare:@"3gp"] == NSOrderedSame)
+			)
+		{
+			[self showMoviePlayer:previewUrl];
+		}
+	}
+}
+- (void)showMoviePlayer:(NSURL*)url
+{
+	NSLog(@"url class=%@", [url class]);
+	NSLog(@"url=%@", [url description]);
+	if (url != nil) {
+		/*
+		//Download preview file from URL.
+		NSString* targetCidStr = [[NSNumber numberWithInt:targetCid] stringValue];
+		NSLog(@"targetCid=%d(%@)", targetCid, targetCidStr);
+		NSString* tmpDir = [ContentFileUtility getContentTmpDirectoryWithContentId:targetCidStr];
+		NSString* filename = [url lastPathComponent];
+		NSString* localFilename = [tmpDir stringByAppendingPathComponent:filename];
+		NSLog(@"localFilename=%@", localFilename);
+		
+		NSData *previewFileData = [NSData dataWithContentsOfURL:url];
+
+		
+		//NSData* previewFileData = [[NSData alloc] initWithContentsOfURL:url];
+		NSLog(@"data length=%d", [previewFileData length]);
+		if (previewFileData == nil) {
+			LOG_CURRENT_LINE;
+		}
+		
+		[FileUtility makeDir:tmpDir];
+		NSError* error = nil;
+		[previewFileData writeToFile:localFilename
+				  options:NSDataWritingFileProtectionComplete error:&error];
+		if (error != nil)
+		{
+			NSLog(@"file write error. code=%d, desc=%@", [error code], [error localizedDescription]);
+		}
+		
+		
+		MPMoviePlayerViewController* mpview;
+		NSURL* urlTmp = [[NSURL alloc] initFileURLWithPath:localFilename];
+		if ((mpview = [[MPMoviePlayerViewController alloc] initWithContentURL:urlTmp]) != nil) {
+		*/
+		MPMoviePlayerViewController* mpview;
+		if ((mpview = [[MPMoviePlayerViewController alloc] initWithContentURL:previewUrl]) != nil) {
+			[self presentMoviePlayerViewControllerAnimated:mpview];
+			//[mpview.moviePlayer setControlStyle:MPMovieControlStyleDefault];
+			[mpview.moviePlayer setMovieSourceType:MPMovieSourceTypeFile];	//play from localfile.
+			[mpview.moviePlayer prepareToPlay];
+			[mpview.moviePlayer play];
+			[mpview release];
+		}
+	}
 }
 
 

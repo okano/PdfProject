@@ -103,7 +103,7 @@
 - (void)setupImagesWithDataSource:(ContentListDS*)tmpContentListDS shelfImageName:(NSString*)shelfImageName
 {
 	CGFloat maxWidth = self.view.frame.size.width;
-	NSLog(@"self.view.frame=%@", NSStringFromCGRect(self.view.frame));
+	//NSLog(@"self.view.frame=%@", NSStringFromCGRect(self.view.frame));
 	
 	CGFloat currentOriginX = 0.0f, currentOriginY = 0.0f;
 	CGFloat maxHeightInLine;
@@ -176,7 +176,7 @@
 	for (int i = 0; i < maxCount; i = i + 1)
 	{
 		ContentId targetCid = [tmpContentListDS contentIdAtIndex:i];
-		NSLog(@"contentCid=%d", targetCid);
+		//NSLog(@"contentCid=%d", targetCid);
 		
 		//Get cover image.
 		UIImage* imageOriginal = nil;

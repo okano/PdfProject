@@ -247,6 +247,7 @@
 		//Links
 		NSArray* links = [singleElement elementsForName:@"link"];
 		thumbnailLinks = [[NSMutableArray alloc] init];
+		sampleLink = nil;
 		//NSLog(@"links=%@", [links description]);
 		for (id e in links){
 			NSString* relAttribute = [[e attributeForName:@"rel"] stringValue];
@@ -280,7 +281,9 @@
 			searchForMe = @"http://opds-spec.org/thumbnail/";		// "thumbnail/{1..4}"
 			range = [relAttribute rangeOfString : searchForMe];
 			if (range.location != NSNotFound) {
-				[thumbnailLinks addObject:[NSString stringWithFormat:@"%@%@", baseUrlStr, hrefAttribute]];
+				if ([hrefAttribute caseInsensitiveCompare:@"/assets/content/thumb_default.gif"] != NSOrderedSame) {
+					[thumbnailLinks addObject:[NSString stringWithFormat:@"%@%@", baseUrlStr, hrefAttribute]];
+				}
 				continue;	//skip to next tag.
 			}
 			searchForMe = @"http://opds-spec.org/thumbnail";

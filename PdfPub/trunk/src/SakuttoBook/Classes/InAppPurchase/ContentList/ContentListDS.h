@@ -124,6 +124,9 @@
 - (NSURL*)acquisitionUrlAtIndex:(NSInteger)index;
 - (NSURL*)acquisitionUrlByContentId:(ContentId)cid;
 - (NSURL*)acquisitionUrlByUuid:(NSString*)uuid;
+- (NSURL*)previewUrlAtIndex:(NSInteger)index;
+- (NSURL*)previewUrlByContentId:(ContentId)cid;
+- (NSURL*)previewUrlByUuid:(NSString*)uuid;
 - (NSMutableArray*)thumbnailUrlsAtIndex:(NSInteger)index;
 - (NSURL*)thumbnailUrlAtIndex:(NSInteger)index atThumbnailIndex:(NSInteger)thumbnailIndex;
 - (NSMutableArray*)thumbnailUrlsByContentId:(ContentId)cid;

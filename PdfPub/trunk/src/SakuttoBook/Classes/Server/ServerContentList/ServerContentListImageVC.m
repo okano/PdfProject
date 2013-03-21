@@ -87,8 +87,8 @@
 -(void)buttonEvent:(UIButton*)button
 {
 	ContentId targetCid = button.tag;
-	LOG_CURRENT_METHOD;
-	NSLog(@"touch cover image. targetCid = %d", targetCid);
+	//LOG_CURRENT_METHOD;
+	//NSLog(@"touch cover image. targetCid = %d", targetCid);
 	
 	//Show detail view.
 	NSString* targetUuid = [appDelegate.serverContentListDS uuidFromContentId:targetCid];

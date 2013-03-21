@@ -90,8 +90,8 @@
 		//(3)Get from local content icon.
 		UIImage* img = [appDelegate.contentListDS contentIconByContentId:cid];
 		if (img != nil) {
-			LOG_CURRENT_LINE;
-			NSLog(@"img with contentIconByContentId. size=%@", NSStringFromCGSize(img.size));
+			//LOG_CURRENT_LINE;
+			//NSLog(@"img with contentIconByContentId. size=%@", NSStringFromCGSize(img.size));
 			return img;
 		} else {
 			//(4)Get from page small file.
