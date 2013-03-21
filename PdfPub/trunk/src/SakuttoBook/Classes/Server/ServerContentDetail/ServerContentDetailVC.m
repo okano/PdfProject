@@ -483,6 +483,7 @@
 		[self disableBuyButton];
 		[buyButton setTitle:@"購入済み" forState:UIControlStateNormal];
 	} else {
+		[buyButton setTitle:@"購入する" forState:UIControlStateNormal];
 		[self enableBuyButton];
 	}
 	
