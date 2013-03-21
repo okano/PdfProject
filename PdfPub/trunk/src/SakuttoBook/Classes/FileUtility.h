@@ -19,6 +19,7 @@
 //Pdf(Original) file.
 + (NSString*)getPdfFilename;
 + (NSString*)getPdfFilename:(ContentId)cId;
++ (NSString*)getPdfFilenameWithSingleString:(NSString*)line;
 #define TEST_PDF_FILENAME	@"document.pdf"
 
 //Each page cache.
