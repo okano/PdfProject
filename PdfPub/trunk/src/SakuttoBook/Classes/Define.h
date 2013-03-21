@@ -59,7 +59,7 @@
 #define TAP_AREA_BOTTOM_HEIGHT	0.15f
 
 // for cache image.
-#define CACHE_IMAGE_WIDTH_MIN		 320.0f
+#define CACHE_IMAGE_WIDTH_MIN		 640.0f
 #define CACHE_IMAGE_WIDTH_MAX		1536.0f
 #define CACHE_IMAGE_SMALL_WIDTH				 100.0f
 
