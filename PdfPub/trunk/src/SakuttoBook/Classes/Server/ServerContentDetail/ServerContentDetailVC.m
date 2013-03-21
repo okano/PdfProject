@@ -291,16 +291,21 @@
 	f5.origin.y = totalHeight;
 	relatedContentLabel.frame = f5;
 	
-	//total scrollView(container) contentSize.
-	//１行だけのサイズを取得して追加
-	CGSize s2 = [relatedContentLabel.text sizeWithFont:relatedContentLabel.font
+	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+		//iPhone
+
+		//total scrollView(container) contentSize.
+		//１行だけのサイズを取得して追加
+		CGSize s2 = [relatedContentLabel.text sizeWithFont:relatedContentLabel.font
 											  forWidth:relatedContentLabel.frame.size.width
 										 lineBreakMode:UILineBreakModeWordWrap];
-	totalHeight += s2.height + 20;
-	CGSize totalSizeTmp = scrollView.contentSize;
-	totalSizeTmp.height = totalHeight;
-	scrollView.contentSize = totalSizeTmp;
-
+		totalHeight += s2.height + 20;
+		CGSize totalSizeTmp = scrollView.contentSize;
+		totalSizeTmp.height = totalHeight;
+		NSLog(@"scrollView.contentSize=%@", NSStringFromCGSize(scrollView.contentSize));
+		
+		scrollView.contentSize = totalSizeTmp;
+	}
 }
 
 
