@@ -1,4 +1,4 @@
-
+●OVERWRITE_PRODUCTIDLIST_BY_SERVER の動作
 
 OVERWRITE_PRODUCTIDLIST_BY_SERVER
 productIdLIstを、サーバ上のデータで上書きするか否か。
@@ -8,8 +8,10 @@ ServerContentListDS.m の - (void)loadContentListFromNetworkByOpds
 で、
 productIdListにあるコンテンツ以外を表示するか？　を判断してマージしている。
 (本体の更新無しにコンテンツを追加できる)
-->ここがおかしい。
-
+->ここがおかしい。(3/23時点。cfe8dff)
+　productIdListに無いコンテンツは追加しないでよい。
+　コンテンツの追加は、必ずproductIdListの更新が必要とすべき。
+　（当初とは変更し、１サーバで複数のビューアをまかなうこととしたため）
 
 現状は、コンテンツ一覧を取得してからproductIdListを取得している。
 しかし、
@@ -20,6 +22,9 @@ productIdListにあるコンテンツ以外を表示するか？　を判断し�
 　　productIdListをサーバから取得して更新
 ・コンテンツ一覧をサーバから取得
 ・productIdListにあるコンテンツのみを本体メモリに保存
+(または、productIdListにあるコンテンツのみを取得し、取得したコンテンツすべてを保存)
+
+
 
 
 注意：
