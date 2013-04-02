@@ -247,11 +247,11 @@
 	[targetTableVC didStartParseOpdsElement];
 	resultArray = [parser getOpdsElement:elementUrl];
 	if (resultArray != nil) {
-#if defined(OVERWRITE_PRODUCTIDLIST_BY_SERVER) && OVERWRITE_PRODUCTIDLIST_BY_SERVER != 0
+#if defined(OVERWRITE_PRODUCTIDLIST_BY_SERVER) && OVERWRITE_PRODUCTIDLIST_BY_SERVER == 1
 		//Add all contents data into inner-var.
 		[contentList removeAllObjects];
 		[contentList addObjectsFromArray:resultArray];
-#else
+#elseif defined(OVERWRITE_PRODUCTIDLIST_BY_SERVER) && OVERWRITE_PRODUCTIDLIST_BY_SERVER == 2
 		//Add only specified contents in productIdList (in mainBundle.)
 		ProductIdList* productIdList = [ProductIdList sharedManager];
 		[productIdList loadProductIdListFromMainBundle];

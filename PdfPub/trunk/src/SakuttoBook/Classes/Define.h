@@ -38,7 +38,7 @@
 #define HIDE_RESTORE_BUTTON 0	/* 0:show, 1:hide */
 
 //Overwrite productIdList.csv by server data.
-#define OVERWRITE_PRODUCTIDLIST_BY_SERVER	0	/* 0:save original data, 1:overwrite by server data */
+#define OVERWRITE_PRODUCTIDLIST_BY_SERVER	0	/* 0:save original data, 1:overwrite by server data, 2:overwrite by server data with specific contents in CSV */
 
 //Setting how to open URL link.
 #define OPEN_URL_WITH	0	/* 0:ask everytime, 1:open in this application, 2:open with Safari(close this application) */
