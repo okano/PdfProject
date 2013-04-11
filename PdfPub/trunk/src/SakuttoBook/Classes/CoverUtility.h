@@ -15,7 +15,7 @@
 @interface CoverUtility : NSObject {
     
 }
-+ (UIImage*)coverImageWithContentId:(ContentId)cid;
++ (UIImage*)allocCoverImageWithContentId:(ContentId)cid;
 + (UIImage*)coverImageWithUuid:(NSString*)uuid;
 //
 + (NSString*)getCoverLocalFilenameFull:(ContentId)cid;

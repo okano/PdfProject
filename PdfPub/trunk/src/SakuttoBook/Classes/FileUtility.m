@@ -189,7 +189,8 @@
 	if ([lines count] <= 0) {
 		LOG_CURRENT_METHOD;
 		NSLog(@"no line found.");
-		return lines;
+		[lines release]; lines = nil;
+		return nil;
 	}
 	//NSLog(@"lines(count=%d)=%@", [lines count], [lines description]);
 	NSMutableArray* resultArray = [[NSMutableArray alloc] init];
@@ -209,6 +210,7 @@
 		[resultArray addObject:line];
 	}
 	
+	[lines release]; lines = nil;
 	return resultArray;
 }
 

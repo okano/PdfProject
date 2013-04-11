@@ -33,6 +33,12 @@
 			continue;	//Skip illigal line.
 		}
 		
+		//Check page range.
+		int candidatePageNumber = [NSNumber numberWithInt:[[tmpCsvArray objectAtIndex:0] intValue]];
+		if (maxPageNum < candidatePageNumber) {
+			continue;	//skip to next object. not add to define.
+		}
+		
 		tmpDict = [[NSMutableDictionary alloc] init];
 		//Page Number.
 		[tmpDict setValue:[NSNumber numberWithInt:[[tmpCsvArray objectAtIndex:0] intValue]] forKey:MD_PAGE_NUMBER];
@@ -75,12 +81,13 @@
 		}
 		
 		//Check page range.
-		if (maxPageNum < [[tmpDict objectForKey:MD_PAGE_NUMBER] intValue]) {
-			continue;	//skip to next object. not add to define.
-		}
+		//if (maxPageNum < [[tmpDict objectForKey:MD_PAGE_NUMBER] intValue]) {
+		//	continue;	//skip to next object. not add to define.
+		//}
 		
 		//Add to mail define.
 		[mailDefine addObject:tmpDict];
+		[tmpDict release]; tmpDict = nil;
 	}
 }
 

@@ -122,7 +122,7 @@ static ProductIdList *_instance = nil;
 	
 	
 	//Set security infomation.
-	NSDictionary* dict = [[ConfigViewController alloc] loadUsernameAndPasswordFromUserDefault];
+	NSDictionary* dict = [ConfigViewController loadUsernameAndPasswordFromUserDefault];
 	NSString* username = [dict valueForKey:USERNAME];
 	NSString* password = [dict valueForKey:PASSWORD];
 	
@@ -131,6 +131,7 @@ static ProductIdList *_instance = nil;
 	NSData* pidListData = [pidListParser getXmlFromUrl:url
 											  username:username
 											  password:password];
+	[pidListParser release]; pidListParser = nil;
 	//NSLog(@"pidListData=%@", [pidListData description]);
 	if (pidListData == nil || [pidListData length] <= 0) {
 		LOG_CURRENT_METHOD;
@@ -156,6 +157,7 @@ static ProductIdList *_instance = nil;
 	
 	//Parse csv to Array.
 	NSArray* tmpArray = [FileUtility parseDefineCsvFromString:csvStr];
+	[csvStr release]; csvStr = nil;
 	if ([tmpArray count] <= 0)
 	{
 		return;		//do nothing if no data found.

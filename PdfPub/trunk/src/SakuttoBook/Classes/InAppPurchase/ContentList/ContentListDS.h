@@ -63,7 +63,7 @@
 
 //Get ID.
 - (ContentId)contentIdAtIndex:(NSInteger)index;
-- (NSDictionary*)contentIdsWithGenre:(NSString*)genre;
+- (NSDictionary*)allocContentIdsWithGenre:(NSString*)genre;
 - (NSArray*)contentIdsWithGenre:(NSString*)genre subGenre:(NSString*)subGenre;
 - (ContentId)contentIdWithGenre:(NSString*)genre subGenre:(NSString*)subGenre index:(NSInteger)index;
 - (ContentId)contentIdFromProductId:(NSString*)productId;

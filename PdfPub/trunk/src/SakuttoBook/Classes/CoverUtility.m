@@ -11,7 +11,7 @@
 
 @implementation CoverUtility
 
-+ (UIImage*)coverImageWithContentId:(ContentId)cid
++ (UIImage*)allocCoverImageWithContentId:(ContentId)cid
 {
 	//LOG_CURRENT_METHOD;
 	if (cid == InvalidContentId) {
@@ -24,12 +24,13 @@
 		return nil;
 	}
 	
-	NSString* targetFilenameFull = [self getCoverLocalFilenameFull:cid];
+	NSString* targetFilenameFull;	// = [self getCoverLocalFilenameFull:cid];
 	//(1)get from cache folder.
 	targetFilenameFull = [self getCoverCacheFilenameFullWithContentId:cid];
 	NSFileManager *fileManager = [NSFileManager defaultManager];
 	if ([fileManager fileExistsAtPath:targetFilenameFull]) {
 		UIImage* image = [UIImage imageWithContentsOfFile:targetFilenameFull];
+		[image retain];
 		return image;
 	}
 	
@@ -64,7 +65,7 @@
 					NSData* pngData = UIImagePNGRepresentation(tmpImg);
 					[pngData writeToFile:targetFilenameFull atomically:YES];
 				}
-				
+				[tmpImg release]; tmpImg = nil;
 			}
 			
 			LOG_CURRENT_LINE;
@@ -92,12 +93,14 @@
 		if (img != nil) {
 			//LOG_CURRENT_LINE;
 			//NSLog(@"img with contentIconByContentId. size=%@", NSStringFromCGSize(img.size));
+			[img retain];
 			return img;
 		} else {
 			//(4)Get from page small file.
 			targetFilenameFull = [FileUtility getPageSmallFilenameFull:1 WithContentId:cid];
 			if ([fileManager fileExistsAtPath:targetFilenameFull]) {
 				UIImage* image = [UIImage imageWithContentsOfFile:targetFilenameFull];
+				[image retain];
 				return image;
 			}
 			else {

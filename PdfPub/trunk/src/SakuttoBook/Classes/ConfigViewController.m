@@ -85,7 +85,7 @@
 	[userDefault synchronize];
 }
 
-- (NSDictionary*)loadUsernameAndPasswordFromUserDefault
++ (NSDictionary*)loadUsernameAndPasswordFromUserDefault
 {
 	NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
 	id obj;
@@ -125,7 +125,7 @@
 
 	//Setup GUI.
 	textField.text = [ConfigViewController getUrlBaseWithOpds];
-	NSDictionary* userinfoDict = [self loadUsernameAndPasswordFromUserDefault];
+	NSDictionary* userinfoDict = [ConfigViewController loadUsernameAndPasswordFromUserDefault];
 	usernameField.text = [userinfoDict valueForKey:USERNAME];
 	if (usernameField.text == nil)
 	{

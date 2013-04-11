@@ -245,7 +245,7 @@
 	//Get OPDS Element.
 	NSMutableArray* resultArray;
 	[targetTableVC didStartParseOpdsElement];
-	resultArray = [parser getOpdsElement:elementUrl];
+	resultArray = [parser allocOpdsElementWithUrl:elementUrl];
 	if (resultArray != nil) {
 #if defined(OVERWRITE_PRODUCTIDLIST_BY_SERVER) && OVERWRITE_PRODUCTIDLIST_BY_SERVER == 1
 		//Add all contents data into inner-var.
@@ -277,6 +277,7 @@
 		[targetTableVC didFailParseOpdsElement];
 	}
 	
+	[resultArray release]; resultArray = nil;
 	[parser release]; parser = nil;
 }
 

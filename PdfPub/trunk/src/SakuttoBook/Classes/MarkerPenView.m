@@ -85,8 +85,11 @@
 	NSMutableDictionary* lineDict = [[NSMutableDictionary alloc] init];
 	[lineDict setValue:[NSNumber numberWithInt:0] forKey:MARKERPEN_PAGE_NUMBER];
 	[lineDict setValue:@"" forKey:MARKERPEN_COMMENT];
-	[lineDict setValue:[[NSMutableArray alloc] init] forKey:MARKERPEN_POINT_ARRAY];
+	NSMutableArray* dummyPoint = [[NSMutableArray alloc] init];
+	[lineDict setValue:dummyPoint forKey:MARKERPEN_POINT_ARRAY];
 	[lineToDraw addObject:lineDict];
+	[dummyPoint release]; dummyPoint = nil;
+	[lineDict release]; lineDict = nil;
 	
 	//NSLog(@"%d lines in %@", [lineToDraw count], [self class]);
 	//NSLog(@"lineToDraw=%@", [lineToDraw description]);

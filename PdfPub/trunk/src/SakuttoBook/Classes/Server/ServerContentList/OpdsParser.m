@@ -67,9 +67,9 @@
 	
 	
 	//Set security infomation.
-	NSDictionary* dict = [[ConfigViewController alloc] loadUsernameAndPasswordFromUserDefault];
-	NSString* username = [dict valueForKey:USERNAME];
-	NSString* password = [dict valueForKey:PASSWORD];
+	NSDictionary* dict = [ConfigViewController loadUsernameAndPasswordFromUserDefault];
+	NSString* username = [NSString stringWithString:[dict valueForKey:USERNAME]];
+	NSString* password = [NSString stringWithString:[dict valueForKey:PASSWORD]];
 	
 	//Get XML data from network.
 	NSData *_data =[self getXmlFromUrl:rootUrl username:username password:password];
@@ -156,15 +156,15 @@
 
 
 #pragma mark - parse opds-Element.
-- (NSMutableArray*)getOpdsElement:(NSURL *)elementUrl
+- (NSMutableArray*)allocOpdsElementWithUrl:(NSURL *)elementUrl
 {
 	LOG_CURRENT_METHOD;
 	NSLog(@"elementUrl=%@", [elementUrl description]);
 	
 	//Set security infomation.
-	NSDictionary* dict = [[ConfigViewController alloc] loadUsernameAndPasswordFromUserDefault];
-	NSString* username = [dict valueForKey:USERNAME];
-	NSString* password = [dict valueForKey:PASSWORD];
+	NSDictionary* dict = [ConfigViewController loadUsernameAndPasswordFromUserDefault];
+	NSString* username = [NSString stringWithString:[dict valueForKey:USERNAME]];
+	NSString* password = [NSString stringWithString:[dict valueForKey:PASSWORD]];
 	
 	//Get XML data from network.
 	NSData *_data =[self getXmlFromUrl:elementUrl username:username password:password];
@@ -195,7 +195,7 @@
 	NSString* thumbnailLink = nil;
 	NSMutableArray* thumbnailLinks = nil;
 	NSString* coverLink = nil;
-	NSUInteger contentId;
+	NSUInteger contentId = InvalidContentId;
 	NSMutableArray* linksUrlArray = [[NSMutableArray alloc] init];
 	for (DDXMLElement* singleElement in entries){
 		//NSLog(@"singleElement=%@", [singleElement description]);
@@ -333,7 +333,7 @@
 		[tmpDict setValue:sampleLink		forKey:CONTENT_SAMPLE_LINK];
 		[tmpDict setValue:acquisitionLink	forKey:CONTENT_ACQUISITION_LINK];
 		[tmpDict setValue:thumbnailLink		forKey:CONTENT_THUMBNAIL_LINK];
-		[tmpDict setValue:thumbnailLinks	forKey:CONTENT_THUMBNAILS_LINK];
+		[tmpDict setValue:thumbnailLinks	forKey:CONTENT_THUMBNAILS_LINK];	[thumbnailLinks release]; thumbnailLinks = nil;
 		[tmpDict setValue:coverLink			forKey:CONTENT_COVER_LINK];
 		[tmpDict setValue:[NSNumber numberWithInteger:contentId] forKey:CONTENT_CID];
 		[tmpDict setValue:uuidStr			forKey:CONTENT_UUID];
@@ -421,6 +421,7 @@
 	NSData* data = [NSURLConnection sendSynchronousRequest:req
 										 returningResponse:&res
 													 error:&error];
+	[req release]; req = nil;
 	
 	if (!data || error)
 	{
@@ -448,10 +449,13 @@
 					break;
 				case NSURLErrorTimedOut:
 					errorMsg = [error localizedDescription];
+					break;
 				default:
 					errorMsg = [error localizedDescription];
 					break;
 			}
+			NSLog(@"error message=%@", errorMsg);
+			NSLog(@"error domain=%@", [error domain]);
 			return nil;	//Return nothing.
 		} else {
 			errorMsg = [error localizedDescription];

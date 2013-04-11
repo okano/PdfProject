@@ -59,6 +59,7 @@
 										 style:UIBarButtonItemStylePlain
 										 target:self
 										 action:@selector(prepareDeleteMarkerPenWithCurrentPage)];
+		[deleteButtonImage release]; deleteButtonImage = nil;
 		
 		//Add undo button.
 		UIImage* undoButtonImage = [UIImage imageNamed:@"icon_undo.png"];
@@ -71,12 +72,12 @@
 									   style:UIBarButtonItemStylePlain
 									   target:self
 									   action:@selector(deleteLastLine:)];
+		[undoButtonImage release]; undoButtonImage = nil;
 		
 		//Add title label.
 		NSString* titleStr = @"Marker Mode";
 		CGSize labelSize = [titleStr sizeWithFont:[UIFont boldSystemFontOfSize:24]];
-		UIBarButtonItem* titleLabelButton = [UIBarButtonItem alloc];
-		[titleLabelButton initWithTitle:titleStr
+		UIBarButtonItem* titleLabelButton = [[UIBarButtonItem alloc] initWithTitle:titleStr
 								  style:UIBarButtonItemStylePlain
 								 target:nil
 								 action:nil];
@@ -95,6 +96,13 @@
 		
 		[menuBarForMakerPen setItems:[NSArray arrayWithObjects:doneButton, fspace1, titleLabelButton, fspace2, undoButton, deleteButton, nil]];
 		[self.view addSubview:menuBarForMakerPen];
+		
+		[fspace2 release]; fspace2 = nil;
+		[fspace1 release]; fspace1 = nil;
+		[titleLabelButton release]; titleLabelButton = nil;
+		[undoButton release]; undoButton = nil;
+		[deleteButton release]; deleteButton = nil;
+		[doneButton release]; doneButton = nil;
 	}
 	
 	//Setup menu bar frame.
@@ -242,6 +250,7 @@
 		[tmpDict setValue:@"" forKey:MARKERPEN_COMMENT];
 		[tmpDict setValue:pointsForSingleLine forKey:MARKERPEN_POINT_ARRAY];
 		[markerPenArray addObject:tmpDict];
+		[tmpDict release]; tmpDict = nil;
 		
         //Save to UserDefault.
         [self saveMarkerPenToUserDefault];
@@ -371,6 +380,7 @@
 		if (targetPageNum == pageNum) {
 			[markerPenView2 addLinesWithDictionary:markerInfo];
 		}
+		[markerInfo release]; markerInfo = nil;
     }
 	
 	//Draw line dragging.(use nowDraggingLine).
@@ -466,6 +476,7 @@
 		NSMutableDictionary* markerInfo = [[NSMutableDictionary alloc] initWithDictionary:obj];
 		
 		int targetPageNum = [[markerInfo valueForKey:MARKERPEN_PAGE_NUMBER] intValue];
+		[markerInfo release]; markerInfo = nil;
 		if (targetPageNum == pageNum) {
 			[markerPenArray removeObject:obj];
 		}

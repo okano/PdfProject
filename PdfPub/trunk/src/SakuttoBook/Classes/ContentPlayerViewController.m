@@ -186,6 +186,8 @@
 	items = [NSArray arrayWithObjects:flexibleSpaceButton, paymentHistoryButton, flexibleSpaceButton, nil];
 	[bottomToolBar setItems:items];
 	[self.view addSubview:bottomToolBar];
+	[flexibleSpaceButton release]; flexibleSpaceButton = nil;
+	[paymentHistoryButton release]; paymentHistoryButton = nil;
 
 	[self hideMenuBar];
 	
@@ -389,6 +391,7 @@
 	CGPDFPageRef page1 = CGPDFDocumentGetPage(pdfDocument, 1);
 	if (!page1) {
 		NSLog(@"cannot get PDF Page.");
+		CGPDFDocumentRelease(pdfDocument); pdfDocument = nil;
 		return FALSE;
 	}
 	CGRect originalPageRect = CGPDFPageGetBoxRect(page1, kCGPDFMediaBox);
@@ -1760,6 +1763,12 @@
 			continue;	//Skip illigal line.
 		}
 		
+		//Check page range.
+		int candidatePageNumber = [NSNumber numberWithInt:[[tmpCsvArray objectAtIndex:0] intValue]];
+		if (maxPageNum < candidatePageNumber) {
+			continue;	//skip to next object. not add to define.
+		}
+		
 		tmpDict = [[NSMutableDictionary alloc] init];
 		//Page Number.
 		[tmpDict setValue:[NSNumber numberWithInt:[[tmpCsvArray objectAtIndex:0] intValue]] forKey:MD_PAGE_NUMBER];
@@ -1774,12 +1783,13 @@
 		[tmpDict setValue:tmpStrFormatted forKey:MD_MOVIE_FILENAME];
 		
 		//Check page range.
-		if (maxPageNum < [[tmpDict objectForKey:MD_PAGE_NUMBER] intValue]) {
-			continue;	//skip to next object. not add to define.
-		}
+		//if (maxPageNum < [[tmpDict objectForKey:MD_PAGE_NUMBER] intValue]) {
+		//	continue;	//skip to next object. not add to define.
+		//}
 		
 		//Add to movie define.
 		[movieDefine addObject:tmpDict];
+		[tmpDict release]; tmpDict = nil;
 	}
 }
 
@@ -1884,6 +1894,7 @@
 		[tmpDict setValue:[NSNumber numberWithInt:[[tmpCsvArray objectAtIndex:5] intValue]] forKey:PJ_PAGE_JUMPTO];
 		
 		[pageJumpLinkDefine addObject:tmpDict];
+		[tmpDict release]; tmpDict = nil;
 	}
 }
 
@@ -1968,6 +1979,12 @@
 			continue;	//Skip illigal line.
 		}
 		
+		//Check page range.
+		int candidatePageNumber = [NSNumber numberWithInt:[[tmpCsvArray objectAtIndex:0] intValue]];
+		if (maxPageNum < candidatePageNumber) {
+			continue;	//skip to next object. not add to define.
+		}
+		
 		tmpDict = [[NSMutableDictionary alloc] init];
 		//Page Number.
 		[tmpDict setValue:[NSNumber numberWithInt:[[tmpCsvArray objectAtIndex:0] intValue]] forKey:IPSD_PAGE_NUMBER];
@@ -1989,12 +2006,13 @@
 		
 		
 		//Check page range.
-		if (maxPageNum < [[tmpDict objectForKey:IPSD_PAGE_NUMBER] intValue]) {
-			continue;	//skip to next object. not add to define.
-		}
+		//if (maxPageNum < [[tmpDict objectForKey:IPSD_PAGE_NUMBER] intValue]) {
+		//	continue;	//skip to next object. not add to define.
+		//}
 		
 		//Add to ipsd define.
 		[inPageScrollViewDefine addObject:tmpDict];
+		[tmpDict release]; tmpDict = nil;
 	}
 }
 
@@ -2082,6 +2100,12 @@
 			continue;	//Skip illigal line.
 		}
 		
+		//Check page range.
+		int candidatePageNumber = [NSNumber numberWithInt:[[tmpCsvArray objectAtIndex:0] intValue]];
+		if (maxPageNum < candidatePageNumber) {
+			continue;	//skip to next object. not add to define.
+		}
+		
 		tmpDict = [[NSMutableDictionary alloc] init];
 		//Page Number.
 		[tmpDict setValue:[NSNumber numberWithInt:[[tmpCsvArray objectAtIndex:0] intValue]] forKey:MD_PAGE_NUMBER];
@@ -2096,12 +2120,13 @@
 		[tmpDict setValue:tmpStrFormatted forKey:MD_MOVIE_FILENAME];
 		
 		//Check page range.
-		if (maxPageNum < [[tmpDict objectForKey:MD_PAGE_NUMBER] intValue]) {
-			continue;	//skip to next object. not add to define.
-		}
+		//if (maxPageNum < [[tmpDict objectForKey:MD_PAGE_NUMBER] intValue]) {
+		//	continue;	//skip to next object. not add to define.
+		//}
 		
 		//Add to popover Scroll Image define.
 		[popoverScrollImageDefine addObject:tmpDict];
+		[tmpDict release]; tmpDict = nil;
 	}
 }
 
@@ -2194,6 +2219,13 @@
 			continue;	//Skip illigal line.
 		}
 		
+		//Check page range.
+		int candidatePageNumber = [NSNumber numberWithInt:[[tmpCsvArray objectAtIndex:0] intValue]];
+		if (maxPageNum < candidatePageNumber) {
+			NSLog(@"toc specify out of page range. maxPageNum=%d, page in toc=%d", maxPageNum, [[tmpDict objectForKey:TOC_PAGE] intValue]);
+			continue;	//skip to next object. not add to define.
+		}
+		
 		tmpDict = [[NSMutableDictionary alloc] init];
 		[tmpDict setValue:[NSNumber numberWithInt:[[tmpCsvArray objectAtIndex:0] intValue]] forKey:TOC_PAGE];
 		[tmpDict setValue:[NSNumber numberWithInt:[[tmpCsvArray objectAtIndex:1] intValue]] forKey:TOC_LEVEL];
@@ -2206,13 +2238,14 @@
 		//}
 		
 		//Check page range.
-		if (maxPageNum < [[tmpDict objectForKey:TOC_PAGE] intValue]) {
-			NSLog(@"toc specify out of page range. maxPageNum=%d, page in toc=%d", maxPageNum, [[tmpDict objectForKey:TOC_PAGE] intValue]);
-			continue;	//skip to next object. not add to define.
-		}
+		//if (maxPageNum < [[tmpDict objectForKey:TOC_PAGE] intValue]) {
+		//	NSLog(@"toc specify out of page range. maxPageNum=%d, page in toc=%d", maxPageNum, [[tmpDict objectForKey:TOC_PAGE] intValue]);
+		//	continue;	//skip to next object. not add to define.
+		//}
 		
 		//Add to toc define.
 		[appDelegate.tocDefine addObject:tmpDict];
+		[tmpDict release]; tmpDict = nil;
 	}
 }
 

@@ -25,6 +25,6 @@
 + (NSString*)getUrlBaseWithOpds;
 //
 - (void)saveUsernameAndPasswordToUserDefault:(NSString*)username withPassword:(NSString*)password;
-- (NSDictionary*)loadUsernameAndPasswordFromUserDefault;
++ (NSDictionary*)loadUsernameAndPasswordFromUserDefault;
 
 @end

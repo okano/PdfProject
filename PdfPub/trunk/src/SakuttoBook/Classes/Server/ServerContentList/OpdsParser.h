@@ -20,7 +20,7 @@
 
 //- (NSURL*)getOpds:(NSURL*)rootUrl;
 - (NSURL*)getOpdsRoot:(NSURL*)rootUrl;
-- (NSMutableArray*)getOpdsElement:(NSURL*)elementUrl;
+- (NSMutableArray*)allocOpdsElementWithUrl:(NSURL*)elementUrl;
 
 - (NSData*)getXmlFromUrl:(NSURL*)url username:(NSString*)username password:(NSString*)password;
 - (BOOL)networkReachability;

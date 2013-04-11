@@ -60,6 +60,8 @@
 	if (! pdfPage) {
 		LOG_CURRENT_METHOD;
 		NSLog(@"pdfPage cannot get. pageNum=%d", pageNum);
+		CGPDFDocumentRelease(pdfDocument);
+		pdfDocument = nil;
 		return;
 	}
 	
@@ -126,6 +128,7 @@
 	CGContextDrawPDFPage(context, pdfPage);
 	
 	CGPDFDocumentRelease(pdfDocument);
+	pdfDocument = nil;
 
 //	CGContextRestoreGState(context);
 	
@@ -177,10 +180,10 @@
 		LOG_CURRENT_METHOD;
 		LOG_CURRENT_LINE;
 		//Release PDFDocument.
-		if (pdfDocument) {
-			CGPDFDocumentRelease(pdfDocument);
-			pdfDocument = nil;
-		}
+		//if (pdfDocument) {
+		//	CGPDFDocumentRelease(pdfDocument);
+		//	pdfDocument = nil;
+		//}
 		return;
 	}
 	

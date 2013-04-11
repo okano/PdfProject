@@ -33,6 +33,12 @@
 			continue;	//Skip illigal line.
 		}
 		
+		//Check page range.
+		int candidatePageNumber = [NSNumber numberWithInt:[[tmpCsvArray objectAtIndex:0] intValue]];
+		if (maxPageNum < candidatePageNumber) {
+			continue;	//skip to next object. not add to define.
+		}
+		
 		tmpDict = [[NSMutableDictionary alloc] init];
 		//Page Number.
 		[tmpDict setValue:[NSNumber numberWithInt:[[tmpCsvArray objectAtIndex:0] intValue]] forKey:MD_PAGE_NUMBER];
@@ -45,12 +51,13 @@
 		[tmpDict setValue:[tmpCsvArray objectAtIndex:5] forKey:ULWC_URL];
 		
 		//Check page range.
-		if (maxPageNum < [[tmpDict objectForKey:MD_PAGE_NUMBER] intValue]) {
-			continue;	//skip to next object. not add to define.
-		}
+		//if (maxPageNum < [[tmpDict objectForKey:MD_PAGE_NUMBER] intValue]) {
+		//	continue;	//skip to next object. not add to define.
+		//}
 		
 		//Add to url link with csv define.
 		[urlDefineWithCsv addObject:tmpDict];
+		[tmpDict release]; tmpDict = nil;
 	}
 }
 

@@ -106,7 +106,7 @@
 	//NSLog(@"self.view.frame=%@", NSStringFromCGRect(self.view.frame));
 	
 	CGFloat currentOriginX = 0.0f, currentOriginY = 0.0f;
-	CGFloat maxHeightInLine;
+	CGFloat maxHeightInLine = 0;
 	//
 	CGFloat buttonOffsetX, buttonOffsetY;
 	CGFloat spacerX, spacerY;
@@ -166,6 +166,7 @@
 	//shelfImageFrame.origin.y = 0;
 	shelfImageView.frame = shelfImageFrame;
 	[scrollView addSubview:shelfImageView];
+	[shelfImageView release]; shelfImageView = nil;
 	
 	
 	currentOriginX += buttonOffsetX;
@@ -182,12 +183,13 @@
 		UIImage* imageOriginal = nil;
 		UIImage* image = nil;
 		
-		imageOriginal = [CoverUtility coverImageWithContentId:targetCid];
+		imageOriginal = [CoverUtility allocCoverImageWithContentId:targetCid];
 		if (!imageOriginal)
 		{
 			NSLog(@"no cover image found in local file. targetCid=%d", targetCid);
 			//get dummy image.
 			imageOriginal = [UIImage imageNamed:@"CoverDummy.png"];
+			[imageOriginal retain];
 		}
 		
 		//Resize cover image for fit in scroll view.
@@ -195,6 +197,7 @@
 		[imageOriginal drawInRect:CGRectMake(0, 0, buttonImageWidth, buttonImageHeight)];
 		image = UIGraphicsGetImageFromCurrentImageContext();
 		UIGraphicsEndImageContext();
+		[imageOriginal release]; imageOriginal = nil;
 		
 		
 		// Check width.

@@ -36,8 +36,10 @@
 }
 - (uint)countWithGenre:(NSString*)genre
 {
-	NSDictionary* ids = [self contentIdsWithGenre:genre];
-	return [ids count];
+	NSDictionary* ids = [self allocContentIdsWithGenre:genre];
+	uint count = [ids count];
+	[ids release]; ids = nil;
+	return count;
 }
 
 - (uint)countWithGenre:(NSString*)genre subGenre:(NSString*)subGenre
@@ -70,7 +72,7 @@
 	return [[tmpDict valueForKey:CONTENT_CID] intValue];
 	//return @"testContentId";
 }
-- (NSDictionary*)contentIdsWithGenre:(NSString*)genre
+- (NSDictionary*)allocContentIdsWithGenre:(NSString*)genre
 {
 	NSDictionary* contentsInGenre = [contentIdDictWithGenre valueForKey:genre];
 	if (contentsInGenre == nil) {
@@ -512,11 +514,16 @@
 	NSMutableDictionary* subGenreDict = [contentIdDictWithGenre valueForKey:genre];
 	if (subGenreDict == nil) {
 		subGenreDict = [[NSMutableDictionary alloc] init];
+	} else {
+		[subGenreDict retain];
 	}
+	
 	//Get ContentIdArray with subGenre.
 	NSMutableArray* contentIdArray = [subGenreDict valueForKey:subGenre];
 	if (contentIdArray == nil) {
 		contentIdArray = [[NSMutableArray alloc] init];
+	} else {
+		[contentIdArray retain];
 	}
 	
 	//Add contentId into array.
@@ -524,6 +531,9 @@
 	[contentIdArray addObject:[NSNumber numberWithUnsignedInteger:cid]];
 	[subGenreDict setObject:contentIdArray forKey:subGenre];
 	[contentIdDictWithGenre setObject:subGenreDict forKey:genre];
+	
+	[subGenreDict release]; subGenreDict = nil;
+	[contentIdArray release]; contentIdArray = nil;
 }
 - (void)replaceMetadataAtIndex:(NSInteger)index withMetadata:(NSDictionary*)metaDataDict
 {
