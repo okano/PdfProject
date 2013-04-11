@@ -468,11 +468,14 @@
 		NSLog(@"res is null");
 	}
 	
+	return data;
 	
+	/*
 	//load XML to NSData.
 	NSData *_data = [NSData dataWithContentsOfURL:url];  
 
 	return _data;
+	*/
 }
 
 
