@@ -7,10 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SKBEngine_PopoverScrollImageViewController.h"
 
-@interface PopoverScrollImageViewController : SKBEngine_PopoverScrollImageViewController <UIScrollViewDelegate> {
-    
+@interface PopoverScrollImageViewController : UIViewController <UIScrollViewDelegate> {
+	UIScrollView* scrollView;
+	UIImageView* imageView;
+	
+	//Save position, zoomScale for parent view.
+	UIScrollView* parentScrollView;
+	CGPoint parentOffset;
+	CGFloat parentZoomScale;
 }
-////
+//
+@property (nonatomic, retain) UIScrollView* scrollView;
+@property (nonatomic, retain) UIImageView* imageView;
+@property (nonatomic, retain) UIScrollView* parentScrollView;
+- (id)initWithImageFilename:(NSString*)filename frame:(CGRect)frame;
+- (void)setParentScrollView:(UIScrollView*)targetParentScrollView fromPosition:(CGPoint)pos fromZoomScale:(CGFloat)scale;
+- (void)repositionParentScrollView;
+- (void)toggleZoom:(UITapGestureRecognizer*)gesture;
+
 @end

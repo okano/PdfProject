@@ -95,8 +95,6 @@
 		299A7B3B16EF288800153C7F /* icon_undo.png in Resources */ = {isa = PBXBuildFile; fileRef = 299A7B3A16EF288800153C7F /* icon_undo.png */; };
 		299A7B3D16EF388400153C7F /* icon_recycle.png in Resources */ = {isa = PBXBuildFile; fileRef = 299A7B3C16EF388400153C7F /* icon_recycle.png */; };
 		299F35CC1533EBAE00FAD69F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299F35CB1533EBAE00FAD69F /* SystemConfiguration.framework */; };
-		29A1CB7A138616AA00326759 /* SKBE_MainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A1CB79138616AA00326759 /* SKBE_MainVC.m */; };
-		29A1CB7E138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A1CB7D138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m */; };
 		29A1E74916AAE909003B19C1 /* ContentPlayerViewController+urlWithCsv.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A1E74816AAE909003B19C1 /* ContentPlayerViewController+urlWithCsv.m */; };
 		29A1E74C16AB9FA9003B19C1 /* urlLinkDefine_1.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29A1E74A16AB9FA9003B19C1 /* urlLinkDefine_1.csv */; };
 		29A1E74D16AB9FA9003B19C1 /* urlLinkDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29A1E74B16AB9FA9003B19C1 /* urlLinkDefine.csv */; };
@@ -292,10 +290,6 @@
 		299A7B3A16EF288800153C7F /* icon_undo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_undo.png; sourceTree = "<group>"; };
 		299A7B3C16EF388400153C7F /* icon_recycle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_recycle.png; sourceTree = "<group>"; };
 		299F35CB1533EBAE00FAD69F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		29A1CB78138616AA00326759 /* SKBE_MainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKBE_MainVC.h; path = SKBEngine/SKBEngine/SKBE_MainVC.h; sourceTree = "<group>"; };
-		29A1CB79138616AA00326759 /* SKBE_MainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKBE_MainVC.m; path = SKBEngine/SKBEngine/SKBE_MainVC.m; sourceTree = "<group>"; };
-		29A1CB7C138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKBEngine_PopoverScrollImageViewController.h; path = SKBEngine/SKBEngine/SKBEngine_PopoverScrollImageViewController.h; sourceTree = "<group>"; };
-		29A1CB7D138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKBEngine_PopoverScrollImageViewController.m; path = SKBEngine/SKBEngine/SKBEngine_PopoverScrollImageViewController.m; sourceTree = "<group>"; };
 		29A1E74816AAE909003B19C1 /* ContentPlayerViewController+urlWithCsv.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ContentPlayerViewController+urlWithCsv.m"; sourceTree = "<group>"; };
 		29A1E74A16AB9FA9003B19C1 /* urlLinkDefine_1.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = urlLinkDefine_1.csv; path = csv/urlLinkDefine_1.csv; sourceTree = "<group>"; };
 		29A1E74B16AB9FA9003B19C1 /* urlLinkDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = urlLinkDefine.csv; path = csv/urlLinkDefine.csv; sourceTree = "<group>"; };
@@ -541,17 +535,6 @@
 			path = InAppPurchase/VerificationController;
 			sourceTree = "<group>";
 		};
-		29311316138966AE003588A9 /* SKBEngine */ = {
-			isa = PBXGroup;
-			children = (
-				29A1CB78138616AA00326759 /* SKBE_MainVC.h */,
-				29A1CB79138616AA00326759 /* SKBE_MainVC.m */,
-				29A1CB7C138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.h */,
-				29A1CB7D138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m */,
-			);
-			name = SKBEngine;
-			sourceTree = "<group>";
-		};
 		29452CA814E3A58700DD15ED /* sound */ = {
 			isa = PBXGroup;
 			children = (
@@ -633,7 +616,6 @@
 			children = (
 				2949B3971615558E00BD3B14 /* Default-568h@2x.png */,
 				080E96DDFE201D6D7F000001 /* Classes */,
-				29311316138966AE003588A9 /* SKBEngine */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -1108,8 +1090,6 @@
 				2999FDC512D6A8D500D0F145 /* License.m in Sources */,
 				291EDE0413124E2C00DBD3E5 /* ImageGenerator.m in Sources */,
 				294E1FC1131E313800E49BAF /* PopoverScrollImageViewController.m in Sources */,
-				29A1CB7A138616AA00326759 /* SKBE_MainVC.m in Sources */,
-				29A1CB7E138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m in Sources */,
 				291593141394B54700387697 /* ContentPlayerViewController.m in Sources */,
 				29B16DF7139873F300B4D958 /* ContentListViewController.m in Sources */,
 				29B16E001398744C00B4D958 /* ContentDetailViewController.m in Sources */,
