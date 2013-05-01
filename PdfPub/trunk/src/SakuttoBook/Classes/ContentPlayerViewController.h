@@ -13,7 +13,6 @@
 #import <AVFoundation/AVFoundation.h>
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
-#import "SKBE_MainVC.h"
 #import "Utility.h"
 #import "FileUtility.h"
 #import "Define.h"
@@ -34,7 +33,7 @@
 
 #import "ImageGenerator.h"
 
-@interface ContentPlayerViewController : SKBE_MainVC <UIActionSheetDelegate, AVAudioPlayerDelegate> {
+@interface ContentPlayerViewController : UIViewController <UIActionSheetDelegate, AVAudioPlayerDelegate> {
 	// Views.
 	IBOutlet MyPdfScrollView* pdfScrollView1;
 	IBOutlet MyPdfScrollView* pdfScrollView2;
