@@ -115,11 +115,14 @@ static ProductIdList *_instance = nil;
 
 - (void)refreshProductIdListFromNetwork
 {
+#if (! defined(OVERWRITE_PRODUCTIDLIST_BY_SERVER)) || OVERWRITE_PRODUCTIDLIST_BY_SERVER == 0
+	return;	//do nothing.
+#endif
+	
+	
 	NSString* urlStr = [self getProductIdListUrl];
 	NSURL* url = [NSURL URLWithString:urlStr];
 	//NSError* error = nil;
-	
-	
 	
 	//Set security infomation.
 	NSDictionary* dict = [[ConfigViewController alloc] loadUsernameAndPasswordFromUserDefault];
@@ -161,10 +164,35 @@ static ProductIdList *_instance = nil;
 		return;		//do nothing if no data found.
 	}
 	
-	
+#if   defined(OVERWRITE_PRODUCTIDLIST_BY_SERVER) && OVERWRITE_PRODUCTIDLIST_BY_SERVER == 1
 	//Replace to new.
 	[productIdList removeAllObjects];
 	[productIdList addObjectsFromArray:tmpArray];
+#elif defined(OVERWRITE_PRODUCTIDLIST_BY_SERVER) && OVERWRITE_PRODUCTIDLIST_BY_SERVER == 2
+	//Merge to original.
+	//for change ProductId with same ContentId.
+	
+	NSLog(@"productIdList(before) = %@", [productIdList description]);
+	
+	int pidListCount = [productIdList count];
+	for (int i=0; i < pidListCount; i = i + 1) {
+		NSString* line = [productIdList objectAtIndex:i];
+		NSArray* arrayFromLine = [line componentsSeparatedByString:@","];
+		ContentId targetCid = [[arrayFromLine objectAtIndex:0] intValue];
+		for (NSString* lineFromServer in tmpArray) {
+			NSArray* arrayFromLineFromServer = [lineFromServer componentsSeparatedByString:@","];
+			ContentId candidateCid = [[arrayFromLineFromServer objectAtIndex:0] intValue];
+			if (targetCid == candidateCid) {
+				//Overwrite with new line.
+				[productIdList replaceObjectAtIndex:i withObject:lineFromServer];
+				break; //skip to next.
+			}
+		}
+	}
+	
+	NSLog(@"productIdList(after) = %@", [productIdList description]);
+	
+#endif
 	
 	//Store new list into UserDefault.
 	[self saveProductIdList];

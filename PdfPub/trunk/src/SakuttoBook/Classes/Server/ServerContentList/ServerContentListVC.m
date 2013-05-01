@@ -78,31 +78,41 @@
 - (void)setupData
 {
 	LOG_CURRENT_METHOD;
+	
+	//Get productIdList from file.
+	[[ProductIdList sharedManager] loadProductIdList];
+	if ([[ProductIdList sharedManager] count] <= 0) {
+		[[ProductIdList sharedManager] loadProductIdListFromMainBundle];
+	}
+
+	
+	//Get ServerContentList.
 	if (appDelegate.serverContentListDS == nil) {
 		appDelegate.serverContentListDS = [[ServerContentListDS alloc] init];
 	}
 	appDelegate.serverContentListDS.targetTableVC = self;
-	[appDelegate.serverContentListDS loadContentList:32];
 	
-	//Check network enable before get productIdList.
-	if (internetActive == NO) {
-		LOG_CURRENT_METHOD;
-		UIAlertView *alert = [[[UIAlertView alloc]
-							   initWithTitle:@"Network error"
-							   message:@"Network not found."
-							   delegate:nil
-							   cancelButtonTitle:nil
-							   otherButtonTitles:@"OK", nil]
-							  autorelease];
-		[alert show];
+	//load ServerContentList from file.
+	[appDelegate.serverContentListDS loadContentListFromFile];
+	if ([appDelegate.serverContentListDS count] <= 0) {
+		//Check network enable before get productIdList.
+		if (internetActive == NO) {
+			LOG_CURRENT_METHOD;
+			UIAlertView *alert = [[[UIAlertView alloc]
+								   initWithTitle:@"Network error"
+								   message:@"Network not found."
+								   delegate:nil
+								   cancelButtonTitle:nil
+								   otherButtonTitles:@"OK", nil]
+								  autorelease];
+			[alert show];
+			
+			return;
+		}
 		
-		return;
+		//load ServerContentList from network.
+		[appDelegate.serverContentListDS loadContentListFromNetworkByOpds];
 	}
-	
-#if defined(OVERWRITE_PRODUCTIDLIST_BY_SERVER) && OVERWRITE_PRODUCTIDLIST_BY_SERVER != 0
-	//Get productIdList from server.
-	[[ProductIdList sharedManager] refreshProductIdListFromNetwork];
-#endif
 }
 
 - (void)reloadFromNetwork
@@ -122,14 +132,10 @@
 		return;
 	}
 	
-#if defined(OVERWRITE_PRODUCTIDLIST_BY_SERVER) && OVERWRITE_PRODUCTIDLIST_BY_SERVER != 0
 	//Get productIdList before get opds.
 	[[ProductIdList sharedManager] refreshProductIdListFromNetwork];
-#endif
 	
 	//Reload OPDS from network.
-	//[appDelegate.serverContentListDS removeAllObjects];
-	appDelegate.serverContentListDS.targetTableVC = self;
 	[appDelegate.serverContentListDS loadContentListFromNetworkByOpds];
 }
 - (IBAction)reloadFromNetwork:(id)sender { [self reloadFromNetwork]; }
