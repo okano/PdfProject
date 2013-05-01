@@ -2153,9 +2153,12 @@
 						  self.view.frame.size.width);
 	}
 	
+	NSString* cidStr = [NSString stringWithFormat:@"%d", currentContentId];
+	NSString* filenameFull = [[ContentFileUtility getContentBodyImageDirectoryWithContentId:cidStr]
+							  stringByAppendingPathComponent:filename];
 	
 	PopoverScrollImageViewController* psivc;
-	psivc = [[PopoverScrollImageViewController alloc] initWithImageFilename:filename frame:rect];
+	psivc = [[PopoverScrollImageViewController alloc] initWithImageFilename:filenameFull frame:rect];
 	//Save scrollView position, zoomScale.
 	[psivc setParentScrollView:currentPdfScrollView
 				  fromPosition:currentPdfScrollView.contentOffset
