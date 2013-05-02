@@ -248,11 +248,12 @@
 	[targetTableVC didStartParseOpdsElement];
 	resultArray = [parser getOpdsElement:elementUrl];
 	if (resultArray != nil) {
-#if defined(OVERWRITE_PRODUCTIDLIST_BY_SERVER) && OVERWRITE_PRODUCTIDLIST_BY_SERVER == 1
+#if defined(OVERWRITE_PRODUCTIDLIST_BY_SERVER) && (OVERWRITE_PRODUCTIDLIST_BY_SERVER == 1)
 		//Add all contents data into inner-var.
 		[contentList removeAllObjects];
 		[contentList addObjectsFromArray:resultArray];
-#elseif defined(OVERWRITE_PRODUCTIDLIST_BY_SERVER) && OVERWRITE_PRODUCTIDLIST_BY_SERVER == 2
+#endif
+#if defined(OVERWRITE_PRODUCTIDLIST_BY_SERVER) && (OVERWRITE_PRODUCTIDLIST_BY_SERVER == 2)
 		//Add only specified contents in productIdList (in mainBundle.)
 		ProductIdList* productIdList = [ProductIdList sharedManager];
 		[productIdList loadProductIdListFromMainBundle];
@@ -268,6 +269,11 @@
 				[self addMetadata:singleContentMetadata];
 			}
 		}
+#endif
+#if !defined(OVERWRITE_PRODUCTIDLIST_BY_SERVER)
+		NSLog(@"OVERWRITE_PRODUCTIDLIST_BY_SERVER not defined.");
+#else
+		NSLog(@"OVERWRITE_PRODUCTIDLIST_BY_SERVER is %d, do nothing.", OVERWRITE_PRODUCTIDLIST_BY_SERVER);
 #endif
 		
 		//NSLog(@"contentList=%@", [contentList description]);
