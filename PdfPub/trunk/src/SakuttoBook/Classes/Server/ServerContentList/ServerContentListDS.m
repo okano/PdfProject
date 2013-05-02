@@ -15,7 +15,8 @@
 #pragma mark - setup data.
 - (void)setupData
 {
-	[self setupTestData];
+	//Load cache file.
+	[self loadContentListFromFile];
 }
 
 #pragma mark - TestData.
