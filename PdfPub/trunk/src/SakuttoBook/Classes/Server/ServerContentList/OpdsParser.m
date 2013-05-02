@@ -23,8 +23,10 @@
 //using kissXML library.
 - (NSURL*)getOpdsRoot:(NSURL*)rootUrl
 {
-	//LOG_CURRENT_METHOD;
-	//NSLog(@"rootUrl=%@", [rootUrl description]);
+#if defined(DEBUG_CREDENTIAL) && DEBUG_CREDENTIAL != 0
+	LOG_CURRENT_METHOD;
+	NSLog(@"rootUrl=%@", [rootUrl description]);
+#endif
 	
 	//Check network connection.
 	if ([self networkReachability] == FALSE) {
@@ -158,8 +160,10 @@
 #pragma mark - parse opds-Element.
 - (NSMutableArray*)getOpdsElement:(NSURL *)elementUrl
 {
+#if defined(DEBUG_CREDENTIAL) && DEBUG_CREDENTIAL != 0
 	LOG_CURRENT_METHOD;
 	NSLog(@"elementUrl=%@", [elementUrl description]);
+#endif
 	
 	//Set security infomation.
 	NSDictionary* dict = [[ConfigViewController alloc] loadUsernameAndPasswordFromUserDefault];
@@ -349,13 +353,15 @@
 //Needs port number for generate credential(NSURLProtectionSpace class).
 - (NSData*)getXmlFromUrl:(NSURL*)url username:(NSString*)username password:(NSString*)password;
 {
-	LOG_CURRENT_METHOD;
 	NSNumber* targetPort = [url port];
 	if (targetPort == 0) {
 		targetPort = [NSNumber numberWithInt:HTTP_PORT_DEFAULT];
 	}
 	
+#if defined(DEBUG_CREDENTIAL) && DEBUG_CREDENTIAL != 0
+	LOG_CURRENT_METHOD;
 	NSLog(@"url=%@, port=%d", [url description], [targetPort intValue]);
+#endif
 	
 	//check XML exists.
 	/*
@@ -395,22 +401,24 @@
 	 password:@"pass"
 	 persistence:NSURLCredentialPersistencePermanent];
 	 */
-	NSLog(@"credential = %@", [credential description]);
 	NSURLProtectionSpace* protectionSpace = [[NSURLProtectionSpace alloc] initWithHost:[url host] //@"192.168.1.6" //@"192.168.1.8" //[url host] //@"localhost"
 																				  port:[targetPort intValue]
 																			  protocol:NSURLProtectionSpaceHTTP //@"http"
 																				 realm:CREDENTIAL_REALM
 																  authenticationMethod:NSURLAuthenticationMethodHTTPBasic];
+	[[NSURLCredentialStorage sharedCredentialStorage] setDefaultCredential:credential
+														forProtectionSpace:protectionSpace];
+	[protectionSpace release];
+
+#if defined(DEBUG_CREDENTIAL) && DEBUG_CREDENTIAL != 0
+	NSLog(@"credential = %@", [credential description]);
 	NSLog(@"protectionSpace=%@, host=%@, port=%d", [protectionSpace description],
 		  [protectionSpace host], [protectionSpace port]);
 	NSLog(@"protocol=%@, realm=%@", [protectionSpace protocol], [protectionSpace realm]);
 	NSLog(@"receivesCredentialSecurely=%d(YES=%d,NO=%d)", [protectionSpace receivesCredentialSecurely], YES, NO);
 	NSLog(@"distinguishedNames=%@", [[protectionSpace distinguishedNames] description]);
-	[[NSURLCredentialStorage sharedCredentialStorage] setDefaultCredential:credential
-														forProtectionSpace:protectionSpace];
-	[protectionSpace release];
-	
 	NSLog(@"all credential=%@", [[[NSURLCredentialStorage sharedCredentialStorage] allCredentials] description]);
+#endif
 	
 	
 	//Set timeout = 10s.

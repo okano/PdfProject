@@ -26,3 +26,4 @@
 - (BOOL)networkReachability;
 @end
 
+#define DEBUG_CREDENTIAL 0	/* 0:not debug, 1:show URL and credential infomation for OPDS. */
