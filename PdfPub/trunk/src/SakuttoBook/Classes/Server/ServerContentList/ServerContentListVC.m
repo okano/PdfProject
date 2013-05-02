@@ -112,6 +112,9 @@
 		
 		//load ServerContentList from network.
 		[appDelegate.serverContentListDS loadContentListFromNetworkByOpds];
+	} else {
+		LOG_CURRENT_LINE;
+		NSLog(@"%d contents found from File.", [appDelegate.serverContentListDS count]);
 	}
 }
 
