@@ -26,7 +26,7 @@
 																			style:UIBarButtonItemStyleBordered
 																		   target:self
 																		   action:@selector(showContentList)];
-	UIBarButtonItem *paymentHistoryButton = [[UIBarButtonItem alloc] initWithTitle:@"購入履歴"
+	UIBarButtonItem *paymentHistoryButton = [[UIBarButtonItem alloc] initWithTitle:@"履歴"
 																			 style:UIBarButtonItemStyleBordered
 																			target:self
 																			action:@selector(showPaymentHistoryList)];
@@ -45,7 +45,7 @@
 	activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
 	UIBarButtonItem *activityItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
 
-	NSArray *items = [NSArray arrayWithObjects:localContentButton, paymentHistoryButton, spacer1, activityItem, spacer2, reloadButton, nil];
+	NSArray *items = [NSArray arrayWithObjects:localContentButton, spacer1, paymentHistoryButton, activityItem, spacer1, reloadButton, nil];
 	[toolbar setItems:items];
 	[localContentButton release]; localContentButton = nil;
 	[paymentHistoryButton release]; paymentHistoryButton = nil;
