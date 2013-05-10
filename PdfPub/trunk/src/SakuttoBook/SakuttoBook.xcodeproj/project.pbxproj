@@ -79,6 +79,7 @@
 		294FCA2D16B24D4A00F9688E /* tocDefine_7.csv in Resources */ = {isa = PBXBuildFile; fileRef = 294FCA1C16B24D4A00F9688E /* tocDefine_7.csv */; };
 		295C4A6D16A1135300A3C237 /* shelf.png in Resources */ = {isa = PBXBuildFile; fileRef = 295C4A6C16A1135300A3C237 /* shelf.png */; };
 		2962C40C1394B9EC002E57F9 /* ContentPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2962C40B1394B9EC002E57F9 /* ContentPlayerView.xib */; };
+		29750ABB173CAAA3007D4452 /* MenuBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29750ABA173CAAA3007D4452 /* MenuBottomView.xib */; };
 		29787BE112C5FBDC00EC2681 /* document.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 29787BE012C5FBDC00EC2681 /* document.pdf */; };
 		297AC25612B786EB00962CED /* TocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297AC25512B786EB00962CED /* TocViewController.m */; };
 		297AC25812B7870B00962CED /* TocView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 297AC25712B7870B00962CED /* TocView.xib */; };
@@ -270,6 +271,7 @@
 		295C4A6C16A1135300A3C237 /* shelf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shelf.png; path = Classes/shelf.png; sourceTree = "<group>"; };
 		2962C40B1394B9EC002E57F9 /* ContentPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentPlayerView.xib; sourceTree = "<group>"; };
 		2963BE1D12B5C01E001041EB /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
+		29750ABA173CAAA3007D4452 /* MenuBottomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuBottomView.xib; sourceTree = "<group>"; };
 		29787BE012C5FBDC00EC2681 /* document.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = document.pdf; sourceTree = "<group>"; };
 		297AC25412B786EB00962CED /* TocViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TocViewController.h; sourceTree = "<group>"; };
 		297AC25512B786EB00962CED /* TocViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TocViewController.m; sourceTree = "<group>"; };
@@ -650,6 +652,7 @@
 				2899E5210DE3E06400AC0155 /* SakuttoBookViewController.xib */,
 				2962C40B1394B9EC002E57F9 /* ContentPlayerView.xib */,
 				2935764312B5EAAD00F46754 /* MenuView.xib */,
+				29750ABA173CAAA3007D4452 /* MenuBottomView.xib */,
 				293BB9F112B6218500DDA3E3 /* WebView.xib */,
 				297AC25712B7870B00962CED /* TocView.xib */,
 				29E1089912D46D4700FC5210 /* BookmarkModifyView.xib */,
@@ -1049,6 +1052,7 @@
 				299A7B3716EF259C00153C7F /* icon_pen.png in Resources */,
 				299A7B3B16EF288800153C7F /* icon_undo.png in Resources */,
 				299A7B3D16EF388400153C7F /* icon_recycle.png in Resources */,
+				29750ABB173CAAA3007D4452 /* MenuBottomView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

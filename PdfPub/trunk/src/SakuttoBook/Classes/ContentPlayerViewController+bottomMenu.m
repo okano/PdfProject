@@ -14,9 +14,9 @@
 	//LOG_CURRENT_METHOD;
 	if ([self isContainSountAtIndex:currentPageNum] == YES)
 	{
-		[self.view bringSubviewToFront:bottomToolBar];
+		[self.view bringSubviewToFront:menuBottomViewController.view];
 		[UIView beginAnimations:@"bottomMenuBarShow" context:nil];
-		bottomToolBar.alpha = 1.0f;
+		menuBottomViewController.view.alpha = 1.0f;
 		[UIView commitAnimations];
 	}
 }
@@ -25,7 +25,7 @@
 {
 	//LOG_CURRENT_METHOD;
 	[UIView beginAnimations:@"bottomMenuBarHide" context:nil];
-	bottomToolBar.alpha = 0.0f;
+	menuBottomViewController.view.alpha = 0.0f;
 	[UIView commitAnimations];
 }
 

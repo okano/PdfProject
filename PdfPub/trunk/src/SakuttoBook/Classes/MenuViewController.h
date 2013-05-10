@@ -33,5 +33,8 @@
 - (IBAction)showBookmarkModifyView:(id)sender;
 //- (IBAction)addBookmarkWithCurrentPage:(id)sender;
 
+//sound.
+- (IBAction)stopSound:(id)sender;
+
 - (IBAction)switchToContentListView:(id)sender;
 @end
