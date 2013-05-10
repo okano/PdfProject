@@ -14,11 +14,15 @@
 	//LOG_CURRENT_METHOD;
 	if ([self isContainSountAtIndex:currentPageNum] == YES)
 	{
-		[self.view bringSubviewToFront:menuBottomViewController.view];
-		[UIView beginAnimations:@"bottomMenuBarShow" context:nil];
-		menuBottomViewController.view.alpha = 1.0f;
-		[UIView commitAnimations];
+		[menuBottomViewController showStopSoundButton];
+	} else {
+		[menuBottomViewController hideStopSoundButton];
 	}
+		
+	[self.view bringSubviewToFront:menuBottomViewController.view];
+	[UIView beginAnimations:@"bottomMenuBarShow" context:nil];
+	menuBottomViewController.view.alpha = 1.0f;
+	[UIView commitAnimations];
 }
 
 - (void)hideBottomMenu

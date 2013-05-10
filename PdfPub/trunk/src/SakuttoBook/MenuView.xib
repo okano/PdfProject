@@ -43,10 +43,9 @@
 					<object class="IBUIButton" id="543466935">
 						<reference key="NSNextResponder" ref="174526576"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{260, 13}, {18, 19}}</string>
+						<string key="NSFrame">{{296, 13}, {18, 19}}</string>
 						<reference key="NSSuperview" ref="174526576"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -113,32 +112,16 @@
 						<int key="IBUIStyle">1</int>
 						<reference key="IBUIToolbar" ref="174526576"/>
 					</object>
-					<object class="IBUIBarButtonItem" id="821842163">
+					<object class="IBUIBarButtonItem" id="881330313">
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIStyle">1</int>
 						<reference key="IBUIToolbar" ref="174526576"/>
-						<int key="IBUISystemItemIdentifier">11</int>
-					</object>
-					<object class="IBUIBarButtonItem" id="872140003">
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">icon_pen.png</string>
-						</object>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIStyle">1</int>
-						<reference key="IBUIToolbar" ref="174526576"/>
+						<int key="IBUISystemItemIdentifier">5</int>
 					</object>
 					<object class="IBUIBarButtonItem" id="130270312">
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIStyle">1</int>
 						<reference key="IBUICustomView" ref="543466935"/>
 						<reference key="IBUIToolbar" ref="174526576"/>
-					</object>
-					<object class="IBUIBarButtonItem" id="695706647">
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIStyle">1</int>
-						<reference key="IBUIToolbar" ref="174526576"/>
-						<int key="IBUISystemItemIdentifier">4</int>
 					</object>
 				</object>
 			</object>
@@ -205,35 +188,11 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">showBookmarkModifyView:</string>
-						<reference key="source" ref="695706647"/>
-						<reference key="destination" ref="372490531"/>
-					</object>
-					<int key="connectionID">25</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">showBookmarkView:</string>
-						<reference key="source" ref="821842163"/>
-						<reference key="destination" ref="372490531"/>
-					</object>
-					<int key="connectionID">26</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">switchToContentListView:</string>
 						<reference key="source" ref="934319719"/>
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">30</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">enterMarkerMode:</string>
-						<reference key="source" ref="872140003"/>
-						<reference key="destination" ref="372490531"/>
-					</object>
-					<int key="connectionID">40</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -266,10 +225,8 @@
 							<reference ref="563193669"/>
 							<reference ref="113352254"/>
 							<reference ref="130270312"/>
-							<reference ref="695706647"/>
-							<reference ref="821842163"/>
 							<reference ref="934319719"/>
-							<reference ref="872140003"/>
+							<reference ref="881330313"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -298,26 +255,13 @@
 						<reference key="parent" ref="130270312"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">22</int>
-						<reference key="object" ref="695706647"/>
-						<reference key="parent" ref="174526576"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">24</int>
-						<reference key="object" ref="821842163"/>
-						<reference key="parent" ref="174526576"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">28</int>
 						<reference key="object" ref="934319719"/>
 						<reference key="parent" ref="174526576"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">39</int>
-						<reference key="object" ref="872140003"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-						</object>
+						<int key="objectID">41</int>
+						<reference key="object" ref="881330313"/>
 						<reference key="parent" ref="174526576"/>
 					</object>
 				</object>
@@ -333,20 +277,16 @@
 					<string>13.IBPluginDependency</string>
 					<string>18.IBPluginDependency</string>
 					<string>19.IBPluginDependency</string>
-					<string>22.IBPluginDependency</string>
-					<string>24.IBPluginDependency</string>
 					<string>28.IBPluginDependency</string>
 					<string>3.IBPluginDependency</string>
-					<string>39.IBPluginDependency</string>
 					<string>4.IBPluginDependency</string>
+					<string>41.IBPluginDependency</string>
 				</object>
 				<object class="NSArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>MenuViewController</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>UIResponder</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -369,7 +309,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">40</int>
+			<int key="maxID">41</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -387,10 +327,12 @@
 							<string>showInfoView:</string>
 							<string>showPageSmallView:</string>
 							<string>showTocView:</string>
+							<string>stopSound:</string>
 							<string>switchToContentListView:</string>
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -410,6 +352,7 @@
 							<string>showInfoView:</string>
 							<string>showPageSmallView:</string>
 							<string>showTocView:</string>
+							<string>stopSound:</string>
 							<string>switchToContentListView:</string>
 						</object>
 						<object class="NSArray" key="dict.values">
@@ -436,6 +379,10 @@
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">showTocView:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">stopSound:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
@@ -507,13 +454,11 @@
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>folder20x20.png</string>
-				<string>icon_pen.png</string>
 				<string>list_bullets.png</string>
 				<string>list_thumbnail.png</string>
 			</object>
 			<object class="NSArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{20, 20}</string>
 				<string>{20, 20}</string>
 				<string>{20, 20}</string>
 				<string>{20, 20}</string>

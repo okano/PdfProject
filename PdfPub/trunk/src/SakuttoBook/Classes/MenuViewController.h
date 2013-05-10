@@ -16,12 +16,17 @@
 
 @interface MenuViewController : UIViewController {
 	IBOutlet UIToolbar* toolbar;
-	IBOutlet UIBarButtonItem* contentListButton;
+	IBOutlet UIBarButtonItem* contentListButton;		//Hide when single content mode.
+	IBOutlet UIBarButtonItem* stopSoundButton;		//Hide when current page not contain sound.
 	IBOutlet UIButton* infoButton;
 }
 @property (nonatomic, retain) UIToolbar* toolbar;
 @property (nonatomic, retain) UIBarButtonItem* contentListButton;
+@property (nonatomic, retain) UIBarButtonItem* stopSoundButton;
 @property (nonatomic, retain) UIButton* infoButton;
+
+- (void)showStopSoundButton;
+- (void)hideStopSoundButton;
 
 - (IBAction)showTocView:(id)sender;
 - (void)hideTocView;

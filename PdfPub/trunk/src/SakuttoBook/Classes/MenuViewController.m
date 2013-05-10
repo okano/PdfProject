@@ -10,7 +10,7 @@
 
 
 @implementation MenuViewController
-@synthesize toolbar, contentListButton, infoButton;
+@synthesize toolbar, contentListButton, stopSoundButton, infoButton;
 
 - (void)viewDidLoad
 {
@@ -37,7 +37,16 @@
 	
 }
 
+- (void)showStopSoundButton
+{
+	stopSoundButton.enabled = YES;
+}
+- (void)hideStopSoundButton
+{
+	stopSoundButton.enabled = NO;
+}
 
+#pragma mark -
 - (IBAction)showTocView:(id)sender
 {
 	//LOG_CURRENT_METHOD;
