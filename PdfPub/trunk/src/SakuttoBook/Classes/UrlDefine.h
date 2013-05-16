@@ -9,7 +9,7 @@
 
 //Server.
 //#define URL_BASE_OPDS_DEFAULT1		@"http://www2058uf.sakura.ne.jp:8080"
-#define URL_BASE_OPDS_DEFAULT1		@"http://www5066ua.sakura.ne.jp"		/* Demo Server. */
+#define URL_BASE_OPDS_DEFAULT1		@"http://www3200ui.sakura.ne.jp"		/* Demo Server. */
 //#define URL_BASE_OPDS_DEFAULT1		@"http://www7200uj.sakura.ne.jp"		/* Demo Server. */
 
 //#define CREDENTIAL_REALM				@"Authorization Required"			/* Calibre. */
