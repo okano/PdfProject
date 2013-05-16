@@ -49,7 +49,6 @@
 		295C4A6D16A1135300A3C237 /* shelf_my.png in Resources */ = {isa = PBXBuildFile; fileRef = 295C4A6C16A1135300A3C237 /* shelf_my.png */; };
 		2962C40C1394B9EC002E57F9 /* ContentPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2962C40B1394B9EC002E57F9 /* ContentPlayerView.xib */; };
 		29750ABB173CAAA3007D4452 /* MenuBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29750ABA173CAAA3007D4452 /* MenuBottomView.xib */; };
-		29787BE112C5FBDC00EC2681 /* document.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 29787BE012C5FBDC00EC2681 /* document.pdf */; };
 		297AC25612B786EB00962CED /* TocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297AC25512B786EB00962CED /* TocViewController.m */; };
 		297AC25812B7870B00962CED /* TocView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 297AC25712B7870B00962CED /* TocView.xib */; };
 		297DF1FB12C600320082C680 /* InfomationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 297DF1FA12C600320082C680 /* InfomationView.xib */; };
@@ -86,6 +85,7 @@
 		29C7401116BE935E00059E56 /* detailLine.png in Resources */ = {isa = PBXBuildFile; fileRef = 29C7401016BE935E00059E56 /* detailLine.png */; };
 		29CB433E1532D44E00A96D36 /* CoverUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 29CB433D1532D44E00A96D36 /* CoverUtility.m */; };
 		29CB43451532DAF800A96D36 /* ContentListDS.m in Sources */ = {isa = PBXBuildFile; fileRef = 29CB43441532DAF800A96D36 /* ContentListDS.m */; };
+		29CBDD601744CF5F0016DDF2 /* ServerContentListImageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 294B3D4216B583810095E56F /* ServerContentListImageVC.xib */; };
 		29D028C816328111004F7791 /* ContentPlayerViewController+mailSend.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D028C716328111004F7791 /* ContentPlayerViewController+mailSend.m */; };
 		29D248C616BE74F600624A71 /* ContentListImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 293FC641169EAE1C002AF927 /* ContentListImageViewController.xib */; };
 		29DB52D814EB51B0006920EF /* ContentFileUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 29DB52D714EB51B0006920EF /* ContentFileUtility.m */; };
@@ -193,7 +193,6 @@
 		2962C40B1394B9EC002E57F9 /* ContentPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentPlayerView.xib; sourceTree = "<group>"; };
 		2963BE1D12B5C01E001041EB /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		29750ABA173CAAA3007D4452 /* MenuBottomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuBottomView.xib; sourceTree = "<group>"; };
-		29787BE012C5FBDC00EC2681 /* document.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = document.pdf; sourceTree = "<group>"; };
 		297AC25412B786EB00962CED /* TocViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TocViewController.h; sourceTree = "<group>"; };
 		297AC25512B786EB00962CED /* TocViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TocViewController.m; sourceTree = "<group>"; };
 		297AC25712B7870B00962CED /* TocView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TocView.xib; sourceTree = "<group>"; };
@@ -803,6 +802,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29CBDD601744CF5F0016DDF2 /* ServerContentListImageVC.xib in Resources */,
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				2899E5220DE3E06400AC0155 /* SakuttoBookViewController.xib in Resources */,
 				2935764412B5EAAD00F46754 /* MenuView.xib in Resources */,
@@ -839,7 +839,6 @@
 				2916B7A01674799F00B344DA /* ConfigVC2.xib in Resources */,
 				295C4A6D16A1135300A3C237 /* shelf_my.png in Resources */,
 				2989D00616A153B00017BCBD /* unpaid.png in Resources */,
-				296507F916B91DBE005015CD /* ServerContentListImageVC.xib in Resources */,
 				29D248C616BE74F600624A71 /* ContentListImageViewController.xib in Resources */,
 				29C7401116BE935E00059E56 /* detailLine.png in Resources */,
 				291A797516DDED8700DB713B /* ServerContentDetailView-ipad.xib in Resources */,
