@@ -285,7 +285,7 @@
 	//１行だけのサイズを取得して追加
 	CGSize s = [relatedContentHeader.text sizeWithFont:relatedContentHeader.font
 												 forWidth:relatedContentHeader.frame.size.width
-											lineBreakMode:UILineBreakModeWordWrap];
+											lineBreakMode:NSLineBreakByWordWrapping];
 	totalHeight += 10 + s.height + 10;
 	CGRect f5 = relatedContentLabel.frame;
 	f5.origin.y = totalHeight;
@@ -298,7 +298,7 @@
 		//１行だけのサイズを取得して追加
 		CGSize s2 = [relatedContentLabel.text sizeWithFont:relatedContentLabel.font
 											  forWidth:relatedContentLabel.frame.size.width
-										 lineBreakMode:UILineBreakModeWordWrap];
+										 lineBreakMode:NSLineBreakByWordWrapping];
 		totalHeight += s2.height + 20;
 		CGSize totalSizeTmp = scrollView.contentSize;
 		totalSizeTmp.height = totalHeight;
@@ -594,7 +594,8 @@
 																				   targetCid:targetCid];
 	
 	LOG_CURRENT_LINE;
-	[self presentModalViewController:downloaderVC animated:YES];
+	downloaderVC.modalPresentationStyle = UIModalPresentationCurrentContext;
+	[self presentViewController:downloaderVC animated:YES completion:nil];
 	[downloaderVC doDownload];
 	
 	if ([[ProductIdList sharedManager] isFreeContentWithCid:targetCid] == TRUE) {
