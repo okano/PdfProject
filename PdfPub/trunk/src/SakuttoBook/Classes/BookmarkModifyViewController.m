@@ -44,7 +44,7 @@
 
 - (IBAction)closeThisView:(id)sender {
 	//[self.view removeFromSuperview];
-	[self dismissModalViewControllerAnimated:YES];
+	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
