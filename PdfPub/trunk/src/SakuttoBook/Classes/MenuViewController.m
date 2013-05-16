@@ -10,7 +10,7 @@
 
 
 @implementation MenuViewController
-@synthesize toolbar, contentListButton, infoButton;
+@synthesize toolbar, contentListButton, stopSoundButton, infoButton;
 
 - (void)viewDidLoad
 {
@@ -37,7 +37,16 @@
 	
 }
 
+- (void)showStopSoundButton
+{
+	stopSoundButton.enabled = YES;
+}
+- (void)hideStopSoundButton
+{
+	stopSoundButton.enabled = NO;
+}
 
+#pragma mark -
 - (IBAction)showTocView:(id)sender
 {
 	//LOG_CURRENT_METHOD;
@@ -112,6 +121,19 @@
 	[appDelegate showContentListView];
 }
 
+//MARK: Marker mode.
+- (IBAction)enterMarkerMode:(id)sender
+{
+	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
+	[appDelegate enterMarkerMode];
+}
+
+#pragma mark - Sound.
+- (IBAction)stopSound:(id)sender
+{
+	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
+	[appDelegate stopSound];
+}
 
 #pragma mark -
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.

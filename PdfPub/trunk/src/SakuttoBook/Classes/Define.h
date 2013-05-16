@@ -37,8 +37,14 @@
 //Hide Server button on Menu bar.
 #define HIDE_SERVER_BUTTON 0	/* 0:show, 1:hide */
 
+//Hide Restore button in Payment History View.
+#define HIDE_RESTORE_BUTTON 0	/* 0:show, 1:hide */
+
 //Overwrite productIdList.csv by server data.
-#define OVERWRITE_PRODUCTIDLIST_BY_SERVER	0	/* 0:save original data, 1:overwrite by server data */
+#define OVERWRITE_PRODUCTIDLIST_BY_SERVER	2	/* 0:save original data, 1:overwrite by server data, 2:overwrite by server data with specific contents in CSV */
+
+//Setting how to open URL link.
+#define OPEN_URL_WITH	0	/* 0:ask everytime, 1:open in this application, 2:open with Safari(close this application) */
 
 // Tap area. (0.00 - 1.00) (1.00 is "fit to screen")
 #define TAP_AREA_LEFT_X			0.00f
@@ -62,6 +68,13 @@
 #define CACHE_IMAGE_WIDTH_MIN		 640.0f
 #define CACHE_IMAGE_WIDTH_MAX		1536.0f
 #define CACHE_IMAGE_SMALL_WIDTH				 100.0f
+
+// for Marker Pen.
+#define MARKERPEN_LINE_COLOR_R		0.85f
+#define MARKERPEN_LINE_COLOR_G		0.85f
+#define MARKERPEN_LINE_COLOR_B		0.2f
+#define MARKERPEN_LINE_COLOR_ALPHA	0.85f
+#define MARKERPEN_LINE_WIDTH		2.0f
 
 //
 #define USERNAME			@"UserName"

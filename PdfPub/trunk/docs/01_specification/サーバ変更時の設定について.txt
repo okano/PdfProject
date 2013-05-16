@@ -1,0 +1,21 @@
+サーバ変更時の設定について
+
+SakuttoBookのサーバ変更の設定についてです。
+
+・サーバのアドレスの変更
+[UrlDefine.h]
+#define URL_BASE_OPDS_DEFAULT1		@"http://www3200ui.sakura.ne.jp"
+
+
+
+Calibreサーバの場合は、以下も変更してください。
+・サーバの認証REALMの変更
+[UrlDefine.h]
+#define CREDENTIAL_REALM				@"Authentication"
+(通常はこのままで。Calibreサーバの場合は、「@"Authorization Required"」に変更)
+
+・ユーザID／パスワードの変更
+[Define.h]
+#define USERNAME_DEFAULT	@"user"
+#define PASSWORD_DEFAULT	@"password"
+(通常はこのままで。Calibreサーバの場合は、「@"sbsuser"」に変更)

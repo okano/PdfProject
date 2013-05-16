@@ -48,7 +48,8 @@
 		294E1FC1131E313800E49BAF /* PopoverScrollImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 294E1FC0131E313800E49BAF /* PopoverScrollImageViewController.m */; };
 		295C4A6D16A1135300A3C237 /* shelf_my.png in Resources */ = {isa = PBXBuildFile; fileRef = 295C4A6C16A1135300A3C237 /* shelf_my.png */; };
 		2962C40C1394B9EC002E57F9 /* ContentPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2962C40B1394B9EC002E57F9 /* ContentPlayerView.xib */; };
-		296507F916B91DBE005015CD /* ServerContentListImageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 294B3D4216B583810095E56F /* ServerContentListImageVC.xib */; };
+		29750ABB173CAAA3007D4452 /* MenuBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29750ABA173CAAA3007D4452 /* MenuBottomView.xib */; };
+		29787BE112C5FBDC00EC2681 /* document.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 29787BE012C5FBDC00EC2681 /* document.pdf */; };
 		297AC25612B786EB00962CED /* TocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297AC25512B786EB00962CED /* TocViewController.m */; };
 		297AC25812B7870B00962CED /* TocView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 297AC25712B7870B00962CED /* TocView.xib */; };
 		297DF1FB12C600320082C680 /* InfomationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 297DF1FA12C600320082C680 /* InfomationView.xib */; };
@@ -57,9 +58,12 @@
 		2989D00616A153B00017BCBD /* unpaid.png in Resources */ = {isa = PBXBuildFile; fileRef = 2989D00516A153B00017BCBD /* unpaid.png */; };
 		299448EC12B7370B00E7D108 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299448EB12B7370B00E7D108 /* MediaPlayer.framework */; };
 		2999FDC512D6A8D500D0F145 /* License.m in Sources */ = {isa = PBXBuildFile; fileRef = 2999FDC412D6A8D500D0F145 /* License.m */; };
+		299A7B3216EF1FA600153C7F /* ContentPlayerViewController+markerPen.m in Sources */ = {isa = PBXBuildFile; fileRef = 299A7B3116EF1FA600153C7F /* ContentPlayerViewController+markerPen.m */; };
+		299A7B3516EF203600153C7F /* MarkerPenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 299A7B3416EF203600153C7F /* MarkerPenView.m */; };
+		299A7B3716EF259C00153C7F /* icon_pen.png in Resources */ = {isa = PBXBuildFile; fileRef = 299A7B3616EF259C00153C7F /* icon_pen.png */; };
+		299A7B3B16EF288800153C7F /* icon_undo.png in Resources */ = {isa = PBXBuildFile; fileRef = 299A7B3A16EF288800153C7F /* icon_undo.png */; };
+		299A7B3D16EF388400153C7F /* icon_recycle.png in Resources */ = {isa = PBXBuildFile; fileRef = 299A7B3C16EF388400153C7F /* icon_recycle.png */; };
 		299F35CC1533EBAE00FAD69F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299F35CB1533EBAE00FAD69F /* SystemConfiguration.framework */; };
-		29A1CB7A138616AA00326759 /* SKBE_MainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A1CB79138616AA00326759 /* SKBE_MainVC.m */; };
-		29A1CB7E138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A1CB7D138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m */; };
 		29A1E74916AAE909003B19C1 /* ContentPlayerViewController+urlWithCsv.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A1E74816AAE909003B19C1 /* ContentPlayerViewController+urlWithCsv.m */; };
 		29A2A5471398B87300C8CB52 /* productIdList.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29A2A5461398B87300C8CB52 /* productIdList.csv */; };
 		29AFB90E1638067A00C0978C /* ContentPlayerViewController+bottomMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 29AFB90D1638067A00C0978C /* ContentPlayerViewController+bottomMenu.m */; };
@@ -188,6 +192,8 @@
 		295C4A6C16A1135300A3C237 /* shelf_my.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shelf_my.png; path = Classes/shelf_my.png; sourceTree = "<group>"; };
 		2962C40B1394B9EC002E57F9 /* ContentPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentPlayerView.xib; sourceTree = "<group>"; };
 		2963BE1D12B5C01E001041EB /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
+		29750ABA173CAAA3007D4452 /* MenuBottomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuBottomView.xib; sourceTree = "<group>"; };
+		29787BE012C5FBDC00EC2681 /* document.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = document.pdf; sourceTree = "<group>"; };
 		297AC25412B786EB00962CED /* TocViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TocViewController.h; sourceTree = "<group>"; };
 		297AC25512B786EB00962CED /* TocViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TocViewController.m; sourceTree = "<group>"; };
 		297AC25712B7870B00962CED /* TocView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TocView.xib; sourceTree = "<group>"; };
@@ -199,11 +205,13 @@
 		299448EB12B7370B00E7D108 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		2999FDC312D6A8D500D0F145 /* License.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = License.h; sourceTree = "<group>"; };
 		2999FDC412D6A8D500D0F145 /* License.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = License.m; sourceTree = "<group>"; };
+		299A7B3116EF1FA600153C7F /* ContentPlayerViewController+markerPen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ContentPlayerViewController+markerPen.m"; sourceTree = "<group>"; };
+		299A7B3316EF203600153C7F /* MarkerPenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkerPenView.h; sourceTree = "<group>"; };
+		299A7B3416EF203600153C7F /* MarkerPenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkerPenView.m; sourceTree = "<group>"; };
+		299A7B3616EF259C00153C7F /* icon_pen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_pen.png; sourceTree = "<group>"; };
+		299A7B3A16EF288800153C7F /* icon_undo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_undo.png; sourceTree = "<group>"; };
+		299A7B3C16EF388400153C7F /* icon_recycle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_recycle.png; sourceTree = "<group>"; };
 		299F35CB1533EBAE00FAD69F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		29A1CB78138616AA00326759 /* SKBE_MainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKBE_MainVC.h; path = SKBEngine/SKBEngine/SKBE_MainVC.h; sourceTree = "<group>"; };
-		29A1CB79138616AA00326759 /* SKBE_MainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKBE_MainVC.m; path = SKBEngine/SKBEngine/SKBE_MainVC.m; sourceTree = "<group>"; };
-		29A1CB7C138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKBEngine_PopoverScrollImageViewController.h; path = SKBEngine/SKBEngine/SKBEngine_PopoverScrollImageViewController.h; sourceTree = "<group>"; };
-		29A1CB7D138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKBEngine_PopoverScrollImageViewController.m; path = SKBEngine/SKBEngine/SKBEngine_PopoverScrollImageViewController.m; sourceTree = "<group>"; };
 		29A1E74816AAE909003B19C1 /* ContentPlayerViewController+urlWithCsv.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ContentPlayerViewController+urlWithCsv.m"; sourceTree = "<group>"; };
 		29A2A5461398B87300C8CB52 /* productIdList.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = productIdList.csv; path = csv/productIdList.csv; sourceTree = "<group>"; };
 		29AFB90D1638067A00C0978C /* ContentPlayerViewController+bottomMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ContentPlayerViewController+bottomMenu.m"; sourceTree = "<group>"; };
@@ -352,10 +360,13 @@
 				29D028C716328111004F7791 /* ContentPlayerViewController+mailSend.m */,
 				29AFB90D1638067A00C0978C /* ContentPlayerViewController+bottomMenu.m */,
 				29A1E74816AAE909003B19C1 /* ContentPlayerViewController+urlWithCsv.m */,
+				299A7B3116EF1FA600153C7F /* ContentPlayerViewController+markerPen.m */,
 				291EDE0213124E2C00DBD3E5 /* ImageGenerator.h */,
 				291EDE0313124E2C00DBD3E5 /* ImageGenerator.m */,
 				29B3B7C612C57DE00014F866 /* MyPdfScrollView.h */,
 				29B3B7C712C57DE00014F866 /* MyPdfScrollView.m */,
+				299A7B3316EF203600153C7F /* MarkerPenView.h */,
+				299A7B3416EF203600153C7F /* MarkerPenView.m */,
 				2935764012B5EA9C00F46754 /* MenuViewController.h */,
 				2935764112B5EA9C00F46754 /* MenuViewController.m */,
 				293BB9EE12B6217300DDA3E3 /* WebViewController.h */,
@@ -420,17 +431,6 @@
 			);
 			name = VerificationController;
 			path = InAppPurchase/VerificationController;
-			sourceTree = "<group>";
-		};
-		29311316138966AE003588A9 /* SKBEngine */ = {
-			isa = PBXGroup;
-			children = (
-				29A1CB78138616AA00326759 /* SKBE_MainVC.h */,
-				29A1CB79138616AA00326759 /* SKBE_MainVC.m */,
-				29A1CB7C138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.h */,
-				29A1CB7D138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m */,
-			);
-			name = SKBEngine;
 			sourceTree = "<group>";
 		};
 		29452CA814E3A58700DD15ED /* sound */ = {
@@ -508,7 +508,6 @@
 			children = (
 				2949B3971615558E00BD3B14 /* Default-568h@2x.png */,
 				080E96DDFE201D6D7F000001 /* Classes */,
-				29311316138966AE003588A9 /* SKBEngine */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -540,10 +539,14 @@
 				29BF9EFF16EDCF7F00DAE105 /* Icon-72@2x.png */,
 				29BF9F0416EDCF8D00DAE105 /* iTunesArtwork@2x.png */,
 				29F3391D1398894E0005CF10 /* folder20x20.png */,
+				299A7B3616EF259C00153C7F /* icon_pen.png */,
+				299A7B3C16EF388400153C7F /* icon_recycle.png */,
+				299A7B3A16EF288800153C7F /* icon_undo.png */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				2899E5210DE3E06400AC0155 /* SakuttoBookViewController.xib */,
 				2962C40B1394B9EC002E57F9 /* ContentPlayerView.xib */,
 				2935764312B5EAAD00F46754 /* MenuView.xib */,
+				29750ABA173CAAA3007D4452 /* MenuBottomView.xib */,
 				293BB9F112B6218500DDA3E3 /* WebView.xib */,
 				297AC25712B7870B00962CED /* TocView.xib */,
 				29E1089912D46D4700FC5210 /* BookmarkModifyView.xib */,
@@ -844,6 +847,10 @@
 				29BF9F0116EDCF7F00DAE105 /* Icon-72@2x.png in Resources */,
 				29BF9F0316EDCF8700DAE105 /* Icon@2x.png in Resources */,
 				29BF9F0516EDCF8D00DAE105 /* iTunesArtwork@2x.png in Resources */,
+				299A7B3716EF259C00153C7F /* icon_pen.png in Resources */,
+				299A7B3B16EF288800153C7F /* icon_undo.png in Resources */,
+				299A7B3D16EF388400153C7F /* icon_recycle.png in Resources */,
+				29750ABB173CAAA3007D4452 /* MenuBottomView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -885,8 +892,6 @@
 				2999FDC512D6A8D500D0F145 /* License.m in Sources */,
 				291EDE0413124E2C00DBD3E5 /* ImageGenerator.m in Sources */,
 				294E1FC1131E313800E49BAF /* PopoverScrollImageViewController.m in Sources */,
-				29A1CB7A138616AA00326759 /* SKBE_MainVC.m in Sources */,
-				29A1CB7E138616BB00326759 /* SKBEngine_PopoverScrollImageViewController.m in Sources */,
 				291593141394B54700387697 /* ContentPlayerViewController.m in Sources */,
 				29B16DF7139873F300B4D958 /* ContentListViewController.m in Sources */,
 				29B16E001398744C00B4D958 /* ContentDetailViewController.m in Sources */,
@@ -930,6 +935,8 @@
 				294B3D3E16B578D30095E56F /* ServerContentListTableVC.m in Sources */,
 				294B3D4316B583810095E56F /* ServerContentListImageVC.m in Sources */,
 				29C2271716BA56550004B9E4 /* MBProgressHUD.m in Sources */,
+				299A7B3216EF1FA600153C7F /* ContentPlayerViewController+markerPen.m in Sources */,
+				299A7B3516EF203600153C7F /* MarkerPenView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -948,7 +955,7 @@
 				GCC_PREFIX_HEADER = SakuttoBook_Prefix.pch;
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "SakuttoBook-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = SakuttoBook;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -965,7 +972,7 @@
 				GCC_PREFIX_HEADER = SakuttoBook_Prefix.pch;
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "SakuttoBook-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				"OTHER_CFLAGS[arch=armv6]" = (
 					"-mno-thumb",
 					"-DNS_BLOCK_ASSERTIONS=1",

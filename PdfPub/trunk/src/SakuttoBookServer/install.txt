@@ -125,7 +125,7 @@ Passengerインストールに必要なものをインストール
 # passenger-install-apache2-module
 
 設定ファイルを作成
-# find / -type f name mod_passenger.so
+# find / -type f -name mod_passenger.so
 # vi /etc/httpd/conf.d/passenger.conf
 
 LoadModule passenger_module /usr/local/lib/ruby/gems/1.9.1/gems/passenger-3.0.18/ext/apache2/mod_passenger.so
@@ -163,6 +163,16 @@ README.rdoc   app        config.ru  doc  log  script  tmp
 ●画像アップロード作業用ディレクトリの作成
 # mkdir /var/www/passenger/epubs/public/uploads
 # chmod 777 /var/www/passenger/epubs/public/uploads
+
+(初回のアップロード時に、以下のフォルダが自動生成される。)
+# ls -lsat /var/www/passenger/epubs/public/uploads
+合計 20
+4 drwxrwxrwx 5 root   root   4096  4月  3 00:31 2013 .
+4 drwxr-xr-x 3 nobody nobody 4096  4月  3 00:31 2013 content
+4 drwxr-xr-x 3 nobody nobody 4096  4月  3 00:31 2013 tmp
+4 drwxr-xr-x 5 root   root   4096  3月 26 15:24 2013 ..
+#
+
 (以下は、nobodyユーザが自動で作るので行わない？)
 # mkdir /var/www/passenger/epubs/public/uploads/tmp
 # chmod 777 /var/www/passenger/epubs/public/uploads/tmp

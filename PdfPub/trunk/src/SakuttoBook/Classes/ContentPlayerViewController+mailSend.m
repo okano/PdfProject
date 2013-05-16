@@ -127,7 +127,8 @@
 	[controller setBccRecipients:bccRecipient];
 	[controller setMessageBody:messageBody isHTML:NO];
 	controller.mailComposeDelegate = self;
-	[self presentModalViewController:controller animated:YES ];
+	controller.modalPresentationStyle = UIModalPresentationCurrentContext;
+	[self presentViewController:controller animated:YES completion:nil];
 }
 
 
@@ -139,7 +140,7 @@
 	//Check error.
 	if(error != nil) {
 		NSLog(@"Mail send error. code=%d, error=%@", [error code], [error localizedDescription]);
-		[controller dismissModalViewControllerAnimated:YES];
+		[controller dismissViewControllerAnimated:YES completion:nil];
 		return;
 	}
 	
@@ -160,7 +161,7 @@
 			NSLog(@"mail unknown result.");
 			break;
 	}
-	[controller dismissModalViewControllerAnimated:YES];
+	[controller dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

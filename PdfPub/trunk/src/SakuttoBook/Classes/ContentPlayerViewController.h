@@ -13,10 +13,10 @@
 #import <AVFoundation/AVFoundation.h>
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
-#import "SKBE_MainVC.h"
 #import "Utility.h"
 #import "FileUtility.h"
 #import "Define.h"
+#import "MarkerPenView.h"
 #import "MenuViewController.h"
 #import "WebViewController.h"
 #import "PopoverScrollImageViewController.h"
@@ -33,18 +33,22 @@
 
 #import "ImageGenerator.h"
 
-@interface ContentPlayerViewController : SKBE_MainVC <UIActionSheetDelegate, AVAudioPlayerDelegate> {
+@interface ContentPlayerViewController : UIViewController <UIActionSheetDelegate, AVAudioPlayerDelegate> {
 	// Views.
 	IBOutlet MyPdfScrollView* pdfScrollView1;
 	IBOutlet MyPdfScrollView* pdfScrollView2;
 	IBOutlet MyPdfScrollView* pdfScrollView3;
 	
+	//Marker pen.
+	MarkerPenView* markerPenView2;
+
 	//IBOutlet UIImageView* imageView1;
 	//IBOutlet UIImageView* imageView2;
 	//IBOutlet UIImageView* imageView3;
 	//UIImage* image1;
 	//UIImage* image2;
 	//UIImage* image3;
+	
 	// Pointer for view.
 	MyPdfScrollView* prevPdfScrollView;
 	MyPdfScrollView* currentPdfScrollView;
@@ -88,6 +92,13 @@
 	CGPoint panEndPoint;
 	id panTargetView;
 	
+	// MarkerPen.
+    NSMutableArray* markerPenArray;
+	NSMutableArray* pointsForSingleLine;
+	bool isMarkerPenMode;
+	CGPoint prevTouchPointForMakerPen;
+    UIToolbar* menuBarForMakerPen;
+	
 	//
 	NSMutableArray* linksInCurrentPage;
 	NSMutableArray* urlDefineWithCsv;
@@ -102,7 +113,7 @@
 	
 	// Menu
 	MenuViewController* menuViewController;
-	UIToolbar* bottomToolBar;
+	MenuViewController* menuBottomViewController;	//	UIToolbar* bottomToolBar;
 	
 	// WebView
 	WebViewController* webViewController;
@@ -132,6 +143,8 @@
 
 @property (nonatomic) ContentId currentContentId;
 
+@property (nonatomic) bool isMarkerPenMode;
+
 //@property (nonatomic, retain) UIImageView* imageView1;
 //@property (nonatomic, retain) UIImageView* imageView2;
 //@property (nonatomic, retain) UIImageView* imageView3;
@@ -139,7 +152,8 @@
 //@property (nonatomic, retain) UIImage* image2;
 //@property (nonatomic, retain) UIImage* image3;
 @property (nonatomic, retain) MenuViewController* menuViewController;
-@property (nonatomic, retain) UIToolbar* bottomToolBar;
+@property (nonatomic, retain) MenuViewController* menuBottomViewController;
+//@property (nonatomic, retain) UIToolbar* bottomToolBar;
 @property (nonatomic, retain) WebViewController* webViewController;
 @property (nonatomic, retain) TocViewController* tocViewController;
 @property (nonatomic, retain) PageSmallViewController* pageSmallViewController;
@@ -237,8 +251,9 @@
 - (void)hideMenuBar;
 // Show other view.
 - (IBAction)showInfoView;
-- (void)showWebViewSelector:(NSString*)urlString;
 - (void)showWebView:(NSString*)urlString;
+- (void)showWebViewSelector:(NSString*)urlString;
+- (void)showWebViewInThisApp:(NSString*)urlString;
 - (void)showWebWithSafari:(NSString*)urlString;
 
 // Utility for Handle Rotate.
@@ -289,6 +304,28 @@
 - (void)renderUrlLinkWithCsvAtIndex:(NSUInteger)index;
 @end
 
+// Treat Url link specified in CSV file.
+@interface ContentPlayerViewController (markerPen)
+// Handle Pan(draw maker pen)
+- (void)enterMarkerMode;
+- (void)setupMarkerPenView;
+- (void)setupMarkerPenMenu;
+- (void)exitMarkerMode;
+- (void)handlePan2:(UIPanGestureRecognizer*)gestureRecognizer;
+- (void)showMenuBarForMarker;
+- (void)hideMenuBarForMarker;
+//
+- (void)saveMarkerPenToUserDefault;
+- (void)loadMarkerPenFromUserDefault;
+//
+- (void)renderMarkerPenFromUserDefaultAtPage:(NSUInteger)pageNum;
+- (void)prepareDeleteMarkerPenWithCurrentPage;
+- (void)deleteMarkerPenAtPage:(NSUInteger)pageNum;
+- (void)clearMarkerPenView;
+//Delete single line.
+- (IBAction)deleteLastLine:(id)sender;
+@end
+
 
 //#define EPUB_RESOURCES_DIRECTORY	@"content/resources"
 //#define CONTENT_DETAIL_DIRECTORY	@"contentDetail"
@@ -296,3 +333,6 @@
 #define CONTENT_TMP_DIRECTORY		@"tmp"
 //#define CONTENT_DONWLOAD_DIRECTORY  @"downloads"
 //#define CONTENT_EXTRACT_DIRECTORY	@"extract"
+
+#define ACTIONSHEET_TAG_SHOW_WEBVIEW_SELECTOR		201
+#define ACTIONSHEET_TAG_PREPARE_DELETE_MARKERPEN	202

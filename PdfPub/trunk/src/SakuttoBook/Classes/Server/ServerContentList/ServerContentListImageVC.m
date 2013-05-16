@@ -49,16 +49,10 @@
 	
 	[MBProgressHUD showHUDAddedTo:scrollView animated:YES];
 	dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-		// Do something...
-		[appDelegate.serverContentListDS loadContentList:32];
+		//Setup data.
+		[self setupData];
 		
 		//Show cover image after data load.
-		[self setupImagesWithDataSource:appDelegate.serverContentListDS shelfImageName:@"shelf.png"];
-		
-		//Get productIdList.
-		[[ProductIdList sharedManager] refreshProductIdListFromNetwork];
-		
-		//Show cover image with product id list.
 		[self setupImagesWithDataSource:appDelegate.serverContentListDS shelfImageName:@"shelf.png"];
 		
 		dispatch_async(dispatch_get_main_queue(), ^{

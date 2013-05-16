@@ -9,11 +9,13 @@
 
 //Server.
 //#define URL_BASE_OPDS_DEFAULT1		@"http://www2058uf.sakura.ne.jp:8080"
-#define URL_BASE_OPDS_DEFAULT1		@"http://www3200ui.sakura.ne.jp"		/* Demo Server. */
+#define URL_BASE_OPDS_DEFAULT1		@"http://www5066ua.sakura.ne.jp"		/* Demo Server. */
+//#define URL_BASE_OPDS_DEFAULT1		@"http://www7200uj.sakura.ne.jp"		/* Demo Server. */
 
-//#define CREDENTIAL_REALM				@"Authorization Required"
-//#define CREDENTIAL_REALM				@"Application"
-#define CREDENTIAL_REALM				@"Authentication"
+//#define CREDENTIAL_REALM				@"Authorization Required"			/* Calibre. */
+//#define CREDENTIAL_REALM				@"Application"						/* SakuttoBook Server. */
+
+#define CREDENTIAL_REALM				@"Authentication"	/* DebugSakuttoBook Server(new). */
 
 
 //

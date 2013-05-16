@@ -295,7 +295,7 @@ static VerificationController *singleton;
     // The receipt is valid, so checked the receipt specifics now.
     
     NSDictionary *verifiedReceiptReceiptDictionary  = [verifiedReceiptDictionary objectForKey:@"receipt"];
-    NSString *verifiedReceiptUniqueIdentifier       = [verifiedReceiptReceiptDictionary objectForKey:@"unique_identifier"];
+    //NSString *verifiedReceiptUniqueIdentifier       = [verifiedReceiptReceiptDictionary objectForKey:@"unique_identifier"];
     NSString *transactionIdFromVerifiedReceipt      = [verifiedReceiptReceiptDictionary objectForKey:@"transaction_id"];
     
 	NSLog(@"%@/%@", NSStringFromClass([self class]), NSStringFromSelector(_cmd));
@@ -359,17 +359,19 @@ static VerificationController *singleton;
         }
 #endif
     } else {
-        // Pre iOS 6 
-        NSString *localIdentifier           = [UIDevice currentDevice].uniqueIdentifier;
-        NSString *purchaseInfoUniqueId      = [purchaseInfoFromTransaction objectForKey:@"unique-identifier"];
-
-        
-        if (![purchaseInfoUniqueId isEqualToString:verifiedReceiptUniqueIdentifier]
-            || ![purchaseInfoUniqueId isEqualToString:localIdentifier])
-        {
-            // Comment this line out to test in the Simulator.
-            failCount++;
-        }        
+        // Pre iOS 6
+		NSLog(@"this iOS version cannot verify transaction info. __IPHONE_OS_VERSION_MAX_ALLOWED=%d",__IPHONE_OS_VERSION_MAX_ALLOWED);
+		return NO;
+        //NSString *localIdentifier           = [UIDevice currentDevice].uniqueIdentifier;
+        //NSString *purchaseInfoUniqueId      = [purchaseInfoFromTransaction objectForKey:@"unique-identifier"];
+		//
+        //
+        //if (![purchaseInfoUniqueId isEqualToString:verifiedReceiptUniqueIdentifier]
+        //    || ![purchaseInfoUniqueId isEqualToString:localIdentifier])
+        //{
+        //    // Comment this line out to test in the Simulator.
+        //    failCount++;
+        //}
     }
     
     

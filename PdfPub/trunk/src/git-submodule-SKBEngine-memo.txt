@@ -18,3 +18,66 @@ git submodule update PdfPub/trunk/src/SakuttoBook/SKBEngine
 
 git submodule
 # (' ' with head.)
+
+
+####
+# update with submodule
+####
+$ git status
+# On branch master
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#	modified:   PdfPub/trunk/src/SakuttoBook/SKBEngine (new commits)
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+$ 
+$ git submodule foreach 'git checkout master; git pull'
+Entering 'Pdf2iPad/trunk/src/JPPBook/SKBEngine'
+Switched to branch 'master'
+remote: Counting objects: 7, done.
+remote: Compressing objects: 100% (1/1), done.
+remote: Total 4 (delta 3), reused 4 (delta 3)
+Unpacking objects: 100% (4/4), done.
+From github.com:okano/SKBEngine
+ * [new branch]      new_branch_name -> origin/new_branch_name
+Already up-to-date.
+Entering 'PdfPub/trunk/src/SakuttoBook/SKBEngine'
+Already on 'master'
+Already up-to-date.
+$ 
+$ 
+$ git submodule
+ 0ee30dc4f09425a15589b1b502af629eaea4ffac Pdf2iPad/trunk/src/JPPBook/SKBEngine (heads/master)
++0ee30dc4f09425a15589b1b502af629eaea4ffac PdfPub/trunk/src/SakuttoBook/SKBEngine (heads/master)
+$
+# ('+' with head.)
+
+
+$ git add PdfPub/trunk/src/SakuttoBook/SKBEngine
+$ git status
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	modified:   PdfPub/trunk/src/SakuttoBook/SKBEngine
+#
+$ 
+$ git commit
+[master d37437b] update submodule with PdfPub-SKBEngine.
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+$ git push
+Counting objects: 11, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (6/6), 523 bytes, done.
+Total 6 (delta 3), reused 0 (delta 0)
+To git@github.com:okano/PdfProject.git
+   db7b066..d37437b  master -> master
+$ 
+$ git submodule
+ 0ee30dc4f09425a15589b1b502af629eaea4ffac Pdf2iPad/trunk/src/JPPBook/SKBEngine (heads/master)
+ 0ee30dc4f09425a15589b1b502af629eaea4ffac PdfPub/trunk/src/SakuttoBook/SKBEngine (heads/master)
+$ 
+# (' ' with head.)

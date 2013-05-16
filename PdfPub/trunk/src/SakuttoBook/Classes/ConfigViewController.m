@@ -69,7 +69,7 @@
     NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
 	id obj = [settings valueForKey:URL_OPDS];
 	if (!obj) {		//not exists.
-        NSLog(@"no URL for opds in UserDefault.");
+        NSLog(@"(use default URL because of no URL for opds in UserDefault.)");
 		return URL_BASE_OPDS_DEFAULT1;
 	}
 	return (NSString*)obj;

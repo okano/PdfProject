@@ -131,7 +131,7 @@
 	if( buttonIndex == [alertView cancelButtonIndex])	//"Cancel" selected.
     {
         //Close this window.
-		[self dismissModalViewControllerAnimated:YES];
+		[self dismissViewControllerAnimated:YES completion:nil];
 		/*
 		Pdf2iPadAppDelegate* appDelegate = (Pdf2iPadAppDelegate*)[[UIApplication sharedApplication] delegate];
 		[appDelegate hideServerContentDetailView];
@@ -177,7 +177,7 @@
     } else {
 		NSLog(@"button tapped. index=%d", buttonIndex);
         //Close this window.
-		[self dismissModalViewControllerAnimated:YES];
+		[self dismissViewControllerAnimated:YES completion:nil];
 	}
 }
 
@@ -277,7 +277,7 @@
 	[FileUtility addSkipBackupAttributeToItemWithString:toFilename];
 
 	//Open ContentPlayer.
-	[self dismissModalViewControllerAnimated:YES];
+	[self dismissViewControllerAnimated:YES completion:nil];
 	[appDelegate hideServerContentDetailView];
 	[appDelegate showContentPlayerView:newContentId];
 	

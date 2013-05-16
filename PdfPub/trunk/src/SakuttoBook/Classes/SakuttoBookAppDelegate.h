@@ -105,6 +105,8 @@
 - (NSMutableArray*)getTocDefine;
 - (void)showWebView:(NSString*)urlString;
 - (void)showInfoView;
+- (void)enterMarkerMode;
+- (void)stopSound;
 //
 - (ContentId)getCurrentContentIdInContentPlayer;
 @end
