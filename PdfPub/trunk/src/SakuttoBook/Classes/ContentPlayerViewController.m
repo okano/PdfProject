@@ -2346,7 +2346,8 @@
 	bookmarkModifyViewFrame.size.width = self.view.frame.size.width;
 	bookmarkModifyViewFrame.size.height = self.view.frame.size.height;
 	bmvc.view.frame = bookmarkModifyViewFrame;
-	[self presentModalViewController:bmvc animated:YES];
+	bmvc.modalPresentationStyle = UIModalPresentationCurrentContext;
+	[self presentViewController:bmvc animated:YES completion:nil];
 	
 	//Set pageNumber after view loaded.
 	[bmvc setPageNumberForPrint:currentPageNum];
