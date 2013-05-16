@@ -692,6 +692,9 @@
 - (void)enterMarkerMode {
 	[viewController.contentPlayerViewController enterMarkerMode];
 }
+- (void)stopSound {
+	[viewController.contentPlayerViewController stopSound];
+}
 #pragma mark -
 - (ContentId)getCurrentContentIdInContentPlayer
 {

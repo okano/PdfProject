@@ -14,18 +14,22 @@
 	//LOG_CURRENT_METHOD;
 	if ([self isContainSountAtIndex:currentPageNum] == YES)
 	{
-		[self.view bringSubviewToFront:bottomToolBar];
-		[UIView beginAnimations:@"bottomMenuBarShow" context:nil];
-		bottomToolBar.alpha = 1.0f;
-		[UIView commitAnimations];
+		[menuBottomViewController showStopSoundButton];
+	} else {
+		[menuBottomViewController hideStopSoundButton];
 	}
+		
+	[self.view bringSubviewToFront:menuBottomViewController.view];
+	[UIView beginAnimations:@"bottomMenuBarShow" context:nil];
+	menuBottomViewController.view.alpha = 1.0f;
+	[UIView commitAnimations];
 }
 
 - (void)hideBottomMenu
 {
 	//LOG_CURRENT_METHOD;
 	[UIView beginAnimations:@"bottomMenuBarHide" context:nil];
-	bottomToolBar.alpha = 0.0f;
+	menuBottomViewController.view.alpha = 0.0f;
 	[UIView commitAnimations];
 }
 

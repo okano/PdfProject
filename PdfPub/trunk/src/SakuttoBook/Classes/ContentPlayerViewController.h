@@ -113,7 +113,7 @@
 	
 	// Menu
 	MenuViewController* menuViewController;
-	UIToolbar* bottomToolBar;
+	MenuViewController* menuBottomViewController;	//	UIToolbar* bottomToolBar;
 	
 	// WebView
 	WebViewController* webViewController;
@@ -152,7 +152,8 @@
 //@property (nonatomic, retain) UIImage* image2;
 //@property (nonatomic, retain) UIImage* image3;
 @property (nonatomic, retain) MenuViewController* menuViewController;
-@property (nonatomic, retain) UIToolbar* bottomToolBar;
+@property (nonatomic, retain) MenuViewController* menuBottomViewController;
+//@property (nonatomic, retain) UIToolbar* bottomToolBar;
 @property (nonatomic, retain) WebViewController* webViewController;
 @property (nonatomic, retain) TocViewController* tocViewController;
 @property (nonatomic, retain) PageSmallViewController* pageSmallViewController;

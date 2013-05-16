@@ -17,7 +17,7 @@
 //@synthesize imageView1, imageView2, imageView3;
 //@synthesize image1, image2, image3;
 @synthesize currentContentId;
-@synthesize menuViewController, bottomToolBar, webViewController, tocViewController, pageSmallViewController, bookmarkViewController;
+@synthesize menuViewController, menuBottomViewController, /* bottomToolBar,*/ webViewController, tocViewController, pageSmallViewController, bookmarkViewController;
 @synthesize isShownMenuBar, isShownTocView, isShownPageSmallView, isShownBookmarkView;
 //@synthesize currentImageView;
 @synthesize isMarkerPenMode;
@@ -168,24 +168,12 @@
 	
 	//Setup Bottom menu bar.
 	//bottomMenuViewController = [[UIViewController alloc] init];
-	CGRect bottomMenuBarFrame = CGRectMake(menuBarFrame.origin.x,
-										   self.view.frame.size.height -  menuBarFrame.size.height,
-										   menuBarFrame.size.width,
-										   menuBarFrame.size.height);
-	bottomToolBar = [[UIToolbar alloc] initWithFrame:bottomMenuBarFrame];
-	UIBarButtonItem *flexibleSpaceButton = [[UIBarButtonItem alloc]
-						   initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-						   target:nil
-						   action:nil];
-	UIBarButtonItem *paymentHistoryButton = [[UIBarButtonItem alloc] initWithTitle:@"再生停止"
-																			 style:UIBarButtonItemStyleBordered
-																			target:self
-																			action:@selector(stopSound)];
-	
-	NSArray *items = nil;
-	items = [NSArray arrayWithObjects:flexibleSpaceButton, paymentHistoryButton, flexibleSpaceButton, nil];
-	[bottomToolBar setItems:items];
-	[self.view addSubview:bottomToolBar];
+	menuBottomViewController = [[MenuViewController alloc] initWithNibName:@"MenuBottomView" bundle:[NSBundle mainBundle]];
+	CGRect menuBottomBarFrame = menuBottomViewController.view.frame;	//Fit with self.view.
+	menuBottomBarFrame.size.width = self.view.frame.size.width;//Fit size only width.
+	menuBottomBarFrame.origin.y = self.view.frame.size.height - menuBottomBarFrame.size.height;
+	menuBottomViewController.view.frame = menuBottomBarFrame;
+	[self.view addSubview:menuBottomViewController.view];
 
 	[self hideMenuBar];
 	
