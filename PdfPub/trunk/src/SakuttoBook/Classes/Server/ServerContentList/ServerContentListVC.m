@@ -186,6 +186,7 @@
 }
 - (void)didFailParseOpdsRoot{
 	LOG_CURRENT_METHOD;
+	/*
 	UIAlertView *alert = [[[UIAlertView alloc]
 						   initWithTitle:nil
 						   message:@"コンテンツ一覧URLの取得に失敗しました。"
@@ -194,6 +195,7 @@
 						   otherButtonTitles:@"OK", nil]
 						  autorelease];
 	[alert show];
+	*/
 	[self performSelector:@selector(stopIndicator) withObject:nil];
 }
 - (void)didFinishParseOpdsElement:(NSMutableArray*)resultArray{
