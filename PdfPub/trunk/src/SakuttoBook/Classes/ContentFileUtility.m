@@ -83,7 +83,7 @@
 {
 	//contentBody/{cId}/image/
 	return [[self getContentBodyDirectoryWithContentId:cId]
-			stringByAppendingPathComponent:@"image"];
+			stringByAppendingPathComponent:@"images"];
 }
 + (NSString*)getContentBodyMovieDirectoryWithContentId:(NSString*)cId
 {
