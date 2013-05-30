@@ -173,6 +173,7 @@
 	NSString* text = [NSString stringWithContentsOfFile:filenameFull encoding:NSUTF8StringEncoding error:&error];
 	if (error != nil) {
 		NSLog(@"Error:%@", [error localizedDescription]);
+		NSLog(@"filenameFull=%@", filenameFull);
 		return nil;
 	}
 	return [self parseDefineCsvFromString:text];
@@ -221,16 +222,15 @@
 	NSString* csvFilePath = nil;
 	NSString* filenameInMainBundle = nil;
 	
-#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
 	//
 	//Multi contents. try with cid.
 	//
 	//(1)get from ContentBody Directory, with suffix.
-	//   Ex: ~/Document/contentBody/1/csv/tocDefine_iphone_1.csv
+	//   Ex: ~/Document/contentBody/1/csv/tocDefine_iphone.csv
 	csvFilePath = [self getCsvFilenameInFolder:filename contentId:cid withDeviceSuffix:YES];
 	if ([self existsFile:csvFilePath] == NO) {
 		//(2)get from ContentBody Directory, without suffix.
-		//   Ex: ~/Document/contentBody/1/csv/tocDefine_1.csv
+		//   Ex: ~/Document/contentBody/1/csv/tocDefine.csv
 		csvFilePath = [self getCsvFilenameInFolder:filename contentId:cid withDeviceSuffix:NO];
 		if ([self existsFile:csvFilePath] == NO) {
 			//(3)get from mainBundle, with suffix.
@@ -252,30 +252,6 @@
 					
 		}
 	}
-#else
-	//
-	//Single content. try without cid.
-	//
-	//(5)get from folder, without cid, without suffix.
-	//   Ex: ~/Document/contentBody/csv/tocDefine.csv
-	//   (normally, this is never used)
-	csvFilePath = [[[[ContentFileUtility getContentBodyDirectory]
-					 stringByAppendingPathComponent:@"csv"]
-					stringByAppendingPathComponent:filename]
-				   stringByAppendingPathExtension:@"csv"];
-	if ([self existsFile:csvFilePath] == NO) {
-		//(6)get from mainBundle, without cid, without suffix.
-		//   Ex: ~/SakuttoBook.app/tocDefine.csv
-		filenameInMainBundle	= [[NSBundle mainBundle] pathForResource:filename ofType:@"csv"];
-		if ((filenameInMainBundle == nil) || [self existsFile:filenameInMainBundle] == NO) {
-			//No file found.
-			//LOG_CURRENT_METHOD;
-			//NSLog(@"csv name=%@", filename);
-			//NSLog(@"file not found in folder, in mainBundle.");
-			return nil;
-		}
-	}
-#endif
 	//NSLog(@"csvFilePath=%@", csvFilePath);
 	
 	return [self parseDefineCsvWithFullFilename:csvFilePath];
@@ -325,6 +301,30 @@
 	}
 	return csvFilePath1;
 }
++ (NSString*)getCsvFilenameInMainBundle:(NSString*)filename withDeviceSuffix:(BOOL)isAddSuffix
+{
+	NSString* filenameWithoutCid = nil;
+	if (isAddSuffix == YES) {
+		NSString* suffix = nil;
+		if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+			// iPad
+			suffix = @"_ipad";
+		} else {
+			// iPhone
+			if ([self is_4inch] == YES) {
+				suffix = @"_iphone5";
+			} else {
+				suffix = @"_iphone";
+			}
+		}
+		filenameWithoutCid = [[NSString stringWithFormat:@"%@%@", filename, suffix]
+						   stringByAppendingPathExtension:@"csv"];
+	} else {
+		filenameWithoutCid = [[NSString stringWithFormat:@"%@", filename]
+						   stringByAppendingPathExtension:@"csv"];
+	}
+	return filenameWithoutCid;
+}
 + (NSString*)getCsvFilenameInMainBundle:(NSString*)filename contentId:(ContentId)cid withDeviceSuffix:(BOOL)isAddSuffix;
 {
 	NSString* filenameWithCid = nil;
@@ -349,7 +349,46 @@
 	}
 	return filenameWithCid;
 }
-
+#pragma mark CSV file copy.
++ (BOOL)copyCSVFile:(NSString*)filename withContentId:(ContentId)cid skipBackup:(BOOL)isSkipBackup
+{
+	NSString* resourceName;
+	NSString* toFilenameFull;
+	BOOL resultBool;
+	
+	//Copy CSV file.
+	//(1)with device suffix.
+#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+	//Multi contents.
+	resourceName = [FileUtility getCsvFilenameInMainBundle:filename contentId:cid withDeviceSuffix:YES];
+	toFilenameFull = [FileUtility getCsvFilenameInFolder:filename contentId:cid withDeviceSuffix:YES];
+#else
+	//Single content.
+	resourceName = [FileUtility getCsvFilenameInMainBundle:filename withDeviceSuffix:YES];
+	toFilenameFull = [FileUtility getCsvFilenameInFolder:filename contentId:CID_FOR_SINGLE_CONTENT withDeviceSuffix:YES];
+#endif
+	if ([FileUtility existsFile:[[NSBundle mainBundle] pathForResource:resourceName ofType:@""]] == NO) {
+		//(2)without device suffix.
+#if defined(IS_MULTI_CONTENTS) && IS_MULTI_CONTENTS != 0
+		//Multi contents.
+		resourceName = [FileUtility getCsvFilenameInMainBundle:filename contentId:cid withDeviceSuffix:NO];
+		toFilenameFull = [FileUtility getCsvFilenameInFolder:filename contentId:cid withDeviceSuffix:NO];
+#else
+		//Single content
+		resourceName = [FileUtility getCsvFilenameInMainBundle:filename withDeviceSuffix:NO];
+		toFilenameFull = [FileUtility getCsvFilenameInFolder:filename contentId:CID_FOR_SINGLE_CONTENT withDeviceSuffix:NO];
+#endif
+	}
+	//NSLog(@"resourceName=%@, toFilenameFull=%@", resourceName, toFilenameFull);
+	resultBool = [FileUtility res2file:resourceName fileNameFull:toFilenameFull];
+	
+	//Set Ignore Backup.
+	if (isSkipBackup == YES) {
+		[FileUtility addSkipBackupAttributeToItemWithString:toFilenameFull];
+	}
+	
+	return resultBool;
+}
 
 
 #pragma mark - like POSIX file uty.
