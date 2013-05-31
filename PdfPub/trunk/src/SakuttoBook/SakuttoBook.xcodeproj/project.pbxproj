@@ -12,7 +12,6 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
-		2899E5220DE3E06400AC0155 /* SakuttoBookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E5210DE3E06400AC0155 /* SakuttoBookViewController.xib */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D7ACF80DDB3853001CB0EB /* SakuttoBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* SakuttoBookViewController.m */; };
 		29014A9B12D6EC8700936BF0 /* pdfDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29014A9A12D6EC8700936BF0 /* pdfDefine.csv */; };
@@ -26,6 +25,9 @@
 		2912656912D46BEE00704565 /* list_thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2912656812D46BEE00704565 /* list_thumbnail.png */; };
 		291593141394B54700387697 /* ContentPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 291593131394B54700387697 /* ContentPlayerViewController.m */; };
 		291A797516DDED8700DB713B /* ServerContentDetailView-ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 291A797416DDED8700DB713B /* ServerContentDetailView-ipad.xib */; };
+		291CB0821758CC9700C6E709 /* MenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 291CB0811758CC9700C6E709 /* MenuView.xib */; };
+		291CB0841758CCA400C6E709 /* MenuBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 291CB0831758CCA400C6E709 /* MenuBottomView.xib */; };
+		291CB0861758CCB200C6E709 /* InfomationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 291CB0851758CCB200C6E709 /* InfomationView.xib */; };
 		291EDE0413124E2C00DBD3E5 /* ImageGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 291EDE0313124E2C00DBD3E5 /* ImageGenerator.m */; };
 		29208E4A1634ECFE007D778F /* mailDefine_1.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29208E461634ECFE007D778F /* mailDefine_1.csv */; };
 		29208E4B1634ECFE007D778F /* mailDefine_2.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29208E471634ECFE007D778F /* mailDefine_2.csv */; };
@@ -34,16 +36,13 @@
 		29208E541634F384007D778F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29208E531634F384007D778F /* MessageUI.framework */; };
 		2927D8AC15DB576C00AD6F35 /* VerificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2927D8AB15DB576C00AD6F35 /* VerificationController.m */; };
 		2927D8AE15DB57DD00AD6F35 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2927D8AD15DB57DD00AD6F35 /* Security.framework */; };
-		2933410312D594AA00BFBC23 /* BookmarkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2933410212D594AA00BFBC23 /* BookmarkView.xib */; };
 		2935764212B5EA9C00F46754 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2935764112B5EA9C00F46754 /* MenuViewController.m */; };
-		2935764412B5EAAD00F46754 /* MenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2935764312B5EAAD00F46754 /* MenuView.xib */; };
 		2936214215B940BB008C75C7 /* pdfDefine_1.csv in Resources */ = {isa = PBXBuildFile; fileRef = 2936213F15B940BB008C75C7 /* pdfDefine_1.csv */; };
 		2936214315B940BB008C75C7 /* pdfDefine_2.csv in Resources */ = {isa = PBXBuildFile; fileRef = 2936214015B940BB008C75C7 /* pdfDefine_2.csv */; };
 		2936214415B940BB008C75C7 /* pdfDefine_3.csv in Resources */ = {isa = PBXBuildFile; fileRef = 2936214115B940BB008C75C7 /* pdfDefine_3.csv */; };
 		2936624B13A894D60010A808 /* ContentListCellController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2936624A13A894D60010A808 /* ContentListCellController.m */; };
 		2936659B13987BEF001028FE /* PaymentConductor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2936659A13987BEF001028FE /* PaymentConductor.m */; };
 		293BB9F012B6217300DDA3E3 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 293BB9EF12B6217300DDA3E3 /* WebViewController.m */; };
-		293BB9F212B6218500DDA3E3 /* WebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 293BB9F112B6218500DDA3E3 /* WebView.xib */; };
 		293FC642169EAE1C002AF927 /* ContentListImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 293FC640169EAE1C002AF927 /* ContentListImageViewController.m */; };
 		293FC643169EAE1C002AF927 /* ContentListImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 293FC641169EAE1C002AF927 /* ContentListImageViewController.xib */; };
 		29431E2212C5D29C00914DBD /* list_bullets.png in Resources */ = {isa = PBXBuildFile; fileRef = 29431E2112C5D29C00914DBD /* list_bullets.png */; };
@@ -78,17 +77,16 @@
 		294FCA2C16B24D4A00F9688E /* tocDefine_6.csv in Resources */ = {isa = PBXBuildFile; fileRef = 294FCA1B16B24D4A00F9688E /* tocDefine_6.csv */; };
 		294FCA2D16B24D4A00F9688E /* tocDefine_7.csv in Resources */ = {isa = PBXBuildFile; fileRef = 294FCA1C16B24D4A00F9688E /* tocDefine_7.csv */; };
 		295C4A6D16A1135300A3C237 /* shelf.png in Resources */ = {isa = PBXBuildFile; fileRef = 295C4A6C16A1135300A3C237 /* shelf.png */; };
-		2962C40C1394B9EC002E57F9 /* ContentPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2962C40B1394B9EC002E57F9 /* ContentPlayerView.xib */; };
-		29750ABB173CAAA3007D4452 /* MenuBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29750ABA173CAAA3007D4452 /* MenuBottomView.xib */; };
 		29787BE112C5FBDC00EC2681 /* document.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 29787BE012C5FBDC00EC2681 /* document.pdf */; };
 		297AC25612B786EB00962CED /* TocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297AC25512B786EB00962CED /* TocViewController.m */; };
-		297AC25812B7870B00962CED /* TocView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 297AC25712B7870B00962CED /* TocView.xib */; };
 		297CE33E16BE6D74001C7BDE /* coverDummy.png in Resources */ = {isa = PBXBuildFile; fileRef = 297CE33D16BE6D74001C7BDE /* coverDummy.png */; };
-		297DF1FB12C600320082C680 /* InfomationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 297DF1FA12C600320082C680 /* InfomationView.xib */; };
 		297DF1FF12C601AD0082C680 /* InfomationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297DF1FE12C601AD0082C680 /* InfomationViewController.m */; };
 		297F4A9B169EC41D000D05E9 /* ContentListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B322DA169EB79800C047D9 /* ContentListTableViewController.m */; };
 		2989D00616A153B00017BCBD /* unpaid.png in Resources */ = {isa = PBXBuildFile; fileRef = 2989D00516A153B00017BCBD /* unpaid.png */; };
 		299448EC12B7370B00E7D108 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299448EB12B7370B00E7D108 /* MediaPlayer.framework */; };
+		299998B41758CB940054D690 /* ContentPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 299998B31758CB940054D690 /* ContentPlayerView.xib */; };
+		299998B61758CBA10054D690 /* BookmarkModifyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 299998B51758CBA10054D690 /* BookmarkModifyView.xib */; };
+		299998B81758CBBE0054D690 /* BookmarkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 299998B71758CBBE0054D690 /* BookmarkView.xib */; };
 		2999FDC512D6A8D500D0F145 /* License.m in Sources */ = {isa = PBXBuildFile; fileRef = 2999FDC412D6A8D500D0F145 /* License.m */; };
 		299A7B3216EF1FA600153C7F /* ContentPlayerViewController+markerPen.m in Sources */ = {isa = PBXBuildFile; fileRef = 299A7B3116EF1FA600153C7F /* ContentPlayerViewController+markerPen.m */; };
 		299A7B3516EF203600153C7F /* MarkerPenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 299A7B3416EF203600153C7F /* MarkerPenView.m */; };
@@ -101,7 +99,10 @@
 		29A1E74D16AB9FA9003B19C1 /* urlLinkDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29A1E74B16AB9FA9003B19C1 /* urlLinkDefine.csv */; };
 		29A2A5471398B87300C8CB52 /* productIdList.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29A2A5461398B87300C8CB52 /* productIdList.csv */; };
 		29A5B07B13A9B35100DA67AD /* bookDefine_3.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29A5B07A13A9B35100DA67AD /* bookDefine_3.csv */; };
+		29AA35DA1758CC0B00521D1D /* WebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29AA35D91758CC0B00521D1D /* WebView.xib */; };
+		29AA35DC1758CC1700521D1D /* TocView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29AA35DB1758CC1700521D1D /* TocView.xib */; };
 		29ACC34613A3AE7A00585A09 /* inPageScrollViewDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29ACC34513A3AE7A00585A09 /* inPageScrollViewDefine.csv */; };
+		29AD06F01758CC5500F002F6 /* SakuttoBookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29AD06EF1758CC5500F002F6 /* SakuttoBookViewController.xib */; };
 		29AFB90E1638067A00C0978C /* ContentPlayerViewController+bottomMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 29AFB90D1638067A00C0978C /* ContentPlayerViewController+bottomMenu.m */; };
 		29B16DF7139873F300B4D958 /* ContentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B16DF6139873F300B4D958 /* ContentListViewController.m */; };
 		29B16E001398744C00B4D958 /* ContentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B16DFE1398744C00B4D958 /* ContentDetailViewController.m */; };
@@ -123,7 +124,6 @@
 		29CB43451532DAF800A96D36 /* ContentListDS.m in Sources */ = {isa = PBXBuildFile; fileRef = 29CB43441532DAF800A96D36 /* ContentListDS.m */; };
 		29D028C816328111004F7791 /* ContentPlayerViewController+mailSend.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D028C716328111004F7791 /* ContentPlayerViewController+mailSend.m */; };
 		29DB52D814EB51B0006920EF /* ContentFileUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 29DB52D714EB51B0006920EF /* ContentFileUtility.m */; };
-		29E1089A12D46D4700FC5210 /* BookmarkModifyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29E1089912D46D4700FC5210 /* BookmarkModifyView.xib */; };
 		29E108A912D46ECF00FC5210 /* BookmarkModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E108A812D46ECF00FC5210 /* BookmarkModifyViewController.m */; };
 		29E8A4021532A8FD00468FE9 /* ServerContentDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E8A3EA1532A8FD00468FE9 /* ServerContentDetailVC.m */; };
 		29E8A4031532A8FD00468FE9 /* ServerContentDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29E8A3EB1532A8FD00468FE9 /* ServerContentDetailView.xib */; };
@@ -186,7 +186,6 @@
 		1D6058910D05DD3D006BFB54 /* SakuttoBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SakuttoBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		2899E5210DE3E06400AC0155 /* SakuttoBookViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SakuttoBookViewController.xib; path = ../SakuttoBookViewController.xib; sourceTree = "<group>"; };
 		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = ../MainWindow.xib; sourceTree = "<group>"; };
 		28D7ACF60DDB3853001CB0EB /* SakuttoBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SakuttoBookViewController.h; sourceTree = "<group>"; };
 		28D7ACF70DDB3853001CB0EB /* SakuttoBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SakuttoBookViewController.m; sourceTree = "<group>"; };
@@ -204,6 +203,9 @@
 		291593121394B54700387697 /* ContentPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentPlayerViewController.h; sourceTree = "<group>"; };
 		291593131394B54700387697 /* ContentPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentPlayerViewController.m; sourceTree = "<group>"; };
 		291A797416DDED8700DB713B /* ServerContentDetailView-ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ServerContentDetailView-ipad.xib"; sourceTree = "<group>"; };
+		291CB0811758CC9700C6E709 /* MenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuView.xib; sourceTree = "<group>"; };
+		291CB0831758CCA400C6E709 /* MenuBottomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuBottomView.xib; sourceTree = "<group>"; };
+		291CB0851758CCB200C6E709 /* InfomationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfomationView.xib; sourceTree = "<group>"; };
 		291EDE0213124E2C00DBD3E5 /* ImageGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGenerator.h; sourceTree = "<group>"; };
 		291EDE0313124E2C00DBD3E5 /* ImageGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGenerator.m; sourceTree = "<group>"; };
 		29208E461634ECFE007D778F /* mailDefine_1.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mailDefine_1.csv; path = csv/mailDefine_1.csv; sourceTree = "<group>"; };
@@ -214,10 +216,8 @@
 		2927D8AA15DB576C00AD6F35 /* VerificationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerificationController.h; sourceTree = "<group>"; };
 		2927D8AB15DB576C00AD6F35 /* VerificationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationController.m; sourceTree = "<group>"; };
 		2927D8AD15DB57DD00AD6F35 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		2933410212D594AA00BFBC23 /* BookmarkView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BookmarkView.xib; path = ../BookmarkView.xib; sourceTree = "<group>"; };
 		2935764012B5EA9C00F46754 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		2935764112B5EA9C00F46754 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
-		2935764312B5EAAD00F46754 /* MenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MenuView.xib; path = ../MenuView.xib; sourceTree = "<group>"; };
 		2936213F15B940BB008C75C7 /* pdfDefine_1.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pdfDefine_1.csv; path = csv/pdfDefine_1.csv; sourceTree = "<group>"; };
 		2936214015B940BB008C75C7 /* pdfDefine_2.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pdfDefine_2.csv; path = csv/pdfDefine_2.csv; sourceTree = "<group>"; };
 		2936214115B940BB008C75C7 /* pdfDefine_3.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pdfDefine_3.csv; path = csv/pdfDefine_3.csv; sourceTree = "<group>"; };
@@ -228,7 +228,6 @@
 		293988DD12B5E9DB008017BE /* Define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Define.h; sourceTree = "<group>"; };
 		293BB9EE12B6217300DDA3E3 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		293BB9EF12B6217300DDA3E3 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
-		293BB9F112B6218500DDA3E3 /* WebView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = WebView.xib; path = ../WebView.xib; sourceTree = "<group>"; };
 		293FC63F169EAE1C002AF927 /* ContentListImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentListImageViewController.h; path = InAppPurchase/ContentList/ContentListImageViewController.h; sourceTree = "<group>"; };
 		293FC640169EAE1C002AF927 /* ContentListImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentListImageViewController.m; path = InAppPurchase/ContentList/ContentListImageViewController.m; sourceTree = "<group>"; };
 		293FC641169EAE1C002AF927 /* ContentListImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ContentListImageViewController.xib; path = InAppPurchase/ContentList/ContentListImageViewController.xib; sourceTree = "<group>"; };
@@ -269,20 +268,19 @@
 		294FCA1B16B24D4A00F9688E /* tocDefine_6.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tocDefine_6.csv; path = csv/tocDefine_6.csv; sourceTree = "<group>"; };
 		294FCA1C16B24D4A00F9688E /* tocDefine_7.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tocDefine_7.csv; path = csv/tocDefine_7.csv; sourceTree = "<group>"; };
 		295C4A6C16A1135300A3C237 /* shelf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shelf.png; path = Classes/shelf.png; sourceTree = "<group>"; };
-		2962C40B1394B9EC002E57F9 /* ContentPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ContentPlayerView.xib; path = ../ContentPlayerView.xib; sourceTree = "<group>"; };
 		2963BE1D12B5C01E001041EB /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
-		29750ABA173CAAA3007D4452 /* MenuBottomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MenuBottomView.xib; path = ../MenuBottomView.xib; sourceTree = "<group>"; };
 		29787BE012C5FBDC00EC2681 /* document.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = document.pdf; sourceTree = "<group>"; };
 		297AC25412B786EB00962CED /* TocViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TocViewController.h; sourceTree = "<group>"; };
 		297AC25512B786EB00962CED /* TocViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TocViewController.m; sourceTree = "<group>"; };
-		297AC25712B7870B00962CED /* TocView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TocView.xib; path = ../TocView.xib; sourceTree = "<group>"; };
 		297CE33D16BE6D74001C7BDE /* coverDummy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coverDummy.png; sourceTree = "<group>"; };
-		297DF1FA12C600320082C680 /* InfomationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = InfomationView.xib; path = ../InfomationView.xib; sourceTree = "<group>"; };
 		297DF1FD12C601AD0082C680 /* InfomationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfomationViewController.h; sourceTree = "<group>"; };
 		297DF1FE12C601AD0082C680 /* InfomationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfomationViewController.m; sourceTree = "<group>"; };
 		2986552C1601C3FF00B86112 /* ReleaseHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReleaseHash.h; sourceTree = "<group>"; };
 		2989D00516A153B00017BCBD /* unpaid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = unpaid.png; path = Classes/unpaid.png; sourceTree = "<group>"; };
 		299448EB12B7370B00E7D108 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		299998B31758CB940054D690 /* ContentPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentPlayerView.xib; sourceTree = "<group>"; };
+		299998B51758CBA10054D690 /* BookmarkModifyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookmarkModifyView.xib; sourceTree = "<group>"; };
+		299998B71758CBBE0054D690 /* BookmarkView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookmarkView.xib; sourceTree = "<group>"; };
 		2999FDC312D6A8D500D0F145 /* License.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = License.h; sourceTree = "<group>"; };
 		2999FDC412D6A8D500D0F145 /* License.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = License.m; sourceTree = "<group>"; };
 		299A7B3116EF1FA600153C7F /* ContentPlayerViewController+markerPen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ContentPlayerViewController+markerPen.m"; sourceTree = "<group>"; };
@@ -297,7 +295,10 @@
 		29A1E74B16AB9FA9003B19C1 /* urlLinkDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = urlLinkDefine.csv; path = csv/urlLinkDefine.csv; sourceTree = "<group>"; };
 		29A2A5461398B87300C8CB52 /* productIdList.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = productIdList.csv; path = csv/productIdList.csv; sourceTree = "<group>"; };
 		29A5B07A13A9B35100DA67AD /* bookDefine_3.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bookDefine_3.csv; path = csv/bookDefine_3.csv; sourceTree = "<group>"; };
+		29AA35D91758CC0B00521D1D /* WebView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebView.xib; sourceTree = "<group>"; };
+		29AA35DB1758CC1700521D1D /* TocView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TocView.xib; sourceTree = "<group>"; };
 		29ACC34513A3AE7A00585A09 /* inPageScrollViewDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = inPageScrollViewDefine.csv; path = csv/inPageScrollViewDefine.csv; sourceTree = "<group>"; };
+		29AD06EF1758CC5500F002F6 /* SakuttoBookViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SakuttoBookViewController.xib; sourceTree = "<group>"; };
 		29AFB90D1638067A00C0978C /* ContentPlayerViewController+bottomMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ContentPlayerViewController+bottomMenu.m"; sourceTree = "<group>"; };
 		29B16DF5139873F300B4D958 /* ContentListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentListViewController.h; path = InAppPurchase/ContentList/ContentListViewController.h; sourceTree = "<group>"; };
 		29B16DF6139873F300B4D958 /* ContentListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentListViewController.m; path = InAppPurchase/ContentList/ContentListViewController.m; sourceTree = "<group>"; };
@@ -333,7 +334,6 @@
 		29D028C716328111004F7791 /* ContentPlayerViewController+mailSend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ContentPlayerViewController+mailSend.m"; sourceTree = "<group>"; };
 		29DB52D614EB51B0006920EF /* ContentFileUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentFileUtility.h; sourceTree = "<group>"; };
 		29DB52D714EB51B0006920EF /* ContentFileUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentFileUtility.m; sourceTree = "<group>"; };
-		29E1089912D46D4700FC5210 /* BookmarkModifyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BookmarkModifyView.xib; path = ../BookmarkModifyView.xib; sourceTree = "<group>"; };
 		29E108A712D46ECF00FC5210 /* BookmarkModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkModifyViewController.h; sourceTree = "<group>"; };
 		29E108A812D46ECF00FC5210 /* BookmarkModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkModifyViewController.m; sourceTree = "<group>"; };
 		29E8A3E91532A8FD00468FE9 /* ServerContentDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerContentDetailVC.h; sourceTree = "<group>"; };
@@ -478,14 +478,14 @@
 				29AFB90D1638067A00C0978C /* ContentPlayerViewController+bottomMenu.m */,
 				29A1E74816AAE909003B19C1 /* ContentPlayerViewController+urlWithCsv.m */,
 				299A7B3116EF1FA600153C7F /* ContentPlayerViewController+markerPen.m */,
-				2962C40B1394B9EC002E57F9 /* ContentPlayerView.xib */,
-				2935764312B5EAAD00F46754 /* MenuView.xib */,
-				29750ABA173CAAA3007D4452 /* MenuBottomView.xib */,
-				293BB9F112B6218500DDA3E3 /* WebView.xib */,
-				297AC25712B7870B00962CED /* TocView.xib */,
-				29E1089912D46D4700FC5210 /* BookmarkModifyView.xib */,
-				297DF1FA12C600320082C680 /* InfomationView.xib */,
-				2933410212D594AA00BFBC23 /* BookmarkView.xib */,
+				299998B31758CB940054D690 /* ContentPlayerView.xib */,
+				291CB0811758CC9700C6E709 /* MenuView.xib */,
+				291CB0831758CCA400C6E709 /* MenuBottomView.xib */,
+				29AA35D91758CC0B00521D1D /* WebView.xib */,
+				29AA35DB1758CC1700521D1D /* TocView.xib */,
+				299998B51758CBA10054D690 /* BookmarkModifyView.xib */,
+				291CB0851758CCB200C6E709 /* InfomationView.xib */,
+				299998B71758CBBE0054D690 /* BookmarkView.xib */,
 				291EDE0213124E2C00DBD3E5 /* ImageGenerator.h */,
 				291EDE0313124E2C00DBD3E5 /* ImageGenerator.m */,
 				29B3B7C612C57DE00014F866 /* MyPdfScrollView.h */,
@@ -541,7 +541,7 @@
 				28D7ACF60DDB3853001CB0EB /* SakuttoBookViewController.h */,
 				28D7ACF70DDB3853001CB0EB /* SakuttoBookViewController.m */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
-				2899E5210DE3E06400AC0155 /* SakuttoBookViewController.xib */,
+				29AD06EF1758CC5500F002F6 /* SakuttoBookViewController.xib */,
 			);
 			name = AppDelegate;
 			sourceTree = "<group>";
@@ -978,23 +978,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
-				2899E5220DE3E06400AC0155 /* SakuttoBookViewController.xib in Resources */,
-				2935764412B5EAAD00F46754 /* MenuView.xib in Resources */,
-				293BB9F212B6218500DDA3E3 /* WebView.xib in Resources */,
-				297AC25812B7870B00962CED /* TocView.xib in Resources */,
 				29431E2212C5D29C00914DBD /* list_bullets.png in Resources */,
 				29787BE112C5FBDC00EC2681 /* document.pdf in Resources */,
-				297DF1FB12C600320082C680 /* InfomationView.xib in Resources */,
 				2912656912D46BEE00704565 /* list_thumbnail.png in Resources */,
-				29E1089A12D46D4700FC5210 /* BookmarkModifyView.xib in Resources */,
-				2933410312D594AA00BFBC23 /* BookmarkView.xib in Resources */,
 				29014A9B12D6EC8700936BF0 /* pdfDefine.csv in Resources */,
 				29014A9D12D6EC9100936BF0 /* tocDefine.csv in Resources */,
 				29014A9F12D6EC9C00936BF0 /* movieDefine.csv in Resources */,
 				29014AA112D6ECA700936BF0 /* bookDefine.csv in Resources */,
 				294E1F1E131E2A5B00E49BAF /* popoverScrollImageDefine.csv in Resources */,
 				29F003FA1353CC5500D0D74D /* pageJumpLinkDefine.csv in Resources */,
-				2962C40C1394B9EC002E57F9 /* ContentPlayerView.xib in Resources */,
 				29B16E011398744C00B4D958 /* ContentDetailView.xib in Resources */,
 				29F3391E1398894E0005CF10 /* folder20x20.png in Resources */,
 				29A2A5471398B87300C8CB52 /* productIdList.csv in Resources */,
@@ -1076,7 +1068,15 @@
 				299A7B3716EF259C00153C7F /* icon_pen.png in Resources */,
 				299A7B3B16EF288800153C7F /* icon_undo.png in Resources */,
 				299A7B3D16EF388400153C7F /* icon_recycle.png in Resources */,
-				29750ABB173CAAA3007D4452 /* MenuBottomView.xib in Resources */,
+				299998B41758CB940054D690 /* ContentPlayerView.xib in Resources */,
+				299998B61758CBA10054D690 /* BookmarkModifyView.xib in Resources */,
+				299998B81758CBBE0054D690 /* BookmarkView.xib in Resources */,
+				29AA35DA1758CC0B00521D1D /* WebView.xib in Resources */,
+				29AA35DC1758CC1700521D1D /* TocView.xib in Resources */,
+				29AD06F01758CC5500F002F6 /* SakuttoBookViewController.xib in Resources */,
+				291CB0821758CC9700C6E709 /* MenuView.xib in Resources */,
+				291CB0841758CCA400C6E709 /* MenuBottomView.xib in Resources */,
+				291CB0861758CCB200C6E709 /* InfomationView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
