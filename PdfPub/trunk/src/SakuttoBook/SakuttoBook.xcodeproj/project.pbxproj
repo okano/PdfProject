@@ -343,64 +343,17 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				1D3623240D0F684500981E51 /* SakuttoBookAppDelegate.h */,
-				1D3623250D0F684500981E51 /* SakuttoBookAppDelegate.m */,
-				28D7ACF60DDB3853001CB0EB /* SakuttoBookViewController.h */,
-				28D7ACF70DDB3853001CB0EB /* SakuttoBookViewController.m */,
+				293988DD12B5E9DB008017BE /* Define.h */,
+				29E8A4111532A9E900468FE9 /* UrlDefine.h */,
+				29BD2EDA1758C63700053289 /* AppDelegate */,
 				29B16E03139876C700B4D958 /* InAppPurchase */,
 				29B16DF21398739100B4D958 /* LocalContentList */,
 				29B16DF41398739E00B4D958 /* LocalContentDetail */,
 				29E8A3FA1532A8FD00468FE9 /* ServerContentList */,
 				29E8A3E81532A8FD00468FE9 /* ServerContentDetail */,
 				29E8A3EC1532A8FD00468FE9 /* ServerContentDownload */,
-				291593121394B54700387697 /* ContentPlayerViewController.h */,
-				291593131394B54700387697 /* ContentPlayerViewController.m */,
-				29452C9F14E39B4300DD15ED /* ContentPlayerViewController+sound.m */,
-				29D028C716328111004F7791 /* ContentPlayerViewController+mailSend.m */,
-				29AFB90D1638067A00C0978C /* ContentPlayerViewController+bottomMenu.m */,
-				29A1E74816AAE909003B19C1 /* ContentPlayerViewController+urlWithCsv.m */,
-				299A7B3116EF1FA600153C7F /* ContentPlayerViewController+markerPen.m */,
-				291EDE0213124E2C00DBD3E5 /* ImageGenerator.h */,
-				291EDE0313124E2C00DBD3E5 /* ImageGenerator.m */,
-				29B3B7C612C57DE00014F866 /* MyPdfScrollView.h */,
-				29B3B7C712C57DE00014F866 /* MyPdfScrollView.m */,
-				299A7B3316EF203600153C7F /* MarkerPenView.h */,
-				299A7B3416EF203600153C7F /* MarkerPenView.m */,
-				2935764012B5EA9C00F46754 /* MenuViewController.h */,
-				2935764112B5EA9C00F46754 /* MenuViewController.m */,
-				293BB9EE12B6217300DDA3E3 /* WebViewController.h */,
-				293BB9EF12B6217300DDA3E3 /* WebViewController.m */,
-				294E1FBF131E313800E49BAF /* PopoverScrollImageViewController.h */,
-				294E1FC0131E313800E49BAF /* PopoverScrollImageViewController.m */,
-				297AC25412B786EB00962CED /* TocViewController.h */,
-				297AC25512B786EB00962CED /* TocViewController.m */,
-				290F035312D594D300666C6A /* BookmarkViewController.h */,
-				290F035412D594D300666C6A /* BookmarkViewController.m */,
-				29E108A712D46ECF00FC5210 /* BookmarkModifyViewController.h */,
-				29E108A812D46ECF00FC5210 /* BookmarkModifyViewController.m */,
-				29B3B90A12C58C820014F866 /* PageSmallViewController.h */,
-				29B3B90B12C58C820014F866 /* PageSmallViewController.m */,
-				297DF1FD12C601AD0082C680 /* InfomationViewController.h */,
-				297DF1FE12C601AD0082C680 /* InfomationViewController.m */,
-				2999FDC312D6A8D500D0F145 /* License.h */,
-				2999FDC412D6A8D500D0F145 /* License.m */,
-				2986552C1601C3FF00B86112 /* ReleaseHash.h */,
-				2963BE1D12B5C01E001041EB /* Utility.h */,
-				29E8A4131532AA8B00468FE9 /* ConfigViewController.h */,
-				29E8A4141532AA8C00468FE9 /* ConfigViewController.m */,
-				29E8A4121532AA8B00468FE9 /* ConfigView.xib */,
-				2916B79C1674799F00B344DA /* ConfigVC2.h */,
-				2916B79D1674799F00B344DA /* ConfigVC2.m */,
-				2916B79E1674799F00B344DA /* ConfigVC2.xib */,
-				293988DD12B5E9DB008017BE /* Define.h */,
-				2947A02516747D8E00BEC053 /* ConstantDefine.h */,
-				29E8A4111532A9E900468FE9 /* UrlDefine.h */,
-				29BD260513A4A3AB0029E2B4 /* FileUtility.h */,
-				29BD260613A4A3AC0029E2B4 /* FileUtility.m */,
-				29CB433C1532D44E00A96D36 /* CoverUtility.h */,
-				29CB433D1532D44E00A96D36 /* CoverUtility.m */,
-				29DB52D614EB51B0006920EF /* ContentFileUtility.h */,
-				29DB52D714EB51B0006920EF /* ContentFileUtility.m */,
+				29BD2EDB1758C64200053289 /* ContentPlayer */,
+				29BD2EDC1758C67600053289 /* Utility */,
 				29E8A4381532AE9500468FE9 /* KissXML */,
 			);
 			path = Classes;
@@ -576,6 +529,77 @@
 				29452CA214E39BFA00DD15ED /* AVFoundation.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		29BD2EDA1758C63700053289 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				1D3623240D0F684500981E51 /* SakuttoBookAppDelegate.h */,
+				1D3623250D0F684500981E51 /* SakuttoBookAppDelegate.m */,
+				28D7ACF60DDB3853001CB0EB /* SakuttoBookViewController.h */,
+				28D7ACF70DDB3853001CB0EB /* SakuttoBookViewController.m */,
+			);
+			name = AppDelegate;
+			sourceTree = "<group>";
+		};
+		29BD2EDB1758C64200053289 /* ContentPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				291593121394B54700387697 /* ContentPlayerViewController.h */,
+				291593131394B54700387697 /* ContentPlayerViewController.m */,
+				29452C9F14E39B4300DD15ED /* ContentPlayerViewController+sound.m */,
+				29D028C716328111004F7791 /* ContentPlayerViewController+mailSend.m */,
+				29AFB90D1638067A00C0978C /* ContentPlayerViewController+bottomMenu.m */,
+				29A1E74816AAE909003B19C1 /* ContentPlayerViewController+urlWithCsv.m */,
+				299A7B3116EF1FA600153C7F /* ContentPlayerViewController+markerPen.m */,
+				291EDE0213124E2C00DBD3E5 /* ImageGenerator.h */,
+				291EDE0313124E2C00DBD3E5 /* ImageGenerator.m */,
+				29B3B7C612C57DE00014F866 /* MyPdfScrollView.h */,
+				29B3B7C712C57DE00014F866 /* MyPdfScrollView.m */,
+				299A7B3316EF203600153C7F /* MarkerPenView.h */,
+				299A7B3416EF203600153C7F /* MarkerPenView.m */,
+				2935764012B5EA9C00F46754 /* MenuViewController.h */,
+				2935764112B5EA9C00F46754 /* MenuViewController.m */,
+				293BB9EE12B6217300DDA3E3 /* WebViewController.h */,
+				293BB9EF12B6217300DDA3E3 /* WebViewController.m */,
+				294E1FBF131E313800E49BAF /* PopoverScrollImageViewController.h */,
+				294E1FC0131E313800E49BAF /* PopoverScrollImageViewController.m */,
+				297AC25412B786EB00962CED /* TocViewController.h */,
+				297AC25512B786EB00962CED /* TocViewController.m */,
+				290F035312D594D300666C6A /* BookmarkViewController.h */,
+				290F035412D594D300666C6A /* BookmarkViewController.m */,
+				29E108A712D46ECF00FC5210 /* BookmarkModifyViewController.h */,
+				29E108A812D46ECF00FC5210 /* BookmarkModifyViewController.m */,
+				29B3B90A12C58C820014F866 /* PageSmallViewController.h */,
+				29B3B90B12C58C820014F866 /* PageSmallViewController.m */,
+				297DF1FD12C601AD0082C680 /* InfomationViewController.h */,
+				297DF1FE12C601AD0082C680 /* InfomationViewController.m */,
+				29E8A4131532AA8B00468FE9 /* ConfigViewController.h */,
+				29E8A4141532AA8C00468FE9 /* ConfigViewController.m */,
+				29E8A4121532AA8B00468FE9 /* ConfigView.xib */,
+				2916B79C1674799F00B344DA /* ConfigVC2.h */,
+				2916B79D1674799F00B344DA /* ConfigVC2.m */,
+				2916B79E1674799F00B344DA /* ConfigVC2.xib */,
+			);
+			name = ContentPlayer;
+			sourceTree = "<group>";
+		};
+		29BD2EDC1758C67600053289 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				2963BE1D12B5C01E001041EB /* Utility.h */,
+				2999FDC312D6A8D500D0F145 /* License.h */,
+				2999FDC412D6A8D500D0F145 /* License.m */,
+				2986552C1601C3FF00B86112 /* ReleaseHash.h */,
+				2947A02516747D8E00BEC053 /* ConstantDefine.h */,
+				29BD260513A4A3AB0029E2B4 /* FileUtility.h */,
+				29BD260613A4A3AC0029E2B4 /* FileUtility.m */,
+				29CB433C1532D44E00A96D36 /* CoverUtility.h */,
+				29CB433D1532D44E00A96D36 /* CoverUtility.m */,
+				29DB52D614EB51B0006920EF /* ContentFileUtility.h */,
+				29DB52D714EB51B0006920EF /* ContentFileUtility.m */,
+			);
+			name = Utility;
 			sourceTree = "<group>";
 		};
 		29C2271416BA56550004B9E4 /* MBProgressHUD */ = {
