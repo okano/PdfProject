@@ -33,7 +33,15 @@
 		}
 	}
 	
-	[self setBookInfoFromDefineFile];
+	
+	NSMutableDictionary* tmpDict = [appDelegate.contentListDS getMetadataByContentId:contentId];
+	NSMutableArray* lines = [NSMutableArray arrayWithObjects:
+							 [tmpDict objectForKey:CONTENT_TITLE],
+							 [tmpDict objectForKey:CONTENT_AUTHOR],
+							 //[tmpDict objectForKey:CONTENT_COPYRIGHT],
+							 //[tmpDict objectForKey:CONTENT_SUPPORT_HP],
+							 nil];
+	[self setBookInfoWithArray:lines];
 }
 
 - (void)setBookInfoFromDefineFile {
@@ -59,6 +67,11 @@
 	//Read book define.
 	NSArray* lines = [text componentsSeparatedByString:@"\n"];
 	//NSArray* lines = [[text stringByAppendingString:@"\n"] componentsSeparatedByString:@"\n"];
+	[self setBookInfoWithArray:lines];
+}
+
+- (void)setBookInfoWithArray:(NSArray*)lines
+{
 	if ([lines count] <= 0) {
 		return;
 	}

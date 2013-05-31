@@ -121,6 +121,7 @@ rtl：右から左（縦組、右綴じ）。通常、縦書きの本の場合�
 #define LAST_CONTENT_ID		@"Assigned_Last_ContentId"
 #define FIRST_CONTENT_ID	1	/* 1-start */
 
+#define CID_FOR_SINGLE_CONTENT	1
 #define METADATA_PLIST_FILENAME	@"ContentMetadata.plist"
 
 // for judge simulator device is changed. (to reset configuration for debug.)
