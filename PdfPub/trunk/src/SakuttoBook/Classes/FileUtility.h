@@ -73,6 +73,6 @@
 #define CSVFILE_INPAGE_SCROLLVIEW	@"inPageScrollViewDefine"
 #define CSVFILE_INPAGE_PDF		@"inPagePdfDefine"
 #define CSVFILE_INPAGE_PNG		@"inPagePngDefine"
-#define CSVFILE_POPOVER_IMAGE	@"popoverImageDefine"
+#define CSVFILE_POPOVER_IMAGE	@"popoverScrollImageDefine"
 //
 #define CSVFILE_TOC				@"tocDefine"

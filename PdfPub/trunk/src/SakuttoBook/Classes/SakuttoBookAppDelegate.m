@@ -396,18 +396,21 @@
 		//Copy CSV file.
 		[FileUtility copyCSVFile:CSVFILE_POPOVER_IMAGE withContentId:(ContentId)cid skipBackup:YES];
 		
-		//Copy png file for inpage.
+		//Copy each png file for inpage.
 		lines = [FileUtility parseDefineCsv:CSVFILE_POPOVER_IMAGE contentId:cid];
+		NSString* filenameFull = nil;
 		for (NSString* line in lines) {
 			NSArray* tmpCsvArray = [line componentsSeparatedByString:@","];
 			if ([tmpCsvArray count] < 6) {
 				continue;	//skip error line.
 			}
-			NSString* tmpStr = [tmpCsvArray objectAtIndex:5];
-			NSString* filename = [FileUtility cleanString:tmpStr];
-			NSString* filenameFull = [toDir stringByAppendingPathComponent:filename];
-			[FileUtility res2file:filename
-					 fileNameFull:filenameFull];
+			for (int i = 5; i < [tmpCsvArray count]; i = i + 1) {
+				NSString* tmpStr = [tmpCsvArray objectAtIndex:i];
+				NSString* filename = [FileUtility cleanString:tmpStr];
+				filenameFull = [toDir stringByAppendingPathComponent:filename];
+				[FileUtility res2file:filename
+						 fileNameFull:filenameFull];
+			}
 			//Set Ignore Backup.
 			[FileUtility addSkipBackupAttributeToItemWithString:filenameFull];
 		}
