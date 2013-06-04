@@ -59,6 +59,7 @@
 //get the device model number using uname from sys/utsname.h
 + (NSString*)machineName;
 +(BOOL)is_4inch;
++(NSString*)getDeviceSuffixForCsv;
 @end
 
 //
@@ -76,3 +77,8 @@
 #define CSVFILE_POPOVER_IMAGE	@"popoverScrollImageDefine"
 //
 #define CSVFILE_TOC				@"tocDefine"
+
+//
+#define SUFFIX_IPHONE			@"_iphone"
+#define SUFFIX_IPHONE5			@"_iphone5"
+#define SUFFIX_IPAD				@"_ipad"
