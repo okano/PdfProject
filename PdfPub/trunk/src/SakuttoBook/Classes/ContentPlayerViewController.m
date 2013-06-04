@@ -2165,7 +2165,11 @@
 - (void)parseTocDefine
 {
 	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
-	appDelegate.tocDefine = [[NSMutableArray alloc] init];
+	if ([appDelegate.tocDefine isKindOfClass:[NSMutableArray class]]) {
+		[appDelegate.tocDefine removeAllObjects];
+	} else {
+		appDelegate.tocDefine = [[NSMutableArray alloc] init];
+	}
 	
 	//parse csv file.
 	NSString* targetFilename = CSVFILE_TOC;
