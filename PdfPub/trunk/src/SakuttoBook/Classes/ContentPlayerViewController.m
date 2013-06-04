@@ -403,7 +403,7 @@
 	isVerticalWritingInDefault = FALSE;	//yokogaki.
 #endif
 	
-	NSString* targetFilename = @"pdfDefine";
+	NSString* targetFilename = CSVFILE_PDFDEFINE;
 	NSArray* lines;
 	if ([self isMultiContents] == TRUE) {
 		lines = [FileUtility parseDefineCsv:targetFilename contentId:currentContentId];
@@ -1731,7 +1731,7 @@
 	movieDefine = [[NSMutableArray alloc] init];
 	
 	//parse csv file.
-	NSString* targetFilename = @"movieDefine";
+	NSString* targetFilename = CSVFILE_MOVIE;
 	NSArray* lines;
 	if ([self isMultiContents] == TRUE) {
 		lines = [FileUtility parseDefineCsv:targetFilename contentId:currentContentId];
@@ -1844,7 +1844,7 @@
 	pageJumpLinkDefine = [[NSMutableArray alloc] init];
 	
 	//parse csv file.
-	NSString* targetFilename = @"pageJumpLinkDefine";
+	NSString* targetFilename = CSVFILE_PAGEJUMPLINK;
 	NSArray* lines;
 	if ([self isMultiContents] == TRUE) {
 		lines = [FileUtility parseDefineCsv:targetFilename contentId:currentContentId];
@@ -1939,7 +1939,7 @@
 	inPageScrollViewDefine = [[NSMutableArray alloc] init];
 	
 	//parse csv file.
-	NSString* targetFilename = @"inPageScrollViewDefine";
+	NSString* targetFilename = CSVFILE_INPAGE_SCROLLVIEW;
 	NSArray* lines;
 	if ([self isMultiContents] == TRUE) {
 		lines = [FileUtility parseDefineCsv:targetFilename contentId:currentContentId];
@@ -2053,7 +2053,7 @@
 	popoverScrollImageDefine = [[NSMutableArray alloc] init];
 	
 	//parse csv file.
-	NSString* targetFilename = @"popoverScrollImageDefine";
+	NSString* targetFilename = CSVFILE_POPOVER_IMAGE;
 	NSArray* lines;
 	if ([self isMultiContents] == TRUE) {
 		lines = [FileUtility parseDefineCsv:targetFilename contentId:currentContentId];
@@ -2165,10 +2165,14 @@
 - (void)parseTocDefine
 {
 	SakuttoBookAppDelegate* appDelegate = (SakuttoBookAppDelegate*)[[UIApplication sharedApplication] delegate];
-	appDelegate.tocDefine = [[NSMutableArray alloc] init];
+	if ([appDelegate.tocDefine isKindOfClass:[NSMutableArray class]]) {
+		[appDelegate.tocDefine removeAllObjects];
+	} else {
+		appDelegate.tocDefine = [[NSMutableArray alloc] init];
+	}
 	
 	//parse csv file.
-	NSString* targetFilename = @"tocDefine";
+	NSString* targetFilename = CSVFILE_TOC;
 	NSArray* lines;
 	if ([self isMultiContents] == TRUE) {
 		lines = [FileUtility parseDefineCsv:targetFilename contentId:currentContentId];

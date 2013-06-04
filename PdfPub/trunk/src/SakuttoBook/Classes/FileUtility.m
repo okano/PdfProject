@@ -135,18 +135,18 @@
 	NSString* filenameWithDevice = nil;
 	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
 		// iPad
-		filenameWithDevice = [filename stringByAppendingString:@"-ipad"];
+		filenameWithDevice = [filename stringByAppendingString:SUFFIX_IPAD];	//@"_ipad"
 	} else {
 		// iPhone
 		if ([self is_4inch] == YES) {
-			filenameWithDevice = [filename stringByAppendingString:@"-iphone"];
+			filenameWithDevice = [filename stringByAppendingString:SUFFIX_IPHONE];	//@"_iphone"
 		} else {
 			//(A-1)iPhone5
-			filenameWithDevice = [filename stringByAppendingString:@"-iphone5"];
+			filenameWithDevice = [filename stringByAppendingString:SUFFIX_IPHONE5];	//@"_iphone5"
 			csvFilePath = [[NSBundle mainBundle] pathForResource:filenameWithDevice ofType:@"csv"];
 			if (csvFilePath == nil) {
 				//(A-2)use iPhone(3.5-inch) file for iPhone5.
-				filenameWithDevice = [filename stringByAppendingString:@"-iphone"];
+				filenameWithDevice = [filename stringByAppendingString:SUFFIX_IPHONE];	//@"_iphone";
 			}
 		}
 	}
@@ -268,21 +268,10 @@
 	NSString* csvFilePath1 = nil;
 	
 	if (isAddSuffix == TRUE) {
-		//(A)Add suffix "-ipad" or "-iphone".
+		//(A)Add suffix "_ipad" or "_iphone".
 		//example: with tocDefine.csv
-		//         ->tocDefine-ipad.csv / tocDefine-iphone.csv
-		NSString* suffix = nil;
-		if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-			// iPad
-			suffix = @"_ipad";
-		} else {
-			// iPhone
-			if ([self is_4inch] == YES) {
-				suffix = @"_iphone5";
-			} else {
-				suffix = @"_iphone";
-			}
-		}
+		//         ->tocDefine_ipad.csv / tocDefine_iphone.csv
+		NSString* suffix = [NSString stringWithString:[self getDeviceSuffixForCsv]];
 
 		csvFilePath1 = [[[[[ContentFileUtility getContentBodyDirectoryWithContentId:cidStr]
 						   stringByAppendingPathComponent:@"csv"]
@@ -305,18 +294,7 @@
 {
 	NSString* filenameWithoutCid = nil;
 	if (isAddSuffix == YES) {
-		NSString* suffix = nil;
-		if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-			// iPad
-			suffix = @"_ipad";
-		} else {
-			// iPhone
-			if ([self is_4inch] == YES) {
-				suffix = @"_iphone5";
-			} else {
-				suffix = @"_iphone";
-			}
-		}
+		NSString* suffix = [NSString stringWithString:[self getDeviceSuffixForCsv]];
 		filenameWithoutCid = [[NSString stringWithFormat:@"%@%@", filename, suffix]
 						   stringByAppendingPathExtension:@"csv"];
 	} else {
@@ -329,18 +307,7 @@
 {
 	NSString* filenameWithCid = nil;
 	if (isAddSuffix == YES) {
-		NSString* suffix = nil;
-		if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-			// iPad
-			suffix = @"_ipad";
-		} else {
-			// iPhone
-			if ([self is_4inch] == YES) {
-				suffix = @"_iphone5";
-			} else {
-				suffix = @"_iphone";
-			}
-		}
+		NSString* suffix = [NSString stringWithString:[self getDeviceSuffixForCsv]];
 		filenameWithCid = [[NSString stringWithFormat:@"%@%@_%d", filename, suffix, cid]
 						   stringByAppendingPathExtension:@"csv"];
 	} else {
@@ -545,6 +512,21 @@
 		return YES;	//4-inch.
 	} else {
 		return NO;	//3.5-inch or iPad.
+	}
+}
+
++(NSString*)getDeviceSuffixForCsv
+{
+	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+		// iPad
+		return SUFFIX_IPAD;			//@"_ipad";
+	} else {
+		// iPhone
+		if ([self is_4inch] == YES) {
+			return SUFFIX_IPHONE5;	//@"_iphone5";
+		} else {
+			return SUFFIX_IPHONE;	//@"_iphone";
+		}
 	}
 }
 
