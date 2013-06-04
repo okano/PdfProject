@@ -20,6 +20,7 @@
 	NSString* bookSupportPageUrl;
 	IBOutlet UIButton* bookSupportPageButton;	/* outlet for hidden. */
 	//Program infomation label.
+	IBOutlet UILabel* licenceNumberItemNameLabel;
 	IBOutlet UILabel* licenceNumberLabel;
 }
 @property (nonatomic) ContentId contentId;
@@ -29,6 +30,7 @@
 @property (nonatomic, retain) UILabel* bookCopyrightLabel;
 @property (nonatomic, retain) NSString* bookSupportPageUrl;
 @property (nonatomic, retain) UIButton* bookSupportPageButton;
+@property (nonatomic, retain) UILabel* licenceNumberItemNameLabel;
 @property (nonatomic, retain) UILabel* licenceNumberLabel;
 
 - (IBAction)closeThisView:(id)sender;
