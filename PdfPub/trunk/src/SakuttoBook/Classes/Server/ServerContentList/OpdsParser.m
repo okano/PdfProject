@@ -408,17 +408,18 @@
 																  authenticationMethod:NSURLAuthenticationMethodHTTPBasic];
 	[[NSURLCredentialStorage sharedCredentialStorage] setDefaultCredential:credential
 														forProtectionSpace:protectionSpace];
-	[protectionSpace release];
-
 #if defined(DEBUG_CREDENTIAL) && DEBUG_CREDENTIAL != 0
 	NSLog(@"credential = %@", [credential description]);
 	NSLog(@"protectionSpace=%@, host=%@, port=%d", [protectionSpace description],
 		  [protectionSpace host], [protectionSpace port]);
-	NSLog(@"protocol=%@, realm=%@", [protectionSpace protocol], [protectionSpace realm]);
+	NSLog(@"realm in protectionSpace=%@", [protectionSpace realm]);
+	NSLog(@"protocol=%@", [protectionSpace protocol]);
 	NSLog(@"receivesCredentialSecurely=%d(YES=%d,NO=%d)", [protectionSpace receivesCredentialSecurely], YES, NO);
 	NSLog(@"distinguishedNames=%@", [[protectionSpace distinguishedNames] description]);
 	NSLog(@"all credential=%@", [[[NSURLCredentialStorage sharedCredentialStorage] allCredentials] description]);
 #endif
+	
+	[protectionSpace release];
 	
 	
 	//Set timeout = 10s.
