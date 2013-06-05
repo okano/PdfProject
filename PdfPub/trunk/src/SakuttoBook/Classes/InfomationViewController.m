@@ -12,6 +12,7 @@
 @implementation InfomationViewController
 @synthesize contentId;
 @synthesize bookTitleLabel, bookAuthorLabel, bookCopyrightLabel;
+@synthesize licenceNumberItemNameLabel;
 @synthesize licenceNumberLabel;
 @synthesize bookSupportPageUrl;
 @synthesize bookSupportPageButton;
@@ -42,6 +43,22 @@
 							 //[tmpDict objectForKey:CONTENT_SUPPORT_HP],
 							 nil];
 	[self setBookInfoWithArray:lines];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	
+	//Hide Serial number if server supported version.
+#if defined(HIDE_SERVER_BUTTON) && HIDE_SERVER_BUTTON != 0
+	//Not Support Server.
+	licenceNumberItemNameLabel.hidden = YES;
+	licenceNumberLabel.hidden = YES;
+#else
+	//Support Server.
+	licenceNumberItemNameLabel.hidden = NO;
+	licenceNumberLabel.hidden = NO;
+#endif
 }
 
 - (void)setBookInfoFromDefineFile {
