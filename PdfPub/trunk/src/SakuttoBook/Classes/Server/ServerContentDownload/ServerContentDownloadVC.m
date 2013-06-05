@@ -368,14 +368,49 @@
 	extractResult = [self unzipFile:f ToDirectory:[ContentFileUtility getContentExtractDirectory]];
 	if (extractResult == FALSE) {
 		NSLog(@"extract error.");
+		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"" message:@"extract failed." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK",nil] autorelease];
+		alert.tag = ALERTVIEW_TAG_EXTRACT_FAILED;
+		[alert show];
 	}
+	
+	//Check valid folder structure.
+	NSString* extractFolder = [ContentFileUtility getContentExtractDirectory];
+	NSMutableArray* filelistInExtractedFolder = [NSMutableArray arrayWithArray:[FileUtility fileList:extractFolder]];
+	while (true) {
+		if ([filelistInExtractedFolder count] <= 0) {
+			NSLog(@"extracted folder is invalid.(no file found)");
+			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"extract failed" message:@"extract failed. no file found" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK",nil] autorelease];
+			alert.tag = ALERTVIEW_TAG_INVALID_FOLDER_STRUCTURE;
+			[alert show];
+		}
+		if ([filelistInExtractedFolder count] == 1) {
+			NSString* filename = [filelistInExtractedFolder objectAtIndex:0];
+			NSString* filenameFull = [extractFolder stringByAppendingPathComponent:filename];
+			if ([[filename pathExtension] compare:@"pdf"] == TRUE) {
+				//(only *.pdf file in zip.)
+				NSLog(@"only single PDF file in zip.");
+				[self handleDownloadedPdf:filenameFull contentIdStr:contentIdStr];
+			}
+			
+			//Drill-Down into folder.
+			if ([[NSFileManager defaultManager] fileExistsAtPath:filenameFull isDirectory:YES]) {
+				extractFolder = [NSString stringWithString:filenameFull];
+				continue;	//recurcibe call. drill-down into folder.
+			}
+		}
+		
+		if (! [filelistInExtractedFolder containsObject:@"pdf"]) {
+			LOG_CURRENT_LINE;
+		}
+	}
+	
 	
 	//Move downloaded file to ContentBodyDirectory.
 	NSString* contentBodyDirectory = [ContentFileUtility getContentBodyDirectory];
 	[FileUtility makeDir:contentBodyDirectory];
 	NSString* contentDirectoryWithContentId = [[ContentFileUtility getContentBodyDirectory]
 											   stringByAppendingPathComponent:contentIdStr];
-	[[NSFileManager defaultManager] moveItemAtPath:[ContentFileUtility getContentExtractDirectory]
+	[[NSFileManager defaultManager] moveItemAtPath:extractFolder
 											toPath:contentDirectoryWithContentId 
 											 error:&error];
 	
