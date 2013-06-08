@@ -13,10 +13,11 @@
 //#define URL_BASE_OPDS_DEFAULT1		@"http://www7200uj.sakura.ne.jp"		/* Demo Server. */
 
 //#define CREDENTIAL_REALM				@"Authorization Required"			/* Calibre. */
-//#define CREDENTIAL_REALM				@"Application"						/* SakuttoBook Server. */
+#define CREDENTIAL_REALM				@"Application"						/* SakuttoBook Server. */
+//#define CREDENTIAL_REALM				@"Authentication"	/* DebugSakuttoBook Server(new). */
 
-#define CREDENTIAL_REALM				@"Authentication"	/* DebugSakuttoBook Server(new). */
-
+//
+#define DEBUG_CREDENTIAL 0	/* 0:not debug, 1:show URL and credential infomation for OPDS. */
 
 //
 #define URL_SUFFIX_OPDS		@"/opds"
