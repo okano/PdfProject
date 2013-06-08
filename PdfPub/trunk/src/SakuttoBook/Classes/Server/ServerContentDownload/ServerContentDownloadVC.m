@@ -375,8 +375,17 @@
 	
 	//Check valid folder structure.
 	NSString* extractFolder = [ContentFileUtility getContentExtractDirectory];
-	NSMutableArray* filelistInExtractedFolder = [NSMutableArray arrayWithArray:[FileUtility fileList:extractFolder]];
 	while (true) {
+		NSMutableArray* filelistInExtractedFolder = [NSMutableArray arrayWithArray:[FileUtility fileList:extractFolder]];
+		//delete ".DS_Store" file.(Mac Finder information file.)
+		NSEnumerator *enumerator = [filelistInExtractedFolder reverseObjectEnumerator];
+		for (NSString* s in enumerator) {
+			if ([s compare:@".DS_Store"] == NSOrderedSame) {
+				[filelistInExtractedFolder removeObject:s];
+			}
+		}
+		
+		//
 		if ([filelistInExtractedFolder count] <= 0) {
 			NSLog(@"extracted folder is invalid.(no file found)");
 			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"extract failed" message:@"extract failed. no file found" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK",nil] autorelease];
@@ -385,7 +394,7 @@
 		}
 		if ([filelistInExtractedFolder count] == 1) {
 			NSString* filename = [filelistInExtractedFolder objectAtIndex:0];
-			NSString* filenameFull = [extractFolder stringByAppendingPathComponent:filename];
+			NSString* filenameFull = [NSString stringWithString:[extractFolder stringByAppendingPathComponent:filename]];
 			if ([[filename pathExtension] compare:@"pdf"] == TRUE) {
 				//(only *.pdf file in zip.)
 				NSLog(@"only single PDF file in zip.");
@@ -393,14 +402,17 @@
 			}
 			
 			//Drill-Down into folder.
-			if ([[NSFileManager defaultManager] fileExistsAtPath:filenameFull isDirectory:YES]) {
+			NSFileManager* fm = [NSFileManager defaultManager];
+			NSLog(@"filenameFull=%@", filenameFull);
+			if ( [fm fileExistsAtPath:filenameFull isDirectory:NO]) {
+				NSLog(@"invalid folder structure. drill-down it. filenameFull=%@", filenameFull);
 				extractFolder = [NSString stringWithString:filenameFull];
 				continue;	//recurcibe call. drill-down into folder.
 			}
 		}
 		
-		if (! [filelistInExtractedFolder containsObject:@"pdf"]) {
-			LOG_CURRENT_LINE;
+		if ([filelistInExtractedFolder containsObject:@"pdf"]) {
+			break;	//exit-while.
 		}
 	}
 	
