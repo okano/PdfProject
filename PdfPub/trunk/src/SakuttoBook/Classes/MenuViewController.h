@@ -40,6 +40,8 @@
 
 //sound.
 - (IBAction)stopSound:(id)sender;
+//Share with social network.
+- (IBAction)shareWithSocialnetwork:(id)sender;
 
 - (IBAction)switchToContentListView:(id)sender;
 @end

@@ -135,6 +135,12 @@
 	[appDelegate stopSound];
 }
 
+//Share with social network.
+- (IBAction)shareWithSocialnetwork:(id)sender
+{
+	LOG_CURRENT_METHOD;
+}
+
 #pragma mark -
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
