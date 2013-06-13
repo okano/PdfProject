@@ -114,9 +114,10 @@
 #else
 	//content list with table.
 	if (contentListVC == nil) {
-		contentListVC = [[ContentListTableViewController alloc] init];
+		contentListVC = (ContentListViewController*)[[ContentListTableViewController alloc] init];
 	}
 	[self.view addSubview:contentListVC.view];
+	[contentListVC setupTableView];
 	[contentListVC reloadData];
 #endif
 }

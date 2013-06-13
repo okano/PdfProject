@@ -14,6 +14,8 @@
 	UIToolbar* toolbar;
 }
 
+//Setup.
+- (void)setupTableView;
 //Accessor for table
 - (void)reloadData;
 

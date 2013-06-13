@@ -31,10 +31,15 @@
     [super viewDidLoad];
 	
 	//NSLog(@"class=%@", [self class]);
+	
 	//Setup TableView.(only if use table.)
+	[self setupTableView];
+}
+
+- (void)setupTableView
+{
 	//(do nothing if (server)ContentListImageView.)
 	if ([self isMemberOfClass:[ContentListTableViewController class]]) {	/* not use "isKindOfClass". */
-		
 		myTableView = [[UITableView alloc] initWithFrame:self.view.frame];
 		myTableView.delegate = self;
 		myTableView.dataSource = self;
