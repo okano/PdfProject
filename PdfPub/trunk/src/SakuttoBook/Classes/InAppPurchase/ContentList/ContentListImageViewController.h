@@ -20,5 +20,5 @@
 }
 
 //- (void)setupImagesWithDataSource:(ContentListDS*)contentListDS shelfImageName:(NSString*)shelfImageName;
-
+- (IBAction)showContentListTableView:(id)sender;
 @end

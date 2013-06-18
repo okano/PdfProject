@@ -105,13 +105,14 @@
 {
 #if defined(IS_CONTENTLIST_WITH_IMAGE) && IS_CONTENTLIST_WITH_IMAGE != 0
 	//content list with image.
-	if (contentListIVC == nil) {
-		contentListIVC = [[ContentListImageViewController alloc] initWithNibName:@"ContentListImageViewController" bundle:[NSBundle mainBundle]];
-	}
-	[self.view addSubview:contentListIVC.view];
-	
-	contentListVC = nil;
+	[self showContentListImageView];
 #else
+	//content list with table.
+	[self showContentListTableView];
+#endif
+}
+- (void)showContentListTableView
+{
 	//content list with table.
 	if (contentListVC == nil) {
 		contentListVC = (ContentListViewController*)[[ContentListTableViewController alloc] init];
@@ -119,7 +120,16 @@
 	[self.view addSubview:contentListVC.view];
 	[contentListVC setupTableView];
 	[contentListVC reloadData];
-#endif
+}
+- (void)showContentListImageView
+{
+	//content list with image.
+	if (contentListIVC == nil) {
+		contentListIVC = [[ContentListImageViewController alloc] initWithNibName:@"ContentListImageViewController" bundle:[NSBundle mainBundle]];
+	}
+	[self.view addSubview:contentListIVC.view];
+	
+	contentListVC = nil;
 }
 - (void)hideContentListView
 {

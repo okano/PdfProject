@@ -56,18 +56,30 @@
 																				 style:UIBarButtonItemStyleBordered
 																				target:self
 																				action:@selector(showPaymentHistoryList)];
-		
+		UIBarButtonItem* titleButton = [[UIBarButtonItem alloc] initWithTitle:@"マイ本棚"
+																		style:UIBarButtonItemStylePlain
+																	   target:nil
+																	   action:nil];
+		UIBarButtonItem* flexibleSpaceButton = [[UIBarButtonItem alloc]
+							   initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+							   target:nil
+							   action:nil];
+		UIImage* list_bulletsThumbnail = [UIImage imageNamed:@"list_bulletsThumbnail.png"];
+		UIBarButtonItem* listSwitchButton = [[UIBarButtonItem alloc] initWithImage:list_bulletsThumbnail
+																			 style:UIBarButtonItemStyleBordered
+																			target:self
+																			action:@selector(showContentListImageView)];
 		NSArray *items = nil;
 #if defined(HIDE_SERVER_BUTTON) && HIDE_SERVER_BUTTON != 0
 		//Hide Server Button.
-		items = [NSArray arrayWithObjects:paymentHistoryButton, nil];
+		items = [NSArray arrayWithObjects:flexibleSpaceButton, titleButton, flexibleSpaceButton, paymentHistoryButton, listSwitchButton, nil];
 #else
 		//Not hide Server Button.
 		UIBarButtonItem *serverContentButton = [[UIBarButtonItem alloc] initWithTitle:@"Store"
 																				style:UIBarButtonItemStyleBordered
 																			   target:self
 																			   action:@selector(showServerContentListView)];
-		items = [NSArray arrayWithObjects:serverContentButton, paymentHistoryButton, nil];
+		items = [NSArray arrayWithObjects:serverContentButton, flexibleSpaceButton, titleButton, flexibleSpaceButton, paymentHistoryButton, listSwitchButton, nil];
 #endif
 		[toolbar setItems:items];
 		[self.view addSubview:toolbar];
@@ -243,5 +255,12 @@
 - (void)reloadData
 {
 	[myTableView reloadData];
+}
+
+#pragma mark - Switch another view.
+- (void)showContentListImageView
+{
+	[appDelegate hideContentListView];
+	[appDelegate showContentListImageView];
 }
 @end

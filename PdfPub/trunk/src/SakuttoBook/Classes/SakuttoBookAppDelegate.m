@@ -640,6 +640,12 @@
 - (void)showContentListView {
 	[self.viewController showContentListView];
 }
+- (void)showContentListTableView {
+	[self.viewController showContentListTableView];
+}
+- (void)showContentListImageView {
+	[self.viewController showContentListImageView];
+}
 - (void)hideContentListView {
 	[self.viewController hideContentListView];
 }

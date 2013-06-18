@@ -107,6 +107,8 @@
 
 @interface SakuttoBookAppDelegate (InAppPurchase)
 - (void)showContentListView;
+- (void)showContentListTableView;
+- (void)showContentListImageView;
 - (void)hideContentListView;
 - (void)showContentPlayerView:(ContentId)cid;
 - (void)hideContentPlayerView;

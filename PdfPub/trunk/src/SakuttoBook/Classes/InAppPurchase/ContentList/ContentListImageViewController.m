@@ -91,4 +91,11 @@
 	}
 }
 
+#pragma mark - Switch another view.
+- (IBAction)showContentListTableView:(id)sender
+{
+	[appDelegate hideContentListView];
+	[appDelegate showContentListTableView];
+}
+
 @end

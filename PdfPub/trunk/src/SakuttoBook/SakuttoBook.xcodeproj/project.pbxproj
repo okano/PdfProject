@@ -13,6 +13,7 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		28D7ACF80DDB3853001CB0EB /* SakuttoBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* SakuttoBookViewController.m */; };
+		2900A88F1770A36600EAC7DB /* list_bulletsThumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2900A88E1770A36600EAC7DB /* list_bulletsThumbnail.png */; };
 		29014A9B12D6EC8700936BF0 /* pdfDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29014A9A12D6EC8700936BF0 /* pdfDefine.csv */; };
 		29014A9D12D6EC9100936BF0 /* tocDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29014A9C12D6EC9100936BF0 /* tocDefine.csv */; };
 		29014A9F12D6EC9C00936BF0 /* movieDefine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 29014A9E12D6EC9C00936BF0 /* movieDefine.csv */; };
@@ -188,6 +189,7 @@
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28D7ACF60DDB3853001CB0EB /* SakuttoBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SakuttoBookViewController.h; sourceTree = "<group>"; };
 		28D7ACF70DDB3853001CB0EB /* SakuttoBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SakuttoBookViewController.m; sourceTree = "<group>"; };
+		2900A88E1770A36600EAC7DB /* list_bulletsThumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = list_bulletsThumbnail.png; path = "system-image/list_bulletsThumbnail.png"; sourceTree = "<group>"; };
 		29014A9A12D6EC8700936BF0 /* pdfDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pdfDefine.csv; path = csv/pdfDefine.csv; sourceTree = "<group>"; };
 		29014A9C12D6EC9100936BF0 /* tocDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tocDefine.csv; path = csv/tocDefine.csv; sourceTree = "<group>"; };
 		29014A9E12D6EC9C00936BF0 /* movieDefine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = movieDefine.csv; path = csv/movieDefine.csv; sourceTree = "<group>"; };
@@ -684,6 +686,7 @@
 				2902897C1758D226001FC96C /* icon_undo.png */,
 				2902897D1758D226001FC96C /* list_bullets.png */,
 				2902897E1758D226001FC96C /* list_thumbnail.png */,
+				2900A88E1770A36600EAC7DB /* list_bulletsThumbnail.png */,
 				2902897F1758D226001FC96C /* shelf.png */,
 				290289801758D226001FC96C /* unpaid.png */,
 				8D1107310486CEB800E47090 /* SakuttoBook-Info.plist */,
@@ -1077,6 +1080,7 @@
 				290289831758D226001FC96C /* list_thumbnail.png in Resources */,
 				290289841758D226001FC96C /* shelf.png in Resources */,
 				290289851758D226001FC96C /* unpaid.png in Resources */,
+				2900A88F1770A36600EAC7DB /* list_bulletsThumbnail.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
