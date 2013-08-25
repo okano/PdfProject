@@ -123,6 +123,8 @@ Passengerインストールに必要なものをインストール
 # make
 # make install
 # passenger-install-apache2-module
+（LoadModuleとVirtualHostの設定が表示される。後で使うのでメモ帳などにコピペしておく）
+
 
 設定ファイルを作成
 # find / -type f -name mod_passenger.so
