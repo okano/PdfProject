@@ -134,6 +134,9 @@ PassengerRuby /usr/local/bin/ruby
 
 #RailsEnv development # developmentの時
 
+# cd /etc/httpd/conf
+# vi httpd.conf
+
 NameVirtualHost xxx.xxx.xxx.xxx
 
 <VirtualHost xxx.xxx.xxx.xxx>
@@ -196,6 +199,7 @@ PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 # cd /var/www/passenger/[アプリ名]
 # vi config/database.yml
 データベースのパスワードを記入。コロンの後ろは半角スペース１つ開ける。developerとtestとproductionの３セクションに分かれているので注意。
+
 # bundle install
 …
 Your bundle is complete! Use `bundle show [gemname]` to see where a bundled gem is installed.
@@ -224,7 +228,7 @@ Your bundle is complete! Use `bundle show [gemname]` to see where a bundled gem 
 ・chmod 777 sbss/log
 ・chmod 777 sbss/tmp
 ・chmod 777 sbss/public/upload
-・ service httpd restart
+・service httpd restart
 
 ・データベースのスキーマ変更していた場合は、
 # rake db:create RAILS_ENV=production
@@ -232,3 +236,12 @@ Your bundle is complete! Use `bundle show [gemname]` to see where a bundled gem 
 
 rake db:migrate:reset // DBリセット
 rake db:seed          // ダミーデータ作成
+
+
+●パスワードの変更
+# cd /var/www/passenger/epubs/
+# vi app/controllers/contents_controller.rb
+3行目のユーザ名、パスワードを変更する。
+#vi app/views/home/index.html.erb （画面表示も変更）
+
+# service httpd restart
